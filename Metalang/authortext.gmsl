@@ -1,0 +1,3047 @@
+void AddUserReferences()
+{
+}
+
+void AddUserCompiles()
+{
+}
+
+void addCodePage()
+{
+   // use with <Registry type="ProjectSettings" source="CodePage" target="value" />
+   string customCodePage = Registry.GetNameValue("ProjectSettings","CodePage","");
+   if (customCodePage != "")
+   {
+      Write.Line("<CodePage>" + customCodePage + "</CodePage>");
+      return;
+   }
+
+   if (Select.CharSet==CharacterSets.Shift_JIS)
+   {
+      Write.Line("<CodePage>932</CodePage>");
+      return;
+   }
+}
+
+string getNetProjName()
+{
+   // use with <Registry type="ProjectSettings" source="NetProjName" target="%NetProjName%" />
+   string NetProjName = Registry.GetNameValue("ProjectSettings","NetProjName","");
+   if (NetProjName == "")
+   {
+      NetProjName = Project.NameSpace;
+   }
+   return NetProjName;
+}
+
+void setDeployLocation()
+{
+   // use with <Registry type="ProjectSettings" source="NetProjFolder" target="%NetProjFolder%"/>
+   string NetProjfolder = Registry.GetNameValue("ProjectSettings","NetProjFolder","");
+   if (NetProjfolder != "")
+   {
+      Project.DeployLocation = NetProjfolder
+   }
+}
+
+/*
+Some project types require special operations from visual Studio
+VS recognizes these projects based on special ProjectTypeGuids in the project file.
+Set special project guids here/
+More information: https://www.codeproject.com/Reference/720512/List-of-Visual-Studio-Project-Type-GUIDs
+*/
+void addProjectTypeGuids()
+{
+    int hasSubSystemWPF = hasSubSystem(Dialects.wpf);
+    if (hasSubSystemWPF)
+    {
+      if (Select.Dialect == Dialects.csh)
+      {
+         Write.Line("<ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>");
+      }
+      else
+      {
+         Write.Line("<ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>");
+      }
+   }
+   return;
+}
+
+int hasStartupForm()
+{
+    if (Project.StartupMain) return 0;
+    if (Select.Dialect == Dialects.VBN) return 0;
+    if (Project.Startup == "(None)") return 0;
+    int hasSubSystemWPF = hasSubSystem(Dialects.wpf);
+    if (hasSubSystemWPF) return 0;
+    return 1;
+}
+
+int hasSubSystem(int theSubSystem)
+{
+    if (Select.SubSystem ==theSubSystem) return 1;
+    if (Select.SubSystem2==theSubSystem) return 2;
+    if (Select.SubSystem3==theSubSystem) return 3;
+    if (Select.SubSystem4==theSubSystem) return 4;
+    if (Select.SubSystem5==theSubSystem) return 5;
+    return 0;
+}
+
+int isNewerVSVersion()
+{
+   if (Select.DevEnv == "VS2005") return 0;
+   if (Select.DevEnv == "VS2008") return 0;
+   return 1;
+}
+
+string GetToolsVersion()
+{
+   if (Select.DevEnv == "VS2005") return "2.0";
+   if (Select.DevEnv == "VS2008") return "2.0";
+   if (Select.DevEnv == "VS2010") return "4.0";
+   if (Select.DevEnv == "VS2012") return "4.0";
+   if (Select.DevEnv == "VS2013") return "12.0";
+   if (Select.DevEnv == "VS2015") return "14.0";
+   return "15.0";
+}
+string GetFrameworkVersion()
+{
+   // use with <Registry type="ProjectSettings" source="FrameworkVersion" target="v#.#.#" />
+   string customFramework = Registry.GetNameValue("ProjectSettings","FrameworkVersion","");
+   if (customFramework != "") return customFramework;
+
+   if (Select.DevEnv == "VS2008") return "v3.5";
+   if (Select.DevEnv == "VS2010") return "v4.0";
+   if (Select.DevEnv == "VS2012") return "v4.5";
+   if (Select.DevEnv == "VS2013") return "v4.5.1";
+   if (Select.DevEnv == "VS2015") return "v4.6.1";
+   if (Select.DevEnv == "VS2017") return "v4.6.1";
+   if (Select.DevEnv == "VS2019") return "v4.7.2";
+   if (Select.DevEnv == "VS2022") return "v4.8";
+   return "v2.0";
+}
+
+void AddNET35AndUpUsings()
+{
+   int hasSubSystemWPF = hasSubSystem(Dialects.wpf);
+
+   if(Select.DevEnv == "VS2010" )
+   {
+      if(Select.Dialect == Dialects.vbn)
+      {
+          #TextStart
+          Imports System.Collections.Generic
+          #TextEnd
+       }
+       else if(Select.Dialect == Dialects.csh)
+       {
+          #TextStart
+          using System.Collections.Generic;
+          #TextEnd
+       }
+   }
+   else
+   {
+      if(Select.Dialect == Dialects.vbn)
+      {
+           #TextStart
+           Imports System.Linq
+           Imports System.Collections.Generic
+           #TextEnd
+           if(hasSubSystemWPF)
+           {
+               #TextStart
+               Imports System
+               Imports System.Windows.Forms
+               #TextEnd
+           }
+           if(hasSubSystemWPF) Write.Line("Imports System.Windows");
+       }
+       else
+       {
+           #TextStart
+           using System.Linq;
+           using System.Collections.Generic;
+           #TextEnd
+       }
+   }
+}
+
+void AddExtensionUsing()
+{
+   tInfoFile fileInfo;
+   int       supportLib;
+   int       iLib;
+   int       maskValue;
+   string    nameSpace;
+   string    libName;
+   string    libNumber;
+
+   if(Project.HasExtensions)
+   {
+      if(Select.Dialect == Dialects.vbn) Write.Line("Imports " + Select.ExtensionMethods);
+      else Write.Line("using " + Select.ExtensionMethods + ";");
+   }
+   fileInfo = Store.GetVector(Project.childRoot);
+   supportLib = fileInfo.supportLibrarys;
+   if(supportLib != 0)
+   {
+      for(iLib = 1; iLib < 31; iLib = iLib + 1)
+      {
+         maskValue = Mask(iLib);
+         if(maskValue > supportLib) break;
+         if((maskValue & supportLib) != 0)
+         {
+             libName = Symbol.NamedEntryLabel("SupportLibraries",iLib);
+             if(libName == null)
+             {
+                libNumber = iLib;
+                libName = Registry.GetNameValue("SupportLibrary",libNumber);
+                if(libName == null) break;
+             }
+             nameSpace = Character.Substr(libName,0,-1);
+             if(Select.Dialect == Dialects.vbn) Write.Line("Imports " + nameSpace);
+             else Write.Line("using " + nameSpace + ";");
+         }
+      }
+   }
+}
+
+void Project_Preamble(string first)
+{
+   setDeployLocation();
+
+   if(first == "T")
+   {
+      #TextStart
+      rmdir (%= Project.DeployLocation %)
+      crdir (%= Project.DeployLocation %)
+      crdir (%= Project.DeployLocation %)\Properties
+      #TextEnd
+   }
+
+   #TextStart
+   cat >(%= Project.DeployLocation %)\(%= getNetProjName() %).(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)proj <<'!)(!'
+   #TextEnd
+   int isNewerVS = isNewerVSVersion();
+   if(isNewerVS > 0)
+   {
+      string ToolsVersion = GetToolsVersion();
+      string FrameworkVersion = GetFrameworkVersion();
+      #TextStart
+      <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="(%= ToolsVersion %)">
+         <PropertyGroup>
+            <ProjectType>Local</ProjectType>
+            <TargetFrameworkVersion>(%= FrameworkVersion %)</TargetFrameworkVersion>
+     #TextEnd
+   }
+   else
+   {
+      #TextStart
+      <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+         <PropertyGroup>
+            <ProjectType>Local</ProjectType>
+            <ProductVersion>8.0.50727</ProductVersion>
+     #TextEnd
+   }
+   addCodePage();
+   addProjectTypeGuids();
+   #TextStart
+   <SchemaVersion>2.0</SchemaVersion>
+   <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+   <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+   <ApplicationIcon></ApplicationIcon>
+   <AssemblyKeyContainerName></AssemblyKeyContainerName>
+   <AssemblyName>(%= Project.NameSpace %)</AssemblyName>
+   #TextEnd
+   string projGuid = System.Guid("Project");
+   if(Select.ProjectReference || projGuid != "off")
+   {
+      #TextStart
+      <ProjectGuid>(%= projGuid %)</ProjectGuid>
+      #TextEnd
+   }
+   #TextStart
+   <DelaySign>false</DelaySign>
+   #TextEnd
+   if(Project.BuildType == "OleDll")
+   {
+      Write.Line("<OutputType>Library</OutputType>");
+   }
+   else if(Project.BuildType == "OleExe")
+   {
+      Write.Line("<OutputType>Library</OutputType>");
+   }
+   else if(Project.BuildType == "Control")
+   {
+      Write.Line("<OutputType>Library</OutputType>");
+   }
+   else
+   {
+      Write.Line("<OutputType>WinExe</OutputType>");
+   }
+   #TextStart
+   <RootNamespace>
+   </RootNamespace>
+   <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+   #TextEnd
+   if(Project.BuildType == "Exe")
+   {
+      int StartupIsForm = hasStartupForm();
+      if (StartupIsForm)
+      {
+         #TextStart
+            <StartupObject>(%= Select.RootSpace %)(%= Project.NameSpace %).(%= Project.NameSpace %)_Startup</StartupObject>
+         #TextEnd
+      }
+      else
+      {
+         int hasSubSystemWPF = hasSubSystem(Dialects.wpf);
+         if (hasSubSystemWPF > 0 && !Project.StartupMain)
+         {
+            #TextStart
+               <StartupObject>(%= Select.RootSpace %)(%= Project.NameSpace %).App</StartupObject>
+            #TextEnd
+         }
+         else
+         {
+            #TextStart
+               <StartupObject>(%= Select.RootSpace %)(%= Project.NameSpace %).(%= Project.Startup %)</StartupObject>
+            #TextEnd
+         }
+      }
+   }
+   else
+   {
+     #TextStart
+         <StartupObject>
+         </StartupObject>
+     #TextEnd
+   }
+   #TextStart
+         <FileAlignment>512</FileAlignment>
+         <Deterministic>true</Deterministic>
+      </PropertyGroup>
+      <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+         <OutputPath>.\bin\</OutputPath>
+         <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+         <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+         <DefineConstants>DEBUG(%= Runtime.DefineConstants() %)</DefineConstants>
+         <DocumentationFile>
+         </DocumentationFile>
+         <DebugSymbols>true</DebugSymbols>
+         <NoStdLib>false</NoStdLib>
+         <NoWarn>(%=Registry.GetNameValue("ProjectSettings","NoWarn","")%)</NoWarn>
+         <Optimize>false</Optimize>
+         <RegisterForComInterop>false</RegisterForComInterop>
+         <RemoveIntegerChecks>false</RemoveIntegerChecks>
+         <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+         <WarningLevel>1</WarningLevel>
+         <DebugType>full</DebugType>
+         <ErrorReport>prompt</ErrorReport>
+      </PropertyGroup>
+      <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+         <OutputPath>.\bin\</OutputPath>
+         <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+         <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+         <DefineConstants>TRACE(%= Runtime.DefineConstants() %)</DefineConstants>
+         <DocumentationFile>
+         </DocumentationFile>
+         <DebugSymbols>false</DebugSymbols>
+         <NoStdLib>false</NoStdLib>
+         <NoWarn>(%=Registry.GetNameValue("ProjectSettings","NoWarn","")%)</NoWarn>
+         <Optimize>true</Optimize>
+         <RegisterForComInterop>false</RegisterForComInterop>
+         <RemoveIntegerChecks>false</RemoveIntegerChecks>
+         <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+         <WarningLevel>1</WarningLevel>
+         <DebugType>none</DebugType>
+         <ErrorReport>prompt</ErrorReport>
+      </PropertyGroup>
+      <ItemGroup>
+         <Reference Include="System" />
+         <Reference Include="System.Data" />
+         <Reference Include="System.Drawing" />
+         <Reference Include="System.Windows.Forms" />
+         <Reference Include="System.Xml" />
+    #TextEnd
+    Write.Line("<Reference Include=""Microsoft.VisualBasic"" />");
+    if(Project.VB6Compatible)
+    {
+      Write.Line("<Reference Include=""Microsoft.VisualBasic.Compatibility"" />");
+    }
+    if(isNewerVS != 0 && Select.Dialect == Dialects.csh)
+    {
+         Write.Line("<Reference Include=""Microsoft.CSharp"" />");
+    }
+
+    AddUserReferences();
+}
+
+void Project_StartCompile()
+{
+   int hasSubSystemWPF = hasSubSystem(Dialects.WPF);
+   if(hasSubSystemWPF==0)
+   {
+      #TextStart
+      </ItemGroup>
+   <ItemGroup>
+   #TextEnd
+      Write.ChangeMargin(1);
+      Write.Line("<Import Include=""Microsoft.VisualBasic"" />");
+   #TextStart
+      <Import Include="Microsoft.VisualBasic.CompilerServices" />
+      <Import Include="System" />
+      <Import Include="System.Collections" />
+      <Import Include="System.Data" />
+      <Import Include="System.Diagnostics" />
+      <Import Include="System.Drawing" />
+      <Import Include="System.Windows.Forms" />
+   </ItemGroup>
+   #TextEnd
+   }
+   else
+   {
+      #TextStart
+      </ItemGroup>
+   <ItemGroup>
+      <Reference Include="System.Core" />
+      <Reference Include="System.Xml.Linq">
+        <RequiredTargetFramework>4.0</RequiredTargetFramework>
+      </Reference>
+      <Reference Include="System.Data.DataSetExtensions" />
+      <Reference Include="System.Xaml">
+        <RequiredTargetFramework>4.0</RequiredTargetFramework>
+      </Reference>
+      <Reference Include="WindowsBase" />
+      <Reference Include="PresentationCore" />
+      <Reference Include="PresentationFramework" />
+   </ItemGroup>
+   #TextEnd
+   if (Select.Dialect== Dialects.vbn)
+   {
+      #TextStart
+      <ItemGroup>
+       <Import Include="Microsoft.VisualBasic" />
+       <Import Include="Microsoft.VisualBasic.CompilerServices" />
+       <Import Include="System" />
+       <Import Include="System.Collections" />
+       <Import Include="System.Data" />
+       <Import Include="System.Diagnostics" />
+       <Import Include="System.Drawing" />
+      </ItemGroup>
+      #TextEnd
+   }
+}
+}
+
+void Project_Assembly()
+{
+   #TextStart
+   <ItemGroup>
+      <Compile Include="Properties\AssemblyInfo.(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)">
+         <SubType>Code</SubType>
+      </Compile>
+      #TextEnd
+}
+
+void Project_EndCompile()
+{
+   if(Project.AppObject)
+   {
+      #TextStart
+      <Compile Include="(%= Project.NameSpace %)_AppObject.(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)">
+         <SubType>Code</SubType>
+      </Compile>
+      #TextEnd
+   }
+    int StartupIsForm = hasStartupForm();
+    if (StartupIsForm)
+    {
+      #TextStart
+      <Compile Include="(%= Project.NameSpace %)_Startup.(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)">
+         <SubType>Code</SubType>
+      </Compile>
+      #TextEnd
+    }
+
+   AddUserCompiles();
+   Write.ChangeMargin(-1);
+   Write.Line("</ItemGroup>");
+   if(Project.IsInterfaceUser)
+   {
+      #TextStart
+      <ItemGroup>
+         <ProjectReference Include="(%= Select.Library %)\(%= Symbol.GetTemplate("Interfaces") %)_(%= Symbol.NamedEntryLabel("Dialects",Select.Dialect) %)\(%= Symbol.GetTemplate("Interfaces") %).csproj">
+            <Project>(%= System.Guid("Interfaces") %)</Project>
+            <Name>(%= Symbol.GetTemplate("Interfaces") %)</Name>
+         </ProjectReference>
+      </ItemGroup>
+      #TextEnd
+   }
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+      #TextEnd
+   }
+      #TextStart
+      <PropertyGroup>
+         <PreBuildEvent>
+         </PreBuildEvent>
+         <PostBuildEvent>
+         </PostBuildEvent>
+      </PropertyGroup>
+   </Project>
+
+   !)(!
+   #TextEnd
+}
+
+void AssemblyFile()
+{
+   #TextStart
+   cat >(%= Project.DeployLocation %)\Properties\AssemblyInfo.(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %) <<'!)(!'
+   #TextEnd
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      Imports System.Reflection
+      Imports System.Runtime.CompilerServices
+      Imports System.Runtime.InteropServices
+
+      ' General Information about an assembly is controlled through the following
+      ' set of attributes. Change these attribute values to modify the information
+      ' associated with an assembly.
+
+      ' Review the values of the assembly attributes
+
+      <Assembly: AssemblyTitle("(%= Project.Title %)")>
+      <Assembly: AssemblyDescription("(%= Project.Description %)")>
+      <Assembly: AssemblyCompany("(%= Project.CompanyName %)")>
+      <Assembly: AssemblyProduct("(%= Project.ProductName%)")>
+      <Assembly: AssemblyCopyright("(%= Project.Copyright %)")>
+      <Assembly: AssemblyTrademark("(%= Project.Trademarks %)")>
+      <Assembly: AssemblyCulture("")>
+
+      ' Version information for an assembly consists of the following four values:
+      '
+      '      Major Version
+      '      Minor Version
+      '      Build Number
+      '      Revision
+      '
+      ' You can specify all the values or you can default the Build and Revision Numbers
+      ' by using the '*'.
+
+      <Assembly: AssemblyVersion("1.0.0.0")>
+      !)(!
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      using System.Reflection;
+      using System.Runtime.CompilerServices;
+
+      //
+      // General Information about an assembly is controlled through the following
+      // set of attributes. Change these attribute values to modify the information
+      // associated with an assembly.
+      //
+      [assembly: AssemblyTitle(@"(%= Project.Title %)")]
+      [assembly: AssemblyDescription(@"(%= Project.Description %)")]
+      [assembly: AssemblyConfiguration("")]
+      [assembly: AssemblyCompany(@"(%= Project.CompanyName %)")]
+      [assembly: AssemblyProduct(@"(%= Project.ProductName %)")]
+      [assembly: AssemblyCopyright(@"(%= Project.Copyright %)")]
+      [assembly: AssemblyTrademark(@"(%= Project.Trademarks %)")]
+      [assembly: AssemblyCulture("")]
+
+      //
+      // Version information for an assembly consists of the following four values:
+      //
+      //      Major Version
+      //      Minor Version
+      //      Build Number
+      //      Revision
+      //
+      // You can specify all the values or you can default the Revision and Build Numbers
+      // by using the '*'.
+
+      [assembly: AssemblyVersion("1.0.0.0")]
+
+      //
+      // In order to sign your assembly you must specify a key to use. Refer to the
+      // Microsoft .NET Framework documentation for more information on assembly signing.
+      //
+      // Use the attributes below to control which key is used for signing.
+      //
+      // Notes:
+      //   (*) If no key is specified, the assembly is not signed.
+      //   (*) KeyName refers to a key that has been installed in the Crypto Service
+      //       Provider (CSP) on your machine. KeyFile refers to a file which contains
+      //       a key.
+      //   (*) If the KeyFile and the KeyName values are both specified, the
+      //       following processing occurs:
+      //       (1) If the KeyName can be found in the CSP, that key is used.
+      //       (2) If the KeyName does not exist and the KeyFile does exist, the key
+      //           in the KeyFile is installed into the CSP and used.
+      //   (*) In order to create a KeyFile, you can use the sn.exe (Strong Name) utility.
+      //       When specifying the KeyFile, the location of the KeyFile should be
+      //       relative to the project output directory which is
+      //       %Project Directory%\obj\<configuration>. For example, if your KeyFile is
+      //       located in the project directory, you would specify the AssemblyKeyFile
+      //       attribute as [assembly: AssemblyKeyFile("..\\..\\mykey.snk")]
+      //   (*) Delay Signing is an advanced option - see the Microsoft .NET Framework
+      //       documentation for more information on this.
+      //
+      [assembly: AssemblyDelaySign(false)]
+      [assembly: AssemblyKeyFile("")]
+      [assembly: AssemblyKeyName("")]
+      !)(!
+      #TextEnd
+      int StartupIsForm = hasStartupForm();
+      if (StartupIsForm)
+      {
+         AuthorAppStartup();
+      }
+   }
+}
+
+void DesignFileBegin(string FormName)
+{
+   int hasSubSystemWPF = hasSubSystem(Dialects.wpf);
+   #TextStart
+   cat >(%= Project.DeployLocation %)\(%= FormName %).Designer.(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %) <<'!)(!'
+   #TextEnd
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      Namespace (%= Select.RootSpace %)(%= Project.NameSpace %)
+         <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+         Partial Class (%= FormName %)
+      #TextEnd
+      Write.ChangeMargin(1);
+      Write.Line("#Region ""Windows Form Designer generated code """);
+      if(Project.DefInstance)
+      {
+         #TextStart
+         Private Shared m_vb6FormDefInstance As (%= FormName %)
+         Private Shared m_InitializingDefInstance As Boolean
+         Public Shared Property DefInstance() As (%= FormName %)
+            Get
+               If m_vb6FormDefInstance Is Nothing OrElse m_vb6FormDefInstance.IsDisposed Then
+                  m_InitializingDefInstance = True
+                  m_vb6FormDefInstance = New (%= FormName %)()
+                  m_InitializingDefInstance = False
+               End If
+               DefInstance = m_vb6FormDefInstance
+            End Get
+            Set(ByVal value As (%= FormName %))
+               m_vb6FormDefInstance = Value
+            End Set
+         End Property
+         #TextEnd
+      }
+      #TextStart
+      'Required by the Windows Form Designer
+      Private components As System.ComponentModel.IContainer
+      #TextEnd
+      if(Project.ToolTip) Write.Line("Public ToolTip1 As System.Windows.Forms.ToolTip");
+      if(Project.DataSource) Write.Line("private dataSourcer1 As gmRTL.GUI.DataSourcer");
+   }
+   else
+   {
+      #TextStart
+      using System;
+      using System.Drawing;
+      using System.Collections;
+      using System.ComponentModel;
+      using System.Windows.Forms;
+      using System.Runtime.InteropServices;
+      using System.Data;
+      #TextEnd
+      if(hasSubSystemWPF) Write.Line("using System.Windows;");
+      if(Project.SystemIO) Write.Line("using System.IO;");
+      Write.Line("using VBNET = Microsoft.VisualBasic;");
+      Write.Line("using Microsoft.VisualBasic.CompilerServices;");
+      AddNET35AndUpUsings();
+      #TextStart
+
+      namespace (%= Select.RootSpace %)(%= Project.NameSpace %)
+      {
+      #TextEnd
+      Write.ChangeMargin(1);
+      Write.Line("#region Windows Form Designer generated code");
+      Write.Line("partial class " + FormName);
+      Write.Line("{");
+      Write.ChangeMargin(1);
+      if(Project.DefInstance)
+      {
+         #TextStart
+         private static (%= FormName %) m_vb6FormDefInstance = null;
+         public static (%= FormName %) DefInstance
+         {
+            get
+            {
+               if(m_vb6FormDefInstance == null || m_vb6FormDefInstance.IsDisposed)
+               {
+                  m_vb6FormDefInstance = new (%= FormName %)();
+               }
+               return m_vb6FormDefInstance;
+            }
+            set
+            {
+               m_vb6FormDefInstance = value;
+            }
+         }
+         #TextEnd
+      }
+      #TextStart
+      /// <summary>
+      /// Required designer variable.
+      /// </summary>
+      private System.ComponentModel.IContainer components = null;
+      #TextEnd
+      if(Project.ToolTip) Write.Line("public System.Windows.Forms.ToolTip ToolTip1 = null;");
+      if(Project.DataSource) Write.Line("private gmRTL.GUI.DataSourcer dataSourcer1 = null;");
+   }
+}
+
+void DesignSubInitialize(string FormName)
+{
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      'NOTE: The following procedure is required by the Windows Form Designer
+      'It can be modified using the Windows Form Designer.
+      'Do not modify it using the code editor.
+      <System.Diagnostics.DebuggerStepThrough()> _
+      Private Sub InitializeComponent()
+      #TextEnd
+      Write.ChangeMargin(1);
+      if(Project.Resources)
+      {
+         #TextStart
+         Dim resources As System.Resources.ResourceManager =New System.Resources.ResourceManager(GetType((%= FormName %)))
+         #TextEnd
+      }
+      Write.Line("Me.components = New System.ComponentModel.Container()");
+      if(Project.ToolTip) Write.Line("Me.ToolTip1 = New System.Windows.Forms.ToolTip(components)");
+      if(Project.DataSource) Write.Line("Me.dataSourcer1 = New gmRTL.GUI.DataSourcer(components)");
+   }
+   else
+   {
+      #TextStart
+
+      /// <summary>
+      /// Required method for Designer support - do not modify
+      /// the contents of this method with the code editor.
+      /// </summary>
+      private void InitializeComponent()
+      {
+      #TextEnd
+      Write.ChangeMargin(1);
+      if(Project.Resources)
+      {
+         #TextStart
+         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof((%= FormName %)));
+         #TextEnd
+      }
+      Write.Line("this.components = new System.ComponentModel.Container();");
+      if(Project.ToolTip)
+      {
+         Write.Line("this.ToolTip1 = new System.Windows.Forms.ToolTip(components);");
+         Write.Line("this.ToolTip1.Active = true;");
+      }
+      if(Project.DataSource) Write.Line("this.dataSourcer1 = new gmRTL.GUI.DataSourcer(components);");
+   }
+}
+
+void DesignSubProperties()
+{
+   if(Select.Dialect == Dialects.vbn)
+   {
+      Write.Line("Me.SuspendLayout()");
+   }
+   else
+   {
+      Write.Line("this.SuspendLayout();");
+   }
+}
+
+
+void DesignFileEnd()
+{
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+               Me.ResumeLayout(False)
+               Me.PerformLayout()
+            End Sub
+         #End Region
+         End Class
+      End Namespace
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+               this.ResumeLayout(false);
+               this.PerformLayout();
+            }
+         }
+         #endregion
+      }
+      #TextEnd
+   }
+   Write.Line("!)(!");
+}
+
+void LocAuthorMdiParent()
+{
+   int       parent;
+   tInfoFile formInfo;
+   string    ident;
+
+   for(parent = Store.GetFirst(Project.root); parent != 0; parent = Store.GetNext(parent))
+   {
+      if(Store.GetObjectType(parent) == ObjectType.FormFile)
+      {
+         formInfo = Store.GetVector(parent);
+         if(formInfo.infoType == OPC.MDI)
+         {
+            ident = Store.GetName(formInfo.vbName);
+            if(Select.Dialect == Dialects.vbn)
+            {
+               Write.Text("Me.MdiParent = " + ident + ".DefInstance");
+            }
+            else
+            {
+               Write.Text("this.MdiParent = " + ident + ".DefInstance;");
+            }
+            Write.Record();
+            break;
+         }
+      }
+   }
+}
+
+void ControlCodeBegin(string FormName, string parentClass, bool hasTerminate)
+{
+   tInfoFile frmInfo;
+   #TextStart
+   cat >(%= Project.DeployLocation %)\(%= FormName %).(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %) <<'!)(!'
+   #TextEnd
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      Option Explicit On
+      #TextEnd
+      AddNET35AndUpUsings();
+      AddExtensionUsing();
+      #TextStart
+      Namespace (%= Select.RootSpace %)(%= Project.NameSpace %)
+         Public Class (%= FormName %) : Inherits (%= parentClass %)
+            Private Dim _disposed As Boolean = False
+            <System.Diagnostics.DebuggerNonUserCode()> _
+            Public Sub New()
+               MyBase.New()
+               'This call is required by the Windows Form Designer.
+               InitializeComponent()
+               'Add any initialization after the InitializeComponent() call
+      #TextEnd
+      frmInfo = Store.GetVector(Project.childRoot);
+      if(frmInfo.HasMdiParent)
+      {
+         LocAuthorMdiParent();
+      }
+      if(Project.DefInstance)
+      {
+         #TextStart
+         If m_vb6FormDefInstance Is Nothing Then
+            If m_InitializingDefInstance Then
+               m_vb6FormDefInstance = Me
+            Else
+               Try
+                  'For the start-up form, the first instance created is the default instance.
+                  If System.Reflection.Assembly.GetExecutingAssembly.EntryPoint.DeclaringType Is Me.GetType Then
+                     m_vb6FormDefInstance = Me
+                  End If
+               Catch
+               End Try
+            End If
+         End If
+         #TextEnd
+      }
+      Write.ChangeMargin(-1);
+      Runtime.InitializeCode();
+      #TextStart
+
+      End Sub
+      'Form overrides dispose to clean up the component list.
+      <System.Diagnostics.DebuggerNonUserCode()> _
+      Protected Overloads Overrides Sub Dispose(ByVal Disposing As Boolean)
+         If _disposed Then
+            Return
+         End If
+         If Disposing Then
+            If Not components Is Nothing Then
+               components.Dispose()
+            End If
+            #TextEnd
+            if(hasTerminate)
+            {
+               Write.Line("Class_Terminate");
+            }
+            Write.ChangeMargin(-1);
+            #TextStart
+         End If
+         _disposed = True
+         MyBase.Dispose(Disposing)
+      End Sub
+      #TextEnd
+      Runtime.Interface();
+   }
+   else
+   {
+      #TextStart
+      using System;
+      using System.Drawing;
+      using System.Collections;
+      using System.ComponentModel;
+      using System.Windows.Forms;
+      using System.Runtime.InteropServices;
+      using System.Data;
+      #TextEnd
+      if(Project.SystemIO) Write.Line("using System.IO;");
+      Write.Line("using VBNET = Microsoft.VisualBasic;");
+      AddExtensionUsing();
+      Write.Line("using Microsoft.VisualBasic.CompilerServices;");
+      AddNET35AndUpUsings();
+      #TextStart
+
+      namespace (%= Select.RootSpace %)(%= Project.NameSpace %)
+      {
+         public partial class (%= FormName %) : (%= parentClass %)
+         {
+            private bool _disposed = false;
+            public (%= FormName %)()
+            {
+      #TextEnd
+      Write.ChangeMargin(1);
+      if(Project.DefInstance)
+      {
+         #TextStart
+         if(m_vb6FormDefInstance == null)
+         {
+            m_vb6FormDefInstance = this;
+         }
+         #TextEnd
+      }
+      #TextStart
+      //
+      // Required for Windows Form Designer support
+      //
+      InitializeComponent();
+
+      //
+      // TODO: Add any constructor code after InitializeComponent call
+      //
+      #TextEnd
+      frmInfo = Store.GetVector(Project.childRoot);
+      if(frmInfo.HasMdiParent)
+      {
+         LocAuthorMdiParent();
+      }
+      Write.ChangeMargin(-1);
+      Runtime.InitializeCode();
+      #TextStart
+      }
+
+      /// <summary>
+      /// Clean up any resources being used.
+      /// </summary>
+      /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+      protected override void Dispose(bool disposing)
+      {
+         if (_disposed)
+         {
+            return;
+         }
+         if (disposing)
+         {
+            if (components != null)
+            {
+               components.Dispose();
+            }
+            #TextEnd
+            if(hasTerminate)
+            {
+               Write.Line("Class_Terminate();");
+            }
+            Write.ChangeMargin(-1);
+            #TextStart
+         }
+         _disposed = true;
+         base.Dispose(disposing);
+      }
+      #TextEnd
+      Write.Record();
+      Runtime.Interface();
+   }
+}
+
+void ControlCodeMain(string FormName)
+{
+   return; // Deprecated.  See AppStartup
+
+   #TextStart
+   /// <summary>
+   /// The main entry point for the application.
+   /// </summary>
+   [STAThread]
+   static void Main()
+   {
+      System.Windows.Forms.Application.Run(new (%= FormName %)());
+   }
+   #TextEnd
+}
+
+void ControlCodeEnd()
+{
+   Write.ChangeMargin(-1);
+   if(Select.Dialect == Dialects.vbn)
+   {
+      Write.Line("End Class");
+      Write.ChangeMargin(-1);
+      Write.Line("End Namespace");
+   }
+   else
+   {
+      Write.Line("}");
+      Write.ChangeMargin(-1);
+      Write.Line("}");
+   }
+   Write.Line("!)(!");
+}
+
+void ResxInfo(string FormName)
+{
+   #TextStart
+   cat >(%= Project.DeployLocation %)\(%= FormName %).resx <<'!)(!'
+   <?xml version="1.0" encoding="utf-8"?>
+   <root>
+   #TextEnd
+   if(! Select.Migrate2)
+   {
+      #TextStart
+      <!--
+         Microsoft ResX Schema
+
+         Version 2.0
+
+         The primary goals of this format is to allow a simple XML format
+         that is mostly human readable. The generation and parsing of the
+         various data types are done through the TypeConverter classes
+         associated with the data types.
+
+         Example:
+
+         ... ado.net/XML headers & schema ...
+         <resheader name="resmimetype">text/microsoft-resx</resheader>
+         <resheader name="version">2.0</resheader>
+         <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+         <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+         <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+         <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+         <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+             <value>[base64 mime encoded serialized .NET Framework object]</value>
+         </data>
+         <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+             <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+             <comment>This is a comment</comment>
+         </data>
+
+         There are any number of "resheader" rows that contain simple
+         name/value pairs.
+
+         Each data row contains a name, and value. The row also contains a
+         type or mimetype. Type corresponds to a .NET class that support
+         text/value conversion through the TypeConverter architecture.
+         Classes that don't support this are serialized and stored with the
+         mimetype set.
+
+         The mimetype is used for serialized objects, and tells the
+         ResXResourceReader how to depersist the object. This is currently not
+         extensible. For a given mimetype the value must be set accordingly:
+
+         Note - application/x-microsoft.net.object.binary.base64 is the format
+         that the ResXResourceWriter will generate, however the reader can
+         read any of the formats listed below.
+
+         mimetype: application/x-microsoft.net.object.binary.base64
+         value   : The object must be serialized with
+                 : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+                 : and then encoded with base64 encoding.
+
+         mimetype: application/x-microsoft.net.object.soap.base64
+         value   : The object must be serialized with
+                 : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+                 : and then encoded with base64 encoding.
+
+         mimetype: application/x-microsoft.net.object.bytearray.base64
+         value   : The object must be serialized into a byte array
+                 : using a System.ComponentModel.TypeConverter
+                 : and then encoded with base64 encoding.
+         -->
+      #TextEnd
+      Write.ChangeMargin(-1);
+   }
+   #TextStart
+   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+     <xsd:element name="root" msdata:IsDataSet="true">
+        <xsd:complexType>
+         <xsd:choice maxOccurs="unbounded">
+           <xsd:element name="metadata">
+             <xsd:complexType>
+               <xsd:sequence>
+                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
+               </xsd:sequence>
+               <xsd:attribute name="name" use="required" type="xsd:string" />
+               <xsd:attribute name="type" type="xsd:string" />
+               <xsd:attribute name="mimetype" type="xsd:string" />
+               <xsd:attribute ref="xml:space" />
+             </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="assembly">
+             <xsd:complexType>
+               <xsd:attribute name="alias" type="xsd:string" />
+               <xsd:attribute name="name" type="xsd:string" />
+             </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="data">
+             <xsd:complexType>
+               <xsd:sequence>
+                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+               </xsd:sequence>
+               <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+               <xsd:attribute ref="xml:space" />
+             </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="resheader">
+             <xsd:complexType>
+               <xsd:sequence>
+                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+               </xsd:sequence>
+               <xsd:attribute name="name" type="xsd:string" use="required" />
+             </xsd:complexType>
+           </xsd:element>
+         </xsd:choice>
+       </xsd:complexType>
+     </xsd:element>
+   </xsd:schema>
+   <resheader name="resmimetype">
+     <value>text/microsoft-resx</value>
+   </resheader>
+   <resheader name="version">
+     <value>2.0</value>
+   </resheader>
+   <resheader name="reader">
+     <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+   </resheader>
+   <resheader name="writer">
+     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+   </resheader>
+   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+   #TextEnd
+}
+
+void ResxEnd()
+{
+   #TextStart
+   </root>
+   !)(!
+   #TextEnd
+}
+
+void ModuleFile(string ModuleName)
+{
+   int hasSubSystemWPF = hasSubSystem(Dialects.wpf);
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      cat >(%= Project.DeployLocation %)\(%= ModuleName %).vb <<'!)(!'
+      #TextEnd
+      Runtime.ConstDeclare();
+      #TextStart
+      Option Strict Off
+      Option Explicit On
+      #TextEnd
+      AddNET35AndUpUsings();
+      AddExtensionUsing();
+      #TextStart
+      Namespace (%= Select.RootSpace %)(%= Project.NameSpace %)
+         Public Module (%= ModuleName %)
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      cat >(%= Project.DeployLocation %)\(%= ModuleName %).cs <<'!)(!'
+      #TextEnd
+      Runtime.ConstDeclare();
+      #TextStart
+      using System;
+      using System.Drawing;
+      using System.Collections;
+      using System.ComponentModel;
+      using System.Windows.Forms;
+      using System.Runtime.InteropServices;
+      using System.Data;
+      #TextEnd
+      if(hasSubSystemWPF) Write.Line("using System.Windows;");
+      if(Project.SystemIO) Write.Line("using System.IO;");
+      Write.Line("using VBNET = Microsoft.VisualBasic;");
+      AddExtensionUsing();
+      Write.Line("using Microsoft.VisualBasic.CompilerServices;");
+      AddNET35AndUpUsings();
+      #TextStart
+
+      namespace (%= Select.RootSpace %)(%= Project.NameSpace %)
+      {
+         public static class (%= ModuleName %)
+         {
+      #TextEnd
+      Write.ChangeMargin(1);
+   }
+}
+
+void EndModule()
+{
+   if(Select.Dialect == Dialects.vbn)
+   {
+      Write.Line("End Module");
+      Write.ChangeMargin(-1);
+      Write.Line("End Namespace");
+   }
+   else
+   {
+      Write.ChangeMargin(-1);
+      Write.Line("}");
+      Write.ChangeMargin(-1);
+      Write.Line("}");
+   }
+   Write.Line("!)(!");
+}
+
+void ClassFile(string ClassName,string IntClassName,string ParentName,string ServiceName,int classRoot)
+{
+   tInfoFile frmInfo;
+   int NewEnumGet;
+   tMigInfo migInfo;
+
+   int hasSubSystemWPF = hasSubSystem(Dialects.wpf);
+   NewEnumGet = Symbol.FindIdentifier("NewEnum",classRoot);
+   if(NewEnumGet != 0) NewEnumGet = Symbol.FindIdentifier("Get",NewEnumGet);
+   if(NewEnumGet != 0)
+   {
+      migInfo = Store.GetVector(NewEnumGet);
+      if(!migInfo.ColObject) NewEnumGet = 0;
+   }
+   string parentList = "";
+   int hasParent = 0;
+   if (parentName)
+   {
+         parentList = parentName;
+         hasParent = 1;
+   }
+   if (NewEnumGet != 0)
+   {
+        if (hasParent) parentList = parentList + ", IEnumerable";
+        else parentList = "IEnumerable";
+        hasParent = 1;
+   }
+
+
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      cat >(%= Project.DeployLocation %)\(%= ClassName %).vb <<'!)(!'
+      #TextEnd
+      Runtime.ConstDeclare();
+      #TextStart
+      Option Strict Off
+      Option Explicit On
+      #TextEnd
+      AddNET35AndUpUsings();
+      AddExtensionUsing();
+      #TextStart
+      Namespace (%= Select.RootSpace %)(%= Project.NameSpace %)
+      #TextEnd
+      Write.ChangeMargin(1);
+      Runtime.Interface();
+      frmInfo = Store.GetVector(Project.childRoot);
+      if(!frmInfo.InterfaceOnly)
+      {
+         if(ServiceName)
+         {
+            #TextStart
+            <System.Runtime.InteropServices.ProgId("(%= Project.NameSpace %).(%= IntClassName %)"), (%= ServiceName %))> _
+            #TextEnd
+         }
+         Write.Text("Public Class ");
+         Write.Text(IntClassName);
+         if(hasParent) Write.Text(" : Implements " + parentList);
+         Write.Record();
+      }
+   }
+   else
+   {
+      #TextStart
+      cat >(%= Project.DeployLocation %)\(%= ClassName %).cs <<'!)(!'
+      #TextEnd
+      Runtime.ConstDeclare();
+      #TextStart
+      using System;
+      using System.Drawing;
+      using System.Collections;
+      using System.ComponentModel;
+      using System.Windows.Forms;
+      using System.Runtime.InteropServices;
+      using System.Data;
+      #TextEnd
+      if(hasSubSystemWPF) Write.Line("using System.Windows;");
+      if(Project.SystemIO) Write.Line("using System.IO;");
+      Write.Line("using VBNET = Microsoft.VisualBasic;");
+      AddExtensionUsing();
+      Write.Line("using Microsoft.VisualBasic.CompilerServices;");
+      AddNET35AndUpUsings();
+      #TextStart
+
+      namespace (%= Select.RootSpace %)(%= Project.NameSpace %)
+      {
+      #TextEnd
+      Write.ChangeMargin(1);
+      Runtime.Interface();
+      frmInfo = Store.GetVector(Project.childRoot);
+      if(!frmInfo.InterfaceOnly)
+      {
+         if(ServiceName)
+         {
+            #TextStart
+            [System.Runtime.InteropServices.ProgId("(%= Project.NameSpace %).(%= IntClassName %)"), (%= ServiceName %))]
+            #TextEnd
+         }
+         Write.Text("public class ");
+         Write.Text(IntClassName);
+         if (hasParent) Write.Text(" : " + parentList);
+         Write.Record();
+         Write.Line("{");
+         Write.ChangeMargin(1);
+      }
+   }
+}
+
+void EndClass()
+{
+   tInfoFile frmInfo;
+
+   frmInfo = Store.GetVector(Project.childRoot);
+   if(Select.Dialect == Dialects.vbn)
+   {
+      if(!frmInfo.InterfaceOnly)
+      {
+         Write.Line("End Class");
+      }
+      Write.ChangeMargin(-1);
+      Write.Line("End Namespace");
+   }
+   else
+   {
+      if(!frmInfo.InterfaceOnly)
+      {
+         Write.ChangeMargin(-1);
+         Write.Line("}");
+      }
+      Write.ChangeMargin(-1);
+      Write.Line("}");
+   }
+   Write.Line("!)(!");
+}
+
+void EventHandler(int eventRoot, string CallArgs, string ArgNames)
+{
+   string    EventName;
+   tVbEvent  eventInfo;
+   int       argRoot;
+   tVariable argInfo;
+   string    status;
+   string    className;
+
+   EventName = Character.Substr(Store.GetName(eventRoot),0,-6);
+   className = EventName + "Event";
+   if(Store.FindVector(className,Store.GetParent(eventRoot)) != 0)
+   {
+      className = className + "1";
+   }
+   eventInfo = Store.GetVector(eventRoot);
+   if(Select.Dialect == Dialects.csh)
+   {
+      if(eventInfo.Protected) status = "protected";
+      else status = "public";
+      if(!eventInfo.HaveEventArgs)
+      {
+         #TextStart
+         public delegate void (%= EventName %)EventHandler((%= CallArgs %));
+         public event (%= EventName %)EventHandler (%= EventName %)_Event;
+         (%= status %) virtual void On(%= EventName %)_Event((%= CallArgs %))
+         {
+            if((%= EventName %)_Event != null) (%= EventName %)_Event((%= ArgNames %));
+         }
+         #TextEnd
+      }
+      else
+      {
+         #TextStart
+         public event (%= EventName %)EventHandler (%= EventName %)_Event;
+         (%= status %) virtual void On(%= EventName %)_Event((%= CallArgs %))
+         {
+            (%= className %) e;
+            if((%= EventName %)_Event != null)
+            {
+               e = new (%= className %)((%= ArgNames %));
+               (%= EventName %)_Event(null,e);
+         #TextEnd
+         for(argRoot = Store.GetFirst(eventRoot); argRoot != 0; argRoot = Store.GetNext(argRoot))
+         {
+            argInfo = Store.GetVector(argRoot);
+            if(argInfo.ByRef)
+            {
+               Write.Text(Store.Getname(argRoot));
+               Write.Text(" = e.");
+               Write.Text(Store.GetName(argRoot));
+               Write.Line(";");
+            }
+         }
+         Write.ChangeMargin(-1);
+         Write.Line("}");
+         Write.ChangeMargin(-1);
+         Write.Line("}");
+      }
+   }
+   else
+   {
+      if(eventInfo.Public || eventInfo.Friend) Write.Text("Public ");
+      Write.Text("Event ");
+      Write.Text(EventName);
+      Write.Text("_Event(");
+      Write.Text(CallArgs);
+      Write.Line(")");
+   }
+}
+
+void LocalNewc1(string ExternalName)
+{
+   #TextStart
+   cat >(%= Project.DeployLocation %)\externs\(%= ExternalName %).(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %) <<'!)(!'
+   #TextEnd
+}
+
+void WriteBuildFile(string lName)
+{
+   #TextStart
+   EXECUTE msbuild "(%= Project.DeployLocation %)\(%= lName %).(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)proj" /t:rebuild /p:Configuration=Debug /p:Platform=AnyCPU
+   #TextEnd
+}
+
+void WriteGlobalReference(string lName, string projGuid)
+{
+   string projFolder;
+
+   projFolder = Symbol.UseTemplate("NameDialect",lName);
+   if(Select.ProjectReference && projGuid != "off")
+   {
+      #TextStart
+       <ProjectReference Include="(%= Select.Library %)\(%= projFolder%)\(%= lName %).(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)proj">
+          <Project>(%= projGuid %)</Project>
+          <Name>(%= Select.RootSpace %)(%= lName %)</Name>
+       </ProjectReference>
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      <Reference Include="(%= lName %)">
+          <HintPath>(%= Select.Library %)\(%= projFolder%)\bin\(%= lName %).dll</HintPath>
+      </Reference>
+      #TextEnd
+   }
+}
+
+void DeclareLibrary(string ExternalName, string hasForEach, string colObject,string extensions,string genericCol)
+{
+   if(Select.Dialect == Dialects.csh)
+   {
+      Write.Line("using System;");
+      if(hasForEach == "T") Write.Line("using System.Collections;");
+      if(genericCol == "T") Write.Line("using System.Collections.Generic;");
+      if(colObject == "T") Write.Line("using VBNET = Microsoft.VisualBasic;");
+      Write.Record();
+      Write.Text("namespace ");
+      Write.Line(ExternalName);
+      Write.Line("{");
+   }
+   else
+   {
+      Write.Line("Imports System");
+      if(extensions == "T") Write.Line("Imports System.Runtime.CompilerServices");
+      if(hasForEach == "T") Write.Line("Imports System.Collections");
+      if(genericCol == "T") Write.Line("Imports System.Collections.Generic");
+      if(colObject == "T") Write.Line("Imports VBNET = Microsoft.VisualBasic");
+      Write.Record();
+      Write.Text("Namespace ");
+      Write.Line(ExternalName);
+   }
+}
+
+void LocalNewc2()
+{
+   if(Select.Dialect == Dialects.vbn) Write.Line("End Namespace");
+   else Write.Line("}");
+   Write.Line("!)(!");
+}
+
+void AuthorAppStartup()
+{
+   string StartupName = Project.NameSpace+"."+Project.Startup;
+
+   #TextStart
+   cat >(%= Project.DeployLocation %)\(%= Project.NameSpace %)_Startup.cs <<'!)(!'
+   using System;
+   using System.Windows.Forms;
+
+   namespace (%= Select.RootSpace %)(%= Project.NameSpace %)
+   {
+      static class (%= Project.NameSpace %)_Startup
+      {
+          /// <summary>
+          /// The main entry point for the application.
+          /// </summary>
+          [STAThread]
+          static void Main()
+          {
+              System.Windows.Forms.Application.EnableVisualStyles();
+              System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+              System.Windows.Forms.Application.Run(new (%=StartupName%)());
+          }
+      }
+   }
+   !)(!
+   #TextEnd
+}
+
+void AppObject1()
+{
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      cat >(%= Project.DeployLocation %)\(%= Project.NameSpace %)_AppObject.vb <<'!)(!'
+      Namespace (%= Select.RootSpace %)(%= Project.NameSpace %)
+      Public Class AppObject
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      cat >(%= Project.DeployLocation %)\(%= Project.NameSpace %)_AppObject.cs <<'!)(!'
+      namespace (%= Select.RootSpace %)(%= Project.NameSpace %)
+      {
+         public static class AppObject
+         {
+      #TextEnd
+   }
+   Write.ChangeMargin(1);
+}
+
+void AppObject2(string appName, string appClass, int changed)
+{
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      Private Shared (%= appName %)Instance As (%= appClass %)
+      Public Shared ReadOnly Property (%= appName %)() As (%= appClass %)
+      #TextEnd
+      Write.ChangeMargin(1);
+         #TextStart
+         Get
+            If (%= appName %)Instance Is Nothing
+               (%= appName %)Instance = New (%= appClass %)()
+            End If
+            (%= appName %) = (%= appName %)Instance
+         End Get
+         #TextEnd
+      Write.ChangeMargin(-1);
+      Write.Line("End Property")
+   }
+   else
+   {
+      #TextStart
+      private static (%= appClass %) (%= appName %)Instance = null;
+      public static (%= appClass %) (%= appName %)
+      {
+      #TextEnd
+      Write.ChangeMargin(1);
+         #TextStart
+         get
+         {
+            if((%= appName %)Instance == null)
+            {
+               (%= appName %)Instance = new (%= appClass %)();
+            }
+            return (%= appName %)Instance;
+         }
+         #TextEnd
+      if(changed)
+      {
+         #TextStart
+         set
+         {
+            (%= appName %)Instance = value;
+         }
+         #TextEnd
+      }
+      Write.ChangeMargin(-1)
+      Write.Line("}")
+   }
+}
+
+void AppObject3()
+{
+   Write.ChangeMargin(-1);
+   if(Select.Dialect == Dialects.vbn)
+   {
+      Write.Line("End Class")
+      Write.ChangeMargin(-1);
+      Write.Line("End Namespace");
+   }
+   else
+   {
+      Write.Line("}");
+      Write.ChangeMargin(-1);
+      Write.Line("}");
+   }
+   Write.Line("!)(!");
+}
+
+void LibStart()
+{
+   if(Select.AuthorLibrary != AuthorLibType.Deploy)
+   {
+      #TextStart
+      cat >(%= Select.Local %)\(%= Project.ExeName %).xml <<'!)(!'
+      #TextEnd
+   }
+   else
+   {
+      Write.OpenFile(4,Select.Local + @"\" + Project.ExeName + ".xml",True,OutStyle.Text);
+   }
+   #TextStart
+   <LocalDescriptionFile>
+   <!--
+      gmBasic Translation: VERSION="(%= Select.ToolName %)" SRC="(%= Project.filename %)"
+   -->
+   <library
+      id="(%= Project.ExeName %)"
+      name="(%= Symbol.ClassName(Project.root) %)"
+      migName="(%= Select.RootSpace %)(%= Symbol.ClassName(Project.root) %)"
+      #TextEnd
+      if(Select.ProjectReference)
+      {
+         #TextStart
+         location="(%= Project.DeployLocation %)\(%= System.LocalFileName(Project.Filename) %).(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)proj"
+         uuid="(%= System.Guid("Project") %)"
+         #TextEnd
+      }
+      else
+      {
+         setDeployLocation();
+         #TextStart
+         location="(%= DeployLocation %)\bin\(%= Symbol.ClassName(Project.root) %).dll"
+         #TextEnd
+      }
+      #TextStart
+      type="Native"
+   >
+   #TextEnd
+   Write.ChangeMargin(1);
+}
+
+void LibEnd()
+{
+   Write.ChangeMargin(-1);
+   #TextStart
+   </library>
+   </LocalDescriptionFile>
+   #TextEnd
+   if(Select.AuthorLibrary != AuthorLibType.Deploy) Write.Line("!)(!");
+   else Write.CloseFile();
+}
+
+void ReferenceMigSupport(string isLocal)
+{
+   #TextStart
+   <Reference Include="(%= Select.ExtensionMethods %)">
+      <Name>(%= Select.ExtensionMethods %)</Name>
+   #TextEnd
+   if(isLocal == "T")
+   {
+      #TextStart
+      <HintPath>(%= Select.Library %)\(%= Select.ExtensionMethods %).dll</HintPath>
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      <HintPath>(%= Select.Library %)\(%= Select.ExtensionMethods %)\bin\(%= Select.ExtensionMethods %).dll</HintPath>
+      #TextEnd
+   }
+   Write.ChangeMargin(-1);
+   Write.Line("</Reference>");
+}
+
+void ExternalLocation(string ExternalName)
+{
+   if(Select.Library)
+   {
+      Write.Text(Select.Library + @"\" + Symbol.UseTemplate("NameDialect", ExternalName));
+   }
+   else
+   {
+      Write.Text(Select.Local + @"\" + Symbol.UseTemplate("NameDialect", ExternalName));
+   }
+}
+
+void ImportHintpath(string ExternalName)
+{
+   ExternalLocation(ExternalName);
+   Write.Text(@"\bin\" + ExternalName + ".dll");
+}
+
+void StartNewcProject(string ExternalName)
+{
+   Write.Text("rmdir ");
+   ExternalLocation(ExternalName);
+   Write.Record();
+   Write.Text("mkdir ");
+   ExternalLocation(ExternalName);
+   Write.Record();
+   Write.Text("crdir ");
+   ExternalLocation(ExternalName);
+   Write.Line(@"\Properties");
+   Write.Text("cat >");
+   ExternalLocation(ExternalName);
+   Write.Line(@"\" + ExternalName + "." + Symbol.NamedEntryLabel("LangExt",Select.Dialect) + "proj <<'!)(!'");
+   int isNewerVS = isNewerVSVersion();
+   if (isNewerVS > 0)
+   {
+      string ToolsVersion = GetToolsVersion();
+      string FrameworkVersion = GetFrameworkVersion();
+      #TextStart
+      <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="(%= ToolsVersion %)">
+         <PropertyGroup>
+            <ProjectType>Local</ProjectType>
+            <TargetFrameworkVersion>(%= FrameworkVersion %)</TargetFrameworkVersion>
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+         <PropertyGroup>
+            <ProjectType>Local</ProjectType>
+            <ProductVersion>8.0.50727</ProductVersion>
+      #TextEnd
+   }
+         #TextStart
+         <SchemaVersion>2.0</SchemaVersion>
+         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+         <ApplicationIcon>
+         </ApplicationIcon>
+         <AssemblyKeyContainerName>
+         </AssemblyKeyContainerName>
+         <AssemblyName>(%= ExternalName %)</AssemblyName>
+         <DelaySign>false</DelaySign>
+         <OutputType>Library</OutputType>
+         <RootNamespace>
+         </RootNamespace>
+         <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+         <StartupObject>
+         </StartupObject>
+         <FileAlignment>512</FileAlignment>
+         <Deterministic>true</Deterministic>
+      </PropertyGroup>
+      <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+         <OutputPath>.\bin\</OutputPath>
+         <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+         <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+         <DefineConstants>
+         </DefineConstants>
+         <DocumentationFile>
+         </DocumentationFile>
+         <DebugSymbols>true</DebugSymbols>
+         <NoStdLib>false</NoStdLib>
+         <NoWarn>(%=Registry.GetNameValue("ProjectSettings","NoWarn","")%)</NoWarn>
+         <Optimize>false</Optimize>
+         <RegisterForComInterop>false</RegisterForComInterop>
+         <RemoveIntegerChecks>false</RemoveIntegerChecks>
+         <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+         <WarningLevel>1</WarningLevel>
+         <DebugType>full</DebugType>
+         <ErrorReport>prompt</ErrorReport>
+         </PropertyGroup>
+      <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+         <OutputPath>.\bin\</OutputPath>
+         <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+         <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+         <ConfigurationOverrideFile>
+         </ConfigurationOverrideFile>
+         <DefineConstants>
+         </DefineConstants>
+         <DocumentationFile>
+         </DocumentationFile>
+         <DebugSymbols>false</DebugSymbols>
+         <NoStdLib>false</NoStdLib>
+         <NoWarn>(%=Registry.GetNameValue("ProjectSettings","NoWarn","")%)</NoWarn>
+         <Optimize>true</Optimize>
+         <RegisterForComInterop>false</RegisterForComInterop>
+         <RemoveIntegerChecks>false</RemoveIntegerChecks>
+         <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+         <WarningLevel>1</WarningLevel>
+         <DebugType>none</DebugType>
+         <ErrorReport>prompt</ErrorReport>
+      </PropertyGroup>
+      <ItemGroup>
+         <Reference Include="System" />
+         <Reference Include="System.Data" />
+         <Reference Include="System.Drawing" />
+         <Reference Include="System.Windows.Forms" />
+         <Reference Include="System.Xml" />
+   #TextEnd
+   Write.Line("<Reference Include=""Microsoft.VisualBasic""/>");
+   if(Project.VB6Compatible)
+   {
+      Write.Line("<Reference Include=""Microsoft.VisualBasic.Compatibility""/>");
+   }
+}
+
+void EndNewcProject(string ExternalName)
+{
+   Write.ChangeMargin(-1);
+   #TextStart
+   </ItemGroup>
+   <ItemGroup>
+   #TextEnd
+   Write.ChangeMargin(1);
+   Write.Line("<Import Include=""Microsoft.VisualBasic"" />");
+   #TextStart
+      <Import Include="Microsoft.VisualBasic.CompilerServices" />
+      <Import Include="System" />
+      <Import Include="System.Collections" />
+      <Import Include="System.Data" />
+      <Import Include="System.Diagnostics" />
+      <Import Include="System.Drawing" />
+      <Import Include="System.Windows.Forms" />
+   </ItemGroup>
+   <ItemGroup>
+      <Compile Include="Properties\AssemblyInfo.(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)">
+         <SubType>Code</SubType>
+      </Compile>
+      <Compile Include="(%= ExternalName %).(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)">
+         <SubType>Code</SubType>
+      </Compile>
+   </ItemGroup>
+   #TextEnd
+   Write.ChangeMargin(1);
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+      #TextEnd
+   }
+      #TextStart
+      <PropertyGroup>
+      <PreBuildEvent>
+      </PreBuildEvent>
+      <PostBuildEvent>
+      </PostBuildEvent>
+      </PropertyGroup>
+   </Project>
+   #TextEnd
+   Write.ChangeMargin(-1);
+   Write.Line("!)(!");
+   if(Select.Dialect == Dialects.vbn)
+   {
+      Write.Text("cat >");
+      ExternalLocation(ExternalName);
+      Write.Line(@"\Properties\AssemblyInfo." + Symbol.NamedEntryLabel("LangExt",Select.Dialect) + " <<'!)(!'");
+      #TextStart
+      Imports System.Reflection
+      Imports System.Runtime.CompilerServices
+      Imports System.Runtime.InteropServices
+
+      ' General Information about an assembly is controlled through the following
+      ' set of attributes. Change these attribute values to modify the information
+      ' associated with an assembly.
+
+      ' Review the values of the assembly attributes
+
+      <Assembly: AssemblyTitle("(%= ExternalName %)_stub")>
+      <Assembly: AssemblyDescription("Stub Wrapper for (%= ExternalName %)")>
+      <Assembly: AssemblyCompany("")>
+      <Assembly: AssemblyProduct("")>
+      <Assembly: AssemblyCopyright("")>
+      <Assembly: AssemblyTrademark("")>
+      <Assembly: AssemblyCulture("")>
+
+      ' Version information for an assembly consists of the following four values:
+      '
+      '      Major Version
+      '      Minor Version
+      '      Build Number
+      '      Revision
+      '
+      ' You can specify all the values or you can default the Build and Revision Numbers
+      ' by using the '*'.
+
+      <Assembly: AssemblyVersion("1.0.0.0")>
+      !)(!
+      #TextEnd
+   }
+   else
+   {
+      Write.Text("cat >");
+      ExternalLocation(ExternalName);
+      Write.Line(@"\Properties\AssemblyInfo." + Symbol.NamedEntryLabel("LangExt",Select.Dialect) + " <<'!)(!'");
+      #TextStart
+      using System.Reflection;
+      using System.Runtime.CompilerServices;
+
+      // General Information about an assembly is controlled through the following
+      // set of attributes. Change these attribute values to modify the information
+      // associated with an assembly.
+
+      // Review the values of the assembly attributes
+
+      [assembly: AssemblyTitle("(%= ExternalName %)_stub")]
+      [assembly: AssemblyDescription("Stub Wrapper for (%= ExternalName %)")]
+      [assembly: AssemblyCompany("")]
+      [assembly: AssemblyProduct("")]
+      [assembly: AssemblyCopyright("")]
+      [assembly: AssemblyTrademark("")]
+      [assembly: AssemblyCulture("")]
+
+      // Version information for an assembly consists of the following four values:
+      //
+      //      Major Version
+      //      Minor Version
+      //      Build Number
+      //      Revision
+      //
+      // You can specify all the values or you can default the Build and Revision Numbers
+      // by using the '*'.
+
+      [assembly: AssemblyVersion("1.0.0.0")]
+      !)(!
+      #TextEnd
+   }
+   Write.Text("cat >");
+   ExternalLocation(ExternalName);
+   Write.Line(@"\" + ExternalName + "." + Symbol.NamedEntryLabel("LangExt",Select.Dialect) + " <<'!)(!'");
+}
+
+void ExternalBuildFile(string ExternalName)
+{
+   Write.Text("EXECUTE msbuild """);
+   ExternalLocation(ExternalName);
+   Write.Line(@"\" + ExternalName + "." + Symbol.NamedEntryLabel("LangExt",Select.Dialect) + "proj"" /t:rebuild /p:Configuration=Debug /p:Platform=AnyCPU");
+}
+
+
+void StartWebProject(string ProjectName,string WarnErr,string GuidProject,string GuidType1,string GuidType2)
+{
+   Write.Text("cat >");
+   if(Project.DeployLocation) Write.Text(Project.DeployLocation + @"\");
+   if(ProjectName) Write.Text(ProjectName)
+   else Write.Text("WebProject");
+   Write.Line("." + Symbol.NamedEntryLabel("LangExt",Select.Dialect) + "proj <<'!)(!'");
+   int isNewerVS = isNewerVSVersion();
+   if (isNewerVS > 0)
+   {
+      string ToolsVersion = GetToolsVersion();
+      string FrameWorkVersion = GetFrameworkVersion();
+      #TextStart
+      <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="(%= ToolsVersion %)">
+      <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+         <PropertyGroup>
+            <ProjectType>Local</ProjectType>
+            <TargetFrameworkVersion>(%= FrameworkVersion %)</TargetFrameworkVersion>
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+         <PropertyGroup>
+            <ProductVersion>8.0.50727</ProductVersion>
+      #TextEnd
+   }
+   addCodePage();
+   if(Select.Dialect == Dialects.vbn)
+   {
+         #TextStart
+         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+         <SchemaVersion>2.0</SchemaVersion>
+         #TextEnd
+         if(GuidProject != "off")
+         {
+            #TextStart
+            <ProjectGuid>(%= GuidProject %)</ProjectGuid>
+            <ProjectTypeGuids>(%= GuidType1 %);(%= GuidType2 %)</ProjectTypeGuids>
+            #TextEnd
+         }
+         #TextStart
+         <OutputType>Library</OutputType>
+         <AppDesignerFolder>Properties</AppDesignerFolder>
+         <RootNamespace>(%= Select.Rootspace %)</RootNamespace>
+         <AssemblyName>(%= Select.Rootspace %)</AssemblyName>
+      </PropertyGroup>
+      <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+         <DebugSymbols>true</DebugSymbols>
+         <DebugType>full</DebugType>
+         <Optimize>false</Optimize>
+         <OutputPath>bin\</OutputPath>
+         <DefineConstants>DEBUG(%= Runtime.DefineConstants() %)</DefineConstants>
+         <ErrorReport>prompt</ErrorReport>
+         <WarningLevel>4</WarningLevel>
+         <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,(%=Registry.GetNameValue("ProjectSettings","NoWarn","")%)</NoWarn>
+         <TreatWarningsAsErrors>(%= warnErr %)</TreatWarningsAsErrors>
+      </PropertyGroup>
+      <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+         <DebugType>pdbonly</DebugType>
+         <Optimize>true</Optimize>
+         <OutputPath>bin\</OutputPath>
+         <DefineConstants>TRACE(%= Runtime.DefineConstants() %)</DefineConstants>
+         <ErrorReport>prompt</ErrorReport>
+         <WarningLevel>4</WarningLevel>
+         <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,(%=Registry.GetNameValue("ProjectSettings","NoWarn","")%)</NoWarn>
+         <TreatWarningsAsErrors>(%= warnErr %)</TreatWarningsAsErrors>
+      </PropertyGroup>
+      <ItemGroup>
+      #TextEnd
+   }
+   else
+   {
+         #TextStart
+         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+         <SchemaVersion>2.0</SchemaVersion>
+         #TextEnd
+         if(GuidProject != "off")
+         {
+            #TextStart
+            <ProjectGuid>(%= GuidProject %)</ProjectGuid>
+            <ProjectTypeGuids>(%= GuidType1 %);(%= GuidType2 %)</ProjectTypeGuids>
+            #TextEnd
+         }
+         #TextStart
+         <OutputType>Library</OutputType>
+         <AppDesignerFolder>Properties</AppDesignerFolder>
+         <RootNamespace>(%= Select.Rootspace %)</RootNamespace>
+         <AssemblyName>(%= Select.Rootspace %)</AssemblyName>
+      </PropertyGroup>
+      <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+         <DebugSymbols>true</DebugSymbols>
+         <DebugType>full</DebugType>
+         <Optimize>false</Optimize>
+         <OutputPath>bin\</OutputPath>
+         <DefineConstants>DEBUG(%= Runtime.DefineConstants() %)</DefineConstants>
+         <ErrorReport>prompt</ErrorReport>
+         <WarningLevel>4</WarningLevel>
+         <NoWarn>219,(%=Registry.GetNameValue("ProjectSettings","NoWarn","")%)</NoWarn>
+         <TreatWarningsAsErrors>(%= warnErr %)</TreatWarningsAsErrors>
+      </PropertyGroup>
+      <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+         <DebugType>pdbonly</DebugType>
+         <Optimize>true</Optimize>
+         <OutputPath>bin\</OutputPath>
+         <DefineConstants>TRACE(%= Runtime.DefineConstants() %)</DefineConstants>
+         <ErrorReport>prompt</ErrorReport>
+         <WarningLevel>4</WarningLevel>
+         <TreatWarningsAsErrors>(%= warnErr %)</TreatWarningsAsErrors>
+         <NoWarn>219,(%=Registry.GetNameValue("ProjectSettings","NoWarn","")%)</NoWarn>
+      </PropertyGroup>
+      <ItemGroup>
+      #TextEnd
+   }
+}
+
+void WebFixedReferences()
+{
+   Write.ChangeMargin(1);
+   if(Select.Dialect == Dialects.csh)
+   {
+      Write.Line("<Reference Include=""Microsoft.CSharp"" />");
+   }
+   #TextStart
+      <Reference Include="System" />
+      <Reference Include="System.Data" />
+      <Reference Include="System.Drawing" />
+      <Reference Include="System.Web" />
+      <Reference Include="System.Xml" />
+      <Reference Include="System.Configuration" />
+      <Reference Include="System.Web.Services" />
+      <Reference Include="System.EnterpriseServices" />
+      <Reference Include="System.Web.Mobile" />
+   #TextEnd
+   Write.Line("<Reference Include=""Microsoft.VisualBasic"" />");
+   #TextStart
+      <Reference Include="System.Windows.Forms" />
+   </ItemGroup>
+   <ItemGroup>
+   #TextEnd
+   Write.ChangeMargin(1);
+   Write.Line("<Import Include=""Microsoft.VisualBasic"" />");
+   #TextStart
+      <Import Include="Microsoft.VisualBasic.CompilerServices" />
+      <Import Include="System" />
+      <Import Include="System.Collections" />
+      <Import Include="System.Data" />
+      <Import Include="System.Diagnostics" />
+      <Import Include="System.Drawing" />
+      <Import Include="System.Windows.Forms" />
+   </ItemGroup>
+   <ItemGroup>
+   #TextEnd
+   Write.ChangeMargin(1);
+}
+
+void EndWebProject(string ProjectName,string GuidFlavor,string AspParse,string HasExtensions)
+{
+   Write.ChangeMargin(-1);
+   Write.Line("</ItemGroup>");
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+      #TextEnd
+   }
+   if(Select.DevEnv == "VS2010")
+   {
+      #TextStart
+      <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets"    Condition="" />
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      <PropertyGroup>
+        <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+        <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+      </PropertyGroup>
+      <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+      <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+      #TextEnd
+   }
+   #TextStart
+   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+      Other similar extension points exist, see Microsoft.Common.targets.
+   <Target Name="BeforeBuild">
+   </Target>
+   <Target Name="AfterBuild">
+   </Target>
+   -->
+   #TextEnd
+   if(AspParse == "Yes")
+   {
+      #TextStart
+      <Target Name="AfterBuild">
+         <AspNetCompiler
+            VirtualPath="/(%= ProjectName %)"
+            PhysicalPath="."
+         />
+      </Target>
+      #TextEnd
+   }
+   #TextStart
+   <ProjectExtensions>
+      <VisualStudio>
+         <FlavorProperties GUID="(%= GuidFlavor %)">
+            <WebProjectProperties>
+               <UseIIS>False</UseIIS>
+               <AutoAssignPort>True</AutoAssignPort>
+               <DevelopmentServerPort>2568</DevelopmentServerPort>
+               <DevelopmentServerVPath>/(%= ProjectName %)/</DevelopmentServerVPath>
+               <IISUrl>
+               </IISUrl>
+               <NTLMAuthentication>False</NTLMAuthentication>
+            </WebProjectProperties>
+         </FlavorProperties>
+      </VisualStudio>
+   </ProjectExtensions>
+   #TextEnd
+   Write.ChangeMargin(-1);
+   #TextStart
+   </Project>
+   !)(!
+   cat >(%= Project.DeployLocation %)\web.config <<'!)(!'
+   <?xml version="1.0"?>
+   <configuration>
+      <system.web>
+      #TextEnd
+   Write.ChangeMargin(1);
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      <compilation defaultLanguage="VB" debug="true">
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      <compilation defaultLanguage="C#" debug="true">
+      #TextEnd
+   }
+   Write.ChangeMargin(1);
+   #TextStart
+   <assemblies>
+      <add assembly="Microsoft.VisualBasic, Version=10.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+      <add assembly="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+   </assemblies>
+   #TextEnd
+   Write.ChangeMargin(-1);
+   #TextStart
+   </compilation>
+   <customErrors mode="RemoteOnly"/>
+   <authorization>
+      <allow users="*"/>
+   </authorization>
+   <trace enabled="true" requestLimit="10" pageOutput="false" traceMode="SortByTime" localOnly="true"/>
+   <globalization requestEncoding=\"utf-8\" responseEncoding=\"utf-8\"/>
+   <xhtmlConformance mode="Legacy"/>
+   #TextEnd
+   Write.Line("<pages>");
+   Write.ChangeMargin(1);
+   Write.Line("<namespaces>");
+   Write.ChangeMargin(1);
+   Write.Line("<add namespace=""VBNET=Microsoft.VisualBasic""/>");
+   Write.Line("<add namespace=""System.Data""/>");
+   if(HasExtensions == "Yes") Write.Line("<add namespace=""" + Select.ExtensionMethods + """/>");
+   Write.ChangeMargin(-1);
+   Write.Line("</namespaces>");
+   Write.ChangeMargin(-1);
+   Write.Line("</pages>");
+   Write.ChangeMargin(-1);
+   Write.Line("</system.web>");
+   Write.ChangeMargin(-1);
+   Write.Line("</configuration>");
+   Write.Line("!)(!");
+}
+
+void asp_endpage()
+{
+   Write.Line("!)(!");
+}
+
+void declare_crosslink(string NameSpace, string ClassName)
+{
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      Public (%= ClassName %)1 As (%= NameSpace %).(%= ClassName %)
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      public (%= NameSpace %).(%= ClassName %) (%= ClassName %)1;
+      #TextEnd
+   }
+}
+
+void asp_vbnetlib()
+{
+   #TextStart
+   <%@ Import namespace="VBNET=Microsoft.VisualBasic" %>
+   #TextEnd
+}
+
+void asp_HostPage(string PageClassName)
+{
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      Public hostPage As (%= PageClassName %) = Nothing
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      public (%= PageClassName %) hostPage = null;
+      #TextEnd
+   }
+}
+
+void asp_NewInclude(string PageClassName,string ClassName)
+{
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      Public Sub New(parent As (%= PageClassName %))
+         MyBase.New()
+         hostPage = parent
+      End Sub
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      public (%= ClassName %)((%= PageClassName %) parent) : base()
+      {
+         hostPage = parent;
+      }
+      #TextEnd
+   }
+}
+
+void TypeInferenceFile(string SystemId)
+{
+   Write.Text(Select.Local + @"\TypeInferences." + SystemId + ".xml");
+}
+
+void PrinterReference()
+{
+   if (Select.BuildFile == BuildFileStatus.off)
+   {
+      #TextStart
+      <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"/>
+      #TextEnd
+   }
+}
+
+void UsesInterfacesProjectFile()
+{
+   #TextStart
+   cat >(%= Select.Library %)\(%= Symbol.GetTemplate("Interfaces") %)_(%= Symbol.NamedEntryLabel("Dialects",Select.Dialect) %)\(%= Symbol.GetTemplate("Interfaces") %).csproj <<'!)(!'
+   <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+     <PropertyGroup>
+       <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+       <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+       <ProductVersion>8.0.30703</ProductVersion>
+       <SchemaVersion>2.0</SchemaVersion>
+       <ProjectGuid>(%= System.Guid("Interfaces") %)</ProjectGuid>
+       <OutputType>Library</OutputType>
+       <AppDesignerFolder>Properties</AppDesignerFolder>
+       <RootNamespace>(%= Symbol.GetTemplate("Interfaces") %)</RootNamespace>
+       <AssemblyName>(%= Symbol.GetTemplate("Interfaces") %)</AssemblyName>
+       <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+       <FileAlignment>512</FileAlignment>
+       <Deterministic>true</Deterministic>
+     </PropertyGroup>
+     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+       <DebugSymbols>true</DebugSymbols>
+       <DebugType>full</DebugType>
+       <Optimize>false</Optimize>
+       <OutputPath>bin\Debug\</OutputPath>
+       <DefineConstants>DEBUG;TRACE</DefineConstants>
+       <ErrorReport>prompt</ErrorReport>
+       <WarningLevel>4</WarningLevel>
+     </PropertyGroup>
+     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+       <DebugType>pdbonly</DebugType>
+       <Optimize>true</Optimize>
+       <OutputPath>bin\Release\</OutputPath>
+       <DefineConstants>TRACE</DefineConstants>
+       <ErrorReport>prompt</ErrorReport>
+       <WarningLevel>4</WarningLevel>
+     </PropertyGroup>
+     <ItemGroup>
+       <Reference Include="System" />
+       <Reference Include="System.Core" />
+       <Reference Include="System.Xml.Linq" />
+       <Reference Include="System.Data.DataSetExtensions" />
+       <Reference Include="Microsoft.CSharp" />
+       <Reference Include="System.Data" />
+   #TextEnd
+   Write.Line("<Reference Include=""Microsoft.VisualBasic""/>");
+   #TextStart
+       <Reference Include="System.Xml" />
+     </ItemGroup>
+     <ItemGroup>
+     #TextEnd
+     Runtime.InterfaceClasses(Select.Library + @"\" + "Interfaces" + "_" + Symbol.NamedEntryLabel("Dialects",Select.Dialect));
+     #TextStart
+     </ItemGroup>
+     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+     <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+          Other similar extension points exist, see Microsoft.Common.targets.
+     <Target Name="BeforeBuild">
+     </Target>
+     <Target Name="AfterBuild">
+     </Target>
+     -->
+   </Project>
+   !)(!
+   cat >(%= Select.Library %)\(%= Symbol.GetTemplate("Interfaces") %)_(%= Symbol.NamedEntryLabel("Dialects",Select.Dialect) %)\AssemblyInfo.cs <<'!)(!'
+   using System.Reflection;
+   using System.Runtime.CompilerServices;
+   using System.Runtime.InteropServices;
+
+   // General Information about an assembly is controlled through the following
+   // set of attributes. Change these attribute values to modify the information
+   // associated with an assembly.
+   [assembly: AssemblyTitle("(%= Symbol.GetTemplate("Interfaces") %)")]
+   [assembly: AssemblyDescription("")]
+   [assembly: AssemblyConfiguration("")]
+   [assembly: AssemblyCompany("Microsoft")]
+   [assembly: AssemblyProduct("(%= Symbol.GetTemplate("Interfaces") %)")]
+   [assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
+   [assembly: AssemblyTrademark("")]
+   [assembly: AssemblyCulture("")]
+
+   // Setting ComVisible to false makes the types in this assembly not visible
+   // to COM components.  If you need to access a type in this assembly from
+   // COM, set the ComVisible attribute to true on that type.
+   [assembly: ComVisible(false)]
+
+   // The following GUID is for the ID of the typelib if this project is exposed to COM
+   [assembly: Guid("e6c9f3a4-19b4-4b00-b698-8ee567b50e1f")]
+
+   // Version information for an assembly consists of the following four values:
+   //
+   //      Major Version
+   //      Minor Version
+   //      Build Number
+   //      Revision
+   //
+   // You can specify all the values or you can default the Build and Revision Numbers
+   // by using the '*' as shown below:
+   // [assembly: AssemblyVersion("1.0.*")]
+   [assembly: AssemblyVersion("1.0.0.0")]
+   [assembly: AssemblyFileVersion("1.0.0.0")]
+   !)(!
+   #TextEnd
+}
+
+void Declare_dispose()
+{
+   if(Select.Dialect == Dialects.vbn)
+   {
+      Write.Line("Dim _disposed As Boolean = False");
+   }
+   else
+   {
+      Write.Line("bool _disposed = false;");
+   }
+}
+
+void ClassInitialize(string ClassName,string PageClass)
+{
+   if(PageClass == "none")
+   {
+      if(Select.Dialect == Dialects.vbn)
+      {
+         #TextStart
+         Public Sub New()
+            MyBase.New()
+            Class_Initialize()
+         End Sub
+         #TextEnd
+      }
+      else
+      {
+         #TextStart
+         public (%= ClassName %)() : base()
+         {
+            Class_Initialize();
+         }
+         #TextEnd
+      }
+   }
+   else
+   {
+      if(Select.Dialect == Dialects.vbn)
+      {
+         #TextStart
+         Public Sub New(parent As (%= PageClass %))
+            MyBase.New()
+            hostPage = parent
+            Class_Initialize()
+         End Sub
+         #TextEnd
+      }
+      else
+      {
+         #TextStart
+         public (%= ClassName %)((%= PageClass %) parent) : base()
+         {
+            hostPage = parent;
+            Class_Initialize();
+         }
+         #TextEnd
+      }
+   }
+}
+
+void ClassTerminate()
+{
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      Public Sub Dispose() Implements System.IDisposable.Dispose
+         Dispose(True)
+         GC.SuppressFinalize(Me)
+      End Sub
+      Protected Overridable Sub Dispose(disposing As Boolean)
+         If _disposed Then
+            Return
+         End If
+         If (disposing) Then
+            Class_Terminate()
+         End If
+         _disposed = True
+      End Sub
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      public void Dispose()
+      {
+         Dispose(true);
+         GC.SuppressFinalize(this);
+      }
+      protected virtual void Dispose(bool disposing)
+      {
+         if (_disposed)
+         {
+            return;
+         }
+         if (disposing)
+         {
+            Class_Terminate();
+         }
+         _disposed = true;
+      }
+      #TextEnd
+   }
+}
+
+void WebAppProjRef(int libRoot)
+{
+   tLibrary libInfo;
+   int      libType;
+   string   hintPath;
+
+   libInfo = Store.GetVector(libRoot);
+   hintPath = Store.GetString(libInfo.hintpath);
+   if(hintPath != "DoNotDeclare")
+   {
+      if(libInfo.UsesCOM)
+      {
+         libType = LibraryType.ACTIVEX;
+      }
+      else
+      {
+         libType = libInfo.patType;
+      }
+      if(libType == LibraryType.NATIVE)
+      {
+         #TextStart
+         <Reference Include="(%= Store.GetString(libInfo.assembly) %)">
+            <HintPath>(%= hintPath %)</HintPath>
+         </Reference>
+         #TextEnd
+      }
+      else if(libType == LibraryType.LOCALIMPORT)
+      {
+         #TextStart
+         <Reference Include="(%= Store.GetName(libRoot) %)">
+            <Name>(%= Store.GetIdent(libRoot) %)</Name>
+            <HintPath>(%= hintPath %)</HintPath>
+         </Reference>
+         #TextEnd
+      }
+      else if(libType == LibraryType.ACTIVEX)
+      {
+         #TextStart
+         <Reference Include="Ax(%= Store.GetName(libRoot) %)">
+            <Name>Ax(%= Store.GetIdent(libRoot) %)</Name>
+            <HintPath>(%= Store.GetString(libInfo.axLocation) %)</HintPath>
+         </Reference>
+         <Reference Include="(%= Store.GetName(libRoot) %)">
+            <Name>(%= Store.GetIdent(libRoot) %)</Name>
+            <HintPath>(%= hintPath %)</HintPath>
+         </Reference>
+         #TextEnd
+      }
+      else if((libType == LibraryType.Internal) && (Select.BuildFile == BuildFileStatus.Global))
+      {
+         #TextStart
+         <Reference Include="(%= Store.GetName(libRoot) %)">
+            <Name>(%= Store.GetIdent(libRoot) %)</Name>
+            <HintPath>(%= Library %)\(%= Store.GetName(libRoot) %)\bin\(%= Store.GetName(libRoot) %).dll</HintPath>
+         </Reference>
+         #TextEnd
+      }
+   }
+}
+
+void WebAppProjFile()
+{
+   int       page;
+   tInfoFile aspInfo;
+   int       Length;
+   string    FileName;
+   int       LocalStart;
+   int       XtnStart;
+   string    LocalName;
+   string    Path;
+   int       clsRoot;
+   tInfoFile clsInfo;
+
+   page = Store.GetFirst(0);
+   while(page != 0)
+   {
+      if(Store.GetObjectType(page) == ObjectType.ASPFILE)
+      {
+         aspInfo = Store.GetVector(page);
+         if((!aspInfo.SKIPDECL) && (!aspInfo.INCLUDE))
+         {
+            #TextStart
+            <Content Include="(%= Store.GetString(aspInfo.migComment) %)" />
+            #TextEnd
+         }
+      }
+      page = Store.GetNext(page);
+   }
+   page = Store.GetFirst(0);
+   while(page != 0)
+   {
+      if(Store.GetObjectType(page) == ObjectType.ASPFILE)
+      {
+         aspInfo = Store.GetVector(page);
+         if(! aspInfo.SKIPDECL)
+         {
+            if(aspInfo.USERCONTROL || (aspInfo.INCLUDE && aspInfo.HASMARKUP))
+            {
+               #TextStart
+               <Content Include="(%= Store.GetString(aspInfo.migComment) %)" />
+               #TextEnd
+            }
+         }
+      }
+      page = Store.GetNext(page);
+   }
+   #TextStart
+      <Content Include="web.config" />
+   </ItemGroup>
+   <ItemGroup>
+   #TextEnd
+   Write.ChangeMargin(1);
+   page = Store.GetFirst(0);
+   while(page != 0)
+   {
+      if(Store.GetObjectType(page) == ObjectType.ASPFILE)
+      {
+         aspInfo = Store.GetVector(page);
+         if((!aspInfo.SKIPDECL) && aspInfo.CODEBEHIND)
+         {
+            if(aspInfo.USERCONTROL || (!aspInfo.INCLUDE) || aspInfo.HASMARKUP)
+            {
+               FileName = Store.GetString(aspInfo.migComment);
+               Length = System.ParseFileName(FileName,LocalStart,XtnStart);
+               LocalName = Character.Substr(FileName,LocalStart,Length-LocalStart);
+               #TextStart
+               <Compile Include="(%= Store.GetString(aspInfo.migComment) %).(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)">
+                  <SubType>ASPXCodeBehind</SubType>
+                  <DependentUpon>(%= LocalName %)</DependentUpon>
+               </Compile>
+               #TextEnd
+            }
+         }
+      }
+      page = Store.GetNext(page);
+   }
+   page = Store.GetFirst(0);
+   while(page != 0)
+   {
+      if(Store.GetObjectType(page) == ObjectType.ASPFILE)
+      {
+         aspInfo = Store.GetVector(page);
+         if(!aspInfo.SKIPDECL)
+         {
+            if(aspInfo.INCLUDE && (!aspInfo.HASMARKUP) && (!aspInfo.USERCONTROL) && aspInfo.CODEBEHIND)
+            {
+               FileName = Store.GetString(aspInfo.migComment);
+               Length = System.ParseFileName(FileName,LocalStart,XtnStart);
+               LocalName = Character.Substr(FileName,0,Length-5);
+               #TextStart
+               <Compile Include="(%= LocalName %).(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)" />
+               #TextEnd
+            }
+         }
+      }
+      page = Store.GetNext(page);
+   }
+   page = Store.GetFirst(0);
+   while(page != 0)
+   {
+      if(Store.GetObjectType(page) == ObjectType.ASPFILE)
+      {
+         aspInfo = Store.GetVector(page);
+         if((!aspInfo.SKIPDECL) && aspInfo.HASMIGCLASS)
+         {
+            FileName = Store.GetString(aspInfo.migComment);
+            Length = System.ParseFileName(FileName,LocalStart,XtnStart);
+            if(LocalStart)
+            {
+               Path = Character.Substr(FileName,0,LocalStart);
+            }
+            else
+            {
+               Path = ""
+            }
+            clsRoot = Store.GetFirst(page);
+            while(clsRoot != 0)
+            {
+               if(Store.GetObjectType(clsRoot) == ObjectType.CLASSFILE)
+               {
+                  clsInfo = Store.GetVector(clsRoot);
+                  LocalName = Store.GetName(clsInfo.vbName);
+                  if(clsInfo.VBScript) LocalName = Symbol.UseTemplate("VBSClassFile",LocalName);
+                  Write.Line("<Compile Include=""" + Path + LocalName + "." + Symbol.NamedEntryLabel("LangExt",Select.Dialect) + """ />");
+               }
+               clsRoot = Store.GetNext(clsRoot);
+            }
+         }
+      }
+      page = Store.GetNext(page);
+   }
+}
+
+
+void AuthorProjectCompileIncludes(int projRoot)
+{
+   int       formFile;
+   tInfoFile infoFile;
+   int       modFile;
+   int       clsFile;
+   string    subType;
+   int hasSubSystemWPF;
+
+   hasSubSystemWPF = hasSubSystem(Dialects.WPF);
+   if(hasSubSystemWPF && Project.Startup != "(None)")
+   {
+      #TextStart
+       <ApplicationDefinition Include="App.xaml">
+         <Generator>MSBuild:Compile</Generator>
+         <SubType>Designer</SubType>
+       </ApplicationDefinition>
+       <Compile Include="App.xaml.(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)">
+         <DependentUpon>App.xaml</DependentUpon>
+         <SubType>Code</SubType>
+       </Compile>
+      #TextEnd
+   }
+
+   for(formFile = Store.GetFirst(projRoot); formFile != 0; formFile = Store.GetNext(formFile))
+   {
+      if(Store.GetObjectType(formFile) == ObjectType.FORMFILE)
+      {
+         infoFile = Store.GetVector(formFile);
+         if(!infoFile.DEADCODE)
+         {
+            hasSubSystemWPF = hasSubSystem(Dialects.WPF);
+            if(hasSubSystemWPF)
+            {
+               #TextStart
+               <Page Include="(%= Symbol.ClassName(formFile) %).xaml">
+                  <Generator>MSBuild:Compile</Generator>
+                  <SubType>Designer</SubType>
+               </Page>
+               <Compile Include="(%= Symbol.ClassName(formFile) %).xaml.(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)">
+                 <DependentUpon>(%= Symbol.ClassName(formFile) %).xaml</DependentUpon>
+                 <SubType>Code</SubType>
+               </Compile>
+               #TextEnd
+               continue;
+            }
+            #TextStart
+            <Compile Include="(%= Symbol.ClassName(formFile) %).Designer.(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)">
+               <SubType>Code</SubType>
+               <DependentUpon>(%= Symbol.ClassName(formFile) %).(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)</DependentUpon>
+            </Compile>
+            <Compile Include="(%= Symbol.ClassName(formFile) %).(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)">
+            #TextEnd
+            Write.ChangeMargin(1);
+            if(infoFile.InfoType == OPC.USC)
+            {
+               #TextStart
+               <SubType>UserControl</SubType>
+               #TextEnd
+            }
+            else
+            {
+               #TextStart
+               <SubType>Form</SubType>
+               #TextEnd
+            }
+            Write.ChangeMargin(-1);
+            #TextStart
+            </Compile>
+            #TextEnd
+            if(infoFile.RESOURCES)
+            {
+               #TextStart
+               <EmbeddedResource Include="(%= Symbol.ClassName(formFile) %).resx">
+                  <DependentUpon>(%= Symbol.ClassName(formFile) %).(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)</DependentUpon>
+                  <SubType>Designer</SubType>
+               </EmbeddedResource>
+               #TextEnd
+            }
+         }
+      }
+   }
+   modFile = Store.GetFirst(projRoot);
+   while(modFile != 0)
+   {
+      if(Store.GetObjectType(modFile) == ObjectType.MODULEFILE)
+      {
+         infoFile = Store.GetVector(modFile);
+         if(!infoFile.DEADCODE)
+         {
+            #TextStart
+            <Compile Include="(%= Symbol.ClassName(modFile) %).(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)">
+               <SubType>Code</SubType>
+            </Compile>
+            #TextEnd
+         }
+      }
+      modFile = Store.GetNext(modFile);
+   }
+   clsFile = Store.GetFirst(projRoot);
+   while(clsFile != 0)
+   {
+      if(Store.GetObjectType(clsFile) == ObjectType.CLASSFILE)
+      {
+         infoFile = Store.GetVector(clsFile);
+         if(!infoFile.DEADCODE)
+         {
+            #TextStart
+            <Compile Include="(%= Symbol.ClassName(clsFile) %).(%= Symbol.NamedEntryLabel("LangExt",Select.Dialect) %)">
+            #TextEnd
+            Write.ChangeMargin(1);
+            subType = "";
+            if(!subType)
+            {
+               subType = "<SubType>Code</SubType>";
+            }
+            Write.Text(subType);
+            Write.Record();
+            Write.ChangeMargin(-1);
+            Write.Text("</Compile>");
+            Write.Record();
+         }
+      }
+      clsFile = Store.GetNext(clsFile);
+   }
+}
+
+void ExternalLibraryReference(int external, int libType)
+{
+   tLibrary libInfo;
+
+   if(Store.GetObjectType(external) == ObjectType.PROJECTFILE)
+   {
+      #TextStart
+      <Reference Include="(%= Project.NameSpace %)">
+         <Name>(%= Store.GetName(external) %)</Name>
+      </Reference>
+      #TextEnd
+   }
+   else
+   {
+      libInfo = Store.GetVector(external);
+      if(libType == LibraryType.NATIVE)
+      {
+         #TextStart
+         <Reference Include="(%= Store.GetString(libInfo.assembly) %)">
+            <HintPath>(%= Store.GetString(libInfo.hintPath) %)</HintPath>
+         </Reference>
+         #TextEnd
+      }
+      else if(libType == LibraryType.LOCALIMPORT)
+      {
+         #TextStart
+         <Reference Include="(%= Store.GetName(external) %)">
+            <Name>(%= Store.GetIdent(external) %)</Name>
+            <HintPath>(%= Store.GetString(libInfo.hintpath) %)</HintPath>
+         </Reference>
+         #TextEnd
+      }
+      else if(libType == LibraryType.ACTIVEX)
+      {
+         #TextStart
+         <Reference Include="Ax(%= Store.GetName(external) %)">
+            <Name>Ax(%= Store.GetIdent(external) %)</Name>
+            <HintPath>(%= Store.GetString(libInfo.axLocation) %)</HintPath>
+         </Reference>
+         <Reference Include="(%= Store.GetName(external) %)">
+            <Name>(%= Store.GetIdent(external) %)</Name>
+            <HintPath>(%= Store.GetString(libInfo.hintpath) %)</HintPath>
+         </Reference>
+         #TextEnd
+       }
+   }
+}
+
+void AuthorImplementedNewEnum()
+{
+   #TextStart
+   public IEnumerator GetEnumerator()
+   {
+      return (System.Collections.IEnumerator)(NewEnum);
+   }
+   #TextEnd
+}
+
+void AuthorGetEnumerator(int iHost)
+{
+   tQuantity quantity = Store.GetVector(iHost);
+   int binaryType = quantity.type;
+   string fullname = Symbol.FullName(binaryType,0);
+
+   int isDict = 0;
+   if(Select.Dialect == Dialects.csh)  isDict = Character.FindFirst(fullName,1,"Dictionary<");
+   else isDict = Character.FindFirst(fullName,1,"Dictionary(Of");
+
+   string valuesProp = "";
+   if (isDict) valuesProp = ".Values";
+   if(Store.GetObjectType(iHost) == ObjectType.SUBPROGRAM) valuesProp = valuesProp + "()";
+
+   if(Select.Dialect == Dialects.csh)
+   {
+      #TextStart
+      public IEnumerator GetEnumerator()
+      {
+          return (%= Store.GetName(iHost) %)(%= valuesProp%).GetEnumerator();
+      }
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+       Public Function GetEnumerator() As IEnumerator Implements IEnumerable.GetEnumerator
+         GetEnumerator = (%= Store.GetName(iHost) %)(%= valuesProp%).GetEnumerator()
+      End Function
+      #TextEnd
+   }
+}
+
+void AuthorEmptyEnumerator(int iHost)
+{
+   if(Select.Dialect == Dialects.csh)
+   {
+      #TextStart
+      public IEnumerator GetEnumerator()
+      {
+          return null;
+      }
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+       Public Function GetEnumerator() As IEnumerator Implements IEnumerable.GetEnumerator
+         GetEnumerator = Nothing
+      End Function
+      #TextEnd
+   }
+}
+
+void StartConditionalRemove(int subRoot)
+{
+
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      '' UPGRADE_INFO: conditional stub (%= Symbol.FullName(subRoot,1) %)
+      #if mig_conditional_stub
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      // UPGRADE_INFO: conditional stub (%= Symbol.FullName(subRoot,1) %)
+      #if mig_conditional_stub
+      #TextEnd
+   }
+}
+void EndConditionalRemove()
+{
+   #TextStart
+   #endif
+   #TextEnd
+}
+
+void StubNotImplemented(int subRoot,string methodName)
+{
+   string fullName;
+
+   if(subRoot != 0)
+   {
+      fullName = Symbol.FullName(subRoot,0);
+      if(Character.FindFirst(fullName,0,@"\") != 0) fullName = Store.GetName(subRoot);
+      if(methodName) fullName = fullName + "." + methodName;
+   }
+   else fullName = "SystemExtensions." + methodName;
+   if(Select.Dialect == Dialects.csh)
+   {
+      #TextStart
+      if (System.Diagnostics.Process.GetCurrentProcess().ProcessName != "devenv") throw new System.NotImplementedException("STUB_TODO: stubbed (%= fullname %)");
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      If (System.Diagnostics.Process.GetCurrentProcess().ProcessName <> "devenv") Then Throw New System.NotImplementedException("STUB_TODO: stubbed (%= fullname %)")
+      #TextEnd
+   }
+}
+

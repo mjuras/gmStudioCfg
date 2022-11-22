@@ -1,0 +1,43 @@
+<DescriptionFile>
+<library id="gmRTL.ASP.dll"
+         name="gmRTL.ASP"
+         source="gmRTL.ASP.dll"
+         location="%library%\gmRTL.ASP.dll"
+         migName="gmRTL.ASP"
+         type="Native"
+   >
+<class id="IServer" parent="None" >
+   <method id="GetErrorObject" type="ErrObject" status="static" >
+      <argument id="Server" type="Object" status="ByVal"/>
+   </method>
+</class>
+<class id="Asp_Session" parent="None" >
+   <method id="Escape" type="String" status="static">
+      <argument id="string" type="String" status="ByVal" />
+   </method>
+   <method id="Eval" type="Variant" status="static">
+      <argument id="expr" type="String" status="ByVal" />
+   </method>
+   <method id="Execute" type="Variant" nPram="1" status="static">
+      <argument id="codeblock" type="String" status="ByVal" />
+   </method>
+   <method id="ExecuteGlobal" type="Variant" status="static">
+      <argument id="codeblock" type="String" status="ByVal" />
+   </method>
+   <method id="GetLocale" type="Integer" status="static" />
+   <method id="GetRef" type="Variant" nPram="1" status="static">
+      <argument id="funcname" type="String" status="ByVal" />
+   </method>
+   <method id="ScriptEngine" type="String" status="static" />
+   <method id="ScriptEngineBuildVersion" type="Integer" status="static" />
+   <method id="ScriptEngineMajorVersion" type="Integer" status="static" />
+   <method id="ScriptEngineMinorVersion" type="Integer" status="static" />
+   <method id="SetLocale" type="Void" nPram="2" status="static">
+      <argument id="lcid" type="Variant" status="ByVal" />
+   </method>
+   <method id="UnEscape" type="String" status="static">
+      <argument id="string" type="String" status="ByVal" />
+   </method>
+</class>
+</library>
+</DescriptionFile>

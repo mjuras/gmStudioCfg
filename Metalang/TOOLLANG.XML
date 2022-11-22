@@ -1,0 +1,142 @@
+<MetaLanguage>
+<Statements id="ToolLang" >
+    <statement id="Default" >
+       <attribute id="id"   type="string" opcode="on" />
+       <attribute id="lang" type="Dialects" />
+    </statement>
+    <statement id="DefaultSetting" >
+       <attribute id="id"     type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+       <attribute id="value"  type="string[(%= Defines.MAX_PROPVALUE %)]" />
+       <attribute id="CDATA"  type="string[(%= Defines.MAX_PROPVALUE %)]" location="value" />
+    </statement>
+    <statement id="Fix">
+      <attribute id="status"     type="string[(%= Defines.MAX_FIXACTION %)]" />
+      <attribute id="host"       type="string[(%= Defines.MAX_FULLIDENT %)]" />
+      <attribute id="type"       type="FixType" />
+      <attribute id="name"       type="string[(%= Defines.MAX_FIXNAME %)]" />
+      <attribute id="lang"       type="FixLanguage" />
+      <attribute id="FileFilter" type="string[(%= Defines.MAX_FILENAME %)]" />
+   </statement>
+   <statement id="FixAttrType">
+      <attribute id="CDATA" type="FixType" />
+   </statement>
+   <statement id="FixAttrName">
+      <attribute id="CDATA" type="string[(%= Defines.MAX_FIXNAME %)]" />
+   </statement>
+   <statement id="FixAttrFileFilter">
+      <attribute id="CDATA" type="string[(%= Defines.MAX_FILENAME %)]" />
+   </statement>
+   <statement id="FixReplace">
+      <attribute id="status"        type="string[(%= Defines.MAX_FIXACTION %)]" />
+      <attribute id="name"          type="string[(%= Defines.MAX_FIXNAME %)]" />
+      <attribute id="lang"          type="FixLanguage" />
+      <attribute id="casesensitive" type="boolean[1]" />
+      <attribute id="matchblock"    type="boolean[2]" />
+      <attribute id="matchtillLast" type="boolean[3]" />
+   </statement>
+   <statement id="FixReplaceFile">
+      <attribute id="target" type="string[(%= Defines.MAX_FILENAME %)]" />
+      <attribute id="name"   type="string[(%= Defines.MAX_FIXNAME %)]" />
+      <attribute id="lang"   type="FixLanguage" />
+      <attribute id="source" type="string[(%= Defines.MAX_FILENAME %)]" />
+   </statement>
+   <statement id="GetSet" >
+      <attribute id="migPattern"  type="string[(%= Defines.MAX_PATTERN %)]" StringOn="on" />
+      <attribute id="cshPattern"  type="string[(%= Defines.MAX_PATTERN %)]" StringOn="on" />
+      <attribute id="vbnPattern"  type="string[(%= Defines.MAX_PATTERN %)]" StringOn="on" />
+      <attribute id="nPram"       type="Integer" />
+      <attribute id="role"        type="roleKeys" />
+      <attribute id="patstatus"   type="statusKeys" />
+   </statement>
+   <statement id="gmSl">
+      <attribute id="namespace" type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+      <attribute id="class"     type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+      <attribute id="source"    type="string[(%= Defines.MAX_FILENAME %)]" />
+   </statement>
+   <statement id="If">
+      <attribute id="id"     type="string[(%= Defines.MAX_FULLIDENT %)]" />
+      <attribute id="host"   type="string[(%= Defines.MAX_FULLIDENT %)]" />
+      <attribute id="lang"   type="FixLanguage" />
+    </statement>
+   <statement id="ImportList" >
+      <attribute id="id" type="string[(%= Defines.MAX_FULLIDENT %)]" />
+   </statement>
+   <statement id="Method">
+     <attribute id="id" type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+     <attribute id="type" type="string[(%= Defines.MAX_FULLIDENT %)]" />
+     <attribute id="status" type="PropertyStatus" additive="on" />
+     <attribute id="netName" type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+     <attribute id="migName" type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+     <attribute id="netHandler" type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+     <attribute id="netArgs" type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+     <attribute id="migStatus" type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+     <attribute id="migComment" type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+     <attribute id="migPattern" type="string[(%= Defines.MAX_PATTERN %)]" />
+     <attribute id="cshPattern" type="string[(%= Defines.MAX_PATTERN %)]" />
+     <attribute id="vbnPattern" type="string[(%= Defines.MAX_PATTERN %)]" />
+     <attribute id="nPram" type="Integer" />
+     <attribute id="role" type="roleKeys" />
+     <attribute id="patStatus" type="statusKeys" />
+     <attribute id="overrideuser" type="boolean[(%= MigStatusFlags.OverrideUser %)]" />
+     <attribute id="opcode" type="string" operation="On"/>
+     <attribute id="syntax" type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+     <attribute id="throwsException" type="void"/> 
+     <attribute id="overload" type="boolean[(%= ContextFlags.Overload %)]" location="status" />
+     <attribute id="overridecall" type="boolean[(%= MigStatusFlags.CastType %)]" location="OverrideUser" />
+     <attribute id="canbenull" type="boolean[(%= MigStatusFlags.CanBeNull %)]" location="OverrideUser" />
+     <attribute id="extensions" type="string[(%= Defines.MAX_FULLIDENT %)]" />
+   </statement>
+   <statement id="Property" >
+     <attribute id="id" type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+     <attribute id="type" type="string[(%= Defines.MAX_FULLIDENT %)]" />
+     <attribute id="status" type="PropertyStatus" />
+     <attribute id="netName" type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+     <attribute id="migName" type="string[(%= Defines.MAX_SYMBOLNAME %)]" location="netName"/>
+     <attribute id="migStatus" type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+     <attribute id="migComment" type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+     <attribute id="default" type="string[(%= Defines.MAX_SYMBOLNAME %)]" location="migComment" />
+     <attribute id="value" type="string[(%= Defines.MAX_PROPVALUE %)]" />
+     <attribute id="migPattern" type="string[(%= Defines.MAX_PATTERN %)]" />
+     <attribute id="cshPattern" type="string[(%= Defines.MAX_PATTERN %)]" />
+     <attribute id="vbnPattern" type="string[(%= Defines.MAX_PATTERN %)]" />
+     <attribute id="nPram" type="Integer" />
+     <attribute id="role" type="roleKeys" />
+     <attribute id="patStatus" type="statusKeys" />
+     <attribute id="canbenull" type="boolean[(%= MigStatusFlags.CanBeNull %)]" />
+     <attribute id="opcode" type="string" operation="On"/>
+     <attribute id="external" type="boolean[(%= MigStatusFlags.External %)]" location="CanBeNull" />
+     <attribute id="location" type="Integer" />
+   </statement>
+   <statement id="Referenced" >
+      <Attribute id="id"           type="string[(%= Defines.MAX_FULLIDENT %)]" />
+      <Attribute id="implemented"  type="boolean[(%= MigStatusFlags.Implemented %)]" />
+      <Attribute id="activex"      type="boolean[(%= MigProcessFlags.WasActiveX %)]"  />
+      <Attribute id="hasforeach"   type="boolean[(%= MigProcessFlags.HasForEach %)]"  />
+      <Attribute id="constructor"  type="boolean[(%= MigProcessFlags.Constructor %)]"  />
+      <Attribute id="colobject"    type="boolean[(%= MigProcessFlags.ColObject %)]"  />
+      <Attribute id="eventargs"    type="boolean[(%= MigProcessFlags.HaveEventArgs %)]"  />
+   </statement>
+   <statement id="Search" >
+      <Attribute id="storage"      type="string[(%= Defines.MAX_FILENAME %)]" />
+      <Attribute id="output"       type="string[(%= Defines.MAX_FILENAME %)]" />
+      <Attribute id="outstyle"     type="OutStyle" />
+   </statement>
+   <statement id="SearchDetails" >
+      <Attribute id="project"  type="string"  projectfile="on" />
+   </statement>
+   <statement id="SearchInterface" >
+      <Attribute id="project"  type="string"  projectfile="on" />
+   </statement>
+   <statement id="SearchSymbols" >
+      <Attribute id="project"  type="string"  projectfile="on" />
+   </statement>
+   <statement id="SearchRefer" >
+      <Attribute id="project"  type="string"  projectfile="on" />
+   </statement>
+   <statement id="Translate">
+      <attribute id="namespace"   type="string[(%= Defines.MAX_SYMBOLNAME %)]" />
+      <attribute id="language"    type="string[(%= Defines.MAX_LANGNAME %)]" />
+      <attribute id="scripttype"  type="string[(%= Defines.MAX_LANGNAME %)]" />
+   </statement>
+</Statements>
+</MetaLanguage>

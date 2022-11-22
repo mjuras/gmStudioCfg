@@ -1,0 +1,856 @@
+<MetaLanguage>
+<Statements id="Htmllang" >
+   <statement id="a">
+      <attribute id="accesskey"     type="string"/>
+      <attribute id="alt"           type="string"/>
+      <attribute id="bgcolor"       type="colorEntry"/>
+      <attribute id="class"         type="className"/>
+      <attribute id="href"          type="string"/>
+      <attribute id="id"            type="string"/>
+      <attribute id="language"      type="language"/>
+      <attribute id="name"          type="formName"/>
+      <attribute id="onclick"       type="formAction"/>
+      <attribute id="onmousedown"   type="formAction"/>
+      <attribute id="onmouseout"    type="formAction"/>
+      <attribute id="onmouseover"   type="formAction"/>
+      <attribute id="onmouseup"     type="formAction"/>
+      <attribute id="style"         type="string"/>
+      <attribute id="tabindex"      type="long"/>
+      <attribute id="target"        type="string"/>
+      <attribute id="title"         type="string"/>
+   </statement>
+
+   <statement id="acronym">
+      <attribute id="title" type="string"/>
+   </statement>
+
+   <statement id="applet">
+      <attribute id="archive"    type="string"/>
+      <attribute id="code"       type="string"/>
+      <attribute id="height"     type="long"/>
+      <attribute id="id"         type="string"/>
+      <attribute id="name"       type="formName"/>
+      <attribute id="viewastext" type="void"/>
+      <attribute id="width"      type="long"/>
+   </statement>
+
+   <statement id="area">
+      <attribute id="alt"     type="string"/>
+      <attribute id="coords"  type="string"/>
+      <attribute id="href"    type="string"/>
+      <attribute id="shape"   type="string"/>
+   </statement>
+
+   <statement id="article">
+   </statement>
+
+   <statement id="aside">
+   </statement>
+
+   <statement id="audio">
+   </statement>
+
+   <statement id="b">
+      <attribute id="class"   type="className"/>
+      <attribute id="style"   type="string"/>
+   </statement>
+
+   <statement id="base">
+      <attribute id="target"   type="string"/>
+   </statement>
+
+   <statement id="bdi">
+   </statement>
+
+   <statement id="big">
+   </statement>
+
+   <statement id="body">
+      <attribute id="alink"            type="colorEntry"/>
+      <attribute id="background"       type="filename"/>
+      <attribute id="bgcolor"          type="colorEntry"/>
+      <attribute id="bottommargin"     type="long"/>
+      <attribute id="class"            type="className"/>
+      <attribute id="height"           type="long"/>
+      <attribute id="id"               type="styleName"/>
+      <attribute id="language"         type="language"/>
+      <attribute id="leftmargin"       type="long"/>
+      <attribute id="link"             type="colorEntry"/>
+      <attribute id="marginheight"     type="long"/>
+      <attribute id="marginwidth"      type="long"/>
+      <attribute id="nowrap"           type="void"/>
+      <attribute id="onbeforeunload"   type="formAction"/>
+      <attribute id="onblur"           type="formAction"/>
+      <attribute id="onkeypress"       type="formAction"/>
+      <attribute id="onload"           type="formAction"/>
+      <attribute id="onresize"         type="formAction"/>
+      <attribute id="onscroll"         type="formAction"/>
+      <attribute id="onunload"         type="formAction"/>
+      <attribute id="rightmargin"      type="long"/>
+      <attribute id="scroll"           type="string"/>
+      <attribute id="scrolling"        type="yesno"/>
+      <attribute id="style"            type="string"/>
+      <attribute id="text"             type="colorEntry"/>
+      <attribute id="title"            type="string"/>
+      <attribute id="topmargin"        type="long"/>
+      <attribute id="vlink"            type="colorEntry"/>
+      <attribute id="width"            type="long"/>
+   </statement>
+
+   <statement id="br">
+      <attribute id="style" type="string"/>
+      <attribute id="clear" type="string"/>
+   </statement>
+
+   <statement id="button">
+      <attribute id="class"         type="className"/>
+      <attribute id="disabled"      type="void"/>
+      <attribute id="id"            type="objectName"/>
+      <attribute id="maxlength"     type="long"/>
+      <attribute id="name"          type="formName"/>
+      <attribute id="onclick"       type="formAction"/>
+      <attribute id="size"          type="long"/>
+      <attribute id="style"         type="string"/>
+      <attribute id="title"         type="string"/>
+      <attribute id="type"          type="inputType"/>
+      <attribute id="value"         type="string"/>
+   </statement>
+
+   <statement id="blockquote">
+      <attribute id="style" type="string"/>
+   </statement>
+
+   <statement id="caption">
+   </statement>
+
+   <statement id="canvas">
+   </statement>
+
+   <statement id="center">
+   </statement>
+
+   <statement id="code">
+   </statement>
+
+   <statement id="col">
+      <attribute id="id"    type="string"/>
+      <attribute id="style" type="string"/>
+   </statement>
+
+   <statement id="colgroup">
+   </statement>
+
+   <statement id="data">
+   </statement>
+
+   <statement id="datasets">
+      <attribute id="expToken"       type="string"/>
+      <attribute id="submittedIndex" type="string"/>
+      <attribute id="xmlns"          type="string"/>
+      <attribute id="xmlns:xsi"      type="string"/>
+      <attribute id="xsi:schemaLocation" type="string"/>
+   </statement>
+
+
+   <statement id="datalist">
+   </statement>
+
+   <statement id="details">
+   </statement>
+
+   <statement id="dialog">
+   </statement>
+
+   <statement id="div">
+      <attribute id="align"         type="horizontal"/>
+      <attribute id="class"         type="className"/>
+      <attribute id="height"        type="long"/>
+      <attribute id="id"            type="styleName"/>
+      <attribute id="name"          type="formName"/>
+      <attribute id="nowrap"        type="void"/>
+      <attribute id="onclick"       type="formAction"/>
+      <attribute id="onmousedown"   type="formAction"/>
+      <attribute id="onmouseout"    type="formAction"/>
+      <attribute id="onmouseover"   type="formAction"/>
+      <attribute id="scroll"        type="string"/>
+      <attribute id="style"         type="string"/>
+      <attribute id="valign"        type="vertical"/>
+      <attribute id="width"         type="vertical"/>
+   </statement>
+
+   <statement id="dd">
+      <attribute id="class"         type="className"/>
+      <attribute id="id"            type="styleName"/>
+      <attribute id="style"         type="string"/>
+   </statement>
+
+   <statement id="dl">
+      <attribute id="class"         type="className"/>
+      <attribute id="id"            type="styleName"/>
+      <attribute id="style"         type="string"/>
+   </statement>
+
+   <statement id="dt">
+      <attribute id="class"         type="className"/>
+      <attribute id="id"            type="styleName"/>
+      <attribute id="style"         type="string"/>
+   </statement>
+
+   <statement id="em">
+   </statement>
+
+   <statement id="embed">
+      <attribute id="align"               type="horizontal"/>
+      <attribute id="allowscriptaccess"   type="string"/>
+      <attribute id="bgcolor"             type="colorEntry"/>
+      <attribute id="flashvars"           type="string"/>
+      <attribute id="height"              type="long"/>
+      <attribute id="id"                  type="string"/>
+      <attribute id="name"                type="formName"/>
+      <attribute id="pluginspage"         type="string"/>
+      <attribute id="quality"             type="string"/>
+      <attribute id="src"                 type="string"/>
+      <attribute id="type"                type="string"/>
+      <attribute id="width"               type="long"/>
+   </statement>
+
+   <statement id="fieldset">
+      <attribute id="id"     type="styleName"/>
+      <attribute id="style"  type="string"/>
+   </statement>
+
+   <statement id="figcaption">
+   </statement>
+
+   <statement id="figure">
+   </statement>
+
+   <statement id="font">
+      <attribute id="align"      type="horizontal"/>
+      <attribute id="class"      type="className"/>
+      <attribute id="color"      type="colorEntry"/>
+      <attribute id="colspan"    type="long"/>
+      <attribute id="face"       type="string"/>
+      <attribute id="id"         type="objectName"/>
+      <attribute id="size"       type="long"/>
+      <attribute id="style"      type="string"/>
+    </statement>
+
+   <statement id="footer">
+   </statement>
+
+   <statement id="form">
+      <attribute id="accept-charset"   type="string" />
+      <attribute id="action"           type="formAction"/>
+      <attribute id="autocomplete"     type="onoff"/>
+      <attribute id="class"            type="className"/>
+      <attribute id="enctype"          type="string"/>
+      <attribute id="id"               type="objectName"/>
+      <attribute id="language"         type="language"/>
+      <attribute id="method"           type="methodType"/>
+      <attribute id="name"             type="formName"/>
+      <attribute id="onclick"          type="formAction"/>
+      <attribute id="onkeydown"        type="formAction"/>
+      <attribute id="onkeyup"          type="formAction"/>
+      <attribute id="onload"           type="formAction"/>
+      <attribute id="onsubmit"         type="formAction"/>
+      <attribute id="runat"            type="string" />
+      <attribute id="style"            type="string" />
+      <attribute id="target"           type="string"/>
+   </statement>
+
+   <statement id="frame">
+      <attribute id="bgcolor"       type="colorEntry"/>
+      <attribute id="border"        type="long"/>
+      <attribute id="frameborder"   type="long"/>
+      <attribute id="framespacing"  type="long"/>
+      <attribute id="height"        type="long"/>
+      <attribute id="id"            type="objectName"/>
+      <attribute id="marginheight"  type="long"/>
+      <attribute id="marginwidth"   type="long"/>
+      <attribute id="name"          type="formName"/>
+      <attribute id="noresize"      type="void"/>
+      <attribute id="scroll"        type="string"/>
+      <attribute id="scrolling"     type="yesno"/>
+      <attribute id="spacing"       type="long"/>
+      <attribute id="src"           type="filename"/>
+      <attribute id="style"         type="string"/>
+      <attribute id="target"        type="string"/>
+   </statement>
+
+   <statement id="frameset">
+      <attribute id="border"        type="long"/>
+      <attribute id="bordercolor"   type="colorEntry"/>
+      <attribute id="cols"          type="string"/>
+      <attribute id="frameborder"   type="yesno"/>
+      <attribute id="framespacing"  type="long"/>
+      <attribute id="height"        type="long"/>
+      <attribute id="id"            type="objectName"/>
+      <attribute id="marginheight"  type="long"/>
+      <attribute id="marginwidth"   type="long"/>
+      <attribute id="name"          type="formName"/>
+      <attribute id="onunload"      type="formAction"/>
+      <attribute id="noresize"      type="void"/>
+      <attribute id="rows"          type="string"/>
+      <attribute id="spacing"       type="long"/>
+   </statement>
+
+   <statement id="h1">
+      <attribute id="align"   type="horizontal"/>
+      <attribute id="class"   type="className"/>
+   </statement>
+
+   <statement id="h2">
+      <attribute id="align"   type="horizontal"/>
+      <attribute id="class"   type="className"/>
+   </statement>
+
+   <statement id="h3">
+      <attribute id="align"   type="horizontal"/>
+      <attribute id="class"   type="className"/>
+   </statement>
+
+   <statement id="h4">
+      <attribute id="align"   type="horizontal"/>
+      <attribute id="class"   type="className"/>
+   </statement>
+
+   <statement id="h5">
+      <attribute id="align"   type="horizontal"/>
+      <attribute id="class"   type="className"/>
+   </statement>
+
+   <statement id="h6">
+      <attribute id="align"   type="horizontal"/>
+      <attribute id="class"   type="className"/>
+   </statement>
+
+   <statement id="head">
+   </statement>
+
+   <statement id="header">
+   </statement>
+
+   <statement id="headline">
+   </statement>
+
+   <statement id="hr">
+      <attribute id="align"   type="horizontal"/>
+      <attribute id="class"   type="className"/>
+      <attribute id="color"   type="colorEntry"/>
+      <attribute id="id"      type="string"/>
+      <attribute id="noshade" type="void"/>
+      <attribute id="size"    type="long"/>
+      <attribute id="style"   type="string"/>
+      <attribute id="width"   type="percent"/>
+   </statement>
+
+   <statement id="html">
+      <attribute id="xmlns" type="string"/>
+      <attribute id="xml:lang" type="string"/>
+      <attribute id="lang" type="string"/>
+   </statement>
+
+   <statement id="i">
+   </statement>
+
+   <statement id="iframe">
+      <attribute id="bgcolor"       type="colorEntry"/>
+      <attribute id="border"        type="long"/>
+      <attribute id="frameborder"   type="long"/>
+      <attribute id="framespacing"  type="long"/>
+      <attribute id="height"        type="long"/>
+      <attribute id="id"            type="styleName"/>
+      <attribute id="left"          type="long"/>
+      <attribute id="marginheight"  type="long"/>
+      <attribute id="marginwidth"   type="long"/>
+      <attribute id="name"          type="formName"/>
+      <attribute id="noresize"      type="void"/>
+      <attribute id="scrolling"     type="yesno"/>
+      <attribute id="spacing"       type="long"/>
+      <attribute id="src"           type="filename"/>
+      <attribute id="style"         type="string"/>
+      <attribute id="target"        type="string"/>
+      <attribute id="top"           type="long"/>
+      <attribute id="width"         type="long"/>
+   </statement>
+
+   <statement id="ilayer">
+      <attribute id="bgcolor"       type="colorEntry"/>
+      <attribute id="border"        type="long"/>
+      <attribute id="frameborder"   type="long"/>
+      <attribute id="framespacing"  type="long"/>
+      <attribute id="height"        type="long"/>
+      <attribute id="id"            type="styleName"/>
+      <attribute id="left"          type="long"/>
+      <attribute id="marginheight"  type="long"/>
+      <attribute id="marginwidth"   type="long"/>
+      <attribute id="name"          type="formName"/>
+      <attribute id="noresize"      type="void"/>
+      <attribute id="scrolling"     type="yesno"/>
+      <attribute id="spacing"       type="long"/>
+      <attribute id="src"           type="filename"/>
+      <attribute id="style"         type="string"/>
+      <attribute id="target"        type="string"/>
+      <attribute id="top"           type="long"/>
+      <attribute id="width"         type="long"/>
+   </statement>
+
+   <statement id="img">
+      <attribute id="align"       type="horizontal"/>
+      <attribute id="alt"         type="string"/>
+      <attribute id="bgcolor"     type="colorEntry"/>
+      <attribute id="border"      type="long"/>
+      <attribute id="class"       type="className"/>
+      <attribute id="colspan"     type="long"/>
+      <attribute id="height"      type="long"/>
+      <attribute id="hspace"      type="long"/>
+      <attribute id="id"          type="string"/>
+      <attribute id="name"        type="formName"/>
+      <attribute id="nowrap"      type="void"/>
+      <attribute id="onclick"     type="formAction"/>
+      <attribute id="oncontextmenu" type="formAction"/>
+      <attribute id="onmouseout"  type="formAction"/>
+      <attribute id="onmouseover" type="formAction"/>
+      <attribute id="onmouseup"   type="formAction"/>
+      <attribute id="onsubmit"    type="formAction"/>
+      <attribute id="src"         type="filename"/>
+      <attribute id="style"       type="styleName"/>
+      <attribute id="title"       type="string"/>
+      <attribute id="type"        type="string"/>
+      <attribute id="usemap"      type="linkrel"/>
+      <attribute id="valign"      type="vertical"/>
+      <attribute id="vspace"      type="long"/>
+      <attribute id="width"       type="long"/>
+   </statement>
+
+   <statement id="input">
+      <attribute id="action"        type="formAction"/>
+      <attribute id="align"         type="horizontal"/>
+      <attribute id="alt"           type="string"/>
+      <attribute id="autocomplete"  type="string"/>
+      <attribute id="border"        type="long"/>
+      <attribute id="checked"       type="void"/>
+      <attribute id="class"         type="className"/>
+      <attribute id="disabled"      type="void"/>
+      <attribute id="friendlyname"  type="string"/>
+      <attribute id="height"        type="long"/>
+      <attribute id="href"          type="string"/>
+      <attribute id="id"            type="styleName"/>
+      <attribute id="language"      type="language"/>
+      <attribute id="locked"        type="void"/>
+      <attribute id="maxlength"     type="long"/>
+      <attribute id="name"          type="formName"/>
+      <attribute id="onblur"        type="formAction"/>
+      <attribute id="onchange"      type="formAction"/>
+      <attribute id="onclick"       type="formAction"/>
+      <attribute id="ondblclick"    type="formAction"/>
+      <attribute id="onfocus"       type="formAction"/>
+      <attribute id="onkeydown"     type="formAction"/>
+      <attribute id="onkeypress"    type="formAction"/>
+      <attribute id="onkeyup"       type="formAction"/>
+      <attribute id="onmousedown"   type="formAction"/>
+      <attribute id="onmouseout"    type="formAction"/>
+      <attribute id="onmouseover"   type="formAction"/>
+      <attribute id="onpropertychange"   type="formAction"/>
+      <attribute id="onsubmit"      type="formAction"/>
+      <attribute id="placeholder"   type="string"/>
+      <attribute id="readonly"      type="void"/>
+      <attribute id="size"          type="long"/>
+      <attribute id="src"           type="filename"/>
+      <attribute id="style"         type="string"/>
+      <attribute id="tabindex"      type="long"/>
+      <attribute id="text"          type="string"/>
+      <attribute id="title"         type="string"/>
+      <attribute id="type"          type="inputType"/>
+      <attribute id="unchecked"     type="void"/>
+      <attribute id="value"         type="string"/>
+      <attribute id="width"         type="long"/>
+   </statement>
+
+   <statement id="label">
+      <attribute id="class"   type="className"/>
+      <attribute id="for"     type="string"/>
+      <attribute id="id"      type="string"/>
+      <attribute id="onclick"       type="formAction"/>
+      <attribute id="onmousedown"   type="formAction"/>
+      <attribute id="onmouseout"    type="formAction"/>
+      <attribute id="onmouseover"   type="formAction"/>
+      <attribute id="style"         type="string"/>
+      <attribute id="valign"  type="vertical"/>
+   </statement>
+
+   <statement id="layer">
+      <attribute id="bgcolor"       type="colorEntry"/>
+      <attribute id="border"        type="long"/>
+      <attribute id="frameborder"   type="long"/>
+      <attribute id="framespacing"  type="long"/>
+      <attribute id="height"        type="long"/>
+      <attribute id="id"            type="styleName"/>
+      <attribute id="left"          type="long"/>
+      <attribute id="marginheight"  type="long"/>
+      <attribute id="marginwidth"   type="long"/>
+      <attribute id="name"          type="formName"/>
+      <attribute id="noresize"      type="void"/>
+      <attribute id="scrolling"     type="yesno"/>
+      <attribute id="spacing"       type="long"/>
+      <attribute id="src"           type="filename"/>
+      <attribute id="style"         type="string"/>
+      <attribute id="target"        type="string"/>
+      <attribute id="top"           type="long"/>
+      <attribute id="width"         type="long"/>
+   </statement>
+
+   <statement id="legend">
+   </statement>
+
+   <statement id="li">
+      <attribute id="class" type="className"/>
+      <attribute id="id"    type="string"/>
+      <attribute id="type"  type="string"/>
+   </statement>
+
+   <statement id="link">
+      <attribute id="href"  type="filename"/>
+      <attribute id="media" type="string"/>
+      <attribute id="rel"   type="linkrel"/>
+      <attribute id="type"  type="contenttype"/>
+   </statement>
+
+   <statement id="mainbody">
+   </statement>
+
+   <statement id="main">
+   </statement>
+
+   <statement id="map">
+      <attribute id="name"        type="formName"/>
+      <attribute id="id"          type="string"/>
+   </statement>
+
+   <statement id="mark">
+   </statement>
+
+   <statement id="menuitem">
+   </statement>
+
+   <statement id="meta">
+      <attribute id="charset"    type="string"/>
+      <attribute id="content"    type="string"/>
+      <attribute id="http-equiv" type="string"/>
+      <attribute id="name"       type="formName"/>
+   </statement>
+
+   <statement id="meter">
+   </statement>
+
+   <statement id="nav">
+   </statement>
+
+   <statement id="nobr">
+   </statement>
+
+   <statement id="noframes">
+   </statement>
+
+   <statement id="noscript">
+   </statement>
+
+   <statement id="object">
+      <attribute id="align"      type="horizontal"/>
+      <attribute id="border"     type="long"/>
+      <attribute id="classid"    type="string" />
+      <attribute id="codebase"   type="string" />
+      <attribute id="height"     type="long" />
+      <attribute id="id"         type="styleName" />
+      <attribute id="name"       type="formName" />
+      <attribute id="progid"     type="string" />
+      <attribute id="runat"      type="string" />
+      <attribute id="viewastext" type="void" />
+      <attribute id="width"      type="long" />
+      <attribute id="scope"      type="string"/>
+      <attribute id="style"      type="string" />
+      <attribute id="standby"    type="string"/>
+      <attribute id="title"      type="string"/>
+      <attribute id="type"       type="string"/>
+   </statement>
+
+   <statement id="ol">
+   </statement>
+
+   <statement id="option"> 
+      <attribute id="class"     type="className"/>
+      <attribute id="name"      type="formName" />
+      <attribute id="selected"  type="void"/>
+      <attribute id="style"     type="string"/>
+      <attribute id="title"     type="string"/>
+      <attribute id="value"     type="string"/>
+   </statement>
+
+   <statement id="output">
+   </statement>
+
+   <statement id="p"> 
+      <attribute id="align"   type="horizontal"/>
+      <attribute id="class"   type="className"/>
+      <attribute id="style"   type="styleName"/>
+   </statement>
+
+   <statement id="param">
+      <attribute id="name"  type="formName"/>
+      <attribute id="value" type="string"/>
+   </statement>
+
+   <statement id="progress">
+   </statement>
+
+   <statement id="pre">
+   </statement>
+
+   <statement id="rp">
+   </statement>
+
+   <statement id="rt">
+   </statement>
+
+   <statement id="ruby">
+   </statement>
+
+   <statement id="script">
+      <attribute id="defer"         type="Boolean" />
+      <attribute id="event"         type="formAction"/>
+      <attribute id="for"           type="string"/>
+      <attribute id="id"            type="string"/>
+      <attribute id="lang"          type="language"/>
+      <attribute id="language"      type="language"/>
+      <attribute id="runat"         type="string"/>
+      <attribute id="src"           type="filename"/>
+      <attribute id="type"          type="string"/>
+   </statement>
+
+   <statement id="section">
+   </statement>
+
+   <statement id="select">
+      <attribute id="alt"           type="string"/>
+      <attribute id="id"            type="string"/>
+      <attribute id="multiple"      type="void"/>
+      <attribute id="name"          type="formName"/>
+      <attribute id="onblur"        type="formAction"/>
+      <attribute id="onchange"      type="formAction"/>
+      <attribute id="onkeypress"    type="formAction"/>
+      <attribute id="readonly"      type="void"/>
+      <attribute id="scroll"        type="string"/>
+      <attribute id="size"          type="long"/>
+      <attribute id="style"         type="string"/>
+      <attribute id="disabled"      type="void"/>
+      <attribute id="tabindex"      type="long"/>
+      <attribute id="class"         type="className"/>
+      <attribute id="align"         type="horizontal"/>
+      <attribute id="friendlyname"  type="string"/>
+      <attribute id="ondblclick"    type="formAction"/>
+      <attribute id="onselect"      type="formAction"/>
+      <attribute id="width"         type="long"/>
+   </statement>
+
+   <statement id="small">
+   </statement>
+
+   <statement id="source">
+   </statement>
+
+   <statement id="span">
+      <attribute id="align"            type="horizontal"/>
+      <attribute id="class"            type="className"/>
+      <attribute id="id"               type="styleName"/>
+      <attribute id="language"         type="language"/>
+      <attribute id="name"             type="formName"/>
+      <attribute id="nowrap"           type="void"/>
+      <attribute id="onclick"          type="formAction"/>
+      <attribute id="onmouseout"       type="formAction"/>
+      <attribute id="onmouseover"      type="formAction"/>
+      <attribute id="style"            type="string"/>
+      <attribute id="title"            type="string"/>
+      <attribute id="valign"           type="vertical"/>
+   </statement>
+
+   <statement id="strong">
+      <attribute id="class"            type="className"/>
+      <attribute id="style"            type="string"/>
+   </statement> 
+
+   <statement id="style">
+      <attribute id="type"             type="contenttype"/>
+   </statement>
+
+   <statement id="summary">
+   </statement>
+
+   <statement id="svg">
+   </statement>
+
+   <statement id="table"> 
+      <attribute id="align"            type="horizontal"/>
+      <attribute id="background"       type="filename"/>
+      <attribute id="bgcolor"          type="colorEntry"/>
+      <attribute id="border"           type="long"/>
+      <attribute id="bordercolor"      type="colorEntry"/>
+      <attribute id="bordercolordark"  type="colorEntry"/>
+      <attribute id="bordercolorlight" type="colorEntry"/>
+      <attribute id="cellpadding"      type="long"/>
+      <attribute id="cellspacing"      type="long"/>
+      <attribute id="class"            type="className"/>
+      <attribute id="cols"             type="string"/>
+      <attribute id="height"           type="percent"/>
+      <attribute id="id"               type="styleName"/>
+      <attribute id="name"             type="formName"/>
+      <attribute id="onmousedown"      type="formAction"/>
+      <attribute id="rules"            type="string"/>
+      <attribute id="style"            type="string"/>
+      <attribute id="valign"           type="vertical"/>
+      <attribute id="width"            type="percent"/>
+   </statement>
+
+   <statement id="tbody">
+      <attribute id="id"            type="string"/>
+      <attribute id="style"         type="string"/>
+   </statement>
+
+   <statement id="td">
+      <attribute id="align"             type="horizontal"/>
+      <attribute id="background"        type="filename"/>
+      <attribute id="bgcolor"           type="colorEntry"/>
+      <attribute id="border"            type="long"/>
+      <attribute id="bordercolordark"   type="colorEntry" />
+      <attribute id="bordercolorlight"  type="colorEntry" />
+      <attribute id="bordercolor"       type="colorEntry"/>
+      <attribute id="cellpadding"       type="long"/>
+      <attribute id="class"             type="className"/>
+      <attribute id="color"             type="colorEntry"/>
+      <attribute id="colspan"           type="long"/>
+      <attribute id="height"            type="long"/>
+      <attribute id="id"                type="long"/>
+      <attribute id="name"              type="formName"/>
+      <attribute id="nowrap"            type="void"/>
+      <attribute id="onclick"           type="formAction"/>
+      <attribute id="onmousedown"       type="formAction"/>
+      <attribute id="onmouseout"        type="formAction"/>
+      <attribute id="onmouseover"       type="formAction"/>
+      <attribute id="rowspan"           type="styleName"/>
+      <attribute id="style"             type="string"/>
+      <attribute id="title"             type="string"/>
+      <attribute id="valign"            type="vertical"/>
+      <attribute id="width"             type="percent"/>
+   </statement>
+
+   <statement id="textarea">
+      <attribute id="align"         type="horizontal"/>
+      <attribute id="bgcolor"       type="colorEntry"/>
+      <attribute id="class"         type="className"/>
+      <attribute id="cols"          type="string"/>
+      <attribute id="dir"           type="string"/>
+      <attribute id="id"            type="string"/>
+      <attribute id="language"      type="language"/>
+      <attribute id="maxlength"     type="long"/>
+      <attribute id="name"          type="formName"/>
+      <attribute id="onchange"      type="formAction"/>
+      <attribute id="onfocus"       type="formAction"/>
+      <attribute id="onkeydown"     type="formAction"/>
+      <attribute id="onkeypress"    type="formAction"/>
+      <attribute id="onkeyup"       type="formAction"/>
+      <attribute id="readonly"      type="void"/>
+      <attribute id="rows"          type="string"/>
+      <attribute id="style"         type="string"/>
+      <attribute id="tabindex"      type="long"/>
+      <attribute id="type"          type="string"/>
+      <attribute id="value"         type="string"/>
+      <attribute id="wrap"          type="string"/>
+   </statement>
+
+
+   <statement id="tfoot">
+      <attribute id="style" type="string"/>
+   </statement>
+
+   <statement id="th">
+      <attribute id="align"   type="horizontal"/>
+      <attribute id="bgcolor" type="colorEntry"/>
+      <attribute id="class"   type="className"/>
+      <attribute id="colspan" type="long"/>
+      <attribute id="id"      type="string"/>
+      <attribute id="nowrap"  type="void"/>
+      <attribute id="rowspan" type="long"/>
+      <attribute id="style"   type="string"/>
+      <attribute id="title"   type="string"/>
+      <attribute id="valign"  type="vertical"/>
+      <attribute id="width"   type="percent"/>
+   </statement>
+
+   <statement id="thead">
+      <attribute id="bgcolor"       type="colorEntry"/>
+      <attribute id="class"         type="className"/>
+      <attribute id="style"         type="string"/>
+   </statement>
+
+   <statement id="time">
+   </statement>
+
+   <statement id="title">
+   </statement>
+
+   <statement id="tr">
+      <attribute id="align"       type="horizontal"/>
+      <attribute id="background"  type="filename"/>
+      <attribute id="bgcolor"     type="colorEntry"/>
+      <attribute id="bordercolor" type="colorEntry"/>
+      <attribute id="class"       type="className"/>
+      <attribute id="colspan"     type="long"/>
+      <attribute id="height"      type="long"/>
+      <attribute id="id"          type="styleName"/>
+      <attribute id="maxlength"   type="long"/>
+      <attribute id="nowrap"      type="void"/>
+      <attribute id="onclick"     type="formAction"/>
+      <attribute id="onmousedown" type="formAction"/>
+      <attribute id="onmouseout"  type="formAction"/>
+      <attribute id="onmouseover" type="formAction"/>
+      <attribute id="rowspan"     type="long"/>
+      <attribute id="style"       type="styleName"/>
+      <attribute id="title"       type="string"/>
+      <attribute id="valign"      type="vertical"/>
+      <attribute id="width"       type="percent"/>
+   </statement>
+
+   <statement id="track">
+   </statement>
+
+   <statement id="tt">
+   </statement>
+   
+   <statement id="u">
+   </statement>
+
+   <statement id="ul">
+      <attribute id="class"  type="className"/>
+      <attribute id="id"     type="objectName"/>
+      <attribute id="style"  type="styleName"/>
+      <attribute id="type"   type="string"/>
+   </statement>
+   
+   <statement id="video">
+   </statement>
+
+   <statement id="wbr">
+   </statement>
+
+   <statement id="wpdisplay">
+      <attribute id="item" type="string"/>
+   </statement>
+
+   <statement id="xml">
+      <attribute id="id"   type="string"/>
+      <attribute id="src"  type="string"/>
+   </statement>
+
+</Statements>
+
+</MetaLanguage>
