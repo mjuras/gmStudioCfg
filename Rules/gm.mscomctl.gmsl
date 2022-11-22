@@ -1,0 +1,99 @@
+void Panel_Size(string Name, string Value)   
+{
+   int val;
+   if (Value == "NoValue")
+   {
+     val = 100;
+   }
+   else
+   {
+     //28 Some arbitrary number to take 7056 to 4000 twips then to 200+ pixels.  
+     //This number was then hand adjusted up to account for statusbar bottom right
+     //corner.  If the status bars are too large, they are not displayed.
+     val = Value / 28;
+   }
+
+  if(Select.Dialect == Dialects.vbn)
+  {
+     Write.Line("Me." + Name + ".Size = New System.Drawing.Size(" + val + ", 19)")
+  }
+  else
+  {
+     Write.Line("this." + Name + ".Size = new System.Drawing.Size(" + val + ", 19);")
+  }
+}
+
+void Panel_BorderSides(string Name)
+{
+   if(Select.Dialect == Dialects.vbn)
+   {
+      #TextStart
+      Me.(%= Name %).BorderSides = DirectCast((( _
+         (System.Windows.Forms.ToolStripStatusLabelBorderSides.Left Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) Or _
+         System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom),  _
+         System.Windows.Forms.ToolStripStatusLabelBorderSides)            
+      #TextEnd
+   }
+   else
+   {
+      #TextStart
+      this.(%= Name %).BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)
+         ((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+      #TextEnd
+      Write.ChangeMargin(-1)
+   }
+   Write.ChangeMargin(-1)
+}
+void Panel_Spring(string Name, string Value)
+{
+   if(Value == "PanelAutoSizeConstants.sbrSpring")
+   {
+      if(Select.Dialect == Dialects.vbn)
+      {
+         Write.Line("Me." + Name + ".Spring = True")
+      }
+      else
+      {
+         Write.Line("this." + Name + ".Spring = true;")
+      }
+   }
+}
+void Panel_Text(string Name, string Value)
+{
+   int iTop = 0;
+   int ctlType = 0;
+   string txt = "";
+
+   if(Value == "PanelStyleConstants.sbrTime")
+   {
+     txt = "TIME";
+   }
+   else if(Value == "PanelStyleConstants.sbrDate")
+   {
+     txt = "DATE";
+   }
+   else
+   {
+      int iControl = Symbol.FindIdentifier(Name);
+      iTop = ControlData.LoadCode(iControl);
+      if(iTop == 0) return;
+      ctlType = Store.GetObjectType(iControl);
+      if(ctlType == 0) return;
+      int TextProp = ControlData.FindProperty(ctlType,"Text",iTop);
+      if (TextProp == 0) return;
+      txt = ControlData.GetProperty(TextProp);
+   }
+   if (txt == "") return;
+   
+   if(Select.Dialect == Dialects.vbn)
+   {
+      Write.Line("Me." + Name + ".Text = """ + txt + """");
+   }
+   else
+   {
+      Write.Line("this." + Name + ".Text = """  + txt + """;");
+   }
+}

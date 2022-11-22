@@ -1,0 +1,835 @@
+<DescriptionFile>
+<!--
+Upgrade MSFlexGridLib to MigrationSupport.FlexGrid
+
+MigrationSupport.FlexGrid. is a control derived from WinForms.DataGridView extended to be
+more compatible with MSFlexGridLib.MSFlexGrid.
+
+This IDF references an gmSL script for some dynamic upgrade rules.
+Note: this IDF uses the older-style refactor/migrate convention.
+-->
+<library id="MSFLXGRD.OCX"
+         name="MSFlexGridLib"
+         uuid="5E9E78A0-531B-11CF-91F6-C2863C385E30"
+         source="MSFLXGRD.OCX"
+         location="%library%\Interop.MSFlexGridLib.dll"
+         axLocation="%library%\AxInterop.MSFlexGridLib.dll"
+         migName="MSFlexGridLib"
+         type="ActiveX"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IVBDataObject"/>
+   <class id="IVBDataObjectFiles"/>
+   <class id="IRowCursor"/>
+   <class id="IMSFlexGrid"/>
+   <class id="DMSFlexGridEvents"/>
+   <coclass id="DataObject"/>
+   <coclass id="DataObjectFiles"/>
+   <coclass id="MSFlexGrid"/>
+   <enumeration id="OLEDragConstants">
+      <entry id="flexOLEDragManual" value="0"/>
+      <entry id="flexOLEDragAutomatic" value="1"/>
+   </enumeration>
+   <enumeration id="OLEDropConstants">
+      <entry id="flexOLEDropNone" value="0"/>
+      <entry id="flexOLEDropManual" value="1"/>
+   </enumeration>
+   <enumeration id="DragOverConstants">
+      <entry id="flexEnter" value="0"/>
+      <entry id="flexLeave" value="1"/>
+      <entry id="flexOver" value="2"/>
+   </enumeration>
+   <enumeration id="ClipBoardConstants">
+      <entry id="flexCFText" value="1"/>
+      <entry id="flexCFBitmap" value="2"/>
+      <entry id="flexCFMetafile" value="3"/>
+      <entry id="flexCFDIB" value="8"/>
+      <entry id="flexCFPalette" value="9"/>
+      <entry id="flexCFEMetafile" value="14"/>
+      <entry id="flexCFFiles" value="15"/>
+      <entry id="flexCFRTF" value="0xffffbf01"/>
+   </enumeration>
+   <enumeration id="OLEDropEffectConstants">
+      <entry id="flexOLEDropEffectNone" value="0"/>
+      <entry id="flexOLEDropEffectCopy" value="1"/>
+      <entry id="flexOLEDropEffectMove" value="2"/>
+      <entry id="flexOLEDropEffectScroll" value="0x80000000"/>
+   </enumeration>
+   <enumeration id="ErrorConstants">
+      <entry id="flexerrIllegaFunctionCall" value="5"/>
+      <entry id="flexerrObjIllegalUse" value="425"/>
+      <entry id="flexerrClipInvalidFormat" value="461"/>
+      <entry id="flexerrDataObjectLocked" value="672"/>
+      <entry id="flexerrExpectedAnArgument" value="673"/>
+      <entry id="flexerrRecursiveOLEDrag" value="674"/>
+      <entry id="flexerrUserFormatNotBinArray" value="675"/>
+      <entry id="flexerrDataNotSetForFormat" value="676"/>
+      <entry id="flexerrUnknownError" value="600"/>
+      <entry id="flexerrSubscript" value="381"/>
+      <entry id="flexerrBadValue" value="380"/>
+      <entry id="flexerrGetNotSupported" value="394"/>
+      <entry id="flexerrSetNotPermitted" value="387"/>
+      <entry id="flexerrOutOfMemory" value="7"/>
+      <entry id="flexerrVB30000" value="30000"/>
+      <entry id="flexerrVB30001" value="30001"/>
+      <entry id="flexerrVB30002" value="30002"/>
+      <entry id="flexerrVB30004" value="30004"/>
+      <entry id="flexerrVB30005" value="30005"/>
+      <entry id="flexerrVB30006" value="30006"/>
+      <entry id="flexerrVB30008" value="30008"/>
+      <entry id="flexerrVB30009" value="30009"/>
+      <entry id="flexerrVB30010" value="30010"/>
+      <entry id="flexerrVB30011" value="30011"/>
+      <entry id="flexerrVB30013" value="30013"/>
+      <entry id="flexerrVB30014" value="30014"/>
+      <entry id="flexerrVB30015" value="30015"/>
+      <entry id="flexerrVB30016" value="30016"/>
+      <entry id="flexerrVB30017" value="30017"/>
+   </enumeration>
+   <enumeration id="AppearanceSettings">
+      <entry id="flexFlat" value="0"/>
+      <entry id="flex3D" value="1"/>
+   </enumeration>
+   <enumeration id="BorderStyleSettings">
+      <entry id="flexBorderNone" value="0"/>
+      <entry id="flexBorderSingle" value="1"/>
+   </enumeration>
+   <enumeration id="FocusRectSettings">
+      <entry id="flexFocusNone" value="0"/>
+      <entry id="flexFocusLight" value="1"/>
+      <entry id="flexFocusHeavy" value="2"/>
+   </enumeration>
+   <enumeration id="HighLightSettings">
+      <entry id="flexHighlightNever" value="0"/>
+      <entry id="flexHighlightAlways" value="1"/>
+      <entry id="flexHighlightWithFocus" value="2"/>
+   </enumeration>
+   <enumeration id="ScrollBarsSettings">
+      <entry id="flexScrollBarNone" value="0"/>
+      <entry id="flexScrollBarHorizontal" value="1"/>
+      <entry id="flexScrollBarVertical" value="2"/>
+      <entry id="flexScrollBarBoth" value="3"/>
+   </enumeration>
+   <enumeration id="TextStyleSettings">
+      <entry id="flexTextFlat" value="0"/>
+      <entry id="flexTextRaised" value="1"/>
+      <entry id="flexTextInset" value="2"/>
+      <entry id="flexTextRaisedLight" value="3"/>
+      <entry id="flexTextInsetLight" value="4"/>
+   </enumeration>
+   <enumeration id="FillStyleSettings">
+      <entry id="flexFillSingle" value="0"/>
+      <entry id="flexFillRepeat" value="1"/>
+   </enumeration>
+   <enumeration id="GridLineSettings">
+      <entry id="flexGridNone" value="0"/>
+      <entry id="flexGridFlat" value="1"/>
+      <entry id="flexGridInset" value="2"/>
+      <entry id="flexGridRaised" value="3"/>
+   </enumeration>
+   <enumeration id="SelectionModeSettings">
+      <entry id="flexSelectionFree" value="0"/>
+      <entry id="flexSelectionByRow" value="1"/>
+      <entry id="flexSelectionByColumn" value="2"/>
+   </enumeration>
+   <enumeration id="MergeCellsSettings">
+      <entry id="flexMergeNever" value="0"/>
+      <entry id="flexMergeFree" value="1"/>
+      <entry id="flexMergeRestrictRows" value="2"/>
+      <entry id="flexMergeRestrictColumns" value="3"/>
+      <entry id="flexMergeRestrictAll" value="4"/>
+   </enumeration>
+   <enumeration id="PictureTypeSettings">
+      <entry id="flexPictureColor" value="0"/>
+      <entry id="flexPictureMonochrome" value="1"/>
+   </enumeration>
+   <enumeration id="AllowUserResizeSettings">
+      <entry id="flexResizeNone" value="0"/>
+      <entry id="flexResizeColumns" value="1"/>
+      <entry id="flexResizeRows" value="2"/>
+      <entry id="flexResizeBoth" value="3"/>
+   </enumeration>
+   <enumeration id="MousePointerSettings">
+      <entry id="flexDefault" value="0"/>
+      <entry id="flexArrow" value="1"/>
+      <entry id="flexCross" value="2"/>
+      <entry id="flexIBeam" value="3"/>
+      <entry id="flexIcon" value="4"/>
+      <entry id="flexSize" value="5"/>
+      <entry id="flexSizeNESW" value="6"/>
+      <entry id="flexSizeNS" value="7"/>
+      <entry id="flexSizeNWSE" value="8"/>
+      <entry id="flexSizeEW" value="9"/>
+      <entry id="flexUpArrow" value="10"/>
+      <entry id="flexHourglass" value="11"/>
+      <entry id="flexNoDrop" value="12"/>
+      <entry id="flexArrowHourGlass" value="13"/>
+      <entry id="flexArrowQuestion" value="14"/>
+      <entry id="flexSizeAll" value="15"/>
+      <entry id="flexCustom" value="99"/>
+   </enumeration>
+   <enumeration id="SortSettings">
+      <entry id="flexSortNone" value="0"/>
+      <entry id="flexSortGenericAscending" value="1"/>
+      <entry id="flexSortGenericDescending" value="2"/>
+      <entry id="flexSortNumericAscending" value="3"/>
+      <entry id="flexSortNumericDescending" value="4"/>
+      <entry id="flexSortStringNoCaseAscending" value="5"/>
+      <entry id="flexSortStringNoCaseDescending" value="6"/>
+      <entry id="flexSortStringAscending" value="7"/>
+      <entry id="flexSortStringDescending" value="8"/>
+   </enumeration>
+   <enumeration id="AlignmentSettings">
+      <entry id="flexAlignLeftTop" value="0"/>
+      <entry id="flexAlignLeftCenter" value="1"/>
+      <entry id="flexAlignLeftBottom" value="2"/>
+      <entry id="flexAlignCenterTop" value="3"/>
+      <entry id="flexAlignCenterCenter" value="4"/>
+      <entry id="flexAlignCenterBottom" value="5"/>
+      <entry id="flexAlignRightTop" value="6"/>
+      <entry id="flexAlignRightCenter" value="7"/>
+      <entry id="flexAlignRightBottom" value="8"/>
+      <entry id="flexAlignGeneral" value="9"/>
+   </enumeration>
+   <class id="IVBDataObject" parent="IDispatch">
+      <property id="Files" type="DataObjectFiles" status="Out"/>
+      <method id="Clear" type="Void"/>
+      <method id="GetData" type="Variant">
+         <argument id="sFormat" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetFormat" type="Boolean">
+         <argument id="sFormat" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetData" type="Void">
+         <argument id="vValue" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="vFormat" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="IVBDataObjectFiles" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="String" status="indexer">
+         <argument id="lIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="bstrFilename" type="String" status="ByVal"/>
+         <argument id="vIndex" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="vIndex" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="stdole.IUnknown"/>
+   </class>
+   <class id="IRowCursor" parent="IDispatch">
+   </class>
+   <class id="IMSFlexGrid" parent="IDispatch" default="Text">
+      <property id="Rows" type="Integer" status="InOut"/>
+      <property id="Cols" type="Integer" status="InOut"/>
+      <property id="FixedRows" type="Integer" status="InOut"/>
+      <property id="FixedCols" type="Integer" status="InOut"/>
+      <property id="Version" type="Integer" status="Out"/>
+      <property id="FormatString" type="String" status="InOut"/>
+      <property id="TopRow" type="Integer" status="InOut"/>
+      <property id="LeftCol" type="Integer" status="InOut"/>
+      <property id="Row" type="Integer" status="InOut"/>
+      <property id="Col" type="Integer" status="InOut"/>
+      <property id="RowSel" type="Integer" status="InOut"/>
+      <property id="ColSel" type="Integer" status="InOut"/>
+      <property id="Text" type="String" status="InOut"/>
+      <property id="BackColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="ForeColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="BackColorFixed" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="ForeColorFixed" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="BackColorSel" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="ForeColorSel" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="BackColorBkg" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="WordWrap" type="Boolean" status="InOut"/>
+      <property id="Font" type="stdole.IFontDisp" status="InOut"/>
+      <property id="FontWidth" type="Single" status="InOut"/>
+      <property id="CellFontName" type="String" status="InOut"/>
+      <property id="CellFontSize" type="Single" status="InOut"/>
+      <property id="CellFontBold" type="Boolean" status="InOut"/>
+      <property id="CellFontItalic" type="Boolean" status="InOut"/>
+      <property id="CellFontUnderline" type="Boolean" status="InOut"/>
+      <property id="CellFontStrikeThrough" type="Boolean" status="InOut"/>
+      <property id="CellFontWidth" type="Single" status="InOut"/>
+      <property id="TextStyle" type="TextStyleSettings" status="InOut"/>
+      <property id="TextStyleFixed" type="TextStyleSettings" status="InOut"/>
+      <property id="ScrollTrack" type="Boolean" status="InOut"/>
+      <property id="FocusRect" type="FocusRectSettings" status="InOut"/>
+      <property id="HighLight" type="HighLightSettings" status="InOut"/>
+      <property id="Redraw" type="Boolean" status="InOut"/>
+      <property id="ScrollBars" type="ScrollBarsSettings" status="InOut"/>
+      <property id="MouseRow" type="Integer" status="Out"/>
+      <property id="MouseCol" type="Integer" status="Out"/>
+      <property id="CellLeft" type="Integer" status="Out"/>
+      <property id="CellTop" type="Integer" status="Out"/>
+      <property id="CellWidth" type="Integer" status="Out"/>
+      <property id="CellHeight" type="Integer" status="Out"/>
+      <property id="RowHeightMin" type="Integer" status="InOut"/>
+      <property id="FillStyle" type="FillStyleSettings" status="InOut"/>
+      <property id="GridLines" type="GridLineSettings" status="InOut"/>
+      <property id="GridLinesFixed" type="GridLineSettings" status="InOut"/>
+      <property id="GridColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="GridColorFixed" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="CellBackColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="CellForeColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="CellAlignment" type="Integer" status="InOut"/>
+      <property id="CellTextStyle" type="TextStyleSettings" status="InOut"/>
+      <property id="CellPictureAlignment" type="Integer" status="InOut"/>
+      <property id="Clip" type="String" status="InOut"/>
+      <property id="Sort" type="Integer" status="In"/>
+      <property id="SelectionMode" type="SelectionModeSettings" status="InOut"/>
+      <property id="MergeCells" type="MergeCellsSettings" status="InOut"/>
+      <property id="AllowBigSelection" type="Boolean" status="InOut"/>
+      <property id="AllowUserResizing" type="AllowUserResizeSettings" status="InOut"/>
+      <property id="BorderStyle" type="BorderStyleSettings" status="InOut"/>
+      <property id="hWnd" type="Integer" status="Out"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Appearance" type="AppearanceSettings" status="InOut"/>
+      <property id="MousePointer" type="MousePointerSettings" status="InOut"/>
+      <property id="MouseIcon" type="stdole.IPictureDisp" status="InOut"/>
+      <property id="PictureType" type="PictureTypeSettings" status="InOut"/>
+      <property id="Picture" type="stdole.IPictureDisp" status="Out"/>
+      <property id="CellPicture" type="stdole.IPictureDisp" status="InOut"/>
+      <property id="DataSource" type="IRowCursor" status="InOut"/>
+      <property id="GridLineWidth" type="Integer" status="InOut"/>
+      <property id="FontName" type="String" status="InOut"/>
+      <property id="FontSize" type="Single" status="InOut"/>
+      <property id="FontBold" type="Boolean" status="InOut"/>
+      <property id="FontItalic" type="Boolean" status="InOut"/>
+      <property id="FontStrikethru" type="Boolean" status="InOut"/>
+      <property id="FontUnderline" type="Boolean" status="InOut"/>
+      <property id="RightToLeft" type="Boolean" status="InOut"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <method id="AboutBox" type="Void"/>
+      <accessor id="TextArray" type="String">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="ColAlignment" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="ColWidth" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="RowHeight" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="MergeRow" type="Boolean">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="MergeCol" type="Boolean">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="RowPosition" type="Void">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ColPosition" type="Void">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <accessor id="RowData" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="ColData" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="TextMatrix" type="String">
+         <argument id="Row" type="Integer" status="ByVal"/>
+         <argument id="Col" type="Integer" status="ByVal"/>
+      </method>
+      <method id="AddItem" type="Void">
+         <argument id="Item" type="String" status="ByVal"/>
+         <argument id="index" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="RemoveItem" type="Void">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Refresh" type="Void"/>
+      <accessor id="RowIsVisible" type="Boolean">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="ColIsVisible" type="Boolean">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="RowPos" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="ColPos" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="FixedAlignment" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="OLEDrag" type="Void"/>
+   </class>
+   <class id="DMSFlexGridEvents" parent="None">
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="System.EventArgs"/>
+      <event id="KeyDown" netName="KeyDownEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_KeyDownEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_KeyDownEvent">
+         <argument id="KeyCode" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+      </event>
+      <event id="DblClick" netName="DblClickEvent" netHandler="System.EventHandler" netArgs="System.EventArgs"/>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_KeyPressEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_KeyPressEvent">
+         <argument id="KeyAscii" type="Integer" status="Out"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_KeyUpEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_KeyUpEvent">
+         <argument id="KeyCode" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_MouseDownEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_MouseDownEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_MouseMoveEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_MouseMoveEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_MouseUpEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_MouseUpEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="SelChange" netName="SelChangeEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_SelChangeEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_SelChangeEvent"/>
+      <event id="RowColChange" netName="RowColChangeEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_RowColChangeEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_RowColChangeEvent"/>
+      <event id="EnterCell" netName="EnterCellEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_EnterCellEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_EnterCellEvent"/>
+      <event id="LeaveCell" netName="LeaveCellEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_LeaveCellEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_LeaveCellEvent"/>
+      <event id="Scroll" netName="ScrollEvent" netHandler="System.EventHandler" netArgs="System.EventArgs"/>
+      <event id="Compare" netName="CompareEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_CompareEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_CompareEvent">
+         <argument id="Row1" type="Integer" status="Out"/>
+         <argument id="Row2" type="Integer" status="Out"/>
+         <argument id="Cmp" type="Integer" status="Out"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDragEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_OLEStartDragEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_OLEStartDragEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="AllowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedbackEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_OLEGiveFeedbackEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_OLEGiveFeedbackEvent">
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="DefaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetDataEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_OLESetDataEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_OLESetDataEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="DataFormat" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDragEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_OLECompleteDragEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_OLECompleteDragEvent">
+         <argument id="Effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOverEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_OLEDragOverEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_OLEDragOverEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="Button" type="Integer" status="ByRef"/>
+         <argument id="Shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="State" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDropEvent" netHandler="MSFlexGridLib.DMSFlexGridEvents_OLEDragDropEventHandler" netArgs="MSFlexGridLib.DMSFlexGridEvents_OLEDragDropEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="Button" type="Integer" status="ByRef"/>
+         <argument id="Shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+   </class>
+   <coclass id="DataObject" creatable="off">
+      <subclass id="IVBDataObject"/>
+   </coclass>
+   <coclass id="DataObjectFiles" creatable="off">
+      <subclass id="IVBDataObjectFiles"/>
+   </coclass>
+   <coclass id="MSFlexGrid">
+      <subclass id="IMSFlexGrid"/>
+      <subclass id="DMSFlexGridEvents"/>
+   </coclass>
+</library>
+<Refactor id="[msflxgrd.ocx]" event="msflxgrd">
+<!--
+********************************************************** 
+* Library                   
+********************************************************** 
+-->
+   <Migrate libtype="Internal"
+            nPram="0"
+            migPattern="gmRTL.MSHFlexGridLib"
+   />
+   <migClass id="DotNet">
+      <!-- IMSFlexGrid.AllowBigSelection: need to map bool to enum
+
+      .NET
+      CellSelect = 0,        // one or more individual cells can be selected.
+      FullRowSelect = 1,     // entire row selected by clicking its row's header or a cell contained in that row.
+      FullColumnSelect = 2,  // entire column selected by clicking the column's header or a cellin that column.
+      RowHeaderSelect = 3,   // The row will be selected by clicking in the row's header cell.
+      ColumnHeaderSelect = 4 // The column will be selected by clicking in the column's header cell.
+
+      Note: There are limitations in .NET; DataGridView control's SelectionMode cannot be set to 
+      ColumnHeaderSelect while it has a column with SortMode set to 
+      DataGridViewColumnSortMode.Automatic. 
+      -->
+      <Enumeration id="DataGridViewSelectionMode">
+         <Entry id="true" value="-1"
+                migName="DataGridViewSelectionMode.CellSelect"
+                migStatus="external"
+         />
+         <Entry id="false" value="0"
+                migName="DataGridViewSelectionMode.CellSelect"
+                migStatus="external"
+         />
+      </Enumeration>
+      <Property id="AllowUserToResizeColumns" type="Boolean" />
+      <Property id="AllowUserToResizeRows"    type="Boolean" />
+   </migClass>
+<!-- 
+********************************************************** 
+* Uses COM Interop
+********************************************************** 
+-->
+<!--
+********************************************************** 
+* Classes
+********************************************************** 
+-->
+   <Migrate id="MSFlexGrid"
+            nPram="0"
+            migPattern="FlexGrid"
+            role="control"
+   />
+
+<!--
+********************************************************** 
+* Enums
+********************************************************** 
+-->
+   <Migrate id="AlignmentSettings" 
+      migname="DataGridViewContentAlignment" 
+      migStatus="external" />
+   <Migrate id="AlignmentSettings.flexAlignLeftTop"      migName="TopLeft"      />
+   <Migrate id="AlignmentSettings.flexAlignLeftCenter"   migName="MiddleLeft"   />
+   <Migrate id="AlignmentSettings.flexAlignLeftBottom"   migName="BottomLeft"   />
+   <Migrate id="AlignmentSettings.flexAlignCenterTop"    migName="TopCenter"    />
+   <Migrate id="AlignmentSettings.flexAlignCenterCenter" migName="MiddleCenter" />
+   <Migrate id="AlignmentSettings.flexAlignCenterBottom" migName="BottomCenter" />
+   <Migrate id="AlignmentSettings.flexAlignRightTop"     migName="TopRight"     />
+   <Migrate id="AlignmentSettings.flexAlignRightCenter"  migName="MiddleRight"  />
+   <Migrate id="AlignmentSettings.flexAlignRightBottom"  migName="BottomRight"  />
+   <Migrate id="AlignmentSettings.flexAlignGeneral"      migName="NotSet"       />
+   <Migrate id="AlignmentSettings.flexAlignLeftTop"      migName="TopLeft"      />
+
+   <Migrate id="AllowUserResizeSettings"
+      status="delete" >
+      <!-- 
+      Enum to a pair of Booleans properties.
+
+      In COM this single enum returns/sets whether the user should be 
+      allowed to resize rows and columns with the mouse.  The value is 
+      an enum AllowUserResizeSettings. Default is flexResizeNone.
+
+              flexResizeNone  0,
+              flexResizeColumns  1,
+              flexResizeRows  2,
+              flexResizeBoth  3
+
+      In .NET there are two boolean properties:
+
+      public bool AllowUserToResizeColumns, default true
+      public bool AllowUserToResizeRows, default true
+      -->
+   </Migrate>
+
+<!--
+********************************************************** 
+* Properties and Accessors             
+********************************************************** 
+-->
+   <Migrate id="IMSFlexGrid.AllowBigSelection"
+      type="MSFlexGridLib.DotNet.DataGridViewSelectionMode"
+      migName = "SelectionMode"
+   />
+   <Migrate id="IMSFlexGrid.ColAlignment" reftype="method"
+         npram="2"   
+         cshPattern = "%1d.Columns[%2d].DefaultCellStyle.Alignment"
+         vbnPattern = "%1d.Columns(%2d).DefaultCellStyle.Alignment"
+         type="AlignmentSettings"
+   />
+
+   <Migrate id="IMSFlexGrid.Cols"
+      migName = "Cols"
+   />
+   <Migrate id="IMSFlexGrid.ColWidth" reftype="method"
+         npram="2"   
+         migPattern = "%1d.Columns[%2d].Width"
+         type="TwipsX" 
+   />
+   <Migrate id="IMSFlexGrid.FixedAlignment" reftype="method"
+         npram="2"   
+         migPattern = "%1d.Columns[%2d].HeaderCell.Style.Alignment"
+         type="AlignmentSettings"
+   />
+ 
+   <Migrate id="IMSFlexGrid.FontName" status="GetSet">
+      <Get npram="1" migPattern="%1d.Font.Name"/>
+   </Migrate>
+
+   <Migrate id="IMSFlexGrid.FontSize" status="GetSet">
+      <Get npram="1" migPattern="%1d.Font.Size"/>
+   </Migrate>
+
+   <Migrate id="IMSFlexGrid.HighLight"
+      status="delete"
+   />
+
+   <Migrate id="IMSFlexGrid.RowHeight" reftype="method"
+         npram="2"   
+         migPattern = "%1d.Rows[%2d].Height"
+         type="TwipsY"
+   />
+   <Migrate id="IMSFlexGrid.Rows"
+      migName = "Rows"
+   />
+
+   <Migrate id="IMSFlexGrid.TopRow"
+      migName = "FirstDisplayedScrollingRowIndex"
+   />
+
+   <!-- map textMatrix to an indexer, note swap args --> 
+
+   <Migrate id="IMSFlexGrid.TextMatrix"
+         npram="3"   
+         migPattern = "%1d[%3d,%2d]"
+         type="String"
+   />
+
+<!-- 
+********************************************************** 
+* Methods                 
+********************************************************** 
+These are direct because the target class provides
+a backward compatible interface.
+-->
+   <Migrate id="IMSFlexGrid.AddItem"
+         npram="3"   
+         migPattern = "%1d.AddItem(%2d)\c"
+   />
+   <Migrate id="IMSFlexGrid.AddItem.index" optional="Def.Overload"/>
+<!-- 
+********************************************************** 
+* EventHandlers           
+********************************************************** 
+-->
+   <Migrate id="DMSFlexGridEvents.KeyPress" 
+            role="event" 
+            netArgs="KeyPressEventArgs"
+            netHandler="KeyPressEventHandler" 
+            migPattern="KeyPress"
+   />
+   <Migrate id="DMSFlexGridEvents.KeyPress.keyAscii" 
+      status="ByVal"
+      migPattern="%1d = (int)e.KeyChar"
+   />
+   <Migrate id="DMSFlexGridEvents.KeyDown" 
+            role="event" 
+            netArgs="KeyEventArgs"
+            netHandler="KeyEventHandler" 
+            migPattern="KeyDown"
+   />
+   <Migrate id="DMSFlexGridEvents.KeyDown.keyCode" 
+      status="ByVal"
+      migPattern="%1d = (int)e.KeyCode"
+   />
+   <Migrate id="DMSFlexGridEvents.Click" 
+            role="event" 
+            netHandler="EventHandler" 
+            netArgs="EventArgs"
+            migPattern="Click"
+   />
+   <Migrate id="DMSFlexGridEvents.DblClick" 
+            role="event" 
+            netHandler="EventHandler" 
+            netArgs="EventArgs"
+            migPattern="DoubleClick"
+   />
+   <Migrate id="DMSFlexGridEvents.EnterCell" 
+            role="event" 
+            netHandler="DataGridViewCellEventHandler" 
+            netArgs="DataGridViewCellEventArgs"
+            migPattern="CellEnter"
+   />
+   <Migrate id="DMSFlexGridEvents.MouseUp" 
+            role="event" 
+            netHandler="MouseEventHandler" 
+            netArgs="MouseEventArgs"
+            migPattern="MouseUp"
+   />
+   <Migrate id="DMSFlexGridEvents.MouseUp.X" cshPattern="%1d = e.X"/> 
+   <Migrate id="DMSFlexGridEvents.MouseUp.Y" cshPattern="%1d = e.Y"/> 
+   <Migrate id="DMSFlexGridEvents.LeaveCell" 
+            role="event" 
+            netHandler="DataGridViewCellEventHandler" 
+            netArgs="DataGridViewCellEventArgs"
+            migPattern="CellLeave"
+   />
+   <Migrate id="DMSFlexGridEvents.Scroll" 
+            role="event" 
+            netHandler="ScrollEventHandler" 
+            netArgs="ScrollEventArgs"
+            migPattern="Scroll"
+   />
+<!--
+********************************************************** 
+* Designer Code 
+********************************************************** 
+--> 
+   <migClass id="NetControl.MSFlexGrid" 
+             migName="gmRTL.MSFlexGridLib.DataGridView"
+             parent="MSFlexGrid"
+   >
+      <property id="AllowUserToAddRows" 
+                default="false"
+      />
+      <property id="AllowUserToDeleteRows"  Type="Boolean"
+                default="false"
+      />
+      <property id="AllowUserToResizeColumns" Type="Boolean"
+                value="DotNet.AllowUserToResizeColumns"
+                default="false"
+      />
+      <property id="AllowUserToResizeRows" 
+                value="DotNet.AllowUserToResizeRows"
+                default="false"
+      />
+      <property id="AutoSizeColumnsMode" 
+                default="DataGridViewAutoSizeColumnsMode.None"
+      />
+      <property id="AutoSizeRowsMode" 
+                default="DataGridViewAutoSizeRowsMode.None"
+      />
+     <property id="BackColor" type="OLE_COLOR"
+                value="IMSFlexGrid.BackColor"
+                nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+      />
+      <property id="BackgroundColor" type="OLE_COLOR"
+                value="IMSFlexGrid.BackColorBkg"
+                nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+      />
+      <property id="Cols" type="Integer"
+                value="IMSFlexGrid.Cols"
+                default="1"
+      />
+      <property id="ColumnHeadersDefaultCellStyle.BackColor" type="OLE_COLOR"
+                value="IMSFlexGrid.BackColorFixed"
+                nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+      />
+      <property id="ColumnHeadersDefaultCellStyle.ForeColor" type="OLE_COLOR"
+                value="IMSFlexGrid.ForeColorFixed"
+                nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+      />
+      <property id="ColumnHeadersHeightSizeMode"
+                default="DataGridViewColumnHeadersHeightSizeMode.AutoSize"
+      />
+      <property id="DefaultCellStyle.BackColor" type="OLE_COLOR"
+                value="IMSFlexGrid.BackColor"
+                nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+      />
+      <property id="DefaultCellStyle.ForeColor" type="OLE_COLOR"
+                value="IMSFlexGrid.ForeColor"
+                nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+      />
+      <property id="DefaultCellStyle.SelectionBackColor" type="OLE_COLOR"
+                value="IMSFlexGrid.BackColorSel"
+                nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+      />
+      <property id="DefaultCellStyle.SelectionForeColor" type="OLE_COLOR"
+                value="IMSFlexGrid.ForeColorSel"
+                nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+      />
+      <property id="EditMode"
+                default="DataGridViewEditMode.EditProgrammatically"
+      />
+      <property id="FixedCols" type="Integer"
+                value="IMSFlexGrid.FixedCols"
+                default="0"
+      />
+      <property id="FixedRows" type="Integer"
+                value="IMSFlexGrid.FixedRows"
+                default="0"
+      />
+      <property id="Font" value="Font" type="FontInfo" 
+                nPram="3"
+                vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+                cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+      />
+      <property id="ForeColor" type="OLE_COLOR"
+                value="IMSFlexGrid.ForeColor"
+                nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+      />
+      <property id="Location"
+                value="(Left,Top)"
+                nPram="2"
+                vbnPattern="New System.Drawing.Point(%1d, %2d)"
+                cshPattern="new System.Drawing.Point(%1d, %2d)"
+      />
+      <property id="Name" type="string"
+                value="SYM.name"
+      />
+      <property id="Rows" type="Integer"
+                value="IMSFlexGrid.Rows"
+                default="1"
+      />
+      <property id="RowHeadersDefaultCellStyle.BackColor" type="OLE_COLOR"
+                value="IMSFlexGrid.BackColorFixed"
+                nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+      />
+      <property id="RowHeadersDefaultCellStyle.ForeColor" type="OLE_COLOR"
+                value="IMSFlexGrid.ForeColorFixed"
+                nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+      />
+      <property id="ReadOnly" 
+                default="false"
+      />
+      <property id="RowHeadersVisible" 
+                default="false"
+      />
+      <property id="TabIndex" type="Integer"
+                value="TabIndex"
+                default="0"
+      />
+      <property id="TabStop" type="Boolean"
+                value="TabStop"
+                default="true"
+      />
+      <property id="SelectionMode" type="MSFlexGridLib.DotNet.DataGridViewSelectionMode"
+                value="IMSFlexGrid.AllowBigSelection"
+                default="DataGridViewSelectionMode.CellSelect"
+      />
+      <property id="ShowCellToolTips"
+                default="false"
+      />
+      <property id="Size"
+                value="(Width,Height)"
+                nPram="2"
+                vbnPattern="New System.Drawing.Size(%1d, %2d)"
+                cshPattern="new System.Drawing.Size(%1d, %2d)"
+      />
+   </migClass>
+   <gmSL NameSpace="msflxgrd" Class="Transform" Source="gm.msflxgrdtransform.gmsl" />
+</Refactor>
+</DescriptionFile>
+

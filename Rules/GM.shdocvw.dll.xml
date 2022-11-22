@@ -1,0 +1,719 @@
+<DescriptionFile>
+<!--
+Upgrade ShDocvwCtl.WebBrowser to WinForms.WebBrowser  .
+This IDF Merges ieframe.dll and shdocvw.dll adding HtmlDoc type to eliminate callbyname with Document property
+-->
+<library id="shdocvw.dll"
+         name="SHDocVwCtl"
+         netVersion="1.1"
+         source="shdocvw.dll"
+         location="DoNotDeclare"
+         migName="System.Windows.Forms"
+         type="Internal"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IWebBrowser"/>
+   <class id="DWebBrowserEvents"/>
+   <class id="IWebBrowserApp"/>
+   <class id="IWebBrowser2"/>
+   <class id="DWebBrowserEvents2"/>
+   <class id="DShellWindowsEvents"/>
+   <class id="IShellWindows"/>
+   <class id="IShellUIHelper"/>
+   <class id="DShellNameSpaceEvents"/>
+   <class id="IShellFavoritesNameSpace"/>
+   <class id="IShellNameSpace"/>
+   <class id="IScriptErrorList"/>
+   <class id="HtmlDoc" />
+   <coclass id="WebBrowser_V1"/>
+   <coclass id="WebBrowser"/>
+   <coclass id="InternetExplorer"/>
+   <coclass id="InternetExplorerMedium"/>
+   <coclass id="ShellBrowserWindow"/>
+   <coclass id="ShellWindows"/>
+   <coclass id="ShellUIHelper"/>
+   <coclass id="ShellNameSpace"/>
+   <coclass id="ShellShellNameSpace"/>
+   <coclass id="CScriptErrorList"/>
+   <enumeration id="CommandStateChangeConstants">
+      <entry id="CSC_UPDATECOMMANDS" value="0xffffffff"/>
+      <entry id="CSC_NAVIGATEFORWARD" value="1"/>
+      <entry id="CSC_NAVIGATEBACK" value="2"/>
+   </enumeration>
+   <enumeration id="OLECMDID">
+      <entry id="OLECMDID_OPEN" value="1"/>
+      <entry id="OLECMDID_NEW" value="2"/>
+      <entry id="OLECMDID_SAVE" value="3"/>
+      <entry id="OLECMDID_SAVEAS" value="4"/>
+      <entry id="OLECMDID_SAVECOPYAS" value="5"/>
+      <entry id="OLECMDID_PRINT" value="6"/>
+      <entry id="OLECMDID_PRINTPREVIEW" value="7"/>
+      <entry id="OLECMDID_PAGESETUP" value="8"/>
+      <entry id="OLECMDID_SPELL" value="9"/>
+      <entry id="OLECMDID_PROPERTIES" value="10"/>
+      <entry id="OLECMDID_CUT" value="11"/>
+      <entry id="OLECMDID_COPY" value="12"/>
+      <entry id="OLECMDID_PASTE" value="13"/>
+      <entry id="OLECMDID_PASTESPECIAL" value="14"/>
+      <entry id="OLECMDID_UNDO" value="15"/>
+      <entry id="OLECMDID_REDO" value="16"/>
+      <entry id="OLECMDID_SELECTALL" value="17"/>
+      <entry id="OLECMDID_CLEARSELECTION" value="18"/>
+      <entry id="OLECMDID_ZOOM" value="19"/>
+      <entry id="OLECMDID_GETZOOMRANGE" value="20"/>
+      <entry id="OLECMDID_UPDATECOMMANDS" value="21"/>
+      <entry id="OLECMDID_REFRESH" value="22"/>
+      <entry id="OLECMDID_STOP" value="23"/>
+      <entry id="OLECMDID_HIDETOOLBARS" value="24"/>
+      <entry id="OLECMDID_SETPROGRESSMAX" value="25"/>
+      <entry id="OLECMDID_SETPROGRESSPOS" value="26"/>
+      <entry id="OLECMDID_SETPROGRESSTEXT" value="27"/>
+      <entry id="OLECMDID_SETTITLE" value="28"/>
+      <entry id="OLECMDID_SETDOWNLOADSTATE" value="29"/>
+      <entry id="OLECMDID_STOPDOWNLOAD" value="30"/>
+      <entry id="OLECMDID_ONTOOLBARACTIVATED" value="31"/>
+      <entry id="OLECMDID_FIND" value="32"/>
+      <entry id="OLECMDID_DELETE" value="33"/>
+      <entry id="OLECMDID_HTTPEQUIV" value="34"/>
+      <entry id="OLECMDID_HTTPEQUIV_DONE" value="35"/>
+      <entry id="OLECMDID_ENABLE_INTERACTION" value="36"/>
+      <entry id="OLECMDID_ONUNLOAD" value="37"/>
+      <entry id="OLECMDID_PROPERTYBAG2" value="38"/>
+      <entry id="OLECMDID_PREREFRESH" value="39"/>
+      <entry id="OLECMDID_SHOWSCRIPTERROR" value="40"/>
+      <entry id="OLECMDID_SHOWMESSAGE" value="41"/>
+      <entry id="OLECMDID_SHOWFIND" value="42"/>
+      <entry id="OLECMDID_SHOWPAGESETUP" value="43"/>
+      <entry id="OLECMDID_SHOWPRINT" value="44"/>
+      <entry id="OLECMDID_CLOSE" value="45"/>
+      <entry id="OLECMDID_ALLOWUILESSSAVEAS" value="46"/>
+      <entry id="OLECMDID_DONTDOWNLOADCSS" value="47"/>
+      <entry id="OLECMDID_UPDATEPAGESTATUS" value="48"/>
+      <entry id="OLECMDID_PRINT2" value="49"/>
+      <entry id="OLECMDID_PRINTPREVIEW2" value="50"/>
+      <entry id="OLECMDID_SETPRINTTEMPLATE" value="51"/>
+      <entry id="OLECMDID_GETPRINTTEMPLATE" value="52"/>
+      <entry id="OLECMDID_PAGEACTIONBLOCKED" value="55"/>
+      <entry id="OLECMDID_PAGEACTIONUIQUERY" value="56"/>
+      <entry id="OLECMDID_FOCUSVIEWCONTROLS" value="57"/>
+      <entry id="OLECMDID_FOCUSVIEWCONTROLSQUERY" value="58"/>
+      <entry id="OLECMDID_SHOWPAGEACTIONMENU" value="59"/>
+      <entry id="OLECMDID_ADDTRAVELENTRY" value="60"/>
+      <entry id="OLECMDID_UPDATETRAVELENTRY" value="61"/>
+      <entry id="OLECMDID_UPDATEBACKFORWARDSTATE" value="62"/>
+      <entry id="OLECMDID_OPTICAL_ZOOM" value="63"/>
+      <entry id="OLECMDID_OPTICAL_GETZOOMRANGE" value="64"/>
+      <entry id="OLECMDID_WINDOWSTATECHANGED" value="65"/>
+      <entry id="OLECMDID_ACTIVEXINSTALLSCOPE" value="66"/>
+      <entry id="OLECMDID_UPDATETRAVELENTRY_DATARECOVERY" value="67"/>
+      <entry id="OLECMDID_SHOWTASKDLG" value="68"/>
+      <entry id="OLECMDID_POPSTATEEVENT" value="69"/>
+      <entry id="OLECMDID_VIEWPORT_MODE" value="70"/>
+      <entry id="OLECMDID_LAYOUT_VIEWPORT_WIDTH" value="71"/>
+      <entry id="OLECMDID_VISUAL_VIEWPORT_EXCLUDE_BOTTOM" value="72"/>
+      <entry id="OLECMDID_USER_OPTICAL_ZOOM" value="73"/>
+      <entry id="OLECMDID_PAGEAVAILABLE" value="74"/>
+      <entry id="OLECMDID_GETUSERSCALABLE" value="75"/>
+      <entry id="OLECMDID_UPDATE_CARET" value="76"/>
+      <entry id="OLECMDID_ENABLE_VISIBILITY" value="77"/>
+      <entry id="OLECMDID_MEDIA_PLAYBACK" value="78"/>
+   </enumeration>
+   <enumeration id="OLECMDF">
+      <entry id="OLECMDF_SUPPORTED" value="1"/>
+      <entry id="OLECMDF_ENABLED" value="2"/>
+      <entry id="OLECMDF_LATCHED" value="4"/>
+      <entry id="OLECMDF_NINCHED" value="8"/>
+      <entry id="OLECMDF_INVISIBLE" value="16"/>
+      <entry id="OLECMDF_DEFHIDEONCTXTMENU" value="32"/>
+   </enumeration>
+   <enumeration id="OLECMDEXECOPT">
+      <entry id="OLECMDEXECOPT_DODEFAULT" value="0"/>
+      <entry id="OLECMDEXECOPT_PROMPTUSER" value="1"/>
+      <entry id="OLECMDEXECOPT_DONTPROMPTUSER" value="2"/>
+      <entry id="OLECMDEXECOPT_SHOWHELP" value="3"/>
+   </enumeration>
+   <enumeration id="tagREADYSTATE">
+      <entry id="READYSTATE_UNINITIALIZED" value="0"/>
+      <entry id="READYSTATE_LOADING" value="1"/>
+      <entry id="READYSTATE_LOADED" value="2"/>
+      <entry id="READYSTATE_INTERACTIVE" value="3"/>
+      <entry id="READYSTATE_COMPLETE" value="4"/>
+   </enumeration>
+   <enumeration id="SecureLockIconConstants">
+      <entry id="secureLockIconUnsecure" value="0"/>
+      <entry id="secureLockIconMixed" value="1"/>
+      <entry id="secureLockIconSecureUnknownBits" value="2"/>
+      <entry id="secureLockIconSecure40Bit" value="3"/>
+      <entry id="secureLockIconSecure56Bit" value="4"/>
+      <entry id="secureLockIconSecureFortezza" value="5"/>
+      <entry id="secureLockIconSecure128Bit" value="6"/>
+   </enumeration>
+   <enumeration id="NewProcessCauseConstants">
+      <entry id="ProtectedModeRedirect" value="1"/>
+   </enumeration>
+   <enumeration id="ShellWindowTypeConstants">
+      <entry id="SWC_EXPLORER" value="0"/>
+      <entry id="SWC_BROWSER" value="1"/>
+      <entry id="SWC_3RDPARTY" value="2"/>
+      <entry id="SWC_CALLBACK" value="4"/>
+      <entry id="SWC_DESKTOP" value="8"/>
+   </enumeration>
+   <enumeration id="ShellWindowFindWindowOptions">
+      <entry id="SWFO_NEEDDISPATCH" value="1"/>
+      <entry id="SWFO_INCLUDEPENDING" value="2"/>
+      <entry id="SWFO_COOKIEPASSED" value="4"/>
+   </enumeration>
+   <class id="HtmlDoc" parent="IDispatch">
+      <method id="Open" type="Void" migStatus="delete"/>
+      <method id="Write" type="Void">
+         <argument id="html" type="String" status="ByVal"/>
+      </method>
+      <method id="Close" type="Void"  migStatus="delete"/>
+   </class>
+   <class id="IWebBrowser" parent="IDispatch">
+      <property id="Application" type="Object" status="Out"/>
+      <property id="Parent" type="Object" status="Out"/>
+      <property id="Container" type="Object" status="Out"/>
+      <property id="Document" type="HtmlDoc" status="Out"/>
+      <property id="TopLevelContainer" type="Boolean" status="Out"/>
+      <property id="Type" type="String" status="Out"/>
+      <property id="Left" type="Integer" status="InOut"/>
+      <property id="Top" type="Integer" status="InOut"/>
+      <property id="Width" type="Integer" status="InOut"/>
+      <property id="Height" type="Integer" status="InOut"/>
+      <property id="LocationName" type="String" status="Out" migName="DocumentTitle"/>
+      <property id="LocationURL" type="String" status="Out"/>
+      <property id="Busy" type="Boolean" status="Out"/>
+      <method id="GoBack" type="Void"/>
+      <method id="GoForward" type="Void"/>
+      <method id="GoHome" type="Void"/>
+      <method id="GoSearch" type="Void"/>
+      <method id="Navigate" type="Void"          
+         nPram="6" 
+         migPattern="%1d.Navigate(%2d,%4o,%5o,%6o)\c" >
+         <argument id="URL" type="String" status="ByVal"/>
+         <argument id="Flags" type="Variant" status="ByRef" optional="Def.Overload"/>
+         <argument id="TargetFrameName" type="Variant" status="ByRef" optional="Def.Overload"/>
+         <argument id="PostData" type="byte[]" status="ByVal" optional="Def.Overload"/>
+         <argument id="Headers" type="String" status="ByVal" optional="Def.Overload"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="Refresh2" type="Void">
+         <argument id="Level" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Stop" type="Void"/>
+   </class>
+   <class id="DWebBrowserEvents" parent="None">
+      <event id="BeforeNavigate" netName="BeforeNavigate" netHandler="SHDocVw.DWebBrowserEvents_BeforeNavigateEventHandler">
+         <argument id="uRL" type="String" status="ByVal"/>
+         <argument id="flags" type="Integer" status="ByVal"/>
+         <argument id="targetFrameName" type="String" status="ByVal"/>
+         <argument id="postData" type="Variant" status="Out"/>
+         <argument id="headers" type="String" status="ByVal"/>
+         <argument id="cancel" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="NavigateComplete" netName="NavigateComplete" netHandler="SHDocVw.DWebBrowserEvents_NavigateCompleteEventHandler">
+         <argument id="uRL" type="String" status="ByVal"/>
+      </event>
+      <event id="StatusTextChange" netName="StatusTextChange" netHandler="SHDocVw.DWebBrowserEvents_StatusTextChangeEventHandler">
+         <argument id="text" type="String" status="ByVal"/>
+      </event>
+      <event id="ProgressChange" netName="ProgressChange" netHandler="SHDocVw.DWebBrowserEvents_ProgressChangeEventHandler">
+         <argument id="progress" type="Integer" status="ByVal"/>
+         <argument id="progressMax" type="Integer" status="ByVal"/>
+      </event>
+      <event id="DownloadComplete" netName="DownloadComplete" netHandler="System.EventHandler"/>
+      <event id="CommandStateChange" netName="CommandStateChange" netHandler="SHDocVw.DWebBrowserEvents_CommandStateChangeEventHandler">
+         <argument id="command" type="Integer" status="ByVal"/>
+         <argument id="enable" type="Boolean" status="ByVal"/>
+      </event>
+      <event id="DownloadBegin" netName="DownloadBegin" netHandler="System.EventHandler"/>
+      <event id="NewWindow" netName="NewWindow" netHandler="SHDocVw.DWebBrowserEvents_NewWindowEventHandler">
+         <argument id="uRL" type="String" status="ByVal"/>
+         <argument id="flags" type="Integer" status="ByVal"/>
+         <argument id="targetFrameName" type="String" status="ByVal"/>
+         <argument id="postData" type="Variant" status="ByRef"/>
+         <argument id="headers" type="String" status="ByVal"/>
+         <argument id="processed" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="TitleChange" netName="TitleChange" netHandler="SHDocVw.DWebBrowserEvents_TitleChangeEventHandler">
+         <argument id="text" type="String" status="ByVal"/>
+      </event>
+      <event id="FrameBeforeNavigate" netName="FrameBeforeNavigate" netHandler="SHDocVw.DWebBrowserEvents_FrameBeforeNavigateEventHandler">
+         <argument id="uRL" type="String" status="ByVal"/>
+         <argument id="flags" type="Integer" status="ByVal"/>
+         <argument id="targetFrameName" type="String" status="ByVal"/>
+         <argument id="postData" type="Variant" status="Out"/>
+         <argument id="headers" type="String" status="ByVal"/>
+         <argument id="cancel" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="FrameNavigateComplete" netName="FrameNavigateComplete" netHandler="SHDocVw.DWebBrowserEvents_FrameNavigateCompleteEventHandler">
+         <argument id="uRL" type="String" status="ByVal"/>
+      </event>
+      <event id="FrameNewWindow" netName="FrameNewWindow" netHandler="SHDocVw.DWebBrowserEvents_FrameNewWindowEventHandler">
+         <argument id="uRL" type="String" status="ByVal"/>
+         <argument id="flags" type="Integer" status="ByVal"/>
+         <argument id="targetFrameName" type="String" status="ByVal"/>
+         <argument id="postData" type="Variant" status="ByRef"/>
+         <argument id="headers" type="String" status="ByVal"/>
+         <argument id="processed" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="Quit" netName="Quit" netHandler="SHDocVw.DWebBrowserEvents_QuitEventHandler">
+         <argument id="cancel" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="WindowMove" netName="WindowMove" netHandler="System.EventHandler"/>
+      <event id="WindowResize" netName="WindowResize" netHandler="System.EventHandler"/>
+      <event id="WindowActivate" netName="WindowActivate" netHandler="System.EventHandler"/>
+      <event id="PropertyChange" netName="PropertyChange" netHandler="SHDocVw.DWebBrowserEvents_PropertyChangeEventHandler">
+         <argument id="property" type="String" status="ByVal"/>
+      </event>
+   </class>
+   <class id="IWebBrowserApp" parent="IWebBrowser" default="Name">
+      <property id="Name" type="String" status="Out"/>
+      <property id="HWND" type="Integer" status="Out"/>
+      <property id="FullName" type="String" status="Out"/>
+      <property id="Path" type="String" status="Out"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="StatusBar" type="Boolean" status="InOut"/>
+      <property id="StatusText" type="String" status="InOut"/>
+      <property id="ToolBar" type="Integer" status="InOut"/>
+      <property id="MenuBar" type="Boolean" status="InOut"/>
+      <property id="FullScreen" type="Boolean" status="InOut"/>
+      <method id="Quit" type="Void"/>
+      <method id="ClientToWindow" type="Void">
+         <argument id="pcx" type="Integer" status="ByRef"/>
+         <argument id="pcy" type="Integer" status="ByRef"/>
+      </method>
+      <method id="PutProperty" type="Void">
+         <argument id="Property" type="String" status="ByVal"/>
+         <argument id="vtValue" type="Variant" status="ByVal"/>
+      </method>
+      <method id="GetProperty" type="Variant">
+         <argument id="Property" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IWebBrowser2" parent="IWebBrowserApp">
+      <property id="ReadyState" type="tagREADYSTATE" status="Out"/>
+      <property id="Offline" type="Boolean" status="InOut"/>
+      <property id="Silent" type="Boolean" status="InOut"/>
+      <property id="RegisterAsBrowser" type="Boolean" status="InOut"/>
+      <property id="RegisterAsDropTarget" type="Boolean" status="InOut" migName="AllowWebBrowserDrop" />
+      <property id="TheaterMode" type="Boolean" status="InOut"/>
+      <property id="AddressBar" type="Boolean" status="InOut"/>
+      <property id="Resizable" type="Boolean" status="InOut"/>
+      <method id="Navigate2" type="Void" nPram="6" migPattern="%1d.Navigate(%2d)\c">
+         <argument id="URL" type="Variant" status="ByVal"/>
+         <argument id="Flags" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="TargetFrameName" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="PostData" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Headers" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="QueryStatusWB" type="OLECMDF">
+         <argument id="cmdID" type="OLECMDID" status="ByVal"/>
+      </method>
+      <method id="ExecWB" type="Void">
+         <argument id="cmdID" type="OLECMDID" status="ByVal"/>
+         <argument id="cmdexecopt" type="OLECMDEXECOPT" status="ByVal"/>
+         <argument id="pvaIn" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="pvaOut" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="ShowBrowserBar" type="Void">
+         <argument id="pvaClsid" type="Variant" status="ByRef"/>
+         <argument id="pvarShow" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="pvarSize" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+   </class>
+   <class id="DWebBrowserEvents2" parent="None">
+      <event id="StatusTextChange" netName="StatusTextChange" netHandler="SHDocVw.DWebBrowserEvents2_StatusTextChangeEventHandler">
+         <argument id="text" type="String" status="ByVal"/>
+      </event>
+      <event id="ProgressChange" netName="ProgressChange" netHandler="SHDocVw.DWebBrowserEvents2_ProgressChangeEventHandler">
+         <argument id="progress" type="Integer" status="ByVal"/>
+         <argument id="progressMax" type="Integer" status="ByVal"/>
+      </event>
+      <event id="CommandStateChange" netName="CommandStateChange" netHandler="SHDocVw.DWebBrowserEvents2_CommandStateChangeEventHandler">
+         <argument id="command" type="Integer" status="ByVal"/>
+         <argument id="enable" type="Boolean" status="ByVal"/>
+      </event>
+      <event id="DownloadBegin" netName="DownloadBegin" netHandler="System.EventHandler"/>
+      <event id="DownloadComplete" netName="DownloadComplete" netHandler="System.EventHandler"/>
+      <event id="TitleChange" netName="TitleChange" netHandler="SHDocVw.DWebBrowserEvents2_TitleChangeEventHandler">
+         <argument id="text" type="String" status="ByVal"/>
+      </event>
+      <event id="PropertyChange" netName="PropertyChange" netHandler="SHDocVw.DWebBrowserEvents2_PropertyChangeEventHandler">
+         <argument id="szProperty" type="String" status="ByVal"/>
+      </event>
+      <event id="BeforeNavigate2" netName="BeforeNavigate2" netHandler="SHDocVw.DWebBrowserEvents2_BeforeNavigate2EventHandler">
+         <argument id="pDisp" type="Object" status="ByVal"/>
+         <argument id="uRL" type="Variant" status="ByRef"/>
+         <argument id="flags" type="Variant" status="ByRef"/>
+         <argument id="targetFrameName" type="Variant" status="ByRef"/>
+         <argument id="postData" type="Variant" status="ByRef"/>
+         <argument id="headers" type="Variant" status="ByRef"/>
+         <argument id="cancel" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="NewWindow2" netName="NewWindow" role="event" netHandler="CancelEventHandler" netArgs="CancelEventArgs">
+         <argument id="ppDisp" type="Object" status="ByVal" />
+         <argument id="cancel" type="Boolean" status="ByVal" migPattern="%1d = e.Cancel;"/>
+      </event>
+      <event id="NavigateComplete2" netName="NavigateComplete2" netHandler="SHDocVw.DWebBrowserEvents2_NavigateComplete2EventHandler">
+         <argument id="pDisp" type="Object" status="ByVal"/>
+         <argument id="uRL" type="Variant" status="ByRef"/>
+      </event>
+      <event id="DocumentComplete" 
+          netName="DocumentCompleted" 
+          netHandler="WebBrowserDocumentCompletedEventHandler"
+          netArgs="WebBrowserDocumentCompletedEventArgs"
+          >
+         <argument id="pDisp" type="Object" status="ByVal"/>
+         <argument id="uRL" type="Variant" status="ByRef" />
+      </event>
+      <event id="OnQuit" netName="OnQuit" netHandler="System.EventHandler"/>
+      <event id="OnVisible" netName="OnVisible" netHandler="SHDocVw.DWebBrowserEvents2_OnVisibleEventHandler">
+         <argument id="visible" type="Boolean" status="ByVal"/>
+      </event>
+      <event id="OnToolBar" netName="OnToolBar" netHandler="SHDocVw.DWebBrowserEvents2_OnToolBarEventHandler">
+         <argument id="toolBar" type="Boolean" status="ByVal"/>
+      </event>
+      <event id="OnMenuBar" netName="OnMenuBar" netHandler="SHDocVw.DWebBrowserEvents2_OnMenuBarEventHandler">
+         <argument id="menuBar" type="Boolean" status="ByVal"/>
+      </event>
+      <event id="OnStatusBar" netName="OnStatusBar" netHandler="SHDocVw.DWebBrowserEvents2_OnStatusBarEventHandler">
+         <argument id="statusBar" type="Boolean" status="ByVal"/>
+      </event>
+      <event id="OnFullScreen" netName="OnFullScreen" netHandler="SHDocVw.DWebBrowserEvents2_OnFullScreenEventHandler">
+         <argument id="fullScreen" type="Boolean" status="ByVal"/>
+      </event>
+      <event id="OnTheaterMode" netName="OnTheaterMode" netHandler="SHDocVw.DWebBrowserEvents2_OnTheaterModeEventHandler">
+         <argument id="theaterMode" type="Boolean" status="ByVal"/>
+      </event>
+      <event id="WindowSetResizable" netName="WindowSetResizable" netHandler="SHDocVw.DWebBrowserEvents2_WindowSetResizableEventHandler">
+         <argument id="resizable" type="Boolean" status="ByVal"/>
+      </event>
+      <event id="WindowSetLeft" netName="WindowSetLeft" netHandler="SHDocVw.DWebBrowserEvents2_WindowSetLeftEventHandler">
+         <argument id="left" type="Integer" status="ByVal"/>
+      </event>
+      <event id="WindowSetTop" netName="WindowSetTop" netHandler="SHDocVw.DWebBrowserEvents2_WindowSetTopEventHandler">
+         <argument id="top" type="Integer" status="ByVal"/>
+      </event>
+      <event id="WindowSetWidth" netName="WindowSetWidth" netHandler="SHDocVw.DWebBrowserEvents2_WindowSetWidthEventHandler">
+         <argument id="width" type="Integer" status="ByVal"/>
+      </event>
+      <event id="WindowSetHeight" netName="WindowSetHeight" netHandler="SHDocVw.DWebBrowserEvents2_WindowSetHeightEventHandler">
+         <argument id="height" type="Integer" status="ByVal"/>
+      </event>
+      <event id="WindowClosing" netName="WindowClosing" netHandler="SHDocVw.DWebBrowserEvents2_WindowClosingEventHandler">
+         <argument id="isChildWindow" type="Boolean" status="ByVal"/>
+         <argument id="cancel" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="ClientToHostWindow" netName="ClientToHostWindow" netHandler="SHDocVw.DWebBrowserEvents2_ClientToHostWindowEventHandler">
+         <argument id="cX" type="Integer" status="ByRef"/>
+         <argument id="cY" type="Integer" status="ByRef"/>
+      </event>
+      <event id="SetSecureLockIcon" netName="SetSecureLockIcon" netHandler="SHDocVw.DWebBrowserEvents2_SetSecureLockIconEventHandler">
+         <argument id="secureLockIcon" type="Integer" status="ByVal"/>
+      </event>
+      <event id="FileDownload" netName="FileDownload" netHandler="SHDocVw.DWebBrowserEvents2_FileDownloadEventHandler">
+         <argument id="activeDocument" type="Boolean" status="ByVal"/>
+         <argument id="cancel" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="NavigateError" netName="NavigateError" netHandler="SHDocVw.DWebBrowserEvents2_NavigateErrorEventHandler">
+         <argument id="pDisp" type="Object" status="ByVal"/>
+         <argument id="uRL" type="Variant" status="ByRef"/>
+         <argument id="frame" type="Variant" status="ByRef"/>
+         <argument id="statusCode" type="Variant" status="ByRef"/>
+         <argument id="cancel" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="PrintTemplateInstantiation" netName="PrintTemplateInstantiation" netHandler="SHDocVw.DWebBrowserEvents2_PrintTemplateInstantiationEventHandler">
+         <argument id="pDisp" type="Object" status="ByVal"/>
+      </event>
+      <event id="PrintTemplateTeardown" netName="PrintTemplateTeardown" netHandler="SHDocVw.DWebBrowserEvents2_PrintTemplateTeardownEventHandler">
+         <argument id="pDisp" type="Object" status="ByVal"/>
+      </event>
+      <event id="UpdatePageStatus" netName="UpdatePageStatus" netHandler="SHDocVw.DWebBrowserEvents2_UpdatePageStatusEventHandler">
+         <argument id="pDisp" type="Object" status="ByVal"/>
+         <argument id="nPage" type="Variant" status="ByRef"/>
+         <argument id="fDone" type="Variant" status="ByRef"/>
+      </event>
+      <event id="PrivacyImpactedStateChange" netName="PrivacyImpactedStateChange" netHandler="SHDocVw.DWebBrowserEvents2_PrivacyImpactedStateChangeEventHandler">
+         <argument id="bImpacted" type="Boolean" status="ByVal"/>
+      </event>
+      <event id="NewWindow3" netName="NewWindow3" netHandler="SHDocVw.DWebBrowserEvents2_NewWindow3EventHandler">
+         <argument id="ppDisp" type="Object" status="ByRef"/>
+         <argument id="cancel" type="Boolean" status="ByRef"/>
+         <argument id="dwFlags" type="Integer" status="ByVal"/>
+         <argument id="bstrUrlContext" type="String" status="ByVal"/>
+         <argument id="bstrUrl" type="String" status="ByVal"/>
+      </event>
+      <event id="SetPhishingFilterStatus" netName="SetPhishingFilterStatus" netHandler="SHDocVw.DWebBrowserEvents2_SetPhishingFilterStatusEventHandler">
+         <argument id="phishingFilterStatus" type="Integer" status="ByVal"/>
+      </event>
+      <event id="WindowStateChanged" netName="WindowStateChanged" netHandler="SHDocVw.DWebBrowserEvents2_WindowStateChangedEventHandler">
+         <argument id="dwWindowStateFlags" type="Integer" status="ByVal"/>
+         <argument id="dwValidFlagsMask" type="Integer" status="ByVal"/>
+      </event>
+      <event id="NewProcess" netName="NewProcess" netHandler="SHDocVw.DWebBrowserEvents2_NewProcessEventHandler">
+         <argument id="lCauseFlag" type="Integer" status="ByVal"/>
+         <argument id="pWB2" type="Object" status="ByVal"/>
+         <argument id="cancel" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="ThirdPartyUrlBlocked" netName="ThirdPartyUrlBlocked" netHandler="SHDocVw.DWebBrowserEvents2_ThirdPartyUrlBlockedEventHandler">
+         <argument id="uRL" type="Variant" status="ByRef"/>
+         <argument id="dwCount" type="Integer" status="ByVal"/>
+      </event>
+      <event id="RedirectXDomainBlocked" netName="RedirectXDomainBlocked" netHandler="SHDocVw.DWebBrowserEvents2_RedirectXDomainBlockedEventHandler">
+         <argument id="pDisp" type="Object" status="ByVal"/>
+         <argument id="startURL" type="Variant" status="ByRef"/>
+         <argument id="redirectURL" type="Variant" status="ByRef"/>
+         <argument id="frame" type="Variant" status="ByRef"/>
+         <argument id="statusCode" type="Variant" status="ByRef"/>
+      </event>
+      <event id="BeforeScriptExecute" netName="BeforeScriptExecute" netHandler="SHDocVw.DWebBrowserEvents2_BeforeScriptExecuteEventHandler">
+         <argument id="pDispWindow" type="Object" status="ByVal"/>
+      </event>
+      <event id="WebWorkerStarted" netName="WebWorkerStarted" netHandler="SHDocVw.DWebBrowserEvents2_WebWorkerStartedEventHandler">
+         <argument id="dwUniqueID" type="Integer" status="ByVal"/>
+         <argument id="bstrWorkerLabel" type="String" status="ByVal"/>
+      </event>
+      <event id="WebWorkerFinsihed" netName="WebWorkerFinsihed" netHandler="SHDocVw.DWebBrowserEvents2_WebWorkerFinsihedEventHandler">
+         <argument id="dwUniqueID" type="Integer" status="ByVal"/>
+      </event>
+   </class>
+   <class id="DShellWindowsEvents" parent="None" creatable="off">
+      <event id="WindowRegistered" netName="WindowRegistered" netHandler="SHDocVw.DShellWindowsEvents_WindowRegisteredEventHandler">
+         <argument id="lCookie" type="Integer" status="ByVal"/>
+      </event>
+      <event id="WindowRevoked" netName="WindowRevoked" netHandler="SHDocVw.DShellWindowsEvents_WindowRevokedEventHandler">
+         <argument id="lCookie" type="Integer" status="ByVal"/>
+      </event>
+   </class>
+   <class id="IShellWindows" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="Object">
+         <argument id="index" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <method id="Register" type="Void">
+         <argument id="pid" type="Object" status="ByVal"/>
+         <argument id="HWND" type="Integer" status="ByVal"/>
+         <argument id="swClass" type="Integer" status="ByVal"/>
+         <argument id="plCookie" type="Integer" status="Out"/>
+      </method>
+      <method id="RegisterPending" type="Void">
+         <argument id="lThreadId" type="Integer" status="ByVal"/>
+         <argument id="pvarloc" type="Variant" status="ByRef"/>
+         <argument id="pvarlocRoot" type="Variant" status="ByRef"/>
+         <argument id="swClass" type="Integer" status="ByVal"/>
+         <argument id="plCookie" type="Integer" status="Out"/>
+      </method>
+      <method id="Revoke" type="Void">
+         <argument id="lCookie" type="Integer" status="ByVal"/>
+      </method>
+      <method id="OnNavigate" type="Void">
+         <argument id="lCookie" type="Integer" status="ByVal"/>
+         <argument id="pvarloc" type="Variant" status="ByRef"/>
+      </method>
+      <method id="OnActivated" type="Void">
+         <argument id="lCookie" type="Integer" status="ByVal"/>
+         <argument id="fActive" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="FindWindowSW" type="Object">
+         <argument id="pvarloc" type="Variant" status="ByRef"/>
+         <argument id="pvarlocRoot" type="Variant" status="ByRef"/>
+         <argument id="swClass" type="Integer" status="ByVal"/>
+         <argument id="pHWND" type="Integer" status="Out"/>
+         <argument id="swfwOptions" type="Integer" status="ByVal"/>
+      </method>
+      <method id="OnCreated" type="Void">
+         <argument id="lCookie" type="Integer" status="ByVal"/>
+         <argument id="punk" type="Object" status="ByVal"/>
+      </method>
+      <method id="ProcessAttachDetach" type="Void">
+         <argument id="fAttach" type="Boolean" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IShellUIHelper" parent="IDispatch" creatable="off">
+      <method id="ResetFirstBootMode" type="Void"/>
+      <method id="ResetSafeMode" type="Void"/>
+      <method id="RefreshOfflineDesktop" type="Void"/>
+      <method id="AddFavorite" type="Void">
+         <argument id="URL" type="String" status="ByVal"/>
+         <argument id="Title" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="AddChannel" type="Void">
+         <argument id="URL" type="String" status="ByVal"/>
+      </method>
+      <method id="AddDesktopComponent" type="Void">
+         <argument id="URL" type="String" status="ByVal"/>
+         <argument id="Type" type="String" status="ByVal"/>
+         <argument id="Left" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Top" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Width" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Height" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="IsSubscribed" type="Boolean">
+         <argument id="URL" type="String" status="ByVal"/>
+      </method>
+      <method id="NavigateAndFind" type="Void">
+         <argument id="URL" type="String" status="ByVal"/>
+         <argument id="strQuery" type="String" status="ByVal"/>
+         <argument id="varTargetFrame" type="Variant" status="ByRef"/>
+      </method>
+      <method id="ImportExportFavorites" type="Void">
+         <argument id="fImport" type="Boolean" status="ByVal"/>
+         <argument id="strImpExpPath" type="String" status="ByVal"/>
+      </method>
+      <method id="AutoCompleteSaveForm" type="Void">
+         <argument id="Form" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="AutoScan" type="Void">
+         <argument id="strSearch" type="String" status="ByVal"/>
+         <argument id="strFailureUrl" type="String" status="ByVal"/>
+         <argument id="pvarTargetFrame" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="AutoCompleteAttach" type="Void">
+         <argument id="Reserved" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="ShowBrowserUI" type="Variant">
+         <argument id="bstrName" type="String" status="ByVal"/>
+         <argument id="pvarIn" type="Variant" status="ByRef"/>
+      </method>
+   </class>
+   <class id="DShellNameSpaceEvents" parent="None" creatable="off">
+      <event id="FavoritesSelectionChange" netName="FavoritesSelectionChange" netHandler="SHDocVw.DShellNameSpaceEvents_FavoritesSelectionChangeEventHandler">
+         <argument id="cItems" type="Integer" status="ByVal"/>
+         <argument id="hItem" type="Integer" status="ByVal"/>
+         <argument id="strName" type="String" status="ByVal"/>
+         <argument id="strUrl" type="String" status="ByVal"/>
+         <argument id="cVisits" type="Integer" status="ByVal"/>
+         <argument id="strDate" type="String" status="ByVal"/>
+         <argument id="fAvailableOffline" type="Integer" status="ByVal"/>
+      </event>
+      <event id="SelectionChange" netName="SelectionChange" netHandler="System.EventHandler"/>
+      <event id="DoubleClick" netName="DoubleClickEvent" netHandler="System.EventHandler"/>
+      <event id="Initialized" netName="Initialized" netHandler="System.EventHandler"/>
+   </class>
+   <class id="IShellFavoritesNameSpace" parent="IDispatch">
+      <property id="SubscriptionsEnabled" type="Boolean" status="Out"/>
+      <method id="MoveSelectionUp" type="Void"/>
+      <method id="MoveSelectionDown" type="Void"/>
+      <method id="ResetSort" type="Void"/>
+      <method id="NewFolder" type="Void"/>
+      <method id="Synchronize" type="Void"/>
+      <method id="Import" type="Void"/>
+      <method id="Export" type="Void"/>
+      <method id="InvokeContextMenuCommand" type="Void">
+         <argument id="strCommand" type="String" status="ByVal"/>
+      </method>
+      <method id="MoveSelectionTo" type="Void"/>
+      <method id="CreateSubscriptionForSelection" type="Boolean"/>
+      <method id="DeleteSubscriptionForSelection" type="Boolean"/>
+      <method id="SetRoot" type="Void">
+         <argument id="bstrFullPath" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IShellNameSpace" parent="IShellFavoritesNameSpace">
+      <property id="EnumOptions" type="Integer" status="InOut"/>
+      <property id="SelectedItem" type="Object" status="InOut"/>
+      <property id="Root" type="Variant" status="InOut"/>
+      <property id="Depth" type="Integer" status="InOut"/>
+      <property id="Mode" type="Integer" status="InOut"/>
+      <property id="Flags" type="Integer" status="InOut"/>
+      <property id="TVFlags" type="Integer" status="InOut"/>
+      <property id="Columns" type="String" status="InOut"/>
+      <property id="CountViewTypes" type="Integer" status="Out"/>
+      <method id="SetViewType" type="Void">
+         <argument id="iType" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SelectedItems" type="Object"/>
+      <method id="Expand" type="Void">
+         <argument id="var" type="Variant" status="ByVal"/>
+         <argument id="iDepth" type="Integer" status="ByVal"/>
+      </method>
+      <method id="UnselectAll" type="Void"/>
+   </class>
+   <class id="IScriptErrorList" parent="IDispatch">
+      <method id="advanceError" type="Void"/>
+      <method id="retreatError" type="Void"/>
+      <method id="canAdvanceError" type="Integer"/>
+      <method id="canRetreatError" type="Integer"/>
+      <method id="getErrorLine" type="Integer"/>
+      <method id="getErrorChar" type="Integer"/>
+      <method id="getErrorCode" type="Integer"/>
+      <method id="getErrorMsg" type="String"/>
+      <method id="getErrorUrl" type="String"/>
+      <method id="getAlwaysShowLockState" type="Integer"/>
+      <method id="getDetailsPaneOpen" type="Integer"/>
+      <method id="setDetailsPaneOpen" type="Void">
+         <argument id="fDetailsPaneOpen" type="Integer" status="ByVal"/>
+      </method>
+      <method id="getPerErrorDisplay" type="Integer"/>
+      <method id="setPerErrorDisplay" type="Void">
+         <argument id="fPerErrorDisplay" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <coclass id="WebBrowser_V1">
+      <subclass id="IWebBrowser2"/>
+      <subclass id="DWebBrowserEvents2"/>
+      <subclass id="IWebBrowser"/>
+      <subclass id="DWebBrowserEvents"/>
+   </coclass>
+   <coclass id="WebBrowser" role="control">
+      <subclass id="IWebBrowser2"/>
+      <subclass id="DWebBrowserEvents2"/>
+      <subclass id="IWebBrowser"/>
+      <subclass id="DWebBrowserEvents"/>
+   </coclass>
+   <coclass id="InternetExplorer">
+      <subclass id="IWebBrowser2"/>
+      <subclass id="IWebBrowserApp"/>
+      <subclass id="DWebBrowserEvents2"/>
+      <subclass id="DWebBrowserEvents"/>
+   </coclass>
+   <coclass id="InternetExplorerMedium">
+      <subclass id="IWebBrowser2"/>
+      <subclass id="IWebBrowserApp"/>
+      <subclass id="DWebBrowserEvents2"/>
+      <subclass id="DWebBrowserEvents"/>
+   </coclass>
+   <coclass id="ShellBrowserWindow" creatable="off">
+      <subclass id="IWebBrowser2"/>
+      <subclass id="IWebBrowserApp"/>
+      <subclass id="DWebBrowserEvents2"/>
+      <subclass id="DWebBrowserEvents"/>
+   </coclass>
+   <coclass id="ShellWindows">
+      <subclass id="IShellWindows"/>
+      <subclass id="DShellWindowsEvents"/>
+   </coclass>
+   <coclass id="ShellUIHelper">
+   </coclass>
+   <coclass id="ShellNameSpace">
+      <subclass id="IShellNameSpace"/>
+      <subclass id="DShellNameSpaceEvents"/>
+   </coclass>
+   <coclass id="ShellShellNameSpace">
+      <subclass id="IShellNameSpace"/>
+      <subclass id="DShellNameSpaceEvents"/>
+   </coclass>
+   <coclass id="CScriptErrorList" creatable="off">
+      <subclass id="IScriptErrorList"/>
+   </coclass>
+</library>
+<Refactor id="[shdocvw.dll]">
+<migClass id="NetControl.WebBrowser" migName="System.Windows.Forms.WebBrowser" parent="WebBrowser">
+      <property id="Font" value="Font" type="FontInfo" nPram="3"
+                vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+                cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+      />
+      <property id="Location" value="(Left,Top)" nPram="2"  migPattern="new System.Drawing.Point(%1d, %2d)"  />
+      <!--UPGRADE_TODO:   property id="MinimumSize"    
+            added default property: this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+      -->
+      <property id="MinimumSize" default="new System.Drawing.Size(20,20)" />
+      <property id="Name" type="string" value="SYM.name" />
+      <property id="Size" value="(Width,Height)"  nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+      <property id="TabIndex" type="Integer" value="TabIndex" default="0" />       
+   </migClass>   
+</Refactor>
+</DescriptionFile>

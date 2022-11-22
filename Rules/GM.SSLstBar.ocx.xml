@@ -1,0 +1,494 @@
+<DescriptionFile>
+<!--
+Upgrade SSListBar to custom SSListBar
+-->
+<library id="SSLstBar.ocx"
+         name="Listbar"
+         uuid="15138B51-7EB6-11D0-9BB7-0000C0F04C96"
+         netVersion="1.0"
+         source="SSLstBar.ocx"
+         location="..\SSListBar\bin\SSListBar.dll"
+         axLocation="%library%\AxInterop.Listbar.dll"
+         migName="SSListBar"
+         type="LocalImport"
+   >
+   <importlib id="stdole2.tlb"/>
+   <importlib id="stdole32.tlb"/>
+   <importlib id="olepro32.dll"/>
+   <class id="ISSDataObjectFiles"/>
+   <class id="ISSDataObject"/>
+   <class id="ISSReturnLong"/>
+   <class id="ISSReturnShort"/>
+   <class id="ISSReturnBoolean"/>
+   <class id="ISSImage"/>
+   <class id="ISSImagesCollection"/>
+   <class id="ISSListItem"/>
+   <class id="ISSListItemsCollection"/>
+   <class id="ISSGroup"/>
+   <class id="ISSGroupsCollection"/>
+   <class id="ISSListbarBase"/>
+   <class id="ISSListbar"/>
+   <class id="DSSListbarEvents"/>
+   <coclass id="SSDataObjectFiles"/>
+   <coclass id="SSDataObject"/>
+   <coclass id="SSReturnLong"/>
+   <coclass id="SSReturnShort"/>
+   <coclass id="SSReturnBoolean"/>
+   <coclass id="SSImage"/>
+   <coclass id="SSImages"/>
+   <coclass id="SSListItem"/>
+   <coclass id="SSListItems"/>
+   <coclass id="SSGroup"/>
+   <coclass id="SSGroups"/>
+   <coclass id="SSListBar"/>
+   <enumeration id="Constants_Font3D">
+      <entry id="ssNoneFont3D" value="0"/>
+      <entry id="ssRaisedLight" value="1"/>
+      <entry id="ssRaisedHeavy" value="2"/>
+      <entry id="ssInsetLight" value="3"/>
+      <entry id="ssInsetHeavy" value="4"/>
+      <entry id="ssDropShadow" value="5"/>
+   </enumeration>
+   <enumeration id="Constants_ForeColorSource">
+      <entry id="ssUseGroup" value="0"/>
+      <entry id="ssUseListItem" value="1"/>
+   </enumeration>
+   <enumeration id="Constants_Style">
+      <entry id="ssIconsLarge" value="0"/>
+      <entry id="ssIconsSmall" value="1"/>
+   </enumeration>
+   <enumeration id="Constants_BorderStyle">
+      <entry id="ssBorderNone" value="0"/>
+      <entry id="ssBorderSingle" value="1"/>
+      <entry id="ssBorderInset" value="2"/>
+      <entry id="ssBorderRaised" value="3"/>
+   </enumeration>
+   <enumeration id="Constants_Alignment">
+      <entry id="ssAlignLeft" value="0"/>
+      <entry id="ssAlignCenter" value="1"/>
+      <entry id="ssAlignRight" value="2"/>
+   </enumeration>
+   <enumeration id="Constants_MousePointer">
+      <entry id="ssDefault" value="0"/>
+      <entry id="ssArrow" value="1"/>
+      <entry id="ssCross" value="2"/>
+      <entry id="ssIBeam" value="3"/>
+      <entry id="ssIcon" value="4"/>
+      <entry id="ssSize" value="5"/>
+      <entry id="ssSizeNESW" value="6"/>
+      <entry id="ssSizeNS" value="7"/>
+      <entry id="ssSizeNWSE" value="8"/>
+      <entry id="ssSizeEW" value="9"/>
+      <entry id="ssUpArrow" value="10"/>
+      <entry id="ssHourglass" value="11"/>
+      <entry id="ssNoDrop" value="12"/>
+      <entry id="ssArrowHourglass" value="13"/>
+      <entry id="ssArrowQuestion" value="14"/>
+      <entry id="ssSizeAll" value="15"/>
+      <entry id="ssCustom" value="99"/>
+   </enumeration>
+   <enumeration id="Constants_PictureBackgroundStyle">
+      <entry id="ssPictureCentered" value="0"/>
+      <entry id="ssPictureStretched" value="1"/>
+      <entry id="ssPictureTiled" value="2"/>
+   </enumeration>
+   <enumeration id="Constants_WhereIs">
+      <entry id="ssHitGroupCaption" value="0"/>
+      <entry id="ssHitGroup" value="1"/>
+      <entry id="ssHitListItem" value="2"/>
+      <entry id="ssHitScrollUp" value="3"/>
+      <entry id="ssHitScrollDown" value="4"/>
+      <entry id="ssHitNone" value="5"/>
+   </enumeration>
+   <enumeration id="Constants_Orientation">
+      <entry id="ssVertical" value="0"/>
+      <entry id="ssHorizontal" value="1"/>
+   </enumeration>
+   <enumeration id="Constants_AsyncSoundFlags">
+      <entry id="ssWaitAndPlay" value="1"/>
+      <entry id="ssDownload" value="2"/>
+      <entry id="ssPlayDefault" value="4"/>
+      <entry id="ssPlayIfCached" value="8"/>
+      <entry id="ssPlayWhenDownloaded" value="16"/>
+      <entry id="ssPlaySystemSound" value="32"/>
+   </enumeration>
+   <enumeration id="Constants_OLEDrag">
+      <entry id="ssOLEDragManual" value="0"/>
+      <entry id="ssOLEDragAutomatic" value="1"/>
+   </enumeration>
+   <enumeration id="Constants_OLEDrop">
+      <entry id="ssOLEDropNone" value="0"/>
+      <entry id="ssOLEDropManual" value="1"/>
+      <entry id="ssOLEDropAutomatic" value="2"/>
+   </enumeration>
+   <enumeration id="Constants_DragOver">
+      <entry id="ssEnter" value="0"/>
+      <entry id="ssLeave" value="1"/>
+      <entry id="ssOver" value="2"/>
+   </enumeration>
+   <enumeration id="Constants_ClipBoard">
+      <entry id="ssCFText" value="1"/>
+      <entry id="ssCFBitmap" value="2"/>
+      <entry id="ssCFMetafile" value="3"/>
+      <entry id="ssCFDIB" value="8"/>
+      <entry id="ssCFPalette" value="9"/>
+      <entry id="ssCFEMetafile" value="14"/>
+      <entry id="ssCFFiles" value="15"/>
+      <entry id="ssCFRTF" value="0xffffbf01"/>
+   </enumeration>
+   <enumeration id="Constants_OLEDropEffect">
+      <entry id="ssOLEDropEffectNone" value="0"/>
+      <entry id="ssOLEDropEffectCopy" value="1"/>
+      <entry id="ssOLEDropEffectMove" value="2"/>
+      <entry id="ssOLEDropEffectScroll" value="0x80000000"/>
+   </enumeration>
+   <class id="ISSDataObjectFiles" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="String" status="indexer">
+         <argument id="lIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="bstrFilename" type="String" status="ByVal"/>
+         <argument id="vIndex" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="vIndex" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="ISSDataObject" parent="IDispatch">
+      <property id="Files" type="SSDataObjectFiles" status="Out"/>
+      <method id="Clear" type="Void"/>
+      <method id="GetData" type="Variant">
+         <argument id="sFormat" type="Short" status="ByVal"/>
+      </method>
+      <method id="GetFormat" type="Boolean">
+         <argument id="sFormat" type="Short" status="ByVal"/>
+      </method>
+      <method id="SetData" type="Void">
+         <argument id="vValue" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="vFormat" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="ISSReturnLong" parent="IDispatch" default="Value">
+      <property id="Value" type="Integer" status="InOut"/>
+   </class>
+   <class id="ISSReturnShort" parent="IDispatch" default="Value">
+      <property id="Value" type="Short" status="InOut"/>
+   </class>
+   <class id="ISSReturnBoolean" parent="IDispatch" default="Value">
+      <property id="Value" type="Boolean" status="InOut"/>
+   </class>
+   <class id="ISSImage" parent="IDispatch">
+      <property id="Index" type="Short" status="InOut"/>
+      <property id="Key" type="String" status="InOut"/>
+      <property id="Picture" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Picture"/>
+         <Set npram="2" migPattern="%1d.Picture = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Picture(%1d)\c"/>
+      </property>
+   </class>
+   <class id="ISSImagesCollection" parent="IDispatch" default="Item">
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="SSImage">
+         <argument id="Index" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Add" type="SSImage">
+         <argument id="Index" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Key" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Picture" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByRef"/>
+      </method>
+      <method id="InternalAdd" type="Void">
+         <argument id="Index" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+   </class>
+   <class id="ISSListItem" parent="IDispatch">
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="ForeColorSource" type="Constants_ForeColorSource" status="InOut"/>
+      <property id="Group" type="SSGroup" status="InOut"/>
+      <property id="IconLarge" type="Variant" status="InOut"/>
+      <property id="IconSmall" type="Variant" status="InOut"/>
+      <property id="Index" type="Short" status="InOut"/>
+      <property id="Key" type="String" status="InOut"/>
+      <property id="TagVariant" type="Variant" status="GetSetLet" migStatus="delete">
+         <Get npram="1" migPattern="%1d.TagVariant"/>
+         <Set npram="2" migPattern="%1d.TagVariant = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_TagVariant(%1d)\c"/>
+      </property>
+      <property id="Text" type="String" status="InOut"/>
+      <method id="Rename" type="Void"/>
+   </class>
+   <class id="ISSListItemsCollection" parent="IDispatch" default="Item">
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Add" type="SSListItem">
+         <argument id="Index" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Text" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="ListItem" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Item" type="SSListItem" cshPattern="%1d[%2d]" vbnPattern="%d(%2d)">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="InternalAdd" type="Void">
+         <argument id="Index" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="ISSGroup" parent="IDispatch">
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Caption" type="String" status="InOut"/>
+      <property id="Font" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Font"/>
+         <Set npram="2" migPattern="%1d.Font = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Font(%1d)\c"/>
+      </property>
+      <property id="Font3D" type="Constants_Font3D" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Index" type="Short" status="InOut"/>
+      <property id="Key" type="String" status="InOut"/>
+      <property id="ListItems" type="SSListItems" status="Out"/>
+      <property id="PictureBackground" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.PictureBackground"/>
+         <Set npram="2" migPattern="%1d.PictureBackground = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_PictureBackground(%1d)\c"/>
+      </property>
+      <property id="PictureBackgroundMaskColor" type="OLE_COLOR" status="InOut"/>
+      <property id="PictureBackgroundStyle" type="Constants_PictureBackgroundStyle" status="InOut"/>
+      <property id="PictureBackgroundURL" type="String" status="InOut"/>
+      <property id="PictureBackgroundUseMask" type="Boolean" status="InOut"/>
+      <property id="Style" type="Constants_Style" status="InOut"/>
+      <method id="Rename" type="Void"/>
+   </class>
+   <class id="ISSGroupsCollection" parent="IDispatch" default="Item">
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Add" type="SSGroup">
+         <argument id="Index" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Caption" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Group" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Item" type="SSGroup" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="InternalAdd" type="Void">
+         <argument id="Index" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="ISSListbarBase" parent="IDispatch">
+      <property id="Alignment" type="Constants_Alignment" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="BorderStyle" type="Constants_BorderStyle" status="InOut"/>
+      <property id="CaptionBackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="CaptionFont" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.CaptionFont"/>
+         <Set npram="2" migPattern="%1d.CaptionFont = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_CaptionFont(%1d)\c"/>
+      </property>
+      <property id="CaptionFont3D" type="Constants_Font3D" status="InOut"/>
+      <property id="CaptionForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Font" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Font"/>
+         <Set npram="2" migPattern="%1d.Font = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Font(%1d)\c"/>
+      </property>
+      <property id="Font3D" type="Constants_Font3D" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="MouseIcon" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.MouseIcon"/>
+         <Set npram="2" migPattern="%1d.MouseIcon = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_MouseIcon(%1d)\c"/>
+      </property>
+      <property id="MousePointer" type="Constants_MousePointer" status="InOut"/>
+      <property id="OLEDragMode" type="Constants_OLEDrag" status="InOut"/>
+      <property id="OLEDropMode" type="Constants_OLEDrop" status="InOut" migStatus="delete"/>
+      <property id="PictureBackground" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.PictureBackground"/>
+         <Set npram="2" migPattern="%1d.PictureBackground = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_PictureBackground(%1d)\c"/>
+      </property>
+      <property id="PictureBackgroundMaskColor" type="OLE_COLOR" status="InOut"/>
+      <property id="PictureBackgroundStyle" type="Constants_PictureBackgroundStyle" status="InOut"/>
+      <property id="PictureBackgroundURL" type="String" status="InOut"/>
+      <property id="PictureBackgroundUseMask" type="Boolean" status="InOut"/>
+      <property id="TagVariant" type="Variant" status="GetSetLet" migStatus="delete">
+         <Get npram="1" migPattern="%1d.TagVariant"/>
+         <Set npram="2" migPattern="%1d.TagVariant = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_TagVariant(%1d)\c"/>
+      </property>
+      <property id="Orientation" type="Constants_Orientation" status="InOut"/>
+      <method id="Refresh" type="Void"/>
+      <method id="PlaySoundFile" type="Void">
+         <argument id="Sound" type="String" status="ByVal"/>
+         <argument id="SoundFlags" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="AboutBox" type="Void"/>
+      <method id="OLEDrag" type="Void"/>
+   </class>
+   <class id="ISSListbar" parent="ISSListbarBase">
+      <property id="CurrentGroup" type="SSGroup" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.CurrentGroup"/>
+         <Set npram="2" migPattern="%1d.CurrentGroup = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_CurrentGroup(%1d)\c"/>
+      </property>
+      <property id="CurrentGroupCaption" type="String" status="InOut"/>
+      <property id="CurrentGroupKey" type="String" status="InOut"/>
+      <property id="Groups" type="SSGroups" status="Out"/>
+      <property id="IconsMaskColor" type="OLE_COLOR" status="InOut"/>
+      <property id="IconsLarge" type="SSImages" status="Out"/>
+      <property id="IconsLargeURL" type="String" status="InOut"/>
+      <property id="IconsSmall" type="SSImages" status="Out"/>
+      <property id="IconsSmallURL" type="String" status="InOut"/>
+      <property id="IconsUseMask" type="Boolean" status="InOut"/>
+      <property id="ListItems" type="SSListItems" status="Out"/>
+      <property id="DefaultStyle" type="Constants_Style" status="InOut"/>
+      <property id="DefaultIcon" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.DefaultIcon"/>
+         <Set npram="2" migPattern="%1d.DefaultIcon = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_DefaultIcon(%1d)\c"/>
+      </property>
+      <property id="TextTips" type="Boolean" status="InOut"/>
+      <property id="ClipboardFormat" type="Short" status="Out"/>
+      <method id="WhereIs" type="Constants_WhereIs">
+         <argument id="X" type="Single" status="ByVal"/>
+         <argument id="Y" type="Single" status="ByVal"/>
+      </method>
+      <method id="GroupFromPosition" type="SSGroup">
+         <argument id="X" type="Single" status="ByVal"/>
+         <argument id="Y" type="Single" status="ByVal"/>
+      </method>
+      <method id="ListItemFromPosition" type="SSListItem">
+         <argument id="X" type="Single" status="ByVal"/>
+         <argument id="Y" type="Single" status="ByVal"/>
+      </method>
+   </class>
+   <class id="DSSListbarEvents" parent="None">
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="GroupClick" netName="GroupClick" netHandler="AxListbar.DSSListbarEvents_GroupClickEventHandler" netArgs="AxListbar.DSSListbarEvents_GroupClickEvent">
+         <argument id="groupClicked" type="SSGroup" status="ByVal"/>
+         <argument id="previousGroup" type="SSGroup" status="ByVal"/>
+      </event>
+      <event id="ListItemClick" netName="ItemClick" netHandler="EventHandler<SSListBar.ItemClickEventArgs>" netArgs="SSListBar.ItemClickEventArgs">
+         <argument id="itemClicked" type="SSListItem" status="ByVal" migName="ItemClicked"/>
+      </event>
+      <event id="ListItemEnter" netName="ListItemEnter" netHandler="AxListbar.DSSListbarEvents_ListItemEnterEventHandler" netArgs="AxListbar.DSSListbarEvents_ListItemEnterEvent">
+         <argument id="itemEntered" type="SSListItem" status="ByVal"/>
+      </event>
+      <event id="ListItemExit" netName="ListItemExit" netHandler="AxListbar.DSSListbarEvents_ListItemExitEventHandler" netArgs="AxListbar.DSSListbarEvents_ListItemExitEvent">
+         <argument id="itemExited" type="SSListItem" status="ByVal"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="AxListbar.DSSListbarEvents_MouseDownEventHandler" netArgs="AxListbar.DSSListbarEvents_MouseDownEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseEnter" netName="MouseEnterEvent" netHandler="AxListbar.DSSListbarEvents_MouseEnterEventHandler" netArgs="AxListbar.DSSListbarEvents_MouseEnterEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseExit" netName="MouseExit" netHandler="AxListbar.DSSListbarEvents_MouseExitEventHandler" netArgs="AxListbar.DSSListbarEvents_MouseExitEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="AxListbar.DSSListbarEvents_MouseMoveEventHandler" netArgs="AxListbar.DSSListbarEvents_MouseMoveEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="AxListbar.DSSListbarEvents_MouseUpEventHandler" netArgs="AxListbar.DSSListbarEvents_MouseUpEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="DblClick" netName="DblClick" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxListbar.DSSListbarEvents_OLEStartDragEventHandler" netArgs="AxListbar.DSSListbarEvents_OLEStartDragEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="SSReturnLong" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxListbar.DSSListbarEvents_OLEGiveFeedbackEventHandler" netArgs="AxListbar.DSSListbarEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="SSReturnLong" status="ByRef"/>
+         <argument id="defaultCursors" type="SSReturnBoolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxListbar.DSSListbarEvents_OLESetDataEventHandler" netArgs="AxListbar.DSSListbarEvents_OLESetDataEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="dataFormat" type="SSReturnShort" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxListbar.DSSListbarEvents_OLECompleteDragEventHandler" netArgs="AxListbar.DSSListbarEvents_OLECompleteDragEvent">
+         <argument id="effect" type="SSReturnLong" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="DragOver" netHandler="EventHandler<SSListBar.DragOverEventArgs>" netArgs="SSListBar.DragOverEventArgs">
+         <argument id="data" type="SSDataObject" status="ByRef" migName="Data"/>
+         <argument id="effect" type="SSReturnLong" status="ByRef" migName="Effect"/>
+         <argument id="button" type="Short" status="ByRef" migName="Button"/>
+         <argument id="shift" type="Short" status="ByRef" migName="Shift"/>
+         <argument id="x" type="Single" status="ByRef" migName="X"/>
+         <argument id="y" type="Single" status="ByRef" migName="Y"/>
+         <argument id="state" type="SSReturnShort" status="ByRef" migName="State"/>
+      </event>
+      <event id="OLEDragDrop" netName="DragDrop" netHandler="EventHandler<SSListBar.DragDropEventArgs>" netArgs="SSListBar.DragDropEventArgs">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="effect" type="SSReturnLong" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+   </class>
+   <coclass id="SSDataObjectFiles" uuid="6B976284-3692-11D0-9B8A-0000C0F04C96">
+      <subclass id="ISSDataObjectFiles"/>
+   </coclass>
+   <coclass id="SSDataObject" uuid="6B976286-3692-11D0-9B8A-0000C0F04C96">
+      <subclass id="ISSDataObject"/>
+   </coclass>
+   <coclass id="SSReturnLong" uuid="CDA1CA01-8B5D-11D0-9BC0-0000C0F04C96">
+      <subclass id="ISSReturnLong"/>
+   </coclass>
+   <coclass id="SSReturnShort" uuid="CDA1CA03-8B5D-11D0-9BC0-0000C0F04C96">
+      <subclass id="ISSReturnShort"/>
+   </coclass>
+   <coclass id="SSReturnBoolean" uuid="CDA1CA05-8B5D-11D0-9BC0-0000C0F04C96">
+      <subclass id="ISSReturnBoolean"/>
+   </coclass>
+   <coclass id="SSImage" uuid="CB6FFC30-B035-11D0-A853-0000C02AC6DB">
+      <subclass id="ISSImage"/>
+   </coclass>
+   <coclass id="SSImages" uuid="01F69180-B033-11D0-A853-0000C02AC6DB">
+      <subclass id="ISSImagesCollection"/>
+   </coclass>
+   <coclass id="SSListItem" uuid="2CB22246-89B8-11D0-9BC0-0000C0F04C96">
+      <subclass id="ISSListItem"/>
+   </coclass>
+   <coclass id="SSListItems" uuid="2CB22244-89B8-11D0-9BC0-0000C0F04C96">
+      <subclass id="ISSListItemsCollection"/>
+   </coclass>
+   <coclass id="SSGroup" uuid="2CB22241-89B8-11D0-9BC0-0000C0F04C96">
+      <subclass id="ISSGroup"/>
+   </coclass>
+   <coclass id="SSGroups" uuid="2CB22243-89B8-11D0-9BC0-0000C0F04C96">
+      <subclass id="ISSGroupsCollection"/>
+   </coclass>
+   <coclass id="SSListBar" uuid="15138B54-7EB6-11D0-9BB7-0000C0F04C96" migName="ListBar">
+      <subclass id="ISSListbar"/>
+      <subclass id="DSSListbarEvents"/>
+   </coclass>
+</library>
+</DescriptionFile>

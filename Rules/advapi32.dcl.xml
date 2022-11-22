@@ -1,0 +1,128 @@
+<DescriptionFile>
+<library id="advapi32.dcl"
+         name="advapi32"
+         source="advapi32.dcl"
+         location="advapi32.dcl"
+         type="LocalImport"
+   >
+   <enumeration id="EREGTYPE">
+      <entry id="REG_NONE" value="0"/>
+      <entry id="REG_SZ" value="1"/>
+      <entry id="REG_EXPAND_SZ" value="2"/>
+      <entry id="REG_BINARY" value="3"/>
+      <entry id="REG_DWORD" value="4"/>
+      <entry id="REG_DWORD_LITTLE_ENDIAN" value="4"/>
+      <entry id="REG_DWORD_BIG_ENDIAN" value="5"/>
+      <entry id="REG_LINK" value="6"/>
+      <entry id="REG_MULTI_SZ" value="7"/>
+      <entry id="REG_RESOURCE_LIST" value="8"/>
+      <entry id="REG_FULL_RESOURCE_DESCRIPTOR" value="9"/>
+      <entry id="REG_RESOURCE_REQUIREMENTS_LIST" value="10"/>
+   </enumeration>
+   <class id="Methods" parent="None" module="on" creatable="off">
+      <method id="DeregisterEventSource" type="Integer" >
+         <argument id="hEventLog" type="Integer" status="ByVal" />
+      </method>
+      <method id="ExpandEnvironmentStrings" type="Integer">
+         <argument id="lpSrc" type="String" status="ByVal"/>
+         <argument id="lpDst" type="String" status="ByVal"/>
+         <argument id="nSize" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetUserName" type="Integer">
+         <argument id="lpBuffer" type="String" status="ByVal"/>
+         <argument id="nSize" type="Integer" status="ByRef"/>
+      </method>
+      <method id="RegConnectRegistry" type="Integer">
+         <argument id="lpMachineName" type="String" status="ByVal"/>
+         <argument id="hKey" type="Integer" status="ByVal"/>
+         <argument id="phkResult" type="Integer" status="Out"/>
+      </method>
+      <method id="RegCloseKey" type="Integer">
+         <argument id="hKey" type="Integer" status="ByVal"/>
+      </method>
+      <method id="RegCreateKeyEx" type="Integer">
+         <argument id="hKey" type="Integer" status="ByVal"/>
+         <argument id="lpSubKey" type="String" status="ByVal"/>
+         <argument id="reserved" type="Integer" status="ByVal"/>
+         <argument id="lpClass" type="String" status="ByVal"/>
+         <argument id="dwOptions" type="Integer" status="ByVal"/>
+         <argument id="samDesired" type="Integer" status="ByVal"/>
+         <argument id="lpSecurityAttributes" type="Void" status="ByRef" optional="0"/>
+         <argument id="phkResult" type="Integer" status="ByRef" optional="Default"/>
+         <argument id="lpdwDisposition" type="Integer" status="ByRef" optional="Default"/>
+      </method>
+      <method id="RegEnumKeyEx" type="Integer">
+         <argument id="hKey" type="Integer" status="ByVal"/>
+         <argument id="dwIndex" type="Integer" status="ByVal"/>
+         <argument id="lpName" type="String" status="ByVal"/>
+         <argument id="lpcbName" type="Integer" status="Out"/>
+         <argument id="lpReserved" type="Integer" status="ByVal"/>
+         <argument id="lpClass" type="String" status="ByVal"/>
+         <argument id="lpcbClass" type="Integer" status="Out"/>
+         <argument id="lpftLastWriteTime" type="Void" status="Out"/>
+      </method>
+      <method id="RegEnumValue" type="Integer">
+         <argument id="hKey" type="Integer" status="ByVal"/>
+         <argument id="dwIndex" type="Integer" status="ByVal"/>
+         <argument id="lpValueName" type="String" status="ByVal"/>
+         <argument id="lpcbValueName" type="Integer" status="Out"/>
+         <argument id="lpReserved" type="Integer" status="ByVal"/>
+         <argument id="lpType" type="EREGTYPE" status="Out"/>
+         <argument id="lpData" type="Integer" status="ByVal"/>
+         <argument id="lpcbData" type="Integer" status="Out"/>
+      </method>
+      <method id="RegisterEventSource" type="integer" >
+         <argument id="lpUNCServerName" type="String" status="ByVal" />
+         <argument id="lpSourceName" type="String" status="ByVal" />
+      </method>
+      <method id="RegOpenKeyEx" type="Integer">
+         <argument id="hKey" type="Integer" status="ByVal"/>
+         <argument id="lpSubKey" type="String" status="ByVal"/>
+         <argument id="ulOptions" type="Integer" status="ByVal"/>
+         <argument id="samDesired" type="Integer" status="ByVal"/>
+         <argument id="phkResult" type="Integer" status="ByRef"/>
+      </method>
+      <method id="RegQueryInfoKey" type="Integer">
+         <argument id="hKey" type="Integer" status="ByVal"/>
+         <argument id="lpClass" type="String" status="ByVal"/>
+         <argument id="lpcbClass" type="Integer" status="Out"/>
+         <argument id="lpReserved" type="Integer" status="ByVal"/>
+         <argument id="lpcSubKeys" type="Integer" status="Out"/>
+         <argument id="lpcbMaxSubKeyLen" type="Integer" status="Out"/>
+         <argument id="lpcbMaxClassLen" type="Integer" status="Out"/>
+         <argument id="lpcValues" type="Integer" status="Out"/>
+         <argument id="lpcbMaxValueNameLen" type="Integer" status="Out"/>
+         <argument id="lpcbMaxValueLen" type="Integer" status="Out"/>
+         <argument id="lpcbSecurityDescriptor" type="Integer" status="Out"/>
+         <argument id="lpftLastWriteTime" type="Void" status="Out"/>
+      </method>
+      <method id="RegQueryValueEx" type="Integer">
+         <argument id="hKey" type="Integer" status="ByVal"/>
+         <argument id="lpValueName" type="String" status="ByVal"/>
+         <argument id="lpReserved" type="Integer" status="ByVal"/>
+         <argument id="lpType" type="EREGTYPE" status="Out"/>
+         <argument id="lpData" type="Integer" status="ByVal"/>
+         <argument id="lpcbData" type="Integer" status="Out"/>
+      </method>
+      <method id="RegSetValueEx" type="Integer">
+         <argument id="hKey" type="Integer" status="ByVal"/>
+         <argument id="lpValueName" type="String" status="ByVal"/>
+         <argument id="reserved" type="Integer" status="ByVal"/>
+         <argument id="dwType" type="EREGTYPE" status="ByVal"/>
+         <argument id="lpData" type="Byte" status="ByRef"/>
+         <argument id="cbData" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ReportEvent" type="Boolean" >
+         <argument id="hEventLog" type="Integer" status="ByVal" />
+         <argument id="wType" type="Short" status="ByVal" />
+         <argument id="wCategory" type="Short" status="ByVal" />
+         <argument id="dwEventID" type="Integer" status="ByVal" />
+         <argument id="lpUserSid" type="Variant" status="ByVal" />
+         <argument id="wNumStrings" type="Short" status="ByVal" />
+         <argument id="dwDataSize" type="Integer" status="ByVal" />
+         <argument id="plpStrings" type="Integer" status="ByRef" />
+         <argument id="lpRawData" type="Variant" status="ByRef" />
+      </method>
+   </class>
+</library>
+</DescriptionFile>

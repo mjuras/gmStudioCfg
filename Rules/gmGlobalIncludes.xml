@@ -1,0 +1,5 @@
+<gmMU>  
+<Storage Action="Create" Identifier="\gmTools\idf\gmGlobalIncludes.vbi" />
+<gmSL NameSpace="gmGlobalIncludes" Class="ServiceMethods" Source="gmGlobalIncludes.gmsl" />
+<Storage Action="Close" />
+</gmMU>

@@ -1,0 +1,52 @@
+int MSFlexGrid(int context,int ctlRoot,int iStart)
+{
+   int        delta;
+   tCodeBlock codptr;
+   int        pcnt;
+   int        ctlType;
+   int        allowResizing;
+   int        resizeSetting;
+
+   if(context != EventType.AdjustProperties) return 0;
+   codptr = Opcode.GetCode();     
+   pcnt = Opcode.GetLength();
+   ctlType = Store.GetObjectType(ctlRoot);
+   allowResizing = ControlData.FindProperty(ctlType,"AllowUserResizing",iStart);
+   if(!allowResizing) return 0;
+   delta = 0;
+   resizeSetting = ControlData.GetValue(allowResizing);
+   if(resizeSetting == Symbol.FindIdentifier("MSFlexGridLib.AllowUserResizeSettings.flexResizeColumns"))
+   {
+      delta = 1;
+      Opcode.SetOperation(codptr,pcnt,OPC.LBC,OPC.LBC.True);
+      pcnt = Opcode.GetLength();
+      Opcode.SetOperation(codptr,pcnt,OPC.LLP,Symbol.FindIdentifier("MSFlexGridLib.DotNet.AllowUserToResizeColumns"));
+      pcnt = Opcode.GetLength();
+      Opcode.SetOperation(codptr,pcnt,OPC.STR,OPC.STR.AssignValue);
+   }
+   else if(resizeSetting == Symbol.FindIdentifier("MSFlexGridLib.AllowUserResizeSettings.flexResizeRows"))
+   {
+      delta = 1;
+      Opcode.SetOperation(codptr,pcnt,OPC.LBC,OPC.LBC.True);
+      pcnt = Opcode.GetLength();
+      Opcode.SetOperation(codptr,pcnt,OPC.LLP,Symbol.FindIdentifier("MSFlexGridLib.DotNet.AllowUserToResizeRows"));
+      pcnt = Opcode.GetLength();
+      Opcode.SetOperation(codptr,pcnt,OPC.STR,OPC.STR.AssignValue);
+   }
+   else if(resizeSetting == Symbol.FindIdentifier("MSFlexGridLib.AllowUserResizeSettings.flexResizeBoth"))
+   {
+      delta = 1;
+      Opcode.SetOperation(codptr,pcnt,OPC.LBC,OPC.LBC.True);
+      pcnt = Opcode.GetLength();
+      Opcode.SetOperation(codptr,pcnt,OPC.LLP,Symbol.FindIdentifier("MSFlexGridLib.DotNet.AllowUserToResizeColumns"));
+      pcnt = Opcode.GetLength();
+      Opcode.SetOperation(codptr,pcnt,OPC.STR,OPC.STR.AssignValue);
+      pcnt = Opcode.GetLength();
+      Opcode.SetOperation(codptr,pcnt,OPC.LBC,OPC.LBC.True);
+      pcnt = Opcode.GetLength();
+      Opcode.SetOperation(codptr,pcnt,OPC.LLP,Symbol.FindIdentifier("MSFlexGridLib.DotNet.AllowUserToResizeRows"));
+      pcnt = Opcode.GetLength();
+      Opcode.SetOperation(codptr,pcnt,OPC.STR,OPC.STR.AssignValue);
+   }
+   return delta;
+}

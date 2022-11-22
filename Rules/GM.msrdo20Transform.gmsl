@@ -1,0 +1,344 @@
+int RefactorCode_FindAssign(int varRoot,int iEnd)
+{
+   tCodeBlock codptr;
+   int        lastLev0;
+   int        icode;
+   int        addr;
+   int        opcd;
+   int        subcd;
+
+   codptr = Opcode.GetCode();
+   lastLev0 = 0;
+   for(icode = 0; icode >= 0; icode = Opcode.GetNext(codptr,icode,iEnd))
+   {
+      opcd = Opcode.GetOperation(codptr,icode,subcd);
+      if(opcd == OPC.LEV && subcd == 0) lastLev0 = icode;
+      else if(opcd == OPC.LDA && subcd == varRoot)
+      {
+         opcd = Opcode.GetOperation(codptr,icode+sizeof(OPC.LDA),subcd);
+         if(opcd == OPC.STR) return lastLev0;
+      }           
+   }
+   return 0;
+}
+
+int RefactorCode_ReplaceAssign(int iAssign, string replacement)
+{
+   tCodeBlock codptr;
+   int        nCode;
+   int        iEnd;
+   int        nDelete;
+   int        addr;
+
+   codptr = Opcode.GetCode();
+   nCode = Opcode.GetLength();
+   iEnd = Opcode.FindArgumentEnd(codptr,iAssign,nCode);
+   iAssign = iAssign + sizeof(OPC.LEV);
+   nDelete = iEnd - iAssign - sizeof(OPC.LSC) - sizeof(OPC.ARG);
+   if(nDelete > 0)
+   {
+      nCode = Opcode.DeleteCode(iAssign,nCode,nDelete);
+      Opcode.SetLength(nCode);
+   }
+   addr = Store.String(replacement);
+   Opcode.SetOperation(codptr,iAssign,OPC.LSC,addr);
+   return nDelete;
+}
+
+int __rdoConnection_Connect(int subRoot,int iStart,int iRefer)
+{
+   tCodeBlock codptr;
+   int        nCode;
+   int        opcd;
+   int        subcd;
+   int        icode;
+   int        iEnd;
+   int        localVar;
+   int        iAssign;
+   string     connect;
+   int        iPos;
+   int        semi;
+   int        nDelete;
+   int        addr;
+/*
+   Step 1: Verify that this is a local variable assignment to a property.
+*/
+   codptr = Opcode.GetCode();
+   nCode = Opcode.GetLength();
+   opcd = Opcode.GetOperation(codptr,iStart,localVar);
+   if(opcd != OPC.LDA) return 0;
+   icode = iRefer + sizeof(OPC.LLP);
+   opcd = Opcode.GetOperation(codptr,icode,subcd);
+   if(opcd != OPC.MEM) return 0;
+   icode = icode + sizeof(OPC.MEM);
+   opcd = Opcode.GetOperation(codptr,icode,subcd);
+   if(opcd != OPC.STR) return 0;
+/* 
+   Step 2: Look for a preceeding string assignent to this local variable.
+*/
+   iAssign = RefactorCode_FindAssign(localVar,iStart);
+   if(iAssign == 0) return 0;
+/*   
+   Step 3: Obtain the actual string value being assigned to the local variable.
+*/
+   iEnd = Opcode.FindArgumentEnd(codptr,iAssign,nCode);
+   connect = Opcode.GetString(iAssign,iEnd);
+   if(!connect) return 0;
+/*
+   Step 4: Remove the atrribute-values pairs that are not to be used.
+*/
+   iPos = Character.FindFirst(connect,0,"Driver=");
+   if(iPos)
+   {
+      iPos = iPos - 1;
+      semi = Character.FindFirst(connect,iPos,";");
+      if(semi)
+      {
+         connect = Character.Remove(connect,iPos,semi);
+      }
+   }
+   iPos = Character.FindFirst(connect,0,"DSN=");
+   if(iPos)
+   {
+      iPos = iPos - 1;
+      semi = Character.FindFirst(connect,iPos,";");
+      if(semi)
+      {
+         connect = Character.Remove(connect,iPos,semi);
+      }
+   }
+/*
+   Step 5: Replace the old string expression with the revised string.
+*/
+   nDelete = RefactorCode_ReplaceAssign(iAssign,connect);
+   iRefer = iRefer - nDelete;
+   return iRefer;
+}
+
+int __rdoConnection_CreateQuery(int subRoot,int iStart,int iRefer)
+{
+   tCodeBlock codptr;
+   int        nCode;
+   int        opcd;
+   int        subcd;
+   int        icode;
+   int        sqlString;
+   int        sqlVar;
+   string     query;
+   int        iAssign;
+   int        index;
+   int        iPos;
+   int        lPos;
+   int        nDelete;
+   int        createCommand;
+   int        iEnd;
+/*
+   Step 1: Make certain that this is a valid CreateQuery call and obtain the variable that contains the
+   SQL Query 
+*/
+   codptr = Opcode.GetCode();
+   nCode = Opcode.GetLength();
+   icode = iRefer;
+   opcd = Opcode.GetOperation(codptr,icode,subcd);
+   if(opcd != OPC.LLP) return 0;
+   icode = icode + sizeof(OPC.LLP);
+   opcd = Opcode.GetOperation(codptr,icode,subcd);
+   if(opcd != OPC.MEM) return 0;
+   icode = icode + sizeof(OPC.MEM);
+   opcd = Opcode.GetOperation(codptr,icode,subcd);
+   if(opcd != OPC.LEV) return 0;
+   sqlString = Opcode.FindArgumentEnd(codptr,icode,nCode);
+   opcd = Opcode.GetOperation(codptr,sqlString,subcd);
+   if(opcd != OPC.LEV) return 0;
+   sqlString = sqlString + sizeof(OPC.LEV);
+   opcd = Opcode.GetOperation(codptr,sqlString,sqlVar);
+   if(opcd != OPC.LDA) return 0;
+   sqlString = sqlString+sizeof(OPC.LDA);
+   opcd = Opcode.GetOperation(codptr,sqlString,subcd);
+   if(opcd != OPC.ARG) return 0;
+   sqlString = sqlString+sizeof(OPC.ARG);
+/* 
+   Step 2: Look for a preceeding string assignent to this local variable.
+*/
+   iAssign = RefactorCode_FindAssign(sqlVar,iRefer);
+   if(iAssign == 0) return 0;
+/*   
+   Step 3: Obtain the actual string value being assigned to the local variable.
+*/
+   iEnd = Opcode.FindArgumentEnd(codptr,iAssign,nCode);
+   query = Opcode.GetString(iAssign,iEnd);
+   if(!query) return 0;
+/*
+   Step 4: If there is a constant query string replace the ?'s with @index and
+   if necessary relace it in the code.
+*/ 
+   if(iAssign)
+   {
+      iPos = 0;
+      for(index = 0; index < 10; index = index + 1)
+      {
+         lPos = Character.FindFirst(query,iPos,"?");
+         if(!lPos) break;
+         iPos = iPos + lPos - 1;
+         query = Character.Remove(query,iPos,1);
+         query = Character.Insert(query,iPos,"@" + index);
+      }
+      if(iPos != 0)
+      {   
+         nDelete = RefactorCode_ReplaceAssign(iAssign,query);
+         iRefer = iRefer - nDelete;
+         sqlString = sqlString - nDelete;
+      }
+   }
+/*
+   Step 5: Replace the CreateQuery call with a CreateCommannd call.
+*/ 
+   iEnd = sqlString;
+   opcd = Opcode.GetOperation(codptr,iEnd,subcd);
+   if(opcd != OPC.CUF) return 0;
+   iEnd = iEnd + sizeof(OPC.CUF);
+   opcd = Opcode.GetOperation(codptr,iEnd,subcd);
+   if(opcd != OPC.REF) return 0;
+   iEnd = iEnd + sizeof(OPC.REF);
+   opcd = Opcode.GetOperation(codptr,iEnd,subcd);
+   if(opcd != OPC.ARG) return 0;
+   iEnd = iEnd + sizeof(OPC.ARG);
+   opcd = Opcode.GetOperation(codptr,iEnd,subcd);
+   if(opcd != OPC.CMD) return 0;
+   iEnd = iEnd + sizeof(OPC.CMD);
+   nDelete = iEnd - sqlString - sizeof(OPC.PAT);
+   createCommand = Symbol.FindIdentifier("RDO.DotNet.CreateCommand");
+   nCode = Opcode.DeleteCode(sqlString,nCode,6);
+   Opcode.SetLength(nCode);
+   Opcode.SetOperation(codptr,sqlString,OPC.PAT,createCommand);
+   return iRefer;
+}
+
+int rdoPreparedStatement_rdoParameters(int subRoot,int icode,int iRefer)
+{
+   int         nCode;
+   tCodeBlock  codptr;
+   int         iEnd;
+   int         opcd;
+   int         subc;
+   int         parameters;  
+
+   nCode = Opcode.GetLength();
+   codptr = Opcode.GetCode();
+   iEnd = Opcode.FindArgumentEnd(codptr,iRefer+7,nCode);
+   opcd = Opcode.GetOperation(codptr,iEnd,subc);
+   if(opcd != OPC.COL || subc != OPC.COL.Item) return 0;
+   parameters = Symbol.FindIdentifier("RDO.DotNet.Parameters");
+   nCode = Opcode.ExpandCode(iEnd,nCode,sizeof(OPC.PAT) - sizeof(OPC.COL));
+   Opcode.SetLength(nCode);
+   Opcode.SetOperation(codptr,iEnd,OPC.PAT,parameters);
+   return iRefer;
+}
+
+int rdoPreparedStatement_OpenResultset(int subRoot,int iStart,int iRefer)
+{
+   tCodeBlock codptr;
+   int        nCode;
+   int        opcd;
+   int        subcd;
+   int        icode;
+   int        varRoot;
+   tVariable  varInfo;
+/*
+   Step 1: Make certain the reference is present and obtain the root of the results
+   variable.
+*/
+   codptr = Opcode.GetCode();
+   nCode = Opcode.GetLength();
+   icode = iRefer;
+   opcd = Opcode.GetOperation(codptr,icode,subcd);
+   if(opcd != OPC.REF) return 0;
+   icode = icode + sizeof(OPC.REF);
+   opcd = Opcode.GetOperation(codptr,icode,subcd);
+   if(opcd != OPC.ARG) return 0;
+   icode = icode + sizeof(OPC.ARG);
+   opcd = Opcode.GetOperation(codptr,icode,subcd);
+   if(opcd != OPC.CMD) return 0;
+   opcd = Opcode.GetOperation(codptr,iStart,varRoot);
+   if(opcd != OPC.LDA) return 0;
+/*
+   Step 2: Set the DEADCODE property of the results variable to True to block its declaration.
+*/
+   varInfo = Store.DeltaVector(varRoot);
+   varInfo.DeadCode = True;
+/*
+   Step 3: Change the SET command to an using command and insert the type declaration code in it
+   for the results variable.
+*/
+   Opcode.SetOperation(codptr,icode,OPC.IFS,OPC.IFS.Using);
+   nCode = Opcode.ExpandCode(icode,nCode,sizeof(OPC.TYV));
+   Opcode.SetLength(nCode);
+   Opcode.SetOperation(codptr,icode,OPC.TYV,varRoot);
+   return iRefer;
+}
+
+int rdoPreparedStatement_Close(int subRoot,int icode,int iRefer)
+{
+   int         nCode;
+   tCodeBlock  codptr;
+
+   iRefer = Opcode.CommentOut(iRefer,OPC.CMT.Delete);
+   iRefer = iRefer + sizeof(OPC.CMT);
+   nCode = Opcode.GetLength();
+   codptr = Opcode.GetCode();
+   nCode = Opcode.ExpandCode(iRefer,nCode,sizeof(OPC.IFS));
+   Opcode.SetLength(nCode);
+   Opcode.SetOperation(codptr,iRefer,OPC.IFS,OPC.IFS.EndUsing);
+   return iRefer;
+}
+
+int __rdoResultset_EOF(int subRoot,int iStart,int iRefer)
+{
+   int        nCode;
+   tCodeBlock codptr;
+   int        opcd;
+   int        subcd;
+   int        icode;
+
+   nCode = Opcode.GetLength();
+   codptr = Opcode.GetCode();
+   icode = iRefer + sizeof(OPC.LLP);
+   opcd = Opcode.GetOperation(codptr,icode,subcd);
+   if(opcd != OPC.MEM) return 0;
+   icode = icode + sizeof(OPC.MEM);
+   opcd = Opcode.GetOperation(codptr,icode,subcd);
+   if(opcd != OPC.NOT) return 0; 
+   nCode = Opcode.DeleteCode(icode,nCode,sizeof(OPC.NOT));
+   Opcode.SetLength(nCode);
+   return iRefer;
+}
+
+int __rdoColumn_Value(int subRoot,int icode,int iRefer)
+{
+   int         nCode;
+   tCodeBlock  codptr;
+
+   nCode = Opcode.GetLength();
+   codptr = Opcode.GetCode();
+   nCode = Opcode.DeleteCode(iRefer,nCode,sizeof(OPC.LLP) + sizeof(OPC.MEM));
+   Opcode.SetLength(nCode);
+   return iRefer;
+}
+
+int __rdoResultset_rdoColumns(int subRoot,int icode,int iRefer)
+{
+   int         nCode;
+   tCodeBlock  codptr;
+
+   nCode = Opcode.GetLength();
+   codptr = Opcode.GetCode();
+   nCode = Opcode.DeleteCode(iRefer,nCode,sizeof(OPC.LLP) + sizeof(OPC.MEM));
+   Opcode.SetLength(nCode);
+   return iRefer;
+}
+
+int __rdoResultset_MoveNext(int subRoot,int icode,int iRefer)
+{
+   iRefer = Opcode.CommentOut(iRefer,OPC.CMT.Delete);
+   return iRefer;
+}

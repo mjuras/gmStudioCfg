@@ -1,0 +1,13 @@
+<RefactorLibrary>
+<Refactor id="[ActBar.ocx]">
+<Migrate id="ITools.Item.Index" status="ByVal" />
+<Migrate id="ITools.Remove.Index" status="ByVal" />
+<Migrate id="IComboList.Remove.Index" status="ByVal" />
+<Migrate id="IComboList.Item.Index" status="ByVal" />
+<Migrate id="IComboList.ItemData.Index" status="ByVal" />
+<Migrate id="IPages.Item.Index" status="ByVal" />
+<Migrate id="IPages.Remove.Index" status="ByVal" />
+<Migrate id="IBands.Item.Index" status="ByVal" />
+<Migrate id="IBands.Remove.Index" status="ByVal" />
+</Refactor>
+</RefactorLibrary>

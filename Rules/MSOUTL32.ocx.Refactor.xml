@@ -1,0 +1,13 @@
+<RefactorLibrary>
+<!--
+Description: MAP MS Outline Control to a Wrapper around WinForms.TreeView
+-->
+<Refactor id="[MSOUTL32.OCX]" >
+   <Migrate id="IOutlineCtrl.MouseIcon" migStatus="Delete" />
+   <Migrate id="IOutlineCtrl.AddItem.Index" type="Integer" />
+   <Migrate id="OutlineEvents.Click" migName="Click" />
+   <Migrate id="OutlineEvents.DblClick" migName="DoubleClick" />
+   <Migrate id="OutlineEvents.KeyDown" migName="KeyDown" netHandler="KeyEventHandler" netArgs="KeyEventArgs" />
+   <Migrate id="OutlineEvents.KeyDown.keyCode" migPattern="%1d = e.KeyValue" nPram="0" />
+</Refactor>
+</RefactorLibrary>

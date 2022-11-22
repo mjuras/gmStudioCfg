@@ -1,0 +1,162 @@
+<DescriptionFile>
+<!--
+Upgrade Winsock control to System.Net.Sockets
+-->
+<library id="MSWINSCK.OCX"
+         name="MSWinsockLib"
+         uuid="248DD890-BB45-11CF-9ABC-0080C7E7B78D"
+         netVersion="1.0"
+         source="MSWINSCK.OCX"
+         location="DoNotDeclare"
+         axLocation="DoNotDeclare"
+         migName="System.Net.Sockets"
+         type="Internal"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IMSWinsockControl"/>
+   <class id="DMSWinsockControlEvents"/>
+   <coclass id="Winsock"/>
+   <enumeration id="ProtocolConstants">
+      <entry id="sckTCPProtocol" value="0"/>
+      <entry id="sckUDPProtocol" value="1"/>
+   </enumeration>
+   <enumeration id="StateConstants">
+      <entry id="sckClosed" value="0"/>
+      <entry id="sckOpen" value="1"/>
+      <entry id="sckListening" value="2"/>
+      <entry id="sckConnectionPending" value="3"/>
+      <entry id="sckResolvingHost" value="4"/>
+      <entry id="sckHostResolved" value="5"/>
+      <entry id="sckConnecting" value="6"/>
+      <entry id="sckConnected" value="7"/>
+      <entry id="sckClosing" value="8"/>
+      <entry id="sckError" value="9"/>
+   </enumeration>
+   <enumeration id="ErrorConstants">
+      <entry id="sckInvalidPropertyValue" value="380"/>
+      <entry id="sckGetNotSupported" value="394"/>
+      <entry id="sckSetNotSupported" value="383"/>
+      <entry id="sckOutOfMemory" value="7"/>
+      <entry id="sckBadState" value="40006"/>
+      <entry id="sckInvalidArg" value="40014"/>
+      <entry id="sckSuccess" value="40017"/>
+      <entry id="sckUnsupported" value="40018"/>
+      <entry id="sckInvalidOp" value="40020"/>
+      <entry id="sckOutOfRange" value="40021"/>
+      <entry id="sckWrongProtocol" value="40026"/>
+      <entry id="sckOpCanceled" value="10004"/>
+      <entry id="sckInvalidArgument" value="10014"/>
+      <entry id="sckWouldBlock" value="10035"/>
+      <entry id="sckInProgress" value="10036"/>
+      <entry id="sckAlreadyComplete" value="10037"/>
+      <entry id="sckNotSocket" value="10038"/>
+      <entry id="sckMsgTooBig" value="10040"/>
+      <entry id="sckPortNotSupported" value="10043"/>
+      <entry id="sckAddressInUse" value="10048"/>
+      <entry id="sckAddressNotAvailable" value="10049"/>
+      <entry id="sckNetworkSubsystemFailed" value="10050"/>
+      <entry id="sckNetworkUnreachable" value="10051"/>
+      <entry id="sckNetReset" value="10052"/>
+      <entry id="sckConnectAborted" value="10053"/>
+      <entry id="sckConnectionReset" value="10054"/>
+      <entry id="sckNoBufferSpace" value="10055"/>
+      <entry id="sckAlreadyConnected" value="10056"/>
+      <entry id="sckNotConnected" value="10057"/>
+      <entry id="sckSocketShutdown" value="10058"/>
+      <entry id="sckTimedout" value="10060"/>
+      <entry id="sckConnectionRefused" value="10061"/>
+      <entry id="sckNotInitialized" value="10093"/>
+      <entry id="sckHostNotFound" value="11001"/>
+      <entry id="sckHostNotFoundTryAgain" value="11002"/>
+      <entry id="sckNonRecoverableError" value="11003"/>
+      <entry id="sckNoData" value="11004"/>
+   </enumeration>
+   <class id="IMSWinsockControl" parent="IDispatch" default="_RemoteHost">
+      <property id="Protocol" type="ProtocolConstants" status="InOut"/>
+      <property id="RemoteHostIP" type="String" status="Out"/>
+      <property id="LocalHostName" type="String" status="Out"/>
+      <property id="LocalIP" type="String" status="Out"/>
+      <property id="SocketHandle" type="Integer" status="Out"/>
+      <property id="_RemoteHost" type="String" status="InOut"/>
+      <property id="RemotePort" type="Integer" status="InOut"/>
+      <property id="LocalPort" type="Integer" status="InOut"/>
+      <property id="State" migName="CtlState" type="Short" status="Out"/>
+      <property id="BytesReceived" type="Integer" status="Out"/>
+      <property id="RemoteHost" type="String" status="InOut"/>
+      <method id="AboutBox" type="Void"/>
+      <method id="Connect" type="Void"
+            nPram="3"
+            migPattern="%1d.BeginConnect(%2o,%3o,new AsyncCallback(),%1d.Client)\c"
+      >
+         <argument id="RemoteHost" type="String" status="ByVal" optional="DEF.Overload" />
+         <argument id="RemotePort" type="Integer" status="ByVal" optional="DEF.Overload" />         
+      </method>
+      <method id="Listen" type="Void"/>
+      <method id="Accept" type="Void">
+         <argument id="requestID" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SendData" type="Void"
+            nPram="2"
+            migPattern="%1d.GetStream().BeginWrite(%2d, 0, %2d.Length, new AsyncCallback(), %1d.Client)\c"
+      >
+         <argument id="data" type="Variant" status="ByVal"/>
+      </method>
+      <method id="GetData" type="Void"
+            nPram="4"
+            migPattern="%1d.GetStream().Read(%2d,0,%4d)\c"
+      >
+         <argument id="data" type="byte[]" status="ByVal" />
+         <argument id="type" type="Integer" status="ByVal" />
+         <argument id="maxLen" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="PeekData" type="Void">
+         <argument id="data" type="Variant" status="ByRef"/>
+         <argument id="type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="maxLen" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Close" type="Void"/>
+      <method id="Bind" type="Void">
+         <argument id="LocalPort" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="LocalIP" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="DMSWinsockControlEvents" parent="None" default="DataArrival">
+      <event id="Error" netName="Error" netHandler="AxMSWinsockLib.DMSWinsockControlEvents_ErrorEventHandler" netArgs="AxMSWinsockLib.DMSWinsockControlEvents_ErrorEvent">
+         <argument id="number" type="Short" status="ByVal"/>
+         <argument id="description" type="String" status="Out"/>
+         <argument id="scode" type="Integer" status="ByVal"/>
+         <argument id="source" type="String" status="ByVal"/>
+         <argument id="helpFile" type="String" status="ByVal"/>
+         <argument id="helpContext" type="Integer" status="ByVal"/>
+         <argument id="cancelDisplay" type="Boolean" status="Out"/>
+      </event>
+      <event id="DataArrival" netName="DataArrival" netHandler="AxMSWinsockLib.DMSWinsockControlEvents_DataArrivalEventHandler" netArgs="AxMSWinsockLib.DMSWinsockControlEvents_DataArrivalEvent">
+         <argument id="bytesTotal" type="Integer" status="ByVal"/>
+      </event>
+      <event id="Connect" netName="ConnectEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="ConnectionRequest" netName="ConnectionRequest" netHandler="AxMSWinsockLib.DMSWinsockControlEvents_ConnectionRequestEventHandler" netArgs="AxMSWinsockLib.DMSWinsockControlEvents_ConnectionRequestEvent">
+         <argument id="requestID" type="Integer" status="ByVal"/>
+      </event>
+      <event id="Close" netName="CloseEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="SendProgress" netName="SendProgress" netHandler="AxMSWinsockLib.DMSWinsockControlEvents_SendProgressEventHandler" netArgs="AxMSWinsockLib.DMSWinsockControlEvents_SendProgressEvent">
+         <argument id="bytesSent" type="Integer" status="ByVal"/>
+         <argument id="bytesRemaining" type="Integer" status="ByVal"/>
+      </event>
+      <event id="SendComplete" netName="SendComplete" netHandler="System.EventHandler" netArgs="EventArgs"/>
+   </class>
+   <coclass id="Winsock" role="define" migName="TcpClient" >
+      <subclass id="IMSWinsockControl"/>
+      <subclass id="DMSWinsockControlEvents"/>
+   </coclass>
+</library>
+<Refactor id="[MSWINSCK.OCX]">
+<!--
+********************************************************** 
+*  Designer: no designer initialization 
+********************************************************** 
+-->
+   <migClass id="NetControl.Winsock" parent="Winsock" migName="TcpClient" >
+   </migClass>
+
+</Refactor>
+</DescriptionFile>

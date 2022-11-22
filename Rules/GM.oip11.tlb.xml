@@ -1,0 +1,3332 @@
+<DescriptionFile>
+<!--
+Upgrade OracleInprocServer with stronger typing to clean up call by names.
+-->
+<library id="oip11.tlb"
+         name="OracleInProcServer"
+         uuid="F2D4ED20-FFD3-101A-ADF2-04021C007002"
+         netVersion="5.0"
+         source="oip11.tlb"
+         location="%library%\Interop.OracleInProcServer.dll"
+         migName="OracleInProcServer"
+         type="LocalImport"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="_IOraBindContext"/>
+   <class id="_IOraBindVariable"/>
+   <class id="_IOraMStream"/>
+   <class id="_IOraStream"/>
+   <class id="_IExDispatch"/>
+   <class id="_IOraClient"/>
+   <class id="OraClient"/>
+   <class id="_IOraSession"/>
+   <class id="OraSession"/>
+   <class id="_IOraServer"/>
+   <class id="OraServer"/>
+   <class id="_IOraConnection"/>
+   <class id="OraConnection"/>
+   <class id="_IOraDatabase"/>
+   <class id="OraDatabase"/>
+   <class id="IOraAdvisorySink"/>
+   <class id="_IOraDynaset"/>
+   <class id="OraDynaset"/>
+   <class id="_IOraFields"/>
+   <class id="OraFields"/>
+   <class id="_IOraColl"/>
+   <class id="OraColl"/>
+   <class id="_IOraField"/>
+   <class id="OraField"/>
+   <class id="_IOraParameters"/>
+   <class id="OraParameters"/>
+   <class id="_IOraParameter"/>
+   <class id="OraParameter"/>
+   <class id="_IOraSqlStmt"/>
+   <class id="OraSqlStmt"/>
+   <class id="_IOraParamArray"/>
+   <class id="OraParamArray"/>
+   <class id="_IOraBlob"/>
+   <class id="OraBlob"/>
+   <class id="_IOraClob"/>
+   <class id="OraClob"/>
+   <class id="_IOraBfile"/>
+   <class id="OraBfile"/>
+   <class id="_IOraAQ"/>
+   <class id="OraAQ"/>
+   <class id="_IOraAQMsg"/>
+   <class id="OraAQMsg"/>
+   <class id="_IOraAQAgent"/>
+   <class id="OraAQAgent"/>
+   <class id="_IOraMetaData"/>
+   <class id="OraMetaData"/>
+   <class id="_IOraMDAttribute"/>
+   <class id="OraMDAttribute"/>
+   <class id="_IOraObject"/>
+   <class id="OraObject"/>
+   <class id="_IOraRef"/>
+   <class id="OraRef"/>
+   <class id="_IOraAttribute"/>
+   <class id="OraAttribute"/>
+   <class id="_IOraCollection"/>
+   <class id="OraCollection"/>
+   <class id="_IOraElement"/>
+   <class id="OraElement"/>
+   <class id="_IOraNumber"/>
+   <class id="OraNumber"/>
+   <class id="_IOraIntervalDS"/>
+   <class id="OraIntervalDS"/>
+   <class id="_IOraIntervalYM"/>
+   <class id="OraIntervalYM"/>
+   <class id="_IOraTimeStamp"/>
+   <class id="OraTimeStamp"/>
+   <class id="_IOraTimeStampTZ"/>
+   <class id="OraTimeStampTZ"/>
+   <class id="_ISnapshotID"/>
+   <class id="SnapshotID"/>
+   <class id="_IOraSubscriptions"/>
+   <class id="OraSubscriptions"/>
+   <class id="_IOraSubscription"/>
+   <class id="OraSubscription"/>
+   <coclass id="OraServerClass"/>
+   <coclass id="OraSessionClass"/>
+   <enumeration id="editOption">
+      <entry id="ORADATA_EDITNONE" value="0"/>
+      <entry id="ORADATA_EDITMODE" value="1"/>
+      <entry id="ORADATA_EDITADD" value="2"/>
+   </enumeration>
+   <enumeration id="vbTypes">
+      <entry id="ORADB_BOOLEAN" value="1"/>
+      <entry id="ORADB_BYTE" value="2"/>
+      <entry id="ORADB_INTEGER" value="3"/>
+      <entry id="ORADB_LONG" value="4"/>
+      <entry id="ORADB_CURRENCY" value="5"/>
+      <entry id="ORADB_SINGLE" value="6"/>
+      <entry id="ORADB_DOUBLE" value="7"/>
+      <entry id="ORADB_DATE" value="8"/>
+      <entry id="ORADB_OBJECT" value="9"/>
+      <entry id="ORADB_TEXT" value="10"/>
+      <entry id="ORADB_LONGBINARY" value="11"/>
+      <entry id="ORADB_MEMO" value="12"/>
+   </enumeration>
+   <enumeration id="paramMode">
+      <entry id="ORAPARM_INPUT" value="1"/>
+      <entry id="ORAPARM_OUTPUT" value="2"/>
+      <entry id="ORAPARM_BOTH" value="3"/>
+   </enumeration>
+   <enumeration id="paramStatus">
+      <entry id="ORAPSTAT_INPUT" value="1"/>
+      <entry id="ORAPSTAT_OUTPUT" value="2"/>
+      <entry id="ORAPSTAT_AUTOENABLE" value="3"/>
+      <entry id="ORAPSTAT_ENABLE" value="8"/>
+   </enumeration>
+   <enumeration id="dynOption">
+      <entry id="ORADYN_DEFAULT" value="0"/>
+      <entry id="ORADYN_NO_AUTOBIND" value="1"/>
+      <entry id="ORADYN_NO_BLANKSTRIP" value="2"/>
+      <entry id="ORADYN_READONLY" value="4"/>
+      <entry id="ORADYN_NOCACHE" value="8"/>
+      <entry id="ORADYN_ORAMODE" value="16"/>
+      <entry id="ORADYN_NO_REFETCH" value="32"/>
+      <entry id="ORADYN_NO_MOVEFIRST" value="64"/>
+      <entry id="ORADYN_DIRTY_WRITE" value="128"/>
+   </enumeration>
+   <enumeration id="dbOption">
+      <entry id="ORADB_DEFAULT" value="0"/>
+      <entry id="ORADB_ORAMODE" value="1"/>
+      <entry id="ORADB_NOWAIT" value="2"/>
+      <entry id="ORADB_NO_REFETCH" value="4"/>
+      <entry id="ORADB_NONBLK" value="8"/>
+      <entry id="ORADB_ENLIST_IN_MTS" value="16"/>
+      <entry id="ORADB_ENLIST_FOR_CALLBACK" value="32"/>
+   </enumeration>
+   <enumeration id="serverType">
+      <entry id="ORATYPE_VARCHAR2" value="1"/>
+      <entry id="ORATYPE_NUMBER" value="2"/>
+      <entry id="ORATYPE_SINT" value="3"/>
+      <entry id="ORATYPE_FLOAT" value="4"/>
+      <entry id="ORATYPE_STRING" value="5"/>
+      <entry id="ORATYPE_DECIMAL" value="7"/>
+      <entry id="ORATYPE_LONG" value="8"/>
+      <entry id="ORATYPE_VARCHAR" value="9"/>
+      <entry id="ORATYPE_DATE" value="12"/>
+      <entry id="ORATYPE_REAL" value="21"/>
+      <entry id="ORATYPE_DOUBLE" value="22"/>
+      <entry id="ORATYPE_UNSIGNED8" value="23"/>
+      <entry id="ORATYPE_RAW" value="23"/>
+      <entry id="ORATYPE_LONGRAW" value="24"/>
+      <entry id="ORATYPE_UNSIGNED16" value="25"/>
+      <entry id="ORATYPE_UNSIGNED32" value="26"/>
+      <entry id="ORATYPE_SIGNED8" value="27"/>
+      <entry id="ORATYPE_SIGNED16" value="28"/>
+      <entry id="ORATYPE_SIGNED32" value="29"/>
+      <entry id="ORATYPE_PTR" value="32"/>
+      <entry id="ORATYPE_OPAQUE" value="58"/>
+      <entry id="ORATYPE_UINT" value="68"/>
+      <entry id="ORATYPE_CHAR" value="96"/>
+      <entry id="ORATYPE_CHARZ" value="97"/>
+      <entry id="ORATYPE_BFLOAT" value="100"/>
+      <entry id="ORATYPE_BDOUBLE" value="101"/>
+      <entry id="ORATYPE_CURSOR" value="102"/>
+      <entry id="ORATYPE_ROWID" value="104"/>
+      <entry id="ORATYPE_MLSLABEL" value="105"/>
+      <entry id="ORATYPE_OBJECT" value="108"/>
+      <entry id="ORATYPE_REF" value="110"/>
+      <entry id="ORATYPE_CLOB" value="112"/>
+      <entry id="ORATYPE_BLOB" value="113"/>
+      <entry id="ORATYPE_BFILE" value="114"/>
+      <entry id="ORATYPE_CFILE" value="115"/>
+      <entry id="ORATYPE_RSLT" value="116"/>
+      <entry id="ORATYPE_NAMEDCOLLECTION" value="122"/>
+      <entry id="ORATYPE_TIMESTAMP" value="187"/>
+      <entry id="ORATYPE_TIMESTAMPTZ" value="188"/>
+      <entry id="ORATYPE_INTERVALDS" value="190"/>
+      <entry id="ORATYPE_INTERVALYM" value="189"/>
+      <entry id="ORATYPE_SYSFIRST" value="228"/>
+      <entry id="ORATYPE_TIMESTAMPLTZ" value="232"/>
+      <entry id="ORATYPE_SYSLAST" value="235"/>
+      <entry id="ORATYPE_OCTET" value="245"/>
+      <entry id="ORATYPE_SMALLINT" value="246"/>
+      <entry id="ORATYPE_VARRAY" value="247"/>
+      <entry id="ORATYPE_TABLE" value="248"/>
+      <entry id="ORATYPE_OTMLAST" value="320"/>
+      <entry id="ORATYPE_RAW_BIN" value="2000"/>
+      <entry id="ORATYPE_RAW_HEX" value="5"/>
+   </enumeration>
+   <enumeration id="sqlstmtObjOption">
+      <entry id="ORASQL_DEFAULT" value="0"/>
+      <entry id="ORASQL_NO_AUTOBIND" value="1"/>
+      <entry id="ORASQL_FAILEXEC" value="2"/>
+      <entry id="ORASQL_NONBLK" value="4"/>
+   </enumeration>
+   <enumeration id="lobStatus">
+      <entry id="ORALOB_SUCCESS" value="0"/>
+      <entry id="ORALOB_NEED_DATA" value="99"/>
+      <entry id="ORALOB_NODATA" value="100"/>
+   </enumeration>
+   <enumeration id="lobPieceType">
+      <entry id="ORALOB_ONE_PIECE" value="0"/>
+      <entry id="ORALOB_FIRST_PIECE" value="1"/>
+      <entry id="ORALOB_NEXT_PIECE" value="2"/>
+      <entry id="ORALOB_LAST_PIECE" value="3"/>
+   </enumeration>
+   <enumeration id="refEditOption">
+      <entry id="ORAREF_NO_LOCK" value="1"/>
+      <entry id="ORAREF_EXCLUSIVE_LOCK" value="2"/>
+      <entry id="ORAREF_NOWAIT_LOCK" value="3"/>
+   </enumeration>
+   <enumeration id="refPinOption">
+      <entry id="ORAREF_READ_ANY" value="3"/>
+      <entry id="ORAREF_READ_RECENT" value="4"/>
+      <entry id="ORAREF_READ_LATEST" value="5"/>
+   </enumeration>
+   <enumeration id="metadataType">
+      <entry id="ORAMD_TABLE" value="1"/>
+      <entry id="ORAMD_VIEW" value="2"/>
+      <entry id="ORAMD_COLUMN" value="3"/>
+      <entry id="ORAMD_COLUMN_LIST" value="4"/>
+      <entry id="ORAMD_TYPE" value="5"/>
+      <entry id="ORAMD_TYPE_ATTR" value="6"/>
+      <entry id="ORAMD_TYPE_ATTR_LIST" value="7"/>
+      <entry id="ORAMD_TYPE_METHOD" value="8"/>
+      <entry id="ORAMD_TYPE_METHOD_LIST" value="9"/>
+      <entry id="ORAMD_TYPE_ARG" value="10"/>
+      <entry id="ORAMD_TYPE_RESULT" value="11"/>
+      <entry id="ORAMD_PROC" value="12"/>
+      <entry id="ORAMD_FUNC" value="13"/>
+      <entry id="ORAMD_ARG" value="14"/>
+      <entry id="ORAMD_ARG_LIST" value="15"/>
+      <entry id="ORAMD_PACKAGE" value="16"/>
+      <entry id="ORAMD_SUBPROG_LIST" value="17"/>
+      <entry id="ORAMD_COLLECTION" value="18"/>
+      <entry id="ORAMD_SYNONYM" value="19"/>
+      <entry id="ORAMD_SEQENCE" value="20"/>
+      <entry id="ORAMD_SCHEMA" value="21"/>
+      <entry id="ORAMD_OBJECT_LIST" value="22"/>
+      <entry id="ORAMD_SCHEMA_LIST" value="23"/>
+      <entry id="ORAMD_DATABASE" value="24"/>
+   </enumeration>
+   <enumeration id="lMesgFilter">
+      <entry id="ORAAQ_ANY" value="0"/>
+      <entry id="ORAAQ_CONSUMER" value="1"/>
+      <entry id="ORAAQ_MSGID" value="2"/>
+   </enumeration>
+   <enumeration id="asynchStatus">
+      <entry id="ORASQL_STILL_EXECUTING" value="0xfffff3cd"/>
+      <entry id="ORASQL_SUCCESS" value="0"/>
+   </enumeration>
+   <enumeration id="FailoverType">
+      <entry id="OO4O_FO_NONE" value="0"/>
+      <entry id="OO4O_FO_SESSION" value="2"/>
+      <entry id="OO4O_FO_SELECT" value="4"/>
+   </enumeration>
+   <enumeration id="FailoverEvent">
+      <entry id="OO4O_FO_BEGIN" value="8"/>
+      <entry id="OO4O_FO_END" value="1"/>
+      <entry id="OO4O_FO_ABORT" value="2"/>
+      <entry id="OO4O_FO_ERROR" value="16"/>
+      <entry id="OO4O_FO_REAUTH" value="4"/>
+   </enumeration>
+   <enumeration id="FailoverReturnCode">
+      <entry id="OO4O_FO_RETRY" value="25410"/>
+   </enumeration>
+   <enumeration id="AQVisibility">
+      <entry id="ORAAQ_ENQ_IMMEDIATE" value="1"/>
+      <entry id="ORAAQ_ENQ_ON_COMMIT" value="2"/>
+   </enumeration>
+   <enumeration id="AQMessageID">
+      <entry id="ORAAQ_NULL_MSGID" value="0"/>
+   </enumeration>
+   <enumeration id="AQLockingStates">
+      <entry id="ORAAQ_DQ_BROWSE" value="1"/>
+      <entry id="ORAAQ_DQ_LOCKED" value="2"/>
+      <entry id="ORAAQ_DQ_REMOVE" value="3"/>
+   </enumeration>
+   <enumeration id="AQNavigation">
+      <entry id="ORAAQ_DQ_FIRST_MSG" value="1"/>
+      <entry id="ORAAQ_DQ_NEXT_TRANS" value="2"/>
+      <entry id="ORAAQ_DQ_NEXT_MSG" value="3"/>
+   </enumeration>
+   <enumeration id="AQWait">
+      <entry id="ORAAQ_DQ_WAIT_FOREVER" value="0xffffffff"/>
+      <entry id="ORAAQ_DQ_NOWAIT" value="0"/>
+   </enumeration>
+   <enumeration id="AQDelay">
+      <entry id="ORAAQ_MSG_NO_DELAY" value="0"/>
+   </enumeration>
+   <enumeration id="AQPriority">
+      <entry id="ORAAQ_MSG_PRIORITY_NORMAL" value="0"/>
+      <entry id="ORAAQ_MSG_PRIORITY_HIGH" value="0xfffffff6"/>
+      <entry id="ORAAQ_MSG_PRIORITY_LOW" value="10"/>
+   </enumeration>
+   <enumeration id="AQMsgProps">
+      <entry id="ORAAQ_MSG_NO_EXPIRE" value="0"/>
+      <entry id="ORAAQ_MAX_AGENTS" value="10"/>
+   </enumeration>
+   <enumeration id="XMLMetaTypes">
+      <entry id="ORAXML_NO_METADATA" value="0"/>
+      <entry id="ORAXML_XMLSCHEMA" value="1"/>
+      <entry id="ORAXML_DTD" value="2"/>
+   </enumeration>
+   <class id="_IOraBindContext" parent="IUnknown" creatable="off">
+      <method id="DataChangeRequest" type="Void">
+         <argument id="dwVid" type="Integer" status="ByVal"/>
+         <argument id="newval" type="Variant" status="ByVal"/>
+      </method>
+      <method id="DataChange" type="Void">
+         <argument id="dwVid" type="Integer" status="ByVal"/>
+         <argument id="newval" type="Variant" status="ByVal"/>
+      </method>
+      <method id="RequestAttach" type="Void">
+         <argument id="pVar" type="_IOraBindVariable" status="ByVal"/>
+         <argument id="minlen" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Detach" type="Void">
+         <argument id="dwVid" type="Integer" status="ByVal"/>
+      </method>
+      <method id="IsContextCurrent" type="Void">
+         <argument id="dwVid" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_IOraBindVariable" parent="IUnknown" creatable="off">
+      <method id="GetPersistentPointer" type="Void">
+         <argument id="pvVal" type="Variant" status="Out"/>
+      </method>
+      <method id="SetValue" type="Void">
+         <argument id="var" type="Variant" status="ByVal"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetValue" type="Void">
+         <argument id="pvVal" type="Variant" status="Out"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetBindIdentifier" type="Void">
+         <argument id="bstr" type="String" status="ByVal"/>
+      </method>
+      <method id="GetBindIdentifier" type="String"/>
+      <method id="BindToContext" type="Void">
+         <argument id="pContext" type="_IOraBindContext" status="ByVal"/>
+         <argument id="dwVid" type="Integer" status="ByVal"/>
+         <argument id="pdwCookie" type="Integer" status="Out"/>
+      </method>
+      <method id="Unbind" type="Void">
+         <argument id="dwCookie" type="Integer" status="ByVal"/>
+      </method>
+      <method id="IsInputVariable" type="Void"/>
+      <method id="IsOutputVariable" type="Void"/>
+      <method id="IsEnabled" type="Void"/>
+      <method id="GetDimension" type="Integer"/>
+      <method id="SetDimension" type="Void">
+         <argument id="size" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetSize" type="Integer"/>
+      <method id="GetExtVarType" type="Short"/>
+   </class>
+   <class id="_IOraMStream" parent="IUnknown" creatable="off">
+      <method id="Read" type="Void">
+         <argument id="pv" type="Void" status="ByRef"/>
+         <argument id="cb" type="Integer" status="ByVal"/>
+         <argument id="pcbRead" type="Integer" status="ByRef"/>
+      </method>
+      <method id="Write" type="Void">
+         <argument id="pv" type="Void" status="ByRef"/>
+         <argument id="cb" type="Integer" status="ByVal"/>
+         <argument id="pcbWritten" type="Integer" status="ByRef"/>
+      </method>
+      <method id="Seek" type="Void">
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="whence" type="Integer" status="ByVal"/>
+         <argument id="newpos" type="Integer" status="ByRef"/>
+      </method>
+      <method id="SetSize" type="Void">
+         <argument id="newsize" type="Integer" status="ByVal"/>
+      </method>
+      <method id="CopyTo" type="Void">
+         <argument id="pstm" type="_IOraStream" status="ByVal"/>
+         <argument id="cb" type="Integer" status="ByVal"/>
+         <argument id="pcbRead" type="Integer" status="ByRef"/>
+         <argument id="pcbWritten" type="Integer" status="ByRef"/>
+      </method>
+      <method id="CopyFrom" type="Void">
+         <argument id="pstm" type="_IOraStream" status="ByVal"/>
+         <argument id="cb" type="Integer" status="ByVal"/>
+         <argument id="pcbRead" type="Integer" status="ByRef"/>
+         <argument id="pcbWritten" type="Integer" status="ByRef"/>
+      </method>
+   </class>
+   <class id="_IOraStream" parent="IUnknown" creatable="off">
+      <method id="Read" type="Void">
+         <argument id="pv" type="Void" status="ByRef"/>
+         <argument id="cb" type="Integer" status="ByVal"/>
+         <argument id="pcbRead" type="Integer" status="ByRef"/>
+      </method>
+      <method id="Write" type="Void">
+         <argument id="pv" type="Void" status="ByRef"/>
+         <argument id="cb" type="Integer" status="ByVal"/>
+         <argument id="pcbWritten" type="Integer" status="ByRef"/>
+      </method>
+      <method id="Seek" type="Void">
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="whence" type="Integer" status="ByVal"/>
+         <argument id="newpos" type="Integer" status="ByRef"/>
+      </method>
+   </class>
+   <class id="_IExDispatch" parent="IDispatch" creatable="off">
+      <property id="ResultCode" type="Void" status="Out"/>
+      <property id="ResultText" type="String" status="Out"/>
+      <method id="Reset" type="Void"/>
+      <method id="LookupScodeText" type="String">
+         <argument id="hr" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_IOraClient" parent="IUnknown" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <property id="Sessions" type="stdole.IDispatch" status="Out"/>
+      <property id="CreateDefaultSession" type="stdole.IDispatch" status="Out"/>
+      <accessor id="CreateSession" type="stdole.IDispatch">
+         <argument id="sessname" type="String" status="ByVal"/>
+      </accessor>
+   </class>
+   <class id="OraClient" parent="None" default="Sessions" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <property id="Sessions" type="stdole.IDispatch" status="Out"/>
+      <property id="CreateDefaultSession" type="stdole.IDispatch" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <accessor id="CreateSession" type="stdole.IDispatch">
+         <argument id="sessname" type="String" status="ByVal"/>
+      </accessor>
+   </class>
+   <class id="_IOraSession" parent="IUnknown" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <property id="Client" type="stdole.IDispatch" status="Out"/>
+      <property id="Connections" type="stdole.IDispatch" status="Out"/>
+      <property id="LastServerErr" type="Integer" status="Out"/>
+      <property id="LastServerErrText" type="String" status="Out"/>
+      <property id="OipVersionNumber" type="String" status="Out"/>
+      <property id="DbPoolMaxSize" type="Integer" status="Out"/>
+      <property id="DbPoolCurrentSize" type="Integer" status="Out"/>
+      <property id="DbPoolInitialSize" type="Integer" status="Out"/>
+      <accessor id="OpenDatabase" type="stdole.IDispatch">
+         <argument id="dbname" type="String" status="ByVal"/>
+         <argument id="connect" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="BeginTrans" type="Void"/>
+      <method id="CommitTrans" type="Void"/>
+      <method id="Rollback" type="Void"/>
+      <method id="LastServerErrReset" type="Void"/>
+      <method id="ResetTrans" type="Void"/>
+      <accessor id="CreateNamedSession" type="stdole.IDispatch">
+         <argument id="sname" type="String" status="ByVal"/>
+      </accessor>
+      <accessor id="ConnectSession" type="stdole.IDispatch">
+         <argument id="sname" type="String" status="ByVal"/>
+      </accessor>
+      <method id="MemoryManager" type="Void">
+         <argument id="MemFlags" type="Integer" status="ByVal"/>
+         <argument id="LogFlags" type="Integer" status="ByVal"/>
+      </method>
+      <accessor id="OpenDatabaseDC" type="stdole.IDispatch">
+         <argument id="dbname" type="String" status="ByVal"/>
+         <argument id="connect" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="CreateDatabase" type="stdole.IDispatch">
+         <argument id="dbname" type="String" status="ByVal"/>
+         <argument id="connect" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="CreateDatabasePool" type="Void">
+         <argument id="initialSize" type="Integer" status="ByVal"/>
+         <argument id="maxSize" type="Integer" status="ByVal"/>
+         <argument id="timeOutInterval" type="Integer" status="ByVal"/>
+         <argument id="dbname" type="String" status="ByVal"/>
+         <argument id="connect" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </method>
+      <accessor id="GetDatabaseFromPool" type="stdole.IDispatch">
+         <argument id="maxWaitTime" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="AddDatabaseToPool" type="Void">
+         <argument id="dbname" type="String" status="ByVal"/>
+         <argument id="connectString" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </method>
+      <method id="DestroyDatabasePool" type="Void"/>
+      <method id="CreateOraNumber" type="stdole.IDispatch">
+         <argument id="initvalue" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateOraIntervalDS" type="stdole.IDispatch">
+         <argument id="initvalue" type="Variant" status="ByVal"/>
+      </method>
+      <method id="CreateOraIntervalYM" type="stdole.IDispatch">
+         <argument id="initvalue" type="Variant" status="ByVal"/>
+      </method>
+      <method id="CreateOraTimeStamp" type="stdole.IDispatch">
+         <argument id="initvalue" type="Variant" status="ByVal"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateOraTimeStampTZ" type="stdole.IDispatch">
+         <argument id="initvalue" type="Variant" status="ByVal"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ChangePassword" type="Void">
+         <argument id="dbname" type="String" status="ByVal"/>
+         <argument id="username" type="String" status="ByVal"/>
+         <argument id="oldpassword" type="String" status="ByVal"/>
+         <argument id="newpassword" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="OraSession" parent="None" default="Connections" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <property id="Client" type="stdole.IDispatch" status="Out"/>
+      <property id="Connections" type="stdole.IDispatch" status="Out"/>
+      <property id="LastServerErr" type="Integer" status="Out"/>
+      <property id="LastServerErrText" type="String" status="Out"/>
+      <property id="OipVersionNumber" type="String" status="Out"/>
+      <property id="DbPoolMaxSize" type="Integer" status="Out"/>
+      <property id="DbPoolCurrentSize" type="Integer" status="Out"/>
+      <property id="DbPoolInitialSize" type="Integer" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <accessor id="OpenDatabase" type="stdole.IDispatch">
+         <argument id="dbname" type="String" status="ByVal"/>
+         <argument id="connect" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="DbOpenDatabase" type="OraDatabase">
+         <argument id="dbname" type="String" status="ByVal"/>
+         <argument id="connect" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </method>
+      <method id="BeginTrans" type="Void"/>
+      <method id="CommitTrans" type="Void"/>
+      <method id="Rollback" type="Void"/>
+      <method id="LastServerErrReset" type="Void"/>
+      <method id="ResetTrans" type="Void"/>
+      <accessor id="CreateNamedSession" type="stdole.IDispatch">
+         <argument id="sname" type="String" status="ByVal"/>
+      </accessor>
+      <accessor id="ConnectSession" type="stdole.IDispatch">
+         <argument id="sname" type="String" status="ByVal"/>
+      </accessor>
+      <method id="MemoryManager" type="Void">
+         <argument id="MemFlags" type="Integer" status="ByVal"/>
+         <argument id="LogFlags" type="Integer" status="ByVal"/>
+      </method>
+      <accessor id="OpenDatabaseDC" type="stdole.IDispatch">
+         <argument id="dbname" type="String" status="ByVal"/>
+         <argument id="connect" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="CreateDatabase" type="stdole.IDispatch">
+         <argument id="dbname" type="String" status="ByVal"/>
+         <argument id="connect" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="CreateDatabasePool" type="Void">
+         <argument id="initialSize" type="Integer" status="ByVal"/>
+         <argument id="maxSize" type="Integer" status="ByVal"/>
+         <argument id="timeOutInterval" type="Integer" status="ByVal"/>
+         <argument id="dbname" type="String" status="ByVal"/>
+         <argument id="connect" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </method>
+      <accessor id="GetDatabaseFromPool" type="stdole.IDispatch">
+         <argument id="maxWaitTime" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="AddDatabaseToPool" type="Void">
+         <argument id="dbname" type="String" status="ByVal"/>
+         <argument id="connectString" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </method>
+      <method id="DestroyDatabasePool" type="Void"/>
+      <method id="CreateOraNumber" type="stdole.IDispatch">
+         <argument id="initvalue" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateOraIntervalDS" type="stdole.IDispatch">
+         <argument id="initvalue" type="Variant" status="ByVal"/>
+      </method>
+      <method id="CreateOraIntervalYM" type="stdole.IDispatch">
+         <argument id="initvalue" type="Variant" status="ByVal"/>
+      </method>
+      <method id="CreateOraTimeStamp" type="stdole.IDispatch">
+         <argument id="initvalue" type="Variant" status="ByVal"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateOraTimeStampTZ" type="stdole.IDispatch">
+         <argument id="initvalue" type="Variant" status="ByVal"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ChangePassword" type="Void">
+         <argument id="dbname" type="String" status="ByVal"/>
+         <argument id="username" type="String" status="ByVal"/>
+         <argument id="oldpassword" type="String" status="ByVal"/>
+         <argument id="newpassword" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_IOraServer" parent="IUnknown" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <property id="Session" type="stdole.IDispatch" status="Out"/>
+      <property id="Databases" type="stdole.IDispatch" status="Out"/>
+      <method id="Open" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+      </method>
+      <method id="Close" type="Void"/>
+      <accessor id="CreateDatabase" type="stdole.IDispatch">
+         <argument id="connect" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="OpenDatabase" type="stdole.IDispatch">
+         <argument id="connect" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="ChangePassword" type="Void">
+         <argument id="username" type="String" status="ByVal"/>
+         <argument id="oldpassword" type="String" status="ByVal"/>
+         <argument id="newpassword" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="OraServer" parent="None" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <property id="Session" type="stdole.IDispatch" status="Out"/>
+      <property id="Databases" type="stdole.IDispatch" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Open" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+      </method>
+      <method id="Close" type="Void"/>
+      <accessor id="CreateDatabase" type="stdole.IDispatch">
+         <argument id="connect" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="OpenDatabase" type="stdole.IDispatch">
+         <argument id="connect" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="ChangePassword" type="Void">
+         <argument id="username" type="String" status="ByVal"/>
+         <argument id="oldpassword" type="String" status="ByVal"/>
+         <argument id="newpassword" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_IOraConnection" parent="IUnknown" creatable="off">
+      <property id="connect" type="String" status="Out"/>
+      <property id="DatabaseName" type="String" status="Out"/>
+      <property id="Session" type="stdole.IDispatch" status="Out"/>
+      <property id="ConnectionOK" type="Boolean" status="Out"/>
+      <method id="CommitTrans" type="Void"/>
+      <method id="Rollback" type="Void"/>
+      <method id="BeginTrans" type="Void"/>
+      <method id="ResetTrans" type="Void"/>
+   </class>
+   <class id="OraConnection" parent="None" creatable="off">
+      <property id="connect" type="String" status="Out"/>
+      <property id="DatabaseName" type="String" status="Out"/>
+      <property id="Session" type="stdole.IDispatch" status="Out"/>
+      <property id="ConnectionOK" type="Boolean" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="CommitTrans" type="Void"/>
+      <method id="Rollback" type="Void"/>
+      <method id="BeginTrans" type="Void"/>
+      <method id="ResetTrans" type="Void"/>
+   </class>
+   <class id="_IOraDatabase" parent="IUnknown" creatable="off">
+      <property id="DatabaseName" type="String" status="Out"/>
+      <property id="connect" type="String" status="Out"/>
+      <property id="options" type="Integer" status="Out"/>
+      <property id="Session" type="stdole.IDispatch" status="Out"/>
+      <property id="Connection" type="stdole.IDispatch" status="Out"/>
+      <property id="Parameters" type="OraParameters" status="Out"/>
+      <property id="LastServerErr" type="Integer" status="Out"/>
+      <property id="LastServerErrText" type="String" status="Out"/>
+      <property id="LastServerErrPos" type="Integer" status="Out"/>
+      <property id="RDBMSVersion" type="String" status="Out"/>
+      <property id="Server" type="stdole.IDispatch" status="Out"/>
+      <property id="AutoCommit" type="Boolean" status="InOut"/>
+      <property id="CacheMaximumSize" type="Integer" status="InOut"/>
+      <property id="CacheOptimalSize" type="Integer" status="InOut"/>
+      <property id="ConnectionOK" type="Boolean" status="Out"/>
+      <property id="Subscriptions" type="stdole.IDispatch" status="Out"/>
+      <accessor id="CreateDynaset" type="stdole.IDispatch">
+         <argument id="sqlStmt" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+         <argument id="snapshot" type="Variant" status="ByRef" optional="Default"/>
+      </accessor>
+      <method id="ExecuteSQL" type="Integer">
+         <argument id="sqlStmt" type="String" status="ByVal"/>
+      </method>
+      <method id="LastServerErrReset" type="Void"/>
+      <accessor id="CreateCustomDynaset" type="stdole.IDispatch">
+         <argument id="sqlStmt" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+         <argument id="sliceSize" type="Integer" status="ByVal"/>
+         <argument id="perBlock" type="Integer" status="ByVal"/>
+         <argument id="blocks" type="Integer" status="ByVal"/>
+         <argument id="FetchLimit" type="Integer" status="ByVal"/>
+         <argument id="FetchSize" type="Integer" status="ByVal"/>
+         <argument id="snapshot" type="Variant" status="ByRef" optional="Default"/>
+      </accessor>
+      <accessor id="CreateSql" type="stdole.IDispatch">
+         <argument id="sqlStmt" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="Close" type="Void"/>
+      <accessor id="CreatePlsqlDynaset" type="stdole.IDispatch">
+         <argument id="sqlStmt" type="String" status="ByVal"/>
+         <argument id="CursorName" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="CreatePlsqlCustomDynaset" type="stdole.IDispatch">
+         <argument id="sqlStmt" type="String" status="ByVal"/>
+         <argument id="CursorName" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+         <argument id="sliceSize" type="Integer" status="ByVal"/>
+         <argument id="perBlock" type="Integer" status="ByVal"/>
+         <argument id="blocks" type="Integer" status="ByVal"/>
+         <argument id="FetchLimit" type="Integer" status="ByVal"/>
+         <argument id="FetchSize" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="CreateAQ" type="stdole.IDispatch">
+         <argument id="QueueName" type="String" status="ByVal"/>
+      </accessor>
+      <method id="CreateOraObject" type="stdole.IDispatch">
+         <argument id="type_name" type="String" status="ByVal"/>
+         <argument id="table_name" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Describe" type="stdole.IDispatch">
+         <argument id="SchemaObjectName" type="String" status="ByVal"/>
+      </method>
+      <method id="RemoveFromPool" type="Void"/>
+      <method id="BeginTrans" type="Void"/>
+      <method id="CommitTrans" type="Void"/>
+      <method id="Rollback" type="Void"/>
+      <method id="MonitorForFailover" type="Void">
+         <argument id="FOSink" type="Object" status="ByVal"/>
+         <argument id="FOCtx" type="Variant" status="ByVal"/>
+      </method>
+      <method id="CreateTempBlob" type="stdole.IDispatch">
+         <argument id="usecache" type="Boolean" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateTempClob" type="stdole.IDispatch">
+         <argument id="usecache" type="Boolean" status="ByVal" optional="Default"/>
+      </method>
+      <method id="FetchOraRef" type="stdole.IDispatch">
+         <argument id="refid" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="OraDatabase" parent="None" default="Parameters" creatable="off">
+      <property id="DatabaseName" type="String" status="Out"/>
+      <property id="connect" type="String" status="Out"/>
+      <property id="options" type="Integer" status="Out"/>
+      <property id="Session" type="stdole.IDispatch" status="Out"/>
+      <property id="Connection" type="stdole.IDispatch" status="Out"/>
+      <property id="Parameters" type="OraParameters" status="Out"/>
+      <property id="LastServerErr" type="Integer" status="Out"/>
+      <property id="LastServerErrText" type="String" status="Out"/>
+      <property id="LastServerErrPos" type="Integer" status="Out"/>
+      <property id="RDBMSVersion" type="String" status="Out"/>
+      <property id="Server" type="stdole.IDispatch" status="Out"/>
+      <property id="AutoCommit" type="Boolean" status="InOut"/>
+      <property id="CacheMaximumSize" type="Integer" status="InOut"/>
+      <property id="CacheOptimalSize" type="Integer" status="InOut"/>
+      <property id="ConnectionOK" type="Boolean" status="Out"/>
+      <property id="Subscriptions" type="stdole.IDispatch" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <accessor id="CreateDynaset" type="stdole.IDispatch">
+         <argument id="sqlStmt" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+         <argument id="snapshot" type="Variant" status="ByRef" optional="Default"/>
+      </accessor>
+      <method id="DbCreateDynaset" type="OraDynaset">
+         <argument id="sqlStmt" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+         <argument id="snapshot" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="ExecuteSQL" type="Integer">
+         <argument id="sqlStmt" type="String" status="ByVal"/>
+      </method>
+      <method id="LastServerErrReset" type="Void"/>
+      <accessor id="CreateCustomDynaset" type="stdole.IDispatch">
+         <argument id="sqlStmt" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+         <argument id="sliceSize" type="Integer" status="ByVal"/>
+         <argument id="perBlock" type="Integer" status="ByVal"/>
+         <argument id="blocks" type="Integer" status="ByVal"/>
+         <argument id="FetchLimit" type="Integer" status="ByVal"/>
+         <argument id="FetchSize" type="Integer" status="ByVal"/>
+         <argument id="snapshot" type="Variant" status="ByRef" optional="Default"/>
+      </accessor>
+      <accessor id="CreateSql" type="stdole.IDispatch">
+         <argument id="sqlStmt" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="Close" type="Void"/>
+      <accessor id="CreatePlsqlDynaset" type="stdole.IDispatch">
+         <argument id="sqlStmt" type="String" status="ByVal"/>
+         <argument id="CursorName" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="CreatePlsqlCustomDynaset" type="stdole.IDispatch">
+         <argument id="sqlStmt" type="String" status="ByVal"/>
+         <argument id="CursorName" type="String" status="ByVal"/>
+         <argument id="options" type="Integer" status="ByVal"/>
+         <argument id="sliceSize" type="Integer" status="ByVal"/>
+         <argument id="perBlock" type="Integer" status="ByVal"/>
+         <argument id="blocks" type="Integer" status="ByVal"/>
+         <argument id="FetchLimit" type="Integer" status="ByVal"/>
+         <argument id="FetchSize" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="CreateAQ" type="stdole.IDispatch">
+         <argument id="QueueName" type="String" status="ByVal"/>
+      </accessor>
+      <method id="CreateOraObject" type="stdole.IDispatch">
+         <argument id="type_name" type="String" status="ByVal"/>
+         <argument id="table_name" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Describe" type="stdole.IDispatch">
+         <argument id="SchemaObjectName" type="String" status="ByVal"/>
+      </method>
+      <method id="RemoveFromPool" type="Void"/>
+      <method id="BeginTrans" type="Void"/>
+      <method id="CommitTrans" type="Void"/>
+      <method id="Rollback" type="Void"/>
+      <method id="MonitorForFailover" type="Void">
+         <argument id="FOSink" type="Object" status="ByVal"/>
+         <argument id="FOCtx" type="Variant" status="ByVal"/>
+      </method>
+      <method id="CreateTempBlob" type="stdole.IDispatch">
+         <argument id="usecache" type="Boolean" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateTempClob" type="stdole.IDispatch">
+         <argument id="usecache" type="Boolean" status="ByVal" optional="Default"/>
+      </method>
+      <method id="FetchOraRef" type="stdole.IDispatch">
+         <argument id="refid" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IOraAdvisorySink" parent="IUnknown" creatable="off">
+      <method id="OnAction" type="Void">
+         <argument id="action" type="Integer" status="ByVal"/>
+      </method>
+      <method id="OnActionRequest" type="Void">
+         <argument id="action" type="Integer" status="ByVal"/>
+      </method>
+      <method id="OnStatusChange" type="Void">
+         <argument id="statCode" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_IOraDynaset" parent="IUnknown" creatable="off">
+      <property id="EditMode" type="Integer" status="Out"/>
+      <property id="EOF" type="Boolean" status="Out"/>
+      <property id="BOF" type="Boolean" status="Out"/>
+      <property id="IsFirst" type="Boolean" status="Out"/>
+      <property id="IsLast" type="Boolean" status="Out"/>
+      <property id="Bookmark" type="String" status="InOut"/>
+      <property id="LastModified" type="String" status="Out"/>
+      <property id="RecordCount" type="Integer" status="Out"/>
+      <property id="Fields" type="OraFields" status="Out"/>
+      <property id="Database" type="stdole.IDispatch" status="Out"/>
+      <property id="Connection" type="stdole.IDispatch" status="Out"/>
+      <property id="Session" type="stdole.IDispatch" status="Out"/>
+      <property id="Clone" type="stdole.IDispatch" status="Out"/>
+      <property id="Updatable" type="Boolean" status="Out"/>
+      <property id="Transactions" type="Boolean" status="Out"/>
+      <property id="SQL" type="String" status="InOut"/>
+      <property id="options" type="Integer" status="Out"/>
+      <property id="Bookmarkable" type="Boolean" status="Out"/>
+      <property id="NoMatch" type="Boolean" status="Out"/>
+      <property id="CacheSliceSize" type="Integer" status="InOut"/>
+      <property id="CacheSlicePerBlock" type="Integer" status="InOut"/>
+      <property id="CacheBlocks" type="Integer" status="InOut"/>
+      <property id="FetchLimit" type="Integer" status="InOut"/>
+      <property id="FetchSize" type="Integer" status="InOut"/>
+      <property id="CacheChanged" type="Boolean" status="Out"/>
+      <property id="RowPosition" type="Integer" status="Out"/>
+      <property id="CurrentRowModified" type="Boolean" status="InOut"/>
+      <property id="snapshot" type="Variant" status="InOut"/>
+      <property id="XMLRowsetTag" type="String" status="InOut"/>
+      <property id="XMLRowTag" type="String" status="InOut"/>
+      <property id="XMLRowID" type="String" status="InOut"/>
+      <property id="XMLCollID" type="String" status="InOut"/>
+      <property id="XMLUpperCase" type="Boolean" status="InOut"/>
+      <property id="XMLNullIndicator" type="Boolean" status="InOut"/>
+      <property id="XMLEncodingTag" type="String" status="InOut"/>
+      <property id="XMLOmitEncodingTag" type="Boolean" status="InOut"/>
+      <method id="MoveFirst" type="Void"/>
+      <method id="MoveLast" type="Void"/>
+      <method id="MovePrevious" type="Void"/>
+      <method id="MoveNext" type="Void"/>
+      <method id="Edit" type="Void"/>
+      <method id="Update" type="Void"/>
+      <method id="AddNew" type="Void"/>
+      <method id="Delete" type="Void"/>
+      <method id="DAdvise" type="Void">
+         <argument id="isink" type="IOraAdvisorySink" status="ByVal"/>
+      </method>
+      <method id="DUnadvise" type="Void">
+         <argument id="isink" type="IOraAdvisorySink" status="ByVal"/>
+      </method>
+      <method id="_getFieldCount" type="Integer"/>
+      <method id="_getFieldType" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getFieldDataType" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getFieldValue" type="Void">
+         <argument id="vres" type="Variant" status="Out"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_updateFieldValue" type="Void">
+         <argument id="vres" type="Variant" status="ByRef"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getFieldSize" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_pushPosition" type="Void">
+         <argument id="ifAdvise" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="_popPosition" type="Void"/>
+      <method id="_internalUpdate" type="Void"/>
+      <method id="_cancelUpdate" type="Void"/>
+      <method id="_moveNext" type="Void"/>
+      <method id="_movePrev" type="Void"/>
+      <method id="Refresh" type="Void"/>
+      <method id="_getFieldChunk" type="Void">
+         <argument id="fldchk" type="String" status="Out"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="numbytes" type="Integer" status="ByVal"/>
+         <argument id="bytesread" type="Integer" status="Out"/>
+      </method>
+      <method id="_getFieldServerType" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getFieldPrecision" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getFieldScale" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_isFieldNullOK" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_fetchLongFieldValue" type="Void">
+         <argument id="vres" type="Variant" status="Out"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="flen" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_appendChunk" type="Void">
+         <argument id="source" type="String" status="ByVal"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_createMStream" type="Void">
+         <argument id="ppm" type="_IOraMStream" status="ByRef"/>
+      </method>
+      <method id="UpdateControls" type="Void"/>
+      <method id="UpdateRecord" type="Void"/>
+      <method id="_isFieldTruncated" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getFieldDataSize" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="MoveNextn" type="Void">
+         <argument id="rows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="MovePreviousn" type="Void">
+         <argument id="rows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="MoveTo" type="Void">
+         <argument id="rownum" type="Integer" status="ByVal"/>
+      </method>
+      <method id="MoveRel" type="Void">
+         <argument id="rows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_moveNextn" type="Void">
+         <argument id="rows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_movePrevn" type="Void">
+         <argument id="rows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_moveTo" type="Void">
+         <argument id="rownum" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_moveRel" type="Void">
+         <argument id="rows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="FindFirst" type="Void">
+         <argument id="clause" type="String" status="ByVal"/>
+      </method>
+      <method id="FindNext" type="Void">
+         <argument id="clause" type="String" status="ByVal"/>
+      </method>
+      <method id="FindPrevious" type="Void">
+         <argument id="clause" type="String" status="ByVal"/>
+      </method>
+      <method id="FindLast" type="Void">
+         <argument id="clause" type="String" status="ByVal"/>
+      </method>
+      <method id="Close" type="Void"/>
+      <method id="_setFieldUpdatable" type="Void">
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="flag" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_isFieldUpdatable" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_appendChunkByte" type="Void">
+         <argument id="source" type="Void" status="ByRef"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="size" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getFieldChunkByte" type="Void">
+         <argument id="fldchk" type="Void" status="Out"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="size" type="Integer" status="ByVal"/>
+         <argument id="bytesread" type="Integer" status="Out"/>
+      </method>
+      <method id="CopyToClipboard" type="Void">
+         <argument id="NumOfRows" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="colsep" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="rowsep" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <accessor id="FieldIndex" type="Integer">
+         <argument id="Name" type="String" status="ByVal"/>
+      </accessor>
+      <accessor id="FieldOriginalNameIndex" type="Integer">
+         <argument id="Name" type="String" status="ByVal"/>
+      </accessor>
+      <accessor id="FieldName" type="String">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="FieldOriginalName" type="String">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="UpdateSource" type="Void">
+         <argument id="field" type="Variant" status="ByVal"/>
+         <argument id="source" type="Integer" status="ByVal"/>
+         <argument id="svalue" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_getFieldMaxSize" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getMaxRow" type="Integer"/>
+      <method id="IsLastKnown" type="Boolean"/>
+      <method id="_getCurrentRow" type="Integer"/>
+      <method id="SetAdviseFlag" type="Void">
+         <argument id="bAdvise" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="_getLastRow" type="Integer"/>
+      <method id="testRow" type="Boolean">
+         <argument id="rownum" type="Integer" status="ByVal"/>
+      </method>
+      <method id="RefreshPlsqlCursor" type="Void">
+         <argument id="stmthp" type="Void" status="ByRef"/>
+      </method>
+      <accessor id="Item" type="stdole.IDispatch">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="GetRows" type="Variant">
+         <argument id="numrows" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="start_pos" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="Fields" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_getFieldValueCPP" type="Void">
+         <argument id="vres" type="Variant" status="Out"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="dtype" type="Integer" status="Out"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+      <method id="GetXML" type="String">
+         <argument id="startrow" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="maxrows" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="GetXMLToFile" type="Void">
+         <argument id="filename" type="String" status="ByVal"/>
+         <argument id="startrow" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="maxrows" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_GetXMLCPP" type="String">
+         <argument id="startrow" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="maxrows" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="OraDynaset" parent="None" default="Fields" creatable="off">
+      <property id="EditMode" type="Integer" status="Out"/>
+      <property id="EOF" type="Boolean" status="Out"/>
+      <property id="BOF" type="Boolean" status="Out"/>
+      <property id="IsFirst" type="Boolean" status="Out"/>
+      <property id="IsLast" type="Boolean" status="Out"/>
+      <property id="Bookmark" type="String" status="InOut"/>
+      <property id="LastModified" type="String" status="Out"/>
+      <property id="RecordCount" type="Integer" status="Out"/>
+      <property id="Fields" type="OraFields" status="Out"/>
+      <property id="Database" type="stdole.IDispatch" status="Out"/>
+      <property id="Connection" type="stdole.IDispatch" status="Out"/>
+      <property id="Session" type="stdole.IDispatch" status="Out"/>
+      <property id="Clone" type="stdole.IDispatch" status="Out"/>
+      <property id="Updatable" type="Boolean" status="Out"/>
+      <property id="Transactions" type="Boolean" status="Out"/>
+      <property id="SQL" type="String" status="InOut"/>
+      <property id="options" type="Integer" status="Out"/>
+      <property id="Bookmarkable" type="Boolean" status="Out"/>
+      <property id="NoMatch" type="Boolean" status="Out"/>
+      <property id="CacheSliceSize" type="Integer" status="InOut"/>
+      <property id="CacheSlicePerBlock" type="Integer" status="InOut"/>
+      <property id="CacheBlocks" type="Integer" status="InOut"/>
+      <property id="FetchLimit" type="Integer" status="InOut"/>
+      <property id="FetchSize" type="Integer" status="InOut"/>
+      <property id="CacheChanged" type="Boolean" status="Out"/>
+      <property id="RowPosition" type="Integer" status="Out"/>
+      <property id="CurrentRowModified" type="Boolean" status="InOut"/>
+      <property id="snapshot" type="Variant" status="InOut"/>
+      <property id="XMLRowsetTag" type="String" status="InOut"/>
+      <property id="XMLRowTag" type="String" status="InOut"/>
+      <property id="XMLRowID" type="String" status="InOut"/>
+      <property id="XMLCollID" type="String" status="InOut"/>
+      <property id="XMLUpperCase" type="Boolean" status="InOut"/>
+      <property id="XMLNullIndicator" type="Boolean" status="InOut"/>
+      <property id="XMLEncodingTag" type="String" status="InOut"/>
+      <property id="XMLOmitEncodingTag" type="Boolean" status="InOut"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="MoveFirst" type="Void"/>
+      <method id="MoveLast" type="Void"/>
+      <method id="MovePrevious" type="Void"/>
+      <method id="MoveNext" type="Void"/>
+      <method id="Edit" type="Void"/>
+      <method id="Update" type="Void"/>
+      <method id="AddNew" type="Void"/>
+      <method id="Delete" type="Void"/>
+      <method id="DAdvise" type="Void">
+         <argument id="isink" type="IOraAdvisorySink" status="ByVal"/>
+      </method>
+      <method id="DUnadvise" type="Void">
+         <argument id="isink" type="IOraAdvisorySink" status="ByVal"/>
+      </method>
+      <method id="_getFieldCount" type="Integer"/>
+      <method id="_getFieldType" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getFieldDataType" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getFieldValue" type="Void">
+         <argument id="vres" type="Variant" status="Out"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_updateFieldValue" type="Void">
+         <argument id="vres" type="Variant" status="ByRef"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getFieldSize" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_pushPosition" type="Void">
+         <argument id="ifAdvise" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="_popPosition" type="Void"/>
+      <method id="_internalUpdate" type="Void"/>
+      <method id="_cancelUpdate" type="Void"/>
+      <method id="_moveNext" type="Void"/>
+      <method id="_movePrev" type="Void"/>
+      <method id="Refresh" type="Void"/>
+      <method id="_getFieldChunk" type="Void">
+         <argument id="fldchk" type="String" status="Out"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="numbytes" type="Integer" status="ByVal"/>
+         <argument id="bytesread" type="Integer" status="Out"/>
+      </method>
+      <method id="_getFieldServerType" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getFieldPrecision" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getFieldScale" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_isFieldNullOK" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_fetchLongFieldValue" type="Void">
+         <argument id="vres" type="Variant" status="Out"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="flen" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_appendChunk" type="Void">
+         <argument id="source" type="String" status="ByVal"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_createMStream" type="Void">
+         <argument id="ppm" type="_IOraMStream" status="ByRef"/>
+      </method>
+      <method id="UpdateControls" type="Void"/>
+      <method id="UpdateRecord" type="Void"/>
+      <method id="_isFieldTruncated" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getFieldDataSize" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="MoveNextn" type="Void">
+         <argument id="rows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="MovePreviousn" type="Void">
+         <argument id="rows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="MoveTo" type="Void">
+         <argument id="rownum" type="Integer" status="ByVal"/>
+      </method>
+      <method id="MoveRel" type="Void">
+         <argument id="rows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_moveNextn" type="Void">
+         <argument id="rows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_movePrevn" type="Void">
+         <argument id="rows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_moveTo" type="Void">
+         <argument id="rownum" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_moveRel" type="Void">
+         <argument id="rows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="FindFirst" type="Void">
+         <argument id="clause" type="String" status="ByVal"/>
+      </method>
+      <method id="FindNext" type="Void">
+         <argument id="clause" type="String" status="ByVal"/>
+      </method>
+      <method id="FindPrevious" type="Void">
+         <argument id="clause" type="String" status="ByVal"/>
+      </method>
+      <method id="FindLast" type="Void">
+         <argument id="clause" type="String" status="ByVal"/>
+      </method>
+      <method id="Close" type="Void"/>
+      <method id="_setFieldUpdatable" type="Void">
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="flag" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_isFieldUpdatable" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_appendChunkByte" type="Void">
+         <argument id="source" type="Void" status="ByRef"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="size" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getFieldChunkByte" type="Void">
+         <argument id="fldchk" type="Void" status="Out"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="size" type="Integer" status="ByVal"/>
+         <argument id="bytesread" type="Integer" status="Out"/>
+      </method>
+      <method id="CopyToClipboard" type="Void">
+         <argument id="NumOfRows" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="colsep" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="rowsep" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <accessor id="FieldIndex" type="Integer">
+         <argument id="Name" type="String" status="ByVal"/>
+      </accessor>
+      <accessor id="FieldOriginalNameIndex" type="Integer">
+         <argument id="Name" type="String" status="ByVal"/>
+      </accessor>
+      <accessor id="FieldName" type="String">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="FieldOriginalName" type="String">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="UpdateSource" type="Void">
+         <argument id="field" type="Variant" status="ByVal"/>
+         <argument id="source" type="Integer" status="ByVal"/>
+         <argument id="svalue" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_getFieldMaxSize" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getMaxRow" type="Integer"/>
+      <method id="IsLastKnown" type="Boolean"/>
+      <method id="_getCurrentRow" type="Integer"/>
+      <method id="SetAdviseFlag" type="Void">
+         <argument id="bAdvise" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="_getLastRow" type="Integer"/>
+      <method id="testRow" type="Boolean">
+         <argument id="rownum" type="Integer" status="ByVal"/>
+      </method>
+      <method id="RefreshPlsqlCursor" type="Void">
+         <argument id="stmthp" type="Void" status="ByRef"/>
+      </method>
+      <method id="Item" type="OraFields" status="indexer">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="GetRows" type="Variant">
+         <argument id="numrows" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="start_pos" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="Fields" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_getFieldValueCPP" type="Void">
+         <argument id="vres" type="Variant" status="Out"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="dtype" type="Integer" status="Out"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+      <method id="GetXML" type="String">
+         <argument id="startrow" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="maxrows" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="GetXMLToFile" type="Void">
+         <argument id="filename" type="String" status="ByVal"/>
+         <argument id="startrow" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="maxrows" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_GetXMLCPP" type="String">
+         <argument id="startrow" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="maxrows" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="_IOraFields" parent="IUnknown" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <accessor id="Item" type="OraField">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </accessor>
+      <accessor id="OriginalItem" type="stdole.IDispatch">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </accessor>
+   </class>
+   <class id="OraFields" parent="None" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Item" type="OraField" status="indexer">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+      <accessor id="OriginalItem" type="stdole.IDispatch">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </accessor>
+   </class>
+   <class id="_IOraColl" parent="IUnknown" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <accessor id="Item" type="stdole.IDispatch">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </accessor>
+   </class>
+   <class id="OraColl" parent="None" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Item" type="stdole.IDispatch" status="indexer">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_IOraField" parent="IUnknown" creatable="off">
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Type" type="Integer" status="Out"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="Truncated" type="Integer" status="Out"/>
+      <property id="size" type="Integer" status="Out"/>
+      <property id="OraMaxSize" type="Integer" status="Out"/>
+      <property id="OraIDataType" type="Integer" status="Out"/>
+      <property id="OraMaxDSize" type="Integer" status="Out"/>
+      <property id="OraPrecision" type="Integer" status="Out"/>
+      <property id="OraScale" type="Integer" status="Out"/>
+      <property id="OraNullOK" type="Integer" status="Out"/>
+      <property id="Updatable" type="Boolean" status="InOut"/>
+      <property id="OriginalName" type="String" status="Out"/>
+      <property id="index" type="Integer" status="Out"/>
+      <property id="XMLTagName" type="String" status="InOut"/>
+      <property id="XMLAsAttribute" type="Boolean" status="InOut"/>
+      <method id="AppendChunk" type="Void">
+         <argument id="source" type="String" status="ByVal"/>
+      </method>
+      <method id="FieldSize" type="Integer"/>
+      <method id="GetChunk" type="String">
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="numbytes" type="Integer" status="ByVal"/>
+      </method>
+      <method id="getDynaset" type="stdole.IDispatch"/>
+      <method id="ReadChunk" type="String">
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="numbytes" type="Integer" status="ByVal"/>
+         <argument id="bytesread" type="Integer" status="Out"/>
+      </method>
+      <method id="AppendChunkByte" type="Void">
+         <argument id="source" type="Byte" status="ByRef"/>
+         <argument id="size" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetChunkByte" type="Integer">
+         <argument id="dest" type="Byte" status="Out"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="size" type="Integer" status="ByVal"/>
+      </method>
+      <method id="UpdateSource" type="Void">
+         <argument id="source" type="Integer" status="ByVal"/>
+         <argument id="svalue" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="GetChunkByteEx" type="Integer">
+         <argument id="dest" type="Variant" status="Out"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="numbytes" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="OraField" parent="None" default="Value" creatable="off">
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Type" type="Integer" status="Out"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="Truncated" type="Integer" status="Out"/>
+      <property id="size" type="Integer" status="Out"/>
+      <property id="OraMaxSize" type="Integer" status="Out"/>
+      <property id="OraIDataType" type="Integer" status="Out"/>
+      <property id="OraMaxDSize" type="Integer" status="Out"/>
+      <property id="OraPrecision" type="Integer" status="Out"/>
+      <property id="OraScale" type="Integer" status="Out"/>
+      <property id="OraNullOK" type="Integer" status="Out"/>
+      <property id="Updatable" type="Boolean" status="InOut"/>
+      <property id="OriginalName" type="String" status="Out"/>
+      <property id="index" type="Integer" status="Out"/>
+      <property id="XMLTagName" type="String" status="InOut"/>
+      <property id="XMLAsAttribute" type="Boolean" status="InOut"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="AppendChunk" type="Void">
+         <argument id="source" type="String" status="ByVal"/>
+      </method>
+      <method id="FieldSize" type="Integer"/>
+      <method id="GetChunk" type="String">
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="numbytes" type="Integer" status="ByVal"/>
+      </method>
+      <method id="getDynaset" type="stdole.IDispatch"/>
+      <method id="ReadChunk" type="String">
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="numbytes" type="Integer" status="ByVal"/>
+         <argument id="bytesread" type="Integer" status="Out"/>
+      </method>
+      <method id="AppendChunkByte" type="Void">
+         <argument id="source" type="Byte" status="ByRef"/>
+         <argument id="size" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetChunkByte" type="Integer">
+         <argument id="dest" type="Byte" status="Out"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="size" type="Integer" status="ByVal"/>
+      </method>
+      <method id="UpdateSource" type="Void">
+         <argument id="source" type="Integer" status="ByVal"/>
+         <argument id="svalue" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="GetChunkByteEx" type="Integer">
+         <argument id="dest" type="Variant" status="Out"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="numbytes" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_IOraParameters" parent="IUnknown" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <accessor id="Item" type="stdole.IDispatch">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Add" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="initval" type="Variant" status="ByVal"/>
+         <argument id="IOtype" type="Integer" status="ByVal"/>
+         <argument id="varType" type="Short" status="ByVal" optional="Default"/>
+         <argument id="objectname" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="AddTable" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="IOtype" type="Integer" status="ByVal"/>
+         <argument id="varType" type="Short" status="ByVal"/>
+         <argument id="Dimension" type="Integer" status="ByVal"/>
+         <argument id="size" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="objectname" type="String" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="OraParameters" parent="None" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Item" type="OraParameter" status="indexer">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="initval" type="Variant" status="ByVal"/>
+         <argument id="IOtype" type="Integer" status="ByVal"/>
+         <argument id="varType" type="Short" status="ByVal" optional="Default"/>
+         <argument id="objectname" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="AddTable" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="IOtype" type="Integer" status="ByVal"/>
+         <argument id="varType" type="Short" status="ByVal"/>
+         <argument id="Dimension" type="Integer" status="ByVal"/>
+         <argument id="size" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="objectname" type="String" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="_IOraParameter" parent="IUnknown" creatable="off">
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Status" type="Integer" status="Out"/>
+      <property id="Type" type="Integer" status="Out"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="MinimumSize" type="Integer" status="InOut"/>
+      <property id="serverType" type="Integer" status="InOut"/>
+      <property id="DynasetOption" type="Integer" status="In"/>
+      <method id="AutoBindEnable" type="Void"/>
+      <method id="AutoBindDisable" type="Void"/>
+      <method id="_getParameterValue" type="Void">
+         <argument id="val" type="Variant" status="ByRef"/>
+         <argument id="objtype" type="Integer" status="Out"/>
+      </method>
+      <method id="_putParameterValue" type="Void">
+         <argument id="val" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_getParameterType" type="Integer"/>
+      <method id="DynasetCacheParams" type="Void">
+         <argument id="sliceSize" type="Integer" status="ByVal"/>
+         <argument id="perBlock" type="Integer" status="ByVal"/>
+         <argument id="blocks" type="Integer" status="ByVal"/>
+         <argument id="FetchLimit" type="Integer" status="ByVal"/>
+         <argument id="FetchSize" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="OraParameter" parent="None" default="Value" creatable="off">
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Status" type="Integer" status="Out"/>
+      <property id="Type" type="Integer" status="Out"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="MinimumSize" type="Integer" status="InOut"/>
+      <property id="serverType" type="Integer" status="InOut"/>
+      <property id="DynasetOption" type="Integer" status="In"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="AutoBindEnable" type="Void"/>
+      <method id="AutoBindDisable" type="Void"/>
+      <method id="_getParameterValue" type="Void">
+         <argument id="val" type="Variant" status="ByRef"/>
+         <argument id="objtype" type="Integer" status="Out"/>
+      </method>
+      <method id="_putParameterValue" type="Void">
+         <argument id="val" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_getParameterType" type="Integer"/>
+      <method id="DynasetCacheParams" type="Void">
+         <argument id="sliceSize" type="Integer" status="ByVal"/>
+         <argument id="perBlock" type="Integer" status="ByVal"/>
+         <argument id="blocks" type="Integer" status="ByVal"/>
+         <argument id="FetchLimit" type="Integer" status="ByVal"/>
+         <argument id="FetchSize" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_IOraSqlStmt" parent="IUnknown" creatable="off">
+      <property id="Database" type="stdole.IDispatch" status="Out"/>
+      <property id="Connection" type="stdole.IDispatch" status="Out"/>
+      <property id="Session" type="stdole.IDispatch" status="Out"/>
+      <property id="SQL" type="String" status="InOut"/>
+      <property id="options" type="Integer" status="Out"/>
+      <property id="RecordCount" type="Integer" status="Out"/>
+      <property id="NonBlockingState" type="Integer" status="Out"/>
+      <method id="Refresh" type="Void"/>
+      <method id="Close" type="Void"/>
+      <method id="Cancel" type="Void"/>
+   </class>
+   <class id="OraSqlStmt" parent="None" creatable="off">
+      <property id="Database" type="stdole.IDispatch" status="Out"/>
+      <property id="Connection" type="stdole.IDispatch" status="Out"/>
+      <property id="Session" type="stdole.IDispatch" status="Out"/>
+      <property id="SQL" type="String" status="InOut"/>
+      <property id="options" type="Integer" status="Out"/>
+      <property id="RecordCount" type="Integer" status="Out"/>
+      <property id="NonBlockingState" type="Integer" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Refresh" type="Void"/>
+      <method id="Close" type="Void"/>
+      <method id="Cancel" type="Void"/>
+   </class>
+   <class id="_IOraParamArray" parent="IUnknown" creatable="off">
+      <property id="Status" type="Integer" status="Out"/>
+      <property id="Type" type="Integer" status="Out"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="MinimumSize" type="Integer" status="InOut"/>
+      <property id="serverType" type="Integer" status="InOut"/>
+      <property id="ArraySize" type="Integer" status="Out"/>
+      <property id="LastErrorText" type="String" status="Out"/>
+      <method id="AutoBindEnable" type="Void"/>
+      <method id="AutoBindDisable" type="Void"/>
+      <method id="get_Value" type="Variant">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="put_Value" type="Void">
+         <argument id="newval" type="Variant" status="ByVal"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getParameterValue" type="Void">
+         <argument id="val" type="Variant" status="Out"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_putParameterValue" type="Void">
+         <argument id="val" type="Variant" status="ByRef"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getParameterType" type="Integer"/>
+      <accessor id="Item" type="Variant">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+   </class>
+   <class id="OraParamArray" parent="None" default="Item" creatable="off">
+      <property id="Status" type="Integer" status="Out"/>
+      <property id="Type" type="Integer" status="Out"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="MinimumSize" type="Integer" status="InOut"/>
+      <property id="serverType" type="Integer" status="InOut"/>
+      <property id="ArraySize" type="Integer" status="Out"/>
+      <property id="LastErrorText" type="String" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="AutoBindEnable" type="Void"/>
+      <method id="AutoBindDisable" type="Void"/>
+      <method id="get_Value" type="Variant">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="put_Value" type="Void">
+         <argument id="newval" type="Variant" status="ByVal"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getParameterValue" type="Void">
+         <argument id="val" type="Variant" status="Out"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_putParameterValue" type="Void">
+         <argument id="val" type="Variant" status="ByRef"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_getParameterType" type="Integer"/>
+      <method id="Item" type="Variant" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_IOraBlob" parent="IUnknown" creatable="off">
+      <property id="IsNull" type="Boolean" status="Out"/>
+      <property id="IsOpen" type="Boolean" status="Out"/>
+      <property id="IsTemporary" type="Boolean" status="Out"/>
+      <property id="size" type="Integer" status="Out"/>
+      <property id="PollingAmount" type="Integer" status="InOut"/>
+      <property id="offset" type="Integer" status="InOut"/>
+      <property id="Status" type="Short" status="Out"/>
+      <property id="LastServerErr" type="Integer" status="Out"/>
+      <property id="LastServerErrText" type="String" status="Out"/>
+      <method id="Append" type="Void">
+         <argument id="src_blob" type="Object" status="ByVal"/>
+      </method>
+      <method id="Close" type="Void"/>
+      <method id="Compare" type="Boolean">
+         <argument id="src_blob" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Copy" type="Void">
+         <argument id="src_blob" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyFromBFILE" type="Void">
+         <argument id="src_bfile" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyFromFile" type="Void">
+         <argument id="filename" type="String" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyToFile" type="Void">
+         <argument id="filename" type="String" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="DisableBuffering" type="Void"/>
+      <method id="EnableBuffering" type="Void"/>
+      <method id="Erase" type="Void">
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="FlushBuffer" type="Void"/>
+      <method id="FreeTemporaryLOB" type="Void"/>
+      <method id="MatchPos" type="Integer">
+         <argument id="pattern" type="Variant" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="nth" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Open" type="Void">
+         <argument id="mode" type="Byte" status="ByVal"/>
+      </method>
+      <method id="Trim" type="Void">
+         <argument id="newlen" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Read" type="Integer">
+         <argument id="Chunk" type="Variant" status="Out"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Write" type="Integer">
+         <argument id="Chunk" type="Variant" status="ByRef"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="Piecetype" type="Byte" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_Read" type="Integer">
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="buffer" type="Void" status="ByRef"/>
+         <argument id="bufsize" type="Integer" status="ByVal"/>
+         <argument id="amt_read" type="Integer" status="Out"/>
+         <argument id="allowitfe" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_Write" type="Integer">
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="buffer" type="Void" status="ByRef"/>
+         <argument id="buflen" type="Integer" status="ByVal"/>
+         <argument id="piece" type="Byte" status="ByVal"/>
+         <argument id="amount_written" type="Integer" status="Out"/>
+         <argument id="allowitfe" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="IsEqual" type="Boolean">
+         <argument id="src_blob" type="Object" status="ByVal"/>
+      </method>
+      <method id="LastServerErrReset" type="Void"/>
+      <method id="_MatchPos" type="Integer">
+         <argument id="pattern" type="Void" status="ByRef"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="nth" type="Integer" status="ByVal"/>
+         <argument id="buflen" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+      <method id="_ReadCPP" type="Integer">
+         <argument id="Status" type="Short" status="ByRef"/>
+         <argument id="inbuffer" type="String" status="ByRef"/>
+         <argument id="inbuffersize" type="Integer" status="ByVal"/>
+         <argument id="outbuffer" type="String" status="ByRef"/>
+         <argument id="chunksize" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </method>
+      <method id="_WriteCPP" type="Integer">
+         <argument id="Status" type="Short" status="ByRef"/>
+         <argument id="buffer" type="String" status="ByRef"/>
+         <argument id="buffersize" type="Integer" status="ByVal"/>
+         <argument id="Piecetype" type="Byte" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </method>
+      <accessor id="_Size" type="Integer">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+      <accessor id="_IsNull" type="Boolean">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+      <accessor id="_OptimumChunkSize" type="Integer">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+   </class>
+   <class id="OraBlob" parent="None" creatable="off">
+      <property id="IsNull" type="Boolean" status="Out"/>
+      <property id="IsOpen" type="Boolean" status="Out"/>
+      <property id="IsTemporary" type="Boolean" status="Out"/>
+      <property id="size" type="Integer" status="Out"/>
+      <property id="PollingAmount" type="Integer" status="InOut"/>
+      <property id="offset" type="Integer" status="InOut"/>
+      <property id="Status" type="Short" status="Out"/>
+      <property id="LastServerErr" type="Integer" status="Out"/>
+      <property id="LastServerErrText" type="String" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Append" type="Void">
+         <argument id="src_blob" type="Object" status="ByVal"/>
+      </method>
+      <method id="Close" type="Void"/>
+      <method id="Compare" type="Boolean">
+         <argument id="src_blob" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Copy" type="Void">
+         <argument id="src_blob" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyFromBFILE" type="Void">
+         <argument id="src_bfile" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyFromFile" type="Void">
+         <argument id="filename" type="String" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyToFile" type="Void">
+         <argument id="filename" type="String" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="DisableBuffering" type="Void"/>
+      <method id="EnableBuffering" type="Void"/>
+      <method id="Erase" type="Void">
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="FlushBuffer" type="Void"/>
+      <method id="FreeTemporaryLOB" type="Void"/>
+      <method id="MatchPos" type="Integer">
+         <argument id="pattern" type="Variant" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="nth" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Open" type="Void">
+         <argument id="mode" type="Byte" status="ByVal"/>
+      </method>
+      <method id="Trim" type="Void">
+         <argument id="newlen" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Read" type="Integer">
+         <argument id="Chunk" type="Variant" status="Out"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Write" type="Integer">
+         <argument id="Chunk" type="Variant" status="ByRef"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="Piecetype" type="Byte" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_Read" type="Integer">
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="buffer" type="Void" status="ByRef"/>
+         <argument id="bufsize" type="Integer" status="ByVal"/>
+         <argument id="amt_read" type="Integer" status="Out"/>
+         <argument id="allowitfe" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_Write" type="Integer">
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="buffer" type="Void" status="ByRef"/>
+         <argument id="buflen" type="Integer" status="ByVal"/>
+         <argument id="piece" type="Byte" status="ByVal"/>
+         <argument id="amount_written" type="Integer" status="Out"/>
+         <argument id="allowitfe" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="IsEqual" type="Boolean">
+         <argument id="src_blob" type="Object" status="ByVal"/>
+      </method>
+      <method id="LastServerErrReset" type="Void"/>
+      <method id="_MatchPos" type="Integer">
+         <argument id="pattern" type="Void" status="ByRef"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="nth" type="Integer" status="ByVal"/>
+         <argument id="buflen" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+      <method id="_ReadCPP" type="Integer">
+         <argument id="Status" type="Short" status="ByRef"/>
+         <argument id="inbuffer" type="String" status="ByRef"/>
+         <argument id="inbuffersize" type="Integer" status="ByVal"/>
+         <argument id="outbuffer" type="String" status="ByRef"/>
+         <argument id="chunksize" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </method>
+      <method id="_WriteCPP" type="Integer">
+         <argument id="Status" type="Short" status="ByRef"/>
+         <argument id="buffer" type="String" status="ByRef"/>
+         <argument id="buffersize" type="Integer" status="ByVal"/>
+         <argument id="Piecetype" type="Byte" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </method>
+      <accessor id="_Size" type="Integer">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+      <accessor id="_IsNull" type="Boolean">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+      <accessor id="_OptimumChunkSize" type="Integer">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+   </class>
+   <class id="_IOraClob" parent="IUnknown" creatable="off">
+      <property id="IsNull" type="Boolean" status="Out"/>
+      <property id="IsOpen" type="Boolean" status="Out"/>
+      <property id="IsTemporary" type="Boolean" status="Out"/>
+      <property id="size" type="Integer" status="Out"/>
+      <property id="PollingAmount" type="Integer" status="InOut"/>
+      <property id="offset" type="Integer" status="InOut"/>
+      <property id="Status" type="Short" status="Out"/>
+      <property id="CharSetId" type="Integer" status="Out"/>
+      <property id="CharSetForm" type="Integer" status="Out"/>
+      <property id="LastServerErr" type="Integer" status="Out"/>
+      <property id="LastServerErrText" type="String" status="Out"/>
+      <method id="Append" type="Void">
+         <argument id="src_clob" type="Object" status="ByVal"/>
+      </method>
+      <method id="Close" type="Void"/>
+      <method id="Compare" type="Boolean">
+         <argument id="src_clob" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Copy" type="Void">
+         <argument id="src_clob" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyFromBFILE" type="Void">
+         <argument id="src_bfile" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyFromFile" type="Void">
+         <argument id="filename" type="String" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyToFile" type="Void">
+         <argument id="filename" type="String" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="DisableBuffering" type="Void"/>
+      <method id="EnableBuffering" type="Void"/>
+      <method id="Erase" type="Void">
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="FlushBuffer" type="Void"/>
+      <method id="FreeTemporaryLOB" type="Void"/>
+      <method id="MatchPos" type="Integer">
+         <argument id="pattern" type="Variant" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="nth" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Open" type="Void">
+         <argument id="mode" type="Byte" status="ByVal"/>
+      </method>
+      <method id="Trim" type="Void">
+         <argument id="newlen" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Read" type="Integer">
+         <argument id="Chunk" type="Variant" status="Out"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Write" type="Integer">
+         <argument id="Chunk" type="Variant" status="ByRef"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="Piecetype" type="Byte" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="IsEqual" type="Boolean">
+         <argument id="src_clob" type="Object" status="ByVal"/>
+      </method>
+      <method id="_Read" type="Integer">
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="buffer" type="Void" status="ByRef"/>
+         <argument id="bufsize" type="Integer" status="ByVal"/>
+         <argument id="amt_read" type="Integer" status="Out"/>
+         <argument id="allowitfe" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_Write" type="Integer">
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="buffer" type="Byte" status="ByRef"/>
+         <argument id="buflen" type="Integer" status="ByVal"/>
+         <argument id="piece" type="Byte" status="ByVal"/>
+         <argument id="amount_written" type="Integer" status="Out"/>
+         <argument id="allowitfe" type="Integer" status="ByVal"/>
+      </method>
+      <method id="LastServerErrReset" type="Void"/>
+      <method id="_MatchPos" type="Integer">
+         <argument id="pattern" type="Void" status="ByRef"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="nth" type="Integer" status="ByVal"/>
+         <argument id="buflen" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+      <method id="_ReadCPP" type="Integer">
+         <argument id="Status" type="Short" status="ByRef"/>
+         <argument id="inbuffer" type="String" status="ByRef"/>
+         <argument id="inbuffersize" type="Integer" status="ByVal"/>
+         <argument id="outbuffer" type="String" status="ByRef"/>
+         <argument id="chunksize" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </method>
+      <method id="_WriteCPP" type="Integer">
+         <argument id="Status" type="Short" status="ByRef"/>
+         <argument id="buffer" type="String" status="ByRef"/>
+         <argument id="buffersize" type="Integer" status="ByVal"/>
+         <argument id="Piecetype" type="Byte" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </method>
+      <accessor id="_Size" type="Integer">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+      <accessor id="_IsNull" type="Boolean">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+      <accessor id="_OptimumChunkSize" type="Integer">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+   </class>
+   <class id="OraClob" parent="None" creatable="off">
+      <property id="IsNull" type="Boolean" status="Out"/>
+      <property id="IsOpen" type="Boolean" status="Out"/>
+      <property id="IsTemporary" type="Boolean" status="Out"/>
+      <property id="size" type="Integer" status="Out"/>
+      <property id="PollingAmount" type="Integer" status="InOut"/>
+      <property id="offset" type="Integer" status="InOut"/>
+      <property id="Status" type="Short" status="Out"/>
+      <property id="CharSetId" type="Integer" status="Out"/>
+      <property id="CharSetForm" type="Integer" status="Out"/>
+      <property id="LastServerErr" type="Integer" status="Out"/>
+      <property id="LastServerErrText" type="String" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Append" type="Void">
+         <argument id="src_clob" type="Object" status="ByVal"/>
+      </method>
+      <method id="Close" type="Void"/>
+      <method id="Compare" type="Boolean">
+         <argument id="src_clob" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Copy" type="Void">
+         <argument id="src_clob" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyFromBFILE" type="Void">
+         <argument id="src_bfile" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyFromFile" type="Void">
+         <argument id="filename" type="String" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyToFile" type="Void">
+         <argument id="filename" type="String" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="DisableBuffering" type="Void"/>
+      <method id="EnableBuffering" type="Void"/>
+      <method id="Erase" type="Void">
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="FlushBuffer" type="Void"/>
+      <method id="FreeTemporaryLOB" type="Void"/>
+      <method id="MatchPos" type="Integer">
+         <argument id="pattern" type="Variant" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="nth" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Open" type="Void">
+         <argument id="mode" type="Byte" status="ByVal"/>
+      </method>
+      <method id="Trim" type="Void">
+         <argument id="newlen" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Read" type="Integer">
+         <argument id="Chunk" type="Variant" status="Out"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Write" type="Integer">
+         <argument id="Chunk" type="Variant" status="ByRef"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="Piecetype" type="Byte" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="IsEqual" type="Boolean">
+         <argument id="src_clob" type="Object" status="ByVal"/>
+      </method>
+      <method id="_Read" type="Integer">
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="buffer" type="Void" status="ByRef"/>
+         <argument id="bufsize" type="Integer" status="ByVal"/>
+         <argument id="amt_read" type="Integer" status="Out"/>
+         <argument id="allowitfe" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_Write" type="Integer">
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="buffer" type="Byte" status="ByRef"/>
+         <argument id="buflen" type="Integer" status="ByVal"/>
+         <argument id="piece" type="Byte" status="ByVal"/>
+         <argument id="amount_written" type="Integer" status="Out"/>
+         <argument id="allowitfe" type="Integer" status="ByVal"/>
+      </method>
+      <method id="LastServerErrReset" type="Void"/>
+      <method id="_MatchPos" type="Integer">
+         <argument id="pattern" type="Void" status="ByRef"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="nth" type="Integer" status="ByVal"/>
+         <argument id="buflen" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+      <method id="_ReadCPP" type="Integer">
+         <argument id="Status" type="Short" status="ByRef"/>
+         <argument id="inbuffer" type="String" status="ByRef"/>
+         <argument id="inbuffersize" type="Integer" status="ByVal"/>
+         <argument id="outbuffer" type="String" status="ByRef"/>
+         <argument id="chunksize" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </method>
+      <method id="_WriteCPP" type="Integer">
+         <argument id="Status" type="Short" status="ByRef"/>
+         <argument id="buffer" type="String" status="ByRef"/>
+         <argument id="buffersize" type="Integer" status="ByVal"/>
+         <argument id="Piecetype" type="Byte" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </method>
+      <accessor id="_Size" type="Integer">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+      <accessor id="_IsNull" type="Boolean">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+      <accessor id="_OptimumChunkSize" type="Integer">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+   </class>
+   <class id="_IOraBfile" parent="IUnknown" creatable="off">
+      <property id="DirectoryName" type="String" status="InOut"/>
+      <property id="filename" type="String" status="InOut"/>
+      <property id="IsNull" type="Boolean" status="Out"/>
+      <property id="IsOpen" type="Boolean" status="Out"/>
+      <property id="size" type="Integer" status="Out"/>
+      <property id="Exists" type="Boolean" status="Out"/>
+      <property id="PollingAmount" type="Integer" status="InOut"/>
+      <property id="offset" type="Integer" status="InOut"/>
+      <property id="Status" type="Short" status="Out"/>
+      <property id="LastServerErr" type="Integer" status="Out"/>
+      <property id="LastServerErrText" type="String" status="Out"/>
+      <method id="Compare" type="Boolean">
+         <argument id="src_bfile" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyToLOB" type="Void">
+         <argument id="dst_lob" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Close" type="Void"/>
+      <method id="CloseAll" type="Void"/>
+      <method id="CopyToFile" type="Void">
+         <argument id="filename" type="String" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Open" type="Void"/>
+      <method id="MatchPos" type="Integer">
+         <argument id="pattern" type="Variant" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="nth" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Read" type="Integer">
+         <argument id="Chunk" type="Variant" status="Out"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_Read" type="Integer">
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="buffer" type="Void" status="ByRef"/>
+         <argument id="bufsize" type="Integer" status="ByVal"/>
+         <argument id="amt_read" type="Integer" status="Out"/>
+         <argument id="allowitfe" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="IsEqual" type="Boolean">
+         <argument id="src_bfile" type="Object" status="ByVal"/>
+      </method>
+      <method id="LastServerErrReset" type="Void"/>
+      <method id="_MatchPos" type="Integer">
+         <argument id="pattern" type="Void" status="ByRef"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="nth" type="Integer" status="ByVal"/>
+         <argument id="buflen" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+      <method id="_ReadCPP" type="Integer">
+         <argument id="Status" type="Short" status="ByRef"/>
+         <argument id="inbuffer" type="String" status="ByRef"/>
+         <argument id="inbuffersize" type="Integer" status="ByVal"/>
+         <argument id="outbuffer" type="String" status="ByRef"/>
+         <argument id="chunksize" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </method>
+      <accessor id="_Size" type="Integer">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+      <accessor id="_IsNull" type="Boolean">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+   </class>
+   <class id="OraBfile" parent="None" creatable="off">
+      <property id="DirectoryName" type="String" status="InOut"/>
+      <property id="filename" type="String" status="InOut"/>
+      <property id="IsNull" type="Boolean" status="Out"/>
+      <property id="IsOpen" type="Boolean" status="Out"/>
+      <property id="size" type="Integer" status="Out"/>
+      <property id="Exists" type="Boolean" status="Out"/>
+      <property id="PollingAmount" type="Integer" status="InOut"/>
+      <property id="offset" type="Integer" status="InOut"/>
+      <property id="Status" type="Short" status="Out"/>
+      <property id="LastServerErr" type="Integer" status="Out"/>
+      <property id="LastServerErrText" type="String" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Compare" type="Boolean">
+         <argument id="src_bfile" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyToLOB" type="Void">
+         <argument id="dst_lob" type="Object" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="dst_offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="src_offset" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Close" type="Void"/>
+      <method id="CloseAll" type="Void"/>
+      <method id="CopyToFile" type="Void">
+         <argument id="filename" type="String" status="ByVal"/>
+         <argument id="amount" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="offset" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Open" type="Void"/>
+      <method id="MatchPos" type="Integer">
+         <argument id="pattern" type="Variant" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="nth" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Read" type="Integer">
+         <argument id="Chunk" type="Variant" status="Out"/>
+         <argument id="chunksize" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_Read" type="Integer">
+         <argument id="amount" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="buffer" type="Void" status="ByRef"/>
+         <argument id="bufsize" type="Integer" status="ByVal"/>
+         <argument id="amt_read" type="Integer" status="Out"/>
+         <argument id="allowitfe" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="IsEqual" type="Boolean">
+         <argument id="src_bfile" type="Object" status="ByVal"/>
+      </method>
+      <method id="LastServerErrReset" type="Void"/>
+      <method id="_MatchPos" type="Integer">
+         <argument id="pattern" type="Void" status="ByRef"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="nth" type="Integer" status="ByVal"/>
+         <argument id="buflen" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+      <method id="_ReadCPP" type="Integer">
+         <argument id="Status" type="Short" status="ByRef"/>
+         <argument id="inbuffer" type="String" status="ByRef"/>
+         <argument id="inbuffersize" type="Integer" status="ByVal"/>
+         <argument id="outbuffer" type="String" status="ByRef"/>
+         <argument id="chunksize" type="Integer" status="ByVal"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </method>
+      <accessor id="_Size" type="Integer">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+      <accessor id="_IsNull" type="Boolean">
+         <argument id="err" type="Boolean" status="ByRef"/>
+      </accessor>
+   </class>
+   <class id="_IOraAQ" parent="IUnknown" creatable="off">
+      <property id="Visible" type="Integer" status="InOut"/>
+      <property id="RelMsgID" type="String" status="InOut"/>
+      <property id="Consumer" type="String" status="InOut"/>
+      <property id="DequeueMode" type="Integer" status="InOut"/>
+      <property id="Navigation" type="Integer" status="InOut"/>
+      <property id="Wait" type="Integer" status="InOut"/>
+      <property id="Correlate" type="String" status="InOut"/>
+      <property id="DequeueMsgID" type="String" status="InOut"/>
+      <method id="Enqueue" type="String"/>
+      <method id="Dequeue" type="String"/>
+      <method id="MonitorStart" type="Void">
+         <argument id="NotifyHdl" type="Object" status="ByVal"/>
+         <argument id="CallbackCtx" type="Variant" status="ByVal"/>
+         <argument id="MsgFilterVal" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="MsgFilter" type="lMesgFilter" status="ByVal" optional="Default"/>
+      </method>
+      <method id="MonitorStop" type="Void"/>
+      <accessor id="AQMsg" type="stdole.IDispatch">
+         <argument id="MsgType" type="Integer" status="ByVal" optional="23"/>
+         <argument id="TypeByName" type="String" status="ByVal" optional="Default"/>
+         <argument id="Schema" type="String" status="ByVal" optional="Default"/>
+      </accessor>
+   </class>
+   <class id="OraAQ" parent="None" default="AQMsg" creatable="off">
+      <property id="Visible" type="Integer" status="InOut"/>
+      <property id="RelMsgID" type="String" status="InOut"/>
+      <property id="Consumer" type="String" status="InOut"/>
+      <property id="DequeueMode" type="Integer" status="InOut"/>
+      <property id="Navigation" type="Integer" status="InOut"/>
+      <property id="Wait" type="Integer" status="InOut"/>
+      <property id="Correlate" type="String" status="InOut"/>
+      <property id="DequeueMsgID" type="String" status="InOut"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Enqueue" type="String"/>
+      <method id="Dequeue" type="String"/>
+      <method id="MonitorStart" type="Void">
+         <argument id="NotifyHdl" type="Object" status="ByVal"/>
+         <argument id="CallbackCtx" type="Variant" status="ByVal"/>
+         <argument id="MsgFilterVal" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="MsgFilter" type="lMesgFilter" status="ByVal" optional="Default"/>
+      </method>
+      <method id="MonitorStop" type="Void"/>
+      <method id="AQMsg" type="stdole.IDispatch" status="indexer">
+         <argument id="MsgType" type="Integer" status="ByVal" optional="23"/>
+         <argument id="TypeByName" type="String" status="ByVal" optional="Default"/>
+         <argument id="Schema" type="String" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="_IOraAQMsg" parent="IUnknown" creatable="off">
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Delay" type="Integer" status="InOut"/>
+      <property id="ExceptionQueue" type="String" status="InOut"/>
+      <property id="Priority" type="Integer" status="InOut"/>
+      <property id="Correlation" type="String" status="InOut"/>
+      <property id="Expiration" type="Integer" status="InOut"/>
+      <accessor id="AQAgent" type="stdole.IDispatch">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Addr" type="String" status="ByVal" optional="Default"/>
+      </accessor>
+   </class>
+   <class id="OraAQMsg" parent="None" default="Value" creatable="off">
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Delay" type="Integer" status="InOut"/>
+      <property id="ExceptionQueue" type="String" status="InOut"/>
+      <property id="Priority" type="Integer" status="InOut"/>
+      <property id="Correlation" type="String" status="InOut"/>
+      <property id="Expiration" type="Integer" status="InOut"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <accessor id="AQAgent" type="stdole.IDispatch">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Addr" type="String" status="ByVal" optional="Default"/>
+      </accessor>
+   </class>
+   <class id="_IOraAQAgent" parent="IUnknown" creatable="off">
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Address" type="String" status="InOut"/>
+   </class>
+   <class id="OraAQAgent" parent="None" creatable="off">
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Address" type="String" status="InOut"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+   </class>
+   <class id="_IOraMetaData" parent="IUnknown" creatable="off">
+      <property id="Type" type="Integer" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <accessor id="Attribute" type="stdole.IDispatch">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </accessor>
+   </class>
+   <class id="OraMetaData" parent="None" default="Attribute" creatable="off">
+      <property id="Type" type="Integer" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Attribute" type="stdole.IDispatch" status="indexer">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_IOraMDAttribute" parent="IUnknown" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <property id="Value" type="Variant" status="Out"/>
+      <property id="IsMDObject" type="Boolean" status="Out"/>
+   </class>
+   <class id="OraMDAttribute" parent="None" default="Value" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <property id="Value" type="Variant" status="Out"/>
+      <property id="IsMDObject" type="Boolean" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+   </class>
+   <class id="_IOraObject" parent="IUnknown" creatable="off">
+      <property id="TypeName" type="String" status="Out"/>
+      <property id="Version" type="String" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="IsNull" type="Boolean" status="Out"/>
+      <accessor id="Item" type="stdole.IDispatch">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="ExecuteMemberMethod" type="Void">
+         <argument id="methodname" type="String" status="ByVal"/>
+      </method>
+      <method id="_getAttrValue" type="Void">
+         <argument id="pResult" type="Variant" status="Out"/>
+         <argument id="index" type="Variant" status="ByRef"/>
+         <argument id="dtype" type="Integer" status="Out"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+      <method id="_setAttrValue" type="Void">
+         <argument id="pVal" type="Variant" status="ByRef"/>
+         <argument id="index" type="Variant" status="ByRef"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+      <method id="_getAttrType" type="Integer">
+         <argument id="index" type="Variant" status="ByRef"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+      <method id="_getAttrName" type="String">
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+   </class>
+   <class id="OraObject" parent="None" default="Item" creatable="off">
+      <property id="TypeName" type="String" status="Out"/>
+      <property id="Version" type="String" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="IsNull" type="Boolean" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Item" type="stdole.IDispatch" status="indexer">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="ExecuteMemberMethod" type="Void">
+         <argument id="methodname" type="String" status="ByVal"/>
+      </method>
+      <method id="_getAttrValue" type="Void">
+         <argument id="pResult" type="Variant" status="Out"/>
+         <argument id="index" type="Variant" status="ByRef"/>
+         <argument id="dtype" type="Integer" status="Out"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+      <method id="_setAttrValue" type="Void">
+         <argument id="pVal" type="Variant" status="ByRef"/>
+         <argument id="index" type="Variant" status="ByRef"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+      <method id="_getAttrType" type="Integer">
+         <argument id="index" type="Variant" status="ByRef"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+      <method id="_getAttrName" type="String">
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="err" type="Boolean" status="Out"/>
+      </method>
+   </class>
+   <class id="_IOraRef" parent="IUnknown" creatable="off">
+      <property id="TypeName" type="String" status="Out"/>
+      <property id="Version" type="String" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="IsNull" type="Boolean" status="Out"/>
+      <property id="IsRefNull" type="Boolean" status="Out"/>
+      <property id="TableName" type="String" status="Out"/>
+      <property id="editOption" type="Integer" status="InOut"/>
+      <property id="PinOption" type="Integer" status="InOut"/>
+      <property id="HexValue" type="String" status="Out"/>
+      <accessor id="Item" type="stdole.IDispatch">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="ExecuteMemberMethod" type="Void">
+         <argument id="methodname" type="String" status="ByVal"/>
+      </method>
+      <method id="Edit" type="Void"/>
+      <method id="Update" type="Void"/>
+      <method id="Delete" type="Void"/>
+      <method id="Refresh" type="Void"/>
+      <method id="CancelEdit" type="Void"/>
+      <method id="SetCORParams" type="Void">
+         <argument id="type_name" type="String" status="ByVal"/>
+         <argument id="depthlevel" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="OraRef" parent="None" default="Item" creatable="off">
+      <property id="TypeName" type="String" status="Out"/>
+      <property id="Version" type="String" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="IsNull" type="Boolean" status="Out"/>
+      <property id="IsRefNull" type="Boolean" status="Out"/>
+      <property id="TableName" type="String" status="Out"/>
+      <property id="editOption" type="Integer" status="InOut"/>
+      <property id="PinOption" type="Integer" status="InOut"/>
+      <property id="HexValue" type="String" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Item" type="stdole.IDispatch" status="indexer">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="ExecuteMemberMethod" type="Void">
+         <argument id="methodname" type="String" status="ByVal"/>
+      </method>
+      <method id="Edit" type="Void"/>
+      <method id="Update" type="Void"/>
+      <method id="Delete" type="Void"/>
+      <method id="Refresh" type="Void"/>
+      <method id="CancelEdit" type="Void"/>
+      <method id="SetCORParams" type="Void">
+         <argument id="type_name" type="String" status="ByVal"/>
+         <argument id="depthlevel" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_IOraAttribute" parent="IUnknown" creatable="off">
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="Type" type="Integer" status="Out"/>
+   </class>
+   <class id="OraAttribute" parent="None" default="Value" creatable="off">
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="Type" type="Integer" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+   </class>
+   <class id="_IOraCollection" parent="IUnknown" creatable="off">
+      <property id="ElementType" type="Integer" status="Out"/>
+      <property id="IsNull" type="Boolean" status="Out"/>
+      <property id="IsLocator" type="Boolean" status="Out"/>
+      <property id="maxSize" type="Integer" status="Out"/>
+      <property id="size" type="Integer" status="Out"/>
+      <property id="SafeArray" type="Variant" status="InOut"/>
+      <property id="Type" type="Integer" status="Out"/>
+      <property id="TableSize" type="Integer" status="Out"/>
+      <property id="EOC" type="Boolean" status="Out"/>
+      <property id="BOC" type="Boolean" status="Out"/>
+      <accessor id="Item" type="Variant">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="Append" type="Void">
+         <argument id="var" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="CreateDynaset" type="stdole.IDispatch">
+         <argument id="sqlStmt" type="String" status="ByVal" optional="Default"/>
+         <argument id="options" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="FetchLimit" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Delete" type="Void">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Exist" type="Boolean">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Trim" type="Void">
+         <argument id="size" type="Integer" status="ByVal"/>
+      </method>
+      <method id="CreateIterator" type="Integer"/>
+      <method id="InitIterator" type="Integer"/>
+      <method id="DeleteIterator" type="Integer"/>
+      <method id="IterNext" type="Void"/>
+      <method id="IterPrev" type="Void"/>
+      <method id="ElementValue" type="Variant"/>
+      <method id="GetElemMaxSize" type="Integer"/>
+      <method id="GetElementValue" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="element" type="Void" status="Out"/>
+         <argument id="size" type="Integer" status="Out"/>
+         <argument id="IsNull" type="Boolean" status="Out"/>
+         <argument id="target_type" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetCurrentIterValue" type="Integer">
+         <argument id="element" type="Void" status="Out"/>
+         <argument id="size" type="Integer" status="Out"/>
+         <argument id="IsNull" type="Boolean" status="Out"/>
+         <argument id="target_type" type="Integer" status="ByVal"/>
+      </method>
+      <method id="IteratorNext" type="Integer">
+         <argument id="element" type="Void" status="Out"/>
+         <argument id="size" type="Integer" status="Out"/>
+         <argument id="IsNull" type="Boolean" status="Out"/>
+         <argument id="EOC" type="Boolean" status="Out"/>
+         <argument id="target_type" type="Integer" status="ByVal"/>
+      </method>
+      <method id="IteratorPrev" type="Integer">
+         <argument id="element" type="Void" status="Out"/>
+         <argument id="size" type="Integer" status="Out"/>
+         <argument id="IsNull" type="Boolean" status="Out"/>
+         <argument id="BOC" type="Boolean" status="Out"/>
+         <argument id="target_type" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="OraCollection" parent="None" default="Item" creatable="off">
+      <property id="ElementType" type="Integer" status="Out"/>
+      <property id="IsNull" type="Boolean" status="Out"/>
+      <property id="IsLocator" type="Boolean" status="Out"/>
+      <property id="maxSize" type="Integer" status="Out"/>
+      <property id="size" type="Integer" status="Out"/>
+      <property id="SafeArray" type="Variant" status="InOut"/>
+      <property id="Type" type="Integer" status="Out"/>
+      <property id="TableSize" type="Integer" status="Out"/>
+      <property id="EOC" type="Boolean" status="Out"/>
+      <property id="BOC" type="Boolean" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Item" type="Variant" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Append" type="Void">
+         <argument id="var" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="CreateDynaset" type="stdole.IDispatch">
+         <argument id="sqlStmt" type="String" status="ByVal" optional="Default"/>
+         <argument id="options" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="FetchLimit" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Delete" type="Void">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Exist" type="Boolean">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Trim" type="Void">
+         <argument id="size" type="Integer" status="ByVal"/>
+      </method>
+      <method id="CreateIterator" type="Integer"/>
+      <method id="InitIterator" type="Integer"/>
+      <method id="DeleteIterator" type="Integer"/>
+      <method id="IterNext" type="Void"/>
+      <method id="IterPrev" type="Void"/>
+      <method id="ElementValue" type="Variant"/>
+      <method id="GetElemMaxSize" type="Integer"/>
+      <method id="GetElementValue" type="Integer">
+         <argument id="index" type="Integer" status="ByVal"/>
+         <argument id="element" type="Void" status="Out"/>
+         <argument id="size" type="Integer" status="Out"/>
+         <argument id="IsNull" type="Boolean" status="Out"/>
+         <argument id="target_type" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetCurrentIterValue" type="Integer">
+         <argument id="element" type="Void" status="Out"/>
+         <argument id="size" type="Integer" status="Out"/>
+         <argument id="IsNull" type="Boolean" status="Out"/>
+         <argument id="target_type" type="Integer" status="ByVal"/>
+      </method>
+      <method id="IteratorNext" type="Integer">
+         <argument id="element" type="Void" status="Out"/>
+         <argument id="size" type="Integer" status="Out"/>
+         <argument id="IsNull" type="Boolean" status="Out"/>
+         <argument id="EOC" type="Boolean" status="Out"/>
+         <argument id="target_type" type="Integer" status="ByVal"/>
+      </method>
+      <method id="IteratorPrev" type="Integer">
+         <argument id="element" type="Void" status="Out"/>
+         <argument id="size" type="Integer" status="Out"/>
+         <argument id="IsNull" type="Boolean" status="Out"/>
+         <argument id="BOC" type="Boolean" status="Out"/>
+         <argument id="target_type" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_IOraElement" parent="IUnknown" creatable="off">
+      <property id="Value" type="Variant" status="Out"/>
+   </class>
+   <class id="OraElement" parent="None" default="Value" creatable="off">
+      <property id="Value" type="Variant" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+   </class>
+   <class id="_IOraNumber" parent="IUnknown" creatable="off">
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="format" type="String" status="InOut"/>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="Abs" type="Void"/>
+      <method id="ArcCos" type="Void"/>
+      <method id="ArcSin" type="Void"/>
+      <method id="ArcTan" type="Void"/>
+      <method id="Ceil" type="Void"/>
+      <method id="Cos" type="Void"/>
+      <method id="Exp" type="Void"/>
+      <method id="Floor" type="Void"/>
+      <method id="HypCos" type="Void"/>
+      <method id="HypSin" type="Void"/>
+      <method id="HypTan" type="Void"/>
+      <method id="Ln" type="Void"/>
+      <method id="Neg" type="Void"/>
+      <method id="SetPi" type="Void"/>
+      <method id="Sin" type="Void"/>
+      <method id="Sqrt" type="Void"/>
+      <method id="Tan" type="Void"/>
+      <method id="Add" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="ArcTan2" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Div" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Log" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Mod" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Mul" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Power" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Sub" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsEqual" type="Boolean">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsGreater" type="Boolean">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsLess" type="Boolean">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Round" type="Void">
+         <argument id="DecimalPlaces" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Trunc" type="Void">
+         <argument id="DecimalPlaces" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="OraNumber" parent="None" default="Value" creatable="off">
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="format" type="String" status="InOut"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="Abs" type="Void"/>
+      <method id="ArcCos" type="Void"/>
+      <method id="ArcSin" type="Void"/>
+      <method id="ArcTan" type="Void"/>
+      <method id="Ceil" type="Void"/>
+      <method id="Cos" type="Void"/>
+      <method id="Exp" type="Void"/>
+      <method id="Floor" type="Void"/>
+      <method id="HypCos" type="Void"/>
+      <method id="HypSin" type="Void"/>
+      <method id="HypTan" type="Void"/>
+      <method id="Ln" type="Void"/>
+      <method id="Neg" type="Void"/>
+      <method id="SetPi" type="Void"/>
+      <method id="Sin" type="Void"/>
+      <method id="Sqrt" type="Void"/>
+      <method id="Tan" type="Void"/>
+      <method id="Add" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="ArcTan2" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Div" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Log" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Mod" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Mul" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Power" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Sub" type="Void">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsEqual" type="Boolean">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsGreater" type="Boolean">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsLess" type="Boolean">
+         <argument id="OraNumber" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Round" type="Void">
+         <argument id="DecimalPlaces" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Trunc" type="Void">
+         <argument id="DecimalPlaces" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_IOraIntervalDS" parent="IUnknown" creatable="off">
+      <property id="Days" type="Integer" status="InOut"/>
+      <property id="Hours" type="Integer" status="InOut"/>
+      <property id="Minutes" type="Integer" status="InOut"/>
+      <property id="Nanoseconds" type="Integer" status="InOut"/>
+      <property id="Seconds" type="Integer" status="InOut"/>
+      <property id="TotalDays" type="Variant" status="InOut"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <method id="Add" type="Void">
+         <argument id="operand" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="Div" type="Void">
+         <argument id="divisor" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsEqual" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsGreater" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsLess" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Mul" type="Void">
+         <argument id="multiplier" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Neg" type="Void"/>
+      <method id="Sub" type="Void">
+         <argument id="operand" type="Variant" status="ByRef"/>
+      </method>
+      <method id="ToOraNumber" type="stdole.IDispatch"/>
+   </class>
+   <class id="OraIntervalDS" parent="None" creatable="off">
+      <property id="Days" type="Integer" status="InOut"/>
+      <property id="Hours" type="Integer" status="InOut"/>
+      <property id="Minutes" type="Integer" status="InOut"/>
+      <property id="Nanoseconds" type="Integer" status="InOut"/>
+      <property id="Seconds" type="Integer" status="InOut"/>
+      <property id="TotalDays" type="Variant" status="InOut"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Add" type="Void">
+         <argument id="operand" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="Div" type="Void">
+         <argument id="divisor" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsEqual" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsGreater" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsLess" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Mul" type="Void">
+         <argument id="multiplier" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Neg" type="Void"/>
+      <method id="Sub" type="Void">
+         <argument id="operand" type="Variant" status="ByRef"/>
+      </method>
+      <method id="ToOraNumber" type="stdole.IDispatch"/>
+   </class>
+   <class id="_IOraIntervalYM" parent="IUnknown" creatable="off">
+      <property id="Months" type="Integer" status="InOut"/>
+      <property id="Years" type="Integer" status="InOut"/>
+      <property id="TotalYears" type="Variant" status="InOut"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <method id="Add" type="Void">
+         <argument id="operand" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="Div" type="Void">
+         <argument id="divisor" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsEqual" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsGreater" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsLess" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Mul" type="Void">
+         <argument id="multiplier" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Neg" type="Void"/>
+      <method id="Sub" type="Void">
+         <argument id="operand" type="Variant" status="ByRef"/>
+      </method>
+   </class>
+   <class id="OraIntervalYM" parent="None" creatable="off">
+      <property id="Months" type="Integer" status="InOut"/>
+      <property id="Years" type="Integer" status="InOut"/>
+      <property id="TotalYears" type="Variant" status="InOut"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Add" type="Void">
+         <argument id="operand" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="Div" type="Void">
+         <argument id="divisor" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsEqual" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsGreater" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsLess" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Mul" type="Void">
+         <argument id="multiplier" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Neg" type="Void"/>
+      <method id="Sub" type="Void">
+         <argument id="operand" type="Variant" status="ByRef"/>
+      </method>
+   </class>
+   <class id="_IOraTimeStamp" parent="IUnknown" creatable="off">
+      <property id="Day" type="Integer" status="InOut"/>
+      <property id="format" type="String" status="InOut"/>
+      <property id="Hour" type="Integer" status="InOut"/>
+      <property id="Minute" type="Integer" status="InOut"/>
+      <property id="Month" type="Integer" status="InOut"/>
+      <property id="Nanosecond" type="Integer" status="InOut"/>
+      <property id="Second" type="Integer" status="InOut"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Year" type="Integer" status="InOut"/>
+      <method id="AddIntervalDS" type="Void">
+         <argument id="OraIntervalDS" type="Variant" status="ByRef"/>
+      </method>
+      <method id="AddIntervalYM" type="Void">
+         <argument id="OraIntervalYM" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="IsEqual" type="Boolean">
+         <argument id="OraTimeStamp" type="Variant" status="ByRef"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="IsGreater" type="Boolean">
+         <argument id="OraTimeStamp" type="Variant" status="ByRef"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="IsLess" type="Boolean">
+         <argument id="OraTimeStamp" type="Variant" status="ByRef"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ToDate" type="Date"/>
+      <method id="ToOraTimeStampTZ" type="stdole.IDispatch"/>
+   </class>
+   <class id="OraTimeStamp" parent="None" creatable="off">
+      <property id="Day" type="Integer" status="InOut"/>
+      <property id="format" type="String" status="InOut"/>
+      <property id="Hour" type="Integer" status="InOut"/>
+      <property id="Minute" type="Integer" status="InOut"/>
+      <property id="Month" type="Integer" status="InOut"/>
+      <property id="Nanosecond" type="Integer" status="InOut"/>
+      <property id="Second" type="Integer" status="InOut"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Year" type="Integer" status="InOut"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="AddIntervalDS" type="Void">
+         <argument id="OraIntervalDS" type="Variant" status="ByRef"/>
+      </method>
+      <method id="AddIntervalYM" type="Void">
+         <argument id="OraIntervalYM" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="IsEqual" type="Boolean">
+         <argument id="OraTimeStamp" type="Variant" status="ByRef"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="IsGreater" type="Boolean">
+         <argument id="OraTimeStamp" type="Variant" status="ByRef"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="IsLess" type="Boolean">
+         <argument id="OraTimeStamp" type="Variant" status="ByRef"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ToDate" type="Date"/>
+      <method id="ToOraTimeStampTZ" type="stdole.IDispatch"/>
+   </class>
+   <class id="_IOraTimeStampTZ" parent="IUnknown" creatable="off">
+      <property id="Day" type="Integer" status="InOut"/>
+      <property id="format" type="String" status="InOut"/>
+      <property id="Hour" type="Integer" status="InOut"/>
+      <property id="Minute" type="Integer" status="InOut"/>
+      <property id="Month" type="Integer" status="InOut"/>
+      <property id="Nanosecond" type="Integer" status="InOut"/>
+      <property id="Second" type="Integer" status="InOut"/>
+      <property id="TimeZone" type="String" status="InOut"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Year" type="Integer" status="InOut"/>
+      <method id="AddIntervalDS" type="Void">
+         <argument id="operand" type="Variant" status="ByRef"/>
+      </method>
+      <method id="AddIntervalYM" type="Void">
+         <argument id="operand" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="IsEqual" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="IsGreater" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="IsLess" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ToDate" type="Date"/>
+      <method id="ToOraTimeStamp" type="stdole.IDispatch"/>
+      <method id="ToOraTimeStampLTZ" type="stdole.IDispatch"/>
+      <method id="ToUniversalTime" type="stdole.IDispatch"/>
+   </class>
+   <class id="OraTimeStampTZ" parent="None" creatable="off">
+      <property id="Day" type="Integer" status="InOut"/>
+      <property id="format" type="String" status="InOut"/>
+      <property id="Hour" type="Integer" status="InOut"/>
+      <property id="Minute" type="Integer" status="InOut"/>
+      <property id="Month" type="Integer" status="InOut"/>
+      <property id="Nanosecond" type="Integer" status="InOut"/>
+      <property id="Second" type="Integer" status="InOut"/>
+      <property id="TimeZone" type="String" status="InOut"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Year" type="Integer" status="InOut"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="AddIntervalDS" type="Void">
+         <argument id="operand" type="Variant" status="ByRef"/>
+      </method>
+      <method id="AddIntervalYM" type="Void">
+         <argument id="operand" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Clone" type="stdole.IDispatch"/>
+      <method id="IsEqual" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="IsGreater" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="IsLess" type="Boolean">
+         <argument id="Value" type="Variant" status="ByRef"/>
+         <argument id="format" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ToDate" type="Date"/>
+      <method id="ToOraTimeStamp" type="stdole.IDispatch"/>
+      <method id="ToOraTimeStampLTZ" type="stdole.IDispatch"/>
+      <method id="ToUniversalTime" type="stdole.IDispatch"/>
+   </class>
+   <class id="_ISnapshotID" parent="IUnknown" creatable="off">
+   </class>
+   <class id="SnapshotID" parent="None" creatable="off">
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+   </class>
+   <class id="_IOraSubscriptions" parent="IUnknown" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <accessor id="Item" type="stdole.IDispatch">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Add" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="DBEventsSubscriber" type="Object" status="ByVal"/>
+         <argument id="SubscriberCtx" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="OraSubscriptions" parent="None" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Item" type="stdole.IDispatch" status="indexer">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="DBEventsSubscriber" type="Object" status="ByVal"/>
+         <argument id="SubscriberCtx" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_IOraSubscription" parent="IUnknown" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <method id="Register" type="Void"/>
+      <method id="UnRegister" type="Void"/>
+   </class>
+   <class id="OraSubscription" parent="None" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+      <method id="Register" type="Void"/>
+      <method id="UnRegister" type="Void"/>
+   </class>
+   <coclass id="OraServerClass">
+      <subclass id="OraServer"/>
+      <subclass id="_IOraServer"/>
+   </coclass>
+   <coclass id="OraSessionClass">
+      <subclass id="OraSession"/>
+      <subclass id="_IOraSession"/>
+   </coclass>
+</library>
+</DescriptionFile>

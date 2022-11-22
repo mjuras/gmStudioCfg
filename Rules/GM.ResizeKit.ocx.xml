@@ -1,0 +1,67 @@
+<DescriptionFile>
+<!--
+Upgrade RESIZEKITLib to MigrationSupport.ResizeKit
+-->
+<library id="ResizeKit.ocx"
+         name="RESIZEKITLib"
+         uuid="7AEDC602-D94C-11D1-BB7A-00E0290EA3C9"
+         source="ResizeKit.ocx"
+         location="DoNotDeclare"
+         axLocation="DoNotDeclare"
+         migName="gmRTL.ResizeKitLib"
+         type="Internal"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="_RSizeEvents"/>
+   <class id="IRSizeCtl"/>
+   <coclass id="ResizeKit"/>
+   <coclass id="RSizePrp"/>
+   <class id="_RSizeEvents" parent="None" creatable="off">
+      <event id="ExitResize" netName="ExitResizeEvent" netHandler="RESIZEKITLib._RSizeEvents_ExitResizeEventHandler" netArgs="RESIZEKITLib._RSizeEvents_ExitResizeEvent">
+         <argument id="XScale" type="Double" status="ByVal"/>
+         <argument id="YScale" type="Double" status="ByVal"/>
+      </event>
+   </class>
+   <class id="IRSizeCtl" parent="IDispatch" creatable="off">
+      <property id="FormWidth" type="Integer" status="InOut"/>
+      <property id="FormHeight" type="Integer" status="InOut"/>
+      <property id="FormPos" type="Integer" status="InOut"/>
+      <property id="ResizeFont" type="Integer" status="InOut"/>
+      <property id="FormMaxWidth" type="Integer" status="InOut"/>
+      <property id="FormMinWidth" type="Integer" status="InOut"/>
+      <property id="FormMaxHeight" type="Integer" status="InOut"/>
+      <property id="FormMinHeight" type="Integer" status="InOut"/>
+      <property id="NoResizeFntCtl" type="String" status="InOut"/>
+      <property id="DesignFrmW" type="Integer" status="InOut"/>
+      <property id="DesignFrmH" type="Integer" status="InOut"/>
+      <property id="DesignDpiW" type="Integer" status="InOut"/>
+      <property id="DesignDpiH" type="Integer" status="InOut"/>
+      <property id="Enabled" type="Integer" status="InOut"/>
+      <property id="ValidTaskbar" type="Integer" status="InOut"/>
+      <property id="NoResizeCtl" type="String" status="InOut"/>
+      <method id="SetDirtyFromProp" type="Void"/>
+   </class>
+   <coclass id="ResizeKit">
+      <subclass id="IRSizeCtl"/>
+      <subclass id="_RSizeEvents"/>
+   </coclass>
+   <coclass id="RSizePrp">
+   </coclass>
+</library>
+<Refactor id="[ResizeKit.ocx]">
+   <Migrate id="ResizeKit" nPram="0" migPattern="ResizeKit" role="utility" />
+<!--
+**********************************************************
+* Designer Code
+Removing the control and making it into a class
+so no entries for the designer.
+**********************************************************
+-->
+   <migClass id="NetControl.ResizeKit"
+             migName="ResizeKit"
+             parent="ResizeKit"
+   >
+   </migClass>
+
+</Refactor>
+</DescriptionFile>

@@ -1,0 +1,30 @@
+<RefactorLibrary>
+<!--
+Description: Map VBScript.Regexp to .NET Regexp
+-->
+<Refactor id="[vbscript_3.dll]" >
+   <Migrate migName="System.Text.RegularExpressions" libType="Internal" location="DoNotDeclare" AssemblyName="System.Text.RegularExpressions" />
+   <Migrate id="IRegExp" migPattern="Regex" nPram="0" />
+   <Migrate id="IRegExp.Execute" type="VBScript_RegExp_55.MatchCollection" migName="Matches" />
+   <Migrate id="IRegExp.Pattern" migStatus="NotImplemented" />
+   <Migrate id="IRegExp.IgnoreCase" migStatus="NotImplemented" />
+   <Migrate id="IRegExp.Global" migStatus="NotImplemented" />
+   <Migrate id="IRegExp.Test" migName="IsMatch" />
+   <Migrate id="IMatch.FirstIndex" migName="Index" />
+   <Migrate id="IMatchCollection.Item" type="VBScript_RegExp_55.Match" />
+   
+   <Migrate id="IRegExp2" migPattern="Regex" nPram="0" />
+   <Migrate id="IRegExp2.Execute" type="VBScript_RegExp_55.MatchCollection" migName="Matches" />
+   <Migrate id="IRegExp2.Pattern" migStatus="NotImplemented" />
+   <Migrate id="IRegExp2.IgnoreCase" migStatus="NotImplemented" />
+   <Migrate id="IRegExp2.Global" migStatus="NotImplemented" />
+   <Migrate id="IRegExp2.Test" migName="IsMatch" />
+   
+   <Migrate id="IMatch2.FirstIndex" migName="Index" />
+   <Migrate id="IMatch2.SubMatches" type="VBScript_RegExp_55.SubMatches" />
+   <Migrate id="IMatchCollection2.Item" type="VBScript_RegExp_55.Match" />
+   
+   <Migrate id="ISubMatches.Item" type="String" />
+   <Migrate id="RegExp" migName="Regex" Role="Control" />
+</Refactor>
+</RefactorLibrary>

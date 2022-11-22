@@ -1,0 +1,130 @@
+<RefactorLibrary>
+<!--
+Description: Map MSHFlexGrid to a DataGridView wrapper.  Assumes one band.
+-->
+<Refactor id="[mshflxgd.ocx]" >
+
+   <Migrate migName="gmRTL.MSHFlexGridLib" location="DoNotDeclare" AssemblyName="gmRTL.MSHFlexGridLib" />
+<!--
+Classes
+-->   
+   <Migrate id="MSHFlexGrid" migName="gmRTL.MSHFlexGridLib.MSHFlexGrid" Role="Control" Static="On" />
+<!--
+Enums
+-->   
+   <Migrate id="AlignmentSettings" migName="DataGridViewContentAlignment" migStatus="External"/>
+   <Migrate id="AlignmentSettings.flexAlignLeftTop" migName="TopLeft" />
+   <Migrate id="AlignmentSettings.flexAlignLeftCenter" migName="MiddleLeft" />
+   <Migrate id="AlignmentSettings.flexAlignLeftBottom" migName="BottomLeft" />
+   <Migrate id="AlignmentSettings.flexAlignCenterTop" migName="TopCenter" />
+   <Migrate id="AlignmentSettings.flexAlignCenterCenter" migName="MiddleCenter" />
+   <Migrate id="AlignmentSettings.flexAlignCenterBottom" migName="BottomCenter" />
+   <Migrate id="AlignmentSettings.flexAlignRightTop" migName="TopRight" />
+   <Migrate id="AlignmentSettings.flexAlignRightCenter" migName="MiddleRight" />
+   <Migrate id="AlignmentSettings.flexAlignRightBottom" migName="BottomRight" />
+   <Migrate id="AlignmentSettings.flexAlignGeneral" migName="NotSet" />
+
+   <Migrate id="ScrollBarsSettings" migName="ScrollBars" migStatus="External" />
+   <Migrate id="ScrollBarsSettings.flexScrollBarNone" migName="None" />
+   <Migrate id="ScrollBarsSettings.flexScrollBarHorizontal" migName="Horizontal" />
+   <Migrate id="ScrollBarsSettings.flexScrollBarVertical" migName="Vertical" />
+   <Migrate id="ScrollBarsSettings.flexScrollBarBoth" migName="Both" />
+
+   <Migrate id="FocusRectSettings" migName="FocusRectSettings" Static="On" />
+   
+   <Migrate id="TextStyleSettings" migName="TextStyleSettings" Static="On" />
+   
+   <Migrate id="GridLineSettings" migName="GridLineSettings" Static="On" />
+   
+   <Migrate id="AllowUserResizeSettings" migName="AllowUserResizeSettings" Static="On" />
+   
+   <Migrate id="ColHeaderSettings.flexColHeaderOff" migName="false" Static="On" />
+   <Migrate id="ColHeaderSettings.flexColHeaderOn" migName="true" Static="On" />
+<!--
+Logic API
+-->   
+   <Migrate id="IMSHFlexGrid.CellBackColor" migName="RowBackColor" />
+   <Migrate id="IMSHFlexGrid.CellForeColor" migName="RowForeColor" />
+   <Migrate id="IMSHFlexGrid.Cols" status="GetSetLet" >
+      <Get migPattern="%1d.GetCols(%2d)" nPram="2" />
+      <Set migPattern="%2d.SetCols(%3d,%1d)\c" nPram="3" />
+   </Migrate>
+   <Migrate id="IMSHFlexGrid.ColAlignment" status="GetSetLet" type="MSHierarchicalFlexGridLib.AlignmentSettings" >
+      <Get migPattern="%1d.GetColAlignment(%2d)" nPram="2" />
+      <Set migPattern="%2d.SetColAlignment(%3d,%1d)\c" nPram="3" />
+   </Migrate>
+   <Migrate id="IMSHFlexGrid.ColWidth" type="TwipsX" />
+   <Migrate id="IMSHFlexGrid.RowHeight" status="GetSetLet" >
+      <Get migPattern="%1d.Rows[%2d].Height" nPram="2" />
+      <Set migPattern="%2d.Rows[%3d].Height = %1d\c" nPram="3" />
+   </Migrate>
+   <Migrate id="IMSHFlexGrid.RowIsVisible" status="GetSetLet" >
+      <Get migPattern="%1d.Rows[%2d].Visible" nPram="2" />
+      <Set migPattern="%2d.Rows[%3d].Visible = %1d\c" nPram="3" />
+   </Migrate>
+   <Migrate id="IMSHFlexGrid.ColHeader" status="GetSetLet" >
+      <Get migPattern="%1d.GetColHeader(%2d)" nPram="2" />
+      <Set migPattern="%2d.SetColHeader(%3d,%1d)\c" nPram="3" />
+   </Migrate>
+   <Migrate id="IMSHFlexGrid.ColWordWrapOption" status="GetSetLet" >
+      <Get migPattern="%1d.GetColWordWrapOption(%2d)" nPram="2" />
+      <Set migPattern="%2d.SetColWordWrapOption(%3d,%1d)\c" nPram="3" />
+   </Migrate>
+   <Migrate id="IMSHFlexGrid.DataSource" type="Object" />
+   <Migrate id="IMSHFlexGrid.Rows" migName="RowCount" />
+   <Migrate id="IMSHFlexGrid.Redraw" migStatus="Delete" />
+<!--
+Event Handlers
+-->     
+   <Migrate id="DMSHFlexGridEvents.Click" migName="Click" />
+   <Migrate id="DMSHFlexGridEvents.DblClick" migPattern="DoubleClick" nPram="0" migName="DoubleClick" />
+   <Migrate id="DMSHFlexGridEvents.KeyDown" migPattern="KeyDown" nPram="3" Role="Event" netHandler="System.Windows.Forms.KeyEventHandler" netArgs="KeyEventArgs" />
+   <Migrate id="DMSHFlexGridEvents.KeyDown.keyCode" migPattern="%1d = (int)e.KeyCode" nPram="0" status="ByVal" type="Integer" />
+   <Migrate id="DMSHFlexGridEvents.KeyDown.shift" migPattern="%1d = e.Shift?1:0" nPram="0" type="Integer" />
+   <Migrate id="DMSHFlexGridEvents.KeyPress" migPattern="KeyPress" nPram="2" Role="Event" netHandler="System.Windows.Forms.KeyPressEventHandler" netArgs="System.Windows.Forms.KeyPressEventArgs" />
+   <Migrate id="DMSHFlexGridEvents.KeyPress.keyAscii" migPattern="%1d = (int)e.KeyChar" nPram="0" status="ByVal" type="Integer" />
+   <Migrate id="DMSHFlexGridEvents.MouseDown" migPattern="MouseDown" nPram="5" Role="Event" migName="System.Windows.Forms.MouseDownEvent" netHandler="System.Windows.Forms.MouseEventHandler" netArgs="System.Windows.Forms.MouseEventArgs" />
+   <Migrate id="DMSHFlexGridEvents.MouseDown.button" migPattern="%1d = (int)e.Button" nPram="0" />
+   <Migrate id="DMSHFlexGridEvents.MouseDown.x" migPattern="%1d = e.X" nPram="0" />
+   <Migrate id="DMSHFlexGridEvents.MouseDown.y" migPattern="%1d = e.Y" nPram="0" />
+   <Migrate id="DMSHFlexGridEvents.MouseMove" migName="MouseMove" netHandler="System.Windows.Forms.MouseEventHandler" netArgs="MouseEventArgs" />
+   <Migrate id="DMSHFlexGridEvents.MouseMove.button" migPattern="%1d = (int)e.Button" nPram="0" />
+   <Migrate id="DMSHFlexGridEvents.MouseMove.x" migPattern="%1d = e.X" nPram="0" />
+   <Migrate id="DMSHFlexGridEvents.MouseMove.y" migPattern="%1d = e.Y" nPram="0" />
+   <Migrate id="DMSHFlexGridEvents.MouseUp" migName="MouseUp" netHandler="MouseEventHandler" netArgs="MouseEventArgs" />
+   <Migrate id="DMSHFlexGridEvents.MouseUp.button" migPattern="%1d = (int)e.Button" nPram="0" />
+   <Migrate id="DMSHFlexGridEvents.MouseUp.x" migPattern="%1d = e.X" nPram="0" />
+   <Migrate id="DMSHFlexGridEvents.MouseUp.y" migPattern="%1d = e.Y" nPram="0" />
+   <Migrate id="DMSHFlexGridEvents.EnterCell" migName="CellEnter" netHandler="DataGridViewCellEventHandler" netArgs="DataGridViewCellEventArgs" />
+<!--
+Designer Code
+-->     
+<migClass id="NetControl.MSHFlexGrid" migName="Grid" parent="MSHFlexGrid">
+        <property id="AllowUserToAddRows" type="Boolean" default="false"/>  
+        <property id="AllowUserToDeleteRows" type="Boolean" default="false"/>  
+        <property id="BackColor" type="OLE_COLOR" default="System.Drawing.SystemColors.Window" value="BackColor" />  
+        <property id="ColumnHeadersHeight" type="Integer" default="19"/>
+        <property id="ColumnHeadersVisible" type="Boolean" default="false"/>
+        <property id="EditMode" default="DataGridViewEditMode.EditProgrammatically"/>  
+        <property id="Enabled" type="Boolean" default="true" value="Enabled"/>  
+        <property id="Font" value="Font" type="FontInfo" nPram="3"
+                   vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+                   cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+         />
+        <property id="ForeColor" Type="System.Drawing.SystemColors" default="System.Drawing.SystemColors.ControlText" />
+        <property id="ImeMode" type="System.Windows.Forms.ImeMode" default="System.Windows.Forms.ImeMode.NoControl" />
+        <property id="Location" value="(Left,Top)" nPram="2"  migPattern="new System.Drawing.Point(%1d, %2d)"  />
+        <property id="MousePointer" type="MousePointer" default="System.Windows.Forms.Cursors.Default" migName="Cursor" value="Cursor" />
+        <property id="Name" type="string" value="SYM.name" />
+        <!--
+        <property id="RowHeadersVisible" type="boolean" default="false" />
+        <property id="_Band(0).ColHeader" type="Boolean" default="false" migName="ColumnHeadersVisible"/>  
+        -->
+        <property id="RowCount" type="Integer" default="2" value="IMSHFlexGrid.Rows"/>
+        <property id="Size" value="(Width,Height)"  nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)"  />
+        <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+        <property id="TabStop" type="boolean" value="TabStop" default="true" />
+        <property id="Visible" type="Boolean" default="true" value="Visible"/>
+</migClass>   
+</Refactor>
+</RefactorLibrary>

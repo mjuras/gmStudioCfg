@@ -1,0 +1,40 @@
+<DescriptionFile>
+<library id="comdlg32.dcl"
+         name="comdlg32"
+         source="comdlg32.dcl"
+         location="comdlg32.dcl"
+         type="LocalImport"
+   >
+   <structure id="OPENFILENAME">
+      <member id="lStructSize" type="Integer"/>
+      <member id="hwndOwner" type="Integer"/>
+      <member id="hInstance" type="Integer"/>
+      <member id="lpstrFilter" type="String"/>
+      <member id="lpstrCustomFilter" type="String"/>
+      <member id="nMaxCustFilter" type="Integer"/>
+      <member id="nFilterIndex" type="Integer"/>
+      <member id="lpstrFile" type="String"/>
+      <member id="nMaxFile" type="Integer"/>
+      <member id="lpstrFileTitle" type="String"/>
+      <member id="nMaxFileTitle" type="Integer"/>
+      <member id="lpstrInitialDir" type="String"/>
+      <member id="lpstrTitle" type="String"/>
+      <member id="flags" type="Integer"/>
+      <member id="nFileOffset" type="Short"/>
+      <member id="nFileExtension" type="Short"/>
+      <member id="lpstrDefExt" type="String"/>
+      <member id="lCustData" type="Integer"/>
+      <member id="lpfnHook" type="Integer"/>
+      <member id="lpTemplateName" type="Integer"/>
+   </structure>
+   <class id="Methods" parent="None" module="on" creatable="off">
+      <method id="GetOpenFileName" type="Integer">
+         <argument id="lpOFN" type="OPENFILENAME" status="Out"/>
+      </method>
+      <method id="GetSaveFileName" type="Integer">
+         <argument id="lpOFN" type="OPENFILENAME" status="Out"/>
+      </method>
+      <method id="CommDlgExtendedError" type="Integer" />
+   </class>
+</library>
+</DescriptionFile>

@@ -1,0 +1,57 @@
+/*
+Description: Sample script showing an EditTranslation handler tied to stdole2 
+stdole is used because it is loaded for all translations.
+This particular handler would remove spurious C# event handler hookup
+code that was not needed since the object did not have handlers in the source
+even though they were declared with WithEvents.
+*/
+int ServiceMethod_EditTranslation(int target) 
+{
+   int       objType;
+   tInfoFile fileInfo;
+   Handle    textStream;
+   int       nRecord;
+   int       curRecord;
+   string    record;
+   int       rai;
+   int       length;
+   string    token;
+   int       lexeme;
+  
+   objType = Store.GetObjectType(target);
+   if(objType != ObjectType.FormFile && objType != ObjectType.ModuleFile && objType != ObjectType.ClassFile) return 0;
+   fileInfo = Store.GetVector(target);
+   if(fileInfo.tranBase == 0) return 0;
+   textStream = Text.Open(Store.GetHandle(),fileInfo.tranBase);
+   nRecord = Text.Maximum(textStream);
+   curRecord = 0;
+   while(curRecord < nRecord)
+   {
+      curRecord = curRecord + 1;
+      Text.Position(textStream,curRecord);
+      record = Text.Access(textStream, length, rai, 0);
+      Parser.SetStatement(record);
+      token = Parser.GetToken(lexeme);
+      if(Character.Compare("if",token,2) == 0)
+      {
+         Text.Position(textStream,curRecord+1);
+         record = Text.Access(textStream, length, rai, 0);
+         if(length == 1 && Character.Compare("{",record,1) == 0)
+         {
+            Text.Position(textStream,curRecord+2);
+            record = Text.Access(textStream, length, rai, 0);
+            if(length == 1 && Character.Compare("}",record,1) == 0)
+            {
+               Text.Position(textStream,curRecord);
+               Text.Delete(textStream);
+               Text.Delete(textStream);
+               Text.Delete(textStream);
+               nRecord = nRecord - 3;
+               curRecord = curRecord - 1;
+            }
+         }
+      }
+   }
+   Text.Close(textStream);
+   return 0;
+}

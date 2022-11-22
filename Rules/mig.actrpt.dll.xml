@@ -1,0 +1,22 @@
+<RefactorLibrary>
+<Refactor errorStatus="warn" id="[actrpt.dll]">
+<!-- must reference id="msado15.dll" to allow type=ADODB.RecordSet -->
+<Reference id="msado15.dll" />
+<Migrate id="ISubReport.object" migName="rptObject" />
+
+<Migrate id="IDDOleObj.object" migName="rptObject" />
+<Migrate id="IDataCtrl.RecordSet" type="ADODB.RecordSet" />
+<Migrate id="IDAODataCtrl.RecordSet" type="ADODB.RecordSet" />
+<Migrate id="IToc.pageNumber.Index" status="ByVal" />
+<Migrate id="IToc.Item.Index" status="ByVal" />
+<Migrate id="ISections.Remove.Index" status="ByVal" />
+<Migrate id="ISections.Item.Index" status="ByVal" />
+<Migrate id="IRptFields.Remove.Index" status="ByVal" />
+<Migrate id="IRptFields.Item.Index" status="ByVal" />
+<Migrate id="IHistory.Item.Index" status="ByVal" />
+<Migrate id="IHistory.Item.Index" status="ByVal" />
+<Migrate id="IControls.Remove.Index" status="ByVal" />
+<Migrate id="IControls.Item.Index" status="ByVal" />
+
+</Refactor>
+</RefactorLibrary>

@@ -1,0 +1,472 @@
+<GlobalImports>
+<!--
+This is a rules file that helps author code for DCOM to WCF upgrade
+It uses an early, somewhat primitive version of gmSL with a VB-like notation.  
+This VB-like notation is no longer supported; gmSL uses a C-like notation.
+
+More information on gmSL is available in the gmBasic Reference
+at www.Greatmigrations.com
+-->
+<gmSL NameSpace="RuntimeDll" Class="ServiceClass" ><![CDATA[
+
+Const InterfaceName =        "ISvc_%1d"
+Const DeclareInterface =     "ISvc_%1d : ServiceBase"
+Const InterfaceAttribute =   "[OperationContract]"
+Const DependentUpon =        "<DependentUpon>%1d.svc</DependentUpon>"
+Const NewDeclaration =     "gmRTL.ServiceFramework.ServiceProxy.Create<%1d.ISvc_%2d>()"
+
+Sub ServiceCatalog_Start(ByVal ServiceCatalogName As String)
+#TextStart
+crDir (%= Library %)
+crDir (%= Library %)\(%= ServiceCatalogName %)
+cat >(%= Library %)\(%= ServiceCatalogName %)\(%= ServiceCatalogName %).(%= LangExt %)proj <<'!)(!'
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>(%= RootSpace %).(%= ServiceCatalogName %)</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>(%= RootSpace %).ServiceCatalog</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <ProjectGuid>{A375E7AB-6CF9-40F4-B057-43FB2BD23CE8}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>.\bin\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>.\bin\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="(%= RootSpace %).ServiceFramework">
+       <Private>False</Private>
+       <HintPath>..\..\lib\(%= RootSpace %).ServiceFramework.dll</HintPath>
+    </Reference>
+#TextEnd
+End Sub
+
+Sub ServiceCatalog_Continue
+  #TextStart
+  
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="Microsoft.VisualBasic.CompilerServices" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+  #TextEnd
+End Sub
+
+Sub ServiceCatalog_Finish(ByVal ServiceCatalogName As String)
+  #TextStart
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+    </PropertyGroup>
+</Project>
+!)(!
+cat >(%= Library %)\(%= ServiceCatalogName %)\AssemblyInfo.cs <<'!)(!'
+using System.Reflection;
+using System.Runtime.CompilerServices;
+
+[assembly: AssemblyTitle("(%= ServiceCatalogName %)")]
+[assembly: AssemblyDescription("(%= ServiceCatalogName %)")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("")]
+[assembly: AssemblyCopyright("")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyDelaySign(false)]
+[assembly: AssemblyKeyFile("")]
+[assembly: AssemblyKeyName("")]
+!)(!
+#TextEnd
+End Sub
+
+Sub WCFCompileService(ByVal LibraryName As String, ByVal ServiceName As String)
+   #TextStart
+   <Compile Include="(%= LibraryName %).ISvc_(%= ServiceName %).(%= LangExt %)" />
+   #TextEnd
+End Sub
+
+Sub WCFStartInterface(ByVal ServiceCatalogName As String, ByVal LibraryName As String, ByVal ServiceName As String)
+#TextStart
+cat >(%= Library %)\(%= ServiceCatalogName %)\(%= LibraryName %).ISvc_(%= ServiceName %).(%= LangExt %) <<'!)(!'
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.Text;
+using System.Data;
+using (%= RootSpace %).ServiceFramework;
+using VBNET=Microsoft.VisualBasic;
+
+namespace (%= RootSpace %).(%= LibraryName %)
+{
+   [ServiceContract]
+#TextEnd
+End Sub
+
+Sub WCFDispose
+   #TextStart
+   public void Dispose()
+   {
+      // UPGRADE_INFO: Added for ServiceBase interface
+   }
+   #TextEnd
+End Sub
+
+Sub WCFAuthorReference(ByVal ServiceCatalogName As String, ByVal isClass As String, ByVal isClient As String)
+   If isClass = "Y" Then
+      #TextStart
+      <Reference Include="System.Web.DynamicData" />
+      <Reference Include="System.Web.Entity" />
+      <Reference Include="System.Web.ApplicationServices" />
+      <Reference Include="System.Configuration" />
+      <Reference Include="System.Core" />
+      <Reference Include="System.EnterpriseServices" />
+      <Reference Include="System.Runtime.Serialization" />
+      <Reference Include="System.ServiceModel" />
+      <Reference Include="System.ServiceModel.Web" />
+      <Reference Include="System.Web" />
+      <Reference Include="System.Web.Extensions" />
+      <Reference Include="System.Web.Services" />
+      <Reference Include="System.Xml.Linq" />
+      #TextEnd
+   End If
+   #TextStart
+   <Reference Include="(%=RootSpace%).(%= ServiceCatalogName %)">
+      <Private>False</Private>
+      <HintPath>..\..\lib\(%=RootSpace%).(%= ServiceCatalogName %).dll</HintPath>
+   </Reference>
+   <Reference Include="(%=RootSpace%).ServiceFramework">
+      <Private>False</Private>
+      <HintPath>..\..\lib\(%=RootSpace%).ServiceFramework.dll</HintPath>
+   </Reference>
+   #TextEnd
+End Sub
+
+Sub WCFWebConfig_Start
+#TextStart
+cat >(%= DeployLocation %)\Web.config <<'!)(!'
+<configuration>
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+  </system.web>
+  <system.serviceModel>
+    <services>
+#TextEnd
+End Sub
+
+Sub WCFWebConfig_Service(ByVal LibraryName As String, ByVal ServiceName As String)
+' httpBinding
+#TextStart
+<service name="(%= RootSpace %).(%= LibraryName %).(%= ServiceName %)"
+         behaviorConfiguration="POCServiceBehavior">
+  <!-- This endpoint is exposed at the base address provided by host: http://localhost/servicemodelsamples/service.svc  -->
+  <endpoint binding="basicHttpBinding" bindingConfiguration="PortSharingBinding"
+    contract="(%= RootSpace %).(%= LibraryName %).ISvc_(%= ServiceName %)" />
+  <!-- the mex endpoint is explosed at http://localhost/servicemodelsamples/service.svc/mex -->
+  <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" />
+</service>
+#textEnd
+End Sub
+
+
+Sub WCFWebConfig_End
+#TextStart
+    </services>
+   <basicHttpBinding>
+      <binding name="PortSharingBinding" portSharingEnabled="true">
+         <security mode="None" />
+      </binding>
+   </basicHttpBinding>    
+    <behaviors>
+      <serviceBehaviors>
+        <behavior name="POCServiceBehavior">
+          <serviceMetadata />
+          <serviceDebug includeExceptionDetailInFaults="False" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <serviceHostingEnvironment multipleSiteBindingsEnabled="true" />
+    </system.serviceModel>
+    <!--<system.serviceModel>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior>
+          --><!-- To avoid disclosing metadata information, set the value below to false and remove the metadata endpoint above before deployment --><!--
+          <serviceMetadata httpGetEnabled="true"/>
+          --><!-- To receive exception details in faults for debugging purposes, set the value below to true.  Set to false before deployment to avoid disclosing exception information --><!--
+          <serviceDebug includeExceptionDetailInFaults="false"/>
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <serviceHostingEnvironment multipleSiteBindingsEnabled="true" />
+    </system.serviceModel>-->
+    <!--<system.diagnostics>
+    <sources>
+      <source name="System.ServiceModel.MessageLogging" switchValue="Warning, ActivityTracing">
+        <listeners>
+          <add name="ServiceModelTraceListener" />
+        </listeners>
+      </source>
+      <source name="System.ServiceModel" switchValue="Verbose,ActivityTracing">
+        <listeners>
+          <add name="ServiceModelTraceListener" />
+        </listeners>
+      </source>
+      <source name="System.Runtime.Serialization" switchValue="Verbose,ActivityTracing">
+        <listeners>
+          <add name="ServiceModelTraceListener" />
+        </listeners>
+      </source>
+    </sources>
+    <sharedListeners>
+      <add initializeData="App_tracelog.svclog" type="System.Diagnostics.XmlWriterTraceListener, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="ServiceModelTraceListener" traceOutputOptions="Timestamp" />
+    </sharedListeners>
+    </system.diagnostics>-->
+    <system.webServer>
+      <modules runAllManagedModulesForAllRequests="true"/>
+    </system.webServer>
+</configuration>
+!)(!
+#TextEnd
+End Sub
+
+Sub WCFWeb_ServiceHost(ByVal LibraryName As String, ByVal ServiceName As String)
+#TextStart
+cat >(%= DeployLocation %)\(%= ServiceName %).svc <<'!)(!'
+<%@ ServiceHost Language="C#" Debug="true" Service="(%= LibraryName %).(%= ServiceName %)" %>
+!)(!
+#TextEnd
+End Sub
+
+Sub ServiceHost_EndProjectFile(ByVal ServiceCatalogName As String, ByVal isClass As String, ByVal isClient As String)
+   If AppObject Then
+      #TextStart
+      <Compile Include="(%= NameSpace %)_AppObject.(%= LangExt %)">
+         <SubType>Code</SubType>
+      </Compile>
+      #TextEnd
+   End If
+   DecreaseMargin
+   WriteLine "</ItemGroup>"
+   If isClient = "Y" Then
+      #TextStart
+      <ItemGroup>
+         <None Include="app.config" />
+      </ItemGroup>
+      #TextEnd
+   End If
+   If LangIdent = "vbn" Then
+      #TextStart
+      <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+      #TextEnd
+   Else
+      #TextStart
+      <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+      #TextEnd
+   End If
+   If isClass = "Y" Then
+      #TextStart
+      <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+      <ProjectExtensions>
+        <VisualStudio>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+            <WebProjectProperties>
+              <UseIIS>True</UseIIS>
+              <AutoAssignPort>True</AutoAssignPort>
+              <DevelopmentServerPort>3292</DevelopmentServerPort>
+              <DevelopmentServerVPath>/</DevelopmentServerVPath>
+              <IISUrl>http://localhost/(%= NameSpace %)</IISUrl>
+              <NTLMAuthentication>False</NTLMAuthentication>
+              <UseCustomServer>False</UseCustomServer>
+              <CustomServerUrl>
+              </CustomServerUrl>
+              <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+            </WebProjectProperties>
+          </FlavorProperties>
+        </VisualStudio>
+      </ProjectExtensions>
+      <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets. -->
+      <Target Name="BeforeBuild">
+      </Target>
+      <Target Name="AfterBuild">
+      </Target>
+      #TextEnd
+   End If
+      #TextStart
+      <PropertyGroup>
+         <PreBuildEvent>
+         </PreBuildEvent>
+         <PostBuildEvent>
+         </PostBuildEvent>
+      </PropertyGroup>
+   </Project>
+   !)(!
+   #TextEnd
+End Sub
+
+Sub WCF_AuthorAppConfig
+#TextRaw
+cat >(%= DeployLocation %)\app.config <<'!)(!'
+<?xml version="1.0"?>
+<configuration>
+
+  <configSections>
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821"/>
+  </configSections>
+
+  <log4net>
+    <appender name="RollingFile" type="log4net.Appender.RollingFileAppender">
+      <file value="log/App.log"></file>
+      <appendtofile value="true"></appendtofile>
+      <maximumfilesize value="1024KB"></maximumfilesize>
+      <maxsizerollbackups value="10"></maxsizerollbackups>
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionpattern value="%newline%date [%thread] %-5level %logger [%property] - %message%newline" />
+      </layout>
+    </appender>
+    <appender name="ColoredConsoleAppender" type="log4net.Appender.ColoredConsoleAppender">
+      <mapping>
+        <level value="ERROR" />
+        <foreColor value="White" />
+        <backColor value="Red, HighIntensity" />
+      </mapping>
+      <mapping>
+        <level value="WARN" />
+        <foreColor value="White" />
+        <backColor value="Yellow" />
+      </mapping>
+      <mapping>
+        <level value="INFO" />
+        <foreColor value="White" />
+        <backColor value="Blue" />
+      </mapping>
+      <mapping>
+        <level value="DEBUG" />
+        <foreColor value="White" />
+        <backColor value="Green" />
+      </mapping>
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%message%newline" />
+      </layout>
+    </appender>
+    <root>
+      <appender-ref ref="RollingFile" />
+      <appender-ref ref="ColoredConsoleAppender" />
+      <level value="ALL" />
+    </root>
+  </log4net>
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding 
+        name="sharedBinding" 
+        closeTimeout="00:01:00" 
+        receiveTimeout="00:15:00" 
+        sendTimeout="00:15:00" 
+        maxBufferSize="2147483647" 
+        maxReceivedMessageSize="2147483647">
+          <readerQuotas maxArrayLength="2147483647" />
+          <security mode="None" />
+        </binding>
+      </basicHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="http://localhost/POCSVC/ISvc_Service.svc" binding="basicHttpBinding" bindingConfiguration="sharedBinding" contract="placeholderContract" name="sharedEndpoint" />
+    </client>
+  </system.serviceModel>
+
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
+  </startup>
+
+</configuration>
+!)(!
+#TextEnd
+End Sub
+
+]]></gmSL>
+
+</GlobalImports>

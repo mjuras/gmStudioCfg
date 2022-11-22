@@ -1,0 +1,65 @@
+<RefactorLibrary>
+<!--
+Description: Map RichTextLib.Richtextbox to Winforms.RichtextBox
+-->
+<Refactor id="[RICHTX32.OCX]" >
+   <Migrate migName="System.Windows.Forms" libType="Internal" location="DoNotDeclare" />
+   <Migrate id="IRichText.defTextRTF" migName="Rtf" />
+   <Migrate id="IRichText.BulletIndent" type="Integer" />
+   <Migrate id="IRichText.SelBold" status="GetSetLet" >
+      <Get migPattern="%1d.SelectionFont.Bold" nPram="1" />
+      <Set migPattern="%2d.SelectionFont = gmRTL.GUI.FontHelper.SetBold(%2d.SelectionFont, %1d)\c" nPram="2" />
+   </Migrate>
+   <Migrate id="IRichText.SelColor" type="OLE_COLOR" migName="SelectionColor" />
+   <Migrate id="IRichText.SelIndent" type="Integer" migName="SelectionIndent" />
+   <Migrate id="IRichText.SelLength" migName="SelectionLength" />
+   <Migrate id="IRichText.SelPrint" migStatus="NotImplemented" />
+   <Migrate id="IRichText.SelStart" migName="SelectionStart" />
+   <Migrate id="IRichText.SelText" migName="SelectedText" />
+   <Migrate id="IRichText.SelUnderline" status="GetSetLet" >
+      <Get migPattern="%1d.SelectionFont.Underline" nPram="1" />
+      <Set migPattern="%2d.SelectionFont = gmRTL.GUI.FontHelper.SetUnderline(%2d.SelectionFont, %1d)\c" nPram="2" />
+   </Migrate>
+   <Migrate id="IRichText.TextRTF" migName="Text" />
+   <Migrate id="IRichText.AutoVerbMenu" migName="ShortcutsEnabled" />
+   <Migrate id="DRichTextEvents.Change" migName="TextChanged" />
+   <Migrate id="DRichTextEvents.KeyDown" migPattern="KeyDown" nPram="3" Role="Event" netHandler="System.Windows.Forms.KeyEventHandler" netArgs="KeyEventArgs" />
+   <Migrate id="DRichTextEvents.KeyDown.keyCode" cshPattern="%1d = (int)e.KeyCode" nPram="0" vbnPattern="%1d = e.KeyCode" status="ByVal" />
+   <Migrate id="DRichTextEvents.KeyUp" migPattern="KeyUp" nPram="3" Role="Event" netHandler="System.Windows.Forms.KeyEventHandler" netArgs="KeyEventArgs" />
+   <Migrate id="DRichTextEvents.KeyUp.keyCode" migPattern="%1d = (int)e.KeyCode" nPram="0" status="ByVal" />
+   <Migrate id="DRichTextEvents.KeyUp.shift" migPattern="%1d = e.Shift?-1:0" nPram="0" />
+
+   <Migrate id="RichTextBox" migName="RichTextBox" />
+
+   <Migrate id="ScrollBarsConstants" migName="RichTextBoxScrollBars" />
+   <Migrate id="ScrollBarsConstants.rtfNone" migName="None" />
+   <Migrate id="ScrollBarsConstants.rtfHorizontal" migName="Horizontal" />
+   <Migrate id="ScrollBarsConstants.rtfVertical" migName="Vertical" />
+   <Migrate id="ScrollBarsConstants.rtfBoth" migName="Both" />
+
+<!--
+********************************************************** 
+* RichTextBox Designer Code 
+********************************************************** 
+-->
+<migClass id="NetControl.RichTextBox" migName="System.Windows.Forms.RichTextBox" parent="RichTextBox">
+     <property id="BackColor" type="OLE_COLOR" value="IRichText.BackColor" nPram="3"
+                 migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+                 default="System.Drawing.SystemColors.Window"
+     />
+     <property id="Enabled" type="Boolean" value="IRichText.Enabled" default="true"/>
+     <property id="Font" value="Font" type="FontInfo" nPram="3"
+         vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+         cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+     />
+     <property id="Location" value="(Left,Top)" nPram="2"  migPattern="new System.Drawing.Point(%1d, %2d)"  />
+     <property id="Name" type="string" value="SYM.name" />
+     <property id="ScrollBars" value="IRichText.ScrollBars" />
+     <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+     <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+     <property id="Rtf" type="string" value="IRichText.TextRtf" />
+     <property id="TabStop" type="boolean" value="TabStop" default="true" />
+</migClass>
+   
+</Refactor>
+</RefactorLibrary>

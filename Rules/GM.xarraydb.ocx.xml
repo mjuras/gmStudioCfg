@@ -1,0 +1,268 @@
+<DescriptionFile>
+<!--
+Upgrades XArrayDB to XArrayDB stub or Wrapper for use with TDBGrid
+-->
+<library id="xarraydb.ocx"
+         name="XArrayDBObject"
+         uuid="0D623539-DBA2-11D1-B5DF-0060976089D0"
+         netVersion="1.0"
+         source="xarraydb.ocx"
+         location="%library%\Interop.XArrayDBObject.dll"
+         axLocation="%library%\AxInterop.XArrayDBObject.dll"
+         migName="XArrayDBObject"
+         type="ActiveX"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IXArrayDB"/>
+   <class id="OLEDBSimpleProvider"/>
+   <class id="OLEDBSimpleProviderListener"/>
+   <class id="IXArray"/>
+   <coclass id="XArrayDB"/>
+   <enumeration id="XORDER">
+      <entry id="XORDER_ASCEND" value="0"/>
+      <entry id="XORDER_DESCEND" value="1"/>
+   </enumeration>
+   <enumeration id="XCOMP">
+      <entry id="XCOMP_EQ" value="1"/>
+      <entry id="XCOMP_DEFAULT" value="1"/>
+      <entry id="XCOMP_LT" value="2"/>
+      <entry id="XCOMP_LE" value="3"/>
+      <entry id="XCOMP_GT" value="4"/>
+      <entry id="XCOMP_GE" value="5"/>
+      <entry id="XCOMP_NE" value="6"/>
+   </enumeration>
+   <enumeration id="XTYPE">
+      <entry id="XTYPE_DEFAULT" value="0"/>
+      <entry id="XTYPE_BOOLEAN" value="1"/>
+      <entry id="XTYPE_BYTE" value="2"/>
+      <entry id="XTYPE_CURRENCY" value="3"/>
+      <entry id="XTYPE_DATE" value="4"/>
+      <entry id="XTYPE_DOUBLE" value="5"/>
+      <entry id="XTYPE_INTEGER" value="6"/>
+      <entry id="XTYPE_LONG" value="7"/>
+      <entry id="XTYPE_SINGLE" value="8"/>
+      <entry id="XTYPE_STRING" value="9"/>
+      <entry id="XTYPE_STRINGCASESENSITIVE" value="10"/>
+      <entry id="XTYPE_NUMBER" value="11"/>
+      <entry id="XTYPE_SYMBOL" value="12"/>
+      <entry id="XTYPE_SYMBOLCASESENSITIVE" value="13"/>
+   </enumeration>
+   <class id="IXArrayDB" parent="IDispatch" default="Value" creatable="off">
+      <property id="Precision" type="Double" status="InOut"/>
+      <property id="Notify" type="Boolean" status="InOut"/>
+      <method id="Value" type="Variant" status="indexer">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="iColumn" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="ReDim" type="Void">
+         <argument id="rowLB" type="Integer" status="ByVal"/>
+         <argument id="rowUB" type="Integer" status="ByVal"/>
+         <argument id="columnLB" type="Integer" status="ByVal"/>
+         <argument id="columnUB" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Set" type="Void">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="iColumn" type="Integer" status="ByVal"/>
+         <argument id="newVal" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Get" type="Void">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="iColumn" type="Integer" status="ByVal"/>
+         <argument id="pVal" type="Variant" status="Out"/>
+      </method>
+      <method id="InsertColumns" type="Integer">
+         <argument id="iColumn" type="Integer" status="ByVal"/>
+         <argument id="cColumns" type="Integer" status="ByVal" optional="1"/>
+      </method>
+      <method id="DeleteColumns" type="Integer">
+         <argument id="iColumn" type="Integer" status="ByVal"/>
+         <argument id="cColumns" type="Integer" status="ByVal" optional="1"/>
+      </method>
+      <method id="AppendColumns" type="Integer">
+         <argument id="cColumns" type="Integer" status="ByVal" optional="1"/>
+      </method>
+      <method id="InsertRows" type="Integer">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="cRows" type="Integer" status="ByVal" optional="1"/>
+      </method>
+      <method id="DeleteRows" type="Integer">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="cRows" type="Integer" status="ByVal" optional="1"/>
+      </method>
+      <method id="AppendRows" type="Integer">
+         <argument id="cRows" type="Integer" status="ByVal" optional="1"/>
+      </method>
+      <method id="Find" type="Integer">
+         <argument id="iRowStart" type="Integer" status="ByVal"/>
+         <argument id="iColumn" type="Integer" status="ByVal"/>
+         <argument id="varSval" type="Variant" status="ByVal"/>
+         <argument id="direct" type="XORDER" status="ByVal" optional="XORDER_ASCEND"/>
+         <argument id="compType" type="XCOMP" status="ByVal" optional="XCOMP_EQ"/>
+         <argument id="varType" type="XTYPE" status="ByVal" optional="XTYPE_DEFAULT"/>
+      </method>
+      <method id="QuickSort" type="Void">
+         <argument id="iRowStart" type="Integer" status="ByVal"/>
+         <argument id="iRowEnd" type="Integer" status="ByVal"/>
+         <argument id="pp" type="Variant" status="RefParamArray"/>
+      </method>
+      <accessor id="Count" type="Integer">
+         <argument id="nDim" type="Short" status="ByVal"/>
+      </accessor>
+      <accessor id="LowerBound" type="Integer">
+         <argument id="nDim" type="Short" status="ByVal"/>
+      </accessor>
+      <accessor id="UpperBound" type="Integer">
+         <argument id="nDim" type="Short" status="ByVal"/>
+      </accessor>
+      <method id="Insert" type="Void">
+         <argument id="nDim" type="Short" status="ByVal"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Delete" type="Void">
+         <argument id="nDim" type="Short" status="ByVal"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <accessor id="DefaultColumnType" type="XTYPE">
+         <argument id="iColumn" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="AboutBox" type="Void"/>
+      <method id="LoadRows" type="Void">
+         <argument id="array" type="Variant" status="ByVal"/>
+         <argument id="transpose" type="Boolean" status="ByVal" optional="true"/>
+      </method>
+   </class>
+   <class id="OLEDBSimpleProvider" parent="IUnknown" creatable="off">
+      <method id="getRowCount" type="Integer"/>
+      <method id="getColumnCount" type="Integer"/>
+      <method id="getRWStatus" type="Integer">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="iColumn" type="Integer" status="ByVal"/>
+      </method>
+      <method id="getVariant" type="Variant">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="iColumn" type="Integer" status="ByVal"/>
+         <argument id="fFormatted" type="Integer" status="ByVal"/>
+      </method>
+      <method id="setVariant" type="Void">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="iColumn" type="Integer" status="ByVal"/>
+         <argument id="fFormatted" type="Integer" status="ByVal"/>
+         <argument id="Var" type="Variant" status="ByVal"/>
+      </method>
+      <method id="getLocale" type="String"/>
+      <method id="DeleteRows" type="Integer">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="cRows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="InsertRows" type="Integer">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="cRows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Find" type="Integer">
+         <argument id="iRowStart" type="Integer" status="ByVal"/>
+         <argument id="iColumn" type="Integer" status="ByVal"/>
+         <argument id="varSval" type="Variant" status="ByVal"/>
+         <argument id="findFlags" type="Integer" status="ByVal"/>
+         <argument id="compType" type="Integer" status="ByVal"/>
+      </method>
+      <method id="addOLEDBSimpleProviderListener" type="Void">
+         <argument id="pospIListener" type="OLEDBSimpleProviderListener" status="ByVal"/>
+      </method>
+      <method id="removeOLEDBSimpleProviderListener" type="Void">
+         <argument id="pospIListener" type="OLEDBSimpleProviderListener" status="ByVal"/>
+      </method>
+      <method id="isAsync" type="Integer"/>
+      <method id="getEstimatedRows" type="Integer"/>
+      <method id="stopTransfer" type="Void"/>
+   </class>
+   <class id="OLEDBSimpleProviderListener" parent="IUnknown" creatable="off">
+      <method id="aboutToChangeCell" type="Void">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="iColumn" type="Integer" status="ByVal"/>
+      </method>
+      <method id="cellChanged" type="Void">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="iColumn" type="Integer" status="ByVal"/>
+      </method>
+      <method id="aboutToDeleteRows" type="Void">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="cRows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="deletedRows" type="Void">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="cRows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="aboutToInsertRows" type="Void">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="cRows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="insertedRows" type="Void">
+         <argument id="iRow" type="Integer" status="ByVal"/>
+         <argument id="cRows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="transferComplete" type="Void">
+         <argument id="doneReason" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IXArray" parent="IDispatch" default="Value">
+      <property id="DataSource" type="Object" status="Out"/>
+      <property id="AutoReDim" type="Boolean" status="InOut"/>
+      <accessor id="Count" type="Integer">
+         <argument id="nDim" type="Short" status="ByVal"/>
+      </accessor>
+      <accessor id="LowerBound" type="Integer">
+         <argument id="nDim" type="Short" status="ByVal"/>
+      </accessor>
+      <accessor id="UpperBound" type="Integer">
+         <argument id="nDim" type="Short" status="ByVal"/>
+      </accessor>
+      <method id="Value" type="Variant" status="indexer">
+         <argument id="Index1" type="Integer" status="ByVal"/>
+         <argument id="index2" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="index3" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="index4" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="index5" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="index6" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="index7" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="index8" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="index9" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="index10" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="AboutBox" type="Void"/>
+      <method id="Clear" type="Void"/>
+      <method id="Set" type="Void">
+         <argument id="Var" type="Variant" status="ByVal"/>
+         <argument id="ppIndices" type="Variant" status="RefParamArray"/>
+      </method>
+      <method id="Get" type="Void">
+         <argument id="pVar" type="Variant" status="Out"/>
+         <argument id="ppIndices" type="Variant" status="RefParamArray"/>
+      </method>
+      <method id="ReDim" type="Void">
+         <argument id="ppIndices" type="Variant" status="RefParamArray"/>
+      </method>
+      <method id="Insert" type="Void">
+         <argument id="nDim" type="Short" status="ByVal"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Delete" type="Void">
+         <argument id="nDim" type="Short" status="ByVal"/>
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="InsertDim" type="Void">
+         <argument id="nDim" type="Short" status="ByVal"/>
+         <argument id="LowerBound" type="Integer" status="ByVal"/>
+         <argument id="UpperBound" type="Integer" status="ByVal"/>
+      </method>
+      <method id="DeleteDim" type="Void">
+         <argument id="nDim" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <coclass id="XArrayDB" uuid="0D62353B-DBA2-11D1-B5DF-0060976089D0">
+      <subclass id="IXArrayDB" />
+      <subclass id="OLEDBSimpleProvider"/>
+      <subclass id="IXArray"/>
+   </coclass>
+</library>
+</DescriptionFile>

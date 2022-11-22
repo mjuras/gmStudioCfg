@@ -1,0 +1,8 @@
+<RefactorLibrary>
+<Refactor id="[arviewer.ocx]">
+<Reference id="actrpt2.dll" />
+<Extend id="IARviewer" >
+   <Property id="Object" type="DDActiveReports2.ActiveReport"  migName="rptObject" />
+</Extend>
+</Refactor>
+</RefactorLibrary>

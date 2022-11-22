@@ -1,0 +1,1817 @@
+<DescriptionFile>
+<!--
+Upgrade TrueDBGrid60 to an extension of C1.Win.C1TrueDBGrid 
+Array property is an XarrayObject wrapping a DataTable.
+-->
+<library id="tdbg6.ocx"
+         name="TrueDBGrid60"
+         uuid="00028CDA-0000-0000-0000-000000000046"
+         netVersion="6.0"
+         source="tdbg6.ocx"
+         location="..\TrueDBGrid60\bin\TrueDBGrid60.dll"
+         axLocation="..\TrueDBGrid60\bin\TrueDBGrid60.dll"
+         migName="C1.Win.C1TrueDBGrid"
+         assemblyName="TrueDBGrid60"
+         type="ActiveX"
+   >
+   <importlib id="stdole2.tlb"/>
+   <importlib id="xarraydb.ocx"/>
+   <class id="IDummy"/>
+   <class id="ICursor"/>
+   <class id="ITrueDBGridCtrl"/>
+   <class id="Column"/>
+   <class id="Columns"/>
+   <class id="SelBookmarks"/>
+   <class id="RowBuffer"/>
+   <class id="DataObjectFiles"/>
+   <class id="DataObject"/>
+   <class id="Layouts"/>
+   <class id="TrueDBGridEvents"/>
+   <class id="Splits"/>
+   <class id="Split"/>
+   <class id="ValueItemDisp"/>
+   <class id="ValueItems"/>
+   <class id="Styles"/>
+   <class id="StyleDisp"/>
+   <class id="PrintInfo"/>
+   <class id="PrintInfos"/>
+   <class id="IExternalEditor"/>
+   <class id="ITrueDBDropDownCtrl"/>
+   <class id="TrueDBDropDownEvents"/>
+   <coclass id="TDBDropDown"/>
+   <coclass id="TDBGrid"/>
+   <coclass id="ValueItem"/>
+   <coclass id="Style"/>
+   <enumeration id="enumScrollBarsConstants">
+      <entry id="_None" value="0"/>
+      <entry id="_Horizontal" value="1"/>
+      <entry id="_Vertical" value="2"/>
+      <entry id="_Both" value="3"/>
+      <entry id="_Automatic" value="4"/>
+   </enumeration>
+   <enumeration id="ScrollBarsConstants">
+      <entry id="dbgNone" value="0"/>
+      <entry id="dbgHorizontal" value="1"/>
+      <entry id="dbgVertical" value="2"/>
+      <entry id="dbgBoth" value="3"/>
+      <entry id="dbgAutomatic" value="4"/>
+   </enumeration>
+   <enumeration id="enumBorderStyleConstants">
+      <entry id="_None" value="0"/>
+      <entry id="_FixedSingle" value="1"/>
+   </enumeration>
+   <enumeration id="BorderStyleConstants">
+      <entry id="dbgNoBorder" value="0"/>
+      <entry id="dbgFixedSingle" value="1"/>
+   </enumeration>
+   <enumeration id="enumDividerStyleConstants">
+      <entry id="_NoDividers" value="0"/>
+      <entry id="_BlackLine" value="1"/>
+      <entry id="_DarkGrayLine" value="2"/>
+      <entry id="_Raised" value="3"/>
+      <entry id="_Inset" value="4"/>
+      <entry id="_UseForeColor" value="5"/>
+      <entry id="_LightGrayLine" value="6"/>
+   </enumeration>
+   <enumeration id="DividerStyleConstants">
+      <entry id="dbgNoDividers" value="0"/>
+      <entry id="dbgBlackLine" value="1"/>
+      <entry id="dbgDarkGrayLine" value="2"/>
+      <entry id="dbgRaised" value="3"/>
+      <entry id="dbgInset" value="4"/>
+      <entry id="dbgUseForeColor" value="5"/>
+      <entry id="dbgLightGrayLine" value="6"/>
+   </enumeration>
+   <enumeration id="enumAlignmentConstants">
+      <entry id="_Left" value="0"/>
+      <entry id="_Right" value="1"/>
+      <entry id="_Center" value="2"/>
+      <entry id="_General" value="3"/>
+   </enumeration>
+   <enumeration id="AlignmentConstants">
+      <entry id="dbgLeft" value="0"/>
+      <entry id="dbgRight" value="1"/>
+      <entry id="dbgCenter" value="2"/>
+      <entry id="dbgGeneral" value="3"/>
+   </enumeration>
+   <enumeration id="enumDataModeConstants">
+      <entry id="_Bound" value="0"/>
+      <entry id="_Unbound" value="1"/>
+      <entry id="_IcUnbound" value="2"/>
+      <entry id="_ApUnbound" value="3"/>
+      <entry id="_StUnbound" value="4"/>
+   </enumeration>
+   <enumeration id="DataModeConstants">
+      <entry id="dbgBound" value="0"/>
+      <entry id="dbgUnbound" value="1"/>
+      <entry id="dbgUnboundEx" value="2"/>
+      <entry id="dbgUnboundAp" value="3"/>
+      <entry id="dbgUnboundSt" value="4"/>
+   </enumeration>
+   <enumeration id="enumPresentationConstants">
+      <entry id="_Normal" value="0"/>
+      <entry id="_RadioButton" value="1"/>
+      <entry id="_ComboBox" value="2"/>
+      <entry id="_SortedComboBox" value="3"/>
+      <entry id="_CheckBox" value="4"/>
+   </enumeration>
+   <enumeration id="PresentationConstants" migName="PresentationEnum">
+      <entry id="dbgNormal" value="0" migName="Normal"/>
+      <entry id="dbgRadioButton" value="1" migName="RadioButton"/>
+      <entry id="dbgComboBox" value="2" migName="ComboBox"/>
+      <entry id="dbgSortedComboBox" value="3" migName="SortedComboBox"/>
+      <entry id="dbgCheckBox" value="4" migName="CheckBox"/>
+   </enumeration>
+   <enumeration id="enumSplitSizeModeConstants">
+      <entry id="_Scalable" value="0"/>
+      <entry id="_Exact" value="1"/>
+      <entry id="_NumberOfColumns" value="2"/>
+   </enumeration>
+   <enumeration id="SplitSizeModeConstants">
+      <entry id="dbgScalable" value="0"/>
+      <entry id="dbgExact" value="1"/>
+      <entry id="dbgNumberOfColumns" value="2"/>
+   </enumeration>
+   <enumeration id="enumExposeCellModeConstants">
+      <entry id="_ScrollOnSelect" value="0"/>
+      <entry id="_ScrollOnEdit" value="1"/>
+      <entry id="_ScrollNever" value="2"/>
+   </enumeration>
+   <enumeration id="ExposeCellModeConstants">
+      <entry id="dbgScrollOnSelect" value="0"/>
+      <entry id="dbgScrollOnEdit" value="1"/>
+      <entry id="dbgScrollNever" value="2"/>
+   </enumeration>
+   <enumeration id="enumTabActionConstants">
+      <entry id="_ControlNavigation" value="0"/>
+      <entry id="_ColumnNavigation" value="1"/>
+      <entry id="_GridNavigation" value="2"/>
+   </enumeration>
+   <enumeration id="TabActionConstants">
+      <entry id="dbgControlNavigation" value="0"/>
+      <entry id="dbgColumnNavigation" value="1"/>
+      <entry id="dbgGridNavigation" value="2"/>
+   </enumeration>
+   <enumeration id="enumAppearanceConstants">
+      <entry id="_Flat" value="0"/>
+      <entry id="_3D" value="1"/>
+   </enumeration>
+   <enumeration id="AppearanceConstants">
+      <entry id="dbgFlat" value="0"/>
+      <entry id="dbg3D" value="1"/>
+   </enumeration>
+   <enumeration id="CellStyleConstants">
+      <entry id="dbgAllCells" value="0xffffffff"/>
+      <entry id="dbgNormalCell" value="0"/>
+      <entry id="dbgCurrentCell" value="1"/>
+      <entry id="dbgMarqueeRow" value="2"/>
+      <entry id="dbgUpdatedCell" value="4"/>
+      <entry id="dbgSelectedRow" value="8"/>
+   </enumeration>
+   <enumeration id="enumMarqueeStyleConstants">
+      <entry id="_DottedCellBorder" value="0"/>
+      <entry id="_SolidCellBorder" value="1"/>
+      <entry id="_HighlightCell" value="2"/>
+      <entry id="_HighlightRow" value="3"/>
+      <entry id="_HighlightRowRaiseCell" value="4"/>
+      <entry id="_NoMarquee" value="5"/>
+      <entry id="_FloatingEditor" value="6"/>
+      <entry id="_DottedRowBorder" value="7"/>
+   </enumeration>
+   <enumeration id="MarqueeStyleConstants">
+      <entry id="dbgDottedCellBorder" value="0"/>
+      <entry id="dbgSolidCellBorder" value="1"/>
+      <entry id="dbgHighlightCell" value="2"/>
+      <entry id="dbgHighlightRow" value="3"/>
+      <entry id="dbgHighlightRowRaiseCell" value="4"/>
+      <entry id="dbgNoMarquee" value="5"/>
+      <entry id="dbgFloatingEditor" value="6"/>
+      <entry id="dbgDottedRowBorder" value="7"/>
+   </enumeration>
+   <enumeration id="enumAddNewModeConstants">
+      <entry id="_NoAddNew" value="0"/>
+      <entry id="_AddNewCurrent" value="1"/>
+      <entry id="_AddNewPending" value="2"/>
+   </enumeration>
+   <enumeration id="AddNewModeConstants">
+      <entry id="dbgNoAddNew" value="0"/>
+      <entry id="dbgAddNewCurrent" value="1"/>
+      <entry id="dbgAddNewPending" value="2"/>
+   </enumeration>
+   <enumeration id="enumCellTipConstants">
+      <entry id="_OnColumnHeader" value="0xffffffff"/>
+      <entry id="_OnSplitHeader" value="0xfffffffe"/>
+      <entry id="_OnEmptyRow" value="0xfffffffd"/>
+      <entry id="_OnCaption" value="0xfffffffc"/>
+      <entry id="_OnAddNew" value="0xfffffffb"/>
+      <entry id="_OnColumnFooter" value="0xfffffffa"/>
+      <entry id="_OnRecordSelector" value="0xffffffff"/>
+      <entry id="_OnEmptyColumn" value="0xfffffffe"/>
+   </enumeration>
+   <enumeration id="CellTipConstants">
+      <entry id="dbgOnColumnHeader" value="0xffffffff"/>
+      <entry id="dbgOnSplitHeader" value="0xfffffffe"/>
+      <entry id="dbgOnEmptyRow" value="0xfffffffd"/>
+      <entry id="dbgOnCaption" value="0xfffffffc"/>
+      <entry id="dbgOnAddNew" value="0xfffffffb"/>
+      <entry id="dbgOnColumnFooter" value="0xfffffffa"/>
+      <entry id="dbgOnRecordSelector" value="0xffffffff"/>
+      <entry id="dbgOnEmptyColumn" value="0xfffffffe"/>
+   </enumeration>
+   <enumeration id="enumUnboundFindConstants">
+      <entry id="_SeekLT" value="0xffffffff"/>
+      <entry id="_SeekLE" value="0xfffffffe"/>
+      <entry id="_SeekEQ" value="0xfffffffd"/>
+      <entry id="_SeekGE" value="0xfffffffc"/>
+      <entry id="_SeekGT" value="0xfffffffb"/>
+      <entry id="_SeekPartialEQ" value="0xfffffffa"/>
+   </enumeration>
+   <enumeration id="UnboundFindConstants">
+      <entry id="dbgSeekLT" value="0xffffffff"/>
+      <entry id="dbgSeekLE" value="0xfffffffe"/>
+      <entry id="dbgSeekEQ" value="0xfffffffd"/>
+      <entry id="dbgSeekGE" value="0xfffffffc"/>
+      <entry id="dbgSeekGT" value="0xfffffffb"/>
+      <entry id="dbgSeekPartialEQ" value="0xfffffffa"/>
+   </enumeration>
+   <enumeration id="enumCellTipPresentationConstants">
+      <entry id="_None" value="0"/>
+      <entry id="_Anchored" value="1"/>
+      <entry id="_Floating" value="2"/>
+   </enumeration>
+   <enumeration id="CellTipPresentationConstants">
+      <entry id="dbgNoCellTips" value="0"/>
+      <entry id="dbgAnchored" value="1"/>
+      <entry id="dbgFloating" value="2"/>
+   </enumeration>
+   <enumeration id="enumMultiSelectConstants">
+      <entry id="_None" value="0"/>
+      <entry id="_Simple" value="1"/>
+      <entry id="_Extended" value="2"/>
+   </enumeration>
+   <enumeration id="MultiSelectConstants">
+      <entry id="dbgMultiSelectNone" value="0"/>
+      <entry id="dbgMultiSelectSimple" value="1"/>
+      <entry id="dbgMultiSelectExtended" value="2"/>
+   </enumeration>
+   <enumeration id="enumForegroundPicturePositionConstants">
+      <entry id="_FPLeft" value="0"/>
+      <entry id="_FPRight" value="1"/>
+      <entry id="_FPLeftOfText" value="2"/>
+      <entry id="_FPRightOfText" value="3"/>
+      <entry id="_FPTopOfText" value="4"/>
+      <entry id="_FPBottomOfText" value="5"/>
+      <entry id="_FPPictureOnly" value="6"/>
+      <entry id="_FPTextOnly" value="7"/>
+   </enumeration>
+   <enumeration id="ForegroundPicturePositionConstants">
+      <entry id="dbgFPLeft" value="0"/>
+      <entry id="dbgFPRight" value="1"/>
+      <entry id="dbgFPLeftOfText" value="2"/>
+      <entry id="dbgFPRightOfText" value="3"/>
+      <entry id="dbgFPTopOfText" value="4"/>
+      <entry id="dbgFPBottomOfText" value="5"/>
+      <entry id="dbgFPPictureOnly" value="6"/>
+      <entry id="dbgFPTextOnly" value="7"/>
+   </enumeration>
+   <enumeration id="enumBackgroundPictureDrawModeConstants">
+      <entry id="_BPCenter" value="0"/>
+      <entry id="_BPTile" value="1"/>
+      <entry id="_BPStretch" value="2"/>
+   </enumeration>
+   <enumeration id="BackgroundPictureDrawModeConstants">
+      <entry id="dbgBPCenter" value="0"/>
+      <entry id="dbgBPTile" value="1"/>
+      <entry id="dbgBPStretch" value="2"/>
+   </enumeration>
+   <enumeration id="enumVerticalAlignmentConstants">
+      <entry id="_Top" value="0"/>
+      <entry id="_Bottom" value="1"/>
+      <entry id="_VertCenter" value="2"/>
+   </enumeration>
+   <enumeration id="VerticalAlignmentConstants">
+      <entry id="dbgTop" value="0"/>
+      <entry id="dbgBottom" value="1"/>
+      <entry id="dbgVertCenter" value="2"/>
+   </enumeration>
+   <enumeration id="enumOLEDragModeConstants">
+      <entry id="_OLEDragManual" value="0"/>
+      <entry id="_OLEDragAutomatic" value="1"/>
+   </enumeration>
+   <enumeration id="OLEDragModeConstants">
+      <entry id="dbgOLEDragManual" value="0"/>
+      <entry id="dbgOLEDragAutomatic" value="1"/>
+   </enumeration>
+   <enumeration id="enumOLEDropModeConstants">
+      <entry id="_OLEDropNone" value="0"/>
+      <entry id="_OLEDropManual" value="1"/>
+      <entry id="_OLEDropAutomatic" value="2"/>
+   </enumeration>
+   <enumeration id="OLEDropModeConstants">
+      <entry id="dbgOLEDropNone" value="0"/>
+      <entry id="dbgOLEDropManual" value="1"/>
+      <entry id="dbgOLEDropAutomatic" value="2"/>
+   </enumeration>
+   <enumeration id="enumMousePointerConstants">
+      <entry id="_MPDefault" value="0"/>
+      <entry id="_MPArrow" value="1"/>
+      <entry id="_MPCross" value="2"/>
+      <entry id="_MPIbeam" value="3"/>
+      <entry id="_MPIcon" value="4"/>
+      <entry id="_MPSize" value="5"/>
+      <entry id="_MPSizeNESW" value="6"/>
+      <entry id="_MPSizeNS" value="7"/>
+      <entry id="_MPSizeNWSE" value="8"/>
+      <entry id="_MPSizeEW" value="9"/>
+      <entry id="_MPUpArrow" value="10"/>
+      <entry id="_MPHourglass" value="11"/>
+      <entry id="_MPNoDrop" value="12"/>
+      <entry id="_MPArrowHourglass" value="13"/>
+      <entry id="_MPArrowQuestion" value="14"/>
+      <entry id="_MPSizeAll" value="15"/>
+      <entry id="_MPCustom" value="99"/>
+   </enumeration>
+   <enumeration id="MousePointerConstants">
+      <entry id="dbgMPDefault" value="0"/>
+      <entry id="dbgMPArrow" value="1"/>
+      <entry id="dbgMPCross" value="2"/>
+      <entry id="dbgMPIbeam" value="3"/>
+      <entry id="dbgMPIcon" value="4"/>
+      <entry id="dbgMPSize" value="5"/>
+      <entry id="dbgMPSizeNESW" value="6"/>
+      <entry id="dbgMPSizeNS" value="7"/>
+      <entry id="dbgMPSizeNWSE" value="8"/>
+      <entry id="dbgMPSizeEW" value="9"/>
+      <entry id="dbgMPUpArrow" value="10"/>
+      <entry id="dbgMPHourglass" value="11"/>
+      <entry id="dbgMPNoDrop" value="12"/>
+      <entry id="dbgMPArrowHourglass" value="13"/>
+      <entry id="dbgMPArrowQuestion" value="14"/>
+      <entry id="dbgMPSizeAll" value="15"/>
+      <entry id="dbgMPCustom" value="99"/>
+   </enumeration>
+   <enumeration id="enumPointAtConstants">
+      <entry id="_NotInGrid" value="0"/>
+      <entry id="_AtCaption" value="1"/>
+      <entry id="_AtSplitHeader" value="2"/>
+      <entry id="_AtSplitSizeBox" value="3"/>
+      <entry id="_AtRowSelect" value="4"/>
+      <entry id="_AtRowSize" value="5"/>
+      <entry id="_AtColumnHeader" value="6"/>
+      <entry id="_AtColumnFooter" value="7"/>
+      <entry id="_AtColumnSize" value="8"/>
+      <entry id="_AtDataArea" value="9"/>
+   </enumeration>
+   <enumeration id="PointAtConstants">
+      <entry id="dbgNotInGrid" value="0"/>
+      <entry id="dbgAtCaption" value="1"/>
+      <entry id="dbgAtSplitHeader" value="2"/>
+      <entry id="dbgAtSplitSizeBox" value="3"/>
+      <entry id="dbgAtRowSelect" value="4"/>
+      <entry id="dbgAtRowSize" value="5"/>
+      <entry id="dbgAtColumnHeader" value="6"/>
+      <entry id="dbgAtColumnFooter" value="7"/>
+      <entry id="dbgAtColumnSize" value="8"/>
+      <entry id="dbgAtDataArea" value="9"/>
+   </enumeration>
+   <enumeration id="enumMultipleLinesConstants">
+      <entry id="_MultipleDisabled" value="0"/>
+      <entry id="_MultipleVariable" value="1"/>
+      <entry id="_MultipleFixed" value="2"/>
+   </enumeration>
+   <enumeration id="MultipleLinesConstants">
+      <entry id="dbgDisabled" value="0"/>
+      <entry id="dbgMultipleVariable" value="1"/>
+      <entry id="dbgMultipleFixed" value="2"/>
+   </enumeration>
+   <enumeration id="enumErrorConstants">
+      <entry id="_BINDERROR" value="4097"/>
+      <entry id="_INVPROPVAL" value="4098"/>
+      <entry id="_COLINDEX" value="6145"/>
+      <entry id="_NOTINIT" value="6146"/>
+      <entry id="_CNOTFOUND" value="6147"/>
+      <entry id="_INVROWNUM" value="6148"/>
+      <entry id="_INVBOOKMARK" value="6149"/>
+      <entry id="_BADSELRIDX" value="6150"/>
+      <entry id="_SCROLLRANGE" value="6151"/>
+      <entry id="_INVSBSTYLE" value="6152"/>
+      <entry id="_UPDERROR" value="6153"/>
+      <entry id="_ADDERROR" value="6154"/>
+      <entry id="_DELERROR" value="6155"/>
+      <entry id="_COLDATA" value="6156"/>
+      <entry id="_INCOMPAT" value="6157"/>
+      <entry id="_FIELDERR" value="6158"/>
+      <entry id="_DELMULTROWS" value="6159"/>
+      <entry id="_DATAACCESS" value="6160"/>
+      <entry id="_BADEVENT" value="6161"/>
+      <entry id="_NOPROPNOW" value="6162"/>
+      <entry id="_NOCURREC" value="6163"/>
+      <entry id="_CAPTOOLONG" value="6164"/>
+      <entry id="_SPLITINDEX" value="6244"/>
+      <entry id="_VLINDEX" value="6245"/>
+      <entry id="_VITEMERR" value="6246"/>
+      <entry id="_STYLEINDEX" value="6247"/>
+      <entry id="_DUPSTYLE" value="6248"/>
+      <entry id="_STYLEERR" value="6249"/>
+      <entry id="_UPDSTYLE" value="6250"/>
+      <entry id="_REMSTYLE" value="6251"/>
+      <entry id="_ADDCELLCOND" value="6252"/>
+      <entry id="_STYLENAME" value="6253"/>
+      <entry id="_APPLYSTYLE" value="6254"/>
+      <entry id="_BMPTOOLARGE" value="6255"/>
+   </enumeration>
+   <enumeration id="ErrorConstants">
+      <entry id="dbgBINDERROR" value="4097"/>
+      <entry id="dbgINVPROPVAL" value="4098"/>
+      <entry id="dbgCOLINDEX" value="6145"/>
+      <entry id="dbgNOTINIT" value="6146"/>
+      <entry id="dbgCNOTFOUND" value="6147"/>
+      <entry id="dbgINVROWNUM" value="6148"/>
+      <entry id="dbgINVBOOKMARK" value="6149"/>
+      <entry id="dbgBADSELRIDX" value="6150"/>
+      <entry id="dbgSCROLLRANGE" value="6151"/>
+      <entry id="dbgINVSBSTYLE" value="6152"/>
+      <entry id="dbgUPDERROR" value="6153"/>
+      <entry id="dbgADDERROR" value="6154"/>
+      <entry id="dbgDELERROR" value="6155"/>
+      <entry id="dbgCOLDATA" value="6156"/>
+      <entry id="dbgINCOMPAT" value="6157"/>
+      <entry id="dbgFIELDERR" value="6158"/>
+      <entry id="dbgDELMULTROWS" value="6159"/>
+      <entry id="dbgDATAACCESS" value="6160"/>
+      <entry id="dbgBADEVENT" value="6161"/>
+      <entry id="dbgNOPROPNOW" value="6162"/>
+      <entry id="dbgNOCURREC" value="6163"/>
+      <entry id="dbgCAPTOOLONG" value="6164"/>
+      <entry id="dbgSPLITINDEX" value="6244"/>
+      <entry id="dbgVLINDEX" value="6245"/>
+      <entry id="dbgVITEMERR" value="6246"/>
+      <entry id="dbgSTYLEINDEX" value="6247"/>
+      <entry id="dbgDUPSTYLE" value="6248"/>
+      <entry id="dbgSTYLEERR" value="6249"/>
+      <entry id="dbgUPDSTYLE" value="6250"/>
+      <entry id="dbgREMSTYLE" value="6251"/>
+      <entry id="dbgADDCELLCOND" value="6252"/>
+      <entry id="dbgSTYLENAME" value="6253"/>
+      <entry id="dbgAPPLYSTYLE" value="6254"/>
+      <entry id="dbgBMPTOOLARGE" value="6255"/>
+   </enumeration>
+   <enumeration id="enumRowSelectorConstants">
+      <entry id="_AllRows" value="0"/>
+      <entry id="_SelectedRows" value="1"/>
+      <entry id="_CurrentRow" value="2"/>
+   </enumeration>
+   <enumeration id="RowSelectorConstants">
+      <entry id="dbgAllRows" value="0"/>
+      <entry id="dbgSelectedRows" value="1"/>
+      <entry id="dbgCurrentRow" value="2"/>
+   </enumeration>
+   <enumeration id="enumConvertEmptyCellConstants">
+      <entry id="_dbgNoConversion" value="0"/>
+      <entry id="_dbgAsNull" value="1"/>
+   </enumeration>
+   <enumeration id="ConvertEmptyCellConstants">
+      <entry id="dbgNoConversion" value="0"/>
+      <entry id="dbgAsNull" value="1"/>
+   </enumeration>
+   <enumeration id="enumAnimateWindowConstants">
+      <entry id="_NoAnimate" value="0"/>
+      <entry id="_Roll" value="1"/>
+      <entry id="_Slide" value="2"/>
+      <entry id="_Blend" value="3"/>
+   </enumeration>
+   <enumeration id="AnimateWindowConstants">
+      <entry id="dbgNoAnimate" value="0"/>
+      <entry id="dbgRoll" value="1"/>
+      <entry id="dbgSlide" value="2"/>
+      <entry id="dbgBlend" value="3"/>
+   </enumeration>
+   <enumeration id="enumAnimateWindowDirectionConstants">
+      <entry id="_DefaultDirection" value="0"/>
+      <entry id="_TopToBottom" value="1"/>
+      <entry id="_BottomToTop" value="2"/>
+      <entry id="_LeftToRight" value="3"/>
+      <entry id="_RightToLeft" value="4"/>
+      <entry id="_TopLeftToBottomRight" value="5"/>
+      <entry id="_TopRightToBottomLeft" value="6"/>
+      <entry id="_BottomLeftToTopRight" value="7"/>
+      <entry id="_BottomRightToTopLeft" value="8"/>
+      <entry id="_AnimateCenter" value="9"/>
+   </enumeration>
+   <enumeration id="AnimateWindowDirectionConstants">
+      <entry id="dbgDefaultDirection" value="0"/>
+      <entry id="dbgTopToBottom" value="1"/>
+      <entry id="dbgBottomToTop" value="2"/>
+      <entry id="dbgLeftToRight" value="3"/>
+      <entry id="dbgRightToLeft" value="4"/>
+      <entry id="dbgTopLeftToBottomRight" value="5"/>
+      <entry id="dbgTopRightToBottomLeft" value="6"/>
+      <entry id="dbgBottomLeftToTopRight" value="7"/>
+      <entry id="dbgBottomRightToTopLeft" value="8"/>
+      <entry id="dbgAnimateCenter" value="9"/>
+   </enumeration>
+   <enumeration id="enumAnimateWindowCloseConstants">
+      <entry id="_NoAnimateClose" value="0"/>
+      <entry id="_OppositeDirection" value="1"/>
+      <entry id="_SameDirection" value="2"/>
+   </enumeration>
+   <enumeration id="AnimateWindowCloseConstants">
+      <entry id="dbgNoAnimateClose" value="0"/>
+      <entry id="dbgOppositeDirection" value="1"/>
+      <entry id="dbgSameDirection" value="2"/>
+   </enumeration>
+   <enumeration id="enumPrintInfo_MenuConstants">
+      <entry id="_MenuFile" value="0"/>
+      <entry id="_MenuPrint" value="1"/>
+      <entry id="_MenuExit" value="2"/>
+      <entry id="_MenuView" value="3"/>
+      <entry id="_MenuZoomIn" value="4"/>
+      <entry id="_MenuZoomOut" value="5"/>
+      <entry id="_MenuFit" value="6"/>
+      <entry id="_MenuPgFirst" value="7"/>
+      <entry id="_MenuPgPrev" value="8"/>
+      <entry id="_MenuPgNext" value="9"/>
+      <entry id="_MenuPgLast" value="10"/>
+      <entry id="_MenuPrintSomePages" value="11"/>
+      <entry id="_MenuPrintCurrPage" value="12"/>
+      <entry id="_DlgPagesCaption" value="13"/>
+      <entry id="_DlgPagesPrompt" value="14"/>
+      <entry id="_DlgPagesOk" value="15"/>
+      <entry id="_DlgPagesCancel" value="16"/>
+      <entry id="_TipPrint" value="17"/>
+      <entry id="_TipZoomIn" value="18"/>
+      <entry id="_TipZoomOut" value="19"/>
+      <entry id="_TipFit" value="20"/>
+      <entry id="_TipZoom" value="21"/>
+      <entry id="_TipPgFirst" value="22"/>
+      <entry id="_TipPgPrev" value="23"/>
+      <entry id="_TipPgNext" value="24"/>
+      <entry id="_TipPgLast" value="25"/>
+      <entry id="_TipPageOf" value="26"/>
+      <entry id="_TipStop" value="27"/>
+   </enumeration>
+   <enumeration id="PrintInfo_MenuConstants">
+      <entry id="dbgpMenuFile" value="0"/>
+      <entry id="dbgpMenuPrint" value="1"/>
+      <entry id="dbgpMenuExit" value="2"/>
+      <entry id="dbgpMenuView" value="3"/>
+      <entry id="dbgpMenuZoomIn" value="4"/>
+      <entry id="dbgpMenuZoomOut" value="5"/>
+      <entry id="dbgpMenuFit" value="6"/>
+      <entry id="dbgpMenuPgFirst" value="7"/>
+      <entry id="dbgpMenuPgPrev" value="8"/>
+      <entry id="dbgpMenuPgNext" value="9"/>
+      <entry id="dbgpMenuPgLast" value="10"/>
+      <entry id="dbgpMenuPrintSomePages" value="11"/>
+      <entry id="dbgpMenuPrintCurrPage" value="12"/>
+      <entry id="dbgpDlgPagesCaption" value="13"/>
+      <entry id="dbgpDlgPagesPrompt" value="14"/>
+      <entry id="dbgpDlgPagesOk" value="15"/>
+      <entry id="dbgpDlgPagesCancel" value="16"/>
+      <entry id="dbgpTipPrint" value="17"/>
+      <entry id="dbgpTipZoomIn" value="18"/>
+      <entry id="dbgpTipZoomOut" value="19"/>
+      <entry id="dbgpTipFit" value="20"/>
+      <entry id="dbgpTipZoom" value="21"/>
+      <entry id="dbgpTipPgFirst" value="22"/>
+      <entry id="dbgpTipPgPrev" value="23"/>
+      <entry id="dbgpTipPgNext" value="24"/>
+      <entry id="dbgpTipPgLast" value="25"/>
+      <entry id="dbgpTipPageOf" value="26"/>
+      <entry id="dbgpTipStop" value="27"/>
+   </enumeration>
+   <class id="IDummy" parent="IUnknown">
+   </class>
+   <class id="ICursor" parent="IUnknown">
+   </class>
+   <class id="ITrueDBGridCtrl" parent="None" default="Text">
+      <property id="AllowDelete" type="Boolean"/>
+      <property id="AllowAddNew" type="Boolean"/>
+      <property id="AllowRowSizing" type="Boolean"/>
+      <property id="AllowUpdate" type="Boolean"/>
+      <property id="Appearance" type="AppearanceConstants"/>
+      <property id="BorderStyle" type="BorderStyleConstants"/>
+      <property id="Bookmark" type="Integer"/>
+      <property id="BookmarkType" type="Integer"/>
+      <property id="Col" type="Integer"/>
+      <property id="ColumnHeaders" type="Boolean"/>
+      <property id="ColumnFooters" type="Boolean"/>
+      <property id="CurrentCellVisible" type="Boolean"/>
+      <property id="CurrentCellModified" type="Boolean"/>
+      <property id="DataChanged" type="Boolean"/>
+      <property id="DataMode" type="DataModeConstants"/>
+      <property id="DataSource" type="ICursor"/>
+      <property id="DefColWidth" type="Single"/>
+      <property id="EditActive" type="Boolean"/>
+      <property id="EditDropDown" type="Boolean"/>
+      <property id="Enabled" type="Boolean"/>
+      <property id="ExtendRightColumn" type="Boolean"/>
+      <property id="PartialRightColumn" type="Boolean"/>
+      <property id="AnchorRightColumn" type="Boolean"/>
+      <property id="FirstRow" type="Variant"/>
+      <property id="HeadFont" type="Font"/>
+      <property id="FooterFont" type="Font"/>
+      <property id="HeadLines" type="Single"/>
+      <property id="FootLines" type="Single"/>
+      <property id="hWnd" type="OLE_HANDLE"/>
+      <property id="hWndEditor" type="OLE_HANDLE"/>
+      <property id="MarqueeUnique" type="Boolean"/>
+      <property id="MarqueeStyle" type="MarqueeStyleConstants"/>
+      <property id="RecordSelectors" type="Boolean"/>
+      <property id="Row" type="Integer"/>
+      <property id="RowDividerStyle" type="DividerStyleConstants"/>
+      <property id="RowHeight" type="Single"/>
+      <property id="ScrollBars" type="ScrollBarsConstants"/>
+      <property id="SelLength" type="Integer" migName="SelectionLength"/>
+      <property id="SelStart" type="Integer" migName="SelectionStart"/>
+      <property id="SelText" type="String"/>
+      <property id="SelStartCol" type="Integer"/>
+      <property id="SelEndCol" type="Integer"/>
+      <property id="Split" type="Integer"/>
+      <property id="VisibleCols" type="Integer"/>
+      <property id="VisibleRows" type="Integer"/>
+      <property id="BackColor" type="OLE_COLOR"/>
+      <property id="ForeColor" type="OLE_COLOR"/>
+      <property id="Caption" type="String"/>
+      <property id="Font" type="Font"/>
+      <property id="LeftCol" type="Integer"/>
+      <property id="_StyleDefs" type="OLE_HANDLE"/>
+      <property id="AllowArrows" type="Boolean"/>
+      <property id="ExposeCellMode" type="ExposeCellModeConstants"/>
+      <property id="TabAcrossSplits" type="Boolean"/>
+      <property id="TabAction" type="TabActionConstants"/>
+      <property id="WrapCellPointer" type="Boolean"/>
+      <property id="Style" type="Style"/>
+      <property id="HeadingStyle" type="Style"/>
+      <property id="FooterStyle" type="Style"/>
+      <property id="EditorStyle" type="Style"/>
+      <property id="InactiveStyle" type="Style"/>
+      <property id="SelectedStyle" type="Style"/>
+      <property id="CaptionStyle" type="Style"/>
+      <property id="HighlightRowStyle" type="Style"/>
+      <property id="EvenRowStyle" type="Style"/>
+      <property id="OddRowStyle" type="Style"/>
+      <property id="HeadBackColor" type="OLE_COLOR"/>
+      <property id="HeadForeColor" type="OLE_COLOR"/>
+      <property id="FooterBackColor" type="OLE_COLOR"/>
+      <property id="FooterForeColor" type="OLE_COLOR"/>
+      <property id="EditBackColor" type="OLE_COLOR"/>
+      <property id="EditForeColor" type="OLE_COLOR"/>
+      <property id="InactiveBackColor" type="OLE_COLOR"/>
+      <property id="InactiveForeColor" type="OLE_COLOR"/>
+      <property id="SelectedBackColor" type="OLE_COLOR"/>
+      <property id="SelectedForeColor" type="OLE_COLOR"/>
+      <property id="ApproxCount" type="Integer"/>
+      <property id="ErrorText" type="String"/>
+      <property id="AddNewMode" type="AddNewModeConstants"/>
+      <property id="AllowColSelect" type="Boolean"/>
+      <property id="AllowColMove" type="Boolean"/>
+      <property id="AllowRowSelect" type="Boolean"/>
+      <property id="PictureCurrentRow" type="Variant"/>
+      <property id="PictureModifiedRow" type="Variant"/>
+      <property id="PictureAddnewRow" type="Variant"/>
+      <property id="PictureStandardRow" type="Variant"/>
+      <property id="PictureHeaderRow" type="Variant"/>
+      <property id="PictureFooterRow" type="Variant"/>
+      <property id="MouseIcon" type="Variant"/>
+      <property id="MousePointer" type="MousePointerConstants"/>
+      <property id="ISVServices" type="Object"/>
+      <property id="Text" type="String"/>
+      <property id="LayoutName" type="String"/>
+      <property id="LayoutFileName" type="String"/>
+      <property id="LayoutURL" type="String"/>
+      <property id="MultipleLines" type="MultipleLinesConstants"/>
+      <property id="Array" type="XArrayDBObject.XArrayDB"/>
+      <property id="EmptyRows" type="Boolean"/>
+      <property id="CellTips" type="CellTipPresentationConstants"/>
+      <property id="VScrollWidth" type="stdole.OLE_XSIZE_CONTAINER"/>
+      <property id="HScrollHeight" type="stdole.OLE_YSIZE_CONTAINER"/>
+      <property id="BOF" type="Boolean"/>
+      <property id="EOF" type="Boolean"/>
+      <property id="FetchRowStyle" type="Boolean" migName="FetchRowStyles" />
+      <property id="AlternatingRowStyle" type="Boolean"/>
+      <property id="CellTipsWidth" type="stdole.OLE_XSIZE_CONTAINER"/>
+      <property id="CellTipsDelay" type="Integer"/>
+      <property id="InsertMode" type="Boolean"/>
+      <property id="TransparentRowPictures" type="Boolean"/>
+      <property id="MultiSelect" type="MultiSelectConstants"/>
+      <property id="OLEDragMode" type="OLEDragModeConstants"/>
+      <property id="OLEDropMode" type="OLEDropModeConstants"/>
+      <property id="ExportEOF" type="Boolean"/>
+      <property id="ExportNextBookmark" type="Variant"/>
+      <property id="AnimateWindow" type="AnimateWindowConstants"/>
+      <property id="AnimateWindowDirection" type="AnimateWindowDirectionConstants"/>
+      <property id="AnimateWindowTime" type="Integer"/>
+      <property id="AnimateWindowClose" type="AnimateWindowCloseConstants"/>
+      <property id="DeadAreaBackColor" type="OLE_COLOR"/>
+      <property id="MaxRows" type="Integer"/>
+      <property id="DestinationSplit" type="Integer"/>
+      <property id="DestinationRow" type="Variant"/>
+      <property id="DestinationCol" type="Integer"/>
+      <property id="Columns" type="Columns" status="Out" />
+      <property id="Splits" type="Splits" status="Out"/>
+      <property id="Styles" type="Styles" status="Out"/>
+      <property id="SelBookmarks" type="SelBookmarks" status="Out" migName="SelectedRows"/>
+      <property id="Layouts" type="Layouts" status="Out"/>
+      <property id="PrintInfos" type="PrintInfos" status="Out"/>
+      <property id="PrintInfo" type="PrintInfo" status="Out"/>
+      <method id="AboutBox" type="Void"/>
+      <method id="ColContaining" type="Integer">
+         <argument id="X" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetBookmark" type="Variant">
+         <argument id="RowNum" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ReBind" type="Void" nPram="1" migPattern="%1d.Rebind(true)\c"/>
+      <method id="RowBookmark" type="Variant">
+         <argument id="RowNum" type="Integer" status="ByVal"/>
+      </method>
+      <method id="RowContaining" type="Integer">
+         <argument id="Y" type="Integer" status="ByVal"/>
+      </method>
+      <method id="RowTop" type="Single">
+         <argument id="RowNum" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Scroll" type="Void">
+         <argument id="Cols" type="Integer" status="ByVal"/>
+         <argument id="Rows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="CaptureImage" type="FrxPicture"/>
+      <method id="AddCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+         <argument id="Style" type="Variant" status="ByVal"/>
+      </method>
+      <method id="AddRegexCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+         <argument id="Style" type="Variant" status="ByVal"/>
+         <argument id="Regex" type="String" status="ByVal"/>
+      </method>
+      <method id="ClearCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ClearRegexCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+         <argument id="Regex" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ClearSelCols" type="Void"/>
+      <method id="ClearFields" type="Void"/>
+      <method id="HoldFields" type="Void"/>
+      <method id="SplitContaining" type="Integer">
+         <argument id="X" type="Single" status="ByVal"/>
+         <argument id="Y" type="Single" status="ByVal"/>
+      </method>
+      <method id="PointAt" type="PointAtConstants">
+         <argument id="X" type="Single" status="ByVal"/>
+         <argument id="Y" type="Single" status="ByVal"/>
+      </method>
+      <method id="PostMsg" type="Void">
+         <argument id="MsgId" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Update" type="Void"/>
+      <method id="MoveRelative" type="Void">
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="Bookmark" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="MoveFirst" type="Void"/>
+      <method id="MoveLast" type="Void"/>
+      <method id="MoveNext" type="Void"/>
+      <method id="MovePrevious" type="Void"/>
+      <method id="Delete" type="Void"/>
+      <method id="Close" type="Void">
+         <argument id="Repaint" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ReOpen" type="Void">
+         <argument id="Bookmark" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="LoadLayout" type="Void"/>
+      <method id="CellContaining" type="Boolean">
+         <argument id="X" type="Single" status="ByVal"/>
+         <argument id="Y" type="Single" status="ByVal"/>
+         <argument id="RowAt" type="Integer" status="Out"/>
+         <argument id="ColAt" type="Integer" status="Out"/>
+      </method>
+      <method id="RefreshRow" type="Void">
+         <argument id="Bookmark" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="RefreshCol" type="Void">
+         <argument id="Col" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="RefetchRow" type="Void">
+         <argument id="Bookmark" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="RefetchCol" type="Void">
+         <argument id="Col" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="OLEDrag" type="Void"/>
+      <method id="IsSelected" type="Integer">
+         <argument id="Bookmark" type="Variant" status="ByVal"/>
+      </method>
+      <method id="ExportToFile" type="Void">
+         <argument id="outPath" type="String" status="ByVal"/>
+         <argument id="append" type="Boolean" status="ByVal"/>
+         <argument id="selector" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="tableWidth" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ExportBegin" type="Void">
+         <argument id="Bookmark" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ExportRows" type="Void">
+         <argument id="outPath" type="String" status="ByVal"/>
+         <argument id="append" type="Boolean" status="ByVal"/>
+         <argument id="Rows" type="Integer" status="ByVal"/>
+         <argument id="tableWidth" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ExportEnd" type="Void"/>
+      <method id="ExportToDelimitedFile" type="Void">
+         <argument id="outPath" type="String" status="ByVal"/>
+         <argument id="selector" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="delim" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="prefix" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="suffix" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="Column" parent="None" default="Text" creatable="off" migName="C1DataColumn">
+      <property id="Alignment" type="AlignmentConstants"/>
+      <property id="AllowSizing" type="Boolean"/>
+      <property id="HeaderDivider" type="Boolean"/>
+      <property id="FooterDivider" type="Boolean"/>
+      <property id="BackColor" type="OLE_COLOR"/>
+      <property id="DividerStyle" type="DividerStyleConstants"/>
+      <property id="Caption" type="String"/>
+      <property id="FooterText" type="String"/>
+      <property id="DataChanged" type="Boolean"/>
+      <property id="DataField" type="String"/>
+      <property id="DataWidth" type="Integer"/>
+      <property id="DefaultValue" type="Variant"/>
+      <property id="EditBackColor" type="OLE_COLOR"/>
+      <property id="EditForeColor" type="OLE_COLOR"/>
+      <property id="ForeColor" type="OLE_COLOR"/>
+      <property id="HeadAlignment" type="AlignmentConstants"/>
+      <property id="HeadBackColor" type="OLE_COLOR"/>
+      <property id="HeadForeColor" type="OLE_COLOR"/>
+      <property id="FooterAlignment" type="AlignmentConstants"/>
+      <property id="FooterBackColor" type="OLE_COLOR"/>
+      <property id="FooterForeColor" type="OLE_COLOR"/>
+      <property id="ColIndex" type="Integer"/>
+      <property id="Left" type="stdole.OLE_XPOS_CONTAINER"/>
+      <property id="Locked" type="Boolean" status="GetSet" />
+      <pattern id="Locked.Get">
+        <all narg="1" code="%1d.isLocked()" /> 
+      </pattern>
+      <pattern id="Locked.Set">
+        <all narg="2" code="%2d.setLocked(%1d)\c" />
+      </pattern>
+      <property id="NumberFormat" type="String"/>
+      <property id="Text" type="String"/>
+      <property id="Top" type="stdole.OLE_YPOS_CONTAINER"/>
+      <property id="Value" type="Variant"/>
+      <property id="Visible" type="Boolean" status="GetSet" />
+      <pattern id="Visible.Get">
+        <all narg="1" code="%1d.isVisible()" /> 
+      </pattern>
+      <pattern id="Visible.Set">
+        <all narg="2" code="%2d.setVisible(%1d)\c" />
+      </pattern>
+      <property id="Width" type="stdole.OLE_XSIZE_CONTAINER"/>
+      <property id="WrapText" type="Boolean"/>
+      <property id="Button" type="Boolean"/>
+      <property id="Merge" type="Boolean"/>
+      <property id="FetchStyle" type="Boolean" migStatus="NotImplemented" />
+      <property id="Style" type="Style"/>
+      <property id="HeadingStyle" type="Style"/>
+      <property id="FooterStyle" type="Style"/>
+      <property id="EditorStyle" type="Style"/>
+      <property id="Font" type="Font"/>
+      <property id="HeadFont" type="Font"/>
+      <property id="FooterFont" type="Font"/>
+      <property id="Order" type="Integer"/>
+      <property id="EditMask" type="String"/>
+      <property id="EditMaskUpdate" type="Boolean"/>
+      <property id="EditMaskRight" type="Boolean"/>
+      <property id="DropDown" type="Variant"/>
+      <property id="ExternalEditor" type="Variant"/>
+      <property id="CellTop" type="stdole.OLE_YPOS_CONTAINER"/>
+      <property id="ButtonPicture" type="Variant"/>
+      <property id="AllowFocus" type="Boolean"/>
+      <property id="ButtonText" type="Boolean"/>
+      <property id="ButtonAlways" type="Boolean"/>
+      <property id="ButtonHeader" type="Boolean"/>
+      <property id="ButtonFooter" type="Boolean"/>
+      <property id="OwnerDraw" type="Boolean"/>
+      <property id="AutoDropDown" type="Boolean"/>
+      <property id="DropDownList" type="Boolean"/>
+      <property id="DisplayAlignment" type="AlignmentConstants"/>
+      <property id="ConvertEmptyCell" type="ConvertEmptyCellConstants"/>
+      <property id="Name" type="String"/>
+      <property id="TableName" type="String"/>
+      <property id="ValueItems" type="ValueItems" status="Out"/>
+      <method id="CellText" type="String">
+         <argument id="Bookmark" type="Variant" status="ByVal"/>
+      </method>
+      <method id="CellValue" type="Variant">
+         <argument id="Bookmark" type="Variant" status="ByVal"/>
+      </method>
+      <method id="AddCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+         <argument id="Style" type="Variant" status="ByVal"/>
+      </method>
+      <method id="AddRegexCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+         <argument id="Style" type="Variant" status="ByVal"/>
+         <argument id="Regex" type="String" status="ByVal"/>
+      </method>
+      <method id="ClearCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ClearRegexCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+         <argument id="Regex" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="RefreshCell" type="Void">
+         <argument id="Bookmark" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Refetch" type="Void"/>
+      <method id="RefetchCell" type="Void">
+         <argument id="Bookmark" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="AutoSize" type="Void"/>
+   </class>
+   <class id="Columns" parent="None" default="Item" creatable="off" migName="C1DataColumnCollection" >
+      <property id="Count" type="Integer"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <method id="Item" type="Column" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Column">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="SelBookmarks" parent="None" default="Item" creatable="off" migName="SelectedRowCollection">
+      <property id="Count" type="Integer"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <method id="Item" type="Variant" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="Bookmark" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void" migName="RemoveAt">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="RowBuffer" parent="IDispatch" creatable="off">
+      <property id="RowCount" type="Integer" status="InOut"/>
+      <property id="ColumnCount" type="Integer" status="Out"/>
+      <accessor id="Bookmark" type="Variant">
+         <argument id="Row" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="ColumnName" type="String">
+         <argument id="Col" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="Value" type="Variant">
+         <argument id="Row" type="Integer" status="ByVal"/>
+         <argument id="Col" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="ColumnIndex" type="Integer">
+         <argument id="Row" type="Integer" status="ByVal"/>
+         <argument id="Col" type="Integer" status="ByVal"/>
+      </accessor>
+   </class>
+   <class id="DataObjectFiles" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <method id="Item" type="String" status="indexer">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="Filename" type="String" status="ByVal"/>
+         <argument id="Index" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Clear" type="Void"/>
+   </class>
+   <class id="DataObject" parent="IDispatch" creatable="off">
+      <property id="Files" type="DataObjectFiles" status="Out"/>
+      <method id="Clear" type="Void"/>
+      <method id="GetData" type="Variant">
+         <argument id="Format" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetFormat" type="Boolean">
+         <argument id="Format" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetData" type="Void">
+         <argument id="Value" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Format" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="Layouts" parent="None" default="Item" creatable="off">
+      <property id="Count" type="Integer"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <method id="Item" type="Variant" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="LayoutName" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="TrueDBGridEvents" parent="None" creatable="off">
+      <event id="Click" netName="Click" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="DblClick" netName="DoubleClick" role="event" netHandler="System.EventHandler" netArgs="EventArgs" migPattern="DoubleClick" />
+      <event id="AfterColUpdate" netName="AfterColUpdate" netHandler="C1.Win.C1TrueDBGrid.ColEventHandler" netArgs="C1.Win.C1TrueDBGrid.ColEventArgs">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+      </event>
+      <event id="AfterDelete" netName="AfterDelete" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="AfterInsert" netName="AfterInsert" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="AfterUpdate" netName="AfterUpdate" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="BeforeColUpdate" netName="BeforeColUpdate" netHandler="C1.Win.C1TrueDBGrid.BeforeColUpdateEventHandler" netArgs="C1.Win.C1TrueDBGrid.BeforeColUpdateEventArgs">
+         <argument id="ColIndex" type="Integer" status="ByVal" />
+         <argument id="OldValue" type="Variant" status="Out"/> 
+         <argument id="Cancel" type="Boolean" status="Out"/>
+      </event>
+      <event id="BeforeDelete" netName="BeforeDelete" netHandler="AxTrueDBGrid60.TrueDBGridEvents_BeforeDeleteEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_BeforeDeleteEvent">
+         <argument id="Cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="BeforeInsert" netName="BeforeInsert" netHandler="AxTrueDBGrid60.TrueDBGridEvents_BeforeInsertEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_BeforeInsertEvent">
+         <argument id="Cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="BeforeUpdate" netName="BeforeUpdate" netHandler="AxTrueDBGrid60.TrueDBGridEvents_BeforeUpdateEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_BeforeUpdateEvent">
+         <argument id="Cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="ColResize" netName="ColResize" netHandler="AxTrueDBGrid60.TrueDBGridEvents_ColResizeEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_ColResizeEvent">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+         <argument id="Cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="HeadClick" netName="HeadClick" netHandler="C1.Win.C1TrueDBGrid.ColEventHandler" netArgs="C1.Win.C1TrueDBGrid.ColEventArgs">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+      </event>
+      <event id="FootClick" netName="FootClick" netHandler="AxTrueDBGrid60.TrueDBGridEvents_FootClickEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_FootClickEvent">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+      </event>
+      <event id="OwnerDrawCell" netName="OwnerDrawCell" netHandler="AxTrueDBGrid60.TrueDBGridEvents_OwnerDrawCellEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_OwnerDrawCellEvent">
+         <argument id="hDC" type="Integer" status="ByVal"/>
+         <argument id="bookmark" type="Variant" status="ByVal"/>
+         <argument id="split" type="Integer" status="ByVal"/>
+         <argument id="col" type="Integer" status="ByVal"/>
+         <argument id="left" type="Integer" status="ByVal"/>
+         <argument id="top" type="Integer" status="ByVal"/>
+         <argument id="right" type="Integer" status="ByVal"/>
+         <argument id="bottom" type="Integer" status="ByVal"/>
+         <argument id="done" type="Integer" status="Out"/>
+      </event>
+      <event id="OwnerDrawCellPrint" netName="OwnerDrawCellPrint" netHandler="AxTrueDBGrid60.TrueDBGridEvents_OwnerDrawCellPrintEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_OwnerDrawCellPrintEvent">
+         <argument id="hDC" type="Integer" status="ByVal"/>
+         <argument id="bookmark" type="Variant" status="ByVal"/>
+         <argument id="split" type="Integer" status="ByVal"/>
+         <argument id="col" type="Integer" status="ByVal"/>
+         <argument id="left" type="Integer" status="ByVal"/>
+         <argument id="top" type="Integer" status="ByVal"/>
+         <argument id="right" type="Integer" status="ByVal"/>
+         <argument id="bottom" type="Integer" status="ByVal"/>
+         <argument id="done" type="Integer" status="Out"/>
+      </event>
+      <event id="BeforeRowColChange" netName="BeforeRowColChange" netHandler="AxTrueDBGrid60.TrueDBGridEvents_BeforeRowColChangeEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_BeforeRowColChangeEvent">
+         <argument id="Cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="RowColChange" netName="RowColChange" netHandler="C1.Win.C1TrueDBGrid.RowColChangeEventHandler" netArgs="C1.Win.C1TrueDBGrid.RowColChangeEventArgs">
+         <argument id="LastRow" type="Variant" status="Out"/>
+         <argument id="LastCol" type="Integer" status="ByVal"/>
+      </event>
+      <event id="RowResize" netName="RowResize" netHandler="AxTrueDBGrid60.TrueDBGridEvents_RowResizeEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_RowResizeEvent">
+         <argument id="Cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="Scroll" netName="Scroll" netHandler="AxTrueDBGrid60.TrueDBGridEvents_ScrollEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_ScrollEvent">
+         <argument id="Cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="SelChange" netName="SelChange" netHandler="AxTrueDBGrid60.TrueDBGridEvents_SelChangeEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_SelChangeEvent">
+         <argument id="Cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="SplitChange" netName="SplitChange" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="AxTrueDBGrid60.TrueDBGridEvents_MouseMoveEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_MouseMoveEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseDown" netName="MouseDown" netHandler="MouseEventHandler" netArgs="System.Windows.Forms.MouseEventArgs">
+         <argument id="button" type="Integer" status="ByVal" cshPattern="%1d =(int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal" cshPattern="%1d = (int)Control.ModifierKeys" vbnPattern="%1d = Control.ModifierKeys" />
+         <argument id="X" type="Integer" status="ByVal"/>
+         <argument id="Y" type="Integer" status="ByVal"/>
+      </event>
+      
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="AxTrueDBGrid60.TrueDBGridEvents_MouseUpEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_MouseUpEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="AxTrueDBGrid60.TrueDBGridEvents_KeyUpEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_KeyUpEvent">
+         <argument id="keyCode" type="Integer" status="Out"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="KeyDown" netName="KeyDown" role="event"  netArgs="KeyEventArgs" netHandler="System.Windows.Forms.KeyEventHandler">
+         <argument id="keyCode" type="Integer" status="ByVal" cshPattern="%1d = (int)e.KeyCode" vbnPattern="%1d = e.KeyCode"/>
+         <argument id="shift" type="Boolean" status="ByVal" migPattern="%1d = e.Shift"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" role="event" netArgs="System.Windows.Forms.KeyPressEventArgs" netHandler="System.Windows.Forms.KeyPressEventHandler" migPattern="KeyPress" >
+         <argument id="keyAscii" type="Integer" status="ByVal" migPattern="%1d = (int)e.KeyChar" />
+      </event>
+      <event id="Change" netName="Change" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="UnboundGetRelativeBookmark" netName="UnboundGetRelativeBookmark" netHandler="AxTrueDBGrid60.TrueDBGridEvents_UnboundGetRelativeBookmarkEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_UnboundGetRelativeBookmarkEvent">
+         <argument id="startLocation" type="Variant" status="ByRef"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="newLocation" type="Variant" status="ByRef"/>
+         <argument id="approximatePosition" type="Integer" status="ByRef"/>
+      </event>
+      <event id="UnboundReadData" netName="UnboundReadData" netHandler="AxTrueDBGrid60.TrueDBGridEvents_UnboundReadDataEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_UnboundReadDataEvent">
+         <argument id="rowBuf" type="RowBuffer" status="ByVal"/>
+         <argument id="startLocation" type="Variant" status="ByRef"/>
+         <argument id="readPriorRows" type="Boolean" status="ByVal"/>
+      </event>
+      <event id="UnboundReadDataEx" netName="UnboundReadDataEx" netHandler="AxTrueDBGrid60.TrueDBGridEvents_UnboundReadDataExEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_UnboundReadDataExEvent">
+         <argument id="rowBuf" type="RowBuffer" status="ByVal"/>
+         <argument id="startLocation" type="Variant" status="ByRef"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="approximatePosition" type="Integer" status="ByRef"/>
+      </event>
+      <event id="ClassicRead" netName="ClassicRead" netHandler="AxTrueDBGrid60.TrueDBGridEvents_ClassicReadEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_ClassicReadEvent">
+         <argument id="bookmark" type="Variant" status="ByRef"/>
+         <argument id="col" type="Integer" status="ByVal"/>
+         <argument id="value" type="Variant" status="Out"/>
+      </event>
+      <event id="ClassicWrite" netName="ClassicWrite" netHandler="AxTrueDBGrid60.TrueDBGridEvents_ClassicWriteEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_ClassicWriteEvent">
+         <argument id="bookmark" type="Variant" status="ByRef"/>
+         <argument id="col" type="Integer" status="ByVal"/>
+         <argument id="value" type="Variant" status="Out"/>
+      </event>
+      <event id="ClassicDelete" netName="ClassicDelete" netHandler="AxTrueDBGrid60.TrueDBGridEvents_ClassicDeleteEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_ClassicDeleteEvent">
+         <argument id="bookmark" type="Variant" status="ByRef"/>
+      </event>
+      <event id="ClassicAdd" netName="ClassicAdd" netHandler="AxTrueDBGrid60.TrueDBGridEvents_ClassicAddEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_ClassicAddEvent">
+         <argument id="newRowBookmark" type="Variant" status="Out"/>
+         <argument id="col" type="Integer" status="ByVal"/>
+         <argument id="value" type="Variant" status="Out"/>
+      </event>
+      <event id="UnboundWriteData" netName="UnboundWriteData" netHandler="AxTrueDBGrid60.TrueDBGridEvents_UnboundWriteDataEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_UnboundWriteDataEvent">
+         <argument id="rowBuf" type="RowBuffer" status="ByVal"/>
+         <argument id="writeLocation" type="Variant" status="ByRef"/>
+      </event>
+      <event id="UnboundAddData" netName="UnboundAddData" netHandler="AxTrueDBGrid60.TrueDBGridEvents_UnboundAddDataEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_UnboundAddDataEvent">
+         <argument id="rowBuf" type="RowBuffer" status="ByVal"/>
+         <argument id="newRowBookmark" type="Variant" status="Out"/>
+      </event>
+      <event id="UnboundDeleteRow" netName="UnboundDeleteRow" netHandler="AxTrueDBGrid60.TrueDBGridEvents_UnboundDeleteRowEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_UnboundDeleteRowEvent">
+         <argument id="bookmark" type="Variant" status="ByRef"/>
+      </event>
+      <event id="Error" netName="Error" netHandler="AxTrueDBGrid60.TrueDBGridEvents_ErrorEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_ErrorEvent">
+         <argument id="dataError" type="Integer" status="ByVal"/>
+         <argument id="response" type="Integer" status="Out"/>
+      </event>
+      <event id="UnboundColumnFetch" netName="UnboundColumnFetch" netHandler="AxTrueDBGrid60.TrueDBGridEvents_UnboundColumnFetchEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_UnboundColumnFetchEvent">
+         <argument id="bookmark" type="Variant" status="ByRef"/>
+         <argument id="col" type="Integer" status="ByVal"/>
+         <argument id="value" type="Variant" status="Out"/>
+      </event>
+      <event id="BeforeColEdit" netName="BeforeColEdit" netHandler="C1.Win.C1TrueDBGrid.BeforeColEditEventHandler" netArgs="C1.Win.C1TrueDBGrid.BeforeColEditEventArgs">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+         <argument id="keyAscii" type="Char" status="ByVal" migPattern="%1d = e.KeyChar" />
+         <argument id="Cancel" type="Boolean" status="Out"/>
+      </event>
+      <event id="ColEdit" netName="ColEdit" netHandler="C1.Win.C1TrueDBGrid.ColEventHandler" netArgs="C1.Win.C1TrueDBGrid.ColEventArgs">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+      </event>
+      <event id="FirstRowChange" netName="FirstRowChange" netHandler="AxTrueDBGrid60.TrueDBGridEvents_FirstRowChangeEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_FirstRowChangeEvent">
+         <argument id="splitIndex" type="Integer" status="ByVal"/>
+      </event>
+      <event id="LeftColChange" netName="LeftColChange" netHandler="AxTrueDBGrid60.TrueDBGridEvents_LeftColChangeEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_LeftColChangeEvent">
+         <argument id="splitIndex" type="Integer" status="ByVal"/>
+      </event>
+      <event id="FormatText" netName="FormatText" netHandler="C1.Win.C1TrueDBGrid.FormatTextEventHandler" netArgs="C1.Win.C1TrueDBGrid.FormatTextEventArgs">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+         <argument id="Value" type="Variant" status="Out"/>
+         <argument id="Bookmark" type="Variant" status="ByRef" migName="Row"/>
+      </event>
+      <event id="DragCell" netName="DragCell" netHandler="AxTrueDBGrid60.TrueDBGridEvents_DragCellEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_DragCellEvent">
+         <argument id="splitIndex" type="Integer" status="ByVal"/>
+         <argument id="rowBookmark" type="Variant" status="ByRef"/>
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+      </event>
+      <event id="ButtonClick" netName="ButtonClick" netHandler="AxTrueDBGrid60.TrueDBGridEvents_ButtonClickEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_ButtonClickEvent">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+      </event>
+      <event id="ComboSelect" netName="ComboSelect" netHandler="C1.Win.C1TrueDBGrid.ColEventHandler" netArgs="C1.Win.C1TrueDBGrid.ColEventArgs">
+         <argument id="ColIndex" type="Integer" status="ByVal" migPattern="%1d = e.ColIndex" />
+      </event>
+      <event id="ValueItemError" netName="ValueItemError" netHandler="AxTrueDBGrid60.TrueDBGridEvents_ValueItemErrorEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_ValueItemErrorEvent">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+      </event>
+      <event id="FetchCellStyle" netName="FetchCellStyle" netHandler="C1.Win.C1TrueDBGrid.FetchCellStyleEventHandler" netArgs="C1.Win.C1TrueDBGrid.FetchCellStyleEventArgs">
+         <argument id="Condition" type="Integer" status="ByVal" cshPattern="%1d = (int)e.Condition"/>
+         <argument id="Split" type="Integer" status="ByVal"/>
+         <argument id="Bookmark" type="Variant" status="ByRef" migName="Row"/>
+         <argument id="Col" type="Integer" status="ByVal"/>
+         <argument id="CellStyle" type="Style" status="ByVal" />
+      </event>
+      <event id="FetchRowStyle" netName="FetchRowStyle" netHandler="C1.Win.C1TrueDBGrid.FetchRowStyleEventHandler" netArgs="C1.Win.C1TrueDBGrid.FetchRowStyleEventArgs">
+         <argument id="Split" type="Integer" status="ByVal" />
+         <argument id="Bookmark" type="Integer" status="ByRef" migName="Row" />
+         <argument id="RowStyle" type="Style" status="ByVal" migPattern="%1d = e.CellStyle"/>
+      </event>
+      <event id="OnAddNew" netName="OnAddNew" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="Paint" netName="PaintEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="ColMove" netName="ColMove" netHandler="AxTrueDBGrid60.TrueDBGridEvents_ColMoveEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_ColMoveEvent">
+         <argument id="position" type="Integer" status="ByVal"/>
+         <argument id="Cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="PostEvent" netName="PostEvent" netHandler="AxTrueDBGrid60.TrueDBGridEvents_PostEventEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_PostEventEvent">
+         <argument id="msgId" type="Integer" status="ByVal"/>
+      </event>
+      <event id="FetchCellTips" netName="FetchCellTips" netHandler="AxTrueDBGrid60.TrueDBGridEvents_FetchCellTipsEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_FetchCellTipsEvent">
+         <argument id="splitIndex" type="Integer" status="ByVal"/>
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+         <argument id="rowIndex" type="Integer" status="ByVal"/>
+         <argument id="cellTip" type="String" status="Out"/>
+         <argument id="fullyDisplayed" type="Boolean" status="ByVal"/>
+         <argument id="tipStyle" type="Style" status="ByVal"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxTrueDBGrid60.TrueDBGridEvents_OLECompleteDragEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="Out"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxTrueDBGrid60.TrueDBGridEvents_OLEDragDropEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_OLEDragDropEvent">
+         <argument id="data" type="DataObject" status="ByVal"/>
+         <argument id="effect" type="Integer" status="Out"/>
+         <argument id="button" type="Integer" status="Out"/>
+         <argument id="shift" type="Integer" status="Out"/>
+         <argument id="x" type="Single" status="Out"/>
+         <argument id="y" type="Single" status="Out"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxTrueDBGrid60.TrueDBGridEvents_OLEDragOverEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_OLEDragOverEvent">
+         <argument id="data" type="DataObject" status="ByVal"/>
+         <argument id="effect" type="Integer" status="Out"/>
+         <argument id="button" type="Integer" status="Out"/>
+         <argument id="shift" type="Integer" status="Out"/>
+         <argument id="x" type="Single" status="Out"/>
+         <argument id="y" type="Single" status="Out"/>
+         <argument id="state" type="Integer" status="Out"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxTrueDBGrid60.TrueDBGridEvents_OLEGiveFeedbackEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="Out"/>
+         <argument id="defaultCursors" type="Boolean" status="Out"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxTrueDBGrid60.TrueDBGridEvents_OLESetDataEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_OLESetDataEvent">
+         <argument id="data" type="DataObject" status="ByVal"/>
+         <argument id="dataFormat" type="Integer" status="Out"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxTrueDBGrid60.TrueDBGridEvents_OLEStartDragEventHandler" netArgs="AxTrueDBGrid60.TrueDBGridEvents_OLEStartDragEvent">
+         <argument id="data" type="DataObject" status="ByVal"/>
+         <argument id="allowedEffects" type="Integer" status="Out"/>
+      </event>
+      <event id="OnInit" netName="OnInit" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="DataSourceChanged" netName="DataSourceChanged" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="LayoutReady" netName="LayoutReady" netHandler="System.EventHandler" netArgs="EventArgs"/>
+   </class>
+   <class id="Splits" parent="None" default="Item" creatable="off">
+      <property id="Count" type="Integer"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <method id="Item" type="Split" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Split">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Split" parent="None" creatable="off">
+      <property id="BackColor" type="OLE_COLOR"/>
+      <property id="ForeColor" type="OLE_COLOR"/>
+      <property id="HeadBackColor" type="OLE_COLOR"/>
+      <property id="HeadForeColor" type="OLE_COLOR"/>
+      <property id="FooterBackColor" type="OLE_COLOR"/>
+      <property id="FooterForeColor" type="OLE_COLOR"/>
+      <property id="EditBackColor" type="OLE_COLOR"/>
+      <property id="EditForeColor" type="OLE_COLOR"/>
+      <property id="ExtendRightColumn" type="Boolean"/>
+      <property id="PartialRightColumn" type="Boolean"/>
+      <property id="AnchorRightColumn" type="Boolean"/>
+      <property id="InactiveBackColor" type="OLE_COLOR"/>
+      <property id="InactiveForeColor" type="OLE_COLOR"/>
+      <property id="SelectedBackColor" type="OLE_COLOR"/>
+      <property id="SelectedForeColor" type="OLE_COLOR"/>
+      <property id="Font" type="Font"/>
+      <property id="HeadFont" type="Font"/>
+      <property id="FooterFont" type="Font"/>
+      <property id="Locked" type="Boolean"/>
+      <property id="Index" type="Integer"/>
+      <property id="ScrollGroup" type="Integer"/>
+      <property id="MarqueeStyle" type="MarqueeStyleConstants"/>
+      <property id="AllowSizing" type="Boolean"/>
+      <property id="AllowFocus" type="Boolean"/>
+      <property id="SizeMode" type="SplitSizeModeConstants"/>
+      <property id="Size" type="Variant"/>
+      <property id="AllowRowSizing" type="Boolean"/>
+      <property id="RecordSelectors" type="Boolean"/>
+      <property id="ScrollBars" type="ScrollBarsConstants"/>
+      <property id="_ColumnProps" type="OLE_HANDLE"/>
+      <property id="Style" type="Style"/>
+      <property id="CurrentCellVisible" type="Boolean"/>
+      <property id="FirstRow" type="Variant"/>
+      <property id="LeftCol" type="Integer"/>
+      <property id="HeadingStyle" type="Style"/>
+      <property id="FooterStyle" type="Style"/>
+      <property id="EditorStyle" type="Style"/>
+      <property id="InactiveStyle" type="Style"/>
+      <property id="SelectedStyle" type="Style"/>
+      <property id="HighlightRowStyle" type="Style"/>
+      <property id="EvenRowStyle" type="Style"/>
+      <property id="OddRowStyle" type="Style"/>
+      <property id="CaptionStyle" type="Style"/>
+      <property id="SelStartCol" type="Integer"/>
+      <property id="SelEndCol" type="Integer"/>
+      <property id="AllowColSelect" type="Boolean"/>
+      <property id="AllowColMove" type="Boolean"/>
+      <property id="AllowRowSelect" type="Boolean"/>
+      <property id="VScrollWidth" type="stdole.OLE_XSIZE_CONTAINER"/>
+      <property id="HScrollHeight" type="stdole.OLE_YSIZE_CONTAINER"/>
+      <property id="FetchRowStyle" type="Boolean"/>
+      <property id="AlternatingRowStyle" type="Boolean"/>
+      <property id="Caption" type="String"/>
+      <property id="DividerStyle" type="DividerStyleConstants"/>
+      <property id="Columns" type="Columns" status="Out"/>
+      <method id="AddCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+         <argument id="Style" type="Variant" status="ByVal"/>
+      </method>
+      <method id="AddRegexCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+         <argument id="Style" type="Variant" status="ByVal"/>
+         <argument id="Regex" type="String" status="ByVal"/>
+      </method>
+      <method id="ClearCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ClearRegexCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+         <argument id="Regex" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ClearSelCols" type="Void"/>
+   </class>
+   <class id="ValueItemDisp" parent="None">
+      <property id="Value" type="Variant"/>
+      <property id="DisplayValue" type="Variant"/>
+   </class>
+   <class id="ValueItems" parent="None" default="Item" creatable="off">
+      <property id="Count" type="Integer" migName="Values.Count"/>
+      <property id="Presentation" type="PresentationConstants"/>
+      <property id="Translate" type="Boolean"/>
+      <property id="Validate" type="Boolean"/>
+      <property id="CycleOnClick" type="Boolean"/>
+      <property id="MaxComboItems" type="Integer"/>
+      <property id="DefaultItem" type="Integer"/>
+      <property id="AnnotatePicture" type="Boolean"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <method id="Item" type="ValueItem" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void" migName="Values.Add">
+         <argument id="vitem" type="ValueItem" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void" migName="Values.RemoveAt">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Clear" type="Void" migName="Values.Clear"/>
+   </class>
+   <class id="Styles" parent="None" default="Item" creatable="off">
+      <property id="Count" type="Integer"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <method id="Item" type="Style" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Style">
+         <argument id="Name" type="String" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="StyleDisp" parent="None" default="Value" migName="C1.Win.C1TrueDBGrid.Style" migStatus="external">
+      <property id="ForeColor" type="OLE_COLOR"/>
+      <property id="BackColor" type="OLE_COLOR"/>
+      <property id="Font" type="Font"/>
+      <property id="Alignment" type="AlignmentConstants"/>
+      <property id="VerticalAlignment" type="VerticalAlignmentConstants"/>
+      <property id="Locked" type="Boolean"/>
+      <property id="Name" type="String"/>
+      <property id="Parent" type="Variant"/>
+      <property id="Value" type="Variant"/>
+      <property id="WrapText" type="Boolean"/>
+      <property id="TransparentForegroundPicture" type="Boolean"/>
+      <property id="ForegroundPicture" type="Variant"/>
+      <property id="BackgroundPicture" type="Variant"/>
+      <property id="ForegroundPicturePosition" type="ForegroundPicturePositionConstants"/>
+      <property id="BackgroundPictureDrawMode" type="BackgroundPictureDrawModeConstants"/>
+      <method id="Reset" type="Void"/>
+   </class>
+   <class id="PrintInfo" parent="None" creatable="off">
+      <property id="Name" type="String"/>
+      <property id="PageHeader" type="String"/>
+      <property id="PageFooter" type="String"/>
+      <property id="PageHeaderFont" type="Font"/>
+      <property id="PageFooterFont" type="Font"/>
+      <property id="Draft" type="Boolean"/>
+      <property id="Default" type="Boolean"/>
+      <property id="RepeatGridHeader" type="Boolean"/>
+      <property id="RepeatSplitHeaders" type="Boolean"/>
+      <property id="RepeatColumnHeaders" type="Boolean"/>
+      <property id="RepeatColumnFooters" type="Boolean"/>
+      <property id="VariableRowHeight" type="Boolean"/>
+      <property id="NumberOfCopies" type="Integer"/>
+      <property id="Collate" type="Boolean"/>
+      <property id="PreviewCaption" type="String"/>
+      <property id="PreviewPageOf" type="String"/>
+      <property id="PreviewMaximize" type="Boolean"/>
+      <property id="PageSetupCancelled" type="Boolean"/>
+      <property id="NoClipping" type="Boolean"/>
+      <property id="RangeOfPages" type="String"/>
+      <property id="Settings" type="Variant"/>
+      <property id="SettingsDeviceName" type="String"/>
+      <property id="SettingsOrientation" type="Integer"/>
+      <property id="SettingsMarginLeft" type="Integer"/>
+      <property id="SettingsMarginTop" type="Integer"/>
+      <property id="SettingsMarginRight" type="Integer"/>
+      <property id="SettingsMarginBottom" type="Integer"/>
+      <property id="SettingsPaperSize" type="Integer"/>
+      <property id="SettingsPaperWidth" type="Integer"/>
+      <property id="SettingsPaperHeight" type="Integer"/>
+      <property id="SettingsPaperBin" type="Integer"/>
+      <property id="UnitsPerInch" type="Integer"/>
+      <property id="_StateFlags" type="Integer"/>
+      <method id="PrintData" type="Void">
+         <argument id="selector" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="PrintPreview" type="Void">
+         <argument id="selector" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="PageSetup" type="Void"/>
+      <method id="SetMenuText" type="Void">
+         <argument id="Index" type="PrintInfo_MenuConstants" status="ByVal"/>
+         <argument id="Text" type="String" status="ByVal"/>
+      </method>
+      <method id="GetMenuText" type="String">
+         <argument id="Index" type="PrintInfo_MenuConstants" status="ByVal"/>
+      </method>
+      <method id="SubstituteFont" type="Void">
+         <argument id="UnavailableFont" type="String" status="ByVal"/>
+         <argument id="AvailableFont" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="GetSubstituteFont" type="String">
+         <argument id="UnavailableFont" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="PrintInfos" parent="None" default="Item" creatable="off">
+      <property id="Count" type="Integer"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <method id="Item" type="PrintInfo" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Add" type="PrintInfo">
+         <argument id="Name" type="String" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Clear" type="Void"/>
+   </class>
+   <class id="IExternalEditor" parent="IUnknown" creatable="off">
+      <method id="GetHwndEditor" type="Void">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+         <argument id="pHwnd" type="Integer" status="ByRef"/>
+      </method>
+      <method id="GetDataLen" type="Void">
+         <argument id="DataLen" type="Integer" status="ByRef"/>
+      </method>
+      <method id="GetDataBuf" type="Void">
+         <argument id="nLen" type="Integer" status="ByVal"/>
+         <argument id="Buf" type="String" status="ByRef"/>
+      </method>
+      <method id="SetDataBuf" type="Void">
+         <argument id="Buf" type="String" status="ByVal"/>
+      </method>
+      <method id="SetModified" type="Void">
+         <argument id="State" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetTabAction" type="Void">
+         <argument id="TabAction" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetCaret" type="Void">
+         <argument id="Where" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ShowWindow" type="Void"/>
+      <method id="HideWindow" type="Void"/>
+      <method id="PositionWindow" type="Void">
+         <argument id="Left" type="Integer" status="ByVal"/>
+         <argument id="Top" type="Integer" status="ByVal"/>
+         <argument id="Right" type="Integer" status="ByVal"/>
+         <argument id="Bottom" type="Integer" status="ByVal"/>
+      </method>
+      <method id="OnTDBGMessage" type="Void">
+         <argument id="Message" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetModified" type="Void">
+         <argument id="State" type="Integer" status="ByRef"/>
+      </method>
+      <method id="GetData" type="Void">
+         <argument id="pVar" type="Variant" status="ByRef"/>
+      </method>
+      <method id="SetData" type="Void">
+         <argument id="Var" type="Variant" status="ByVal"/>
+      </method>
+      <method id="FormatText" type="Void">
+         <argument id="Var" type="Variant" status="ByVal"/>
+         <argument id="pBstr" type="String" status="ByRef"/>
+      </method>
+   </class>
+   <class id="ITrueDBDropDownCtrl" parent="None" default="Text">
+      <property id="AllowRowSizing" type="Boolean"/>
+      <property id="Appearance" type="AppearanceConstants"/>
+      <property id="BorderStyle" type="BorderStyleConstants"/>
+      <property id="Bookmark" type="Variant"/>
+      <property id="BookmarkType" type="Integer"/>
+      <property id="Col" type="Integer"/>
+      <property id="ColumnHeaders" type="Boolean"/>
+      <property id="CurrentCellVisible" type="Boolean"/>
+      <property id="DataMode" type="DataModeConstants"/>
+      <property id="DataSource" type="ICursor"/>
+      <property id="DefColWidth" type="Single"/>
+      <property id="Enabled" type="Boolean"/>
+      <property id="ExtendRightColumn" type="Boolean"/>
+      <property id="FirstRow" type="Variant"/>
+      <property id="HeadFont" type="Font"/>
+      <property id="HeadLines" type="Single"/>
+      <property id="hWnd" type="OLE_HANDLE"/>
+      <property id="Row" type="Integer"/>
+      <property id="RowDividerStyle" type="DividerStyleConstants"/>
+      <property id="RowHeight" type="Single"/>
+      <property id="ScrollBars" type="ScrollBarsConstants"/>
+      <property id="SelStartCol" type="Integer"/>
+      <property id="SelEndCol" type="Integer"/>
+      <property id="VisibleCols" type="Integer"/>
+      <property id="VisibleRows" type="Integer"/>
+      <property id="BackColor" type="OLE_COLOR"/>
+      <property id="ForeColor" type="OLE_COLOR"/>
+      <property id="Font" type="Font"/>
+      <property id="LeftCol" type="Integer"/>
+      <property id="_StyleDefs" type="OLE_HANDLE"/>
+      <property id="Style" type="Style"/>
+      <property id="HeadingStyle" type="Style"/>
+      <property id="HighlightRowStyle" type="Style"/>
+      <property id="EvenRowStyle" type="Style"/>
+      <property id="OddRowStyle" type="Style"/>
+      <property id="HeadBackColor" type="OLE_COLOR"/>
+      <property id="HeadForeColor" type="OLE_COLOR"/>
+      <property id="ApproxCount" type="Integer"/>
+      <property id="ErrorText" type="String"/>
+      <property id="AllowColSelect" type="Boolean"/>
+      <property id="AllowColMove" type="Boolean"/>
+      <property id="ISVServices" type="Object"/>
+      <property id="Text" type="String"/>
+      <property id="LayoutName" type="String"/>
+      <property id="LayoutFileName" type="String"/>
+      <property id="LayoutURL" type="String"/>
+      <property id="Array" type="stdole.IDispatch"/>
+      <property id="EmptyRows" type="Boolean"/>
+      <property id="ListField" type="String"/>
+      <property id="DataField" type="String"/>
+      <property id="IntegralHeight" type="Boolean"/>
+      <property id="SelectedItem" type="Variant"/>
+      <property id="FetchRowStyle" type="Boolean"/>
+      <property id="AlternatingRowStyle" type="Boolean"/>
+      <property id="PartialRightColumn" type="Boolean"/>
+      <property id="AnchorRightColumn" type="Boolean"/>
+      <property id="FooterStyle" type="Style"/>
+      <property id="ColumnFooters" type="Boolean"/>
+      <property id="FootLines" type="Single"/>
+      <property id="FooterFont" type="Font"/>
+      <property id="FooterBackColor" type="OLE_COLOR"/>
+      <property id="FooterForeColor" type="OLE_COLOR"/>
+      <property id="DeadAreaBackColor" type="OLE_COLOR"/>
+      <property id="DestinationSplit" type="Integer"/>
+      <property id="DestinationRow" type="Variant"/>
+      <property id="DestinationCol" type="Integer"/>
+      <property id="Columns" type="Columns" status="Out"/>
+      <property id="Splits" type="Splits" status="Out"/>
+      <property id="Styles" type="Styles" status="Out"/>
+      <property id="Layouts" type="Layouts" status="Out"/>
+      <method id="AboutBox" type="Void"/>
+      <method id="ColContaining" type="Integer">
+         <argument id="X" type="Single" status="ByVal"/>
+      </method>
+      <method id="GetBookmark" type="Variant">
+         <argument id="RowNum" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ReBind" type="Void"/>
+      <method id="RowBookmark" type="Variant">
+         <argument id="RowNum" type="Integer" status="ByVal"/>
+      </method>
+      <method id="RowContaining" type="Integer">
+         <argument id="Y" type="Single" status="ByVal"/>
+      </method>
+      <method id="RowTop" type="Single">
+         <argument id="RowNum" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Scroll" type="Void">
+         <argument id="Cols" type="Integer" status="ByVal"/>
+         <argument id="Rows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="CaptureImage" type="FrxPicture"/>
+      <method id="AddCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+         <argument id="Style" type="Variant" status="ByVal"/>
+      </method>
+      <method id="AddRegexCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+         <argument id="Style" type="Variant" status="ByVal"/>
+         <argument id="Regex" type="String" status="ByVal"/>
+      </method>
+      <method id="ClearCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ClearRegexCellStyle" type="Void">
+         <argument id="Condition" type="Integer" status="ByVal"/>
+         <argument id="Regex" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ClearSelCols" type="Void"/>
+      <method id="ClearFields" type="Void"/>
+      <method id="HoldFields" type="Void"/>
+      <method id="PostMsg" type="Void">
+         <argument id="MsgId" type="Integer" status="ByVal"/>
+      </method>
+      <method id="LoadLayout" type="Void"/>
+   </class>
+   <class id="TrueDBDropDownEvents" parent="None" creatable="off">
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="DblClick" netName="DblClick" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="ColResize" netName="ColResize" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_ColResizeEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_ColResizeEvent">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+         <argument id="Cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="HeadClick" netName="HeadClick" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_HeadClickEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_HeadClickEvent">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+      </event>
+      <event id="FootClick" netName="FootClick" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_FootClickEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_FootClickEvent">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+      </event>
+      <event id="RowResize" netName="RowResize" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_RowResizeEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_RowResizeEvent">
+         <argument id="Cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="Scroll" netName="Scroll" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_ScrollEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_ScrollEvent">
+         <argument id="Cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="SelChange" netName="SelChange" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_SelChangeEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_SelChangeEvent">
+         <argument id="Cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_MouseMoveEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_MouseMoveEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_MouseDownEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_MouseDownEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_MouseUpEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_MouseUpEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_KeyUpEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_KeyUpEvent">
+         <argument id="keyCode" type="Integer" status="Out"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="KeyDown" netName="KeyDownEvent" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_KeyDownEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_KeyDownEvent">
+         <argument id="keyCode" type="Integer" status="Out"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_KeyPressEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_KeyPressEvent">
+         <argument id="keyAscii" type="Integer" status="Out"/>
+      </event>
+      <event id="UnboundGetRelativeBookmark" netName="UnboundGetRelativeBookmark" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_UnboundGetRelativeBookmarkEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_UnboundGetRelativeBookmarkEvent">
+         <argument id="startLocation" type="Variant" status="ByRef"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="newLocation" type="Variant" status="ByRef"/>
+         <argument id="approximatePosition" type="Integer" status="ByRef"/>
+      </event>
+      <event id="UnboundReadData" netName="UnboundReadData" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_UnboundReadDataEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_UnboundReadDataEvent">
+         <argument id="rowBuf" type="RowBuffer" status="ByVal"/>
+         <argument id="startLocation" type="Variant" status="ByRef"/>
+         <argument id="readPriorRows" type="Boolean" status="ByVal"/>
+      </event>
+      <event id="UnboundReadDataEx" netName="UnboundReadDataEx" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_UnboundReadDataExEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_UnboundReadDataExEvent">
+         <argument id="rowBuf" type="RowBuffer" status="ByVal"/>
+         <argument id="startLocation" type="Variant" status="ByRef"/>
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="approximatePosition" type="Integer" status="ByRef"/>
+      </event>
+      <event id="ClassicRead" netName="ClassicRead" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_ClassicReadEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_ClassicReadEvent">
+         <argument id="bookmark" type="Variant" status="ByRef"/>
+         <argument id="col" type="Integer" status="ByVal"/>
+         <argument id="value" type="Variant" status="Out"/>
+      </event>
+      <event id="UnboundFindData" netName="UnboundFindData" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_UnboundFindDataEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_UnboundFindDataEvent">
+         <argument id="startLocation" type="Variant" status="ByRef"/>
+         <argument id="readPriorRows" type="Boolean" status="ByVal"/>
+         <argument id="includeCurrent" type="Boolean" status="ByVal"/>
+         <argument id="col" type="Integer" status="ByVal"/>
+         <argument id="value" type="Variant" status="ByRef"/>
+         <argument id="seekFlags" type="Integer" status="ByVal"/>
+         <argument id="newLocation" type="Variant" status="Out"/>
+      </event>
+      <event id="Error" netName="Error" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_ErrorEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_ErrorEvent">
+         <argument id="dataError" type="Integer" status="ByVal"/>
+         <argument id="response" type="Integer" status="Out"/>
+      </event>
+      <event id="UnboundColumnFetch" netName="UnboundColumnFetch" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_UnboundColumnFetchEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_UnboundColumnFetchEvent">
+         <argument id="bookmark" type="Variant" status="ByRef"/>
+         <argument id="col" type="Integer" status="ByVal"/>
+         <argument id="value" type="Variant" status="Out"/>
+      </event>
+      <event id="FirstRowChange" netName="FirstRowChange" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="LeftColChange" netName="LeftColChange" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="FormatText" netName="FormatText" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_FormatTextEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_FormatTextEvent">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+         <argument id="value" type="Variant" status="Out"/>
+         <argument id="bookmark" type="Variant" status="ByRef"/>
+      </event>
+      <event id="ValueItemError" netName="ValueItemError" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_ValueItemErrorEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_ValueItemErrorEvent">
+         <argument id="ColIndex" type="Integer" status="ByVal"/>
+      </event>
+      <event id="FetchCellStyle" netName="FetchCellStyle" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_FetchCellStyleEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_FetchCellStyleEvent">
+         <argument id="condition" type="Integer" status="ByVal"/>
+         <argument id="bookmark" type="Variant" status="ByRef"/>
+         <argument id="col" type="Integer" status="ByVal"/>
+         <argument id="cellStyle" type="Style" status="ByVal"/>
+      </event>
+      <event id="Paint" netName="PaintEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="ColMove" netName="ColMove" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_ColMoveEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_ColMoveEvent">
+         <argument id="position" type="Integer" status="ByVal"/>
+         <argument id="Cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="PostEvent" netName="PostEvent" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_PostEventEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_PostEventEvent">
+         <argument id="msgId" type="Integer" status="ByVal"/>
+      </event>
+      <event id="DropDownOpen" netName="DropDownOpen" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="DropDownClose" netName="DropDownClose" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="RowChange" netName="RowChange" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="FetchRowStyle" netName="FetchRowStyle" netHandler="AxTrueDBGrid60.TrueDBDropDownEvents_FetchRowStyleEventHandler" netArgs="AxTrueDBGrid60.TrueDBDropDownEvents_FetchRowStyleEvent">
+         <argument id="bookmark" type="Variant" status="ByRef"/>
+         <argument id="rowStyle" type="Style" status="ByVal"/>
+      </event>
+      <event id="DataSourceChanged" netName="DataSourceChanged" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="LayoutReady" netName="LayoutReady" netHandler="System.EventHandler" netArgs="EventArgs"/>
+   </class>
+   <coclass id="TDBDropDown" uuid="00028CF6-0000-0000-0000-000000000046" migStatus="ActiveX" migName="AxTrueDBGrid60.AxTDBDropDown">
+      <subclass id="ITrueDBDropDownCtrl"/>
+      <subclass id="TrueDBDropDownEvents"/>
+   </coclass>
+   <coclass id="TDBGrid" uuid="00028CD1-0000-0000-0000-000000000046" migStatus="ActiveX+NeedsInit" role="control" migName="TrueDBGrid60.TDBGrid">
+      <subclass id="ITrueDBGridCtrl"/>
+      <subclass id="TrueDBGridEvents"/>
+   </coclass>
+   <coclass id="ValueItem" uuid="00028CE7-0000-0000-0000-000000000046">
+      <subclass id="ValueItemDisp"/>
+   </coclass>
+   <coclass id="Style" uuid="00028CEE-0000-0000-0000-000000000046" migName="C1.Win.C1TrueDBGrid.Style" migStatus="external">
+      <subclass id="StyleDisp"/>
+   </coclass>
+</library>
+<Refactor id="[tdbg6.ocx]" event="tdbg6">
+   <migClass id="NetControl.TDBGrid"  parent="TDBGrid">
+      <property id="Location" value="(Left,Top)" nPram="2"  migPattern="new System.Drawing.Point(%1d, %2d)" />      
+      <property id="Name" type="string" value="SYM.name" />
+      <property id="PropBag" type="object" nPram="1" migStatus="external" value="SYM.Name" migpattern='%1u.PropBag = resources.GetString("%1u.PropBag")\c' />
+      <property id="Size" value="(Width,Height)"  nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+      <property id="TabIndex" type="Integer" value="TabIndex"/>
+      <property id="TabStop" type="boolean" value="TabStop" />
+      <property id="Tag" type="String" value="Tag" />
+   </migClass>
+   
+   <gmSL NameSpace="tdbg6" Class="Transform" Source="GM.tdbg6.ocx.gmSl" />
+   
+</Refactor>
+</DescriptionFile>

@@ -1,0 +1,410 @@
+int Toolbar(int context,int ctlRoot,int iStart)
+{
+   int        imageList;
+   tCodeBlock codptr;
+   int        pcnt;
+   tCodeBlock storeImageList;
+   int        nOper;
+   int        lcode;
+   int        delta;
+   int        icode;
+   int        oper;
+   int        iRoot;
+   int        addr;
+   int        nIdent;
+   int        parent;
+   string     ident;
+
+   if(context != EventType.AdjustProperties) return 0;
+   imageList = Symbol.FindIdentifier("MSComctlLib.IToolbar.ImageList");
+   if(imageList == 0) return 0;
+   codptr = Opcode.GetCode();     
+   pcnt = Opcode.GetLength();
+   storeImageList = CodePattern.Read("LSC,LLP,STR.AssignProperty",nOper);
+   delta = 0;
+   for(icode = iStart; icode >= 0; icode = Opcode.GetNext(codptr,icode,pcnt))
+   {
+      lcode = CodePattern.Match(icode,storeImageList);
+      if(lcode == 0) continue;
+      oper = Opcode.GetOperation(codptr,icode+sizeof(OPC.LSC),iRoot);
+      if(iRoot != imageList) continue;
+      oper = Opcode.GetOperation(codptr,icode,addr);
+      ident = Store.GetString(addr);
+      parent = Store.GetParent(ctlRoot);
+      iRoot = Store.FindVector(ident,parent);
+      if(iRoot != 0)
+      {
+         delta = 1;
+         Opcode.SetOperation(codptr,icode,OPC.LSP,addr);
+      }
+   }
+   return delta;
+}
+
+int Button(int context,int ctlRoot,int iStart)
+{
+   int        styleSeparator;
+   tCodeBlock codptr;
+   int        pcnt;
+   int        separator;
+   int        menuButton;
+   int        style;
+   int        ctlType;
+   int        delta;
+   int        oper;
+   int        subOper;
+   int        width;
+   int        height;
+   int        toolbar;
+   int        barType;
+   int        iTop;
+   int        imageList;
+   string     imageName;
+   int        parent;
+
+   if(context == EventType.InitializeComponent) 
+   {
+      FixNameKey(context,ctlRoot,iStart);
+      return 1;
+   }
+   if(context != EventType.AdjustProperties) return 0;
+   styleSeparator = Symbol.FindIdentifier("MSComctlLib.ButtonStyleConstants.tbrSeparator");
+   if(styleSeparator == 0) return 0;
+   codptr = Opcode.GetCode();     
+   pcnt = Opcode.GetLength();
+   ctlType = Store.GetObjectType(ctlRoot);
+   delta = 0;
+   style = ControlData.FindProperty(ctlType,"Style",iStart);
+   if(style) style = ControlData.GetValue(style);
+   if(style == styleSeparator)
+   {
+      separator = Symbol.FindIdentifier("MSComctlLib.Separator");
+      Store.SetObjectType(ctlRoot,separator);
+      oper = Opcode.GetOperation(codptr,iStart,subOper);
+      if(oper == OPC.SCT)
+      {
+         Opcode.SetOperation(codptr,iStart,OPC.SCT,separator);
+         delta = 1;
+      }
+   }
+   else if(Store.GetFirst(ctlRoot))
+   {
+      menuButton = Symbol.FindIdentifier("MSComctlLib.MenuButton");
+      Store.SetObjectType(ctlRoot,menuButton);
+      oper = Opcode.GetOperation(codptr,iStart,subOper);
+      if(oper == OPC.SCT)
+      {
+         Opcode.SetOperation(codptr,iStart,OPC.SCT,menuButton);
+         delta = 1;
+      }
+   }
+   toolbar = Store.GetParent(ctlRoot);
+   iTop = ControlData.LoadCode(toolbar);
+   if(iTop == 0) return delta;
+   pcnt = Opcode.GetLength();
+   barType = Store.GetObjectType(toolbar);
+   imageList = ControlData.FindProperty(barType,"ImageList",iTop);
+   if(imageList)
+   {
+      imageName = ControlData.GetProperty(imageList)
+      parent = Store.GetParent(toolbar);
+      imageList = Store.FindVector(imageName,parent);
+   }
+   Opcode.SetLength(iTop);
+   if(imageList == 0) return delta;
+   iTop = ControlData.LoadCode(imageList,1);
+   if(iTop == 0) return delta;
+   width = ControlData.FindProperty(OPC.IDE,"ExtentX",iTop);
+   if(width) width = ControlData.GetValue(width);
+   height = ControlData.FindProperty(OPC.IDE,"ExtentY",iTop);
+   if(height) height = ControlData.GetValue(height);
+   Opcode.SetLength(iTop);
+   if(width == 0 || height == 0) return delta;
+   pcnt = Opcode.GetLength();
+   delta = 1;
+   width = width/15 + 2;
+   height = height/15;
+   Opcode.SetOperation(codptr,pcnt,OPC.LIC,height);
+   pcnt = Opcode.GetLength();
+   Opcode.SetOperation(codptr,pcnt,OPC.IDE,OPC.IDE.ExtentY);
+   pcnt = Opcode.GetLength();
+   Opcode.SetOperation(codptr,pcnt,OPC.STR,OPC.STR.AssignValue);
+   pcnt = Opcode.GetLength();
+   Opcode.SetOperation(codptr,pcnt,OPC.LIC,width);
+   pcnt = Opcode.GetLength();
+   Opcode.SetOperation(codptr,pcnt,OPC.IDE,OPC.IDE.ExtentX);
+   pcnt = Opcode.GetLength();
+   Opcode.SetOperation(codptr,pcnt,OPC.STR,OPC.STR.AssignValue);
+   pcnt = Opcode.GetLength();
+   return delta;
+}
+
+int ListView(int context,int ctlRoot,int iStart)
+{
+   int        delta;
+   tCodeBlock codptr;
+   int        pcnt;
+   int        ctlType;
+   int        labelEdit;
+   int        editValue;
+   int        activation;
+   int        itemClick;
+   int        levels[19];
+   int        iRoot;
+   tVbSub     subInfo;
+   int        dotNet;
+   int        oneClick;
+
+   if(context != EventType.AdjustProperties) return 0;
+   codptr = Opcode.GetCode();     
+   pcnt = Opcode.GetLength();
+   ctlType = Store.GetObjectType(ctlRoot);
+   delta = 0;
+   labelEdit = ControlData.FindProperty(ctlType,"LabelEdit",iStart);
+   if(labelEdit)
+   {
+      editValue = ControlData.GetValue(labelEdit);
+      if(editValue == Symbol.FindIdentifier("MSComctlLib.ListLabelEditConstants.lvwAutomatic"))
+      {
+         pcnt = ControlData.ReplaceValue(labelEdit,OPC.LBC,OPC.LBC.True);
+      }
+      else if(editValue == Symbol.FindIdentifier("MSComctlLib.ListLabelEditConstants.lvwManual"))
+      {
+         pcnt = ControlData.ReplaceValue(labelEdit,OPC.LBC,OPC.LBC.False);
+      }
+   }
+   dotNet = Symbol.FindIdentifier("MSComctlLib.ListViewLogic");
+   activation = ControlData.FindProperty(dotNet,"Activation",iStart);
+   if(activation) return delta;
+   itemClick = Symbol.FindIdentifier("MSComctlLib.ListViewEvents.ItemClick");
+   for(iRoot = Store.FindFirstChild(levels,0); iRoot; iRoot = Store.FindNextChild(levels))
+   {
+      if(Store.GetObjectType(iRoot) != ObjectType.Subprogram) continue;
+      subInfo = Store.GetVector(iRoot);
+      if(subInfo.eventControl == ctlRoot && subInfo.eventType == itemClick) break;
+   }
+   if(iRoot == 0) return delta;
+   oneClick = Symbol.FindIdentifier("MSComctlLib.ListViewLogic.ItemActivation.OneClick");
+   Opcode.SetOperation(codptr,pcnt,OPC.LLE,oneClick);
+   pcnt = Opcode.GetLength();
+   activation = Symbol.FindIdentifier("MSComctlLib.ListViewLogic.Activation");
+   Opcode.SetOperation(codptr,pcnt,OPC.LLP,activation);
+   pcnt = Opcode.GetLength();
+   Opcode.SetOperation(codptr,pcnt,OPC.STR,OPC.STR.AssignValue);
+   return 1;
+}
+
+int ListImage(int context,int ctlRoot,int iStart)
+{
+   string token;
+   int    rescan;
+   int    tokenType;
+
+   if(context != EventType.UndefinedProperty) return 0;
+   rescan = Parser.ResetInput();
+   token = Parser.GetToken(tokenType);
+   if(token == "Picture") return -1;
+   return 0;
+}
+
+int IListItem_SubItems(int subRoot,int icode,int iRefer)
+{
+   tCodeBlock codptr;
+   tCodeBlock getSubItem;
+   tCodeBlock setSubItem;
+   int        nOper;
+   int        pcnt;
+   int        nextOp;
+   int        lcode;
+   int        iLeft;
+
+   if(subRoot < Defines.OPC_MAXIMUM) return 0;
+   codptr = Opcode.GetCode();
+   pcnt = Opcode.GetLength();
+   nextOp = Opcode.GetNext(codptr,iRefer,pcnt);
+   getSubItem = CodePattern.Read("MEM.Get,Argument,CUF,REF",nOper);
+   lcode = CodePattern.Match(nextOp,getSubItem);
+   if(lcode > 0)
+   {
+      Opcode.SetOperation(codptr,nextOp,OPC.MEM,OPC.MEM.Child);
+      iLeft = lcode - (sizeof(OPC.CUF) + sizeof(OPC.REF));
+      pcnt = Opcode.DeleteCode(iLeft,pcnt,sizeof(OPC.CUF));
+      Opcode.SetOperation(codptr,iLeft,OPC.PAT,Symbol.FindIdentifier("MsComctlLib.ListViewLogic.GetSubitem"));
+      Opcode.SetLength(pcnt);
+      return iRefer;
+   }
+   setSubItem = CodePattern.Read("MEM.Set,Argument,CUF,REF,STR",nOper);
+   lcode = CodePattern.Match(nextOp,setSubItem);
+   if(lcode > 0)
+   {
+      Opcode.SetOperation(codptr,nextOp,OPC.MEM,OPC.MEM.Child);
+      iLeft = lcode - (sizeof(OPC.CUF) + sizeof(OPC.REF) + sizeof(OPC.STR));
+      pcnt = Opcode.DeleteCode(iLeft,pcnt,sizeof(OPC.CUF)+sizeof(OPC.STR));
+      Opcode.SetOperation(codptr,iLeft,OPC.PAT,Symbol.FindIdentifier("MsComctlLib.ListViewLogic.SetSubitem"));
+      Opcode.SetLength(pcnt);
+      return iRefer;
+   }
+   return 0;
+}
+
+int IListView_SortOrder(int subRoot,int icode,int iRefer)
+{
+   tCodeBlock codptr;
+   tCodeBlock setSortOrder;
+   tCodeBlock setSortKey;
+   int        nOper;
+   int        pcnt;
+   int        nextOp;
+   int        lcode;
+   int        icd;
+   int        sortKey;
+   int        tempOpc;
+   int        iEnd;
+   int        nMove;
+   int        orderRoot;
+   int        keyRoot;
+
+   if(subRoot < Defines.OPC_MAXIMUM) return 0;
+   codptr = Opcode.GetCode();
+   pcnt = Opcode.GetLength();
+   nextOp = Opcode.GetNext(codptr,iRefer,pcnt);
+   setSortOrder = CodePattern.Read("MEM,STR",nOper);
+   lcode = CodePattern.Match(nextOp,setSortOrder);
+   if(lcode <= 0) return 0;
+   setSortKey = CodePattern.Read("Argument,LDA,LLP.[MSComctlLib.IListView.Sortkey],MEM",nOper);
+   for(icd = 0; icd >= 0; icd = Opcode.GetNext(codptr,icd,pcnt))
+   {
+      sortKey = CodePattern.Match(icd,setSortKey);
+      if(sortKey > 0) break;
+   }
+   if(sortKey > 0)
+   {
+      tempOpc = Opcode.GetOperation(codptr,iRefer-sizeof(OPC.LDA),orderRoot);
+      iEnd = sortKey - sizeof(OPC.MEM) - sizeof(OPC.LLP) - sizeof(OPC.LDA);
+      tempOpc = Opcode.GetOperation(codptr,iEnd,keyRoot);
+      if(orderRoot == keyRoot)
+      {
+         nMove = iEnd - icd;
+         nextOp = Opcode.MoveCode(nextOp,icd,pcnt,nMove);
+         nextOp = nextOp + nMove;   
+      }
+      else sortKey = 0;
+   }
+   if(sortKey <= 0)
+   {
+      pcnt = Opcode.ExpandCode(nextOp,pcnt,sizeof(OPC.LIC));
+      Opcode.SetOperation(codptr,nextOp,OPC.LIC,0);
+      nextOp = nextOp + sizeof(OPC.LIC);
+   }
+   pcnt = Opcode.ExpandCode(nextOp,pcnt,1);
+   Opcode.SetOperation(codptr,nextOp,OPC.PAT,Symbol.FindIdentifier("MSComctlLib.ListViewLogic.SetSorter"));
+   Opcode.SetLength(pcnt);
+   return iRefer;
+}
+
+int ListViewEvents_Click(int subRoot,int icode,int iRefer)
+{
+   tCodeBlock codptr;
+   tCodeBlock callEvent;
+   int        nOper;
+   int        pcnt;
+   int        nextOp;
+   int        lcode;
+
+   if(subRoot < Defines.OPC_MAXIMUM) return 0;
+   codptr = Opcode.GetCode();
+   pcnt = Opcode.GetLength();
+   callEvent = CodePattern.Read("LDA,LDA,CUE.Call0",nOper);
+   lcode = CodePattern.Match(iRefer,callEvent);
+   if(lcode > 0)
+   {
+      nextOp = lcode - sizeof(OPC.CUE);
+      pcnt = Opcode.ExpandCode(nextOp,pcnt,sizeof(OPC.PAT) - sizeof(OPC.CUE));
+      Opcode.SetOperation(codptr,nextOp,OPC.PAT,Symbol.FindIdentifier("MSComctlLib.ListViewLogic.ListItemClick"));
+      Opcode.SetLength(pcnt);
+      return iRefer;
+   }
+   return 0;
+}
+
+int ListViewEvents_ItemClick(int subRoot,int icode,int iRefer)
+{
+   tCodeBlock codptr;
+   tCodeBlock callEvent;
+   int        nOper;
+   int        pcnt;
+   int        nextOp;
+   int        lcode;
+
+   if(subRoot < Defines.OPC_MAXIMUM) return 0;
+   codptr = Opcode.GetCode();
+   pcnt = Opcode.GetLength();
+   callEvent = CodePattern.Read("LDA,LDA,Argument,CUE.Call1",nOper);
+   lcode = CodePattern.Match(iRefer,callEvent);
+   if(lcode > 0)
+   {
+      nextOp = lcode - sizeof(OPC.CUE);
+      pcnt = Opcode.ExpandCode(nextOp,pcnt,sizeof(OPC.PAT) - sizeof(OPC.CUE));
+      Opcode.SetOperation(codptr,nextOp,OPC.PAT,Symbol.FindIdentifier("MSComctlLib.ListViewLogic.CallItemClick"));
+      Opcode.SetLength(pcnt);
+      return iRefer;
+   }
+   return 0;
+}
+
+int FixNameKey(int context,int ctlRoot,int iStart)
+{
+  // reset sub-item names to be indexable with orignal key values
+  // over-rides name settings in designer file
+  int iTop = 0;
+  int ctlType = 0;
+  string ctlName = "";
+  int keyProp = 0;  
+  string keyValue = "";
+ 
+  ctlType = Store.GetObjectType(ctlRoot);
+  if(ctlType == 0) return 0;
+  
+  iTop = ControlData.LoadCode(ctlRoot);
+  if(iTop == 0) return 0;
+  
+  keyProp = ControlData.FindProperty(ctlType,"Key",iTop);
+  if (keyProp == 0) return 0;
+  
+  keyValue = ControlData.GetProperty(keyProp); 
+  if (keyValue == "") return 0;
+  
+  ctlName = Store.GetName(ctlRoot);
+
+  if(Select.Dialect == Dialects.vbn)
+  {
+     Write.Line("Me." + ctlName + ".Name = """ + keyValue + """");
+  }
+  else
+  {
+     Write.Line("this." + ctlName + ".Name = """ + keyValue + """;");
+  }
+  return 0;
+}
+
+int Panel(int context,int ctlRoot,int iStart)
+{
+  if(context != EventType.InitializeComponent) return 0;
+  FixNameKey(context,ctlRoot,iStart);
+  return 1;
+
+}
+int Tab(int context,int ctlRoot,int iStart)
+{
+  if(context != EventType.InitializeComponent) return 0;
+  FixNameKey(context,ctlRoot,iStart);
+  return 1;
+}
+
+int Separator(int context,int ctlRoot,int iStart)
+{
+  if(context != EventType.InitializeComponent) return 0;
+  FixNameKey(context,ctlRoot,iStart);
+  return 1;
+}
+

@@ -1,0 +1,16 @@
+<DescriptionFile>
+<library id="ipHlpApi.dcl"
+         name="ipHlpApi"
+         source="ipHlpApi.dcl"
+         location="ipHlpApi.dcl"
+         type="LocalImport"
+   >
+   <class id="Methods" parent="None" module="on" creatable="off">
+      <method id="GetIpAddrTable" type="Integer" >
+         <argument id="pIPAddrTable" type="Byte[]" status="ByVal" />
+         <argument id="pdwSize" type="Integer" status="ByRef" />
+         <argument id="bOrder" type="Integer" status="ByVal" />
+      </method>
+   </class>
+</library>
+</DescriptionFile>

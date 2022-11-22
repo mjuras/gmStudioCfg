@@ -1,0 +1,73 @@
+
+int LocHasTransactionMode(int iStart,int iEnd)
+{
+   tCodeBlock codptr;
+   tCodeBlock operation;
+   int        nOper;
+   int        icode;
+   int        lcode;
+
+   codptr = Opcode.GetCode();
+   operation = CodePattern.Read("LIC,CLS.MTSTransactionMode",nOper);
+   for(icode = iStart; icode >= 0; icode = Opcode.GetNext(codptr,icode,iEnd))
+   {
+      lcode = CodePattern.Match(icode,operation);
+      if(lcode) return icode;
+   }
+   return -1;
+}
+
+int ServiceMethod_AuthorClass(int iStart,int iEnd)
+{
+   int        icode;
+   int        opc;
+   int        iValue;
+   tCodeBlock codptr;
+
+   icode = LocHasTransactionMode(iStart,iEnd);
+   if(icode < 0) return 0;
+   Write.Text("System.EnterpriseServices.ServicedComponent;");
+   Write.Text("System.EnterpriseServices.Transaction(System.EnterpriseServices.TransactionOption.");
+   codptr = Opcode.GetCode();
+   Opcode.GetOperation(codptr,icode,iValue);
+   if(iValue == 0)      Write.Text("Disabled");
+   else if(iValue == 1) Write.Text("NotSupported");
+   else if(iValue == 2) Write.Text("Required");
+   else if(iValue == 3) Write.Text("Supported");
+   else if(iValue == 4) Write.Text("RequiresNew");
+   else                 Write.Text("Unknown");
+   return 1;
+}
+
+int ServiceMethod_AuthorReference(int projRoot)
+{
+   int        iRoot;
+   int        objType;
+   tInfoFile  clsInfo;
+   tCodeBlock codptr;
+   int        pcnt;
+   int        nCode;
+   int        length;
+   int        hasTransaction;
+
+   pcnt = Opcode.GetLength();
+   codptr = Opcode.GetCode(pcnt);
+   for(iRoot = Store.GetFirst(projRoot); iRoot != 0; iRoot = Store.GetNext(iRoot))
+   {
+      objType = Store.GetObjectType(iRoot);
+      if(objType != ObjectType.ClassFile) continue;
+      clsInfo = Store.GetVector(iRoot);
+      if(clsInfo.DeadCode) continue;
+      if(clsInfo.cmpCodeStart == 0) continue;
+      nCode = Store.ReadInfo(codptr,clsInfo.cmpCodeStart);
+      length = pcnt + nCode;
+      Opcode.SetLength(length);
+      hasTransaction = LocHasTransactionMode(pcnt,length);
+      Opcode.SetLength(pcnt);
+      if(hasTransaction < 0) continue;
+      Write.Text("<Reference Include=""System.EnterpriseServices"" />");
+      Write.Record();
+      return 1;
+   }
+   return 0;
+}

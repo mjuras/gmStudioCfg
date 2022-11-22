@@ -1,0 +1,9 @@
+<RefactorLibrary>
+<!--
+Description: Upgrade TLI to a hand-finished assembly
+See ScanTool sample for additional information.
+-->
+<Refactor id="[TLBINF32.DLL]" >
+   <Migrate location="..\bin\TLI.dll" />
+</Refactor>
+</RefactorLibrary>

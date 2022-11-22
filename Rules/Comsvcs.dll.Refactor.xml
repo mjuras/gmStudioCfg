@@ -1,0 +1,17 @@
+<RefactorLibrary>
+<!--
+Description: Map COMSVCS API to System.EnterpriseServices
+-->
+<Refactor id="[COMSVCS.DLL]" event="comsvcs" >
+<Migrate migName="System.EnterpriseServices" libtype="DoNotDeclare" />
+<Migrate id="ObjectContext" migname="ContextUtil"/>
+<Migrate id="IObjectConstruct.Construct" status="Protected" OverrideUser="on"/>
+<Migrate id="IObjectConstruct.Construct.pCtorObj" type="COMSVCSLib.Dummy30040732"/>
+<Migrate id="IObjectConstructString.ConstructString" refType="Method" nPram="1" migPattern="%1d" OverrideCall="on"/>
+<Migrate id="IMTxAS.GetObjectContext" refType="Method" migName="ContextUtil"/>
+<Migrate id="Dummy30040732" static="on"/>
+<Migrate id="AppServer" appobject="System.EnterpriseServices" static="on"/>
+<gmSL NameSpace="comsvcs" Class="ServiceMethods" Source="Comsvcs.dll.ServiceMethods.gmsl" />
+</Refactor>
+</RefactorLibrary>
+

@@ -1,0 +1,1083 @@
+<DescriptionFile>
+<!-- RDO to ADO.NET System.Data.SqlClient -->
+<library id="MSRDO20.DLL"
+         name="RDO"
+         uuid="EE008642-64A8-11CE-920F-08002B369A33"
+         netVersion="2.0"
+         source="MSRDO20.DLL"
+         location="DoNotDeclare"
+         migName="System.Data.SqlClient"
+         type="LocalImport"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="_rdoEngine"/>
+   <class id="rdoEngineEvents"/>
+   <class id="rdoError"/>
+   <class id="_rdoConnection"/>
+   <class id="rdoConnectionEvents"/>
+   <class id="_rdoColumn"/>
+   <class id="rdoColumnEvents"/>
+   <class id="rdoTable"/>
+   <class id="_rdoResultset"/>
+   <class id="rdoResultsetEvents"/>
+   <class id="rdoPreparedStatement"/>
+   <class id="_rdoEnvironment"/>
+   <class id="rdoEnvironmentEvents"/>
+   <class id="rdoParameter"/>
+   <class id="DualCollection"/>
+   <class id="rdoColumns"/>
+   <class id="rdoTables"/>
+   <class id="rdoConnections"/>
+   <class id="rdoParameters"/>
+   <class id="rdoResultsets"/>
+   <class id="rdoEnvironments"/>
+   <class id="rdoQueries"/>
+   <class id="rdoPreparedStatements"/>
+   <class id="rdoErrors"/>
+   <class id="IPrivColGetRows"/>
+   <class id="IPrivRsGetRows"/>
+   <coclass id="rdoEngine"/>
+   <coclass id="rdoConnection"/>
+   <coclass id="rdoColumn"/>
+   <coclass id="rdoResultset"/>
+   <coclass id="rdoQuery"/>
+   <coclass id="rdoEnvironment"/>
+   <enumeration id="PromptConstants">
+      <entry id="rdDriverPrompt" value="0"/>
+      <entry id="rdDriverNoPrompt" value="1"/>
+      <entry id="rdDriverComplete" value="2"/>
+      <entry id="rdDriverCompleteRequired" value="3"/>
+   </enumeration>
+   <enumeration id="CursorDriverConstants">
+      <entry id="rdUseIfNeeded" value="0"/>
+      <entry id="rdUseOdbc" value="1"/>
+      <entry id="rdUseServer" value="2"/>
+      <entry id="rdUseClientBatch" value="3"/>
+      <entry id="rdUseNone" value="4"/>
+   </enumeration>
+   <enumeration id="EditModeConstants">
+      <entry id="rdEditNone" value="0"/>
+      <entry id="rdEditInProgress" value="1"/>
+      <entry id="rdEditAdd" value="2"/>
+   </enumeration>
+   <enumeration id="LockTypeConstants">
+      <entry id="rdConcurReadOnly" value="1"/>
+      <entry id="rdConcurLock" value="2"/>
+      <entry id="rdConcurRowVer" value="3"/>
+      <entry id="rdConcurValues" value="4"/>
+      <entry id="rdConcurBatch" value="5"/>
+   </enumeration>
+   <enumeration id="OptionConstants">
+      <entry id="rdAsyncEnable" value="32"/>
+      <entry id="rdExecDirect" value="64"/>
+      <entry id="rdFetchLongColumns" value="128"/>
+      <entry id="rdBackgroundFetch" value="256"/>
+   </enumeration>
+   <enumeration id="ResultsetTypeConstants">
+      <entry id="rdOpenForwardOnly" value="0"/>
+      <entry id="rdOpenKeyset" value="1"/>
+      <entry id="rdOpenDynamic" value="2"/>
+      <entry id="rdOpenStatic" value="3"/>
+   </enumeration>
+   <enumeration id="AttributeConstants">
+      <entry id="rdFixedColumn" value="1"/>
+      <entry id="rdVariableColumn" value="2"/>
+      <entry id="rdAutoIncrColumn" value="16"/>
+      <entry id="rdUpdatableColumn" value="32"/>
+      <entry id="rdTimestampColumn" value="64"/>
+   </enumeration>
+   <enumeration id="DataTypeConstants">
+      <entry id="rdTypeCHAR" value="1"/>
+      <entry id="rdTypeNUMERIC" value="2"/>
+      <entry id="rdTypeDECIMAL" value="3"/>
+      <entry id="rdTypeINTEGER" value="4"/>
+      <entry id="rdTypeSMALLINT" value="5"/>
+      <entry id="rdTypeFLOAT" value="6"/>
+      <entry id="rdTypeREAL" value="7"/>
+      <entry id="rdTypeDOUBLE" value="8"/>
+      <entry id="rdTypeDATE" value="9"/>
+      <entry id="rdTypeTIME" value="10"/>
+      <entry id="rdTypeTIMESTAMP" value="11"/>
+      <entry id="rdTypeVARCHAR" value="12"/>
+      <entry id="rdTypeLONGVARCHAR" value="0xffffffff"/>
+      <entry id="rdTypeBINARY" value="0xfffffffe"/>
+      <entry id="rdTypeVARBINARY" value="0xfffffffd"/>
+      <entry id="rdTypeLONGVARBINARY" value="0xfffffffc"/>
+      <entry id="rdTypeBIGINT" value="0xfffffffb"/>
+      <entry id="rdTypeTINYINT" value="0xfffffffa"/>
+      <entry id="rdTypeBIT" value="0xfffffff9"/>
+      <entry id="rdTypeWCHAR" value="0xfffffff8"/>
+      <entry id="rdTypeWVARCHAR" value="0xfffffff7"/>
+      <entry id="rdTypeWLONGVARCHAR" value="0xfffffff6"/>
+      <entry id="rdTypeGUID" value="0xfffffff5"/>
+   </enumeration>
+   <enumeration id="DirectionConstants">
+      <entry id="rdParamInput" value="0"/>
+      <entry id="rdParamInputOutput" value="1"/>
+      <entry id="rdParamOutput" value="2"/>
+      <entry id="rdParamReturnValue" value="3"/>
+   </enumeration>
+   <enumeration id="rdoLocaleIDConstants">
+      <entry id="rdLocaleEnglish" value="1"/>
+      <entry id="rdLocaleFrench" value="2"/>
+      <entry id="rdLocaleGerman" value="3"/>
+      <entry id="rdLocaleItalian" value="4"/>
+      <entry id="rdLocaleJapanese" value="5"/>
+      <entry id="rdLocaleSpanish" value="6"/>
+      <entry id="rdLocaleChinese" value="7"/>
+      <entry id="rdLocaleSimplifiedChinese" value="8"/>
+      <entry id="rdLocaleKorean" value="9"/>
+      <entry id="rdLocaleSystem" value="0"/>
+   </enumeration>
+   <enumeration id="QueryTypeConstants">
+      <entry id="rdQSelect" value="0"/>
+      <entry id="rdQAction" value="1"/>
+      <entry id="rdQProcedures" value="2"/>
+      <entry id="rdQCompound" value="3"/>
+   </enumeration>
+   <enumeration id="SQLRetcodeConstants">
+      <entry id="rdSQLSuccess" value="0"/>
+      <entry id="rdSQLSuccessWithInfo" value="1"/>
+      <entry id="rdSQLNoDataFound" value="100"/>
+      <entry id="rdSQLError" value="0xffffffff"/>
+      <entry id="rdSQLInvalidHandle" value="0xfffffffe"/>
+   </enumeration>
+   <enumeration id="RowStatusConstants">
+      <entry id="rdRowUnmodified" value="0"/>
+      <entry id="rdRowModified" value="1"/>
+      <entry id="rdRowNew" value="2"/>
+      <entry id="rdRowDeleted" value="3"/>
+      <entry id="rdRowDBDeleted" value="4"/>
+   </enumeration>
+   <enumeration id="ColumnStatusConstants">
+      <entry id="rdColUnmodified" value="0"/>
+      <entry id="rdColModified" value="1"/>
+   </enumeration>
+   <enumeration id="UpdateOperationConstants">
+      <entry id="rdOperationUpdate" value="0"/>
+      <entry id="rdOperationDelIns" value="1"/>
+   </enumeration>
+   <enumeration id="UpdateCriteriaConstants">
+      <entry id="rdCriteriaKey" value="0"/>
+      <entry id="rdCriteriaAllCols" value="1"/>
+      <entry id="rdCriteriaUpdCols" value="2"/>
+      <entry id="rdCriteriaTimeStamp" value="3"/>
+   </enumeration>
+   <enumeration id="UpdateReturnCodeConstants">
+      <entry id="rdUpdateSuccessful" value="0"/>
+      <entry id="rdUpdateWithCollisions" value="1"/>
+      <entry id="rdUpdateFailed" value="2"/>
+      <entry id="rdUpdateNotHandled" value="3"/>
+   </enumeration>
+   <class id="_rdoEngine" parent="IDispatch" default="rdoEnvironments">
+      <property id="rdoDefaultLoginTimeout" type="Integer" status="InOut"/>
+      <property id="rdoDefaultUser" type="String" status="InOut"/>
+      <property id="rdoDefaultPassword" type="String" status="InOut"/>
+      <property id="rdoEnvironments" type="rdoEnvironments" status="Out"/>
+      <property id="rdoErrors" type="rdoErrors" status="Out"/>
+      <property id="rdoVersion" type="String" status="Out"/>
+      <property id="rdoDefaultCursorDriver" type="CursorDriverConstants" status="InOut"/>
+      <property id="rdoDefaultErrorThreshold" type="Integer" status="InOut"/>
+      <property id="rdoLocaleID" type="rdoLocaleIDConstants" status="InOut"/>
+      <property id="rdoDefaultUserA" type="String" status="InOut"/>
+      <property id="rdoDefaultPasswordA" type="String" status="InOut"/>
+      <property id="rdoVersionA" type="String" status="Out"/>
+      <method id="rdoRegisterDataSource" type="Void">
+         <argument id="DSN" type="String" status="ByVal"/>
+         <argument id="Driver" type="String" status="ByVal"/>
+         <argument id="Silent" type="Boolean" status="ByVal"/>
+         <argument id="Attributes" type="String" status="ByVal"/>
+      </method>
+      <method id="rdoCreateEnvironment" type="rdoEnvironment">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="User" type="String" status="ByVal"/>
+         <argument id="Password" type="String" status="ByVal"/>
+      </method>
+      <method id="rdoRegisterDataSourceA" type="Void">
+         <argument id="DSN" type="String" status="ByVal"/>
+         <argument id="Driver" type="String" status="ByVal"/>
+         <argument id="Silent" type="Boolean" status="ByVal"/>
+         <argument id="Attributes" type="String" status="ByVal"/>
+      </method>
+      <method id="rdoCreateEnvironmentA" type="rdoEnvironment">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="User" type="String" status="ByVal"/>
+         <argument id="Password" type="String" status="ByVal"/>
+      </method>
+      <method id="SetGlobalDebugMode" type="Void">
+         <argument id="pDebugger" type="Object" status="ByVal"/>
+         <argument id="fDebuggingOn" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="IsGlobalDebugMode" type="Boolean"/>
+   </class>
+   <class id="rdoEngineEvents" parent="None">
+      <event id="InfoMessage" netName="InfoMessage" netHandler="System.EventHandler"/>
+   </class>
+   <class id="rdoError" parent="IDispatch" default="Description" creatable="off">
+      <property id="Number" type="Integer" status="Out"/>
+      <property id="Source" type="String" status="Out"/>
+      <property id="Description" type="String" status="Out"/>
+      <property id="HelpContext" type="Integer" status="Out"/>
+      <property id="HelpFile" type="String" status="Out"/>
+      <property id="SQLState" type="String" status="Out"/>
+      <property id="SQLRetcode" type="Integer" status="Out"/>
+      <property id="SourceA" type="String" status="Out"/>
+      <property id="DescriptionA" type="String" status="Out"/>
+      <property id="HelpFileA" type="String" status="Out"/>
+      <property id="SQLStateA" type="String" status="Out"/>
+   </class>
+   <class id="_rdoConnection" parent="IDispatch" default="rdoResultsets">
+      <property id="QueryTimeout" type="Integer" status="InOut"/>
+      <property id="rdoTables" type="rdoTables" status="Out"/>
+      <property id="rdoPreparedStatements" type="rdoPreparedStatements" status="Out"/>
+      <property id="rdoResultsets" type="rdoResultsets" status="Out"/>
+      <property id="Connect" type="String" status="InOut" migName="ConnectionString" />
+      <property id="Name" type="String" status="InOut"/>
+      <property id="RowsAffected" type="Integer" status="Out"/>
+      <property id="Transactions" type="Boolean" status="Out"/>
+      <property id="Updatable" type="Boolean" status="Out"/>
+      <property id="Version" type="String" status="Out"/>
+      <property id="hDbc" type="Integer" status="Out"/>
+      <property id="StillExecuting" type="Boolean" status="Out"/>
+      <property id="AsyncCheckInterval" type="Integer" status="InOut"/>
+      <property id="LastQueryResults" type="rdoResultset" status="Out"/>
+      <property id="CursorDriver" type="CursorDriverConstants" status="InOut"/>
+      <property id="LoginTimeout" type="Integer" status="InOut"/>
+      <property id="StillConnecting" type="Boolean" status="Out"/>
+      <property id="rdoQueries" type="rdoQueries" status="Out"/>
+      <property id="LogMessages" type="String" status="InOut"/>
+      <property id="Owner" type="rdoEnvironment" status="Out"/>
+      <property id="ConnectA" type="String" status="Out"/>
+      <property id="NameA" type="String" status="Out"/>
+      <property id="VersionA" type="String" status="Out"/>
+      <method id="Close" type="Void"/>
+      <method id="Execute" type="Void">
+         <argument id="Source" type="String" status="ByVal"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="OpenResultset" type="rdoResultset">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="LockType" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreatePreparedStatement" type="rdoQuery">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="SqlString" type="Variant" status="ByVal"/>
+      </method>
+      <method id="BeginTrans" type="Void"/>
+      <method id="CommitTrans" type="Void"/>
+      <method id="RollbackTrans" type="Void"/>
+      <method id="Cancel" type="Void"/>
+      <method id="EstablishConnection" type="Void" migPattern="%1d.Open()\c">
+         <argument id="Prompt" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Readonly" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateQuery" type="rdoQuery" migName="CreateCommand">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="SqlString" type="Variant" status="ByVal"/>
+      </method>
+      <method id="ExecuteA" type="Void">
+         <argument id="Source" type="String" status="ByVal"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="OpenResultsetA" type="rdoResultset">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="LockType" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateQueryA" type="rdoQuery">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="SqlString" type="Variant" status="ByVal"/>
+      </method>
+      <method id="DaoOpenResultsetA" type="rdoResultset">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="LockType" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="rdoConnectionEvents" parent="None">
+      <event id="Connect" netName="Connect" netHandler="RDO.rdoConnectionEvents_ConnectEventHandler">
+         <argument id="errorOccurred" type="Boolean" status="ByVal"/>
+      </event>
+      <event id="BeforeConnect" netName="BeforeConnect" netHandler="RDO.rdoConnectionEvents_BeforeConnectEventHandler">
+         <argument id="connectString" type="String" status="Out"/>
+         <argument id="prompt" type="Variant" status="Out"/>
+      </event>
+      <event id="Disconnect" netName="Disconnect" netHandler="System.EventHandler"/>
+      <event id="QueryComplete" netName="QueryComplete" netHandler="RDO.rdoConnectionEvents_QueryCompleteEventHandler">
+         <argument id="query" type="rdoQuery" status="ByVal"/>
+         <argument id="errorOccurred" type="Boolean" status="ByVal"/>
+      </event>
+      <event id="QueryTimeout" netName="QueryTimeout" netHandler="RDO.rdoConnectionEvents_QueryTimeoutEventHandler">
+         <argument id="query" type="rdoQuery" status="ByVal"/>
+         <argument id="cancel" type="Boolean" status="Out"/>
+      </event>
+      <event id="WillExecute" netName="WillExecute" netHandler="RDO.rdoConnectionEvents_WillExecuteEventHandler">
+         <argument id="query" type="rdoQuery" status="ByVal"/>
+         <argument id="cancel" type="Boolean" status="Out"/>
+      </event>
+   </class>
+   <class id="_rdoColumn" parent="IDispatch" default="Value">
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Type" type="DataTypeConstants" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Size" type="Integer" status="InOut"/>
+      <property id="AllowZeroLength" type="Boolean" status="InOut"/>
+      <property id="Attributes" type="AttributeConstants" status="Out"/>
+      <property id="Updatable" type="Boolean" status="InOut"/>
+      <property id="OrdinalPosition" type="Short" status="Out"/>
+      <property id="Required" type="Boolean" status="Out"/>
+      <property id="SourceColumn" type="String" status="InOut"/>
+      <property id="SourceTable" type="String" status="InOut"/>
+      <property id="ChunkRequired" type="Boolean" status="Out"/>
+      <property id="BatchConflictValue" type="Variant" status="Out"/>
+      <property id="OriginalValue" type="Variant" status="Out"/>
+      <property id="Status" type="ColumnStatusConstants" status="InOut"/>
+      <property id="KeyColumn" type="Boolean" status="InOut"/>
+      <property id="VariantType" type="Integer" status="Out"/>
+      <property id="CSize" type="Integer" status="Out"/>
+      <property id="ValueA" type="Variant" status="InOut"/>
+      <property id="NameA" type="String" status="Out"/>
+      <property id="SourceColumnA" type="String" status="InOut"/>
+      <property id="SourceTableA" type="String" status="InOut"/>
+      <property id="FoxAttributes" type="Integer" status="Out"/>
+      <property id="FoxSourceTable" type="String" status="Out"/>
+      <property id="FoxType" type="Short" status="Out"/>
+      <property id="FoxPrecision" type="Integer" status="Out"/>
+      <property id="FoxScale" type="Short" status="Out"/>
+      <property id="FoxMoney" type="Boolean" status="Out"/>
+      <property id="FoxAllowZeroLength" type="Boolean" status="Out"/>
+      <property id="FoxSize" type="Integer" status="Out"/>
+      <property id="FoxOrdinalPosition" type="Short" status="Out"/>
+      <property id="BatchConflictValueA" type="Variant" status="Out"/>
+      <property id="OriginalValueA" type="Variant" status="Out"/>
+      <method id="AppendChunk" type="Void">
+         <argument id="Chunk" type="Variant" status="ByVal"/>
+      </method>
+      <method id="GetChunk" type="Variant">
+         <argument id="Size" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ColumnSize" type="Integer"/>
+      <method id="AppendChunkA" type="Void">
+         <argument id="Chunk" type="Variant" status="ByVal"/>
+      </method>
+      <method id="GetChunkA" type="Variant">
+         <argument id="Size" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="rdoColumnEvents" parent="None">
+      <event id="DataChanged" netName="DataChanged" netHandler="System.EventHandler"/>
+      <event id="WillChangeData" netName="WillChangeData" netHandler="RDO.rdoColumnEvents_WillChangeDataEventHandler">
+         <argument id="newvalue" type="Variant" status="Out"/>
+         <argument id="cancel" type="Boolean" status="Out"/>
+      </event>
+   </class>
+   <class id="rdoTable" parent="IDispatch" default="rdoColumns" creatable="off">
+      <property id="rdoColumns" type="rdoColumns" status="Out"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="Updatable" type="Boolean" status="Out"/>
+      <property id="RowCount" type="Integer" status="Out"/>
+      <property id="Type" type="String" status="Out"/>
+      <property id="NameA" type="String" status="Out"/>
+      <property id="TypeA" type="String" status="Out"/>
+      <method id="OpenResultset" type="rdoResultset">
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="LockType" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="_rdoResultset" parent="IDispatch" default="rdoColumns" creatable="off">
+      <property id="Bookmark" type="Variant" status="InOut"/>
+      <property id="rdoColumns" type="rdoColumns" status="Out"/>
+      <property id="BOF" type="Boolean" status="Out"/>
+      <property id="Bookmarkable" type="Boolean" status="Out"/>
+      <property id="EOF" type="Boolean" status="Out" migName="Read()"/>
+      <property id="LockEdits" type="Boolean" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Transactions" type="Boolean" status="Out"/>
+      <property id="Type" type="ResultsetTypeConstants" status="Out"/>
+      <property id="RowCount" type="Integer" status="Out"/>
+      <property id="Updatable" type="Boolean" status="Out"/>
+      <property id="Restartable" type="Boolean" status="Out"/>
+      <property id="EditMode" type="Integer" status="Out"/>
+      <property id="PercentPosition" type="Single" status="InOut"/>
+      <property id="hStmt" type="Integer" status="Out"/>
+      <property id="AbsolutePosition" type="Integer" status="InOut"/>
+      <property id="StillExecuting" type="Boolean" status="Out"/>
+      <property id="LastModified" type="Variant" status="Out"/>
+      <property id="BatchSize" type="Integer" status="InOut"/>
+      <property id="UpdateOperation" type="Short" status="InOut"/>
+      <property id="UpdateCriteria" type="Short" status="InOut"/>
+      <property id="ActiveConnection" type="rdoConnection" status="InOut"/>
+      <property id="BatchCollisionCount" type="Integer" status="Out"/>
+      <property id="BatchCollisionRows" type="Variant" status="Out"/>
+      <property id="LockType" type="LockTypeConstants" status="InOut"/>
+      <property id="Status" type="RowStatusConstants" status="InOut"/>
+      <property id="Owner" type="rdoQuery" status="Out"/>
+      <property id="NameA" type="String" status="InOut"/>
+      <property id="FoxpCursor" type="Integer" status="Out"/>
+      <property id="FoxBOF" type="Boolean" status="InOut"/>
+      <property id="FoxEOF" type="Boolean" status="InOut"/>
+      <property id="FoxSQL" type="String" status="Out"/>
+      <property id="FOxBindThreshold" type="Integer" status="Out"/>
+      <property id="FoxQueryDefDisp" type="Object" status="Out"/>
+      <property id="FoxConcurrency" type="Integer" status="Out"/>
+      <property id="FoxCurrentRow" type="Integer" status="InOut"/>
+      <property id="FoxRowsetStart" type="Integer" status="InOut"/>
+      <property id="FoxRowsetDirection" type="Integer" status="InOut"/>
+      <property id="FoxCurrentRowsetSize" type="Integer" status="InOut"/>
+      <property id="FoxMaxRowsetSize" type="Integer" status="InOut"/>
+      <property id="FoxRecordCount" type="Integer" status="InOut"/>
+      <property id="RDCLastActionState" type="Integer" status="Out"/>
+      <method id="AddNew" type="Void"/>
+      <method id="Close" type="Void"/>
+      <method id="Delete" type="Void"/>
+      <method id="Edit" type="Void"/>
+      <method id="MoveFirst" type="Void"/>
+      <method id="MoveLast" type="Void">
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="MoveNext" type="Void"/>
+      <method id="MovePrevious" type="Void"/>
+      <method id="Update" type="Void"/>
+      <method id="Requery" type="Void">
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Move" type="Void">
+         <argument id="Rows" type="Integer" status="ByVal"/>
+         <argument id="Start" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="MoreResults" type="Boolean"/>
+      <method id="Cancel" type="Void"/>
+      <method id="CancelUpdate" type="Void"/>
+      <method id="GetRows" type="Variant">
+         <argument id="NumRows" type="Variant" status="ByVal"/>
+      </method>
+      <method id="BatchUpdate" type="Void">
+         <argument id="SingleRow" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Force" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CancelBatch" type="Void">
+         <argument id="SingleRow" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="GetClipString" type="String">
+         <argument id="NumRows" type="Integer" status="ByVal"/>
+         <argument id="ColumnDelimiter" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="RowDelimiter" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="NullExpr" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="IsKnownLastRow" type="Void">
+         <argument id="pRetval" type="Boolean" status="ByRef"/>
+      </method>
+      <method id="IsKnownFirstRow" type="Void">
+         <argument id="pRetval" type="Boolean" status="ByRef"/>
+      </method>
+      <method id="Advise" type="Void">
+         <argument id="pSink" type="Object" status="ByVal"/>
+         <argument id="pnCookie" type="Integer" status="Out"/>
+      </method>
+      <method id="Unadvise" type="Void">
+         <argument id="nCookie" type="Integer" status="ByVal"/>
+      </method>
+      <method id="FreezeNotifications" type="Void">
+         <argument id="Frozen" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="FindByValues" type="Void">
+         <argument id="bmk" type="Integer" status="ByVal"/>
+         <argument id="pBmk" type="Object" status="ByVal"/>
+         <argument id="lFF" type="Integer" status="ByVal"/>
+         <argument id="lV" type="Integer" status="ByVal"/>
+         <argument id="rgColumns" type="Object" status="ByVal"/>
+         <argument id="rgValues" type="Object" status="ByVal"/>
+         <argument id="plSeekFlags" type="Object" status="ByVal"/>
+         <argument id="pvFetchParams" type="Object" status="ByVal"/>
+      </method>
+      <method id="RDCClose" type="Void"/>
+      <accessor id="Collect" type="Variant">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="GetRowsA" type="Variant">
+         <argument id="NumRows" type="Variant" status="ByVal"/>
+      </method>
+      <accessor id="CollectA" type="Variant">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Resync" type="Void"/>
+      <method id="FoxCreateErrorInfo" type="Void">
+         <argument id="scode" type="Integer" status="ByVal"/>
+         <argument id="IdDecription" type="Integer" status="ByVal"/>
+         <argument id="IdHelp" type="Integer" status="ByVal"/>
+      </method>
+      <method id="FoxCreateSQLErro" type="Void">
+         <argument id="retcode" type="Integer" status="ByVal"/>
+         <argument id="bCreateInfo" type="Boolean" status="ByVal"/>
+         <argument id="hDbc" type="Integer" status="ByVal"/>
+         <argument id="hResults" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetClipStrCurrentRow" type="String">
+         <argument id="ColumnDelimiter" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="RowDelimiter" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="NullExpr" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="rdoResultsetEvents" parent="None">
+      <event id="Associate" netName="Associate" netHandler="System.EventHandler"/>
+      <event id="ResultsChanged" netName="ResultsChanged" netHandler="System.EventHandler"/>
+      <event id="Dissociate" netName="Dissociate" netHandler="System.EventHandler"/>
+      <event id="RowStatusChanged" netName="RowStatusChanged" netHandler="System.EventHandler"/>
+      <event id="RowCurrencyChange" netName="RowCurrencyChange" netHandler="System.EventHandler"/>
+      <event id="WillAssociate" netName="WillAssociate" netHandler="RDO.rdoResultsetEvents_WillAssociateEventHandler">
+         <argument id="connection" type="rdoConnection" status="ByVal"/>
+         <argument id="cancel" type="Boolean" status="Out"/>
+      </event>
+      <event id="WillDissociate" netName="WillDissociate" netHandler="RDO.rdoResultsetEvents_WillDissociateEventHandler">
+         <argument id="cancel" type="Boolean" status="Out"/>
+      </event>
+      <event id="WillUpdateRows" netName="WillUpdateRows" netHandler="RDO.rdoResultsetEvents_WillUpdateRowsEventHandler">
+         <argument id="returnCode" type="Short" status="Out"/>
+      </event>
+   </class>
+   <class id="rdoPreparedStatement" parent="IDispatch" default="rdoParameters" creatable="off">
+      <property id="QueryTimeout" type="Integer" status="InOut"/>
+      <property id="Type" type="QueryTypeConstants" status="Out"/>
+      <property id="MaxRows" type="Integer" status="InOut"/>
+      <property id="BindThreshold" type="Integer" status="InOut"/>
+      <property id="rdoParameters" type="rdoParameters" status="Out" migName="Parameters" />
+      <property id="Name" type="String" status="InOut"/>
+      <property id="RowsAffected" type="Integer" status="Out"/>
+      <property id="SQL" type="String" status="InOut"/>
+      <property id="LockType" type="LockTypeConstants" status="InOut"/>
+      <property id="rdoColumns" type="rdoColumns" status="Out"/>
+      <property id="KeysetSize" type="Integer" status="InOut"/>
+      <property id="RowsetSize" type="Integer" status="InOut"/>
+      <property id="hStmt" type="Integer" status="Out"/>
+      <property id="StillExecuting" type="Boolean" status="Out"/>
+      <property id="CursorType" type="ResultsetTypeConstants" status="InOut"/>
+      <property id="ActiveConnection" type="rdoConnection" status="InOut"/>
+      <property id="Prepared" type="Boolean" status="InOut"/>
+      <property id="LogMessages" type="String" status="InOut"/>
+      <property id="Owner" type="rdoConnection" status="Out"/>
+      <property id="NameA" type="String" status="Out"/>
+      <property id="SQLA" type="String" status="InOut"/>
+      <property id="LogMessagesA" type="String" status="InOut"/>
+      <property id="FoxMaxRows" type="Integer" status="Out"/>
+      <property id="Updatable" type="Boolean" status="Out"/>
+      <property id="Connect" type="String" status="Out"/>
+      <property id="ConnectA" type="String" status="Out"/>
+      <property id="ErrorThreshold" type="Integer" status="InOut"/>
+      <method id="Close" type="Void"/>
+      <method id="Execute" type="Void">
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="OpenResultset" type="rdoResultset" migPattern="%1d.ExecuteReader()" >
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="LockType" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Cancel" type="Void"/>
+      <method id="DaoOpenResultset" type="rdoResultset">
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="LockType" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="_rdoEnvironment" parent="IDispatch" default="rdoConnections" creatable="off">
+      <property id="rdoConnections" type="rdoConnections" status="Out"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="UserName" type="String" status="InOut"/>
+      <property id="Password" type="String" status="In"/>
+      <property id="LoginTimeout" type="Integer" status="InOut"/>
+      <property id="CursorDriver" type="CursorDriverConstants" status="InOut"/>
+      <property id="hEnv" type="Integer" status="Out"/>
+      <property id="NameA" type="String" status="Out"/>
+      <property id="UserNameA" type="String" status="InOut"/>
+      <property id="PasswordA" type="String" status="In"/>
+      <method id="BeginTrans" type="Void"/>
+      <method id="Close" type="Void"/>
+      <method id="CommitTrans" type="Void"/>
+      <method id="RollbackTrans" type="Void"/>
+      <method id="OpenConnection" type="rdoConnection">
+         <argument id="dsName" type="String" status="ByVal"/>
+         <argument id="Prompt" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Readonly" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Connect" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="RDCOpenConnection" type="rdoConnection">
+         <argument id="dsName" type="String" status="ByVal"/>
+         <argument id="Prompt" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Readonly" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Connect" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="GetOwner" type="rdoEngine"/>
+      <method id="OpenConnectionA" type="rdoConnection">
+         <argument id="dsName" type="String" status="ByVal"/>
+         <argument id="Prompt" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Readonly" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Connect" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="RDCOpenConnectionA" type="rdoConnection">
+         <argument id="dsName" type="String" status="ByVal"/>
+         <argument id="Prompt" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Readonly" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Connect" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="rdoEnvironmentEvents" parent="None">
+      <event id="BeginTrans" netName="BeginTrans" netHandler="System.EventHandler"/>
+      <event id="CommitTrans" netName="CommitTrans" netHandler="System.EventHandler"/>
+      <event id="RollbackTrans" netName="RollbackTrans" netHandler="System.EventHandler"/>
+   </class>
+   <class id="rdoParameter" parent="IDispatch" default="Value" creatable="off">
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Type" type="DataTypeConstants" status="InOut"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Direction" type="DirectionConstants" status="InOut"/>
+      <property id="NameA" type="String" status="InOut"/>
+      <property id="ValueA" type="Variant" status="InOut"/>
+      <property id="Size" type="Integer" status="InOut"/>
+      <method id="AppendChunk" type="Void">
+         <argument id="Chunk" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="DualCollection" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="Editable" type="Boolean" status="InOut"/>
+      <method id="Remove" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="pItem" type="Object" status="ByVal"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="Item" type="Object" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <method id="Clear" type="Void"/>
+      <method id="RemoveA" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <accessor id="ItemA" type="Object">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Fox_GetHeadPos" type="Void">
+         <argument id="pPos" type="Integer" status="Out"/>
+      </method>
+      <method id="Fox_GetNext" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="Object" status="Out"/>
+      </method>
+      <method id="Fox_GetPrev" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="Object" status="Out"/>
+      </method>
+      <method id="Fox_GetItem" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+         <argument id="lplpItem" type="Object" status="Out"/>
+      </method>
+   </class>
+   <class id="rdoColumns" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="Editable" type="Boolean" status="InOut"/>
+      <method id="Remove" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="prdoColumn" type="Object" status="ByVal"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="Item" type="rdoColumn" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <method id="Clear" type="Void"/>
+      <method id="RemoveA" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <accessor id="ItemA" type="rdoColumn">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Fox_GetHeadPos" type="Void">
+         <argument id="pPos" type="Integer" status="Out"/>
+      </method>
+      <method id="Fox_GetNext" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoColumn" status="Out"/>
+      </method>
+      <method id="Fox_GetPrev" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoColumn" status="Out"/>
+      </method>
+      <method id="Fox_GetItem" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+         <argument id="lplpItem" type="rdoColumn" status="Out"/>
+      </method>
+   </class>
+   <class id="rdoTables" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="Editable" type="Boolean" status="InOut"/>
+      <method id="Remove" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="prdoTable" type="Object" status="ByVal"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="Item" type="rdoTable" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <method id="Clear" type="Void"/>
+      <method id="RemoveA" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <accessor id="ItemA" type="rdoTable">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Fox_GetHeadPos" type="Void">
+         <argument id="pPos" type="Integer" status="Out"/>
+      </method>
+      <method id="Fox_GetNext" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoTable" status="Out"/>
+      </method>
+      <method id="Fox_GetPrev" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoTable" status="Out"/>
+      </method>
+      <method id="Fox_GetItem" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+         <argument id="lplpItem" type="rdoTable" status="Out"/>
+      </method>
+   </class>
+   <class id="rdoConnections" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="Editable" type="Boolean" status="InOut"/>
+      <method id="Remove" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="prdoConnection" type="rdoConnection" status="ByVal"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="Item" type="rdoConnection" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <method id="Clear" type="Void"/>
+      <method id="RemoveA" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <accessor id="ItemA" type="rdoConnection">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Fox_GetHeadPos" type="Void">
+         <argument id="pPos" type="Integer" status="Out"/>
+      </method>
+      <method id="Fox_GetNext" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoConnection" status="Out"/>
+      </method>
+      <method id="Fox_GetPrev" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoConnection" status="Out"/>
+      </method>
+      <method id="Fox_GetItem" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+         <argument id="lplpItem" type="rdoConnection" status="Out"/>
+      </method>
+   </class>
+   <class id="rdoParameters" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="Editable" type="Boolean" status="InOut"/>
+      <method id="Remove" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="prdoParameter" type="Object" status="ByVal"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="Item" type="rdoParameter" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <method id="Clear" type="Void"/>
+      <method id="RemoveA" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <accessor id="ItemA" type="rdoParameter">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Fox_GetHeadPos" type="Void">
+         <argument id="pPos" type="Integer" status="Out"/>
+      </method>
+      <method id="Fox_GetNext" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoParameter" status="Out"/>
+      </method>
+      <method id="Fox_GetPrev" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoParameter" status="Out"/>
+      </method>
+      <method id="Fox_GetItem" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+         <argument id="lplpItem" type="rdoParameter" status="Out"/>
+      </method>
+   </class>
+   <class id="rdoResultsets" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="Editable" type="Boolean" status="InOut"/>
+      <method id="Remove" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="prdoResultset" type="Object" status="ByVal"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="Item" type="rdoResultset" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <method id="Clear" type="Void"/>
+      <method id="RemoveA" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <accessor id="ItemA" type="rdoResultset">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Fox_GetHeadPos" type="Void">
+         <argument id="pPos" type="Integer" status="Out"/>
+      </method>
+      <method id="Fox_GetNext" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoResultset" status="Out"/>
+      </method>
+      <method id="Fox_GetPrev" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoResultset" status="Out"/>
+      </method>
+      <method id="Fox_GetItem" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+         <argument id="lplpItem" type="rdoResultset" status="Out"/>
+      </method>
+   </class>
+   <class id="rdoEnvironments" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="Editable" type="Boolean" status="InOut"/>
+      <method id="Remove" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="prdoEnvironment" type="rdoEnvironment" status="ByVal"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="Item" type="rdoEnvironment" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <method id="Clear" type="Void"/>
+      <method id="RemoveA" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <accessor id="ItemA" type="rdoEnvironment">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Fox_GetHeadPos" type="Void">
+         <argument id="pPos" type="Integer" status="Out"/>
+      </method>
+      <method id="Fox_GetNext" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoEnvironment" status="Out"/>
+      </method>
+      <method id="Fox_GetPrev" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoEnvironment" status="Out"/>
+      </method>
+      <method id="Fox_GetItem" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+         <argument id="lplpItem" type="rdoEnvironment" status="Out"/>
+      </method>
+   </class>
+   <class id="rdoQueries" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="Editable" type="Boolean" status="InOut"/>
+      <method id="Remove" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="prdoQuery" type="Object" status="ByVal"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="Item" type="rdoQuery" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <method id="Clear" type="Void"/>
+      <method id="RemoveA" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <accessor id="ItemA" type="rdoQuery">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Fox_GetHeadPos" type="Void">
+         <argument id="pPos" type="Integer" status="Out"/>
+      </method>
+      <method id="Fox_GetNext" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoQuery" status="Out"/>
+      </method>
+      <method id="Fox_GetPrev" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoQuery" status="Out"/>
+      </method>
+      <method id="Fox_GetItem" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+         <argument id="lplpItem" type="rdoQuery" status="Out"/>
+      </method>
+   </class>
+   <class id="rdoPreparedStatements" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="Editable" type="Boolean" status="InOut"/>
+      <method id="Remove" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="prdoQuery" type="Object" status="ByVal"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="Item" type="rdoQuery" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <method id="Clear" type="Void"/>
+      <method id="RemoveA" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <accessor id="ItemA" type="rdoQuery">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+   </class>
+   <class id="rdoErrors" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="Editable" type="Boolean" status="InOut"/>
+      <method id="Remove" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="prdoError" type="Object" status="ByVal"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="Item" type="rdoError" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <method id="Clear" type="Void"/>
+      <method id="RemoveA" type="Void">
+         <argument id="ItemToRemove" type="Variant" status="ByVal"/>
+      </method>
+      <accessor id="ItemA" type="rdoError">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Fox_GetHeadPos" type="Void">
+         <argument id="pPos" type="Integer" status="Out"/>
+      </method>
+      <method id="Fox_GetNext" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoError" status="Out"/>
+      </method>
+      <method id="Fox_GetPrev" type="Void">
+         <argument id="pPos" type="Integer" status="ByRef"/>
+         <argument id="lplpItem" type="rdoError" status="Out"/>
+      </method>
+      <method id="Fox_GetItem" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+         <argument id="lplpItem" type="rdoError" status="Out"/>
+      </method>
+   </class>
+   <class id="IPrivColGetRows" parent="IUnknown">
+      <method id="BindColumn" type="Void">
+         <argument id="DataType" type="Short" status="ByVal"/>
+         <argument id="pColData" type="Void" status="ByRef"/>
+         <argument id="MaxDataLen" type="Integer" status="ByVal"/>
+         <argument id="pdataLen" type="Integer" status="ByRef"/>
+      </method>
+      <method id="GetData" type="Void">
+         <argument id="DataType" type="Short" status="ByVal"/>
+         <argument id="pColData" type="Void" status="ByRef"/>
+         <argument id="MaxDataLen" type="Integer" status="ByVal"/>
+         <argument id="pdataLen" type="Integer" status="ByRef"/>
+      </method>
+   </class>
+   <class id="IPrivRsGetRows" parent="IUnknown">
+      <method id="Initiallize" type="Void"/>
+      <method id="CanGetDataBlock" type="Void">
+         <argument id="pfCanGetDatablock" type="Boolean" status="ByRef"/>
+      </method>
+      <method id="SetRowsetSize" type="Void">
+         <argument id="dwNumRows" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetRowLen" type="Void">
+         <argument id="dwRowLen" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetRows" type="Void">
+         <argument id="lRow" type="Integer" status="ByVal"/>
+         <argument id="dwFetchType" type="Short" status="ByVal"/>
+         <argument id="pudwNomRows" type="Integer" status="Out"/>
+         <argument id="pudwStatus" type="Short" status="Out"/>
+      </method>
+      <method id="get_DaoBOF" type="Boolean"/>
+      <method id="get_DaoEOF" type="Boolean"/>
+      <method id="get_DaoBookmark" type="Variant"/>
+      <method id="MoveTo" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="get_DaoRowsetPos" type="Void">
+         <argument id="lpRowSetPos" type="Integer" status="Out"/>
+         <argument id="lpRowsInBuf" type="Integer" status="Out"/>
+         <argument id="lpRowIndex" type="Integer" status="Out"/>
+      </method>
+   </class>
+   <coclass id="rdoEngine" appobject="RDO.rdoEngineClass">
+      <subclass id="_rdoEngine"/>
+      <subclass id="rdoEngineEvents"/>
+   </coclass>
+   <coclass id="rdoConnection" migName="SqlConnection">
+      <subclass id="_rdoConnection"/>
+      <subclass id="rdoConnectionEvents"/>
+   </coclass>
+   <coclass id="rdoColumn" creatable="off">
+      <subclass id="_rdoColumn"/>
+      <subclass id="rdoColumnEvents"/>
+   </coclass>
+   <coclass id="rdoResultset" creatable="off"  migName="SqlDataReader">
+      <subclass id="_rdoResultset"/>
+      <subclass id="rdoResultsetEvents"/>
+   </coclass>
+   <coclass id="rdoQuery" migName="SqlCommand">
+      <subclass id="rdoPreparedStatement"/>
+   </coclass>
+   <coclass id="rdoEnvironment" creatable="off">
+      <subclass id="_rdoEnvironment"/>
+      <subclass id="rdoEnvironmentEvents"/>
+   </coclass>
+</library>
+<Refactor id="RDO" event="rdoHandlers" >
+   <migclass id="DotNet">
+      <method id="CreateCommand" type="void" migPattern="(%1d = %2d()).CommandText = %4d\c">
+         <argument id="conn" type="Object" status="ByVal" />
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="SqlString" type="Variant" status="ByVal"/>
+      </method>
+      <Method id="Parameters" type="object" migPattern="%1d.Add(new System.Data.SqlClient.SqlParameter(\S@%2d\S, null))" >
+         <argument id="index" type="Integer" status="ByVal" />
+      </Method>
+   </migClass>
+   <gmSL NameSpace="rdoHandlers" Class="Transform" Source="GM.msrdo20Transform.gmsl" />
+</Refactor>
+</DescriptionFile>

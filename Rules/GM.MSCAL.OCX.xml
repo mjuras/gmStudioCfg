@@ -1,0 +1,110 @@
+<DescriptionFile>
+<!--
+Upgrade MSACAL.Calendar to WinForms.MonthCalendar
+-->
+<library id="MSCAL.OCX"
+         name="MSACAL"
+         uuid="8E27C92E-1264-101C-8A2F-040224009C02"
+         netVersion="7.0"
+         source="MSCAL.OCX"
+         location="DoNotDeclare"
+         axLocation="%library%\AxInterop.MSACAL.dll"
+         migName="System.Windows.Forms"
+         type="Internal"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="ICalendar"/>
+   <class id="DCalendarEvents"/>
+   <coclass id="Calendar"/>
+   <class id="ICalendar" parent="IDispatch" default="_Value">
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Day" type="Integer" status="InOut" migName="SelectionStart.Day"/>
+      <property id="DayFont" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.DayFont"/>
+         <Set npram="2" migPattern="%1d.DayFont = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_DayFont(%1d)\c"/>
+      </property>
+      <property id="DayFontColor" type="OLE_COLOR" status="InOut"/>
+      <property id="DayLength" type="Integer" status="InOut"/>
+      <property id="FirstDay" type="Integer" status="InOut"/>
+      <property id="GridCellEffect" type="Integer" status="InOut"/>
+      <property id="GridFont" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.GridFont"/>
+         <Set npram="2" migPattern="%1d.GridFont = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_GridFont(%1d)\c"/>
+      </property>
+      <property id="GridFontColor" type="OLE_COLOR" status="InOut"/>
+      <property id="GridLinesColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Month" type="Integer" status="InOut" migName="SelectionStart.Month"/>
+      <property id="MonthLength" type="Integer" status="InOut"/>
+      <property id="ShowDateSelectors" type="Boolean" status="InOut"/>
+      <property id="ShowDays" type="Boolean" status="InOut"/>
+      <property id="ShowHorizontalGrid" type="Boolean" status="InOut"/>
+      <property id="ShowTitle" type="Boolean" status="InOut"/>
+      <property id="ShowVerticalGrid" type="Boolean" status="InOut"/>
+      <property id="TitleFont" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.TitleFont"/>
+         <Set npram="2" migPattern="%1d.TitleFont = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_TitleFont(%1d)\c"/>
+      </property>
+      <property id="TitleFontColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Value" type="Date" status="InOut" migName="SelectionStart"/>
+      <property id="_Value" type="Date" status="InOut" migName="SelectionStart"/>
+      <property id="ValueIsNull" type="Boolean" status="InOut"/>
+      <property id="Year" type="Integer" status="InOut" migName="SelectionStart.Year"/>
+      <method id="NextDay" type="Void"/>
+      <method id="NextMonth" type="Void"/>
+      <method id="NextWeek" type="Void"/>
+      <method id="NextYear" type="Void"/>
+      <method id="PreviousDay" type="Void"/>
+      <method id="PreviousMonth" type="Void"/>
+      <method id="PreviousWeek" type="Void"/>
+      <method id="PreviousYear" type="Void"/>
+      <method id="Refresh" type="Void"/>
+      <method id="Today" type="Void"/>
+      <method id="AboutBox" type="Void"/>
+   </class>
+   <class id="DCalendarEvents" parent="None">
+      <event id="Click" netName="DateSelected" netHandler="DateRangeEventHandler" netArgs="DateRangeEventArgs"/>
+      <event id="DblClick" netName="DblClick" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="KeyDown" netName="KeyDownEvent" netHandler="AxMSACAL.DCalendarEvents_KeyDownEventHandler" netArgs="AxMSACAL.DCalendarEvents_KeyDownEvent">
+         <argument id="keyCode" type="Integer" status="Out"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" role="event" netArgs="System.Windows.Forms.KeyPressEventArgs"
+             netHandler="System.Windows.Forms.KeyPressEventHandler" migPattern="KeyPress" >
+         <argument id="keyAscii" type="Integer" status="ByVal" migPattern="%1d = (int)e.KeyChar" />
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="AxMSACAL.DCalendarEvents_KeyUpEventHandler" netArgs="AxMSACAL.DCalendarEvents_KeyUpEvent">
+         <argument id="keyCode" type="Integer" status="Out"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="BeforeUpdate" netName="BeforeUpdate" netHandler="AxMSACAL.DCalendarEvents_BeforeUpdateEventHandler" netArgs="AxMSACAL.DCalendarEvents_BeforeUpdateEvent">
+         <argument id="cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="AfterUpdate" netName="AfterUpdate" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="NewMonth" netName="NewMonth" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="NewYear" netName="NewYear" netHandler="System.EventHandler" netArgs="EventArgs"/>
+   </class>
+   <coclass id="Calendar" role="Control" migName="MonthCalendar">
+      <subclass id="ICalendar"/>
+      <subclass id="DCalendarEvents"/>
+   </coclass>
+</library>
+<Refactor id="[MSCAL.OCX]">
+<!-- UPGRADE_TODO: Additional initialization work needed -->
+<migClass id="NetControl.Calendar" migName="MonthCalendar" parent="Calendar">
+      <property id="BackColor" type="OLE_COLOR" value="BackColor" nPram="3" migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)" default="System.Drawing.SystemColors.Window" />
+      <property id="Enabled" value="Enabled" />
+      <property id="ForeColor" type="OLE_COLOR" value="ForeColor" nPram="3" migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)" default="System.Drawing.SystemColors.ControlText" />                
+      <property id="Font" value="Font" type="FontInfo" nPram="3" vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))" cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))" />
+      <property id="Location" value="(Left,Top)" nPram="2"  migPattern="new System.Drawing.Point(%1d, %2d)" />
+      <property id="Name" type="string" value="SYM.name" />
+      <property id="Size" value="(Width,Height)"  nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+      <property id="TabIndex" type="Integer" value="TabIndex" />
+      <property id="TabStop" type="boolean" value="TabStop" default="true" />
+      <property id="CalendarDimensions" value="new Size(1, 1)" />
+</migClass>
+</Refactor>
+
+</DescriptionFile>

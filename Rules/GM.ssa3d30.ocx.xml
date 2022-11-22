@@ -1,0 +1,1128 @@
+<DescriptionFile>
+<!--
+Upgrade Threed.SSPanel to WinForms.GroupBox
+-->
+<library id="ssa3d30.ocx"
+         name="Threed"
+         uuid="065E6FD1-1BF9-11D2-BAE8-00104B9E0792"
+         netVersion="3.0"
+         source="ssa3d30.ocx"
+         location="DoNotDeclare"
+         axLocation="DoNotDeclare"
+         migName="System.Windows.Forms"
+         type="Internal"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="ISSDataObjectFiles"/>
+   <class id="ISSDataObject"/>
+   <class id="ISSBase"/>
+   <class id="ISSOptionBase"/>
+   <class id="ISSButtonBase"/>
+   <class id="ISSFrameBase"/>
+   <class id="ISSFrame"/>
+   <class id="DSSFrameEvents"/>
+   <class id="ISSPanel"/>
+   <class id="DSSPanel"/>
+   <class id="DSSPanelEvents"/>
+   <class id="DSSOption"/>
+   <class id="ISSOption"/>
+   <class id="DSSOptionEvents"/>
+   <class id="ISSCheck"/>
+   <class id="DSSCheck"/>
+   <class id="DSSCheckEvents"/>
+   <class id="ISSRibbon"/>
+   <class id="DSSRibbonEvents"/>
+   <class id="ISSCommand"/>
+   <class id="DSSCommandEvents"/>
+   <coclass id="SSDataObjectFiles"/>
+   <coclass id="SSDataObject"/>
+   <coclass id="SSFrame"/>
+   <coclass id="SSPanel"/>
+   <coclass id="SSOption"/>
+   <coclass id="SSCheck"/>
+   <coclass id="SSRibbon"/>
+   <coclass id="SSCommand"/>
+   <enumeration id="Constants_Font3D">
+      <entry id="ssNoneFont3D" value="0"/>
+      <entry id="ssRaisedLight" value="1"/>
+      <entry id="ssRaisedHeavy" value="2"/>
+      <entry id="ssInsetLight" value="3"/>
+      <entry id="ssInsetHeavy" value="4"/>
+      <entry id="ssDropShadow" value="5"/>
+   </enumeration>
+   <enumeration id="Constants_AlignTo">
+      <entry id="ssTextRight" value="0"/>
+      <entry id="ssTextLeft" value="1"/>
+   </enumeration>
+   <enumeration id="Constants_AlignFrameText">
+      <entry id="ssTopLeft" value="0"/>
+      <entry id="ssTopRight" value="1"/>
+      <entry id="ssTopCenter" value="2"/>
+      <entry id="ssBottomLeft" value="3"/>
+      <entry id="ssBottomRight" value="4"/>
+      <entry id="ssBottomCenter" value="5"/>
+   </enumeration>
+   <enumeration id="Constants_ShadowColor">
+      <entry id="ssDarkGrey" value="0"/>
+      <entry id="ssBlack" value="1"/>
+   </enumeration>
+   <enumeration id="Constants_AutoSizeButton">
+      <entry id="ssNoneAutoSizeButton" value="0"/>
+      <entry id="ssPictureToButton" value="1"/>
+      <entry id="ssButtonToPicture" value="2"/>
+   </enumeration>
+   <enumeration id="Constants_ShadowStyle">
+      <entry id="ssInsetShadow" value="0"/>
+      <entry id="ssRaisedShadow" value="1"/>
+   </enumeration>
+   <enumeration id="Constants_Bevel">
+      <entry id="ssNoneBevel" value="0"/>
+      <entry id="ssInsetBevel" value="1"/>
+      <entry id="ssRaisedBevel" value="2"/>
+   </enumeration>
+   <enumeration id="Constants_FloodType">
+      <entry id="ssNoneFlood" value="0"/>
+      <entry id="ssLeftToRight" value="1"/>
+      <entry id="ssRightToLeft" value="2"/>
+      <entry id="ssTopToBottom" value="3"/>
+      <entry id="ssBottomToTop" value="4"/>
+      <entry id="ssWideningCircle" value="5"/>
+   </enumeration>
+   <enumeration id="Constants_Alignment">
+      <entry id="ssLeftTop" value="0"/>
+      <entry id="ssLeftMiddle" value="1"/>
+      <entry id="ssLeftBottom" value="2"/>
+      <entry id="ssRightTop" value="3"/>
+      <entry id="ssRightMiddle" value="4"/>
+      <entry id="ssRightBottom" value="5"/>
+      <entry id="ssCenterTop" value="6"/>
+      <entry id="ssCenterMiddle" value="7"/>
+      <entry id="ssCenterBottom" value="8"/>
+      <entry id="ssLeftOfCaption" value="9"/>
+      <entry id="ssRightOfCaption" value="10"/>
+      <entry id="ssTopOfCaption" value="11"/>
+      <entry id="ssBottomOfCaption" value="12"/>
+   </enumeration>
+   <enumeration id="Constants_AutoSizePanel">
+      <entry id="ssNoneAutoSize" value="0"/>
+      <entry id="ssWidthToCaption" value="1"/>
+      <entry id="ssHeightToCaption" value="2"/>
+      <entry id="ssChildToPanel" value="3"/>
+   </enumeration>
+   <enumeration id="Constants_PictureDnChange">
+      <entry id="ssNoChange" value="0"/>
+      <entry id="ssDither" value="1"/>
+      <entry id="ssInvert" value="2"/>
+   </enumeration>
+   <enumeration id="Constants_MousePointer">
+      <entry id="ssDefault" value="0"/>
+      <entry id="ssArrow" value="1"/>
+      <entry id="ssCross" value="2"/>
+      <entry id="ssIBeam" value="3"/>
+      <entry id="ssIcon" value="4"/>
+      <entry id="ssSize" value="5"/>
+      <entry id="ssSizeNESW" value="6"/>
+      <entry id="ssSizeNS" value="7"/>
+      <entry id="ssSizeNWSE" value="8"/>
+      <entry id="ssSizeEW" value="9"/>
+      <entry id="ssUpArrow" value="10"/>
+      <entry id="ssHourglass" value="11"/>
+      <entry id="ssNoDrop" value="12"/>
+      <entry id="ssArrowHourglass" value="13"/>
+      <entry id="ssArrowQuestion" value="14"/>
+      <entry id="ssSizeAll" value="15"/>
+      <entry id="ssHand" value="16"/>
+      <entry id="ssCustom" value="99"/>
+   </enumeration>
+   <enumeration id="Constants_CaptionStyle">
+      <entry id="ssStandard" value="0"/>
+      <entry id="ssWrapped" value="1"/>
+   </enumeration>
+   <enumeration id="Constants_MarqueeStyle">
+      <entry id="ssNoneMarquee" value="0"/>
+      <entry id="ssScrollingMarquee" value="1"/>
+      <entry id="ssSlidingMarquee" value="2"/>
+      <entry id="ssBlinkingMarquee" value="3"/>
+      <entry id="ssBouncingMarquee" value="4"/>
+   </enumeration>
+   <enumeration id="Constants_MarqueeDirection">
+      <entry id="ssMDRightToLeft" value="0"/>
+      <entry id="ssMDLeftToRight" value="1"/>
+      <entry id="ssMDTopToBottom" value="2"/>
+      <entry id="ssMDBottomToTop" value="3"/>
+   </enumeration>
+   <enumeration id="Constants_BackStyle">
+      <entry id="ssOpaque" value="0"/>
+      <entry id="ssTransparent" value="1"/>
+   </enumeration>
+   <enumeration id="Constants_PictureBackgroundStyle">
+      <entry id="ssCentered" value="0"/>
+      <entry id="ssStretched" value="1"/>
+      <entry id="ssTiled" value="2"/>
+   </enumeration>
+   <enumeration id="Constants_PictureAlignment">
+      <entry id="ssPALeftOfCaption" value="0"/>
+      <entry id="ssPARightOfCaption" value="1"/>
+      <entry id="ssPAJustify" value="2"/>
+   </enumeration>
+   <enumeration id="Constants_ButtonStyle">
+      <entry id="ssFollowOS" value="0"/>
+      <entry id="ssWin95" value="1"/>
+      <entry id="ssWin3X" value="2"/>
+      <entry id="ssActiveBorders" value="3"/>
+      <entry id="ssBorderless" value="4"/>
+   </enumeration>
+   <enumeration id="Constants_FloodFillStyle">
+      <entry id="ssSolid" value="0"/>
+      <entry id="ssSegmented" value="1"/>
+   </enumeration>
+   <enumeration id="Constants_CheckBoxValue">
+      <entry id="ssCBUnchecked" value="0"/>
+      <entry id="ssCBChecked" value="1"/>
+      <entry id="ssCBGrayed" value="2"/>
+   </enumeration>
+   <enumeration id="Constants_PictureMaskColorSource">
+      <entry id="ssUseMaskColor" value="0"/>
+      <entry id="ssUseImage" value="1"/>
+   </enumeration>
+   <enumeration id="Constants_ShapeSize">
+      <entry id="ssControlToShape" value="0"/>
+      <entry id="ssShapeToControl" value="1"/>
+   </enumeration>
+   <enumeration id="Constants_SoundFlags">
+      <entry id="ssPlaySoundFile" value="0"/>
+      <entry id="ssPlaySystemSound" value="32"/>
+   </enumeration>
+   <enumeration id="Constants_OLEDrag">
+      <entry id="ssOLEDragManual" value="0"/>
+      <entry id="ssOLEDragAutomatic" value="1"/>
+   </enumeration>
+   <enumeration id="Constants_OLEDrop">
+      <entry id="ssOLEDropNone" value="0"/>
+      <entry id="ssOLEDropManual" value="1"/>
+   </enumeration>
+   <enumeration id="Constants_DragOver">
+      <entry id="ssEnter" value="0"/>
+      <entry id="ssLeave" value="1"/>
+      <entry id="ssOver" value="2"/>
+   </enumeration>
+   <enumeration id="Constants_ClipBoard">
+      <entry id="ssCFText" value="1"/>
+      <entry id="ssCFBitmap" value="2"/>
+      <entry id="ssCFMetafile" value="3"/>
+      <entry id="ssCFDIB" value="8"/>
+      <entry id="ssCFPalette" value="9"/>
+      <entry id="ssCFEMetafile" value="14"/>
+      <entry id="ssCFFiles" value="15"/>
+      <entry id="ssCFRTF" value="0xffffbf01"/>
+   </enumeration>
+   <enumeration id="Constants_OLEDropEffect">
+      <entry id="ssOLEDropEffectNone" value="0"/>
+      <entry id="ssOLEDropEffectCopy" value="1"/>
+      <entry id="ssOLEDropEffectMove" value="2"/>
+      <entry id="ssOLEDropEffectScroll" value="0x80000000"/>
+   </enumeration>
+   <class id="ISSDataObjectFiles" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="String" status="indexer">
+         <argument id="lIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="bstrFilename" type="String" status="ByVal"/>
+         <argument id="vIndex" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="vIndex" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="ISSDataObject" parent="IDispatch">
+      <property id="Files" type="SSDataObjectFiles" status="Out"/>
+      <method id="Clear" type="Void"/>
+      <method id="GetData" type="Variant">
+         <argument id="sFormat" type="Short" status="ByVal"/>
+      </method>
+      <method id="GetFormat" type="Boolean">
+         <argument id="sFormat" type="Short" status="ByVal"/>
+      </method>
+      <method id="SetData" type="Void">
+         <argument id="vValue" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="vFormat" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="ISSBase" parent="IDispatch">
+      <property id="ActiveColors" type="Boolean" status="InOut"/>
+      <property id="PictureAnimationDelay" type="Short" status="InOut"/>
+      <property id="PictureAnimationEnabled" type="Boolean" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="BackStyle" type="Constants_BackStyle" status="InOut"/>
+      <property id="CaptionStyle" type="Constants_CaptionStyle" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Font" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Font"/>
+         <Set npram="2" migPattern="%1d.Font = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Font(%1d)\c"/>
+      </property>
+      <property id="Font3D" type="Constants_Font3D" status="InOut"/>
+      <property id="FontBold" type="Boolean" status="InOut"/>
+      <property id="FontItalic" type="Boolean" status="InOut"/>
+      <property id="FontName" type="String" status="InOut"/>
+      <property id="FontSize" type="Single" status="InOut"/>
+      <property id="FontStrikethru" type="Boolean" status="InOut"/>
+      <property id="FontUnderline" type="Boolean" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="hWnd" type="OLE_HANDLE" status="Out"/>
+      <property id="MarqueeDelay" type="Short" status="InOut"/>
+      <property id="MarqueeDirection" type="Constants_MarqueeDirection" status="InOut"/>
+      <property id="MarqueeScrollAmount" type="Short" status="InOut"/>
+      <property id="MarqueeStyle" type="Constants_MarqueeStyle" status="InOut"/>
+      <property id="MouseIcon" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.MouseIcon"/>
+         <Set npram="2" migPattern="%1d.MouseIcon = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_MouseIcon(%1d)\c"/>
+      </property>
+      <property id="MousePointer" type="Constants_MousePointer" status="InOut"/>
+      <property id="OLEDropMode" type="Constants_OLEDrop" status="InOut"/>
+      <property id="Picture" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Picture"/>
+         <Set npram="2" migPattern="%1d.Picture = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Picture(%1d)\c"/>
+      </property>
+      <property id="PictureAnimationCount" type="Short" status="InOut"/>
+      <property id="PictureFrame" type="Short" status="InOut"/>
+      <property id="PictureFrames" type="Short" status="InOut"/>
+      <property id="PictureMaskColor" type="OLE_COLOR" status="InOut"/>
+      <property id="PictureMaskColorSource" type="Constants_PictureMaskColorSource" status="InOut"/>
+      <property id="PictureUseMask" type="Boolean" status="InOut"/>
+      <property id="TagVariant" type="Variant" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.TagVariant"/>
+         <Set npram="2" migPattern="%1d.TagVariant = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_TagVariant(%1d)\c"/>
+      </property>
+      <method id="Refresh" type="Void"/>
+      <method id="PlaySoundFile" type="Void">
+         <argument id="Sound" type="String" status="ByVal"/>
+         <argument id="SoundFlags" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="AboutBox" type="Void"/>
+      <method id="OLEDrag" type="Void"/>
+   </class>
+   <class id="ISSOptionBase" parent="ISSBase">
+      <property id="Caption" type="String" status="InOut"/>
+      <property id="Alignment" type="Constants_AlignTo" status="InOut"/>
+      <property id="PictureAlignment" type="Constants_PictureAlignment" status="InOut"/>
+   </class>
+   <class id="ISSButtonBase" parent="ISSBase" default="_Value">
+      <property id="Caption" type="String" status="InOut"/>
+      <property id="Value" type="Boolean" status="InOut"/>
+      <property id="_Value" type="Boolean" status="InOut"/>
+      <property id="Alignment" type="Constants_Alignment" status="InOut"/>
+      <property id="AutoSize" type="Constants_AutoSizeButton" status="InOut"/>
+      <property id="BevelWidth" type="Short" status="InOut"/>
+      <property id="ButtonStyle" type="Constants_ButtonStyle" status="InOut"/>
+      <property id="Outline" type="Boolean" status="InOut"/>
+      <property id="PictureAlignment" type="Constants_Alignment" status="InOut"/>
+      <property id="PictureDisabled" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.PictureDisabled"/>
+         <Set npram="2" migPattern="%1d.PictureDisabled = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_PictureDisabled(%1d)\c"/>
+      </property>
+      <property id="PictureDisabledFrames" type="Short" status="InOut"/>
+      <property id="PictureDn" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.PictureDn"/>
+         <Set npram="2" migPattern="%1d.PictureDn = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_PictureDn(%1d)\c"/>
+      </property>
+      <property id="PictureDnFrames" type="Short" status="InOut"/>
+      <property id="Shape" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Shape"/>
+         <Set npram="2" migPattern="%1d.Shape = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Shape(%1d)\c"/>
+      </property>
+      <property id="ShapeSize" type="Constants_ShapeSize" status="InOut"/>
+      <property id="RoundedCorners" type="Boolean" status="InOut"/>
+   </class>
+   <class id="ISSFrameBase" parent="ISSBase">
+      <property id="PictureBackgroundStyle" type="Constants_PictureBackgroundStyle" status="InOut"/>
+      <property id="PictureBackground" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.PictureBackground"/>
+         <Set npram="2" migPattern="%1d.PictureBackground = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_PictureBackground(%1d)\c"/>
+      </property>
+      <property id="ClipControls" type="Boolean" status="InOut"/>
+      <property id="PictureBackgroundUseMask" type="Boolean" status="InOut"/>
+   </class>
+   <class id="ISSFrame" parent="ISSFrameBase" default="Caption">
+      <property id="Caption" type="String" status="InOut" migName="Text"/>
+      <property id="_Caption" type="String" status="InOut"/>
+      <property id="Alignment" type="Constants_AlignFrameText" status="InOut"/>
+      <property id="ShadowColor" type="Constants_ShadowColor" status="InOut"/>
+      <property id="ShadowStyle" type="Constants_ShadowStyle" status="InOut"/>
+      <property id="PictureAlignment" type="Constants_PictureAlignment" status="InOut"/>
+   </class>
+   <class id="DSSFrameEvents" parent="None">
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="AxThreed.DSSFrameEvents_MouseDownEventHandler" netArgs="AxThreed.DSSFrameEvents_MouseDownEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="AxThreed.DSSFrameEvents_MouseMoveEventHandler" netArgs="AxThreed.DSSFrameEvents_MouseMoveEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="AxThreed.DSSFrameEvents_MouseUpEventHandler" netArgs="AxThreed.DSSFrameEvents_MouseUpEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="DblClick" netName="DblClick" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MarqueeCycleBegin" netName="MarqueeCycleBegin" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MarqueeCycleEnd" netName="MarqueeCycleEnd" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MouseEnter" netName="MouseEnterEvent" netHandler="AxThreed.DSSFrameEvents_MouseEnterEventHandler" netArgs="AxThreed.DSSFrameEvents_MouseEnterEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseExit" netName="MouseExit" netHandler="AxThreed.DSSFrameEvents_MouseExitEventHandler" netArgs="AxThreed.DSSFrameEvents_MouseExitEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxThreed.DSSFrameEvents_OLEStartDragEventHandler" netArgs="AxThreed.DSSFrameEvents_OLEStartDragEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxThreed.DSSFrameEvents_OLEGiveFeedbackEventHandler" netArgs="AxThreed.DSSFrameEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxThreed.DSSFrameEvents_OLESetDataEventHandler" netArgs="AxThreed.DSSFrameEvents_OLESetDataEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxThreed.DSSFrameEvents_OLECompleteDragEventHandler" netArgs="AxThreed.DSSFrameEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxThreed.DSSFrameEvents_OLEDragOverEventHandler" netArgs="AxThreed.DSSFrameEvents_OLEDragOverEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="state" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxThreed.DSSFrameEvents_OLEDragDropEventHandler" netArgs="AxThreed.DSSFrameEvents_OLEDragDropEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+      <event id="PictureFrameChanged" netName="PictureFrameChanged" netHandler="System.EventHandler" netArgs="EventArgs"/>
+   </class>
+   <class id="ISSPanel" parent="ISSFrameBase" default="Caption">
+      <property id="Caption" type="String" status="InOut" migName="Text"/>
+      <property id="BevelWidth" type="Short" status="InOut"/>
+      <property id="BorderWidth" type="Short" status="InOut"/>
+      <property id="BevelOuter" type="Constants_Bevel" status="InOut"/>
+      <property id="BevelInner" type="Constants_Bevel" status="InOut"/>
+      <property id="RoundedCorners" type="Boolean" status="InOut"/>
+      <property id="Outline" type="Boolean" status="InOut"/>
+      <property id="FloodType" type="Constants_FloodType" status="InOut"/>
+      <property id="FloodColor" type="OLE_COLOR" status="InOut"/>
+      <property id="FloodPercent" type="Short" status="InOut"/>
+      <property id="FloodShowPct" type="Boolean" status="InOut" />
+      <property id="_Caption" type="String" status="InOut" migName="Text"/>
+      <property id="Alignment" type="Constants_Alignment" status="InOut"/>
+      <property id="ShadowColor" type="Constants_ShadowColor" status="InOut"/>
+      <property id="AutoSize" type="Constants_AutoSizePanel" status="InOut"/>
+      <property id="PictureAlignment" type="Constants_Alignment" status="InOut"/>
+      <property id="FloodFillStyle" type="Constants_FloodFillStyle" status="InOut"/>
+   </class>
+   <class id="DSSPanel" parent="None" default="Caption">
+      <property id="ActiveColors" type="Boolean"/>
+      <property id="PictureAnimationDelay" type="Short"/>
+      <property id="PictureAnimationEnabled" type="Boolean"/>
+      <property id="BackColor" type="OLE_COLOR"/>
+      <property id="BackStyle" type="Constants_BackStyle"/>
+      <property id="CaptionStyle" type="Constants_CaptionStyle"/>
+      <property id="Enabled" type="Boolean"/>
+      <property id="Font" type="Font"/>
+      <property id="Font3D" type="Constants_Font3D"/>
+      <property id="FontBold" type="Boolean"/>
+      <property id="FontItalic" type="Boolean"/>
+      <property id="FontName" type="Boolean"/>
+      <property id="FontSize" type="Single"/>
+      <property id="FontStrikethru" type="Boolean"/>
+      <property id="FontUnderline" type="Boolean"/>
+      <property id="ForeColor" type="OLE_COLOR"/>
+      <property id="hWnd" type="OLE_HANDLE"/>
+      <property id="MarqueeDelay" type="Short"/>
+      <property id="MarqueeDirection" type="Constants_MarqueeDirection"/>
+      <property id="MarqueeScrollAmount" type="Short"/>
+      <property id="MarqueeStyle" type="Constants_MarqueeStyle"/>
+      <property id="MouseIcon" type="FrxPicture"/>
+      <property id="MousePointer" type="Constants_MousePointer"/>
+      <property id="OLEDropMode" type="Constants_OLEDrop"/>
+      <property id="Picture" type="FrxPicture"/>
+      <property id="PictureAnimationCount" type="Short"/>
+      <property id="PictureFrame" type="Short"/>
+      <property id="PictureFrames" type="Short"/>
+      <property id="PictureMaskColor" type="OLE_COLOR"/>
+      <property id="PictureMaskColorSource" type="Constants_PictureMaskColorSource"/>
+      <property id="PictureUseMask" type="Boolean"/>
+      <property id="TagVariant" type="Variant"/>
+      <property id="PictureBackgroundStyle" type="Constants_PictureBackgroundStyle"/>
+      <property id="PictureBackground" type="FrxPicture"/>
+      <property id="ClipControls" type="Boolean"/>
+      <property id="Caption" type="String" migName="Text"/>
+      <property id="BevelWidth" type="Short"/>
+      <property id="BorderWidth" type="Short"/>
+      <property id="BevelOuter" type="Constants_Bevel"/>
+      <property id="BevelInner" type="Constants_Bevel"/>
+      <property id="RoundedCorners" type="Boolean"/>
+      <property id="Outline" type="Boolean"/>
+      <property id="FloodType" type="Constants_FloodType"/>
+      <property id="FloodColor" type="OLE_COLOR"/>
+      <property id="FloodPercent" type="Short"/>
+      <property id="FloodShowPct" type="Boolean"/>
+      <property id="_Caption" type="String"/>
+      <property id="Alignment" type="Constants_Alignment"/>
+      <property id="ShadowColor" type="Constants_ShadowColor"/>
+      <property id="AutoSize" type="Constants_AutoSizePanel"/>
+      <property id="PictureAlignment" type="Constants_Alignment"/>
+      <property id="FloodFillStyle" type="Constants_FloodFillStyle"/>
+      <property id="PictureBackgroundUseMask" type="Boolean"/>
+      <method id="Refresh" type="Void"/>
+      <method id="PlaySoundFile" type="Void">
+         <argument id="SoundFile" type="Variant" status="ByVal"/>
+      </method>
+      <method id="AboutBox" type="Void"/>
+      <method id="OLEDrag" type="Void"/>
+      <property id="Tag" type="String"/>
+   </class>
+   <class id="DSSPanelEvents" parent="None">
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>      
+      <event id="COM_MouseDown" netName="MouseDownEvent" netHandler="AxThreed.DSSPanelEvents_MouseDownEventHandler" netArgs="AxThreed.DSSPanelEvents_MouseDownEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseDown" netName="MouseDown" netHandler="MouseEventHandler" netArgs="MouseEventArgs">
+         <argument id="button" type="Short" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal" cshPattern="%1d = (int)Control.ModifierKeys" vbnPattern="%1d = Control.ModifierKeys" />
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d=e.X"/>
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d=e.Y"/>
+      </event>
+      <event id="COM_MouseMove" netName="MouseMoveEvent" netHandler="AxThreed.DSSPanelEvents_MouseMoveEventHandler" netArgs="AxThreed.DSSPanelEvents_MouseMoveEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseMove" netName="MouseMove" netHandler="System.Windows.Forms.MouseEventHandler" netArgs="MouseEventArgs">
+         <argument id="button" type="Short" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal" cshPattern="%1d = (int)Control.ModifierKeys" vbnPattern="%1d = Control.ModifierKeys" />
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d=e.X"/>
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d=e.Y"/>
+      </event>
+      <event id="COM_MouseUp" netName="MouseUpEvent" netHandler="AxThreed.DSSPanelEvents_MouseUpEventHandler" netArgs="AxThreed.DSSPanelEvents_MouseUpEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseUp" netName="MouseUp" netHandler="MouseEventHandler" netArgs="MouseEventArgs">
+         <argument id="button" type="Short" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal" cshPattern="%1d = (int)Control.ModifierKeys" vbnPattern="%1d = Control.ModifierKeys" />
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d=e.X"/>
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d=e.Y"/>
+      </event>
+      <event id="DblClick" netName="DblClick" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MarqueeCycleBegin" netName="MarqueeCycleBegin" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MarqueeCycleEnd" netName="MarqueeCycleEnd" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MouseEnter" netName="MouseEnterEvent" netHandler="AxThreed.DSSPanelEvents_MouseEnterEventHandler" netArgs="AxThreed.DSSPanelEvents_MouseEnterEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseExit" netName="MouseExit" netHandler="AxThreed.DSSPanelEvents_MouseExitEventHandler" netArgs="AxThreed.DSSPanelEvents_MouseExitEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxThreed.DSSPanelEvents_OLEStartDragEventHandler" netArgs="AxThreed.DSSPanelEvents_OLEStartDragEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxThreed.DSSPanelEvents_OLEGiveFeedbackEventHandler" netArgs="AxThreed.DSSPanelEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxThreed.DSSPanelEvents_OLESetDataEventHandler" netArgs="AxThreed.DSSPanelEvents_OLESetDataEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxThreed.DSSPanelEvents_OLECompleteDragEventHandler" netArgs="AxThreed.DSSPanelEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxThreed.DSSPanelEvents_OLEDragOverEventHandler" netArgs="AxThreed.DSSPanelEvents_OLEDragOverEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="state" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxThreed.DSSPanelEvents_OLEDragDropEventHandler" netArgs="AxThreed.DSSPanelEvents_OLEDragDropEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+      <event id="Resize" netName="Resize" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="PictureFrameChanged" netName="PictureFrameChanged" netHandler="System.EventHandler" netArgs="EventArgs"/>
+   </class>
+   <class id="DSSOption" parent="None" default="_Value">
+      <property id="ActiveColors" type="Boolean"/>
+      <property id="PictureAnimationDelay" type="Short"/>
+      <property id="PictureAnimationEnabled" type="Boolean"/>
+      <property id="BackColor" type="OLE_COLOR"/>
+      <property id="BackStyle" type="Constants_BackStyle"/>
+      <property id="CaptionStyle" type="Constants_CaptionStyle"/>
+      <property id="Enabled" type="Boolean"/>
+      <property id="Font" type="Font"/>
+      <property id="Font3D" type="Constants_Font3D"/>
+      <property id="FontBold" type="Boolean"/>
+      <property id="FontItalic" type="Boolean"/>
+      <property id="FontName" type="Boolean"/>
+      <property id="FontSize" type="Single"/>
+      <property id="FontStrikethru" type="Boolean"/>
+      <property id="FontUnderline" type="Boolean"/>
+      <property id="ForeColor" type="OLE_COLOR"/>
+      <property id="hWnd" type="OLE_HANDLE"/>
+      <property id="MarqueeDelay" type="Short"/>
+      <property id="MarqueeDirection" type="Constants_MarqueeDirection"/>
+      <property id="MarqueeScrollAmount" type="Short"/>
+      <property id="MarqueeStyle" type="Constants_MarqueeStyle"/>
+      <property id="MouseIcon" type="FrxPicture"/>
+      <property id="MousePointer" type="Constants_MousePointer"/>
+      <property id="OLEDropMode" type="Constants_OLEDrop"/>
+      <property id="Picture" type="FrxPicture"/>
+      <property id="PictureAnimationCount" type="Short"/>
+      <property id="PictureFrame" type="Short"/>
+      <property id="PictureFrames" type="Short"/>
+      <property id="PictureMaskColor" type="OLE_COLOR"/>
+      <property id="PictureMaskColorSource" type="Constants_PictureMaskColorSource"/>
+      <property id="PictureUseMask" type="Boolean"/>
+      <property id="TagVariant" type="Variant"/>
+      <property id="Value" type="stdole.OLE_OPTEXCLUSIVE"/>
+      <property id="_Value" type="stdole.OLE_OPTEXCLUSIVE"/>
+      <property id="OptionBtnMaskColor" type="OLE_COLOR"/>
+      <property id="OptionBtnUseMask" type="Boolean"/>
+      <property id="OptionBtnGraphics" type="FrxPicture"/>
+      <property id="Windowless" type="Boolean"/>
+      <property id="OptionValue" type="String"/>
+      <property id="DataValue" type="String"/>
+      <property id="Caption" type="String"/>
+      <property id="Alignment" type="Constants_AlignTo"/>
+      <property id="PictureAlignment" type="Constants_PictureAlignment"/>
+      <method id="Refresh" type="Void"/>
+      <method id="PlaySoundFile" type="Void">
+         <argument id="SoundFile" type="Variant" status="ByVal"/>
+      </method>
+      <method id="AboutBox" type="Void"/>
+      <method id="OLEDrag" type="Void"/>
+   </class>
+   <class id="ISSOption" parent="ISSOptionBase" default="_Value">
+      <property id="Value" type="stdole.OLE_OPTEXCLUSIVE" status="InOut"/>
+      <property id="_Value" type="stdole.OLE_OPTEXCLUSIVE" status="InOut"/>
+      <property id="OptionBtnMaskColor" type="OLE_COLOR" status="InOut"/>
+      <property id="OptionBtnUseMask" type="Boolean" status="InOut"/>
+      <property id="OptionBtnGraphics" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.OptionBtnGraphics"/>
+         <Set npram="2" migPattern="%1d.OptionBtnGraphics = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_OptionBtnGraphics(%1d)\c"/>
+      </property>
+      <property id="Windowless" type="Boolean" status="InOut"/>
+      <property id="OptionValue" type="String" status="InOut"/>
+      <property id="DataValue" type="String" status="InOut"/>
+   </class>
+   <class id="DSSOptionEvents" parent="None">
+      <event id="Click" netName="ClickEvent" netHandler="AxThreed.DSSOptionEvents_ClickEventHandler" netArgs="AxThreed.DSSOptionEvents_ClickEvent">
+         <argument id="value" type="Short" status="Out"/>
+      </event>
+      <event id="KeyDown" netName="KeyDownEvent" netHandler="AxThreed.DSSOptionEvents_KeyDownEventHandler" netArgs="AxThreed.DSSOptionEvents_KeyDownEvent">
+         <argument id="keyCode" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="AxThreed.DSSOptionEvents_KeyPressEventHandler" netArgs="AxThreed.DSSOptionEvents_KeyPressEvent">
+         <argument id="keyAscii" type="Short" status="Out"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="AxThreed.DSSOptionEvents_KeyUpEventHandler" netArgs="AxThreed.DSSOptionEvents_KeyUpEvent">
+         <argument id="keyCode" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="AxThreed.DSSOptionEvents_MouseDownEventHandler" netArgs="AxThreed.DSSOptionEvents_MouseDownEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="AxThreed.DSSOptionEvents_MouseMoveEventHandler" netArgs="AxThreed.DSSOptionEvents_MouseMoveEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="AxThreed.DSSOptionEvents_MouseUpEventHandler" netArgs="AxThreed.DSSOptionEvents_MouseUpEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="DblClick" netName="DblClick" netHandler="AxThreed.DSSOptionEvents_DblClickEventHandler" netArgs="AxThreed.DSSOptionEvents_DblClickEvent">
+         <argument id="value" type="Short" status="Out"/>
+      </event>
+      <event id="MarqueeCycleBegin" netName="MarqueeCycleBegin" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MarqueeCycleEnd" netName="MarqueeCycleEnd" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MouseEnter" netName="MouseEnterEvent" netHandler="AxThreed.DSSOptionEvents_MouseEnterEventHandler" netArgs="AxThreed.DSSOptionEvents_MouseEnterEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseExit" netName="MouseExit" netHandler="AxThreed.DSSOptionEvents_MouseExitEventHandler" netArgs="AxThreed.DSSOptionEvents_MouseExitEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxThreed.DSSOptionEvents_OLEStartDragEventHandler" netArgs="AxThreed.DSSOptionEvents_OLEStartDragEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxThreed.DSSOptionEvents_OLEGiveFeedbackEventHandler" netArgs="AxThreed.DSSOptionEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxThreed.DSSOptionEvents_OLESetDataEventHandler" netArgs="AxThreed.DSSOptionEvents_OLESetDataEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxThreed.DSSOptionEvents_OLECompleteDragEventHandler" netArgs="AxThreed.DSSOptionEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxThreed.DSSOptionEvents_OLEDragOverEventHandler" netArgs="AxThreed.DSSOptionEvents_OLEDragOverEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="state" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxThreed.DSSOptionEvents_OLEDragDropEventHandler" netArgs="AxThreed.DSSOptionEvents_OLEDragDropEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+      <event id="PictureFrameChanged" netName="PictureFrameChanged" netHandler="System.EventHandler" netArgs="EventArgs"/>
+   </class>
+   <class id="ISSCheck" parent="ISSOptionBase" default="_Value">
+      <property id="BoundValue" type="Integer" status="InOut"/>
+      <property id="_Value" type="Integer" status="InOut"/>
+      <property id="Value" type="Constants_CheckBoxValue" status="InOut"/>
+      <property id="CheckBoxMaskColor" type="OLE_COLOR" status="InOut"/>
+      <property id="CheckBoxUseMask" type="Boolean" status="InOut"/>
+      <property id="CheckBoxGraphics" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.CheckBoxGraphics"/>
+         <Set npram="2" migPattern="%1d.CheckBoxGraphics = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_CheckBoxGraphics(%1d)\c"/>
+      </property>
+      <property id="TripleState" type="Boolean" status="InOut"/>
+      <property id="Windowless" type="Boolean" status="InOut"/>
+   </class>
+   <class id="DSSCheck" parent="None" default="_Value">
+      <property id="ActiveColors" type="Boolean"/>
+      <property id="PictureAnimationDelay" type="Short"/>
+      <property id="PictureAnimationEnabled" type="Boolean"/>
+      <property id="BackColor" type="OLE_COLOR"/>
+      <property id="BackStyle" type="Constants_BackStyle"/>
+      <property id="CaptionStyle" type="Constants_CaptionStyle"/>
+      <property id="Enabled" type="Boolean"/>
+      <property id="Font" type="Font"/>
+      <property id="Font3D" type="Constants_Font3D"/>
+      <property id="FontBold" type="Boolean"/>
+      <property id="FontItalic" type="Boolean"/>
+      <property id="FontName" type="Boolean"/>
+      <property id="FontSize" type="Single"/>
+      <property id="FontStrikethru" type="Boolean"/>
+      <property id="FontUnderline" type="Boolean"/>
+      <property id="ForeColor" type="OLE_COLOR"/>
+      <property id="hWnd" type="OLE_HANDLE"/>
+      <property id="MarqueeDelay" type="Short"/>
+      <property id="MarqueeDirection" type="Constants_MarqueeDirection"/>
+      <property id="MarqueeScrollAmount" type="Short"/>
+      <property id="MarqueeStyle" type="Constants_MarqueeStyle"/>
+      <property id="MouseIcon" type="FrxPicture"/>
+      <property id="MousePointer" type="Constants_MousePointer"/>
+      <property id="OLEDropMode" type="Constants_OLEDrop"/>
+      <property id="Picture" type="FrxPicture"/>
+      <property id="PictureAnimationCount" type="Short"/>
+      <property id="PictureFrame" type="Short"/>
+      <property id="PictureFrames" type="Short"/>
+      <property id="PictureMaskColor" type="OLE_COLOR"/>
+      <property id="PictureMaskColorSource" type="Constants_PictureMaskColorSource"/>
+      <property id="PictureUseMask" type="Boolean"/>
+      <property id="TagVariant" type="Variant"/>
+      <property id="Caption" type="String"/>
+      <property id="Alignment" type="Constants_AlignTo"/>
+      <property id="PictureAlignment" type="Constants_PictureAlignment"/>
+      <property id="Value" type="Constants_CheckBoxValue"/>
+      <property id="_Value" type="Integer"/>
+      <property id="BoundValue" type="Integer"/>
+      <property id="CheckBoxMaskColor" type="OLE_COLOR"/>
+      <property id="CheckBoxUseMask" type="Boolean"/>
+      <property id="CheckBoxGraphics" type="FrxPicture"/>
+      <property id="TripleState" type="Boolean"/>
+      <property id="Windowless" type="Boolean"/>
+      <method id="Refresh" type="Void"/>
+      <method id="PlaySoundFile" type="Void">
+         <argument id="SoundFile" type="Variant" status="ByVal"/>
+      </method>
+      <method id="AboutBox" type="Void"/>
+      <method id="OLEDrag" type="Void"/>
+   </class>
+   <class id="DSSCheckEvents" parent="None">
+      <event id="Click" netName="ClickEvent" netHandler="AxThreed.DSSCheckEvents_ClickEventHandler" netArgs="AxThreed.DSSCheckEvents_ClickEvent">
+         <argument id="value" type="Short" status="Out"/>
+      </event>
+      <event id="KeyDown" netName="KeyDownEvent" netHandler="AxThreed.DSSCheckEvents_KeyDownEventHandler" netArgs="AxThreed.DSSCheckEvents_KeyDownEvent">
+         <argument id="keyCode" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="AxThreed.DSSCheckEvents_KeyPressEventHandler" netArgs="AxThreed.DSSCheckEvents_KeyPressEvent">
+         <argument id="keyAscii" type="Short" status="Out"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="AxThreed.DSSCheckEvents_KeyUpEventHandler" netArgs="AxThreed.DSSCheckEvents_KeyUpEvent">
+         <argument id="keyCode" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="AxThreed.DSSCheckEvents_MouseDownEventHandler" netArgs="AxThreed.DSSCheckEvents_MouseDownEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="AxThreed.DSSCheckEvents_MouseMoveEventHandler" netArgs="AxThreed.DSSCheckEvents_MouseMoveEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="AxThreed.DSSCheckEvents_MouseUpEventHandler" netArgs="AxThreed.DSSCheckEvents_MouseUpEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MarqueeCycleBegin" netName="MarqueeCycleBegin" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MarqueeCycleEnd" netName="MarqueeCycleEnd" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MouseEnter" netName="MouseEnterEvent" netHandler="AxThreed.DSSCheckEvents_MouseEnterEventHandler" netArgs="AxThreed.DSSCheckEvents_MouseEnterEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseExit" netName="MouseExit" netHandler="AxThreed.DSSCheckEvents_MouseExitEventHandler" netArgs="AxThreed.DSSCheckEvents_MouseExitEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxThreed.DSSCheckEvents_OLEStartDragEventHandler" netArgs="AxThreed.DSSCheckEvents_OLEStartDragEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxThreed.DSSCheckEvents_OLEGiveFeedbackEventHandler" netArgs="AxThreed.DSSCheckEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxThreed.DSSCheckEvents_OLESetDataEventHandler" netArgs="AxThreed.DSSCheckEvents_OLESetDataEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxThreed.DSSCheckEvents_OLECompleteDragEventHandler" netArgs="AxThreed.DSSCheckEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxThreed.DSSCheckEvents_OLEDragOverEventHandler" netArgs="AxThreed.DSSCheckEvents_OLEDragOverEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="state" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxThreed.DSSCheckEvents_OLEDragDropEventHandler" netArgs="AxThreed.DSSCheckEvents_OLEDragDropEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+      <event id="PictureFrameChanged" netName="PictureFrameChanged" netHandler="System.EventHandler" netArgs="EventArgs"/>
+   </class>
+   <class id="ISSRibbon" parent="ISSButtonBase">
+      <property id="GroupNumber" type="Short" status="InOut"/>
+      <property id="GroupAllowAllUp" type="Boolean" status="InOut"/>
+      <property id="PictureDnChange" type="Constants_PictureDnChange" status="InOut"/>
+      <property id="PictureUp" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.PictureUp"/>
+         <Set npram="2" migPattern="%1d.PictureUp = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_PictureUp(%1d)\c"/>
+      </property>
+      <property id="PictureDnDisabled" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.PictureDnDisabled"/>
+         <Set npram="2" migPattern="%1d.PictureDnDisabled = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_PictureDnDisabled(%1d)\c"/>
+      </property>
+      <property id="PictureDnDisabledFrames" type="Short" status="InOut"/>
+      <property id="Windowless" type="Boolean" status="InOut"/>
+   </class>
+   <class id="DSSRibbonEvents" parent="None">
+      <event id="Click" netName="ClickEvent" netHandler="AxThreed.DSSRibbonEvents_ClickEventHandler" netArgs="AxThreed.DSSRibbonEvents_ClickEvent">
+         <argument id="value" type="Short" status="Out"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="AxThreed.DSSRibbonEvents_MouseDownEventHandler" netArgs="AxThreed.DSSRibbonEvents_MouseDownEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="AxThreed.DSSRibbonEvents_MouseMoveEventHandler" netArgs="AxThreed.DSSRibbonEvents_MouseMoveEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="AxThreed.DSSRibbonEvents_MouseUpEventHandler" netArgs="AxThreed.DSSRibbonEvents_MouseUpEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MarqueeCycleBegin" netName="MarqueeCycleBegin" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MarqueeCycleEnd" netName="MarqueeCycleEnd" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MouseEnter" netName="MouseEnterEvent" netHandler="AxThreed.DSSRibbonEvents_MouseEnterEventHandler" netArgs="AxThreed.DSSRibbonEvents_MouseEnterEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseExit" netName="MouseExit" netHandler="AxThreed.DSSRibbonEvents_MouseExitEventHandler" netArgs="AxThreed.DSSRibbonEvents_MouseExitEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxThreed.DSSRibbonEvents_OLEStartDragEventHandler" netArgs="AxThreed.DSSRibbonEvents_OLEStartDragEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxThreed.DSSRibbonEvents_OLEGiveFeedbackEventHandler" netArgs="AxThreed.DSSRibbonEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxThreed.DSSRibbonEvents_OLESetDataEventHandler" netArgs="AxThreed.DSSRibbonEvents_OLESetDataEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxThreed.DSSRibbonEvents_OLECompleteDragEventHandler" netArgs="AxThreed.DSSRibbonEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxThreed.DSSRibbonEvents_OLEDragOverEventHandler" netArgs="AxThreed.DSSRibbonEvents_OLEDragOverEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="state" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxThreed.DSSRibbonEvents_OLEDragDropEventHandler" netArgs="AxThreed.DSSRibbonEvents_OLEDragDropEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+      <event id="PictureFrameChanged" netName="PictureFrameChanged" netHandler="System.EventHandler" netArgs="EventArgs"/>
+   </class>
+   <class id="ISSCommand" parent="ISSButtonBase">
+      <property id="AutoRepeat" type="Boolean" status="InOut"/>
+      <property id="Windowless" type="Boolean" status="InOut"/>
+      <method id="DoClick" type="Void"/>
+   </class>
+   <class id="DSSCommandEvents" parent="None">
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="KeyDown" netName="KeyDownEvent" netHandler="AxThreed.DSSCommandEvents_KeyDownEventHandler" netArgs="AxThreed.DSSCommandEvents_KeyDownEvent">
+         <argument id="keyCode" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="AxThreed.DSSCommandEvents_KeyPressEventHandler" netArgs="AxThreed.DSSCommandEvents_KeyPressEvent">
+         <argument id="keyAscii" type="Short" status="Out"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="AxThreed.DSSCommandEvents_KeyUpEventHandler" netArgs="AxThreed.DSSCommandEvents_KeyUpEvent">
+         <argument id="keyCode" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="AxThreed.DSSCommandEvents_MouseDownEventHandler" netArgs="AxThreed.DSSCommandEvents_MouseDownEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="AxThreed.DSSCommandEvents_MouseMoveEventHandler" netArgs="AxThreed.DSSCommandEvents_MouseMoveEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="AxThreed.DSSCommandEvents_MouseUpEventHandler" netArgs="AxThreed.DSSCommandEvents_MouseUpEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MarqueeCycleBegin" netName="MarqueeCycleBegin" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MarqueeCycleEnd" netName="MarqueeCycleEnd" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MouseEnter" netName="MouseEnterEvent" netHandler="AxThreed.DSSCommandEvents_MouseEnterEventHandler" netArgs="AxThreed.DSSCommandEvents_MouseEnterEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseExit" netName="MouseExit" netHandler="AxThreed.DSSCommandEvents_MouseExitEventHandler" netArgs="AxThreed.DSSCommandEvents_MouseExitEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxThreed.DSSCommandEvents_OLEStartDragEventHandler" netArgs="AxThreed.DSSCommandEvents_OLEStartDragEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxThreed.DSSCommandEvents_OLEGiveFeedbackEventHandler" netArgs="AxThreed.DSSCommandEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxThreed.DSSCommandEvents_OLESetDataEventHandler" netArgs="AxThreed.DSSCommandEvents_OLESetDataEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxThreed.DSSCommandEvents_OLECompleteDragEventHandler" netArgs="AxThreed.DSSCommandEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxThreed.DSSCommandEvents_OLEDragOverEventHandler" netArgs="AxThreed.DSSCommandEvents_OLEDragOverEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="state" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxThreed.DSSCommandEvents_OLEDragDropEventHandler" netArgs="AxThreed.DSSCommandEvents_OLEDragDropEvent">
+         <argument id="data" type="SSDataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+      <event id="PictureFrameChanged" netName="PictureFrameChanged" netHandler="System.EventHandler" netArgs="EventArgs"/>
+   </class>
+   <coclass id="SSDataObjectFiles" uuid="6B976284-3692-11D0-9B8A-0000C0F04C96">
+      <subclass id="ISSDataObjectFiles"/>
+   </coclass>
+   <coclass id="SSDataObject" uuid="6B976286-3692-11D0-9B8A-0000C0F04C96">
+      <subclass id="ISSDataObject"/>
+   </coclass>
+   <coclass id="SSFrame" uuid="065E6FD8-1BF9-11D2-BAE8-00104B9E0792" migStatus="ActiveX" migName="AxThreed.AxSSFrame">
+      <subclass id="ISSFrame"/>
+      <subclass id="DSSFrameEvents"/>
+   </coclass>
+   <coclass id="SSPanel" uuid="065E6FDC-1BF9-11D2-BAE8-00104B9E0792" role="Control" migName="GroupBox">
+      <subclass id="DSSPanel"/>
+      <subclass id="ISSPanel"/>
+      <subclass id="DSSPanelEvents"/>
+   </coclass>
+   <coclass id="SSOption" uuid="065E6FDF-1BF9-11D2-BAE8-00104B9E0792" migStatus="ActiveX" migName="AxThreed.AxSSOption">
+      <subclass id="DSSOption"/>
+      <subclass id="ISSOption"/>
+      <subclass id="DSSOptionEvents"/>
+   </coclass>
+   <coclass id="SSCheck" uuid="065E6FE3-1BF9-11D2-BAE8-00104B9E0792" migStatus="ActiveX" migName="AxThreed.AxSSCheck">
+      <subclass id="DSSCheck"/>
+      <subclass id="ISSCheck"/>
+      <subclass id="DSSCheckEvents"/>
+   </coclass>
+   <coclass id="SSRibbon" uuid="065E6FE6-1BF9-11D2-BAE8-00104B9E0792" migStatus="ActiveX" migName="AxThreed.AxSSRibbon">
+      <subclass id="ISSRibbon"/>
+      <subclass id="DSSRibbonEvents"/>
+   </coclass>
+   <coclass id="SSCommand" uuid="065E6FE9-1BF9-11D2-BAE8-00104B9E0792" migStatus="ActiveX" migName="AxThreed.AxSSCommand">
+      <subclass id="ISSCommand"/>
+      <subclass id="DSSCommandEvents"/>
+   </coclass>
+</library>
+<Refactor id="[ssa3d30.ocx]" >
+<migClass id="NetControl.SSPanel" migName="System.Windows.Forms.GroupBox" parent="SSPanel">
+   <property id="Font" value="Font" type="FontInfo" nPram="3"
+             vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+             cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+   />
+   <property id="Name" type="String" value="SYM.Name" />
+   <property id="Location" value="(Left,Top)" nPram="2" migPattern="new System.Drawing.Point(%1d, %2d)" />
+   <!--property id="Picture" value="DSSPanel.Picture" migStatus="external" /-->
+   <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+   <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+   <property id="Tag" type="String" value="DSSPanel.Tag" />
+   <property id="Text" type="String" value="Caption" />
+   <!--
+   TODO
+    BackColor = System.Drawing.SystemColors.ControlDark;
+    PictureMaskColor = System.Drawing.ColorTranslator.FromOle(Convert.ToInt32(0xff00ff));  // Not part of GroupBox
+    PictureFrames = 1;
+    PictureUseMask = true;    RoundedCorners = false;
+    Picture = (System.Drawing.Image)resources.GetObject("FrxDataD74E.Picture");
+    FloodShowPct = false;
+    BevelOuter = System.Windows.Forms.Constants_Bevel.ssInsetBevel;
+    Alignment = System.Windows.Forms.Constants_Alignment.ssLeftMiddle;
+    -->
+</migClass>
+</Refactor>
+</DescriptionFile>

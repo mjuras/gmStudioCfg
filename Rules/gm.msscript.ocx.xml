@@ -1,0 +1,154 @@
+<DescriptionFile>
+<library id="gm.msscript.ocx"
+         name="MSScriptControl"
+         uuid="0E59F1D2-1FBE-11D0-8FF2-00A0D10038BC"
+         netVersion="1.0"
+         source="msscript.ocx"
+         location="..\bin\ClearScript.dll"
+         migName="Microsoft.ClearScript.Windows"
+         type="LocalImport"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IScriptProcedure"/>
+   <class id="IScriptProcedureCollection"/>
+   <class id="IScriptModule"/>
+   <class id="IScriptModuleCollection"/>
+   <class id="IScriptError"/>
+   <class id="IScriptControl"/>
+   <class id="DScriptControlSource"/>
+   <coclass id="Procedure"/>
+   <coclass id="Procedures"/>
+   <coclass id="Module"/>
+   <coclass id="Modules"/>
+   <coclass id="Error"/>
+   <coclass id="ScriptControl"/>
+   <class id="ScriptControlConstants"/>
+   <enumeration id="ScriptControlStates">
+      <entry id="Initialized" value="0"/>
+      <entry id="Connected" value="1"/>
+   </enumeration>
+   <class id="IScriptProcedure" parent="IDispatch" default="Name">
+      <property id="Name" type="String" status="Out"/>
+      <property id="NumArgs" type="Integer" status="Out"/>
+      <property id="HasReturnValue" type="Boolean" status="Out"/>
+   </class>
+   <class id="IScriptProcedureCollection" parent="IDispatch" default="Item">
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="Procedure" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IScriptModule" parent="IDispatch" default="Name">
+      <property id="Name" type="String" status="Out"/>
+      <property id="CodeObject" type="Object" status="Out"/>
+      <property id="Procedures" type="Procedures" status="Out"/>
+      <method id="AddCode" type="Void">
+         <argument id="Code" type="String" status="ByVal"/>
+      </method>
+      <method id="Eval" type="Variant">
+         <argument id="Expression" type="String" status="ByVal"/>
+      </method>
+      <method id="ExecuteStatement" type="Void">
+         <argument id="Statement" type="String" status="ByVal"/>
+      </method>
+      <method id="Run" type="Variant">
+         <argument id="ProcedureName" type="String" status="ByVal"/>
+         <argument id="Parameters" type="Variant" status="ParamArray"/>
+      </method>
+   </class>
+   <class id="IScriptModuleCollection" parent="IDispatch" default="Item">
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="Module" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Module">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Object" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="IScriptError" parent="IDispatch">
+      <property id="Number" type="Integer" status="Out"/>
+      <property id="Source" type="String" status="Out"/>
+      <property id="Description" type="String" status="Out"/>
+      <property id="HelpFile" type="String" status="Out"/>
+      <property id="HelpContext" type="Integer" status="Out"/>
+      <property id="Text" type="String" status="Out"/>
+      <property id="Line" type="Integer" status="Out"/>
+      <property id="Column" type="Integer" status="Out"/>
+      <method id="Clear" type="Void"/>
+   </class>
+   <class id="IScriptControl" parent="IDispatch">
+      <property id="Language" type="String" status="InOut"/>
+      <property id="State" migName="CtlState" type="ScriptControlStates" status="InOut"/>
+      <property id="SitehWnd" type="Integer" status="InOut"/>
+      <property id="Timeout" type="Integer" status="InOut"/>
+      <property id="AllowUI" type="Boolean" status="InOut"/>
+      <property id="UseSafeSubset" type="Boolean" status="InOut"/>
+      <property id="Modules" type="Modules" status="Out"/>
+      <property id="Error" type="Error" status="Out"/>
+      <property id="CodeObject" type="Object" status="Out"/>
+      <property id="Procedures" type="Procedures" status="Out"/>
+      <method id="_AboutBox" type="Void"/>
+      <method id="AddObject" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Object" type="Object" status="ByVal"/>
+         <argument id="AddMembers" type="Boolean" status="ByVal" optional="false"/>
+      </method>
+      <method id="Reset" type="Void"/>
+      <method id="AddCode" type="Void" migName="Execute">
+         <argument id="Code" type="String" status="ByVal"/>
+      </method>
+      <method id="Eval" type="Variant">
+         <argument id="Expression" type="String" status="ByVal"/>
+      </method>
+      <method id="ExecuteStatement" type="Void">
+         <argument id="Statement" type="String" status="ByVal"/>
+      </method>
+      <method id="Run" type="Variant" nPram="3" cshPattern="((object)%1d.Script.%2u(%3d))" vbnPattern="(%1d.Evaluate(String.Format(\s%2u({0}, {1})\s,%3d)))">
+         <argument id="ProcedureName" type="String" status="ByVal"/>
+         <argument id="Parameters" type="Object" status="ParamArray"/>
+      </method>
+   </class>
+   <class id="DScriptControlSource" parent="None">
+      <event id="Error" netName="Error" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="Timeout" netName="Timeout" netHandler="System.EventHandler" netArgs="EventArgs"/>
+   </class>
+   <class id="ScriptControlConstants" parent="None" module="on" creatable="off">
+      <constant id="GlobalModule" type="String" value="Global"/>
+      <constant id="NoTimeout" type="Integer" value="0"/>
+   </class>
+   <coclass id="Procedure" uuid="0E59F1DA-1FBE-11D0-8FF2-00A0D10038BC" creatable="off">
+      <subclass id="IScriptProcedure"/>
+   </coclass>
+   <coclass id="Procedures" uuid="0E59F1DB-1FBE-11D0-8FF2-00A0D10038BC" creatable="off">
+      <subclass id="IScriptProcedureCollection"/>
+   </coclass>
+   <coclass id="Module" uuid="0E59F1DC-1FBE-11D0-8FF2-00A0D10038BC" creatable="off">
+      <subclass id="IScriptModule"/>
+   </coclass>
+   <coclass id="Modules" uuid="0E59F1DD-1FBE-11D0-8FF2-00A0D10038BC" creatable="off">
+      <subclass id="IScriptModuleCollection"/>
+   </coclass>
+   <coclass id="Error" uuid="0E59F1DE-1FBE-11D0-8FF2-00A0D10038BC" creatable="off">
+      <subclass id="IScriptError"/>
+   </coclass>
+   <coclass id="ScriptControl" uuid="0E59F1D5-1FBE-11D0-8FF2-00A0D10038BC" migName="VBScriptEngine">
+      <subclass id="IScriptControl"/>
+      <subclass id="DScriptControlSource"/>
+   </coclass>
+</library>
+
+<Refactor id="[GM.msscript.ocx]" event="msscript">
+<!--
+********************************************************** 
+* Library                   
+********************************************************** 
+-->
+    <migClass id="NetControl.ScriptControl" migName="VBScriptEngine" parent="ScriptControl">
+       <!-- remove component code -->     
+    </migClass>
+
+</Refactor>
+</DescriptionFile>

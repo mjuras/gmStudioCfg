@@ -1,0 +1,97 @@
+<DescriptionFile>
+<library id="Shell32.dcl"
+         name="Shell32"
+         source="Shell32.dcl"
+         location="Shell32.dcl"
+         type="LocalImport"
+   >
+   <enumeration id="ESW">
+      <entry id="SW_HIDE" value="0"/>
+      <entry id="SW_SHOWNORMAL" value="1"/>
+      <entry id="SW_NORMAL" value="1"/>
+      <entry id="SW_SHOWMINIMIZED" value="2"/>
+      <entry id="SW_SHOWMAXIMIZED" value="3"/>
+      <entry id="SW_MAXIMIZE" value="3"/>
+      <entry id="SW_SHOWNOACTIVATE" value="4"/>
+      <entry id="SW_SHOW" value="5"/>
+      <entry id="SW_MINIMIZE" value="6"/>
+      <entry id="SW_SHOWMINNOACTIVE" value="7"/>
+      <entry id="SW_SHOWNA" value="8"/>
+      <entry id="SW_RESTORE" value="9"/>
+      <entry id="SW_SHOWDEFAULT" value="10"/>
+      <entry id="SW_MAX" value="10"/>
+   </enumeration>
+   <structure id="BROWSEINFO">
+      <member id="hwndOwner" type="Integer"/>
+      <member id="pidlRoot" type="Integer"/>
+      <member id="pszDisplayName" type="Integer"/>
+      <member id="lpszTitle" type="Integer"/>
+      <member id="ulFlags" type="Integer"/>
+      <member id="lpfn" type="Integer"/>
+      <member id="lParam" type="Integer"/>
+      <member id="iImage" type="Integer"/>
+   </structure>
+   <structure id="NOTIFYICONDATA">
+      <member id="cbSize" type="Integer"/>
+      <member id="hwnd" type="Integer"/>
+      <member id="uID" type="Integer"/>
+      <member id="uFlags" type="Integer"/>
+      <member id="uCallbackMessage" type="Integer"/>
+      <member id="hicon" type="Integer"/>
+      <member id="szTip" type="Byte[]"/>
+   </structure>
+   <structure id="SHFILEINFO">
+      <member id="hicon" type="Integer"/>
+      <member id="iIcon" type="Integer"/>
+      <member id="dwAttributes" type="Integer"/>
+      <member id="szDisplayName" type="Byte[]"/>
+      <member id="szTypeName" type="Byte[]"/>
+   </structure>
+   <structure id="SHFILEOPSTRUCT">
+      <member id="hwnd" type="Integer"/>
+      <member id="wFunc" type="Integer"/>
+      <member id="pFrom" type="Integer"/>
+      <member id="pTo" type="Integer"/>
+      <member id="fFlags" type="Short"/>
+      <member id="fAnyOperationsAborted" type="Integer"/>
+      <member id="hNameMappings" type="Integer"/>
+      <member id="lpszProgressTitle" type="Integer"/>
+   </structure>
+   <class id="Methods" parent="None" module="on" creatable="off">
+      <method id="SHBrowseForFolder" type="Integer">
+         <argument id="lpbi" type="BROWSEINFO" status="Out"/>
+      </method>
+      <method id="ShellExecute" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="lpOperation" type="String" status="ByVal"/>
+         <argument id="lpFile" type="String" status="ByVal"/>
+         <argument id="lpParameters" type="String" status="ByVal"/>
+         <argument id="lpDirectory" type="String" status="ByVal"/>
+         <argument id="nShowCmd" type="ESW" status="ByVal"/>
+      </method>
+      <method id="Shell_NotifyIcon" type="Integer">
+         <argument id="dwMessage" type="Integer" status="ByVal"/>
+         <argument id="lpData" type="NOTIFYICONDATA" status="Out"/>
+      </method>
+      <method id="SHFileOperation" type="Integer">
+         <argument id="lpFileOp" type="SHFILEOPSTRUCT" status="Out"/>
+      </method>
+      <method id="SHGetFileInfo" type="Integer">
+         <argument id="pszPath" type="String" status="ByVal"/>
+         <argument id="dwFileAttributes" type="Integer" status="ByVal"/>
+         <argument id="psfi" type="SHFILEINFO" status="Out"/>
+         <argument id="cbFileInfo" type="Integer" status="ByVal"/>
+         <argument id="uFlags" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SHGetPathFromIDList" type="Integer">
+         <argument id="pidl" type="Integer" status="ByVal"/>
+         <argument id="pszPath" type="String" status="ByVal"/>
+      </method>
+      <method id="SHGetSpecialFolderLocation" type="Void">
+         <argument id="hwndOwner" type="Integer" status="ByVal"/>
+         <argument id="nFolder" type="Integer" status="ByVal"/>
+         <argument id="ppidl" type="Integer" status="Out"/>
+      </method>
+   </class>
+</library>
+</DescriptionFile>

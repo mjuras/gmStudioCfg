@@ -1,0 +1,25 @@
+<RefactorLibrary>
+<!--
+Description: UPgrade Excel to interop assembly with better typing
+-->
+<Refactor id="[EXCEL.EXE]">
+   <!--  comment out to reference interop rather than stub assembly
+   <Migrate 
+   libtype="Native" 
+   location="..\bin\Interop.Microsoft.Office.Interop.Excel.dll" 
+   migName="Microsoft.Office.Interop.Excel" 
+   />
+   -->
+   <Migrate id="Range" CastType="on" />
+   <Migrate id="Range._Default" type="Range" /> 
+   <!--nPram="3" migPattern="((Excel.Range)(%1d[%2d,%3d]))" /> -->
+   <Migrate id="Sheets.Item" nPram="2" cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)" type="Worksheet"/>
+   <Migrate id="Sheets._Default" nPram="2" cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)" type="Worksheet"/>
+   <Migrate id="Range.Value" refType="property"/>
+   <Migrate id="IWorksheets.Item" type="Worksheet" />
+   <Migrate id="_Application.Selection" type="Range" />
+   <Migrate id="_Global.Selection" type="Range" />
+   <Migrate id="Comment.Text.Text" migName="theText" />
+
+</Refactor>
+</RefactorLibrary>

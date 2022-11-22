@@ -1,0 +1,101 @@
+<DescriptionFile>
+<!--
+Upgrade VBScript_RegExp_55 to System.Text.RegularExpressions
+-->
+<library id="vbscript_3.dll"
+         name="VBScript_RegExp_55"
+         netVersion="5.5"
+         source="vbscript_3.dll"
+         location="DoNotDeclare"
+         migName="System.Text.RegularExpressions"
+         type="Internal"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IRegExp"/>
+   <class id="IMatch"/>
+   <class id="IMatchCollection"/>
+   <class id="IRegExp2"/>
+   <class id="IMatch2"/>
+   <class id="IMatchCollection2"/>
+   <class id="ISubMatches"/>
+   <coclass id="RegExp"/>
+   <coclass id="Match"/>
+   <coclass id="MatchCollection"/>
+   <coclass id="SubMatches"/>
+   <class id="IRegExp" parent="IDispatch" migName="Regex">
+      <property id="Pattern" type="String" status="InOut"/>
+      <property id="IgnoreCase" type="Boolean" status="InOut"/>
+      <property id="Global" type="Boolean" status="InOut"/>
+      <method id="Execute" type="MatchCollection" migName="Matches">
+         <argument id="sourceString" type="String" status="ByVal"/>
+      </method>
+      <method id="Test" type="Boolean" migName="IsMatch">
+         <argument id="sourceString" type="String" status="ByVal"/>
+      </method>
+      <method id="Replace" type="String">
+         <argument id="sourceString" type="String" status="ByVal"/>
+         <argument id="replaceString" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IMatch" parent="IDispatch" default="Value">
+      <property id="Value" type="String" status="Out"/>
+      <property id="FirstIndex" type="Integer" status="Out" migName="Index"/>
+      <property id="Length" type="Integer" status="Out"/>
+   </class>
+   <class id="IMatchCollection" parent="IDispatch">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <accessor id="Item" type="Match">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </accessor>
+   </class>
+   <class id="IRegExp2" parent="IDispatch" migName="Regex">
+      <property id="Pattern" type="String" status="InOut"/>
+      <property id="IgnoreCase" type="Boolean" status="InOut"/>
+      <property id="Global" type="Boolean" status="InOut"/>
+      <property id="Multiline" type="Boolean" status="InOut"/>
+      <method id="Execute" type="MatchCollection" migName="Matches">
+         <argument id="sourceString" type="String" status="ByVal"/>
+      </method>
+      <method id="Test" type="Boolean" migName="IsMatch">
+         <argument id="sourceString" type="String" status="ByVal"/>
+      </method>
+      <method id="Replace" type="String">
+         <argument id="sourceString" type="String" status="ByVal"/>
+         <argument id="replaceVar" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IMatch2" parent="IDispatch" default="Value">
+      <property id="Value" type="String" status="Out"/>
+      <property id="FirstIndex" type="Integer" status="Out" migName="Index"/>
+      <property id="Length" type="Integer" status="Out"/>
+      <property id="SubMatches" type="SubMatches" status="Out"/>
+   </class>
+   <class id="IMatchCollection2" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <method id="Item" type="Match" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ISubMatches" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <method id="Item" type="String" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <coclass id="RegExp" migname="Regex">
+      <subclass id="IRegExp2"/>
+   </coclass>
+   <coclass id="Match" creatable="off">
+      <subclass id="IMatch2"/>
+   </coclass>
+   <coclass id="MatchCollection" creatable="off">
+      <subclass id="IMatchCollection2"/>
+   </coclass>
+   <coclass id="SubMatches" creatable="off">
+      <subclass id="ISubMatches"/>
+   </coclass>
+</library>
+</DescriptionFile>

@@ -1,0 +1,10 @@
+<RefactorLibrary>
+<!--
+Description: RefactorLibrary mapping mscorlib.tlb to .NET
+-->
+<Refactor id="[mscorlib.tlb]">
+   <Migrate migName="System" location="DoNotDeclare" />
+   <Migrate id="ArrayList" migName="System.Collections.ArrayList" migStatus="external" />
+   <Migrate id="Exception" migName="System.Exception" migStatus="external" />
+</Refactor>
+</RefactorLibrary>

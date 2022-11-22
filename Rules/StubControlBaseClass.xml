@@ -1,0 +1,123 @@
+<!--
+Description: upgrade default stub controls to inherit WinForms base controls 
+
+This set of simple Author/Fix commands will change stub classes so they inherit
+from  a more specific parent. This is a quick fix to make stub translations 
+slightly more functional and easier to work with since the controls will show
+up in the designer. Later these quick fixes may be replaced by more 
+comprehensive changes specified in a custom IDF.
+-->
+<Fix name="PostEdit">
+<Replace name="quick fix for stub control StatusBar">
+<OldBlock><![CDATA[public class StatusBar : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class StatusBar : System.Windows.Forms.StatusBar]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control ProgressBar">
+<OldBlock><![CDATA[public class ProgressBar : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class ProgressBar : System.Windows.Forms.ProgressBar]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control TreeView">
+<OldBlock><![CDATA[public class TreeView : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class TreeView : System.Windows.Forms.TreeView]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control ListView">
+<OldBlock><![CDATA[public class ListView : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class ListView : System.Windows.Forms.ListView]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control WebBrowser">
+<OldBlock><![CDATA[public class WebBrowser : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class WebBrowser : System.Windows.Forms.WebBrowser]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control GTMaskDateCtl">
+<OldBlock><![CDATA[public class GTMaskDateCtl : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class GTMaskDateCtl : System.Windows.Forms.DateTimePicker]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control CoolBar">
+<OldBlock><![CDATA[public class CoolBar : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class CoolBar : System.Windows.Forms.StatusBar]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control TxtButton">
+<OldBlock><![CDATA[public class TxtButton : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class TxtButton : System.Windows.Forms.Button]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control GTMaskText">
+<OldBlock><![CDATA[public class GTMaskText : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class GTMaskText : System.Windows.Forms.TextBox]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control GTMaskNumCtl">
+<OldBlock><![CDATA[public class GTMaskNumCtl : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class GTMaskNumCtl : System.Windows.Forms.TextBox]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control SSCheck">
+<OldBlock><![CDATA[public class SSCheck : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class SSCheck : System.Windows.Forms.CheckBox]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control SSFrame">
+<OldBlock><![CDATA[public class SSFrame : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class SSFrame : System.Windows.Forms.GroupBox]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control RichTextBox">
+<OldBlock><![CDATA[public class RichTextBox : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class RichTextBox : System.Windows.Forms.RichTextBox]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control MaskEdBox">
+<OldBlock><![CDATA[public class MaskEdBox : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class MaskEdBox : System.Windows.Forms.MaskedTextBox]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control TDBGrid">
+<OldBlock><![CDATA[public class TDBGrid : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class TDBGrid : System.Windows.Forms.DataGridView]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control DataGrid">
+<OldBlock><![CDATA[public class DataGrid : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class DataGrid : System.Windows.Forms.DataGridView]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control DBListnt">
+<OldBlock><![CDATA[public class DBList : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class DBList : System.Windows.Forms.ListBox]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control DBCombo">
+<OldBlock><![CDATA[public class DBCombo : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class DBCombo : System.Windows.Forms.ComboBox]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control DataGrid">
+<OldBlock><![CDATA[public class DataGrid : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class DataGrid : System.Windows.Forms.DataGridView]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control UpDown">
+<OldBlock><![CDATA[public class UpDown : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class UpDown : System.Windows.Forms.NumericUpDown]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control DTPicker">
+<OldBlock><![CDATA[public class DTPicker : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class DTPicker : System.Windows.Forms.DateTimePicker]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control VSFlexGrid">
+<OldBlock><![CDATA[public class VSFlexGrid : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class VSFlexGrid : System.Windows.Forms.DataGridView]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control DataCombo">
+<OldBlock><![CDATA[public class DataCombo : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class DataCombo : System.Windows.Forms.ComboBox]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control MSFlexGrid">
+<OldBlock><![CDATA[public class MSFlexGrid : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class MSFlexGrid : System.Windows.Forms.DataGridView]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control C1Elastic">
+<OldBlock><![CDATA[public class C1Elastic : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class C1Elastic : System.Windows.Forms.GroupBox]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control VSViewPort">
+<OldBlock><![CDATA[public class VSViewPort : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class VSViewPort : System.Windows.Forms.GroupBox]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control InternetExplorer">
+<OldBlock><![CDATA[public class InternetExplorer : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class InternetExplorer : System.Windows.Forms.WebBrowser]]></NewBlock>
+</Replace>
+<Replace name="quick fix for stub control SSDBGrid">
+<OldBlock><![CDATA[public class SSDBGrid : System.Windows.Forms.Control]]></OldBlock>
+<NewBlock><![CDATA[public class SSDBGrid : System.Windows.Forms.DataGridView]]></NewBlock>
+</Replace>
+</Fix>

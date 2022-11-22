@@ -1,0 +1,10 @@
+<RefactorLibrary>
+<!--
+Description: Map CSCalendar control to Winforms.MonthCalendar
+-->
+
+   <Refactor id="[cscalbtn.ocx]">
+   <Migrate migName="System.Windows.Forms" libType="Internal" location="DoNotDeclare" axLocation="DoNotDeclare" />
+   <Migrate id="CSCalendar" migName="MonthCalendar" role="Control"/>
+   </Refactor>
+</RefactorLibrary>

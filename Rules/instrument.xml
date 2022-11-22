@@ -1,0 +1,78 @@
+<gmBasic>
+<!--
+This script template can be used to add trace logging commands to 
+set of VB6 codes.  When this technique is used properly, you will 
+be able to run side-by-side tests to compare functionality and 
+use the trace logs to help you analyze behind the scenes differences.
+
+This process will modify the VB6 code in place.
+
+1) Make a backup of the original source so you can restore and rerun
+the instrumentation as needed.
+
+2) Copy this file and instrument.gmsl to the usr folder in your workspace.
+
+3) Add this script as a task to a gmProj file.
+
+4) Edit this script: add a <Load Project> command for each VBP you wish to instrument.
+
+5) Run this script (i.e. Run the Translate operation on this script in gmStudio).
+
+   This will produce a bundle  file bnd file containing the instrumented VB6 code files:
+   
+   a) Authoring a proj_gmTraceLogger.bas module in each  VBP folder
+   b) Referencing the proj_gmTraceLogger.bas module from each proj.VBP
+   c) Modifying every function and sub with logic to write trace messages to a log file.
+
+   By default the trace files are written to C:\temp; you must 
+   have access to the log directory to run the application. 
+   You may change this by altering instrument.gmsl.    
+   
+   See instrument.gmsl for details of the trace logging logic and instrumentation.
+   
+6) Deploy the bundle; this will replace original VB6 files with instrumented VB6 files.
+
+7) Verify the new code.
+   a) Rebuild the original VB6 to make sure it is still all well formed
+   b) Compare the original and instrumented VB6 files to be comfortable with the changes
+
+8) Translate the instrumented VB6 to produce a corresponding instrumented .NET code.
+
+   Tip: you may want to modify your application translation script by adding 
+   an Author/Fix so that VB6 logs and .NET trace  logs will not clobber each 
+   other, for example:
+   
+   <Author...>
+      <Fix name="General Fixes" host="">
+         <Replace name="rename trace logger file">
+         <OldBlock><![CDATA[gmTraceLogger_vb6.log]]></OldBlock>
+         <NewBlock><![CDATA[gmTraceLogger_net.log]]></NewBlock>
+         </Replace>
+      </Fix>    
+   </Author>
+
+9) Run side-by-side tests to compare functionality and use the trace logs
+   to help you analyze behind the scenes differences.
+   
+-->
+   <Storage Action="Create" />
+   
+   <Select MaxOutputWidth="2048"/>
+   
+   <gmSL namespace="gmSL" class="Instrument" Source="%UserFolder%\Instrument.gmsl" />
+   
+   <!--
+   Add list of VBPs to instrument here
+   
+   <Load Project="%VirtualRoot%\proj1.vbp" />
+   <Load Project="%VirtualRoot%\proj2.vbp" />
+   ...
+   -->
+
+   <Output Status="New" Filename="%BndPath%" />
+   
+   <RunCommand Id="Instrument.AuthorTraceLogging" Prams="ALL" />
+   
+   <Storage Action="Close" />
+   
+</gmBasic>

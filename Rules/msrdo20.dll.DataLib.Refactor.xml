@@ -1,0 +1,434 @@
+<RefactorLibrary>
+<!-- 
+Description: Map RDO to gmRTL.DataLib (not used yet)
+-->
+<Refactor id="[msrdo20.dll]">
+
+<Migrate location="DoNotDeclare" migName="gmRTL.DataLib" type="Internal" />
+
+<Migrate id="DirectionConstants" migName="ParameterDirection" migStatus="External" />
+<Migrate id="DirectionConstants.rdParamInput" migName="Input" />
+<Migrate id="DirectionConstants.rdParamOutput" migName="Output" />
+<Migrate id="DirectionConstants.rdParamInputOutput" migName="InputOutput" />
+<Migrate id="DirectionConstants.rdParamReturnValue" migName="ReturnValue" />
+
+<Migrate id="rdoConnection" migName="gmRTL.DataLib.SqlClient.Connection" migStatus="External" />
+<migrate id="_rdoConnection.Connect" migName="ConnectionString" />
+<migrate id="_rdoConnection.CursorDriver" migStatus="NotImplemented" />  
+<migrate id="_rdoConnection.EstablishConnection" nPram="4" migPattern="%1d.Open(); // UPGRADE_TODO: %2d,%3d,%4d\c" />
+
+
+<migrate id="_rdoConnection.OpenResultset" migName="Execute" />
+<Migrate id="_rdoConnection.CreateQuery" nPram="4" migPattern="(%1d = %2d.CreateCommand()).CommandText = %4d\c" />
+<Migrate id="_rdoConnection.CreateQuery.Name" optional="DEF.Overload"/>
+<Migrate id="_rdoConnection.CreateQuery.SqlString" optional="DEF.Overload"/>
+
+
+<Migrate id="rdoColumn"  migName="gmRTL.DataLib.SqlClient.Field" migStatus="External" />
+<Migrate id="rdoColumns" migName="gmRTL.DataLib.SqlClient.Fields" migStatus="External" />
+
+<Migrate id="_rdoEngine.rdoErrors"  migName="Errors" />
+<Migrate id="rdoError"  migName="gmRTL.DataLib.Error" migStatus="External" />
+<Migrate id="rdoErrors" migName="gmRTL.DataLib.Errors" migStatus="External" />
+
+<Migrate id="OptionConstants" migName="ExecuteOptionEnum" />
+<!--
+Public Enum OptionConstants
+
+  'Execute the query asynchronously.
+  rdAsyncEnable = 32  '&H20
+
+  'Use the ODBC SQLExecDirect API function to execute query.
+  rdExecDirect = 64  '&H40
+
+  'Download all the data for long character and long binary columns.
+  rdFetchLongColumns = 128  '&H80
+
+  'Download all the data for long character and long binary columns.
+  rdBackgroundFetch = 256  '&H100
+End Enum
+
+The runtime has these related enum constants:
+
+        adOptionUnspecified = -1,
+        adAsyncExecute = 16,
+        adAsyncFetch = 32,
+        adAsyncFetchNonBlocking = 64,
+        adExecuteNoRecords = 128,
+        adExecuteStream = 1024,
+        adExecuteRecord = 2048
+-->
+<Migrate id="OptionConstants.rdAsyncEnable" migName="adAsyncExecute" />
+<Migrate id="OptionConstants.rdExecDirect" migName="adExecuteRecord" />
+<Migrate id="OptionConstants.rdFetchLongColumns" migName="adExecuteStream" />
+<Migrate id="OptionConstants.rdBackgroundFetch" migName="adAsyncFetch" />
+
+<Migrate id="rdoResultset"migName="gmRTL.DataLib.SqlClient.Recordset" migStatus="External" />
+<migrate id="_rdoResultset.MoveLast" nPram="2" migPattern="%1d.MoveLast()\c" />
+<Migrate id="_rdoResultset.rdoColumns" migName="Fields"/>
+<migrate id="_rdoResultset.RowCount" migName="RecordCount" />
+
+<Migrate id="rdoParameter" migName="System.Data.SqlClient.SqlParameter" migStatus="External" />
+<Migrate id="rdoParameter.Type" migName="SqlDbType" />
+<migrate id="rdoParameter.Name" migName="ParameterName" />
+
+<Migrate id="rdoPreparedStatement" migName="gmRTL.DataLib.SqlClient.Command" migStatus="External" />
+<Migrate id="rdoPreparedStatement.Close" migStatus="NotImplemented" />
+<Migrate id="rdoPreparedStatement.OpenResultset" nPram="4" migPattern="%1d.Execute()" />
+<Migrate id="rdoPreparedStatement.OpenResultset.Type" optional="Def.Overload"/>
+<Migrate id="rdoPreparedStatement.OpenResultset.LockType" optional="Def.Overload"/>
+<Migrate id="rdoPreparedStatement.OpenResultset.Options" optional="Def.Overload"/>
+<migrate id="rdoPreparedStatement.QueryTimeout" migName="CommandTimeout" />
+<migrate id="rdoPreparedStatement.RowsetSize" migStatus="NotImplemented" />
+<migrate id="rdoPreparedStatement.RowsAffected" migName="RecordsAffected" />
+
+<Migrate id="rdoPreparedStatement.rdoParameters" migName="Parameters" />
+<migrate id="rdoPreparedStatement.SQL" migName="CommandText" />
+<Migrate id="rdoPreparedStatement.Name" migName="CommandText" />
+
+<Migrate id="rdoQuery" migName="gmRTL.DataLib.SqlClient.Command" migStatus="External" />
+
+<Migrate id="DataTypeConstants" migName="System.Data.SqlDbType" migStatus="External" />
+<Migrate id="DataTypeConstants.rdTypeCHAR" migName="Char"/>
+<Migrate id="DataTypeConstants.rdTypeDECIMAL" migName="Decimal"/>
+<Migrate id="DataTypeConstants.rdTypeINTEGER" migName="Int"/>
+<Migrate id="DataTypeConstants.rdTypeNUMERIC" migName="Int" />
+
+
+
+<!-- 
+Lib_Property:_rdoColumn.Value
+Occurrs:3228;  eg. .AgeCutOff = iGoodInt(rs!age_band_mbr_cutoff)
+<Migrate id="_rdoColumn.Value" />
+-->
+
+<!-- 
+Lib_Method:_rdoConnection.Close
+Occurrs:7;  eg. ConUW.Close
+<Migrate id="_rdoConnection.Close" />
+-->
+<!-- 
+Lib_Property:_rdoConnection.Connect
+Occurrs:24;  eg. conMed2.Connect = sConnect
+<Migrate id="_rdoConnection.Connect" />
+-->
+<!-- 
+Lib_Method:_rdoConnection.CreateQuery
+Occurrs:31;  eg. Set rps = mrconDB.CreateQuery("BeginTrans", "begin transaction")
+
+      <method id="CreateQuery" type="rdoQuery">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="SqlString" type="Variant" status="ByVal"/>
+      </method>
+
+
+-->
+
+<!-- 
+Lib_Property:_rdoConnection.CursorDriver
+Occurrs:18;  eg. conMed2.CursorDriver = rdUseClientBatch
+<Migrate id="_rdoConnection.CursorDriver" />
+-->
+<!-- 
+Lib_Method:_rdoConnection.EstablishConnection
+Occurrs:21;  eg. conMed2.EstablishConnection rdDriverNoPrompt, False
+<Migrate id="_rdoConnection.EstablishConnection" />
+-->
+<!-- 
+Lib_Property:_rdoConnection.Name
+Occurrs:3;  eg. psDatabaseName = mrconDB.Name
+<Migrate id="_rdoConnection.Name" />
+-->
+<!-- 
+Lib_Method:_rdoConnection.OpenResultset
+Occurrs:3;  eg. Set rdoResSetCount = mrconDB.OpenResultset("SELECT @@TRANCOUNT", rdOpenForwardOnly, , rdExecDirect)
+<Migrate id="_rdoConnection.OpenResultset" />
+-->
+<!-- 
+Lib_Property:_rdoConnection.rdoQueries
+Occurrs:6;  eg. If mrconDB.rdoQueries.Item(iQeries - 1).Name = pvsProcName Then
+<Migrate id="_rdoConnection.rdoQueries" />
+-->
+<!-- 
+Lib_Property:_rdoConnection.rdoTables
+Occurrs:3;  eg. Set TableList = mrconDB.rdoTables
+<Migrate id="_rdoConnection.rdoTables" />
+-->
+<!-- 
+Lib_Property:_rdoResultset.BOF
+Occurrs:21;  eg. If Not (.EOF() And .BOF()) Then     ' Record exists
+<Migrate id="_rdoResultset.BOF" />
+-->
+<!-- 
+Lib_Method:_rdoResultset.Close
+Occurrs:298;  eg. If Not rrsCIBCPlans Is Nothing Then rrsCIBCPlans.Close
+<Migrate id="_rdoResultset.Close" />
+-->
+<!-- 
+Lib_Property:_rdoResultset.EOF
+Occurrs:356;  eg. Do While Not (.EOF)
+<Migrate id="_rdoResultset.EOF" />
+-->
+<!-- 
+Lib_Method:_rdoResultset.MoveFirst
+Occurrs:8;  eg. .MoveFirst
+<Migrate id="_rdoResultset.MoveFirst" />
+-->
+<!-- 
+Lib_Method:_rdoResultset.MoveLast
+Occurrs:7;  eg. .MoveLast
+<Migrate id="_rdoResultset.MoveLast" />
+-->
+<!-- 
+Lib_Method:_rdoResultset.MoveNext
+Occurrs:216;  eg. .MoveNext
+<Migrate id="_rdoResultset.MoveNext" />
+-->
+<!-- 
+Lib_Property:_rdoResultset.rdoColumns
+Occurrs:3234;  eg. .AgeCutOff = iGoodInt(rs!age_band_mbr_cutoff)
+<Migrate id="_rdoResultset.rdoColumns" />
+-->
+<!-- 
+Lib_Property:_rdoResultset.RowCount
+Occurrs:12;  eg. For i = 1 To rsMUSetCov.RowCount
+<Migrate id="_rdoResultset.RowCount" />
+-->
+<!-- 
+Lib_EnumEntry:CursorDriverConstants.rdUseClientBatch
+Occurrs:20;  eg. conMed2.CursorDriver = rdUseClientBatch
+<Migrate id="CursorDriverConstants.rdUseClientBatch" />
+-->
+<!-- 
+Lib_EnumEntry:DataTypeConstants.rdTypeCHAR
+Occurrs:28;  eg. rqParm.rdoParameters(1).Type = rdTypeCHAR
+<Migrate id="DataTypeConstants.rdTypeCHAR" />
+-->
+<!-- 
+Lib_EnumEntry:DataTypeConstants.rdTypeDECIMAL
+Occurrs:1;  eg. sp.rdoParameters(5).Type = rdTypeDECIMAL
+<Migrate id="DataTypeConstants.rdTypeDECIMAL" />
+-->
+<!-- 
+Lib_EnumEntry:DataTypeConstants.rdTypeINTEGER
+Occurrs:5;  eg. sp.rdoParameters(0).Type = rdTypeINTEGER
+<Migrate id="DataTypeConstants.rdTypeINTEGER" />
+-->
+<!-- 
+Lib_EnumEntry:DataTypeConstants.rdTypeNUMERIC
+Occurrs:1;  eg. sp.rdoParameters(20).Type = rdTypeNUMERIC
+<Migrate id="DataTypeConstants.rdTypeNUMERIC" />
+-->
+<!-- 
+Lib_EnumEntry:DirectionConstants.rdParamInput
+Occurrs:9;  eg. .Direction = rdParamInput
+<Migrate id="DirectionConstants.rdParamInput" />
+-->
+<!-- 
+Lib_EnumEntry:DirectionConstants.rdParamInputOutput
+Occurrs:3;  eg. .Direction = rdParamInputOutput
+<Migrate id="DirectionConstants.rdParamInputOutput" />
+-->
+<!-- 
+Lib_EnumEntry:DirectionConstants.rdParamOutput
+Occurrs:5;  eg. .Direction = rdParamOutput
+<Migrate id="DirectionConstants.rdParamOutput" />
+-->
+<!-- 
+Lib_EnumEntry:DirectionConstants.rdParamReturnValue
+Occurrs:3;  eg. .Direction = rdParamReturnValue
+<Migrate id="DirectionConstants.rdParamReturnValue" />
+-->
+<!-- 
+Lib_EnumEntry:LockTypeConstants.rdConcurBatch
+Occurrs:12;  eg. Set rrs = rps.OpenResultset(rdOpenForwardOnly, rdConcurBatch, rdExecDirect)
+<Migrate id="LockTypeConstants.rdConcurBatch" />
+-->
+<!-- 
+Lib_EnumEntry:LockTypeConstants.rdConcurReadOnly
+Occurrs:19;  eg. Set rrs = rps.OpenResultset(rdOpenForwardOnly, rdConcurReadOnly) ', rdExecDirect)
+<Migrate id="LockTypeConstants.rdConcurReadOnly" />
+-->
+<!-- 
+Lib_EnumEntry:OptionConstants.rdAsyncEnable
+Occurrs:6;  eg. Set rrsSet = rps.OpenResultset(rdOpenDynamic, rdConcurBatch, rdExecDirect + rdAsyncEnable)
+<Migrate id="OptionConstants.rdAsyncEnable" />
+-->
+<!-- 
+Lib_EnumEntry:OptionConstants.rdExecDirect
+Occurrs:30;  eg. rps.Execute rdExecDirect
+<Migrate id="OptionConstants.rdExecDirect" />
+-->
+<!-- 
+Lib_EnumEntry:PromptConstants.rdDriverNoPrompt
+Occurrs:18;  eg. conMed2.EstablishConnection rdDriverNoPrompt, False
+<Migrate id="PromptConstants.rdDriverNoPrompt" />
+-->
+<!-- 
+Lib_EnumEntry:PromptConstants.rdDriverPrompt
+Occurrs:3;  eg. mrconDB.EstablishConnection rdDriverPrompt
+<Migrate id="PromptConstants.rdDriverPrompt" />
+-->
+<!-- 
+Lib_Enumeration:RDO.DataTypeConstants
+Occurrs:3;  eg. .Type = rrsSet!type_id
+<Migrate id="RDO.DataTypeConstants" />
+-->
+<!-- 
+Class:RDO.rdoColumns
+Occurrs:3;  eg. Argument | ByVal | Collection | Array | RDO.rdoColumns:1006824 vntArgList
+<Migrate id="RDO.rdoColumns" />
+-->
+<!-- 
+Coclass:RDO.rdoConnection
+Occurrs:68;  eg. Argument | ByVal | FixedType | RDO.rdoConnection:1007404 v
+<Migrate id="RDO.rdoConnection" />
+-->
+<!-- 
+Class:RDO.rdoError
+Occurrs:27;  eg. Argument | ByVal | RDO.rdoError:1343275 pError
+<Migrate id="RDO.rdoError" />
+-->
+<!-- 
+Class:RDO.rdoParameter
+Occurrs:3;  eg. With pQry.rdoParameters(lRowCount)
+<Migrate id="RDO.rdoParameter" />
+-->
+<!-- 
+Coclass:RDO.rdoQuery
+Occurrs:81;  eg. Argument | ByRef | Changed | RDO.rdoQuery:1629156 sp
+<Migrate id="RDO.rdoQuery" />
+-->
+<!-- 
+Coclass:RDO.rdoResultset
+Occurrs:328;  eg. Argument | ByRef | Changed | RDO.rdoResultset:1005455 rrs
+<Migrate id="RDO.rdoResultset" />
+-->
+<!-- 
+Lib_Method:rdoColumns.Item
+Occurrs:3231;  eg. .AgeCutOff = iGoodInt(rs!age_band_mbr_cutoff)
+<Migrate id="rdoColumns.Item" />
+-->
+<!-- 
+Lib_Property:rdoError.Description
+Occurrs:37;  eg. If InStr(pError.Description, "S1T00") <> 0 Then
+<Migrate id="rdoError.Description" />
+-->
+<!-- 
+Lib_Property:rdoError.Number
+Occurrs:23;  eg. End If
+<Migrate id="rdoError.Number" />
+-->
+<!-- 
+Lib_Method:rdoErrors.Clear
+Occurrs:8;  eg. rdoEngine.rdoErrors.Clear
+<Migrate id="rdoErrors.Clear" />
+-->
+<!-- 
+Lib_Property:rdoErrors.Count
+Occurrs:15;  eg. If rdoErrors.Count > 0 Then
+<Migrate id="rdoErrors.Count" />
+-->
+<!-- 
+Lib_Property:rdoParameter.Direction
+Occurrs:20;  eg. .Direction = rdParamInput
+<Migrate id="rdoParameter.Direction" />
+-->
+<!-- 
+Lib_Property:rdoParameter.Name
+Occurrs:6;  eg. .Name = rrsSet!arfname
+<Migrate id="rdoParameter.Name" />
+-->
+<!-- 
+Lib_Property:rdoParameter.Type
+Occurrs:38;  eg. .Type = rrsSet!type_id
+<Migrate id="rdoParameter.Type" />
+-->
+<!-- 
+Lib_Property:rdoParameter.Value
+Occurrs:55;  eg. ProcessID = rQry.rdoParameters(3).Value
+<Migrate id="rdoParameter.Value" />
+-->
+<!-- 
+Lib_Method:rdoParameters.Item
+Occurrs:104;  eg. ProcessID = rQry.rdoParameters(3).Value
+<Migrate id="rdoParameters.Item" />
+-->
+<!-- 
+Lib_Property:rdoPreparedStatement.ActiveConnection
+Occurrs:17;  eg. Set rqParm.ActiveConnection = mrconDB
+<Migrate id="rdoPreparedStatement.ActiveConnection" />
+-->
+<!-- 
+Lib_Method:rdoPreparedStatement.Close
+Occurrs:14;  eg. If Not rps Is Nothing Then rps.Close
+<Migrate id="rdoPreparedStatement.Close" />
+-->
+<!-- 
+Lib_Method:rdoPreparedStatement.Execute
+Occurrs:23;  eg. rps.Execute
+<Migrate id="rdoPreparedStatement.Execute" />
+-->
+<!-- 
+Lib_Property:rdoPreparedStatement.Name
+Occurrs:6;  eg. AddArg pQry.Name, vntArray
+<Migrate id="rdoPreparedStatement.Name" />
+-->
+<!-- 
+Lib_Method:rdoPreparedStatement.OpenResultset
+Occurrs:40;  eg. Set rrs = rps.OpenResultset(rdOpenForwardOnly, rdConcurBatch, rdExecDirect)
+<Migrate id="rdoPreparedStatement.OpenResultset" />
+-->
+<!-- 
+Lib_Property:rdoPreparedStatement.Prepared
+Occurrs:15;  eg. rps.Prepared = False
+<Migrate id="rdoPreparedStatement.Prepared" />
+-->
+<!-- 
+Lib_Property:rdoPreparedStatement.QueryTimeout
+Occurrs:29;  eg. rps.QueryTimeout = miTimeout
+<Migrate id="rdoPreparedStatement.QueryTimeout" />
+-->
+<!-- 
+Lib_Property:rdoPreparedStatement.rdoParameters
+Occurrs:104;  eg. ProcessID = rQry.rdoParameters(3).Value
+-->
+<!-- 
+Lib_Property:rdoPreparedStatement.RowsAffected
+Occurrs:3;  eg. If rps.RowsAffected > 0 Or sProcName = "sp_change_agent" Then
+<Migrate id="rdoPreparedStatement.RowsAffected" />
+-->
+<!-- 
+Lib_Property:rdoPreparedStatement.RowsetSize
+Occurrs:6;  eg. rps.RowsetSize = 400
+<Migrate id="rdoPreparedStatement.RowsetSize" />
+-->
+<!-- 
+Lib_Property:rdoPreparedStatement.SQL
+Occurrs:36;  eg. AddErrMsg "CAgency", "CreateARTran", "Error in executing sql statement '" & sp.SQL & "', check stored procedure and parameters."
+<Migrate id="rdoPreparedStatement.SQL" />
+-->
+<!-- 
+Lib_Property:rdoQueries.Count
+Occurrs:3;  eg. For iQeries = 1 To mrconDB.rdoQueries.Count
+<Migrate id="rdoQueries.Count" />
+-->
+<!-- 
+Lib_Method:rdoQueries.Item
+Occurrs:6;  eg. If mrconDB.rdoQueries.Item(iQeries - 1).Name = pvsProcName Then
+<Migrate id="rdoQueries.Item" />
+-->
+<!-- 
+Lib_EnumEntry:ResultsetTypeConstants.rdOpenDynamic
+Occurrs:6;  eg. Set rrsSet = rps.OpenResultset(rdOpenDynamic, rdConcurBatch, rdExecDirect + rdAsyncEnable)
+<Migrate id="ResultsetTypeConstants.rdOpenDynamic" />
+-->
+<!-- 
+Lib_EnumEntry:ResultsetTypeConstants.rdOpenForwardOnly
+Occurrs:26;  eg. Set rdoResSetCount = mrconDB.OpenResultset("SELECT @@TRANCOUNT", rdOpenForwardOnly, , rdExecDirect)
+<Migrate id="ResultsetTypeConstants.rdOpenForwardOnly" />
+-->
+
+
+</Refactor>
+</RefactorLibrary>

@@ -1,0 +1,2229 @@
+<DescriptionFile>
+<!--
+Description: Upgrade MSComCtlLib to System.Windows.Forms 
+
+ImageList to System.Windows.Forms.ImageList
+ListView to System.Windows.Forms.ListView
+ColumnHeader to System.Windows.Forms.ColumnHeader
+ProgressBar to System.Windows.Forms.ProgressBar
+StatusBar to System.Windows.Forms.StatusStrip
+Panel to System.Windows.Forms.ToolStripStatusLabel
+ToolBar to System.Windows.Forms.ToolStrip
+Button to System.Windows.Forms.ToolStripButton
+MenuButton to System.Windows.Forms.ToolStripDropDownButton
+ButtonMenu to System.Windows.Forms.ToolStripMenuItem
+Separator to System.Windows.Forms.ToolStripSeparator
+TreeView to System.Windows.Forms.TreeView
+TabStrip to System.Windows.Forms.TabControl
+Tab to System.Windows.Forms.TabPage
+
+NOTE: Some upgrade rules are implemented with help from MscomctlMigration.dll 
+-->
+<library id="GM.MSCOMCTL.OCX"
+         name="MSComctlLib"
+         netVersion="2.0"
+         source="MSCOMCTL.OCX"
+         location="DoNotDeclare"
+         axLocation="DoNotDeclare"
+         migName="System.Windows.Forms"
+         assemblyName="MSComctlLib"
+         type="Internal"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IVBDataObject"/>
+   <class id="IVBDataObjectFiles"/>
+   <class id="ITabStrip"/>
+   <class id="ITabStripEvents"/>
+   <class id="ITabs"/>
+   <class id="ITab"/>
+   <class id="IToolbar"/>
+   <class id="IToolbarEvents"/>
+   <class id="IButtons"/>
+   <class id="IButton"/>
+   <class id="IButtonMenus"/>
+   <class id="IButtonMenu"/>
+   <class id="IStatusBar"/>
+   <class id="IStatusBarEvents"/>
+   <class id="IPanels"/>
+   <class id="IPanel"/>
+   <class id="IProgressBar"/>
+   <class id="IProgressBarEvents"/>
+   <class id="ITreeView"/>
+   <class id="ITreeViewEvents"/>
+   <class id="INodes"/>
+   <class id="INode"/>
+   <class id="IListView"/>
+   <class id="ListViewEvents"/>
+   <class id="IListItems"/>
+   <class id="IListItem"/>
+   <class id="IColumnHeaders"/>
+   <class id="IColumnHeader"/>
+   <class id="IListSubItems"/>
+   <class id="IListSubItem"/>
+   <class id="IImageList"/>
+   <class id="ImageListEvents"/>
+   <class id="IImages"/>
+   <class id="IImage"/>
+   <class id="ISlider"/>
+   <class id="ISliderEvents"/>
+   <class id="IControls"/>
+   <class id="IComboItem"/>
+   <class id="IComboItems"/>
+   <class id="IImageCombo"/>
+   <class id="DImageComboEvents"/>
+   <coclass id="DataObject"/>
+   <coclass id="DataObjectFiles"/>
+   <coclass id="TabStrip"/>
+   <coclass id="Tabs"/>
+   <coclass id="Tab"/>
+   <coclass id="Toolbar"/>
+   <coclass id="Buttons"/>
+   <coclass id="Button"/>
+   <coclass id="ButtonMenus"/>
+   <coclass id="ButtonMenu"/>
+   <coclass id="StatusBar"/>
+   <coclass id="Panels"/>
+   <coclass id="Panel"/>
+   <coclass id="ProgressBar"/>
+   <coclass id="TreeView"/>
+   <coclass id="Nodes"/>
+   <coclass id="Node"/>
+   <coclass id="ListView"/>
+   <coclass id="ListItems"/>
+   <coclass id="ListItem"/>
+   <coclass id="ColumnHeaders"/>
+   <coclass id="ColumnHeader"/>
+   <coclass id="ListSubItems"/>
+   <coclass id="ListSubItem"/>
+   <coclass id="ImageList"/>
+   <coclass id="ListImages"/>
+   <coclass id="ListImage"/>
+   <coclass id="Slider"/>
+   <coclass id="Controls"/>
+   <coclass id="ComboItem"/>
+   <coclass id="ComboItems"/>
+   <coclass id="ImageCombo"/>
+   <enumeration id="BorderStyleConstants" migName="BorderStyle" >
+      <entry id="ccNone" value="0" migName="None" />
+      <entry id="ccFixedSingle" value="1" migName="FixedSingle"/>
+   </enumeration>
+   <enumeration id="MousePointerConstants" >
+      <entry id="ccDefault" value="0"/>
+      <entry id="ccArrow" value="1"/>
+      <entry id="ccCross" value="2"/>
+      <entry id="ccIBeam" value="3"/>
+      <entry id="ccIcon" value="4"/>
+      <entry id="ccSize" value="5"/>
+      <entry id="ccSizeNESW" value="6"/>
+      <entry id="ccSizeNS" value="7"/>
+      <entry id="ccSizeNWSE" value="8"/>
+      <entry id="ccSizeEW" value="9"/>
+      <entry id="ccUpArrow" value="10"/>
+      <entry id="ccHourglass" value="11"/>
+      <entry id="ccNoDrop" value="12"/>
+      <entry id="ccArrowHourglass" value="13"/>
+      <entry id="ccArrowQuestion" value="14"/>
+      <entry id="ccSizeAll" value="15"/>
+      <entry id="ccCustom" value="99"/>
+   </enumeration>
+    <enumeration id="AppearanceConstants" migName="ToolBarAppearance" >
+      <entry id="ccFlat" value="0" migName="Flat" />
+      <entry id="cc3D" value="1" migName="Normal" />
+   </enumeration>
+   <enumeration id="VB4AppearanceConstants">
+      <entry id="vbFlat" value="0"/>
+      <entry id="vb3D" value="1"/>
+   </enumeration>
+   <enumeration id="ScrollingConstants">
+      <entry id="ccScrollingStandard" value="0"/>
+      <entry id="ccScrollingSmooth" value="1"/>
+   </enumeration>
+   <enumeration id="OrientationConstants">
+      <entry id="ccOrientationHorizontal" value="0"/>
+      <entry id="ccOrientationVertical" value="1"/>
+   </enumeration>
+   <enumeration id="OLEDragConstants">
+      <entry id="ccOLEDragManual" value="0"/>
+      <entry id="ccOLEDragAutomatic" value="1"/>
+   </enumeration>
+   <enumeration id="OLEDropConstants">
+      <entry id="ccOLEDropNone" value="0"/>
+      <entry id="ccOLEDropManual" value="1"/>
+   </enumeration>
+   <enumeration id="DragOverConstants">
+      <entry id="ccEnter" value="0"/>
+      <entry id="ccLeave" value="1"/>
+      <entry id="ccOver" value="2"/>
+   </enumeration>
+   <!--
+   UPGRADE_TODO:  This was an enum now its a set of strings 
+   -->
+   <enumeration id="ClipBoardConstants" migName="System.Windows.Forms.DataFormats" migStatus="external">
+      <entry id="ccCFText" value="1" migName="Text"/>
+      <entry id="ccCFBitmap" value="2" migName="Bitmap"/>
+      <entry id="ccCFMetafile" value="3" migName="MetaFilePicture"/>
+      <entry id="ccCFDIB" value="8" migName="Dib"/>
+      <entry id="ccCFPalette" value="9" migName="Dib"/>
+      <entry id="ccCFEMetafile" value="14" migName="EnhancedMetaFile"/>
+      <entry id="ccCFFiles" value="15" migName="FileDrop"/>
+      <entry id="ccCFRTF" value="0xffffbf01" migName="Rtf"/>
+   </enumeration>
+   <enumeration id="OLEDropEffectConstants" migName="DragDropEffects">
+      <entry id="ccOLEDropEffectNone" value="0" migName="None"/>
+      <entry id="ccOLEDropEffectCopy" value="1" migName="Copy"/>
+      <entry id="ccOLEDropEffectMove" value="2" migName="Move"/>
+      <entry id="ccOLEDropEffectScroll" value="0x80000000" migName="Scroll"/>
+   </enumeration>
+   <enumeration id="ErrorConstants">
+      <entry id="ccInvalidProcedureCall" value="5"/>
+      <entry id="ccOutOfMemory" value="7"/>
+      <entry id="ccTypeMismatch" value="13"/>
+      <entry id="ccObjectVariableNotSet" value="91"/>
+      <entry id="ccInvalidPropertyValue" value="380"/>
+      <entry id="ccSetNotSupportedAtRuntime" value="382"/>
+      <entry id="ccSetNotSupported" value="383"/>
+      <entry id="ccSetNotPermitted" value="387"/>
+      <entry id="ccGetNotSupported" value="394"/>
+      <entry id="ccInvalidPicture" value="481"/>
+      <entry id="ccInvalidObjectUse" value="425"/>
+      <entry id="ccWrongClipboardFormat" value="461"/>
+      <entry id="ccDataObjectLocked" value="672"/>
+      <entry id="ccExpectedAnArgument" value="673"/>
+      <entry id="ccRecursiveOleDrag" value="674"/>
+      <entry id="ccFormatNotByteArray" value="675"/>
+      <entry id="ccDataNotSetForFormat" value="676"/>
+      <entry id="ccIndexOutOfBounds" value="35600"/>
+      <entry id="ccElemNotFound" value="35601"/>
+      <entry id="ccNonUniqueKey" value="35602"/>
+      <entry id="ccInvalidKey" value="35603"/>
+      <entry id="ccElemNotPartOfCollection" value="35605"/>
+      <entry id="ccCollectionChangedDuringEnum" value="35606"/>
+      <entry id="ccWouldIntroduceCycle" value="35614"/>
+      <entry id="ccMissingRequiredArg" value="35607"/>
+      <entry id="ccBadObjectReference" value="35610"/>
+      <entry id="ccCircularReference" value="35700"/>
+      <entry id="ccCol1MustBeLeftAligned" value="35604"/>
+      <entry id="ccReadOnlyIfHasImages" value="35611"/>
+      <entry id="ccImageListMustBeInitialized" value="35613"/>
+      <entry id="ccNotSameSize" value="35615"/>
+      <entry id="ccImageListLocked" value="35617"/>
+      <entry id="ccMaxPanelsExceeded" value="35616"/>
+      <entry id="ccMaxButtonsExceeded" value="35619"/>
+      <entry id="ccInvalidSafeModeProcCall" value="680"/>
+   </enumeration>
+   <enumeration id="TabWidthStyleConstants">
+      <entry id="tabJustified" value="0"/>
+      <entry id="tabNonJustified" value="1"/>
+      <entry id="tabFixed" value="2"/>
+   </enumeration>
+   <enumeration id="TabStyleConstants">
+      <entry id="tabTabs" value="0"/>
+      <entry id="tabButtons" value="1"/>
+      <entry id="tabFlatButtons" value="2"/>
+   </enumeration>
+   <enumeration id="PlacementConstants">
+      <entry id="tabPlacementTop" value="0"/>
+      <entry id="tabPlacementBottom" value="1"/>
+      <entry id="tabPlacementLeft" value="2"/>
+      <entry id="tabPlacementRight" value="3"/>
+   </enumeration>
+   <enumeration id="TabSelStyleConstants">
+      <entry id="tabTabStandard" value="0"/>
+      <entry id="tabTabOpposite" value="1"/>
+   </enumeration>
+   <enumeration id="ButtonStyleConstants">
+      <entry id="tbrDefault" value="0"/>
+      <entry id="tbrCheck" value="1"/>
+      <entry id="tbrButtonGroup" value="2"/>
+      <entry id="tbrSeparator" value="3"/>
+      <entry id="tbrPlaceholder" value="4"/>
+      <entry id="tbrDropdown" value="5"/>
+   </enumeration>
+   <enumeration id="ValueConstants">
+      <entry id="tbrUnpressed" value="0" migName="false"/>
+      <entry id="tbrPressed" value="1" migName="true"/>
+   </enumeration>
+   <enumeration id="ToolbarStyleConstants" migName="ToolBarAppearance" >
+      <entry id="tbrStandard" value="0" migName="Normal" />
+      <entry id="tbrFlat" value="1" migName="Flat" />
+   </enumeration>
+   <enumeration id="ToolbarTextAlignConstants">
+      <entry id="tbrTextAlignBottom" value="0"/>
+      <entry id="tbrTextAlignRight" value="1"/>
+   </enumeration>
+   <enumeration id="SbarStyleConstants">
+      <entry id="sbrNormal" value="0"/>
+      <entry id="sbrSimple" value="1"/>
+   </enumeration>
+   <enumeration id="PanelAlignmentConstants" migName="ToolStripItemAlignment">
+      <entry id="sbrLeft" value="0" migName="Left"/>
+      <entry id="sbrCenter" value="1" migName="Left"/>
+      <entry id="sbrRight" value="2" migName="Right"/>
+   </enumeration>
+   <enumeration id="PanelAutoSizeConstants" migStatus="external">
+      <entry id="sbrNoAutoSize" value="0"/>
+      <entry id="sbrSpring" value="1"/>
+      <entry id="sbrContents" value="2"/>
+   </enumeration>
+   <enumeration id="PanelBevelConstants">
+      <entry id="sbrNoBevel" value="0"/>
+      <entry id="sbrInset" value="1"/>
+      <entry id="sbrRaised" value="2"/>
+   </enumeration>
+   <enumeration id="PanelStyleConstants" migStatus="external">
+      <entry id="sbrText" value="0"/>
+      <entry id="sbrCaps" value="1"/>
+      <entry id="sbrNum" value="2"/>
+      <entry id="sbrIns" value="3"/>
+      <entry id="sbrScrl" value="4"/>
+      <entry id="sbrTime" value="5"/>
+      <entry id="sbrDate" value="6"/>
+      <entry id="sbrKana" value="7"/>
+   </enumeration>
+   <enumeration id="LabelEditConstants">
+      <entry id="tvwAutomatic" value="0"/>
+      <entry id="tvwManual" value="1"/>
+   </enumeration>
+   <enumeration id="TreeLineStyleConstants">
+      <entry id="tvwTreeLines" value="0"/>
+      <entry id="tvwRootLines" value="1"/>
+   </enumeration>
+   <enumeration id="TreeStyleConstants">
+      <entry id="tvwTextOnly" value="0"/>
+      <entry id="tvwPictureText" value="1"/>
+      <entry id="tvwPlusMinusText" value="2"/>
+      <entry id="tvwPlusPictureText" value="3"/>
+      <entry id="tvwTreelinesText" value="4"/>
+      <entry id="tvwTreelinesPictureText" value="5"/>
+      <entry id="tvwTreelinesPlusMinusText" value="6"/>
+      <entry id="tvwTreelinesPlusMinusPictureText" value="7"/>
+   </enumeration>
+   <enumeration id="TreeRelationshipConstants">
+      <entry id="tvwFirst" value="0"/>
+      <entry id="tvwLast" value="1"/>
+      <entry id="tvwNext" value="2"/>
+      <entry id="tvwPrevious" value="3"/>
+      <entry id="tvwChild" value="4"/>
+   </enumeration>
+   <enumeration id="ListTextBackgroundConstants">
+      <entry id="lvwTransparent" value="0"/>
+      <entry id="lvwOpaque" value="1"/>
+   </enumeration>
+   <enumeration id="ListArrangeConstants">
+      <entry id="lvwNone" value="0"/>
+      <entry id="lvwAutoLeft" value="1"/>
+      <entry id="lvwAutoTop" value="2"/>
+   </enumeration>
+   <enumeration id="ListPictureAlignmentConstants">
+      <entry id="lvwTopLeft" value="0"/>
+      <entry id="lvwTopRight" value="1"/>
+      <entry id="lvwBottomLeft" value="2"/>
+      <entry id="lvwBottomRight" value="3"/>
+      <entry id="lvwCenter" value="4"/>
+      <entry id="lvwTile" value="5"/>
+   </enumeration>
+   <enumeration id="ListLabelEditConstants">
+      <entry id="lvwAutomatic" value="0" migStatus="external" migName="true"/>
+      <entry id="lvwManual" value="1" migStatus="external" migName="false"/>
+   </enumeration>
+   <enumeration id="ListSortOrderConstants" migName="SortOrder" >
+      <entry id="lvwAscending" value="0" migName="Ascending" />
+      <entry id="lvwDescending" value="1" migName="Descending"/>
+   </enumeration>
+   <enumeration id="ListViewConstants" migName="View" >
+      <entry id="lvwIcon" value="0" migName="LargeIcon" />
+      <entry id="lvwSmallIcon" value="1" migName="SmallIcon"/>
+      <entry id="lvwList" value="2" migName="List"/>
+      <entry id="lvwReport" value="3" migName="Details"/>
+   </enumeration>
+   <enumeration id="ListColumnAlignmentConstants" migName="System.Windows.Forms.HorizontalAlignment" migStatus="external" >
+      <entry id="lvwColumnLeft" value="0" migName="Left" />
+      <entry id="lvwColumnRight" value="1" migName="Right" />
+      <entry id="lvwColumnCenter" value="2" migName="Center" />
+   </enumeration>
+   <enumeration id="ListFindItemWhereConstants">
+      <entry id="lvwText" value="0"/>
+      <entry id="lvwSubItem" value="1"/>
+      <entry id="lvwTag" value="2"/>
+   </enumeration>
+   <enumeration id="ListFindItemHowConstants">
+      <entry id="lvwWhole" value="0"/>
+      <entry id="lvwPartial" value="1"/>
+   </enumeration>
+   <enumeration id="ImageDrawConstants">
+      <entry id="imlNormal" value="0"/>
+      <entry id="imlTransparent" value="1"/>
+      <entry id="imlSelected" value="2"/>
+      <entry id="imlFocus" value="3"/>
+   </enumeration>
+   <enumeration id="TickStyleConstants">
+      <entry id="sldBottomRight" value="0"/>
+      <entry id="sldTopLeft" value="1"/>
+      <entry id="sldBoth" value="2"/>
+      <entry id="sldNoTicks" value="3"/>
+   </enumeration>
+   <enumeration id="TextPositionConstants">
+      <entry id="sldAboveLeft" value="0"/>
+      <entry id="sldBelowRight" value="1"/>
+   </enumeration>
+   <enumeration id="ImageComboStyleConstants">
+      <entry id="ImgCboDropdownCombo" value="0"/>
+      <entry id="ImgCboSimpleCombo" value="1"/>
+      <entry id="ImgCboDropdownList" value="2"/>
+   </enumeration>
+   <class id="IVBDataObject" parent="IDispatch">
+      <property id="Files" type="DataObjectFiles" status="Out" migName="GetFileDropList()"/>
+      <method id="Clear" type="Void"/>
+      <method id="GetData" type="Variant">
+         <argument id="sFormat" type="String" status="ByVal"/>
+      </method>
+      <method id="GetFormat" type="Boolean">
+         <argument id="sFormat" type="ClibBoardConstants" status="ByVal"/>
+      </method>
+      <method id="SetData" type="Void">
+         <argument id="vValue" type="Object" status="ByVal" optional="Default"/>
+         <argument id="vFormat" type="String" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="IVBDataObjectFiles" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="String" status="indexer">
+         <argument id="lIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void" nPram="3" migPattern="%1d.Add(%2d)">
+         <argument id="bstrFilename" type="String" status="ByVal"/>
+         <argument id="vIndex" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="vIndex" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="ITabStrip" parent="IDispatch" creatable="off">
+      <property id="Tabs" type="Tabs" status="InOut" migName="TabPages"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Font" type="Font" status="InOut"/>
+      <property id="hWnd" type="OLE_HANDLE" status="InOut" migName="Handle"/>
+      <property id="MouseIcon" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.MouseIcon"/>
+         <Set npram="2" migPattern="%1d.MouseIcon = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_MouseIcon(%1d)\c"/>
+      </property>
+      <property id="MultiRow" type="Boolean" status="InOut"/>
+      <property id="Style" type="TabStyleConstants" status="InOut"/>
+      <property id="TabFixedWidth" type="Integer" status="InOut"/>
+      <property id="TabWidthStyle" type="TabWidthStyleConstants" status="InOut"/>
+      <property id="ClientTop" type="Integer" status="InOut" migPattern="DisplayRectangle.Top+28"/>
+      <property id="ClientLeft" type="Integer" status="InOut" migPattern="DisplayRectangle.Left+10"/>
+      <property id="ClientHeight" type="Integer" status="InOut" migName="DisplayRectangle.Height+1"/>
+      <property id="ClientWidth" type="Integer" status="InOut" migName="DisplayRectangle.Width-5"/>
+      <property id="MousePointer" type="MousePointerConstants" status="InOut"/>
+      <property id="ImageList" type="MSComctlLib.ImageList" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.ImageList"/>
+         <Set npram="2" migPattern="%1d.ImageList = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_ImageList(%1d)\c"/>
+      </property>
+      <property id="TabFixedHeight" type="Integer" status="InOut"/>
+      <property id="ShowTips" type="Boolean" status="InOut"/>
+      <property id="SelectedItem" type="Tab" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.SelectedTab"/>
+         <Set npram="2" migPattern="%1d.SelectedItem = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_SelectedItem(%1d)\c"/>
+      </property>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <property id="HotTracking" type="Boolean" status="InOut"/>
+      <property id="MultiSelect" type="Boolean" status="InOut"/>
+      <property id="Placement" type="PlacementConstants" status="InOut"/>
+      <property id="Separators" type="Boolean" status="InOut"/>
+      <property id="TabMinWidth" type="Integer" status="InOut"/>
+      <property id="TabStyle" type="TabSelStyleConstants" status="InOut"/>
+      <method id="Refresh" type="Void"/>
+      <method id="OLEDrag" type="Void"/>
+      <method id="AboutBox" type="Void"/>
+      <method id="DeselectAll" type="Void"/>
+   </class>
+   <class id="ITabStripEvents" parent="None" creatable="off">
+      <event id="Click" netName="Click" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="KeyDown" netName="KeyDownEvent" netHandler="AxMSComctlLib.ITabStripEvents_KeyDownEventHandler" netArgs="AxMSComctlLib.ITabStripEvents_KeyDownEvent">
+         <argument id="keyCode" type="Integer" status="Out"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="AxMSComctlLib.ITabStripEvents_KeyPressEventHandler" netArgs="AxMSComctlLib.ITabStripEvents_KeyPressEvent">
+         <argument id="keyAscii" type="Integer" status="Out"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="AxMSComctlLib.ITabStripEvents_KeyUpEventHandler" netArgs="AxMSComctlLib.ITabStripEvents_KeyUpEvent">
+         <argument id="keyCode" type="Integer" status="Out"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="AxMSComctlLib.ITabStripEvents_MouseDownEventHandler" netArgs="AxMSComctlLib.ITabStripEvents_MouseDownEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="AxMSComctlLib.ITabStripEvents_MouseMoveEventHandler" netArgs="AxMSComctlLib.ITabStripEvents_MouseMoveEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="AxMSComctlLib.ITabStripEvents_MouseUpEventHandler" netArgs="AxMSComctlLib.ITabStripEvents_MouseUpEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="BeforeClick" netName="BeforeClick" netHandler="AxMSComctlLib.ITabStripEvents_BeforeClickEventHandler" netArgs="AxMSComctlLib.ITabStripEvents_BeforeClickEvent">
+         <argument id="cancel" type="Integer" status="Out"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxMSComctlLib.ITabStripEvents_OLEStartDragEventHandler" netArgs="AxMSComctlLib.ITabStripEvents_OLEStartDragEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxMSComctlLib.ITabStripEvents_OLEGiveFeedbackEventHandler" netArgs="AxMSComctlLib.ITabStripEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxMSComctlLib.ITabStripEvents_OLESetDataEventHandler" netArgs="AxMSComctlLib.ITabStripEvents_OLESetDataEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxMSComctlLib.ITabStripEvents_OLECompleteDragEventHandler" netArgs="AxMSComctlLib.ITabStripEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxMSComctlLib.ITabStripEvents_OLEDragOverEventHandler" netArgs="AxMSComctlLib.ITabStripEvents_OLEDragOverEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef"/>
+         <argument id="y" type="Integer" status="ByRef"/>
+         <argument id="state" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxMSComctlLib.ITabStripEvents_OLEDragDropEventHandler" netArgs="AxMSComctlLib.ITabStripEvents_OLEDragDropEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef"/>
+         <argument id="y" type="Integer" status="ByRef"/>
+      </event>
+   </class>
+   <class id="ITabs" parent="IDispatch" default="ControlDefault" >
+      <property id="Count" type="Integer" status="InOut"/>
+      <accessor id="ControlDefault" type="Tab" status="GetSet">
+         <argument id="pvIndex" type="Variant" status="ByVal"/>
+      </accessor>
+      <pattern id="ControlDefault.Get" >
+         <all narg="2" code="%1d[%2D]"/>
+      </pattern>
+      <pattern id="ControlDefault.Set" >
+         <all narg="3" code="%2d[%3D] = %1d\c" />
+      </pattern>
+      <accessor id="Item" type="Tab" status="GetSet">
+         <argument id="pvIndex" type="Variant" status="ByVal"/>
+      </accessor>
+      <pattern id="Item.Get" >
+         <all narg="2" code="%1d[%2D]"/>
+      </pattern>
+      <pattern id="Item.Set" >
+         <all narg="3" code="%2d[%3D] = %1d\c" />
+      </pattern>
+      
+      <method id="Remove" type="Void">
+         <argument id="pvIndex" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Add" type="Tab" >
+         <argument id="pvIndex" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="pvKey" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="pvCaption" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="pvImage" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <!-- Custom added property numTabs for migration of tabs which works similarly to numPanel -->
+      <Property id="NumTabs" type="integer" />
+   </class>
+   <class id="ITab" parent="IDispatch" default="_ObjectDefault" creatable="off" >
+      <property id="_ObjectDefault" type="String" status="InOut" migName="Text"/>
+      <property id="Caption" type="String" status="InOut" migName="Text"/>
+      <property id="Tag" type="Variant" status="InOUt"/>
+      <property id="Index" type="Integer" status="InOut"/>
+      <property id="Key" type="String" status="InOut"/>
+      <property id="ToolTipText" type="String" status="InOut"/>
+      <property id="Width" type="Integer" status="InOut"/>
+      <property id="Height" type="Integer" status="InOut"/>
+      <property id="Top" type="Integer" status="InOut"/>
+      <property id="Left" type="Integer" status="InOut"/>
+      <property id="Selected" type="Boolean" status="GetSet"/>
+      <pattern id="Selected.Set" >
+         <all narg="3" code="%3d.SelectTab()\c" />
+      </pattern>      
+	  <pattern id="Selected.Get" >
+         <all narg="2" code="%1d"/>
+      </pattern>
+      <property id="Image" type="Variant" status="InOut"/>
+      <property id="HighLighted" type="Boolean" status="InOut"/>
+   </class>
+   <class id="IToolbar" parent="IDispatch">
+      <property id="Appearance" type="AppearanceConstants" status="InOut"/>
+      <property id="AllowCustomize" type="Boolean" status="InOut"/>
+      <property id="Buttons" type="Buttons" status="InOut" migName="Items" />
+      <property id="Controls" type="Controls" status="Out"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="hWnd" type="OLE_HANDLE" status="InOut"/>
+      <property id="MouseIcon" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.MouseIcon"/>
+         <Set npram="2" migPattern="%1d.MouseIcon = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_MouseIcon(%1d)\c"/>
+      </property>
+      <property id="MousePointer" type="MousePointerConstants" status="InOut"/>
+      <property id="ImageList" type="MSComctlLib.ImageList" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.ImageList"/>
+         <Set npram="2" migPattern="%1d.ImageList = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_ImageList(%1d)\c"/>
+      </property>
+      <property id="ShowTips" type="Boolean" status="InOut"/>
+      <property id="BorderStyle" type="BorderStyleConstants" status="InOut"/>
+      <property id="Wrappable" type="Boolean" status="InOut"/>
+      <property id="ButtonHeight" status="InOut" migName="ButtonSize.Height" type="TwipsY" />
+      <property id="ButtonWidth" status="InOut" migName="ButtonSize.Width" type="TwipsX" />
+      <property id="HelpContextID" type="Integer" status="InOut"/>
+      <property id="HelpFile" type="String" status="InOut"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <property id="DisabledImageList" type="Object" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.DisabledImageList"/>
+         <Set npram="2" migPattern="%1d.DisabledImageList = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_DisabledImageList(%1d)\c"/>
+      </property>
+      <property id="HotImageList" type="Object" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.HotImageList"/>
+         <Set npram="2" migPattern="%1d.HotImageList = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_HotImageList(%1d)\c"/>
+      </property>
+      <property id="Style" type="ToolbarStyleConstants" status="InOut" migName="Appearance" />
+      <property id="TextAlignment" type="ToolbarTextAlignConstants" status="InOut"/>
+      <method id="Refresh" type="Void"/>
+      <method id="Customize" type="Void"/>
+      <method id="SaveToolbar" type="Void">
+         <argument id="Key" type="String" status="ByVal"/>
+         <argument id="Subkey" type="String" status="ByVal"/>
+         <argument id="Value" type="String" status="ByVal"/>
+      </method>
+      <method id="RestoreToolbar" type="Void">
+         <argument id="Key" type="String" status="ByVal"/>
+         <argument id="Subkey" type="String" status="ByVal"/>
+         <argument id="Value" type="String" status="ByVal"/>
+      </method>
+      <method id="OLEDrag" type="Void"/>
+      <method id="AboutBox" type="Void"/>
+      <Property id="ToolTips" type="Boolean" />
+      <Property id="NumButtons" type="integer" />
+   </class>
+   <class id="IToolbarEvents" parent="None" creatable="off">
+      <event id="ButtonClick" netName="ButtonClick" role="event" netArgs="ToolStripItemClickedEventArgs"
+             netHandler="System.Windows.Forms.ToolStripItemClickedEventHandler" migPattern="ItemClicked" >  
+         <argument id="button" type="Button" status="ByVal" 
+                   cshPattern="%1d = (System.Windows.Forms.ToolStripItem)e.ClickedItem"
+                   vbnPattern="%1d = DirectCast(e.ClickedItem,System.Windows.Forms.ToolStripItem)"
+                   migStatus="Type:System.Windows.Forms.ToolStripItem" />
+                   
+             <!--
+                   UPGRADE_TODO: want a way to simplify local eventArg argument declarations and initializations
+                   
+                   additional specification needed...
+                   
+         <argument id="button" type="Button" status="ByVal" 
+                   cshPattern="var %1d = (System.Windows.Forms.ToolStripItem)e.ClickedItem" 
+                   migStatus="Type://MIGREMOVE" />
+                   -->
+      </event>
+      <event id="Change" netName="Change" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="MouseDown" netName="MouseDown" netHandler="MouseEventHandler" netArgs="MouseEventArgs">
+         <argument id="button" type="Integer" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal" cshPattern="%1d = (int)Control.ModifierKeys" vbnPattern="%1d = Control.ModifierKeys" />
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d=e.X"/>
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d=e.Y"/>
+      </event>
+      <event id="MouseMove" netName="MouseMove" netHandler="System.Windows.Forms.MouseEventHandler" netArgs="MouseEventArgs">
+         <argument id="button" type="Integer" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal" cshPattern="%1d = (int)Control.ModifierKeys" vbnPattern="%1d = Control.ModifierKeys" />
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d=e.X"/>
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d=e.Y"/>
+      </event>
+      <event id="MouseUp" netName="MouseUp" netHandler="MouseEventHandler" netArgs="MouseEventArgs">
+         <argument id="button" type="Integer" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal" cshPattern="%1d = (int)Control.ModifierKeys" vbnPattern="%1d = Control.ModifierKeys" />
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d=e.X"/>
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d=e.Y"/>
+      </event>
+      <event id="DblClick" netName="DblClick" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxMSComctlLib.IToolbarEvents_OLEStartDragEventHandler" netArgs="AxMSComctlLib.IToolbarEvents_OLEStartDragEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxMSComctlLib.IToolbarEvents_OLEGiveFeedbackEventHandler" netArgs="AxMSComctlLib.IToolbarEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxMSComctlLib.IToolbarEvents_OLESetDataEventHandler" netArgs="AxMSComctlLib.IToolbarEvents_OLESetDataEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxMSComctlLib.IToolbarEvents_OLECompleteDragEventHandler" netArgs="AxMSComctlLib.IToolbarEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxMSComctlLib.IToolbarEvents_OLEDragOverEventHandler" netArgs="AxMSComctlLib.IToolbarEvents_OLEDragOverEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef"/>
+         <argument id="y" type="Integer" status="ByRef"/>
+         <argument id="state" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxMSComctlLib.IToolbarEvents_OLEDragDropEventHandler" netArgs="AxMSComctlLib.IToolbarEvents_OLEDragDropEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef"/>
+         <argument id="y" type="Integer" status="ByRef"/>
+      </event>
+      <event id="ButtonMenuClick" netName="ButtonMenuClick" netHandler="AxMSComctlLib.IToolbarEvents_ButtonMenuClickEventHandler" netArgs="AxMSComctlLib.IToolbarEvents_ButtonMenuClickEvent">
+         <argument id="buttonMenu" type="ButtonMenu" status="ByVal"/>
+      </event>
+      <event id="ButtonDropDown" netName="ButtonDropDown" netHandler="AxMSComctlLib.IToolbarEvents_ButtonDropDownEventHandler" netArgs="AxMSComctlLib.IToolbarEvents_ButtonDropDownEvent">
+         <argument id="button" type="Button" status="ByVal"/>
+      </event>
+   </class>
+   <class id="IButtons" parent="IDispatch" default="ControlDefault" creatable="off">
+      <property id="Count" type="Integer" status="InOut"/>
+      <accessor id="ControlDefault" type="Button" nPram="2" migStatus="ZeroBased"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Item" type="Button" nPram="2" migStatus="ZeroBased"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)" >
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="OriginalAdd" type="Button">
+         <argument id="Index" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Caption" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Style" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Image" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Add" type="Button" nPram="6" migPattern="%1d.ToolbarButtonsAdd(%3o,%6o)">
+         <argument id="Index" type="Variant" status="ByVal" optional="Def.Overload"/>
+         <argument id="Key" type="Variant" status="ByVal" optional="Def.Overload"/>
+         <argument id="Caption" type="String" status="ByVal" optional="Def.Overload"/>
+         <argument id="Style" type="Variant" status="ByVal" optional="Def.Overload"/>
+         <argument id="Image" type="String" status="ByVal" optional="Def.Overload"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="IButton" parent="IDispatch" default="_ObjectDefault" creatable="off">
+      <property id="_ObjectDefault" type="String" status="InOut"/>
+      <property id="Caption" type="String" status="InOut"  migName="Text" />
+      <property id="Tag" type="Variant" status="InOut" />
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Index" type="Integer" status="InOut"/>
+      <property id="Key" type="String" status="InOut" migName="Name"/>
+      <property id="ToolTipText" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="Width" type="Integer" status="InOut"/>
+      <property id="Height" type="Integer" status="InOut"/>
+      <property id="Top" type="Integer" status="InOut"/>
+      <property id="Left" type="Integer" status="InOut"/>
+      <property id="Value" type="Boolean" status="GetSet"/>
+      <pattern id="Value.Set" >
+         <!-- assumes setting to true -->
+         <all narg="3" code="%3d.PerformClick()\c" />
+      </pattern>      
+      <pattern id="Value.Get" >
+         <all narg="2" code="Pressed"/>
+      </pattern>
+      <property id="Style" type="ButtonStyleConstants" status="InOut"/>
+      <property id="Description" type="String" status="InOut"/>
+      <property id="Image" type="Variant" status="InOut" migName="ImageIndex" />
+      <property id="MixedState" type="Boolean" status="InOut"/>
+      <property id="ButtonMenus" type="ButtonMenus" status="InOut"/>
+      <Property id="ImageIndex" type="Integer" migStatus="ZeroBased" />
+      <Property id="ImageKey" type="String" />
+   </class>
+   <class id="IButtonMenus" parent="IDispatch" default="ControlDefault" creatable="off">
+      <property id="Count" type="Integer" status="InOut"/>
+      <accessor id="ControlDefault" type="ButtonMenu" migStatus="ZeroBased" nPram="2"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)" >
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <accessor id="Item" type="ButtonMenu">
+         <argument id="Index" type="Variant" status="ByRef"/>
+      </accessor>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Add" type="ButtonMenu">
+         <argument id="Index" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Key" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Text" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <Property id="NumButtonMenus" type="integer" />
+   </class>
+   <class id="IButtonMenu" parent="IDispatch" default="_ObjectDefault" creatable="off">
+      <property id="_ObjectDefault" type="String" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Index" type="Integer" status="InOut"/>
+      <property id="Key" type="String" status="InOut"/>
+      <property id="Parent" type="Button" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="Text" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+   </class>
+   <class id="IStatusBar" parent="IDispatch">
+      <property id="SimpleText" type="String" status="InOut" migName="Text" />
+      <property id="Style" type="SbarStyleConstants" status="InOut" migStatus="delete"/>
+      <property id="Panels" type="Panels" status="InOut" migName="Items" />
+      <property id="MousePointer" type="MousePointerConstants" status="InOut" migStatus="NotImplemented" />
+      <property id="MouseIcon" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.MouseIcon"/>
+         <Set npram="2" migPattern="%1d.MouseIcon = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_MouseIcon(%1d)\c"/>
+      </property>
+      <property id="ShowTips" type="Boolean" status="InOut"/>
+      <property id="PanelProperties" type="String" status="InOut"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Font" type="Font" status="InOut"/>
+      <property id="hWnd" type="OLE_HANDLE" status="InOut"/>
+      <method id="Refresh" type="Void"/>
+      <method id="OLEDrag" type="Void"/>
+      <method id="AboutBox" type="Void"/>
+   </class>
+   <class id="IStatusBarEvents" parent="None" creatable="off">
+      <event id="PanelClick" netName="PanelClick" role="event" netArgs="ToolStripItemClickedEventArgs"
+             netHandler="System.Windows.Forms.ToolStripItemClickedEventHandler" migPattern="ItemClicked" >
+         <argument id="panel" type="Panel" status="ByVal" migPattern="%1d = (System.Windows.Forms.ToolStripStatusLabel)e.ClickedItem" />
+      </event>
+      <event id="PanelDblClick" netName="PanelDblClick" netHandler="AxMSComctlLib.IStatusBarEvents_PanelDblClickEventHandler" netArgs="AxMSComctlLib.IStatusBarEvents_PanelDblClickEvent">
+         <argument id="panel" type="Panel" status="ByVal"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="AxMSComctlLib.IStatusBarEvents_MouseDownEventHandler" netArgs="AxMSComctlLib.IStatusBarEvents_MouseDownEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseMove" netName="MouseMove" netHandler="System.Windows.Forms.MouseEventHandler" netArgs="MouseEventArgs">
+         <argument id="button" type="Integer" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal" cshPattern="%1d = (int)Control.ModifierKeys" vbnPattern="%1d = Control.ModifierKeys" />
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d = e.X" />
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d = e.Y" />
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="AxMSComctlLib.IStatusBarEvents_MouseUpEventHandler" netArgs="AxMSComctlLib.IStatusBarEvents_MouseUpEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="DblClick" netName="DblClick" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxMSComctlLib.IStatusBarEvents_OLEStartDragEventHandler" netArgs="AxMSComctlLib.IStatusBarEvents_OLEStartDragEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxMSComctlLib.IStatusBarEvents_OLEGiveFeedbackEventHandler" netArgs="AxMSComctlLib.IStatusBarEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxMSComctlLib.IStatusBarEvents_OLESetDataEventHandler" netArgs="AxMSComctlLib.IStatusBarEvents_OLESetDataEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxMSComctlLib.IStatusBarEvents_OLECompleteDragEventHandler" netArgs="AxMSComctlLib.IStatusBarEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxMSComctlLib.IStatusBarEvents_OLEDragOverEventHandler" netArgs="AxMSComctlLib.IStatusBarEvents_OLEDragOverEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef"/>
+         <argument id="y" type="Integer" status="ByRef"/>
+         <argument id="state" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxMSComctlLib.IStatusBarEvents_OLEDragDropEventHandler" netArgs="AxMSComctlLib.IStatusBarEvents_OLEDragDropEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef"/>
+         <argument id="y" type="Integer" status="ByRef"/>
+      </event>
+   </class>
+   <class id="IPanels" parent="IDispatch" default="ControlDefault">
+      <property id="Count" type="Integer" status="InOut"/>
+      <method id="ControlDefault" type="Panel" nPram="2" migStatus="ZeroBased"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)" >
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Panel" nPram="6" 
+              cshPattern="%1d.Add(\s%3o\s,%4o,%5o,%6o)"
+              vbnPattern="%1d.Add(\s%3o\s,%4o,%5o,%6o)" >
+         <argument id="Index" type="Integer" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Key" type="String" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Text" type="String" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Style" type="Integer" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Picture" type="Integer" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Item" type="Panel" nPram="2" migStatus="ZeroBased"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)" >
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <Property id="NumPanels" type="integer" />
+   </class>
+   <class id="IPanel" parent="IDispatch" default="_ObjectDefault">
+      <property id="_ObjectDefault" type="String" status="InOut" migName="Text" />
+      <property id="Alignment" type="PanelAlignmentConstants" status="InOut"/>
+      <property id="AutoSize" type="PanelAutoSizeConstants" status="InOut"/>
+      <property id="Bevel" type="PanelBevelConstants" status="InOut" migName="BorderStyle" />
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Index" type="Integer" status="InOut"/>
+      <property id="Key" type="String" status="InOut" migName="Name" />
+      <property id="Left" type="Integer" status="InOut"/>
+      <property id="MinWidth" type="Integer" status="InOut"/>
+      <property id="Picture" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Image"/>
+         <Set npram="2" migPattern="%1d.Image = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Picture(%1d)\c"/>
+      </property>
+      <property id="Style" type="PanelStyleConstants" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut" />
+      <property id="Text" type="String" status="InOut"/>
+      <property id="ToolTipText" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="Width" status="InOut" type="TwipsX" />
+      <Property id="TextSave" type="string" />
+   </class>
+   <class id="IProgressBar" parent="IDispatch" default="ControlDefault">
+      <property id="ControlDefault" type="Integer" status="InOut"/>
+      <property id="Max" type="Integer" status="InOut" migName="Maximum" />
+      <property id="Min" type="Integer" status="InOut" migName="Minimum" />
+      <property id="MousePointer" type="MousePointerConstants" status="InOut"/>
+      <property id="MouseIcon" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.MouseIcon"/>
+         <Set npram="2" migPattern="%1d.MouseIcon = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_MouseIcon(%1d)\c"/>
+      </property>
+      <property id="Value" type="Integer" status="InOut"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <property id="Appearance" type="AppearanceConstants" status="InOut"/>
+      <property id="BorderStyle" type="BorderStyleConstants" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="hWnd" type="OLE_HANDLE" status="Out"/>
+      <property id="Orientation" type="OrientationConstants" status="InOut"/>
+      <property id="Scrolling" type="ScrollingConstants" status="InOut"/>
+      <method id="OLEDrag" type="Void"/>
+      <method id="AboutBox" type="Void"/>
+      <method id="Refresh" type="Void"/>
+   </class>
+   <class id="IProgressBarEvents" parent="None" creatable="off">
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="AxMSComctlLib.IProgressBarEvents_MouseDownEventHandler" netArgs="AxMSComctlLib.IProgressBarEvents_MouseDownEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseMove" netName="MouseMove" netHandler="System.Windows.Forms.MouseEventHandler" netArgs="MouseEventArgs">
+         <argument id="button" type="Integer" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="AxMSComctlLib.IProgressBarEvents_MouseUpEventHandler" netArgs="AxMSComctlLib.IProgressBarEvents_MouseUpEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxMSComctlLib.IProgressBarEvents_OLEStartDragEventHandler" netArgs="AxMSComctlLib.IProgressBarEvents_OLEStartDragEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxMSComctlLib.IProgressBarEvents_OLEGiveFeedbackEventHandler" netArgs="AxMSComctlLib.IProgressBarEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxMSComctlLib.IProgressBarEvents_OLESetDataEventHandler" netArgs="AxMSComctlLib.IProgressBarEvents_OLESetDataEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxMSComctlLib.IProgressBarEvents_OLECompleteDragEventHandler" netArgs="AxMSComctlLib.IProgressBarEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxMSComctlLib.IProgressBarEvents_OLEDragOverEventHandler" netArgs="AxMSComctlLib.IProgressBarEvents_OLEDragOverEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef"/>
+         <argument id="y" type="Integer" status="ByRef"/>
+         <argument id="state" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxMSComctlLib.IProgressBarEvents_OLEDragDropEventHandler" netArgs="AxMSComctlLib.IProgressBarEvents_OLEDragDropEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef"/>
+         <argument id="y" type="Integer" status="ByRef"/>
+      </event>
+   </class>
+   <class id="ITreeView" parent="IDispatch" Default="Nodes">
+      <property id="DropHighlight" type="Node" status="GetSetLet" migStatus="NotImplemented">
+         <Get npram="1" migPattern="%1d.DropHighlight"/>
+         <Set npram="2" migPattern="// UPGRADE_TODO %1d.DropHighlight = %2d\c\C" />
+         <Let npram="2" migPattern="%2d.let_DropHighlight(%1d)\c" />
+      </property>
+      <property id="HideSelection" type="Boolean" status="InOut"/>
+      <property id="ImageList" type="MSComctlLib.ImageList" status="InOut" />
+      <property id="Indentation" type="Integer" status="InOut"/>
+      <property id="LabelEdit" type="LabelEditConstants" status="InOut"/>
+      <property id="LineStyle" type="TreeLineStyleConstants" status="InOut" migStatus="NotImplemented" />
+      <property id="MousePointer" type="MousePointerConstants" status="InOut"/>
+      <property id="MouseIcon" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.MouseIcon"/>
+         <Set npram="2" migPattern="%1d.MouseIcon = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_MouseIcon(%1d)\c"/>
+      </property>
+      <property id="Nodes" type="Nodes" status="InOut"/>
+      <property id="PathSeparator" type="String" status="InOut"/>
+      <property id="SelectedItem" type="Node" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.SelectedNode" />
+         <Set npram="2" migPattern="%1d.SelectedNode = %2d\c"/>
+         <Let npram="2" migPattern="%2d.SelectedNode = %1d\c"/>
+      </property>
+      <property id="Sorted" type="Boolean" status="InOut"/>
+      <!-- Only using defaults in a simple way so we can delete the style -->
+      <property id="Style" type="TreeStyleConstants" status="InOut" migStatus="delete"/>
+      <property id="OLEDragMode" type="OLEDragConstants" status="InOut"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <property id="Appearance" type="AppearanceConstants" status="InOut"/>
+      <property id="BorderStyle" type="BorderStyleConstants" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Font" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Font"/>
+         <Set npram="2" migPattern="%1d.Font = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Font(%1d)\c"/>
+      </property>
+      <property id="hWnd" type="OLE_HANDLE" status="InOut" migName="Handle"/>
+      <property id="Checkboxes" type="Boolean" status="InOut"/>
+      <property id="FullRowSelect" type="Boolean" status="InOut"/>
+      <property id="HotTracking" type="Boolean" status="InOut"/>
+      <property id="Scroll" type="Boolean" status="InOut"/>
+      <property id="SingleSel" type="Boolean" status="InOut"/>
+      <method id="HitTest" type="Node" nPram="3" migPattern="%1d.HitTest(%2d,%3d).Node">
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </method>
+      <property id="GetVisibleCount" type="Integer" migName="VisibleCount" />
+      <method id="StartLabelEdit" type="Void" migName="SelectedNode.BeginEdit"/>
+      <method id="Refresh" type="Void"/>
+      <method id="AboutBox" type="Void"/>
+      <method id="OLEDrag" type="Void"/>
+   </class>
+   <class id="ITreeViewEvents" parent="None" creatable="off">
+      <event id="BeforeLabelEdit" netName="BeforeLabelEdit" netHandler="NodeLabelEditEventHandler" netArgs="NodeLabelEditEventArgs">
+         <argument id="cancel" type="boolean" status="Out" migName="CancelEdit"/>
+      </event>
+      <event id="AfterLabelEdit" netName="AfterLabelEdit" netHandler="NodeLabelEditEventHandler" netArgs="NodeLabelEditEventArgs">
+         <argument id="cancel" type="Boolean" status="Out" migName="CancelEdit"/>
+         <argument id="newString" type="String" status="Out" migName="Label"/>
+      </event>
+      <event id="Collapse" netName="AfterCollapse" netHandler="TreeViewEventHandler" netArgs="TreeViewEventArgs">
+         <argument id="node" type="Node" status="ByVal" migName="Node"/>
+      </event>
+      <!-- UPGRADE this lacks a handler in .NET
+      <event id="Expand" netName="ExpandAll" netHandler="System.Windows.Forms.TreeNodeMouseClickEventHandler" netArgs="TreeNodeMouseClickEventArgs"> 
+         <argument id="node" type="Node" status="ByVal"/>
+      </event>
+      -->
+      <event id="NodeClick" role="event" netArgs="TreeNodeMouseClickEventArgs"
+             netHandler="System.Windows.Forms.TreeNodeMouseClickEventHandler" migName="NodeMouseClick">
+         <argument id="node" type="Node" status="ByVal" migPattern="%1d = e.Node" />
+      </event>
+      <event id="KeyDown" netName="KeyDown" netHandler="KeyEventHandler" netArgs="KeyEventArgs">
+         <argument id="keyCode" type="Integer" status="ByVal"  migPattern="%1d = e.KeyValue"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" role="event" netArgs="KeyEventArgs"
+             netHandler="System.Windows.Forms.KeyEventHandler" migPattern="KeyUp" >
+         <argument id="keyCode" type="Integer" status="ByVal" migPattern="%1d = (int)e.KeyCode" />
+         <argument id="shift" type="Integer" status="ByVal" />
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="AxMSComctlLib.ITreeViewEvents_KeyPressEventHandler" netArgs="AxMSComctlLib.ITreeViewEvents_KeyPressEvent">
+         <argument id="keyAscii" type="Integer" status="Out"/>
+      </event>
+      <event id="MouseDown" netName="MouseDown" role="event" netArgs="MouseEventArgs" netHandler="System.Windows.Forms.MouseEventHandler" migPattern="MouseDown" >
+         <argument id="button" type="Integer" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal" cshPattern="%1d = (int)Control.ModifierKeys" vbnPattern="%1d = Control.ModifierKeys" />
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d = e.X" />
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d = e.Y" />
+      </event>
+      <event id="MouseMove" netName="MouseMove" netHandler="System.Windows.Forms.MouseEventHandler" netArgs="MouseEventArgs">
+         <argument id="button" type="Integer" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal" migPattern="%1d = e.Shift" />
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d = e.X" />
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d = e.Y" />
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netArgs="MouseEventArgs" netHandler="System.Windows.Forms.MouseEventHandler" migPattern="MouseUp" >
+         <argument id="button" type="Integer" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal" cshPattern="%1d = (int)Control.ModifierKeys" vbnPattern="%1d = Control.ModifierKeys" />
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d = e.X" />
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d = e.Y"/>
+      </event>
+      <event id="Click" netName="ClickEvent" role="event" netArgs="EventArgs"
+             netHandler="System.EventHandler" migPattern="Click" />
+      <event id="DblClick" netName="DblClick" role="event" netArgs="EventArgs"
+             netHandler="System.EventHandler" migPattern="DoubleClick" />
+      <event id="NodeCheck" netName="NodeCheck" netHandler="AxMSComctlLib.ITreeViewEvents_NodeCheckEventHandler" netArgs="AxMSComctlLib.ITreeViewEvents_NodeCheckEvent">
+         <argument id="node" type="Node" status="ByVal"/>
+      </event>
+      <!-- UPGRADE_TODO: Have to rework the logic in this event into a DoDragDrop routine
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxMSComctlLib.ITreeViewEvents_OLEStartDragEventHandler" netArgs="AxMSComctlLib.ITreeViewEvents_OLEStartDragEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      -->
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxMSComctlLib.ITreeViewEvents_OLEGiveFeedbackEventHandler" netArgs="AxMSComctlLib.ITreeViewEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxMSComctlLib.ITreeViewEvents_OLESetDataEventHandler" netArgs="AxMSComctlLib.ITreeViewEvents_OLESetDataEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxMSComctlLib.ITreeViewEvents_OLECompleteDragEventHandler" netArgs="AxMSComctlLib.ITreeViewEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="GiveFeedback " netHandler="GiveFeedbackEventHandler" netArgs="GiveFeedbackEventArgs">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef" migName="X"/>
+         <argument id="y" type="Integer" status="ByRef" migName="Y"/>
+         <argument id="state" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="DragDrop" netHandler="DragEventHandler" netArgs="DragEventArgs">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef" migName="X"/>
+         <argument id="y" type="Integer" status="ByRef" migName="Y"/>
+      </event>
+   </class>
+   <class id="INodes" parent="IDispatch" default="ControlDefault">
+      <property id="Count" type="Integer" status="InOut"/>
+      <method id="ControlDefault" type="Node" nPram="2" migStatus="ZeroBased"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)"  >
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Node">
+         <argument id="Relative" type="object" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Relationship" type="Integer" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Key" type="String" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Text" type="String" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Image" type="Variant" status="ByVal" optional="DEF.Overload"/>
+         <argument id="SelectedImage" type="Variant" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Item" type="Node" nPram="2" migStatus="ZeroBased"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)"  >
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void" migName="RemoveAt">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="INode" parent="IDispatch" default="_ObjectDefault">
+      <property id="_ObjectDefault" type="String" status="InOut" migName="Text" />
+      <property id="Child" type="Node" status="InOut" cshPattern="Nodes[0]" vbnPattern="Nodes(0)"/>
+      <property id="Children" type="Integer" status="InOut" migName="GetNodeCount(false)" />
+      <property id="Expanded" type="Boolean" status="InOut" migName="IsExpanded"
+                migStatus="Final:SetINodeExpanded" />
+      <property id="ExpandedImage" type="Variant" status="InOut"/>
+      <property id="FirstSibling" type="Node" status="InOut" migName="Parent.FirstNode"/>
+      <property id="FullPath" type="String" status="InOut"/>
+      <property id="Image" type="Variant" status="InOut" migName="ImageKey" />
+      <property id="Index" type="Integer" status="InOut"/>
+      <property id="Key" type="String" status="InOut" migName="Name" />
+      <property id="LastSibling" type="Node" status="InOut" migName="Parent.LastNode"/>
+      <property id="Next" type="Node" status="InOut" migName="NextNode" />
+      <property id="Parent" type="Node" status="InOut"/>
+      <property id="Previous" type="Node" status="InOut" migName="PrevNode"/>
+      <property id="Root" type="Node" status="InOut" migName="FirstNode"/>
+      <property id="Selected" type="Boolean" status="InOut" migName="IsSelected"/>
+      <property id="SelectedImage" type="Variant" status="InOut" migName="SelectedImageKey" />
+      <method id="Sorted" type="Boolean" nPram="1" cshPattern="%1d.TreeView.Sort(); //"
+              vbnPattern="%1d.TreeView.Sort() '" />
+      <property id="Tag" type="Variant" status="InOut" />
+      <property id="Text" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut" />
+      <property id="Bold" type="Boolean" status="GetSetLet">
+        <Get npram="1" migPattern="%1d.NodeFont.Bold" />
+        <Set npram="2" migPattern="%1d.NodeFont = gmRTL.GUI.FontHelper.SetBold(%1d.NodeFont, %2d)\c" />
+        <Let npram="2" migPattern="%2d.NodeFont = gmRTL.GUI.FontHelper.SetBold(%2d.NodeFont, %1d)\c" />
+      </property>
+      <property id="Checked" type="Boolean" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <method id="CreateDragImage" type="FrxPicture"/>
+      <method id="EnsureVisible" type="Boolean"/>
+   </class>
+   <class id="IListView" parent="IDispatch">
+      <property id="Arrange" type="ListArrangeConstants" status="InOut"/>
+      <property id="ColumnHeaders" type="ColumnHeaders" status="InOut" migName="Columns"/>
+      <property id="DropHighlight" type="ListItem" status="GetSetLet" migStatus="NotImplemented">
+         <Get npram="1" migPattern="%1d.DropHighlight"/>
+         <Set npram="2" migPattern="%1d.DropHighlight = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_DropHighlight(%1d)\c"/>
+      </property>
+      <property id="HideColumnHeaders" type="Boolean" status="InOut" migStatus="NotImplemented"/>
+      <property id="HideSelection" type="Boolean" status="InOut"/>
+      <property id="Icons" type="MSComctlLib.ImageList" status="InOut" migName="LargeImageList"/>
+      <property id="ListItems" type="ListItems" status="InOut"  migName="Items" />
+      <property id="LabelEdit" type="ListLabelEditConstants" status="InOut"/>
+      <property id="LabelWrap" type="Boolean" status="InOut"/>
+      <property id="MouseIcon" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.MouseIcon"/>
+         <Set npram="2" migPattern="%1d.MouseIcon = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_MouseIcon(%1d)\c"/>
+      </property>
+      <property id="MousePointer" type="MousePointerConstants" status="InOut" migStatus="NotImplemented" />
+      <property id="MultiSelect" type="Boolean" status="InOut"/>
+      <!-- UPGRADE_TODO: Need proper selected item setter -->
+      <property id="SelectedItem" type="ListItem" status="GetSet">
+         <Get npram="1" migPattern="%1d.SelectedItem()"/>
+         <!--Let npram="2" migPattern="%2d.FocusedItem.Text = %1d"/-->         
+         <Set npram="3" migPattern="%2d.FocusedItem = %3d\c" />
+      </property>
+      <property id="SmallIcons" type="MSComctlLib.ImageList" status="InOut" migName="SmallImageList"/>
+      <property id="Sorted" type="Boolean" status="InOut" migStatus="delete" />
+      <property id="SortKey" type="Integer" status="InOut" status="GetSetLet"><!-- Depends on extension methods -->
+        <Get npram="1" migPattern="%1d.GetSortKey()" />
+        <Set npram="2" migPattern="%1d.SetSortKey(%2d)\c" />
+        <Let npram="2" migPattern="%2d.SetSortKey(%1d)\c" />
+      </property>
+      <property id="SortOrder" type="ListSortOrderConstants" status="InOut" external="on"
+                migName="Sorting" migStatus="mscomctl" />
+      <property id="View" type="ListViewConstants" status="InOut"/>
+      <property id="OLEDragMode" type="OLEDragConstants" status="InOut"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <property id="Appearance" type="AppearanceConstants" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="BorderStyle" type="BorderStyleConstants" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Font" type="Font" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="hWnd" type="OLE_HANDLE" status="InOut" migName="Handle"/>
+      <property id="AllowColumnReorder" type="Boolean" status="InOut"/>
+      <property id="Checkboxes" type="Boolean" status="InOut"  migName="CheckBoxes" />
+      <property id="FlatScrollBar" type="Boolean" status="InOut" migStatus="delete"/>
+      <property id="FullRowSelect" type="Boolean" status="InOut"/>
+      <property id="GridLines" type="Boolean" status="InOut"/>
+      <property id="HotTracking" type="Boolean" status="InOut"/>
+      <property id="HoverSelection" type="Boolean" status="InOut"/>
+      <property id="Picture" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Picture"/>
+         <Set npram="2" migPattern="%1d.Picture = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Picture(%1d)\c"/>
+      </property>
+      <property id="PictureAlignment" type="ListPictureAlignmentConstants" status="InOut"/>
+      <property id="ColumnHeaderIcons" type="Object" status="GetSetLet">
+         <Get npram="1" migPattern="gmRTL.MSComCtl.ListViewHelper.GetColumnHeaderIcons(%1d)"/>
+         <Set npram="2" migPattern="gmRTL.MSComCtl.ListViewHelper.SetColumnHeaderIcons(%1d,%2d)\c"/>
+         <Let npram="2" migPattern="gmRTL.MSComCtl.ListViewHelper.SetColumnHeaderIcons(%2d,%1d)\c"/>
+      </property>
+      <property id="TextBackground" type="ListTextBackgroundConstants" status="InOut"/>
+      <method id="FindItem" type="ListItem"  nPram="5"
+              migPattern="%1d.FindItemWithText(%2d,true,%4D,%5o)" >
+         <argument id="sz" type="String" status="ByVal"/>
+         <!-- GMSL_TODO: FindItem.Where 
+         The ListFindItemWhereConstants enum becomes bool, force true here, but should compute based on actual argument 
+         -->
+         <argument id="Where" type="Boolean" status="ByVal" optional="Default"/>
+         <argument id="Index" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="fPartial" type="Boolean" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <property id="GetFirstVisible" type="ListItem" migName="TopItem" />
+      <method id="HitTest" type="ListItem" nPram="3" migPattern="%1d.HitTest(%2d,%3d).Item" >
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </method>
+      <method id="StartLabelEdit" type="Void" migName="SelectedItems[0].BeginEdit"/>/>
+      <method id="OLEDrag" type="Void"/>
+      <method id="Refresh" type="Void"/>
+      <method id="AboutBox" type="Void"/>
+      <Property id="NumItems" type="Integer" />
+      <Property id="ColumnHeader" type="ColumnHeader" />
+   </class>
+   <class id="ListViewEvents" parent="None" creatable="off">
+      <event id="BeforeLabelEdit" netName="BeforeLabelEdit" netHandler="LabelEditEventHandler" netArgs="LabelEditEventArgs">
+         <argument id="cancel" type="Boolean" status="Out" migName="CancelEdit"/>
+      </event>
+      <event id="AfterLabelEdit" netName="AfterLabelEdit" netHandler="LabelEditEventHandler" netArgs="LabelEditEventArgs">
+         <argument id="cancel" type="Boolean" status="Out" migName="CancelEdit"/>
+         <argument id="newString" type="String" status="Out" migName="Label" />
+      </event>
+      <event id="ColumnClick" netName="ColumnClick" role="event" netArgs="ColumnClickEventArgs"
+             netHandler="System.Windows.Forms.ColumnClickEventHandler" >
+         <argument id="columnHeader" type="ColumnHeader" status="ByVal"
+                   cshPattern="%1d = ((ListView)(sender)).Columns[e.Column]"
+                   vbnPattern="%1d = CType(sender, ListView).Columns(e.Column)"/>
+      </event>
+      <event id="ItemClick" netName="ItemSelectionChanged" migStatus="mscomctl" role="event" netHandler="System.Windows.Forms.ListViewItemSelectionChangedEventHandler" netArgs="ListViewItemSelectionChangedEventArgs" migPattern="ItemSelectionChanged" >
+         <argument id="item" type="ListItem" status="ByVal" 
+               cshPattern="%1d = e.Item\cif (!%1d.Selected) return" 
+               vbnPattern="%1d = e.Item\cIf (Not %1d.Selected) Then Exit Sub" 
+               />
+      </event>
+      <event id="KeyDown" netName="KeyDownEvent" role="event"  netArgs="KeyEventArgs" netHandler="System.Windows.Forms.KeyEventHandler" migPattern="KeyDown" >
+         <argument id="keyCode" type="Integer" status="ByVal" cshPattern="%1d = (int)e.KeyCode" vbnPattern="%1d = e.KeyCode"/>
+         <argument id="shift" type="Boolean" status="ByVal" migPattern="%1d = e.Shift"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" role="event" netArgs="KeyEventArgs"
+             netHandler="System.Windows.Forms.KeyEventHandler" migPattern="KeyUp" >
+         <argument id="keyCode" type="Integer" status="ByVal" migPattern="%1d = (int)e.KeyCode" />
+         <argument id="shift" type="Boolean" status="ByVal" migPattern="%1d = e.Shift"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" role="event" netArgs="System.Windows.Forms.KeyPressEventArgs" netHandler="System.Windows.Forms.KeyPressEventHandler" migPattern="KeyPress" >
+         <argument id="keyAscii" type="Integer" status="ByVal" migPattern="%1d = (int)e.KeyChar" />
+      </event>
+      <event id="MouseDown" netName="MouseDown" netArgs="System.Windows.Forms.MouseEventArgs" netHandler="System.Windows.Forms.MouseEventHandler" >
+         <argument id="button" type="Integer" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button"/>
+         <argument id="shift" type="Integer" status="ByVal" cshPattern="%1d = (int)Control.ModifierKeys" vbnPattern="%1d = Control.ModifierKeys" />
+         <argument id="x" type="Integer" status="ByVal" migName="X" />
+         <argument id="y" type="Integer" status="ByVal" migName="Y" />
+      </event>
+      <event id="MouseMove" netName="MouseMove" netHandler="System.Windows.Forms.MouseEventHandler" netArgs="MouseEventArgs">
+         <argument id="button" type="Integer" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal" cshPattern="%1d = (int)Control.ModifierKeys" vbnPattern="%1d = Control.ModifierKeys" />
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d = e.X" />
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d = e.Y" />
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netArgs="MouseEventArgs" netHandler="System.Windows.Forms.MouseEventHandler" migPattern="MouseUp" >
+         <argument id="button" type="Integer" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal" cshPattern="%1d = (int)Control.ModifierKeys" vbnPattern="%1d = Control.ModifierKeys" />
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d = e.X" />
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d = e.Y"/>
+      </event>
+      <event id="Click" netName="ClickEvent" migStatus="mscomctl" role="event" netHandler="System.EventHandler" netArgs="EventArgs" migPattern="Click" />
+      <event id="DblClick" netName="DoubleClick" role="event" netHandler="System.EventHandler" netArgs="EventArgs" migPattern="DoubleClick" />
+      <!-- UPGRADE_TODO: Have to rework the logic in this event into a DoDragDrop routine
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxMSComctlLib.ListViewEvents_OLEStartDragEventHandler" netArgs="AxMSComctlLib.ListViewEvents_OLEStartDragEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      -->
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxMSComctlLib.ListViewEvents_OLEGiveFeedbackEventHandler" netArgs="AxMSComctlLib.ListViewEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxMSComctlLib.ListViewEvents_OLESetDataEventHandler" netArgs="AxMSComctlLib.ListViewEvents_OLESetDataEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxMSComctlLib.ListViewEvents_OLECompleteDragEventHandler" netArgs="AxMSComctlLib.ListViewEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="GiveFeedback " netHandler="GiveFeedbackEventHandler" netArgs="GiveFeedbackEventArgs">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef" migName="X"/>
+         <argument id="y" type="Integer" status="ByRef" migName="Y"/>
+         <argument id="state" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="DragDrop" netHandler="DragEventHandler" netArgs="DragEventArgs">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef"/>
+         <argument id="y" type="Integer" status="ByRef"/>
+      </event>
+      <event id="ItemCheck" netName="ItemChecked" role="event" netArgs="ItemCheckedEventArgs" netHandler="System.Windows.Forms.ItemCheckedEventHandler" migPattern="ItemChecked" >
+         <argument id="Item" type="ListItem" status="ByVal" migStatus="Referenced"
+                   cshPattern="%1d = e.Item\cif (!e.Item.Focused) return"
+                   vbnPattern="%1d = e.Item\cif (Not e.Item.Focused) Then Exit Sub" />
+      </event>
+   </class>
+   <class id="IListItems" parent="IDispatch" default="ControlDefault">
+      <property id="Count" type="Integer" status="InOut"/>
+      <method id="ControlDefault" type="ListItem" nPram="2" migStatus="ZeroBased"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)" >
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="ListItem">
+         <!-- This is handled in the migration DLL -->
+         <argument id="Index" type="Integer" status="ByVal" optional="DEF.Overload" migName="index"/>
+         <argument id="Key" type="string" status="ByVal" optional="DEF.Overload" migName="key"/>
+         <argument id="Text" type="string" status="ByVal" optional="DEF.EmptyString" migName="text"/>
+         <argument id="Icon" type="Variant" status="ByVal" optional="DEF.Overload"/>
+         <argument id="SmallIcon" type="Variant" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Item" type="ListItem" nPram="2" migStatus="ZeroBased"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)" >
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void" nPram="2" migPattern="%1d.RemoveAt(%2D)\c" >
+         <!-- TODO: support other arg types e.g. Remove takes ListItem -->
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="IListItem" parent="IDispatch" default="Default">
+      <property id="Default" type="String" status="InOut" migName="Text" />
+      <property id="Text" type="String" status="InOut"/>
+      <property id="Ghosted" type="Boolean" status="InOut"/>
+      <property id="Height" type="Integer" status="InOut" migName="Bounds.Height"/>
+      <!-- If RHS is String, need ImageKey -->
+      <property id="Icon" type="Variant" status="InOut" migName="ImageIndex" />
+      <property id="Index" type="Integer" status="InOut" migName="Index+1" />
+      <property id="Key" type="String" status="InOut" migName="Name" />
+      <property id="Left" type="Integer" status="InOut"/>
+      <property id="Selected" type="Boolean" status="InOut"/>
+      <!-- If RHS is String, need ImageKey -->
+      <property id="SmallIcon" type="Variant" status="InOut" migName="ImageIndex" />
+      <property id="Tag" type="Variant" status="InOut" />
+      <property id="Top" type="Integer" status="InOut" migName="Bounds.Top"/>
+      <property id="Width" type="Integer" status="InOut" migName="Bounds.Width" />
+      <property id="ListSubItems" type="ListSubItems" status="InOut" migName="SubItems"/>
+      <property id="Checked" type="Boolean" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="ToolTipText" type="String" status="InOut"/>
+      <property id="Bold" type="Boolean" status="GetSetLet">
+        <Get npram="1" migPattern="%1d.Font.Bold" />
+        <Set npram="2" migPattern="%1d.Font = gmRTL.GUI.FontHelper.SetBold(%1d.Font, %2d)\c" />
+        <Let npram="2" migPattern="%2d.Font = gmRTL.GUI.FontHelper.SetBold(%2d.Font, %1d)\c" />
+      </property>
+      <accessor id="SubItems" type="String" migStatus="mscomctl" migName="GetSubItem">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="CreateDragImage" type="FrxPicture"/>
+      <method id="EnsureVisible" type="Boolean"/>
+   </class>
+   <class id="IColumnHeaders" parent="IDispatch" default="ControlDefault">
+      <property id="Count" type="Integer" status="InOut"/>
+      <method id="ControlDefault" type="ColumnHeader" nPram="2" migStatus="ZeroBased"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)" >
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add_PreVB98" type="ColumnHeader">
+         <argument id="Index" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Key" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Text" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Width" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Alignment" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Item" type="ColumnHeader"  nPram="2" migStatus="ZeroBased"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)" >
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void" migName="RemoveAt">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <method id="Add" type="ColumnHeader"  nPram="7" migPattern="%1d.Add(%4d,%4o,%5o,%6o,%7o)" >
+         <argument id="Index" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key" type="string" status="ByVal" optional="Default" />
+         <argument id="Text" type="string" status="ByVal" optional="Default" />
+         <argument id="Width" type="TwipsX" status="ByVal" optional="1440"  />
+         <argument id="Alignment" type="ListColumnAlignmentConstants" status="ByVal" optional="Default" />
+         <argument id="Icon" type="Variant" status="ByVal" optional="Default" />
+      </method>
+   </class>
+   <class id="IColumnHeader" parent="IDispatch" default="Default">
+      <property id="Default" type="String" status="InOut" migName="Text" />
+      <property id="Text" type="String" status="InOut"/>
+      <property id="Alignment" type="ListColumnAlignmentConstants" status="InOut" migName="TextAlign" />
+      <property id="Index" type="Integer" status="InOut"/>
+      <property id="Key" type="String" status="InOut" migName="Name"/>
+      <property id="Left" type="Integer" status="InOut"/>
+      <property id="SubItemIndex" type="Integer" status="InOut" migName="Index" />
+      <property id="Tag" type="Variant" status="InOut" />
+      <property id="Width" type="TwipsX" status="InOut"/>
+      <property id="Icon" type="Variant" status="InOut" migStatus="NotImplemented"/> <!-- TODO sort ascending/descending icons -->
+      <property id="Position" type="Integer" status="InOut"/>
+   </class>
+   <class id="IListSubItems" parent="IDispatch" default="ControlDefault" creatable="off">
+      <property id="Count" type="Integer" status="InOut"/>
+      <!--
+      <accessor id="ControlDefault" type="ListSubItem" nPram="2" migStatus="ZeroBased"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      -->
+      <accessor id="ControlDefault" type="ListSubItem" Status="GetSet">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <pattern id="ControlDefault.Get" >
+         <csh narg="2" code="%1d[%2d]"/>
+         <vbn narg="2" code="%1d(%2d)"/>
+      </pattern>
+      <pattern id="ControlDefault.Set" >
+         <csh narg="3" code="%2d[%3d].Text = %1d\c" />
+         <vbn narg="3" code="%2d(%3d) = %1d\c" />
+      </pattern>
+      <!--
+      <pattern id="ControlDefault.Let" >
+         <csh narg="3" code="%2d[%3d].Text = %1d\c" />
+         <vbn narg="3" code="%2d(%3d).Text = %1d\c" />
+      </pattern>
+         
+      -->
+       <!--
+       public ListViewSubItem Add(string text, Color foreColor, Color backColor, Font font);
+       <method id="Add" type="ListSubItem" nPram="6" migPattern="%1d.Add(%3o,%4o,%5o,%6o)"  >
+       TODO: deal with 
+       si = xItem.SubItems.Add("$" + MigrationSupport.Utils.Format(t2000,"#,###,##0.00").ToStr());
+       Key is being ignored.  need to add si.Name = key.
+       -->
+       <method id="Add" type="ListSubItem" nPram="6" migPattern="%1d.Add(%4o)" >
+         <argument id="Index" type="Variant" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Key" type="String" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Text" type="String" status="ByVal" optional="DEF.Overload"/>
+         <argument id="ReportIcon" type="Variant" status="ByVal" optional="DEF.Overload"/>
+         <argument id="ToolTipText" type="Variant" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Item" type="ListSubItem" nPram="2"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)" >
+         <argument id="Index" type="Variant" status="ByVal" />
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="IListSubItem" parent="IDispatch" default="Default" creatable="off">
+      <property id="Default" type="String" status="InOut" migName="Text" />
+      <property id="Text" type="String" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Bold" type="Boolean" status="GetSetLet">
+        <Get npram="1" migPattern="%1d.Font.Bold" />
+        <Set npram="2" migPattern="%1d.Font = gmRTL.GUI.FontHelper.SetBold(%1d.Font, %2d)\c" />
+        <Let npram="2" migPattern="%2d.Font = gmRTL.GUI.FontHelper.SetBold(%2d.Font, %1d)\c" />
+      </property>
+      <property id="ReportIcon" type="Variant" status="InOut"/>
+      <property id="ToolTipText" type="String" status="InOut" migStatus="NotImplemented" />
+      <property id="Index" type="Integer" status="InOut"/>
+      <property id="Key" type="String" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut" />
+   </class>
+   <class id="IImageList" parent="IDispatch">
+      <property id="ImageHeight" type="Integer" status="InOut"/>
+      <property id="ImageWidth" type="Integer" status="InOut"/>
+      <property id="MaskColor" type="OLE_COLOR" status="InOut"/>
+      <property id="UseMaskColor" type="Boolean" status="InOut"/>
+      <property id="ListImages" type="ListImages" status="InOut" migName="Images" />
+      <property id="hImageList" type="OLE_HANDLE" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <method id="Overlay" type="FrxPicture">
+         <argument id="Key1" type="Variant" status="ByRef"/>
+         <argument id="Key2" type="Variant" status="ByRef"/>
+      </method>
+      <method id="AboutBox" type="Void"/>
+      <Property id="Images" type="ListImages" />
+   </class>
+   <class id="ImageListEvents" parent="None" creatable="off">
+   </class>
+   <class id="IImages" parent="IDispatch" default="ControlDefault">
+      <property id="Count" type="Integer" status="InOut"/>
+      <accessor id="ControlDefault" type="ListImage" nPram="2" migStatus="ZeroBased"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>      
+      <method id="Add" type="ListImage" nPram="4" migPattern="%1d.AddImage(%2d,%3d,%4d)">
+         <argument id="Index" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="Key" type="String" status="ByVal" optional="Default"/>
+         <argument id="Picture" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Item" type="ListImage" nPram="2" migStatus="ZeroBased"
+              cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)" >
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+      <Property id="NumListImages" type="Integer" />
+   </class>
+   <class id="IImage" parent="IDispatch">
+      <property id="Index" type="Integer" status="InOut"/>
+      <property id="Key" type="String" status="InOut" migName="Key" />
+      <property id="Tag" type="Variant" status="InOut" />
+      <property id="Picture" type="FrxPicture" status="GetSet" >
+         <Get npram="1" migPattern="%1d"/>
+         <Set nPram="2" migPattern="%2d = %1d"/>
+      </property>
+      <method id="Draw" type="Void">
+         <argument id="hDC" type="OLE_HANDLE" status="ByVal"/>
+         <argument id="x" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="y" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Style" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="ExtractIcon" type="FrxPicture"/>
+   </class>
+   <class id="ISlider" parent="IDispatch" default="_Value">
+      <property id="_Value" type="Integer" status="InOut"/>
+      <property id="LargeChange" type="Integer" status="InOut"/>
+      <property id="SmallChange" type="Integer" status="InOut"/>
+      <property id="Max" type="Integer" status="InOut"/>
+      <property id="Min" type="Integer" status="InOut"/>
+      <property id="Orientation" type="OrientationConstants" status="InOut"/>
+      <property id="SelectRange" type="Boolean" status="InOut"/>
+      <property id="SelStart" type="Integer" status="InOut"/>
+      <property id="SelLength" type="Integer" status="InOut"/>
+      <property id="TickStyle" type="TickStyleConstants" status="InOut"/>
+      <property id="TickFrequency" type="Integer" status="InOut"/>
+      <property id="Value" type="Integer" status="InOut"/>
+      <property id="MouseIcon" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.MouseIcon"/>
+         <Set npram="2" migPattern="%1d.MouseIcon = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_MouseIcon(%1d)\c"/>
+      </property>
+      <property id="MousePointer" type="MousePointerConstants" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="hWnd" type="OLE_HANDLE" status="InOut"/>
+      <property id="BorderStyle" type="BorderStyleConstants" status="InOut"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <property id="GetNumTicks" type="Integer" status="Out"/>
+      <property id="Text" type="String" status="InOut"/>
+      <property id="TextPosition" type="TextPositionConstants" status="InOut"/>
+      <method id="Refresh" type="Void"/>
+      <method id="ClearSel" type="Void"/>
+      <method id="DoClick" type="Void"/>
+      <method id="OLEDrag" type="Void"/>
+      <method id="AboutBox" type="Void"/>
+   </class>
+   <class id="ISliderEvents" parent="None" creatable="off">
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="KeyDown" netName="KeyDownEvent" netHandler="AxMSComctlLib.ISliderEvents_KeyDownEventHandler" netArgs="AxMSComctlLib.ISliderEvents_KeyDownEvent">
+         <argument id="keyCode" type="Integer" status="Out"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="AxMSComctlLib.ISliderEvents_KeyPressEventHandler" netArgs="AxMSComctlLib.ISliderEvents_KeyPressEvent">
+         <argument id="keyAscii" type="Integer" status="Out"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="AxMSComctlLib.ISliderEvents_KeyUpEventHandler" netArgs="AxMSComctlLib.ISliderEvents_KeyUpEvent">
+         <argument id="keyCode" type="Integer" status="Out"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="AxMSComctlLib.ISliderEvents_MouseDownEventHandler" netArgs="AxMSComctlLib.ISliderEvents_MouseDownEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseMove" netName="MouseMove" netHandler="System.Windows.Forms.MouseEventHandler" netArgs="MouseEventArgs">
+         <argument id="button" type="Integer" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d = e.X" />
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d = e.Y" />
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="AxMSComctlLib.ISliderEvents_MouseUpEventHandler" netArgs="AxMSComctlLib.ISliderEvents_MouseUpEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="Scroll" netName="Scroll" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="Change" netName="Change" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxMSComctlLib.ISliderEvents_OLEStartDragEventHandler" netArgs="AxMSComctlLib.ISliderEvents_OLEStartDragEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxMSComctlLib.ISliderEvents_OLEGiveFeedbackEventHandler" netArgs="AxMSComctlLib.ISliderEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxMSComctlLib.ISliderEvents_OLESetDataEventHandler" netArgs="AxMSComctlLib.ISliderEvents_OLESetDataEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxMSComctlLib.ISliderEvents_OLECompleteDragEventHandler" netArgs="AxMSComctlLib.ISliderEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxMSComctlLib.ISliderEvents_OLEDragOverEventHandler" netArgs="AxMSComctlLib.ISliderEvents_OLEDragOverEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef"/>
+         <argument id="y" type="Integer" status="ByRef"/>
+         <argument id="state" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxMSComctlLib.ISliderEvents_OLEDragDropEventHandler" netArgs="AxMSComctlLib.ISliderEvents_OLEDragDropEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef"/>
+         <argument id="y" type="Integer" status="ByRef"/>
+      </event>
+   </class>
+   <class id="IControls" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="Object" status="indexer">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="IComboItem" parent="IDispatch" default="_ObjectDefault">
+      <property id="_ObjectDefault" type="String" status="InOut"/>
+      <property id="Image" type="Variant" status="InOut"/>
+      <property id="Indentation" type="Integer" status="InOut"/>
+      <property id="Index" type="Integer" status="InOut"/>
+      <property id="Key" type="String" status="InOut"/>
+      <property id="Selected" type="Boolean" status="InOut"/>
+      <property id="SelImage" type="Variant" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut" />
+      <property id="Text" type="String" status="InOut"/>
+   </class>
+   <class id="IComboItems" parent="IDispatch" default="_CollectionDefault">
+      <property id="Count" type="Integer" status="InOut"/>
+      <accessor id="_CollectionDefault" type="ComboItem">
+         <argument id="Index" type="Variant" status="ByRef"/>
+      </accessor>
+      <accessor id="Item" type="ComboItem">
+         <argument id="Index" type="Variant" status="ByRef"/>
+      </accessor>
+      <method id="Add" type="ComboItem">
+         <argument id="Index" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Key" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Text" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Image" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="SelImage" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Indentation" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="IImageCombo" parent="IDispatch">
+      <property id="Text" type="String" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Font" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Font"/>
+         <Set npram="2" migPattern="%1d.Font = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Font(%1d)\c"/>
+      </property>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="hWnd" type="OLE_HANDLE" status="InOut"/>
+      <property id="ImageList" type="MSComctlLib.ImageList" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.ImageList"/>
+         <Set npram="2" migPattern="%1d.ImageList = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_ImageList(%1d)\c"/>
+      </property>
+      <property id="Indentation" type="Integer" status="InOut"/>
+      <property id="ComboItems" type="ComboItems" status="InOut"/>
+      <property id="Locked" type="Boolean" status="InOut"/>
+      <property id="MouseIcon" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.MouseIcon"/>
+         <Set npram="2" migPattern="%1d.MouseIcon = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_MouseIcon(%1d)\c"/>
+      </property>
+      <property id="MousePointer" type="MousePointerConstants" status="InOut"/>
+      <property id="OLEDragMode" type="OLEDragConstants" status="InOut"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <property id="SelectedItem" type="ComboItem" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.SelectedItem"/>
+         <Set npram="2" migPattern="%1d.SelectedItem = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_SelectedItem(%1d)\c"/>
+      </property>
+      <property id="SelLength" type="Integer" status="InOut"/>
+      <property id="SelStart" type="Integer" status="InOut"/>
+      <property id="SelText" type="String" status="InOut"/>
+      <property id="Style" type="ImageComboStyleConstants" status="InOut"/>
+      <property id="UsePathSep" type="Boolean" status="InOut"/>
+      <method id="AboutBox" type="Void"/>
+      <method id="GetFirstVisible" type="ComboItem"/>
+      <method id="Refresh" type="Void"/>
+      <method id="OLEDrag" type="Void"/>
+   </class>
+   <class id="DImageComboEvents" parent="None">
+      <event id="Change" netName="Change" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="Dropdown" netName="Dropdown" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="KeyDown" netName="KeyDownEvent" netHandler="AxMSComctlLib.DImageComboEvents_KeyDownEventHandler" netArgs="AxMSComctlLib.DImageComboEvents_KeyDownEvent">
+         <argument id="keyCode" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="AxMSComctlLib.DImageComboEvents_KeyUpEventHandler" netArgs="AxMSComctlLib.DImageComboEvents_KeyUpEvent">
+         <argument id="keyCode" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="AxMSComctlLib.DImageComboEvents_KeyPressEventHandler" netArgs="AxMSComctlLib.DImageComboEvents_KeyPressEvent">
+         <argument id="keyAscii" type="Integer" status="Out"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxMSComctlLib.DImageComboEvents_OLEStartDragEventHandler" netArgs="AxMSComctlLib.DImageComboEvents_OLEStartDragEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxMSComctlLib.DImageComboEvents_OLEGiveFeedbackEventHandler" netArgs="AxMSComctlLib.DImageComboEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxMSComctlLib.DImageComboEvents_OLESetDataEventHandler" netArgs="AxMSComctlLib.DImageComboEvents_OLESetDataEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxMSComctlLib.DImageComboEvents_OLECompleteDragEventHandler" netArgs="AxMSComctlLib.DImageComboEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxMSComctlLib.DImageComboEvents_OLEDragOverEventHandler" netArgs="AxMSComctlLib.DImageComboEvents_OLEDragOverEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef"/>
+         <argument id="y" type="Integer" status="ByRef"/>
+         <argument id="state" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxMSComctlLib.DImageComboEvents_OLEDragDropEventHandler" netArgs="AxMSComctlLib.DImageComboEvents_OLEDragDropEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Integer" status="ByRef"/>
+         <argument id="y" type="Integer" status="ByRef"/>
+      </event>
+   </class>
+   <coclass id="DataObject" uuid="2334D2B2-713E-11CF-8AE5-00AA00C00905" creatable="off" migName="System.Windows.Forms.DataObject" migStatus="external">
+      <subclass id="IVBDataObject"/>
+   </coclass>
+   <coclass id="DataObjectFiles" uuid="2334D2B4-713E-11CF-8AE5-00AA00C00905" creatable="off">
+      <subclass id="IVBDataObjectFiles"/>
+   </coclass>
+   <coclass id="TabStrip" uuid="1EFB6596-857C-11D1-B16A-00C0F0283628" migName="TabControl" role="control" > 
+   <!--migStatus="Add1:TabPages,Add2:System.Windows.Forms.TabPage" -->
+      <subclass id="ITabStrip"/>
+      <subclass id="ITabStripEvents"/>
+   </coclass>
+   <coclass id="Tabs" uuid="1EFB6598-857C-11D1-B16A-00C0F0283628" creatable="off" migName="TabControl.TabPageCollection">
+      <subclass id="ITabs"/>
+   </coclass>
+   <coclass id="Tab" uuid="1EFB659A-857C-11D1-B16A-00C0F0283628" creatable="off" migName="TabPage" role="control" >
+      <subclass id="ITab"/>
+   </coclass>
+   <coclass id="Toolbar" uuid="66833FE6-8583-11D1-B16A-00C0F0283628" migName="ToolStrip" role="control" migStatus="Add1:Items,Add2:System.Windows.Forms.ToolStripItem" >
+      <subclass id="IToolbar"/>
+      <subclass id="IToolbarEvents"/>
+   </coclass>
+   <coclass id="Buttons" uuid="66833FE8-8583-11D1-B16A-00C0F0283628" creatable="off" migName="ToolStripItemCollection">
+      <subclass id="IButtons"/>
+   </coclass>
+   <coclass id="Button" uuid="66833FEA-8583-11D1-B16A-00C0F0283628" creatable="off" migName="ToolStripButton" role="control" >
+      <subclass id="IButton"/>
+   </coclass>
+   <coclass id="Separator" creatable="off" migName="ToolStripSeparator" role="control" >
+      <subclass id="IButton"/>
+   </coclass>
+   <coclass id="MenuButton" creatable="off" migName="ToolStripDropDownButton" role="control" migStatus="Add1:DropDownItems,Add2:System.Windows.Forms.ToolStripItem" >
+      <subclass id="IButton"/>
+   </coclass>
+   <coclass id="ButtonMenus" uuid="66833FEC-8583-11D1-B16A-00C0F0283628" creatable="off">
+      <subclass id="IButtonMenus"/>
+   </coclass>
+   <coclass id="ButtonMenu" uuid="66833FEE-8583-11D1-B16A-00C0F0283628" creatable="off" migName="ToolStripMenuItem" role="control" >
+      <subclass id="IButtonMenu"/>
+   </coclass>
+   <coclass id="StatusBar" uuid="8E3867A3-8586-11D1-B16A-00C0F0283628"  migName="StatusStrip" role="control" migStatus="Add1:Items,Add2:System.Windows.Forms.ToolStripItem" >
+      <subclass id="IStatusBar"/>
+      <subclass id="IStatusBarEvents"/>
+   </coclass>
+   <coclass id="Panels" uuid="8E3867A5-8586-11D1-B16A-00C0F0283628" creatable="off">
+      <subclass id="IPanels"/>
+   </coclass>
+   <coclass id="Panel" uuid="8E3867AB-8586-11D1-B16A-00C0F0283628" creatable="off" migName="ToolStripStatusLabel" >
+      <subclass id="IPanel"/>
+   </coclass>
+   <coclass id="ProgressBar" uuid="35053A22-8589-11D1-B16A-00C0F0283628" migName="ProgressBar" role="control" >
+      <subclass id="IProgressBar"/>
+      <subclass id="IProgressBarEvents"/>
+   </coclass>
+   <coclass id="TreeView" uuid="C74190B6-8589-11D1-B16A-00C0F0283628" migName="TreeView" role="control" >
+      <subclass id="ITreeView"/>
+      <subclass id="ITreeViewEvents"/>
+   </coclass>
+   <coclass id="Nodes" uuid="0713E8C0-850A-101B-AFC0-4210102A8DA7"  creatable="off" migName="TreeNodeCollection" >
+      <subclass id="INodes"/>
+   </coclass>
+   <coclass id="Node"  uuid="C74190B9-8589-11D1-B16A-00C0F0283628" creatable="off" migName="TreeNode" >
+      <subclass id="INode"/>
+   </coclass>
+   <coclass id="ListView"  uuid="BDD1F04B-858B-11D1-B16A-00C0F0283628" migName="ListView" role="control" migStatus="Add1:Columns,Add2:System.Windows.Forms.ColumnHeader" >
+      <subclass id="IListView"/>
+      <subclass id="ListViewEvents"/>
+   </coclass>
+   <coclass id="ListItems" uuid="BDD1F04D-858B-11D1-B16A-00C0F0283628" creatable="off" migName="ListView.ListViewItemCollection">
+      <subclass id="IListItems"/>
+   </coclass>
+   <coclass id="ListItem" uuid="BDD1F04F-858B-11D1-B16A-00C0F0283628" creatable="off" migName="ListViewItem" >
+      <subclass id="IListItem"/>
+   </coclass>
+   <coclass id="ColumnHeaders" uuid="0713E8C6-850A-101B-AFC0-4210102A8DA7" creatable="off" migName="ListView.ColumnHeaderCollection" >
+      <subclass id="IColumnHeaders"/>
+   </coclass>
+   <coclass id="ColumnHeader"  uuid="BDD1F052-858B-11D1-B16A-00C0F0283628" creatable="off" migPattern="ColumnHeader" role="control">
+      <subclass id="IColumnHeader"/>
+   </coclass>
+   <coclass id="ListSubItems" uuid="BDD1F054-858B-11D1-B16A-00C0F0283628" creatable="off" migName="ListViewItem.ListViewSubItemCollection" >
+      <subclass id="IListSubItems"/>
+   </coclass>
+   <coclass id="ListSubItem" uuid="BDD1F056-858B-11D1-B16A-00C0F0283628" creatable="off" migName="ListViewItem.ListViewSubItem" >
+      <subclass id="IListSubItem"/>
+   </coclass>
+   <coclass id="ImageList" uuid="2C247F23-8591-11D1-B16A-00C0F0283628" migName="ImageList" role="define" >
+      <subclass id="IImageList"/>
+      <subclass id="ImageListEvents"/>
+   </coclass>
+   <coclass id="ListImages" uuid="2C247F25-8591-11D1-B16A-00C0F0283628" creatable="off">
+      <subclass id="IImages"/>
+   </coclass>
+   <coclass id="ListImage"  uuid="2C247F27-8591-11D1-B16A-00C0F0283628" creatable="off" migName="System.Drawing.Image"  role="utility" migStatus="external">
+      <subclass id="IImage"/>
+   </coclass>
+   <coclass id="Slider" uuid="F08DF954-8592-11D1-B16A-00C0F0283628" migStatus="ActiveX" migName="AxMSComctlLib.AxSlider">
+      <subclass id="ISlider"/>
+      <subclass id="ISliderEvents"/>
+   </coclass>
+   <coclass id="Controls" uuid="C8A3DC01-8593-11D1-B16A-00C0F0283628" creatable="off">
+      <subclass id="IControls"/>
+   </coclass>
+   <coclass id="ComboItem" uuid="DD9DA661-8594-11D1-B16A-00C0F0283628" creatable="off">
+      <subclass id="IComboItem"/>
+   </coclass>
+   <coclass id="ComboItems" uuid="DD9DA663-8594-11D1-B16A-00C0F0283628" creatable="off">
+      <subclass id="IComboItems"/>
+   </coclass>
+   <coclass id="ImageCombo" uuid="DD9DA666-8594-11D1-B16A-00C0F0283628" migStatus="ActiveX" migName="AxMSComctlLib.AxImageCombo">
+      <subclass id="IImageCombo"/>
+      <subclass id="DImageComboEvents"/>
+   </coclass>
+</library>
+<Refactor id="[GM.mscomctl.ocx]" dllName="MscomctlMigration.dll" event="mscomctl">
+<!--
+********************************************************** 
+* ImageList Designer Code 
+********************************************************** 
+-->
+<migClass id="NetControl.ImageList" migName="System.Windows.Forms.ImageList" parent="ImageList">
+      <enumeration id="DesignPhase" >
+         <Entry id="NewInstance"
+                nPram="1"
+                cshPattern="this.%1d = new System.Windows.Forms.ImageList(this.components);"
+                vbnPattern="Me.%1d = New System.Windows.Forms.ImageList(Me.components)"
+         />
+      </enumeration> 
+      <property id="ImageSize" value="(ImageWidth,ImageHeight)" nPram="2"
+                vbnPattern="New System.Drawing.Size(%1d, %2d)"
+                cshPattern="new System.Drawing.Size(%1d, %2d)"
+      />
+      <property id="ImageStream" type="object" migStatus="external" value="SYM.name" nPram="3"
+         cshPattern='this.%1d.%2d = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("%1d.%2d")));'
+         vbnPattern='Me.%1d.%2d = CType(resources.GetObject("%1d.%2d"), System.Windows.Forms.ImageListStreamer)'
+      />
+      <property id="Images" type="Collection" migStatus="external" value="ListImage.Key" nPram="5"
+         cshPattern='this.%1d.%2d.SetKeyName(%4d, %5d);'
+         vbnPattern='Me.%1d.%2d.SetKeyName(%4d, %5d)'
+      />
+      <property id="TransparentColor" type="Integer" default="System.Drawing.Color.Transparent"/>
+   </migClass>
+<!--
+********************************************************** 
+* ListView Migration Rules Helper Class
+********************************************************** 
+-->
+   <migClass id="ListViewLogic">
+      <Enumeration id="ItemActivation" 
+            migStatus="external" 
+            migName="System.Windows.Forms.ItemActivation">
+         <Entry id="OneClick" value="0"/>
+      </Enumeration>
+      <Enumeration id="SortOrder" 
+               migStatus="external" 
+               migName="System.Windows.Forms.SortOrder">
+         <Entry id="None" value="0" />
+         <Entry id="Ascending" value="1" />
+      </Enumeration>
+      <Property id="Activation" type="ItemActivation" />
+      <Method id="SetSubitem" type="void" nPram="3"
+              cshPattern="%2d(%3d).Text = %1d\c"
+              vbnPattern="%2d(%3d).Text = %1d\c"
+       />
+      <Method id="GetSubitem" type="void" nPram="2"
+              cshPattern="%1d(%2d).Text"
+              vbnPattern="%1d(%2d).Text"
+       />
+      <Method id="SetSorter" type="void" nPram="4"
+              migPattern="%2d.ListViewItemSorter = new gmRTL.MSComCtl.ListViewSorter(%2d.SetSortOrder(%1d), %2d.GetSortKey())\c"
+      />
+      <Method id="ClearSorter" type="void" nPram="3"
+              cshPattern="%2d.ListViewItemSorter = null\c"
+              vbnPattern="%2d.ListViewItemSorter = Nothing\c"
+      />
+
+      <Method id="CallItemClick" type="void" nPram="3"
+              vbnPattern="%1d(%2d,New ListViewItemSelectionChangedEventArgs(%3d, %3d.Index, %3d.Selected))\c"
+              cshPattern="%1d(%2d,new ListViewItemSelectionChangedEventArgs(%3d, %3d.Index, %3d.Selected))\c"
+      />
+
+      <Method id="ListItemClick" type="void" nPram="2"
+              cshPattern="gmRTL.MSComCtl.ListViewHelper.ClickListView(%2d,%1d)\c"
+              vbnPattern="gmRTL.MSComCtl.ListViewHelper.ClickListView(%2d,AddressOf %1d)\c"
+      />
+      
+      <Method id="Insert_Index_Key_SmallIcon" type="ListItem" nPram="6" migPattern="%1d.Insert(%2D,%3d,%4d,%6d)" />
+      <Method id="Insert_Index_Key_Icon" type="ListItem" nPram="6" migPattern="%1d.Insert(%2D,%3d,%4d,%5d)" />
+      <Method id="Insert_Index_Key" type="ListItem" nPram="6" migPattern="%1d.Insert(%2D,%3d,%4d)" />
+      <Method id="Insert_Index_SmallIcon" type="ListItem" nPram="6" migPattern="%1d.Insert(%2D,%4d,%6d)" />
+      <Method id="Insert_Index_Icon" type="ListItem" nPram="6" migPattern="%1d.Insert(%2D,%4d,%5d)" />
+      <Method id="Insert_Index" type="ListItem" nPram="6" migPattern="%1d.Insert(%2D,%4d)" />
+      
+      <Method id="Add_Key_SmallIcon" type="ListItem" nPram="6" migPattern="%1d.Add(%3d,%4d,%6d)" />
+      <Method id="Add_Key_Icon" type="ListItem" nPram="6" migPattern="%1d.Add(%3d,%4d,%5d)" />
+      <Method id="Add_Key" type="ListItem" nPram="6"
+              cshPattern="%1d.Add(new ListViewItem { Name=%3d, Text=%4d })"
+              vbnPattern="%1d.Add(New ListViewItem() With {.Name = %3d, .Text = %4d})"
+      />
+      <Method id="Add_SmallIcon" type="ListItem" nPram="6" migPattern="%1d.Add(%4d,%6d)" />
+      <Method id="Add_Icon" type="ListItem" nPram="6" migPattern="%1d.Add(%4d,%5d)" />
+      <Method id="Add" type="ListItem" nPram="6" migPattern="%1d.Add(%4o)" />
+   </migClass>
+
+<!--
+********************************************************** 
+* ListView Designer Code 
+********************************************************** 
+-->
+<migClass id="NetControl.ListView" migName="ListView" parent="ListView">
+      <Property id="Activation" type="MSComctlLib.ListViewLogic.ItemActivation" value="ListViewLogic.Activation" />
+      <property id="BackColor" type="OLE_COLOR" value="IListView.BackColor" nPram="3"
+                vbnPattern="System.Drawing.Color.FromARGB(%3d, %2d, %1d)"
+                cshPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+                default="System.Drawing.SystemColors.Window"
+      />
+      <property id="CheckBoxes" type="Boolean" value="IListView.Checkboxes" />
+      <property id="BorderStyle" value="IListView.BorderStyle" default="System.Windows.Forms.BorderStyle.None" />
+      <property id="Font" value="Font" type="FontInfo" nPram="3"
+                vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+                cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+      />
+      <property id="ForeColor" type="OLE_COLOR" value="IListView.ForeColor" nPram="3"
+                vbnPattern="System.Drawing.Color.FromARGB(%3d, %2d, %1d)"
+                cshPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+                default="System.Drawing.SystemColors.ControlText"
+      />
+      <property id="FullRowSelect" type="Boolean" value="IListView.FullRowSelect" default="true" />
+      <property id="GridLines" type="Boolean" value="IListView.GridLines" default="true"/>
+      <property id="HideSelection" type="Boolean" value="IListView.HideSelection" />
+      <property id="LabelEdit" value="IListView.LabelEdit" default="false" />
+      <property id="LargeImageList" value="IListView.Icons" />
+      <property id="Location" value="(Left,Top)" nPram="2" migPattern="new System.Drawing.Point(%1d, %2d)"  />
+      <property id="MultiSelect" type="Boolean" value="IListView.MultiSelect" default="false" />
+      <property id="Name" type="string" value="SYM.name" />
+      <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+      <!-- Sorted is no longer a designer property, need to call Sort.
+      <property id="Sorted" type="Boolean"
+                default="true"
+      />
+      -->
+      <property id="SmallImageList" value="IListView.SmallIcons" />
+      <property id="Sorting" type="Integer" default="System.Windows.Forms.SortOrder.None" />
+      <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+      <property id="UseCompatibleStateImageBehavior" type="Boolean" default="false" />
+      
+      <!-- UPGRADE_INFO: Added details for because most listviews use this setting. If View is changed after columns are setup and widths applied, they reset to default -->
+      <property id="View" type="ListViewConstants" value="IListView.View"  default="System.Windows.Forms.View.Details" />
+</migClass>
+<migClass id="NetControl.ColumnHeader" migName="System.Windows.Forms.ColumnHeader" parent="ColumnHeader">
+   <property id="Text" type="string" value="IColumnHeader.Text" />
+   <property id="TextAlign" value="IColumnHeader.Alignment" />
+   <property id="Width" type="TwipsX" value="IColumnHeader.Width"/>
+</migClass>
+<!--
+********************************************************** 
+* ProgressBar Designer Code 
+********************************************************** 
+-->
+<migClass id="NetControl.ProgressBar" migName="System.Windows.Forms.ProgressBar" parent="ProgressBar">
+      <property id="Location" value="(Left,Top)" nPram="2" migPattern="new System.Drawing.Point(%1d, %2d)"  />
+      <property id="Name" type="string" value="SYM.name" />
+      <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+      <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+   </migClass>
+<!--
+********************************************************** 
+* Statusbar Designer Code 
+********************************************************** 
+-->
+<migClass id="NetControl.StatusBar" migName="System.Windows.Forms.StatusStrip" parent="StatusBar">
+      <property id="Font" value="Font" type="FontInfo" nPram="3"
+                vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+                cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+      />
+      <property id="Location" value="(Left,Top)" nPram="2" migPattern="new System.Drawing.Point(%1d, %2d)"  />
+      <property id="Name" type="string" value="SYM.name" />
+      <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+      <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+      <property id="Visible" type="boolean" value="Visible" default="true" />
+</migClass>
+<migClass id="NetControl.Panel" migName="System.Windows.Forms.ToolStripStatusLabel" parent="Panel">
+   <property id="AutoSize" type="Boolean" default="false" />
+   <property id="BorderSides" migStatus="Panel_BorderSides" />
+   <property id="BorderStyle" default="System.Windows.Forms.Border3DStyle.Sunken" />
+   <property id="Image" value="IPanel.Picture" />
+   <property id="ImageAlign" value="System.Drawing.ContentAlignment.MiddleLeft" />
+   <property id="Name" type="string" value="SYM.Name" />
+   <property id="Size" value="IPanel.MinWidth" migStatus="Panel_Size" />   
+   <property id="Spring" value="IPanel.AutoSize" migStatus="Panel_Spring"  />
+   <property id="Text" type="string" value="IPanel.Style"  migStatus="Panel_Text" />
+   <property id="TextAlign" default="System.Drawing.ContentAlignment.TopLeft" />
+</migClass>
+<!--
+********************************************************** 
+* Toolbar Designer Code 
+********************************************************** 
+-->
+<migClass id="NetControl.ToolBar" migName="System.Windows.Forms.ToolStrip" parent="ToolBar">
+      <property id="Font" value="Font" type="FontInfo" nPram="3"
+                vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+                cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+      />
+      <property id="ImageList" value="IToolbar.ImageList" />
+      <property id="Location" value="(Left,Top)" nPram="2" migPattern="new System.Drawing.Point(%1d, %2d)" />
+      <property id="Name" type="string" value="SYM.name" />
+      <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+      <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+</migClass>
+<!--
+********************************************************** 
+* ToolBarButton Designer Code 
+********************************************************** 
+-->
+<migClass id="NetControl.Button" migName="System.Windows.Forms.ToolStripButton" parent="Button">   
+      <property id="ImageAlign" default="System.Drawing.ContentAlignment.TopCenter" />
+      <property id="ImageIndex" type="Integer" value="IButton.ImageIndex" />
+      <property id="ImageKey" type="String" value="IButton.ImageKey" />
+      <property id="ImageScaling" default="System.Windows.Forms.ToolStripItemImageScaling.None" />
+      <property id="Name" type="string" value="IButton.Key" />
+      <property id="Size" value="(_ExtentX,_ExtentY)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+      <property id="Text" type="string" value="IButton.Caption" />
+      <property id="TextImageRelation"  default="System.Windows.Forms.TextImageRelation.ImageAboveText" />
+      <property id="ToolTipText" type="string" value="IButton.ToolTipText" />
+      <property id="Visible" type="boolean" value="IButton.Visible" default="true" />
+</migClass>
+<migClass id="NetControl.MenuButton" migName="System.Windows.Forms.ToolStripDropDownButton" parent="MenuButton">
+      <property id="ImageAlign" default="System.Drawing.ContentAlignment.TopCenter" />
+      <property id="ImageIndex" type="Integer" value="IButton.ImageIndex" default="0" />
+      <property id="ImageScaling" default="System.Windows.Forms.ToolStripItemImageScaling.None" />
+      <property id="Name" type="string" value="SYM.name" />
+      <property id="Size" value="(_ExtentX,_ExtentY)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+      <property id="Text" type="string" value="IButton.Caption" />
+      <property id="TextImageRelation" default="System.Windows.Forms.TextImageRelation.ImageAboveText" />
+      <property id="ToolTipText" type="string" value="IButton.ToolTipText" />
+      <property id="Visible" type="boolean" value="IButton.Visible" default="true" />
+</migClass>
+<migClass id="NetControl.ButtonMenu"  migName="System.Windows.Forms.ToolStripMenuItem" parent="ButtonMenu">
+   <property id="Name" type="string" value="SYM.name" />
+   <property id="Text" type="string" value="IButtonMenu.Text" />
+</migClass>
+<migClass id="NetControl.Separator" migName="System.Windows.Forms.ToolStripSeparator" parent="Separator">
+   <property id="Name" type="string" value="SYM.name" />
+</migClass>
+<!--
+********************************************************** 
+* TreeView Designer Code 
+********************************************************** 
+-->
+<migClass id="NetControl.TreeView" migName="System.Windows.Forms.TreeView" parent="TreeView">
+   <property id="Font" value="Font" type="FontInfo" nPram="3"
+             vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+             cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+   />
+   <property id="Location" value="(Left,Top)" nPram="2" migPattern="new System.Drawing.Point(%1d, %2d)" />
+   <property id="ImageList" value="ITreeView.ImageList" />
+   <property id="ItemHeight" default="16" />
+   <property id="Enabled" type="Boolean" value="ITreeView.Enabled" default="true" />
+   <property id="FullRowSelect" type="Boolean" value="ITreeView.FullRowSelect" default="false" />
+   <property id="Name" type="string" value="SYM.name" />
+   <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+   <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+</migClass>
+<!--
+********************************************************** 
+* TabStrip Designer
+********************************************************** 
+-->
+<migClass id="NetControl.TabStrip" migName="System.Windows.Forms.TabControl" parent="TabStrip">
+   <property id="Location" value="(Left,Top)" nPram="2" migPattern="new System.Drawing.Point(%1d, %2d)" />
+   <property id="Enabled" type="Boolean" value="ITreeView.Enabled" default="true" />
+   <property id="Name" type="string" value="SYM.name" />
+   <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+   <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d,%2d)" />
+   <property id="Multiline" value="Boolean" value="ITabStrip.MultiRow" default="false" />
+   <property id="SizeMode" value="System.Windows.Forms.TabSizeMode.FillToRight" />
+</migClass>
+<migClass id="NetControl.Tab" migName="System.Windows.Forms.TabPage" parent="Tab">
+   <property id="Text" type="string" value="ITab.Caption" />
+   <property id="Name" type="string" value="SYM.Name" />
+</migClass>
+<!--
+********************************************************** 
+* Migration Patterns.
+********************************************************** 
+-->
+<MigClass id="Patterns" >
+   <Property id="ExpandNode" type="Void" nPram="2" migPattern="%2d.Expand()\c" />
+   <Property id="CollapseNode" type="Void" nPram="2" migPattern="%2d.Collapse()\c" />
+   <Property id="ExpandCollapse" type="Void" npram="2"
+             cshPattern="if(%1d) %2d.Expand(); else %2d.Collapse()\c"
+             vbnPattern="If(%1d) Then %2d.Expand() Else %2d.Collapse()\c" />
+</MigClass>
+<!--
+********************************************************** 
+* Procedural Transformation Rules
+********************************************************** 
+-->
+<gmSL NameSpace="mscomctl" Class="MigCode" Source="gm.mscomctl.gmsl" />
+<gmSL NameSpace="mscomctl" Class="Transform" Source="gm.mscomctltransform.gmsl" />
+</Refactor>
+</DescriptionFile>
+

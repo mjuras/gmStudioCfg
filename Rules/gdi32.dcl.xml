@@ -1,0 +1,92 @@
+<DescriptionFile>
+<library id="gdi32.dcl"
+         name="gdi32"
+         source="gdi32.dcl"
+         location="gdi32.dcl"
+         type="LocalImport"
+   >
+   <structure id="PALETTEENTRY">
+      <member id="peRed" type="Byte"/>
+      <member id="peGreen" type="Byte"/>
+      <member id="peBlue" type="Byte"/>
+      <member id="peFlags" type="Byte"/>
+   </structure>
+   <structure id="LOGPALETTE256">
+      <member id="palVersion" type="Short"/>
+      <member id="palNumEntries" type="Short"/>
+      <member id="palPalEntry" type="PALETTEENTRY[]"/>
+   </structure>
+   <structure id="POINTL">
+      <member id="x" type="Integer"/>
+      <member id="y" type="Integer"/>
+   </structure>
+   <structure id="SIZEL">
+      <member id="cx" type="Integer"/>
+      <member id="cy" type="Integer"/>
+   </structure>
+   <class id="Methods" parent="None" module="on" creatable="off">
+      <method id="BitBlt" type="Integer">
+         <argument id="hDCDest" type="Integer" status="ByVal"/>
+         <argument id="XDest" type="Integer" status="ByVal"/>
+         <argument id="YDest" type="Integer" status="ByVal"/>
+         <argument id="nWidth" type="Integer" status="ByVal"/>
+         <argument id="nHeight" type="Integer" status="ByVal"/>
+         <argument id="hDCSrc" type="Integer" status="ByVal"/>
+         <argument id="XSrc" type="Integer" status="ByVal"/>
+         <argument id="YSrc" type="Integer" status="ByVal"/>
+         <argument id="dwRop" type="Integer" status="ByVal"/>
+      </method>
+      <method id="CreateCompatibleDC" type="Integer" >
+         <argument id="hDC" type="Integer" status="ByVal"/>
+      </method>
+      <method id="CreateCompatibleBitmap" type="Integer" >
+         <argument id="hDC" type="Integer" status="ByVal"/>
+         <argument id="nWidth" type="Integer" status="ByVal"/>
+         <argument id="nHeight" type="Integer" status="ByVal"/>
+      </method>
+      <method id="CreatePalette" type="Integer">
+         <argument id="lplgpl" type="LOGPALETTE256" status="ByRef"/>
+      </method>
+      <method id="DeleteDC" type="Integer" >
+         <argument id="hDC" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetDeviceCaps" type="Integer" >
+         <argument id="hDC" type="Integer" status="ByVal"/>
+         <argument id="iCapabilitiy" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetSystemPaletteEntries" type="Integer">
+         <argument id="hDC" type="Integer" status="ByVal"/>
+         <argument id="iStartIndex" type="Integer" status="ByVal"/>
+         <argument id="nEntries" type="Integer" status="ByVal"/>
+         <argument id="lppe" type="PALETTEENTRY" status="ByRef"/>
+      </method>
+      <method id="GetTextExtentPoint32" type="Integer">
+         <argument id="hDC" type="Integer" status="ByVal"/>
+         <argument id="lpString" type="String" status="ByVal"/>
+         <argument id="cbString" type="Integer" status="ByVal"/>
+         <argument id="lpSize" type="SIZEL" status="ByRef"/>
+      </method>
+      <method id="Polygon" type="Integer">
+         <argument id="hDC" type="Integer" status="ByVal"/>
+         <argument id="lpPoints" type="POINTL" status="ByRef"/>
+         <argument id="cPoints" type="Integer" status="ByVal"/>
+      </method>
+      <method id="RealizePalette" type="Integer" >
+         <argument id="hDC" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SelectObject" type="Integer" >
+         <argument id="hDC" type="Integer" status="ByVal"/>
+         <argument id="hObject" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SelectPalette"  type="integer" >
+         <argument id="hdc" type="Integer" status="ByVal" />
+         <argument id="hPalette" type="Integer" status="ByVal" />
+         <argument id="bForceBackground" type="Integer" status="ByVal" />
+      </method>
+      <method id="SetMapMode"  type="integer" >
+         <argument id="hdc" type="Integer" status="ByVal" />
+         <argument id="nMapMode" type="Integer" status="ByVal" />
+      </method>
+   </class>
+</library>
+</DescriptionFile>

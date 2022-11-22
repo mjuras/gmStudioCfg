@@ -1,0 +1,412 @@
+<DescriptionFile>
+<!--
+Upgrade RichTextLib.RichTextBox to System.Windows.Forms.RichTextBox.
+-->
+<library id="RICHTX32.OCX"
+         name="RichTextLib"
+         netVersion="1.2"
+         source="RICHTX32.OCX"
+         location="DoNotDeclare"
+         axLocation="%library%\AxInterop.RichTextLib.dll"
+         migName="System.Windows.Forms"
+         assemblyName="RichTextLib"
+         type="Internal"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IVBDataObject"/>
+   <class id="IVBDataObjectFiles"/>
+   <class id="IOLEObject"/>
+   <class id="IOLEObjects"/>
+   <class id="IRichText"/>
+   <class id="DRichTextEvents"/>
+   <coclass id="DataObject"/>
+   <coclass id="DataObjectFiles"/>
+   <coclass id="RichTextBox"/>
+   <coclass id="OLEObjects"/>
+   <coclass id="OLEObject"/>
+   <enumeration id="OLEDragConstants">
+      <entry id="rtfOLEDragManual" value="0"/>
+      <entry id="rtfOLEDragAutomatic" value="1"/>
+   </enumeration>
+   <enumeration id="OLEDropConstants">
+      <entry id="rtfOLEDropNone" value="0"/>
+      <entry id="rtfOLEDropManual" value="1"/>
+      <entry id="rtfOLEDropAutomatic" value="2"/>
+   </enumeration>
+   <enumeration id="DragOverConstants">
+      <entry id="rtfEnter" value="0"/>
+      <entry id="rtfLeave" value="1"/>
+      <entry id="rtfOver" value="2"/>
+   </enumeration>
+   <enumeration id="ClipBoardConstants">
+      <entry id="rtfCFText" value="1"/>
+      <entry id="rtfCFBitmap" value="2"/>
+      <entry id="rtfCFMetafile" value="3"/>
+      <entry id="rtfCFDIB" value="8"/>
+      <entry id="rtfCFPalette" value="9"/>
+      <entry id="rtfCFEMetafile" value="14"/>
+      <entry id="rtfCFFiles" value="15"/>
+      <entry id="rtfCFRTF" value="0xffffbf01"/>
+   </enumeration>
+   <enumeration id="OLEDropEffectConstants">
+      <entry id="rtfOLEDropEffectNone" value="0"/>
+      <entry id="rtfOLEDropEffectCopy" value="1"/>
+      <entry id="rtfOLEDropEffectMove" value="2"/>
+      <entry id="rtfOLEDropEffectScroll" value="0x80000000"/>
+   </enumeration>
+   <enumeration id="AppearanceConstants">
+      <entry id="rtfFlat" value="0"/>
+      <entry id="rtfThreeD" value="1"/>
+   </enumeration>
+   <enumeration id="BorderStyleConstants">
+      <entry id="rtfNoBorder" value="0"/>
+      <entry id="rtfFixedSingle" value="1"/>
+   </enumeration>
+   <enumeration id="FindConstants">
+      <entry id="rtfWholeWord" value="2"/>
+      <entry id="rtfMatchCase" value="4"/>
+      <entry id="rtfNoHighlight" value="8"/>
+   </enumeration>
+   <enumeration id="LoadSaveConstants">
+      <entry id="rtfRTF" value="0"/>
+      <entry id="rtfText" value="1"/>
+   </enumeration>
+   <enumeration id="MousePointerConstants">
+      <entry id="rtfDefault" value="0"/>
+      <entry id="rtfArrow" value="1"/>
+      <entry id="rtfCross" value="2"/>
+      <entry id="rtfIBeam" value="3"/>
+      <entry id="rtfIcon" value="4"/>
+      <entry id="rtfSize" value="5"/>
+      <entry id="rtfSizeNESW" value="6"/>
+      <entry id="rtfSizeNS" value="7"/>
+      <entry id="rtfSizeNWSE" value="8"/>
+      <entry id="rtfSizeEW" value="9"/>
+      <entry id="rtfUpArrow" value="10"/>
+      <entry id="rtfHourglass" value="11"/>
+      <entry id="rtfNoDrop" value="12"/>
+      <entry id="rtfArrowHourglass" value="13"/>
+      <entry id="rtfArrowQuestion" value="14"/>
+      <entry id="rtfSizeAll" value="15"/>
+      <entry id="rtfCustom" value="99"/>
+   </enumeration>
+   <enumeration id="ScrollBarsConstants" migName="RichTextBoxScrollBars" >
+      <entry id="rtfNone" value="0"  migName="None"/>
+      <entry id="rtfHorizontal" value="1" migName="Horizontal"/>
+      <entry id="rtfVertical" value="2" migName="Vertical"/>
+      <entry id="rtfBoth" value="3" migName="Both"/>
+   </enumeration>
+   <enumeration id="SelAlignmentConstants">
+      <entry id="rtfLeft" value="0"/>
+      <entry id="rtfRight" value="1"/>
+      <entry id="rtfCenter" value="2"/>
+   </enumeration>
+   <enumeration id="DisplayTypeConstants">
+      <entry id="rtfDisplayContent" value="0"/>
+      <entry id="rtfDisplayIcon" value="1"/>
+   </enumeration>
+   <enumeration id="ErrorConstants">
+      <entry id="rtfOutOfMemory" value="7"/>
+      <entry id="rtfInvalidPropertyValue" value="380"/>
+      <entry id="rtfInvalidPropertyArrayIndex" value="381"/>
+      <entry id="rtfSetNotSupported" value="383"/>
+      <entry id="rtfSetNotPermitted" value="387"/>
+      <entry id="rtfGetNotSupported" value="394"/>
+      <entry id="rtfInvalidProcedureCall" value="5"/>
+      <entry id="rtfInvalidObjectUse" value="425"/>
+      <entry id="rtfWrongClipboardFormat" value="461"/>
+      <entry id="rtfDataObjectLocked" value="672"/>
+      <entry id="rtfExpectedAnArgument" value="673"/>
+      <entry id="rtfRecursiveOleDrag" value="674"/>
+      <entry id="rtfFormatNotByteArray" value="675"/>
+      <entry id="rtfDataNotSetInFormat" value="676"/>
+      <entry id="rtfPathFileAccessError" value="75"/>
+      <entry id="rtfInvalidFileFormat" value="321"/>
+      <entry id="rtfInvalidCharPosition" value="32000"/>
+      <entry id="rtfInvalidHdc" value="32001"/>
+      <entry id="rtfCannotLoadFile" value="32002"/>
+      <entry id="rtfProtected" value="32011"/>
+      <entry id="rtfInvalidKeyName" value="32005"/>
+      <entry id="rtfInvalidClassName" value="32006"/>
+      <entry id="rtfKeyNotFound" value="32007"/>
+      <entry id="rtfOLESourceRequired" value="32008"/>
+      <entry id="rtfNonUniqueKey" value="32009"/>
+      <entry id="rtfInvalidObject" value="32010"/>
+      <entry id="rtfOleCreate" value="32012"/>
+      <entry id="rtfOleServer" value="32013"/>
+   </enumeration>
+   <typedef id="IRichText10" type="IRichText"/>
+   <typedef id="IRichText11" type="IRichText"/>
+   <class id="IVBDataObject" parent="IDispatch">
+      <property id="Files" type="DataObjectFiles" status="Out"/>
+      <method id="Clear" type="Void"/>
+      <method id="GetData" type="Variant">
+         <argument id="sFormat" type="Short" status="ByVal"/>
+      </method>
+      <method id="GetFormat" type="Boolean">
+         <argument id="sFormat" type="Short" status="ByVal"/>
+      </method>
+      <method id="SetData" type="Void">
+         <argument id="vValue" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="vFormat" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="IVBDataObjectFiles" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="String" status="indexer">
+         <argument id="lIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="bstrFilename" type="String" status="ByVal"/>
+         <argument id="vIndex" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="vIndex" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="IOLEObject" parent="IDispatch">
+      <property id="Index" type="Integer" status="Out"/>
+      <property id="Key" type="String" status="InOut"/>
+      <property id="Class" type="String" status="Out"/>
+      <property id="DisplayType" type="DisplayTypeConstants" status="InOut"/>
+      <property id="ObjectVerbs" type="Variant" status="Out"/>
+      <property id="ObjectVerbFlags" type="Variant" status="Out"/>
+      <property id="ObjectVerbsCount" type="Integer" status="Out"/>
+      <method id="DoVerb" type="Void">
+         <argument id="verb" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="FetchVerbs" type="Integer"/>
+   </class>
+   <class id="IOLEObjects" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="OLEObject" status="indexer">
+         <argument id="Item" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Add" type="OLEObject">
+         <argument id="Index" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="source" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="objclass" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Item" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="IRichText" parent="IDispatch" default="defTextRTF">
+      <property id="defTextRTF" type="String" status="InOut" migName="Rtf"/>
+      <property id="Appearance" type="AppearanceConstants" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="BorderStyle" type="BorderStyleConstants" status="InOut"/>
+      <property id="BulletIndent" type="Integer" status="InOut"/>
+      <property id="DisableNoScroll" type="Boolean" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="FileName" type="String" status="InOut"/>
+      <property id="Font" type="Font" status="InOut"/>
+      <property id="HideSelection" type="Boolean" status="InOut"/>
+      <property id="Hwnd" type="OLE_HANDLE" status="InOut"/>
+      <property id="Locked" type="Boolean" status="InOut"/>
+      <property id="MaxLength" type="Integer" status="InOut"/>
+      <property id="MouseIcon" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.MouseIcon"/>
+         <Set npram="2" migPattern="%1d.MouseIcon = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_MouseIcon(%1d)\c"/>
+      </property>
+      <property id="MousePointer" type="MousePointerConstants" status="InOut"/>
+      <property id="MultiLine" type="Boolean" status="InOut"/>
+      <property id="RightMargin" type="Single" status="InOut"/>
+      <property id="ScrollBars" type="ScrollBarsConstants" status="InOut"/>
+      <property id="SelAlignment" type="Variant" status="InOut"/>
+      <property id="SelBold" type="Variant" status="GetSet"/>
+      <pattern id="SelBold.Get" >
+          <all narg="1" code="%1d.SelectionFont.Bold" />
+      </pattern>
+      <pattern id="SelBold.Set" >
+          <all narg="2" code="%2d.SelectionFont = gmRTL.GUI.FontHelper.SetBold(%2d.SelectionFont, %1d)\c" />
+      </pattern>
+      <property id="SelBullet" type="Variant" status="InOut"/>
+      <property id="SelCharOffset" type="Variant" status="InOut"/>
+      <property id="SelColor" type="OLE_COLOR" status="InOut" migName="SelectionColor"/>
+      <property id="SelFontName" type="Variant" status="InOut"/>
+      <property id="SelFontSize" type="Variant" status="InOut"/>
+      <property id="SelHangingIndent" type="Variant" status="InOut"/>
+      <property id="SelIndent" type="Integer" status="InOut" migName="SelectionIndent"/>
+      <property id="SelItalic" type="Variant" status="InOut"/>
+      <property id="SelLength" type="Integer" status="InOut" migName="SelectionLength"/>
+      <property id="SelProtected" type="Variant" status="InOut"/>
+      <property id="SelRightIndent" type="Variant" status="InOut"/>
+      <property id="SelRTF" type="String" status="InOut"/>
+      <property id="SelStart" type="Integer" status="InOut" migName="SelectionStart"/>
+      <property id="SelStrikeThru" type="Variant" status="InOut"/>
+      <property id="SelTabCount" type="Variant" status="InOut"/>
+      <property id="SelText" type="String" status="InOut" migName="SelectedText"/>
+      <property id="SelUnderline" type="Variant" status="GetSet"/>
+      <pattern id="SelUnderline.Get" >
+          <all narg="1" code="%1d.SelectionFont.Underline" />
+      </pattern>
+      <pattern id="SelUnderline.Set" >
+          <all narg="2" code="%2d.SelectionFont = gmRTL.GUI.FontHelper.SetUnderline(%2d.SelectionFont, %1d)\c" />
+      </pattern>
+      <property id="Text" type="String" status="InOut"/>
+      <property id="TextRTF" type="String" status="InOut" migName="Text" migComment="UPGRADE_INFO: TextRTF is now two properties Rtf or Text"/>
+      <property id="OLEObjects" type="OLEObjects" status="Out"/>
+      <property id="AutoVerbMenu" type="Boolean" status="InOut" migName="ShortcutsEnabled"/>
+      <property id="OLEDragMode" type="OLEDragConstants" status="InOut"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <method id="AboutBox" type="Void"/>
+      <method id="Find" type="Integer">
+         <argument id="bstrString" type="String" status="ByVal"/>
+         <argument id="vStart" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="vEnd" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="vOptions" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="GetLineFromChar" type="Integer">
+         <argument id="lChar" type="Integer" status="ByVal"/>
+      </method>
+      <method id="LoadFile" type="Void">
+         <argument id="bstrFilename" type="String" status="ByVal"/>
+         <argument id="vFileType" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="SaveFile" type="Void">
+         <argument id="bstrFilename" type="String" status="ByVal"/>
+         <argument id="vFlags" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="UnusedSelPrint" type="Void">
+         <argument id="lHDC" type="Integer" status="ByVal"/>
+      </method>
+      <accessor id="SelTabs" type="Variant">
+         <argument id="sElement" type="Short" status="ByVal"/>
+      </accessor>
+      <method id="Span" type="Void">
+         <argument id="bstrCharacterSet" type="String" status="ByVal"/>
+         <argument id="vForward" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="vNegate" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="UpTo" type="Void">
+         <argument id="bstrCharacterSet" type="String" status="ByVal"/>
+         <argument id="vForward" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="vNegate" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="OLEDrag" type="Void"/>
+      <method id="SelPrint" type="Void">
+         <argument id="lHDC" type="Integer" status="ByVal"/>
+         <argument id="vStartDoc" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="DRichTextEvents" parent="None" creatable="off">
+      <event id="Change" netName="TextChanged" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="DblClick" netName="DblClick" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="KeyDown" netName="KeyDownEvent" role="event" netArgs="KeyEventArgs"
+             netHandler="System.Windows.Forms.KeyEventHandler" migPattern="KeyDown" >
+         <argument id="keyCode" type="Integer" status="ByVal" cshPattern="%1d = (int)e.KeyCode" vbnPattern="%1d = e.KeyCode" />
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" role="event" netArgs="KeyEventArgs"
+             netHandler="System.Windows.Forms.KeyEventHandler" migPattern="KeyUp" >
+         <argument id="keyCode" type="Integer" status="ByVal" migPattern="%1d = (int)e.KeyCode" />
+         <argument id="shift" type="Integer" status="ByVal"  migPattern="%1d = e.Shift?-1:0" />
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="AxRichTextLib.DRichTextEvents_KeyPressEventHandler" netArgs="AxRichTextLib.DRichTextEvents_KeyPressEvent">
+         <argument id="keyAscii" type="Short" status="Out"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="AxRichTextLib.DRichTextEvents_MouseDownEventHandler" netArgs="AxRichTextLib.DRichTextEvents_MouseDownEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="AxRichTextLib.DRichTextEvents_MouseMoveEventHandler" netArgs="AxRichTextLib.DRichTextEvents_MouseMoveEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="AxRichTextLib.DRichTextEvents_MouseUpEventHandler" netArgs="AxRichTextLib.DRichTextEvents_MouseUpEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="SelChange" netName="SelChange" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxRichTextLib.DRichTextEvents_OLEStartDragEventHandler" netArgs="AxRichTextLib.DRichTextEvents_OLEStartDragEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxRichTextLib.DRichTextEvents_OLEGiveFeedbackEventHandler" netArgs="AxRichTextLib.DRichTextEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxRichTextLib.DRichTextEvents_OLESetDataEventHandler" netArgs="AxRichTextLib.DRichTextEvents_OLESetDataEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxRichTextLib.DRichTextEvents_OLECompleteDragEventHandler" netArgs="AxRichTextLib.DRichTextEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxRichTextLib.DRichTextEvents_OLEDragOverEventHandler" netArgs="AxRichTextLib.DRichTextEvents_OLEDragOverEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="state" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxRichTextLib.DRichTextEvents_OLEDragDropEventHandler" netArgs="AxRichTextLib.DRichTextEvents_OLEDragDropEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+   </class>
+   <coclass id="DataObject" creatable="off">
+      <subclass id="IVBDataObject"/>
+   </coclass>
+   <coclass id="DataObjectFiles" creatable="off">
+      <subclass id="IVBDataObjectFiles"/>
+   </coclass>
+   <coclass id="RichTextBox" migName="RichTextBox" role="control">
+      <subclass id="IRichText"/>
+      <subclass id="DRichTextEvents"/>
+   </coclass>
+   <coclass id="OLEObjects">
+      <subclass id="IOLEObjects"/>
+   </coclass>
+   <coclass id="OLEObject">
+      <subclass id="IOLEObject"/>
+   </coclass>
+</library>
+<Refactor id="[RICHTX32.ocx]" >
+<!--
+********************************************************** 
+* RichTextBox Designer Code 
+********************************************************** 
+-->
+   <migClass id="NetControl.RichTextBox" migName="System.Windows.Forms.RichTextBox" parent="RichTextBox">
+        <property id="BackColor" type="OLE_COLOR" value="IRichText.BackColor" nPram="3"
+            migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+            default="System.Drawing.SystemColors.Window"
+        />
+        <property id="Enabled" type="boolean" value="IRichText.Enabled" default="true"/>
+        <property id="Font" value="Font" type="FontInfo" nPram="3"
+            vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+            cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+        />
+        <property id="Location" value="(Left,Top)" nPram="2"  migPattern="new System.Drawing.Point(%1d, %2d)"  />
+        <property id="Name" type="string" value="SYM.name" />
+        <property id="ScrollBars" value="IRichText.ScrollBars" />
+        <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+        <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+        <property id="Rtf" type="string" value="IRichText.TextRtf" />
+        <property id="TabStop" type="boolean" value="TabStop" default="true" />
+   </migClass>
+</Refactor>
+
+</DescriptionFile>

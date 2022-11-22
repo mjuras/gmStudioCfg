@@ -1,0 +1,14 @@
+/*
+Description: Migrate MSComCtl2 controls to WinForms controls
+*/
+int IDTPicker_Value(int subRoot,int iStart,int iRefer)
+{
+   // System.LogMessage("Found IDTPicker.Value setting Project.HasExtensions");
+   // DTPicker.Value.set is being migrated to an extension method.
+   // This ensures a using statement is added to all files in projects
+   // using IDTPicker.Value.  The actual namespace for the class containing
+   // general extensions is defined by Select.ExtensionMethods.
+   Project.HasExtensions = 1;
+   return 1;
+}
+

@@ -1,0 +1,39 @@
+<DescriptionFile>
+<library id="mpr.dcl"
+         name="mpr"
+         source="mpr.dcl"
+         location="mpr.dcl"
+         type="LocalImport"
+   >
+   <structure id="NETRESOURCE">
+      <member id="dwScope" type="Integer"/>
+      <member id="dwType" type="Integer"/>
+      <member id="dwDisplayType" type="Integer"/>
+      <member id="dwUsage" type="Integer"/>
+      <member id="lpLocalName" type="Integer"/>
+      <member id="lpRemoteName" type="Integer"/>
+      <member id="lpComment" type="Integer"/>
+      <member id="lpProvider" type="Integer"/>
+   </structure>
+   <class id="Methods" parent="None" module="on" creatable="off">
+      <method id="WNetEnumResource" type="Integer">
+         <argument id="hEnum" type="Integer" status="ByVal"/>
+         <argument id="lpcCount" type="Integer" status="Out"/>
+         <argument id="lpBuffer" type="Void" status="Out"/>
+         <argument id="lpBufferSize" type="Integer" status="Out"/>
+      </method>
+      <method id="WNetGetUser" type="Integer">
+         <argument id="lpName" type="String" status="ByVal"/>
+         <argument id="lpUserName" type="String" status="ByVal"/>
+         <argument id="lpnLength" type="Integer" status="Out"/>
+      </method>
+      <method id="WNetOpenEnum" type="Integer">
+         <argument id="dwScope" type="Integer" status="ByVal"/>
+         <argument id="dwType" type="Integer" status="ByVal"/>
+         <argument id="dwUsage" type="Integer" status="ByVal"/>
+         <argument id="lpNetResource" type="NETRESOURCE" status="Out"/>
+         <argument id="lphEnum" type="Integer" status="Out"/>
+      </method>
+   </class>
+</library>
+</DescriptionFile>

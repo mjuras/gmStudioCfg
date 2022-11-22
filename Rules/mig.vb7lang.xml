@@ -1,0 +1,57 @@
+<MetaLanguage>
+<!-- 
+Description: Rules to Override Core MetaLanguage mapping
+
+Sample System MetaLanguage Configuration Override Script 
+Modify this file to alter the default upgrade rules for VB6 intrinsics 
+functions and controls.  
+
+Contact GreatMigrations for assistance with using this file.
+-->
+<Refactor id="Basic" >
+<Replace id="Patterns">
+   <pattern id="VBF">
+      <subcode id="LCase">
+         <vbn role="function" narg="1" code="LCase(%1d)"/>
+         <csh role="function" narg="1" code="%1d.ToLower()"/>
+      </subcode>
+      <subcode id="Left">
+         <vbn role="function" narg="2" code="Strings.Left(%1d,%2d)"/>
+         <csh role="function" narg="2" code="%1d.Left(%2d)"/>
+      </subcode>
+      <subcode id="LeftB">
+         <vbn role="function" narg="2" code="Strings.Left(%1d,%2d)"/>
+         <csh role="function" narg="2" code="%1d.Left(%2d)"/>
+      </subcode>
+      <subcode id="Len">
+         <vbn role="function" narg="1" code="Len(%1d)"/>
+         <csh role="function" narg="1" code="%1d.Length"/>
+      </subcode>
+      <subcode id="Split">
+         <vbn role="function" narg="4" code="Split(%1d,%2d,%3d,%4d)"/>
+         <csh role="function" narg="4" code="%1d.Split(new char[]{%2d[0]},%3o,%4o)"/>
+      </subcode>
+      <subcode id="Trim">
+         <vbn role="function" narg="1" code="Trim(%1d)"/>
+        <csh role="function" narg="1" code="%1d.Trim()"/>
+      </subcode>
+      <subcode id="UBound">
+         <vbn role="function" narg="2" code="UBound(%1d,%2d)"/>
+         <csh role="function" narg="2" code="%1d.Length"/>
+      </subcode>
+      <subcode id="UCase">
+         <vbn role="function" narg="1" code="UCase(%1d)"/>
+         <csh role="function" narg="1" code="%1d.ToUpper()"/>
+      </subcode>
+   </pattern>
+</Replace>
+<Replace id="Vb6Function">
+   <method id="Split" type="String" opcode="VBF.112">
+      <argument id="Expression" type="String" status="ByVal"/>
+      <argument id="Delimiter" type="String" status="ByVal" optional=" "/>
+      <argument id="Limit" type="Integer" status="ByVal" optional="DEF.overload"/>
+      <argument id="Compare" type="VbCompareMethod" status="ByVal" optional="DEF.overload"/>
+   </method>
+</Replace>
+</Refactor>
+</MetaLanguage>

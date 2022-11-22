@@ -1,0 +1,632 @@
+void debug(int subRoot,string msg)
+{
+   //Select.IssueWarnings=1;
+   //string subName = Symbol.FullName(subRoot,0);
+   //System.LogMessage(msg + " " + subName);
+}
+
+void logWarning(string msg,int subRoot, int iRefer)
+{
+   if(Select.IssueWarnings)
+   {
+      string subrName = Symbol.FullName(subRoot,0);
+      System.LogMessage(msg + "; Subprogram: " + subrName + "; Code offset: " + iRefer);
+   }
+}
+
+void LocCallTypes(int subRoot,int argRoot,int compType,int iCall)
+{
+   int         iArg;
+   int         addr;
+   tVariable   variable;
+   int         postSet[4];
+   tReference  reference;
+   int         lcode;
+   tVbSub      subInfo;
+   int         baseCode;
+   tCodeBlock  codptr;
+   tCodeBlock  userCode;
+   int         nCode;
+   int         pcnt;
+   int         icode;
+   int         oper;
+   int         subc;
+   tCodeBlock  passedCode;
+   int         iLev;
+   int         argCode;
+   int         iTemp;
+   
+   debug(subRoot,"   LocCallTypes " +  argRoot + " " + compType + " iCall=" + iCall);
+   
+   if(Symbol.Unused(subRoot)) return;
+   iArg = 0;
+   for(addr = Store.GetFirst(subRoot); addr != 0; addr = Store.GetNext(addr))
+   {
+      if(Store.GetObjectType(addr) != ObjectType.Variable) break;
+      variable = Store.GetVector(addr);
+      if(!variable.Argument) break;
+      if(addr == argRoot) break;
+      iArg = iArg+1;
+   }
+   if(addr != argRoot) return;
+   passedCode = CodePattern.Read("LEV,LDA,ARG",lcode);
+   codptr = Opcode.GetCode();
+   reference = Store.FirstReference(subRoot,postSet);
+   lcode = Opcode.GetLength();
+   while(True)
+   {
+      if(subRoot != reference.BeingRefd) break;
+      subInfo = Store.GetVector(reference.MakesRef);
+      baseCode = subInfo.anaCodeStart;
+      if(baseCode == 0) baseCode = subInfo.cmpCodeStart;
+      if(baseCode > 0 && reference.MakesRef != subRoot)
+      {
+         userCode = Opcode.GetCode(lcode);
+         nCode = Store.ReadInfo(userCode,baseCode);
+         pcnt = lcode + nCode;
+         Opcode.SetLength(pcnt);
+         for(icode = lcode; icode >= 0; icode = Opcode.GetNext(codptr,icode,pcnt))
+         {
+            oper = Opcode.GetOperation(codptr,icode,addr);
+            if(oper != OPC.LDA) continue;
+            oper = Opcode.GetOperation(codptr,icode+5,iLev);
+            if(oper != OPC.LEV) continue;
+            if(addr != subRoot) continue;
+            argCode = icode + 5;
+            if(iArg != 0)
+            {
+               iTemp = iArg;
+               while(True)
+               {
+                  argCode = Opcode.GetNext(codptr,argCode,pcnt);
+                  oper = Opcode.GetOperation(codptr,argCode,subc);
+                  if(oper == OPC.LEV && subc == iLev)
+                  {
+                     iTemp = iTemp - 1;
+                     if(iTemp == 0) break;
+                  }
+               }
+            }
+            if(CodePattern.Match(argCode,passedCode) != 0)
+            {
+               LocFixStreamType(reference.MakesRef,argCode+2,compType,iCall*10+1);
+            }
+         }
+      }
+      reference = Store.NextReference(postSet);
+      if(isNull(reference)) break;
+   }
+   Opcode.SetLength(lcode);
+   return;
+}
+
+void LocFixStreamType(int subRoot,int iRefer,int compType, int iCall)
+{
+   int         nCode;
+   tCodeBlock  codptr;
+   int         oper;
+   string      subrName;
+   int         iRoot;
+   tQuantity   quantity;
+   int         delta;
+   int         textReader;
+   int         textWriter;
+   
+   debug(subRoot,"   LocFixStreamType " +  iRefer + " " + compType + " iCall=" + iCall);
+ 
+   textReader = Symbol.FindIdentifier("Scripting.TextReader");
+   textWriter = Symbol.FindIdentifier("Scripting.TextWriter");
+   codptr = Opcode.GetCode();
+   nCode = Opcode.GetLength();
+   oper = Opcode.GetOperation(codptr,iRefer,iRoot);
+
+
+   quantity = Store.DeltaVector(iRoot);
+   delta = 0;
+   if(quantity.type != compType)
+   {
+      if(compType == textReader)
+      {
+         if(quantity.type == textWriter)
+         {
+            logWarning("Warning#513: Variable previously used ForWriting",subRoot,iRefer);
+         }
+         else
+         {
+            delta = 1;
+            quantity.type = textReader;
+         }
+      }
+      else
+      {
+         if(quantity.type == textReader)
+         {
+               logWarning("Warning#514: Variable previously used ForReading",subRoot,iRefer);
+         }
+         else
+         {
+            delta = 1;
+            quantity.type = textWriter;
+         }
+      }
+   }
+   if(delta != 0 && iCall < 10 && quantity.Argument)
+   {
+      LocCallTypes(subRoot,iRoot,compType,iCall);
+   }
+   return;
+}
+
+int IFileSystem_OpenTextFile(int subRoot, int iStart, int iRefer)
+{
+   int         icode;
+   int         nCode;
+   tCodeBlock  codptr;
+   int         oper;
+   int         subc;
+   int         OpenTextFile;
+   int         FileName;
+   int         IOMode;
+   int         Create;
+   int         Format;
+   int         callLocation;
+   int         forReading;
+   int         forWriting;
+   int         forAppending;
+   int         stateFalse;
+   int         stateDefault;
+   int         stateTrue;
+   int         iMode;
+   int         createFile;
+   int         formatFile;
+   int         compAddr;
+   int         textStream;
+   
+   debug(subRoot,"IFileSystem_OpenTextFile " + iStart + " " + iRefer);
+     
+   codptr = Opcode.GetCode();
+   nCode = Opcode.GetLength();
+   oper = Opcode.GetOperation(codptr,iRefer,OpenTextFile);
+   if(oper != OPC.LLP) return 0;
+   icode = Opcode.GetNext(codptr,iRefer,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.MEM) return 0
+   icode = Opcode.GetNext(codptr,icode,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.LEV) return 0;
+   FileName = Opcode.GetNext(codptr,icode,nCode);
+
+   icode = Opcode.FindArgumentEnd(codptr,icode,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.LEV) return 0;
+   IOMode = Opcode.GetNext(codptr,icode,nCode);
+   
+   icode = Opcode.FindArgumentEnd(codptr,icode,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.LEV) return 0;
+   Create = Opcode.GetNext(codptr,icode,nCode);
+
+   icode = Opcode.FindArgumentEnd(codptr,icode,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.LEV) return 0;
+   Format = Opcode.GetNext(codptr,icode,nCode);
+     
+   icode = Opcode.FindArgumentEnd(codptr,icode,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.CUF) return 0;
+   callLocation = icode;
+  
+   icode = Opcode.GetNext(codptr,icode,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.REF || subc != OpenTextFile) return 0;
+   
+   forReading = Symbol.FindIdentifier("Scripting.IOMode.ForReading");
+   forWriting = Symbol.FindIdentifier("Scripting.IOMode.ForWriting");
+   forAppending = Symbol.FindIdentifier("Scripting.IOMode.ForAppending");
+   stateFalse = Symbol.FindIdentifier("Scripting.Tristate.TristateFalse");
+   stateDefault = Symbol.FindIdentifier("Scripting.Tristate.TristateUseDefault");
+   stateTrue = Symbol.FindIdentifier("Scripting.Tristate.TristateTrue");
+
+   iMode = -1;
+   oper = Opcode.GetOperation(codptr,IOMode,subc);
+   if(oper == OPC.DEF) iMode = forReading;
+   else if(oper == OPC.LLE || oper == OPC.LLP)
+   {
+      if(subc == forReading || subc == forWriting || subc == forAppending) iMode = subc;
+   }
+   if(iMode <= 0) 
+   {
+      logWarning("Warning#515: IFileSystem_OpenTextFile.IOMode unknown",subRoot,iRefer);
+      return 0;
+   }
+
+   createFile = -1;
+   oper = Opcode.GetOperation(codptr,Create,subc);
+   if(oper == OPC.DEF) createFile = 0;
+   else if(oper == OPC.LBC && subc == OPC.LBC.False) createFile = 0;
+   else if(oper == OPC.LBC && subc == OPC.LBC.True) createFile = 1;
+   else if(iMode == forReading)
+   {
+      logWarning("Warning#504: IFileSystem_OpenTextFile:ForReading Create not well-formed.",subRoot,iRefer);
+      return 0;
+   }
+   else
+   {
+      logWarning("Warning#504: IFileSystem_OpenTextFile:ForWriting/Append Create not well-formed.",subRoot,iRefer);
+      return 0;
+   }
+   
+
+   formatFile = -1;
+   oper = Opcode.GetOperation(codptr,Format,subc);
+   if(oper == OPC.DEF) formatFile = stateFalse;
+   else if(oper == OPC.LLE || oper == OPC.LLP)
+   {
+      if(subc == stateFalse || subc == stateDefault) formatFile = subc;
+      else if(subc == stateTrue) formatFile = stateTrue;
+   }
+   else if(oper == OPC.LBC)
+   {
+      if(subc == OPC.LBC.False) formatFile = stateFalse;
+      else if(subc == OPC.LBC.True) formatFile = stateTrue;
+   }
+   if(formatFile < 0)
+   {
+      logWarning("Warning#516: IFileSystem_OpenTextFile.formatFile unknown",subRoot,iRefer);
+      return 0;
+   }
+
+   compAddr = 0;
+   if(iMode == forReading)
+   {
+      if(createFile == 0) compAddr = Symbol.FindIdentifier("Scripting.TextReader.OpenAsciiFileFalse");
+      else compaddr = Symbol.FindIdentifier("Scripting.TextReader.OpenAsciiFile");
+   }
+   else if(iMode == forAppending)
+   {
+      compAddr = Symbol.FindIdentifier("Scripting.TextWriter.AppendAsciiFile");
+   }
+   else
+   {
+      if(createFile == 1) compAddr = Symbol.FindIdentifier("Scripting.TextWriter.CreateAsciiFileTrue");
+      else compAddr = Symbol.FindIdentifier("Scripting.TextWriter.CreateAsciiFile");
+   }
+   if(compAddr == 0) 
+   {
+      logWarning("Warning#517: IFileSystem_OpenTextFile.compAddr unknown",subRoot,iRefer);
+      return 0;
+   }
+   
+   Opcode.Replace(callLocation,OPC.PAT,compAddr,2);
+   oper = Opcode.GetOperation(codptr,Format,subc);
+   if(oper == OPC.DEF) Opcode.Replace(Format,OPC.LLP,stateFalse,1);
+   oper = Opcode.GetOperation(codptr,Create,subc);
+   if(oper == OPC.DEF) Opcode.Replace(Create,OPC.LBC,OPC.LBC.False,1);
+   oper = Opcode.GetOperation(codptr,IOMode,subc);
+   if(oper == OPC.DEF) Opcode.Replace(IOMode,OPC.LLP,forReading,1);
+   Opcode.Delete(iRefer,2);
+
+   if(iMode == forReading) textStream = Symbol.FindIdentifier("Scripting.TextReader");
+   else textStream = Symbol.FindIdentifier("Scripting.TextWriter");
+   if(textStream != 0)
+   {
+      LocFixStreamType(subRoot,iStart,textStream,1);
+   }
+   return 1;
+}
+
+int IFile_OpenAsTextStream(int subRoot, int iStart, int iRefer)
+{
+   int         icode;
+   int         nCode;
+   tCodeBlock  codptr;
+   int         oper;
+   int         subc;
+   int         OpenAsTextStream;
+   int         IOMode;
+   int         Format;
+   int         callLocation;
+   int         forReading;
+   int         forWriting;
+   int         forAppending;
+   int         stateFalse;
+   int         stateDefault;
+   int         stateTrue;
+   int         iMode;
+   int         formatFile;
+   int         compAddr;
+   int         textStream;
+   string      subrName;
+   
+   debug(subRoot,"IFile_OpenAsTextStream " +  iStart + " " + iRefer);
+   
+   codptr = Opcode.GetCode();
+   nCode = Opcode.GetLength();
+   oper = Opcode.GetOperation(codptr,iRefer,OpenAsTextStream);
+   if(oper != OPC.LLP) return 0;
+   icode = Opcode.GetNext(codptr,iRefer,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.MEM) return 0
+   icode = Opcode.GetNext(codptr,icode,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.LEV) return 0;
+   IOMode = Opcode.GetNext(codptr,icode,nCode);
+   
+   icode = Opcode.FindArgumentEnd(codptr,icode,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.LEV) return 0;
+   Format = Opcode.GetNext(codptr,icode,nCode);
+
+   icode = Opcode.FindArgumentEnd(codptr,icode,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.CUF) return 0;
+   callLocation = icode;
+  
+   icode = Opcode.GetNext(codptr,icode,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.REF || subc != OpenAsTextStream) return 0;
+
+   forReading = Symbol.FindIdentifier("Scripting.IOMode.ForReading");
+   forWriting = Symbol.FindIdentifier("Scripting.IOMode.ForWriting");
+   forAppending = Symbol.FindIdentifier("Scripting.IOMode.ForAppending");
+   stateFalse = Symbol.FindIdentifier("Scripting.Tristate.TristateFalse");
+   stateDefault = Symbol.FindIdentifier("Scripting.Tristate.TristateUseDefault");
+   stateTrue = Symbol.FindIdentifier("Scripting.Tristate.TristateTrue");
+
+   iMode = -1;
+   oper = Opcode.GetOperation(codptr,IOMode,subc);
+   if(oper == OPC.DEF) iMode = forReading;
+   else if(oper == OPC.LLE || oper == OPC.LLP)
+   {
+      if(subc == forReading || subc == forWriting || subc == forAppending) iMode = subc;
+   }
+   if(iMode <= 0) 
+   {
+      logWarning("Warning#515: IFile_OpenAsTextStream.iMode unknown",subRoot,iRefer);
+      return 0;
+   }
+
+   formatFile = -1;
+   oper = Opcode.GetOperation(codptr,Format,subc);
+   if(oper == OPC.DEF) formatFile = stateFalse;
+   else if(oper == OPC.LLE || oper == OPC.LLP)
+   {
+      if(subc == stateFalse || subc == stateDefault) formatFile = subc;
+   }
+   else if(oper == OPC.LBC)
+   {
+      if(subc == OPC.LBC.False) formatFile = stateFalse;
+      else if(subc == OPC.LBC.True) formatFile = stateTrue;
+   }
+   if(formatFile < 0)
+   {
+      logWarning("Warning#516: IFile_OpenAsTextStream.formatFile unknown",subRoot,iRefer);
+      return 0;
+   }
+
+
+   compAddr = 0;
+   if(iMode == forReading)
+   {
+      compAddr = Symbol.FindIdentifier("Scripting.TextReader.FilOpenText");
+   }
+   else if(iMode == forWriting)
+   {
+      compAddr = Symbol.FindIdentifier("Scripting.TextWriter.FilCreateText");
+   }
+   else
+   {
+      compAddr = Symbol.FindIdentifier("Scripting.TextWriter.FilAppendText");
+   }
+   if(compAddr == 0) 
+   {
+      logWarning("Warning#517: IFile_OpenAsTextStream.compAddr unknown",subRoot,iRefer);
+      return 0;
+   }
+
+   Opcode.Replace(callLocation,OPC.PAT,compAddr,2);
+   oper = Opcode.GetOperation(codptr,Format,subc);
+   if(oper == OPC.DEF) Opcode.Replace(Format,OPC.LLP,stateFalse,1);
+   oper = Opcode.GetOperation(codptr,IOMode,subc);
+   if(oper == OPC.DEF) Opcode.Replace(IOMode,OPC.LLP,forReading,1);
+   Opcode.Delete(iRefer,2);
+   if(iMode == forReading) textStream = Symbol.FindIdentifier("Scripting.TextReader");
+   else textStream = Symbol.FindIdentifier("Scripting.TextWriter");
+   if(textStream != 0)
+   {
+      LocFixStreamType(subRoot,iStart,textStream,2);
+   }
+   return 1;
+}
+
+int IFileSystem_CreateTextFile(int subRoot, int iStart, int iRefer)
+{
+   int         icode;
+   int         nCode;
+   tCodeBlock  codptr;
+   int         oper;
+   int         subc;
+   int         CreateTextFile;
+   int         FileName;
+   int         Overwrite;
+   int         Unicode;
+   int         callLocation;
+   int         isUnicode;
+   int         pattern;
+   int         iRoot;
+   int         textStream;
+   int         doMig;
+   
+   debug(subRoot,"IFileSystem_CreateTextFile " +  iStart + " " + iRefer);
+   
+   codptr = Opcode.GetCode();
+   nCode = Opcode.GetLength();
+   oper = Opcode.GetOperation(codptr,iRefer,CreateTextFile);
+   if(oper != OPC.LLP) return 0;
+   icode = Opcode.GetNext(codptr,iRefer,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.MEM) return 0
+   icode = Opcode.GetNext(codptr,icode,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.LEV) return 0;
+   FileName = icode;
+   
+   icode = Opcode.FindArgumentEnd(codptr,icode,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.LEV) return 0;
+   Overwrite = Opcode.GetNext(codptr,icode,nCode);
+     
+   icode = Opcode.FindArgumentEnd(codptr,icode,nCode); 
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.LEV) return 0;
+   Unicode = Opcode.GetNext(codptr,icode,nCode);
+     
+   icode = Opcode.FindArgumentEnd(codptr,icode,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   if(oper != OPC.CUF) return 0;
+   callLocation = icode;
+  
+   icode = Opcode.GetNext(codptr,icode,nCode);
+   oper = Opcode.GetOperation(codptr,icode,subc);
+   doMig = -1;
+   if(oper==OPC.REF && subc == CreateTextFile) doMig = 1;
+   if(oper==OPC.IOF && subc == OPC.IOF.SystemFunc) doMig = -1;
+   if (doMig<0)
+   {
+      logWarning("Warning#518: IFileSystem_CreateTextFile cannot migrate",subRoot,iRefer);
+      return 0;      
+   }
+   
+   oper = Opcode.GetOperation(codptr,Overwrite,subc);
+   if(oper == OPC.DEF) Opcode.Replace(Overwrite,OPC.LBC,OPC.LBC.True,1);
+   oper = Opcode.GetOperation(codptr,Unicode,subc);
+   isUnicode = 0;
+   if(oper == OPC.DEF) Opcode.Replace(Unicode,OPC.LBC,OPC.LBC.False,1);
+   else if(oper == OPC.LBC && subc == OPC.LBC.True) isUnicode = 1;
+   if(isUnicode) pattern = Symbol.FindIdentifier("Scripting.TextWriter.CreateTextUnicode");
+   else pattern = Symbol.FindIdentifier("Scripting.TextWriter.CreateAsciiText");
+   Opcode.Replace(callLocation,OPC.PAT,pattern,2);
+   Opcode.Delete(iRefer,2);
+   textStream = Symbol.FindIdentifier("Scripting.TextWriter");
+   if(textStream != 0)
+   {
+      LocFixStreamType(subRoot,iStart,textStream,3);
+   }
+   return 1;
+}
+
+int IFileSystem_Drives(int subRoot, int iStart, int iRefer)
+{
+   int         iEnd;
+   int         nCode;
+   tCodeBlock  codptr;
+   int         oper;
+   int         subc;
+   int         forEachDrive;
+   
+   debug(subRoot,"IFileSystem_Drives " +  iStart + " " + iRefer);
+
+   codptr = Opcode.GetCode();
+   nCode = Opcode.GetLength();
+   for(iEnd = iRefer; iEnd > 0; iEnd = Opcode.GetNext(codptr,iEnd,nCode))
+   {
+      oper = Opcode.GetOperation(codptr,iEnd,subc);
+      if(oper == OPC.NEW) return 0;
+      if(oper == OPC.IFS)
+      {
+         if(subc == OPC.IFS.ForEachTemp || subc == OPC.IFS.ForEach) break;
+      }
+   }
+   if(iEnd <= 0) return 0;
+   forEachDrive = Symbol.FindIdentifier("Scripting.DotNet.ForEachDrive");
+   if(forEachDrive == 0) return 0;
+   Opcode.Replace(iEnd,OPC.PAT,forEachDrive,1);
+   return 1;
+}
+
+int LocScrrunRead(int subRoot, int iStart, int iRefer)
+{
+   int         icode;
+   tCodeBlock  codptr;
+   int         oper;
+   int         varRoot;
+   int         textStream;
+
+   debug(subRoot,"ScrrunRead " +  iStart + " " + iRefer);
+
+   codptr = Opcode.GetCode();
+   icode = Opcode.GetPrevious(codptr,iStart,iRefer);
+   oper = Opcode.GetOperation(codptr,icode,varRoot);
+   if(oper == OPC.LDA)
+   {
+      textStream = Symbol.FindIdentifier("Scripting.TextReader");
+      if(textStream != 0)
+      {
+         LocFixStreamType(subRoot,icode,textStream,5);
+         return 1;
+      }
+   }
+   return 0;
+}
+
+int ITextStream_AtEndOfStream(int subRoot, int iStart, int iRefer)
+{
+   debug(subRoot,"ITextStream_AtEndOfStream " +  iStart + " " + iRefer);
+   return LocScrrunRead(subRoot,iStart,iRefer);
+}
+int ITextStream_AtEndOfLine(int subRoot, int iStart, int iRefer)
+{
+   debug(subRoot,"ITextStream_AtEndOfLine " +  iStart + " " + iRefer);
+   return LocScrrunRead(subRoot,iStart,iRefer);
+}
+int ITextStream_Read(int subRoot, int iStart, int iRefer)
+{
+   debug(subRoot,"ITextStream_Read " +  iStart + " " + iRefer);   
+   return LocScrrunRead(subRoot,iStart,iRefer);
+}
+int ITextStream_ReadLine(int subRoot, int iStart, int iRefer)
+{
+   debug(subRoot,"ITextStream_ReadLine " +  iStart + " " + iRefer);
+   return LocScrrunRead(subRoot,iStart,iRefer);
+}
+int ITextStream_ReadAll(int subRoot, int iStart, int iRefer)
+{
+   debug(subRoot,"ITextStream_ReadAll " + iStart + " " + iRefer);
+   return LocScrrunRead(subRoot,iStart,iRefer);
+}
+
+int LocScrrunWrite(int subRoot, int iStart, int iRefer)
+{
+   int         icode;
+   tCodeBlock  codptr;
+   int         oper;
+   int         varRoot;
+   int         textStream;
+
+   debug(subRoot,"ScrrunWrite " +  iStart + " " + iRefer);
+   
+   codptr = Opcode.GetCode();
+   icode = Opcode.GetPrevious(codptr,iStart,iRefer);
+   oper = Opcode.GetOperation(codptr,icode,varRoot);
+   if(oper == OPC.LDA)
+   {
+      textStream = Symbol.FindIdentifier("Scripting.TextWriter");
+      if(textStream != 0)
+      {
+         LocFixStreamType(subRoot,icode,textStream,6);
+         return 1;
+      }
+   }
+   return 0;
+}
+
+int ITextStream_Write(int subRoot, int iStart, int iRefer)
+{
+   debug(subRoot,"ITextStream_Write " +  iStart + " " + iRefer);
+   return LocScrrunWrite(subRoot,iStart,iRefer);
+}
+int ITextStream_WriteLine(int subRoot, int iStart, int iRefer)
+{
+   debug(subRoot,"ITextStream_WriteLine " +  iStart + " " + iRefer);
+   return LocScrrunWrite(subRoot,iStart,iRefer);
+}

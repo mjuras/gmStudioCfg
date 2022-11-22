@@ -1,0 +1,32 @@
+<DescriptionFile>
+<library id="olepro32.dcl"
+         name="olepro32"
+         source="olepro32.dcl"
+         location="olepro32.dcl"
+         type="LocalImport"
+   >
+   <structure id="PICTDESC">
+      <member id="cbSizeofstruct" type="Integer"/>
+      <member id="picType" type="Integer"/>
+      <member id="hgdiobj" type="Integer"/>
+      <member id="hPalOrXYExt" type="Integer"/>
+   </structure>
+   <structure id="UUID">
+      <member id="Data1" type="Integer"/>
+      <member id="Data2" type="Short"/>
+      <member id="Data3" type="Short"/>
+      <member id="Data4" type="Byte[]"/>
+   </structure>
+   <class id="StdPicture" parent="None" default="Handle" creatable="off" migName="stdole2.StdPicture">
+      <property id="Handle" type="OLE_HANDLE"/>
+   </class>
+   <class id="Methods" parent="None" module="on" creatable="off">
+      <method id="OleCreatePictureIndirect" type="Integer">
+         <argument id="lpPictDesc" type="PICTDESC" status="ByRef"/>
+         <argument id="riid" type="UUID" status="ByRef"/>
+         <argument id="fOwn" type="Integer" status="ByVal"/>
+         <argument id="ipic" type="StdPicture" status="ByRef"/>
+      </method>
+   </class>
+</library>
+</DescriptionFile>

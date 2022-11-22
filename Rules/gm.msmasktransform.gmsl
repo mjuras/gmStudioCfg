@@ -1,0 +1,53 @@
+/*
+Description: Migrate MSMask
+*/
+int MaskEdBox(int context,int ctlRoot,int iStart)
+{
+   int        delta;
+   tCodeBlock codptr;
+   int        pcnt;
+   int        ctlType;
+   int        mask;
+   int        maskAddr;
+   string     maskString;
+   int        format;
+   int        formatAddr;
+   string     formatString;
+
+   if(context != EventType.AdjustProperties) return 0;
+   codptr = Opcode.GetCode();     
+   pcnt = Opcode.GetLength();
+   ctlType = Store.GetObjectType(ctlRoot);
+
+   mask = ControlData.FindProperty(ctlType,"Mask",iStart);
+   if(mask)
+   {
+      maskAddr = ControlData.GetValue(mask);
+      if(maskAddr)
+      {
+         maskString = Store.GetString(maskAddr);  
+         maskString = Character.Replace(maskString,"?","A");
+         Store.SetString(maskAddr,maskString);
+      }
+      else mask = 0;
+   }
+   format = ControlData.FindProperty(ctlType,"Format",iStart);
+   if(format)
+   {
+      formatAddr = ControlData.GetValue(format);
+      if(formatAddr)
+      {
+         formatString = Store.GetString(formatAddr);  
+         formatString = Character.Replace(formatString,"?","A");
+         Store.SetString(formatAddr,formatString);
+      }
+      else format = 0;
+   }
+   delta = 0;
+   if(format > 0 && mask > format)
+   {
+      delta = 1;
+      pcnt = Opcode.MoveCode(format,mask,pcnt,12);
+   }
+   return delta;
+}

@@ -1,0 +1,458 @@
+<DescriptionFile>
+<!-- 
+Upgrade Scripting: File/IO to System.IO; Dictionary to System.Collections.Specialized.OrderedDictionary 
+Notes: 
+1) A DLL extension to gmBasic, ScrrunMigration.dll, assists with some of the dynamic transformations.
+2) Some references to instances of FileSystemObject may remain after the migration
+-->
+<library id="scrrun.dll"
+         name="Scripting"
+         uuid="420B2830-E718-11CF-893D-00A0C9054228"
+         netVersion="1.0"
+         source="scrrun.dll"
+         location="DoNotDeclare"
+         migName="System.IO"
+         type="Internal"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IDictionary"/>
+   <class id="IFileSystem"/>
+   <class id="IDriveCollection"/>
+   <class id="IDrive"/>
+   <class id="IFolder"/>
+   <class id="IFolderCollection"/>
+   <class id="IFileCollection"/>
+   <class id="IFile"/>
+   <class id="ITextStream"/>
+   <class id="IFileSystem3"/>
+   <class id="IScriptEncoder"/>
+   <coclass id="Dictionary"/>
+   <coclass id="FileSystemObject"/>
+   <coclass id="Drive"/>
+   <coclass id="Drives"/>
+   <coclass id="Folder"/>
+   <coclass id="Folders"/>
+   <coclass id="File"/>
+   <coclass id="Files"/>
+   <coclass id="TextStream"/>
+   <coclass id="Encoder"/>
+   <enumeration id="CompareMethod" migName="VBNET.CompareMethod" migStatus="External" >
+      <entry id="BinaryCompare" value="0"  migName="Binary" />
+      <entry id="TextCompare" value="1" migName="Text" />
+      <entry id="DatabaseCompare" value="2" migName="Database"/>
+   </enumeration>
+   <enumeration id="IOMode" migName="FileAccess">
+      <entry id="ForReading" value="1" migName="Read"/>
+      <entry id="ForWriting" value="2" migName="Write"/>
+      <entry id="ForAppending" value="8" migName="ReadWrite"/>
+   </enumeration>
+   <enumeration id="Tristate" migName="VBNET.TriState" migStatus="External" >>
+      <entry id="TristateTrue" value="0xffffffff" migName="True"/>
+      <entry id="TristateFalse" value="0" migName="False"/>
+      <entry id="TristateUseDefault" value="0xfffffffe"  migName="UseDefault"/>
+      <entry id="TristateMixed" value="0xfffffffe" migName="UseDefault"/>
+   </enumeration>
+   <enumeration id="FileAttribute">
+      <entry id="Normal" value="0"/>
+      <entry id="ReadOnly" value="1"/>
+      <entry id="Hidden" value="2"/>
+      <entry id="System" value="4"/>
+      <entry id="Volume" value="8"/>
+      <entry id="Directory" value="16"/>
+      <entry id="Archive" value="32"/>
+      <entry id="Alias" value="1024"/>
+      <entry id="Compressed" value="2048"/>
+   </enumeration>
+   <enumeration id="DriveTypeConst" migName="gmRTL.Scripting.Enums.DriveTypeConst" migStatus="External">
+      <entry id="UnknownType" value="0"/>
+      <entry id="Removable" value="1"/>
+      <entry id="Fixed" value="2"/>
+      <entry id="Remote" value="3"/>
+      <entry id="CDRom" value="4"/>
+      <entry id="RamDisk" value="5"/>
+   </enumeration>
+   <enumeration id="SpecialFolderConst" migName="System.Environment" migStatus="External">
+      <entry id="WindowsFolder" value="0" migName="GetFolderPath(Environment.SpecialFolder.Windows)" />
+      <entry id="SystemFolder" value="1" migName="GetFolderPath(System.Environment.SpecialFolder.System)" />
+      <entry id="TemporaryFolder" value="2" migName="System.IO.Path.GetTempPath()" />
+   </enumeration>
+   <enumeration id="StandardStreamTypes">
+      <entry id="StdIn" value="0"/>
+      <entry id="StdOut" value="1"/>
+      <entry id="StdErr" value="2"/>
+   </enumeration>
+   <class id="IDictionary" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="CompareMode" type="CompareMethod" status="InOut"/>
+      <accessor id="Item" type="Variant" nPram="2" cshPattern="%1d[%2d]" vbnPattern="%1d(%2d)" >
+         <argument id="Key" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Add" type="Void">
+         <argument id="Key" type="Variant" status="ByVal"/>
+         <argument id="Item" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Exists" type="Boolean" migName="Contains">
+         <argument id="Key" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Items" type="Variant"  nPram="1" migPattern="%1d.Values" />
+      <method id="Key" type="Void">
+         <argument id="Key" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Keys" type="Variant" nPram="1" migPattern="%1d.Keys" />
+      <method id="Remove" type="Void">
+         <argument id="Key" type="Variant" status="ByVal"/>
+      </method>
+      <method id="RemoveAll" type="Void"  migName="Clear"/>
+      <method id="_NewEnum" type="Object"/>
+      <accessor id="HashVal" type="Long" migName="GetHash" >
+         <argument id="Key" type="Variant" status="ByVal"/>
+      </accessor>
+   </class>
+   <class id="IFileSystem" parent="IDispatch">
+      <property id="Drives" type="Drives" status="Out" migStatus="scrrun" />
+      <method id="BuildPath" type="String" nPram="3" migPattern="System.IO.Path.Combine(%2d,%3d)" >
+         <argument id="Path" type="String" status="ByVal"/>
+         <argument id="Name" type="String" status="ByVal"/>
+      </method>
+      <method id="GetDriveName" type="String" nPram="2" 
+              cshPattern="System.IO.Path.GetPathRoot(%2d).TrimEnd('\\\')" 
+              vbnPattern='System.IO.Path.GetPathRoot(%2d).TrimEnd("\\")' >
+         <argument id="Path" type="String" status="ByVal"/>
+      </method>
+      <method id="GetParentFolderName" type="String" nPram="2" migPattern="System.IO.Path.GetDirectoryName(%2d)" >
+         <argument id="Path" type="String" status="ByVal"/>
+      </method>
+      <method id="GetFileName" type="String" nPram="2" migPattern="System.IO.Path.GetFileName(%2d)" >
+         <argument id="Path" type="String" status="ByVal"/>
+      </method>
+      <method id="GetBaseName" type="String" nPram="2" migPattern="System.IO.Path.GetFileNameWithoutExtension(%2d)" >
+         <argument id="Path" type="String" status="ByVal"/>
+      </method>
+      <method id="GetExtensionName" type="String" nPram="2" migPattern="System.IO.Path.GetExtension(%2d)" >
+         <argument id="Path" type="String" status="ByVal"/>
+      </method>
+      <method id="GetAbsolutePathName" type="String" nPram="2" migPattern="System.IO.Path.GetFullPath(%2d)" >
+         <argument id="Path" type="String" status="ByVal"/>
+      </method>
+      <method id="GetTempName" type="String" nPram="1" migPattern="System.IO.Path.GetTempFileName()" />
+      <method id="DriveExists" type="Boolean" nPram="2" migPattern="new System.IO.DirectoryInfo(%2d).Exists" >
+         <argument id="DriveSpec" type="String" status="ByVal"/>
+      </method>
+      <method id="FileExists" type="Boolean" nPram="2" migPattern="System.IO.File.Exists(%2d)" >
+         <argument id="FileSpec" type="String" status="ByVal"/>
+      </method>
+      <method id="FolderExists" type="Boolean" nPram="2" migPattern="System.IO.Directory.Exists(%2d)">
+         <argument id="FolderSpec" type="String" status="ByVal"/>
+      </method>
+      <method id="GetDrive" type="Drive">
+         <argument id="DriveSpec" type="String" status="ByVal"/>
+      </method>
+      <method id="GetFile" type="File" nPram="2" migPattern="new System.IO.FileInfo(%2d)" >
+         <argument id="FilePath" type="String" status="ByVal"/>
+      </method>
+      <method id="GetFolder" type="Folder" nPram="2" migPattern="new System.IO.DirectoryInfo(%2d)" >
+         <argument id="FolderPath" type="String" status="ByVal"/>
+      </method>
+      <method id="GetSpecialFolder" type="Folder" nPram="2" migPattern="new System.IO.DirectoryInfo(%2d)" >
+         <argument id="SpecialFolder" type="SpecialFolderConst" status="ByVal"/>
+      </method>
+      <method id="DeleteFile" type="Void" nPram="3" migPattern="System.IO.File.Delete(%2d)\c" >
+         <argument id="FileSpec" type="String" status="ByVal"/>
+         <argument id="Force" type="Boolean" status="ByVal" optional="false"/>
+      </method>
+      <method id="DeleteFolder" type="Void"  nPram="3" migPattern="System.IO.Directory.Delete(%2d,%3o)\c" >
+         <argument id="FolderSpec" type="String" status="ByVal"/>
+         <argument id="Force" type="Boolean" status="ByVal" optional="false"/>
+      </method>
+      <method id="MoveFile" type="Void" nPram="3" migPattern="System.IO.File.Move(%2d,%3d)\c">
+         <argument id="Source" type="String" status="ByVal"/>
+         <argument id="Destination" type="String" status="ByVal"/>
+      </method>
+      <method id="MoveFolder" type="Void">
+         <argument id="Source" type="String" status="ByVal"/>
+         <argument id="Destination" type="String" status="ByVal"/>
+      </method>
+      <method id="CopyFile" type="Void"  nPram="4" migPattern="System.IO.File.Copy(%2d,%3d,%4d)\c" >
+         <argument id="Source" type="String" status="ByVal"/>
+         <argument id="Destination" type="String" status="ByVal"/>
+         <argument id="OverWriteFiles" type="Boolean" status="ByVal" optional="true"/>
+      </method>
+      <method id="CopyFolder" type="Void" nPram="4" migPattern="gmRTL.Scripting.FileSysHelper.CopyFolder(%2d,%3d,%4d)\c" >
+         <argument id="Source" type="String" status="ByVal"/>
+         <argument id="Destination" type="String" status="ByVal"/>
+         <argument id="OverWriteFiles" type="Boolean" status="ByVal" optional="true"/>
+      </method>
+      <method id="CreateFolder" type="Folder" nPram="2" migPattern="System.IO.Directory.CreateDirectory(%2d)" >
+         <argument id="Path" type="String" status="ByVal"/>
+      </method>
+      <method id="CreateTextFile" type="TextStream" migStatus="scrrun" >
+         <argument id="FileName" type="String" status="ByVal"/>
+         <argument id="Overwrite" type="Boolean" status="ByVal" optional="true"/>
+         <argument id="Unicode" type="Boolean" status="ByVal" optional="false"/>
+      </method>
+      <method id="OpenTextFile" type="TextStream" migStatus="scrrun" >
+         <argument id="FileName" type="String" status="ByVal"/>
+         <argument id="IOMode" type="IOMode" status="ByVal" optional="ForReading"/>
+         <argument id="Create" type="Boolean" status="ByVal" optional="false"/>
+         <argument id="Format" type="Tristate" status="ByVal" optional="TristateFalse"/>
+      </method>
+   </class>
+   <class id="IDriveCollection" parent="IDispatch" default="Item">
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="Drive" status="indexer">
+         <argument id="Key" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IDrive" parent="IDispatch" default="Path">
+      <property id="Path" type="String" status="Out"  migName="Root.FullName" />
+      <property id="DriveLetter" type="String" status="Out" migName="Root.FullName.Substring(0,1)" />
+      <property id="ShareName" type="String" status="Out" migName="ShareName()" />
+      <property id="DriveType" type="DriveTypeConst" status="Out" migName="DriveType()"/>
+      <property id="RootFolder" type="Folder" status="Out" migName="Root" />
+      <property id="AvailableSpace" type="Variant" status="Out"/>
+      <property id="FreeSpace" type="Variant" status="Out"/>
+      <property id="TotalSize" type="Variant" status="Out"/>
+      <property id="VolumeName" type="String" status="InOut"/>
+      <property id="FileSystem" type="String" status="Out"/>
+      <property id="SerialNumber" type="Integer" status="Out" migStatus="NotImplemented" />
+      <property id="IsReady" type="Boolean" status="Out" migName="Exists" />
+   </class>
+   <class id="IFolder" parent="IDispatch" default="Path">
+      <property id="Path" type="String" status="Out" migName="FullName" />
+      <property id="Name" type="String" status="InOut"/>
+      <property id="ShortPath" type="String" status="Out" migName="ShortPath()"/>
+      <property id="ShortName" type="String" status="Out" migName="Name"/> <!-- 8.3 name -->
+      <property id="Drive" type="Drive" status="Out" migName="Root" />
+      <property id="ParentFolder" type="Folder" status="Out" migName="Parent" />
+      <property id="Attributes" type="FileAttribute" status="InOut"/>
+      <property id="DateCreated"  migName="CreationTime" type="Date" status="Out" />
+      <property id="DateLastModified" migName="LastWriteTime" type="Date" status="Out" />
+      <property id="DateLastAccessed" migName="LastAccessTime" type="Date" status="Out"/>
+      <property id="Type" type="String" status="Out" migName="Attributes.ToString()"/>
+      <method id="IsRootFolder" type="Boolean" status="Out"  nPram="1"
+              cshPattern="(%1d.Parent == null)" vbnPattern="(%1d.Parent = Nothing)" />
+      <!-- http://stackoverflow.com/questions/2979432/directory-file-size-calculation-how-to-make-it-faster -->
+      <property id="Size" type="Variant" status="Out" migStatus="NotImplemented"/>
+      <property id="SubFolders" type="Folders" status="Out" migName="GetDirectories()" />
+      <property id="Files" type="Files" status="Out" migName="GetFiles()"/>
+      <method id="Delete" type="Void" nPram="2" migPattern="%1d.Delete(true)\c" >
+         <argument id="Force" type="Boolean" status="ByVal" optional="false"/>
+      </method>
+      <method id="Copy" type="Void">
+         <argument id="Destination" type="String" status="ByVal"/>
+         <argument id="OverWriteFiles" type="Boolean" status="ByVal" optional="true"/>
+      </method>
+      <method id="Move" type="Void">
+         <argument id="Destination" type="String" status="ByVal"/>
+      </method>
+      <method id="CreateTextFile" type="TextStream" nPram="2" migStatus="scrrun" >
+         <argument id="FileName" type="String" status="ByVal"/>
+         <argument id="Overwrite" type="Boolean" status="ByVal" optional="true"/>
+         <argument id="Unicode" type="Boolean" status="ByVal" optional="false"/>
+      </method>
+   </class>
+   <class id="IFolderCollection" parent="IDispatch" default="Item">
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <property id="Count" type="Integer" status="Out" migName="Length" />
+      <method id="Add" type="Folder">
+         <argument id="Name" type="String" status="ByVal"/>
+      </method>
+      <method id="Item" type="Folder" status="indexer">
+         <argument id="Key" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IFileCollection" parent="IDispatch" default="Item">
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <property id="Count" type="Integer" status="Out" migName="Length" />
+      <method id="Item" type="File" status="indexer">
+         <argument id="Key" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IFile" parent="IDispatch" default="Path" migName="FileInfo" >
+      <property id="Path" type="String" status="Out" migName="FullName" />
+      <property id="Name" type="String" status="InOut"/>
+      <property id="ShortPath" type="String" status="Out"/>
+      <property id="ShortName" type="String" status="Out" migName="Name"/> <!-- 8.3 name -->
+      <property id="Drive" type="Drive" status="Out"/>
+      <property id="ParentFolder" type="Folder" status="Out" migName="Directory" />
+      <property id="Attributes" type="FileAttribute" status="InOut"/>
+      <property id="DateCreated"  migName="CreationTime" type="Date" status="Out" />
+      <property id="DateLastModified" migName="LastWriteTime" type="Date" status="Out" />
+      <property id="DateLastAccessed" migName="LastAccessTime" type="Date" status="Out"/>
+      <method id="Size" type="Long" nPram="1" cshPattern="%1d.Length" vbnPattern="%1d.Length"/>
+      <property id="Type" type="String" status="Out" migName="Attributes.ToString()" />
+      <method id="Delete" type="Void" nPram="2" migPattern="%1d.Delete()\c" >
+         <argument id="Force" type="Boolean" status="ByVal" optional="false"/>
+      </method>
+      <method id="Copy" type="Void"  migName="CopyTo" >
+         <argument id="Destination" type="String" status="ByVal"/>
+         <argument id="OverWriteFiles" type="Boolean" status="ByVal" optional="true"/>
+      </method>
+      <method id="Move" type="Void" migName="MoveTo" >
+         <argument id="Destination" type="String" status="ByVal"/>
+      </method>
+      <method id="OpenAsTextStream" type="TextStream" migStatus="scrrun" >
+         <argument id="IOMode" type="IOMode" status="ByVal" optional="ForReading"/>
+         <argument id="Format" type="Tristate" status="ByVal" optional="TristateFalse"/>
+      </method>
+   </class>
+   <class id="ITextStream" parent="IDispatch">
+      <property id="Column" type="Integer" status="Out"/>
+      <method id="Line" type="Integer" nPram="1" migPattern="gmRTL.Scripting.FileSysHelper.TextStreamLine(%1d)" />
+      <method id="AtEndOfStream" type="Boolean" nPram="1"
+              cshPattern="(%1d.Peek() == -1)" vbnPattern="(%1d.Peek() = -1)" migStatus="scrrun.read"/>
+      <method id="AtEndOfLine" type="Boolean" nPram="1"
+              cshPattern="(%1d.Peek() == '\\n')" vbnPattern="(%1d.Peek() = Environment.NewLine)"
+              migStatus="scrrun.read" />
+      <method id="Read" type="String" nPram="2" migPattern="gmRTL.Scripting.FileSysHelper.ReadN(%1d,%2d)" migStatus="scrrun.read" >
+         <argument id="Characters" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ReadLine" type="String" migStatus="scrrun.read" />
+      <method id="ReadAll" type="String" migStatus="scrrun.read" migName="ReadToEnd" />
+      <method id="Write" type="Void" migStatus="scrrun.write" >
+         <argument id="Text" type="String" status="ByVal"/>
+      </method>
+      <method id="WriteBlankLines" type="Void" nPram="2" cshPattern="for(int _blc=0;_blc< %2d;_blc++)\p%1d.WriteLine()\c\q">
+         <argument id="Lines" type="Integer" status="ByVal"/>
+      </method>
+      <method id="WriteLine" type="Void" migStatus="scrrun.write" >
+         <argument id="Text" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Skip" type="Void" >
+         <argument id="Characters" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SkipLine" type="Void" migName="ReadLine" />
+      <method id="Close" type="Void"/>
+   </class>
+   <class id="IFileSystem3" parent="IFileSystem" creatable="off">
+      <method id="GetStandardStream" type="TextStream">
+         <argument id="StandardStreamType" type="StandardStreamTypes" status="ByVal"/>
+         <argument id="Unicode" type="Boolean" status="ByVal" optional="false"/>
+      </method>
+      <method id="GetFileVersion" type="String">
+         <argument id="FileName" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IScriptEncoder" parent="IDispatch" default="EncodeScriptFile" creatable="off">
+      <method id="EncodeScriptFile" type="String">
+         <argument id="szExt" type="String" status="ByVal"/>
+         <argument id="bstrStreamIn" type="String" status="ByVal"/>
+         <argument id="cFlags" type="Integer" status="ByVal"/>
+         <argument id="bstrDefaultLang" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <coclass id="Dictionary" migName="System.Collections.Specialized.OrderedDictionary" migStatus="External" >
+      <subclass id="IDictionary"/>
+   </coclass>
+   <coclass id="FileSystemObject"  migStatus="static">
+      <subclass id="IFileSystem3"/>
+   </coclass>
+   <coclass id="Drive" creatable="off" migName="DirectoryInfo">
+      <subclass id="IDrive"/>
+   </coclass>
+   <coclass id="Drives" creatable="off">
+      <subclass id="IDriveCollection"/>
+   </coclass>
+   <coclass id="Folder" creatable="off" migName="DirectoryInfo">
+      <subclass id="IFolder"/>
+   </coclass>
+   <coclass id="Folders" creatable="off" cshPattern="DirectoryInfo[]" vbnPattern="DirectoryInfo()">
+      <subclass id="IFolderCollection"/>
+   </coclass>
+   <coclass id="File" creatable="off" migName="FileInfo">
+      <subclass id="IFile"/>
+   </coclass>
+   <coclass id="Files" creatable="off" cshPattern="FileInfo[]" vbnPattern="FileInfo()" >
+      <subclass id="IFileCollection"/>
+   </coclass>
+   <coclass id="TextStream" creatable="off" migName="Stream" CastType="off" >
+      <subclass id="ITextStream"/>
+   </coclass>
+   <coclass id="Encoder">
+      <subclass id="IScriptEncoder"/>
+   </coclass>
+</library>
+
+<Refactor id="[scrrun.dll]" event="scrrun" >
+   <migclass id="DotNet">
+     <method id="ForEachDrive" type="void" nPram="3"
+             cshPattern="foreach(string drvTemp in System.IO.Directory.GetLogicalDrives())\n{\p%3d %1d = new %3d(drvTemp)\c"
+             vbnPattern="Dim drvTemp As String\nFor Each drvTemp in System.IO.Directory.GetLogicalDrives()\pDim %1d As %3d = New %3d(drvTemp)\c">
+         <argument id="Drives" type="variant" status="In"/>
+         <argument id="numb" type="Integer" status="In"/>
+         <argument id="type" type="variant" status="In"/>
+     </method>
+   </migclass>
+   <migClass id="TextReader" netName="System.IO.StreamReader" Creatable="off">
+      <method id="OpenAsciiFile" type="TextReader" migPattern="(new System.IO.FileInfo(%2d)).OpenText()">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="IOMode" type="IOMode" status="In" optional="ForReading"/>
+         <argument id="Create" type="Boolean" status="In" optional="false"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+      <method id="OpenAsciiFileFalse" type="TextReader"
+         migPattern="new System.IO.StreamReader(new System.IO.FileStream(%2d,System.IO.FileMode.Open,System.IO.FileAccess.Read,System.IO.FileShare.ReadWrite))">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="IOMode" type="IOMode" status="In" optional="ForReading"/>
+         <argument id="Create" type="Boolean" status="In" optional="false"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+      <method id="FilOpenText" type="TextReader" migPattern="%1d.OpenText()">
+         <argument id="IOMode" type="IOMode" status="In" optional="1"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+   </migClass>
+   <migClass id="TextWriter" netName="System.IO.StreamWriter" Creatable="off">
+      <method id="CreateAsciiFile" type="TextWriter" migPattern="(new System.IO.FileInfo(%2d)).CreateText()">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="IOMode" type="IOMode" status="In" optional="ForReading"/>
+         <argument id="Create" type="Boolean" status="In" optional="false"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+      <method id="CreateAsciiFileTrue" type="TextWriter"
+          migPattern="new System.IO.StreamWriter(new System.IO.FileStream(%2d,System.IO.FileMode.Create,System.IO.FileAccess.ReadWrite,System.IO.FileShare.ReadWrite))">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="IOMode" type="IOMode" status="In" optional="ForReading"/>
+         <argument id="Create" type="Boolean" status="In" optional="false"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+      <method id="AppendAsciiFile" type="TextWriter" migPattern="(new System.IO.FileInfo(%2d)).AppendText()">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="IOMode" type="IOMode" status="In" optional="ForReading"/>
+         <argument id="Create" type="Boolean" status="In" optional="false"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+      <method id="CreateAsciiText" type="TextWriter" migPattern="new System.IO.StreamWriter(%2d,!%3d,System.Text.Encoding.ASCII)">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="Overwrite" type="Boolean" status="In" optional="true"/>
+         <argument id="Unicode" type="Boolean" status="In" optional="false"/>
+      </method>
+      <method id="CreateTextUnicode" type="TextWriter" migPattern="new System.IO.StreamWriter(%2d,!%3d,System.Text.Encoding.Unicode)">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="Overwrite" type="Boolean" status="In" optional="true"/>
+         <argument id="Unicode" type="Boolean" status="In" optional="false"/>
+      </method>
+      <method id="FldCreateText" type="TextWriter" migPattern="new System.IO.FileInfo(System.IO.Path.Combine(%1d.FullName,%2d)).CreateText()">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="Overwrite" type="Boolean" status="In" optional="true"/>
+         <argument id="Unicode" type="Boolean" status="In" optional="false"/>
+      </method>
+      <method id="FldAppendText" type="TextWriter" migPattern="new System.IO.FileInfo(System.IO.Path.Combine(%1d.FullName,%2d)).AppendText()">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="Overwrite" type="Boolean" status="In" optional="true"/>
+         <argument id="Unicode" type="Boolean" status="In" optional="false"/>
+      </method>
+      <method id="FilCreateText" type="TextWriter" migPattern="%1d.CreateText()">
+         <argument id="IOMode" type="IOMode" status="In" optional="1"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+      <method id="FilAppendText" type="TextWriter" migPattern="%1d.AppendText()">
+         <argument id="IOMode" type="IOMode" status="In" optional="1"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+   </migClass>
+   <gmSL NameSpace="scrrun" Class="Transform" Source="Transform.scrrun.gmsl" />
+</Refactor>
+</DescriptionFile>
+

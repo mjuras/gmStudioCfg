@@ -1,0 +1,995 @@
+<DescriptionFile>
+<!--
+Upgrade soem ParamArrays to be optional
+-->
+<library id="MSVBVM60.dll"
+         name="VBA"
+         uuid="000204EF-0000-0000-C000-000000000046"
+         netVersion="6.0"
+         source="MSVBVM60.dll"
+         location="%library%\Interop.VBA.dll"
+         migName="VBA"
+         type="LocalImport"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="_HiddenInterface"/>
+   <class id="_ErrObject"/>
+   <class id="_Collection"/>
+   <coclass id="ErrObject"/>
+   <coclass id="Collection"/>
+   <class id="Constants"/>
+   <class id="Strings"/>
+   <class id="Conversion"/>
+   <class id="FileSystem"/>
+   <class id="DateTime"/>
+   <class id="Information"/>
+   <class id="Interaction"/>
+   <class id="Math"/>
+   <class id="Financial"/>
+   <class id="_HiddenModule"/>
+   <enumeration id="VbVarType">
+      <entry id="vbEmpty" value="0"/>
+      <entry id="vbNull" value="1"/>
+      <entry id="vbInteger" value="2"/>
+      <entry id="vbLong" value="3"/>
+      <entry id="vbSingle" value="4"/>
+      <entry id="vbDouble" value="5"/>
+      <entry id="vbCurrency" value="6"/>
+      <entry id="vbDate" value="7"/>
+      <entry id="vbString" value="8"/>
+      <entry id="vbObject" value="9"/>
+      <entry id="vbError" value="10"/>
+      <entry id="vbBoolean" value="11"/>
+      <entry id="vbVariant" value="12"/>
+      <entry id="vbDataObject" value="13"/>
+      <entry id="vbDecimal" value="14"/>
+      <entry id="vbByte" value="17"/>
+      <entry id="vbUserDefinedType" value="36"/>
+      <entry id="vbArray" value="8192"/>
+   </enumeration>
+   <enumeration id="VbMsgBoxStyle">
+      <entry id="vbOKOnly" value="0"/>
+      <entry id="vbOKCancel" value="1"/>
+      <entry id="vbAbortRetryIgnore" value="2"/>
+      <entry id="vbYesNoCancel" value="3"/>
+      <entry id="vbYesNo" value="4"/>
+      <entry id="vbRetryCancel" value="5"/>
+      <entry id="vbCritical" value="16"/>
+      <entry id="vbQuestion" value="32"/>
+      <entry id="vbExclamation" value="48"/>
+      <entry id="vbInformation" value="64"/>
+      <entry id="vbDefaultButton1" value="0"/>
+      <entry id="vbDefaultButton2" value="256"/>
+      <entry id="vbDefaultButton3" value="512"/>
+      <entry id="vbDefaultButton4" value="768"/>
+      <entry id="vbApplicationModal" value="0"/>
+      <entry id="vbSystemModal" value="4096"/>
+      <entry id="vbMsgBoxHelpButton" value="16384"/>
+      <entry id="vbMsgBoxRight" value="0x80000"/>
+      <entry id="vbMsgBoxRtlReading" value="0x100000"/>
+      <entry id="vbMsgBoxSetForeground" value="0x10000"/>
+   </enumeration>
+   <enumeration id="VbMsgBoxResult">
+      <entry id="vbOK" value="1"/>
+      <entry id="vbCancel" value="2"/>
+      <entry id="vbAbort" value="3"/>
+      <entry id="vbRetry" value="4"/>
+      <entry id="vbIgnore" value="5"/>
+      <entry id="vbYes" value="6"/>
+      <entry id="vbNo" value="7"/>
+   </enumeration>
+   <enumeration id="VbFileAttribute">
+      <entry id="vbNormal" value="0"/>
+      <entry id="vbReadOnly" value="1"/>
+      <entry id="vbHidden" value="2"/>
+      <entry id="vbSystem" value="4"/>
+      <entry id="vbVolume" value="8"/>
+      <entry id="vbDirectory" value="16"/>
+      <entry id="vbArchive" value="32"/>
+      <entry id="vbAlias" value="64"/>
+   </enumeration>
+   <enumeration id="VbStrConv">
+      <entry id="vbUpperCase" value="1"/>
+      <entry id="vbLowerCase" value="2"/>
+      <entry id="vbProperCase" value="3"/>
+      <entry id="vbWide" value="4"/>
+      <entry id="vbNarrow" value="8"/>
+      <entry id="vbKatakana" value="16"/>
+      <entry id="vbHiragana" value="32"/>
+      <entry id="vbUnicode" value="64"/>
+      <entry id="vbFromUnicode" value="128"/>
+   </enumeration>
+   <enumeration id="VbDayOfWeek">
+      <entry id="vbUseSystemDayOfWeek" value="0"/>
+      <entry id="vbSunday" value="1"/>
+      <entry id="vbMonday" value="2"/>
+      <entry id="vbTuesday" value="3"/>
+      <entry id="vbWednesday" value="4"/>
+      <entry id="vbThursday" value="5"/>
+      <entry id="vbFriday" value="6"/>
+      <entry id="vbSaturday" value="7"/>
+   </enumeration>
+   <enumeration id="VbFirstWeekOfYear">
+      <entry id="vbUseSystem" value="0"/>
+      <entry id="vbFirstJan1" value="1"/>
+      <entry id="vbFirstFourDays" value="2"/>
+      <entry id="vbFirstFullWeek" value="3"/>
+   </enumeration>
+   <enumeration id="VbIMEStatus">
+      <entry id="vbIMENoOp" value="0"/>
+      <entry id="vbIMEModeNoControl" value="0"/>
+      <entry id="vbIMEOn" value="1"/>
+      <entry id="vbIMEModeOn" value="1"/>
+      <entry id="vbIMEOff" value="2"/>
+      <entry id="vbIMEModeOff" value="2"/>
+      <entry id="vbIMEDisable" value="3"/>
+      <entry id="vbIMEModeDisable" value="3"/>
+      <entry id="vbIMEHiragana" value="4"/>
+      <entry id="vbIMEModeHiragana" value="4"/>
+      <entry id="vbIMEKatakanaDbl" value="5"/>
+      <entry id="vbIMEModeKatakana" value="5"/>
+      <entry id="vbIMEKatakanaSng" value="6"/>
+      <entry id="vbIMEModeKatakanaHalf" value="6"/>
+      <entry id="vbIMEAlphaDbl" value="7"/>
+      <entry id="vbIMEModeAlphaFull" value="7"/>
+      <entry id="vbIMEAlphaSng" value="8"/>
+      <entry id="vbIMEModeAlpha" value="8"/>
+      <entry id="vbIMEModeHangulFull" value="9"/>
+      <entry id="vbIMEModeHangul" value="10"/>
+   </enumeration>
+   <enumeration id="VbAppWinStyle">
+      <entry id="vbHide" value="0"/>
+      <entry id="vbNormalFocus" value="1"/>
+      <entry id="vbMinimizedFocus" value="2"/>
+      <entry id="vbMaximizedFocus" value="3"/>
+      <entry id="vbNormalNoFocus" value="4"/>
+      <entry id="vbMinimizedNoFocus" value="6"/>
+   </enumeration>
+   <enumeration id="VbCompareMethod">
+      <entry id="vbBinaryCompare" value="0"/>
+      <entry id="vbTextCompare" value="1"/>
+      <entry id="vbDatabaseCompare" value="2"/>
+   </enumeration>
+   <enumeration id="VbCalendar">
+      <entry id="vbCalGreg" value="0"/>
+      <entry id="vbCalHijri" value="1"/>
+   </enumeration>
+   <enumeration id="VbDateTimeFormat">
+      <entry id="vbGeneralDate" value="0"/>
+      <entry id="vbLongDate" value="1"/>
+      <entry id="vbShortDate" value="2"/>
+      <entry id="vbLongTime" value="3"/>
+      <entry id="vbShortTime" value="4"/>
+   </enumeration>
+   <enumeration id="VbTriState">
+      <entry id="vbUseDefault" value="0xfffffffe"/>
+      <entry id="vbTrue" value="0xffffffff"/>
+      <entry id="vbFalse" value="0"/>
+   </enumeration>
+   <enumeration id="VbCallType">
+      <entry id="VbMethod" value="1"/>
+      <entry id="VbGet" value="2"/>
+      <entry id="VbLet" value="4"/>
+      <entry id="VbSet" value="8"/>
+   </enumeration>
+   <class id="_HiddenInterface" parent="None" creatable="off">
+      <method id="LCase" type="Void"/>
+      <method id="Left" type="Void"/>
+      <method id="LTrim" type="Void"/>
+      <method id="Right" type="Void"/>
+      <method id="RTrim" type="Void"/>
+      <method id="Space" type="Void"/>
+      <method id="Trim" type="Void"/>
+      <method id="String" type="Void"/>
+      <method id="UCase" type="Void"/>
+      <method id="Str" type="Void"/>
+      <method id="Chr" type="Void"/>
+      <method id="Date" type="Void"/>
+      <method id="Time" type="Void"/>
+      <method id="Hex" type="Void"/>
+      <method id="Oct" type="Void"/>
+      <method id="LeftB" type="Void"/>
+      <method id="RightB" type="Void"/>
+      <method id="Mid" type="Void"/>
+      <method id="MidB" type="Void"/>
+      <method id="StrConv" type="Void"/>
+      <method id="Error" type="Void"/>
+      <method id="CurDir" type="Void"/>
+      <method id="Format" type="Void"/>
+      <method id="Environ" type="Void"/>
+      <method id="Command" type="Void"/>
+      <method id="ChrB" type="Void"/>
+      <method id="ChrW" type="Void"/>
+   </class>
+   <class id="_ErrObject" parent="IDispatch" default="Number">
+      <property id="Number" type="Integer" status="InOut"/>
+      <property id="Source" type="String" status="InOut"/>
+      <property id="Description" type="String" status="InOut"/>
+      <property id="HelpFile" type="String" status="InOut"/>
+      <property id="HelpContext" type="Integer" status="InOut"/>
+      <property id="LastDllError" type="Integer" status="Out"/>
+      <method id="Raise" type="Void">
+         <argument id="Number" type="Integer" status="ByVal"/>
+         <argument id="Source" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Description" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="HelpFile" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="HelpContext" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+   </class>
+   <class id="_Collection" parent="IDispatch" default="Item">
+      <method id="Item" type="Variant">
+         <argument id="Index" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="Item" type="Variant" status="ByRef"/>
+         <argument id="Key" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Before" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="After" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Count" type="Integer"/>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="Constants" parent="None" module="on" creatable="off">
+      <constant id="vbObjectError" type="Integer" value="0"/>
+      <constant id="vbNullString" type="String" value="0"/>
+      <constant id="vbNullChar" type="String" value="\0"/>
+      <constant id="vbCrLf" type="String" value="\r\n"/>
+      <constant id="vbNewLine" type="String" value="\r\n"/>
+      <constant id="vbCr" type="String" value="\r"/>
+      <constant id="vbLf" type="String" value="\n"/>
+      <constant id="vbBack" type="String" value="\b"/>
+      <constant id="vbFormFeed" type="String" value="\f"/>
+      <constant id="vbTab" type="String" value="\t"/>
+      <constant id="vbVerticalTab" type="String" value="\v"/>
+   </class>
+   <class id="Strings" parent="None" module="on" creatable="off">
+      <method id="Asc" type="Short">
+         <argument id="String" type="String" status="ByVal"/>
+      </method>
+      <method id="_B_str_Chr" type="String">
+         <argument id="CharCode" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_B_var_Chr" type="Variant">
+         <argument id="CharCode" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_B_str_LCase" type="String">
+         <argument id="String" type="String" status="ByVal"/>
+      </method>
+      <method id="_B_var_LCase" type="Variant">
+         <argument id="String" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_B_str_Mid" type="String">
+         <argument id="String" type="String" status="ByVal"/>
+         <argument id="Start" type="Integer" status="ByVal"/>
+         <argument id="Length" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="_B_var_Mid" type="Variant">
+         <argument id="String" type="Variant" status="ByRef"/>
+         <argument id="Start" type="Integer" status="ByVal"/>
+         <argument id="Length" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="_B_str_MidB" type="String">
+         <argument id="String" type="String" status="ByVal"/>
+         <argument id="Start" type="Integer" status="ByVal"/>
+         <argument id="Length" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="_B_var_MidB" type="Variant">
+         <argument id="String" type="Variant" status="ByRef"/>
+         <argument id="Start" type="Integer" status="ByVal"/>
+         <argument id="Length" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="InStr" type="Variant">
+         <argument id="Start" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="String1" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="String2" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Compare" type="VbCompareMethod" status="ByVal" optional="vbBinaryCompare"/>
+      </method>
+      <method id="InStrB" type="Variant">
+         <argument id="Start" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="String1" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="String2" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Compare" type="VbCompareMethod" status="ByVal" optional="vbBinaryCompare"/>
+      </method>
+      <method id="_B_str_Left" type="String">
+         <argument id="String" type="String" status="ByVal"/>
+         <argument id="Length" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_B_var_Left" type="Variant">
+         <argument id="String" type="Variant" status="ByRef"/>
+         <argument id="Length" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_B_str_LeftB" type="String">
+         <argument id="String" type="String" status="ByVal"/>
+         <argument id="Length" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_B_var_LeftB" type="Variant">
+         <argument id="String" type="Variant" status="ByRef"/>
+         <argument id="Length" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_B_str_LTrim" type="String">
+         <argument id="String" type="String" status="ByVal"/>
+      </method>
+      <method id="_B_var_LTrim" type="Variant">
+         <argument id="String" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_B_str_RightB" type="String">
+         <argument id="String" type="String" status="ByVal"/>
+         <argument id="Length" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_B_var_RightB" type="Variant">
+         <argument id="String" type="Variant" status="ByRef"/>
+         <argument id="Length" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_B_str_Right" type="String">
+         <argument id="String" type="String" status="ByVal"/>
+         <argument id="Length" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_B_var_Right" type="Variant">
+         <argument id="String" type="Variant" status="ByRef"/>
+         <argument id="Length" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_B_str_RTrim" type="String">
+         <argument id="String" type="String" status="ByVal"/>
+      </method>
+      <method id="_B_var_RTrim" type="Variant">
+         <argument id="String" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_B_str_Space" type="String">
+         <argument id="Number" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_B_var_Space" type="Variant">
+         <argument id="Number" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_B_var_StrConv" type="Variant">
+         <argument id="String" type="Variant" status="ByRef"/>
+         <argument id="Conversion" type="VbStrConv" status="ByVal"/>
+         <argument id="LocaleID" type="Integer" status="ByVal" optional="0"/>
+      </method>
+      <method id="_B_str_String" type="String">
+         <argument id="Number" type="Integer" status="ByVal"/>
+         <argument id="Character" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_B_var_String" type="Variant">
+         <argument id="Number" type="Integer" status="ByVal"/>
+         <argument id="Character" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_B_str_Trim" type="String">
+         <argument id="String" type="String" status="ByVal"/>
+      </method>
+      <method id="_B_var_Trim" type="Variant">
+         <argument id="String" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_B_str_UCase" type="String">
+         <argument id="String" type="String" status="ByVal"/>
+      </method>
+      <method id="_B_var_UCase" type="Variant">
+         <argument id="String" type="Variant" status="ByRef"/>
+      </method>
+      <method id="StrComp" type="Variant">
+         <argument id="String1" type="Variant" status="ByRef"/>
+         <argument id="String2" type="Variant" status="ByRef"/>
+         <argument id="Compare" type="VbCompareMethod" status="ByVal" optional="vbBinaryCompare"/>
+      </method>
+      <method id="_B_str_Format" type="String">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+         <argument id="Format" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="FirstDayOfWeek" type="VbDayOfWeek" status="ByVal" optional="vbSunday"/>
+         <argument id="FirstWeekOfYear" type="VbFirstWeekOfYear" status="ByVal" optional="vbFirstJan1"/>
+      </method>
+      <method id="_B_var_Format" type="Variant">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+         <argument id="Format" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="FirstDayOfWeek" type="VbDayOfWeek" status="ByVal" optional="vbSunday"/>
+         <argument id="FirstWeekOfYear" type="VbFirstWeekOfYear" status="ByVal" optional="vbFirstJan1"/>
+      </method>
+      <method id="Len" type="Variant">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="LenB" type="Variant">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="AscB" type="Byte">
+         <argument id="String" type="String" status="ByVal"/>
+      </method>
+      <method id="_B_str_ChrB" type="String">
+         <argument id="CharCode" type="Byte" status="ByVal"/>
+      </method>
+      <method id="_B_var_ChrB" type="Variant">
+         <argument id="CharCode" type="Byte" status="ByVal"/>
+      </method>
+      <method id="AscW" type="Short">
+         <argument id="String" type="String" status="ByVal"/>
+      </method>
+      <method id="_B_str_ChrW" type="String">
+         <argument id="CharCode" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_B_var_ChrW" type="Variant">
+         <argument id="CharCode" type="Integer" status="ByVal"/>
+      </method>
+      <method id="FormatDateTime" type="String">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+         <argument id="NamedFormat" type="VbDateTimeFormat" status="ByVal" optional="vbGeneralDate"/>
+      </method>
+      <method id="FormatNumber" type="String">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+         <argument id="NumDigitsAfterDecimal" type="Integer" status="ByVal" optional="-1"/>
+         <argument id="IncludeLeadingDigit" type="VbTriState" status="ByVal" optional="vbUseDefault"/>
+         <argument id="UseParensForNegativeNumbers" type="VbTriState" status="ByVal" optional="vbUseDefault"/>
+         <argument id="GroupDigits" type="VbTriState" status="ByVal" optional="vbUseDefault"/>
+      </method>
+      <method id="FormatPercent" type="String">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+         <argument id="NumDigitsAfterDecimal" type="Integer" status="ByVal" optional="-1"/>
+         <argument id="IncludeLeadingDigit" type="VbTriState" status="ByVal" optional="vbUseDefault"/>
+         <argument id="UseParensForNegativeNumbers" type="VbTriState" status="ByVal" optional="vbUseDefault"/>
+         <argument id="GroupDigits" type="VbTriState" status="ByVal" optional="vbUseDefault"/>
+      </method>
+      <method id="FormatCurrency" type="String">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+         <argument id="NumDigitsAfterDecimal" type="Integer" status="ByVal" optional="-1"/>
+         <argument id="IncludeLeadingDigit" type="VbTriState" status="ByVal" optional="vbUseDefault"/>
+         <argument id="UseParensForNegativeNumbers" type="VbTriState" status="ByVal" optional="vbUseDefault"/>
+         <argument id="GroupDigits" type="VbTriState" status="ByVal" optional="vbUseDefault"/>
+      </method>
+      <method id="WeekdayName" type="String">
+         <argument id="Weekday" type="Integer" status="ByVal"/>
+         <argument id="Abbreviate" type="Boolean" status="ByVal" optional="false"/>
+         <argument id="FirstDayOfWeek" type="VbDayOfWeek" status="ByVal" optional="vbUseSystemDayOfWeek"/>
+      </method>
+      <method id="MonthName" type="String">
+         <argument id="Month" type="Integer" status="ByVal"/>
+         <argument id="Abbreviate" type="Boolean" status="ByVal" optional="false"/>
+      </method>
+      <method id="Replace" type="String">
+         <argument id="Expression" type="String" status="ByVal"/>
+         <argument id="Find" type="String" status="ByVal"/>
+         <argument id="Replace" type="String" status="ByVal"/>
+         <argument id="Start" type="Integer" status="ByVal" optional="1"/>
+         <argument id="Count" type="Integer" status="ByVal" optional="-1"/>
+         <argument id="Compare" type="VbCompareMethod" status="ByVal" optional="vbBinaryCompare"/>
+      </method>
+      <method id="StrReverse" type="String">
+         <argument id="Expression" type="String" status="ByVal"/>
+      </method>
+      <method id="Join" type="String">
+         <argument id="SourceArray" type="Variant" status="ByRef"/>
+         <argument id="Delimiter" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Filter" type="Variant">
+         <argument id="SourceArray" type="Variant" status="ByRef"/>
+         <argument id="Match" type="String" status="ByVal"/>
+         <argument id="Include" type="Boolean" status="ByVal" optional="true"/>
+         <argument id="Compare" type="VbCompareMethod" status="ByVal" optional="vbBinaryCompare"/>
+      </method>
+      <method id="InStrRev" type="Integer">
+         <argument id="StringCheck" type="String" status="ByVal"/>
+         <argument id="StringMatch" type="String" status="ByVal"/>
+         <argument id="Start" type="Integer" status="ByVal" optional="-1"/>
+         <argument id="Compare" type="VbCompareMethod" status="ByVal" optional="vbBinaryCompare"/>
+      </method>
+      <method id="Split" type="Variant">
+         <argument id="Expression" type="String" status="ByVal"/>
+         <argument id="Delimiter" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Limit" type="Integer" status="ByVal" optional="-1"/>
+         <argument id="Compare" type="VbCompareMethod" status="ByVal" optional="vbBinaryCompare"/>
+      </method>
+   </class>
+   <class id="Conversion" parent="None" module="on" creatable="off">
+      <method id="_B_str_Hex" type="String">
+         <argument id="Number" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_B_var_Hex" type="Variant">
+         <argument id="Number" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_B_str_Oct" type="String">
+         <argument id="Number" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_B_var_Oct" type="Variant">
+         <argument id="Number" type="Variant" status="ByRef"/>
+      </method>
+      <method id="MacID" type="Integer">
+         <argument id="Constant" type="String" status="ByVal"/>
+      </method>
+      <method id="_B_str_Str" type="String">
+         <argument id="Number" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_B_var_Str" type="Variant">
+         <argument id="Number" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Val" type="Double">
+         <argument id="String" type="String" status="ByVal"/>
+      </method>
+      <method id="CStr" type="String">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="CByte" type="Byte">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="CBool" type="Boolean">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="CCur" type="Currency">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="CDate" type="Date">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="CVDate" type="Variant">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="CInt" type="Short">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="CLng" type="Integer">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="CSng" type="Single">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="CDbl" type="Double">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="CVar" type="Variant">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="CVErr" type="Variant">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_B_str_Error" type="String">
+         <argument id="ErrorNumber" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="_B_var_Error" type="Variant">
+         <argument id="ErrorNumber" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Fix" type="Variant">
+         <argument id="Number" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Int" type="Variant">
+         <argument id="Number" type="Variant" status="ByRef"/>
+      </method>
+      <method id="CDec" type="Variant">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+   </class>
+   <class id="FileSystem" parent="None" module="on" creatable="off">
+      <method id="ChDir" type="Void">
+         <argument id="Path" type="String" status="ByVal"/>
+      </method>
+      <method id="ChDrive" type="Void">
+         <argument id="Drive" type="String" status="ByVal"/>
+      </method>
+      <method id="EOF" type="Boolean">
+         <argument id="FileNumber" type="Short" status="ByVal"/>
+      </method>
+      <method id="FileAttr" type="Integer">
+         <argument id="FileNumber" type="Short" status="ByVal"/>
+         <argument id="ReturnType" type="Short" status="ByVal" optional="1"/>
+      </method>
+      <method id="FileCopy" type="Void">
+         <argument id="Source" type="String" status="ByVal"/>
+         <argument id="Destination" type="String" status="ByVal"/>
+      </method>
+      <method id="FileDateTime" type="Variant">
+         <argument id="PathName" type="String" status="ByVal"/>
+      </method>
+      <method id="FileLen" type="Integer">
+         <argument id="PathName" type="String" status="ByVal"/>
+      </method>
+      <method id="GetAttr" type="VbFileAttribute">
+         <argument id="PathName" type="String" status="ByVal"/>
+      </method>
+      <method id="Kill" type="Void">
+         <argument id="PathName" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Loc" type="Integer">
+         <argument id="FileNumber" type="Short" status="ByVal"/>
+      </method>
+      <method id="LOF" type="Integer">
+         <argument id="FileNumber" type="Short" status="ByVal"/>
+      </method>
+      <method id="MkDir" type="Void">
+         <argument id="Path" type="String" status="ByVal"/>
+      </method>
+      <method id="Reset" type="Void"/>
+      <method id="RmDir" type="Void">
+         <argument id="Path" type="String" status="ByVal"/>
+      </method>
+      <method id="Seek" type="Integer">
+         <argument id="FileNumber" type="Short" status="ByVal"/>
+      </method>
+      <method id="SetAttr" type="Void">
+         <argument id="PathName" type="String" status="ByVal"/>
+         <argument id="Attributes" type="VbFileAttribute" status="ByVal"/>
+      </method>
+      <method id="_B_str_CurDir" type="String">
+         <argument id="Drive" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="_B_var_CurDir" type="Variant">
+         <argument id="Drive" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="FreeFile" type="Short">
+         <argument id="RangeNumber" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Dir" type="String">
+         <argument id="PathName" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Attributes" type="VbFileAttribute" status="ByVal" optional="vbNormal"/>
+      </method>
+   </class>
+   <class id="DateTime" parent="None" module="on" creatable="off">
+      <property id="_B_var_Date" type="Variant" status="InOut"/>
+      <property id="_B_str_Date" type="String" status="InOut"/>
+      <property id="Now" type="Variant" status="Out"/>
+      <property id="_B_var_Time" type="Variant" status="InOut"/>
+      <property id="_B_str_Time" type="String" status="InOut"/>
+      <property id="Timer" type="Single" status="Out"/>
+      <property id="Calendar" type="VbCalendar" status="InOut"/>
+      <method id="DateSerial" type="Variant">
+         <argument id="Year" type="Short" status="ByVal"/>
+         <argument id="Month" type="Short" status="ByVal"/>
+         <argument id="Day" type="Short" status="ByVal"/>
+      </method>
+      <method id="DateValue" type="Variant">
+         <argument id="Date" type="String" status="ByVal"/>
+      </method>
+      <method id="Day" type="Variant">
+         <argument id="Date" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Hour" type="Variant">
+         <argument id="Time" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Minute" type="Variant">
+         <argument id="Time" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Month" type="Variant">
+         <argument id="Date" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Second" type="Variant">
+         <argument id="Time" type="Variant" status="ByRef"/>
+      </method>
+      <method id="TimeSerial" type="Variant">
+         <argument id="Hour" type="Short" status="ByVal"/>
+         <argument id="Minute" type="Short" status="ByVal"/>
+         <argument id="Second" type="Short" status="ByVal"/>
+      </method>
+      <method id="TimeValue" type="Variant">
+         <argument id="Time" type="String" status="ByVal"/>
+      </method>
+      <method id="Weekday" type="Variant">
+         <argument id="Date" type="Variant" status="ByRef"/>
+         <argument id="FirstDayOfWeek" type="VbDayOfWeek" status="ByVal" optional="vbSunday"/>
+      </method>
+      <method id="Year" type="Variant">
+         <argument id="Date" type="Variant" status="ByRef"/>
+      </method>
+      <method id="DateAdd" type="Variant">
+         <argument id="Interval" type="String" status="ByVal"/>
+         <argument id="Number" type="Double" status="ByVal"/>
+         <argument id="Date" type="Variant" status="ByRef"/>
+      </method>
+      <method id="DateDiff" type="Variant">
+         <argument id="Interval" type="String" status="ByVal"/>
+         <argument id="Date1" type="Variant" status="ByRef"/>
+         <argument id="Date2" type="Variant" status="ByRef"/>
+         <argument id="FirstDayOfWeek" type="VbDayOfWeek" status="ByVal" optional="vbSunday"/>
+         <argument id="FirstWeekOfYear" type="VbFirstWeekOfYear" status="ByVal" optional="vbFirstJan1"/>
+      </method>
+      <method id="DatePart" type="Variant">
+         <argument id="Interval" type="String" status="ByVal"/>
+         <argument id="Date" type="Variant" status="ByRef"/>
+         <argument id="FirstDayOfWeek" type="VbDayOfWeek" status="ByVal" optional="vbSunday"/>
+         <argument id="FirstWeekOfYear" type="VbFirstWeekOfYear" status="ByVal" optional="vbFirstJan1"/>
+      </method>
+   </class>
+   <class id="Information" parent="None" module="on" creatable="off">
+      <method id="Erl" type="Integer"/>
+      <method id="Err" type="ErrObject"/>
+      <method id="IMEStatus" type="VbIMEStatus"/>
+      <method id="IsArray" type="Boolean">
+         <argument id="VarName" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsDate" type="Boolean">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsEmpty" type="Boolean">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsError" type="Boolean">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsMissing" type="Boolean">
+         <argument id="ArgName" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsNull" type="Boolean">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsNumeric" type="Boolean">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="IsObject" type="Boolean">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="TypeName" type="String">
+         <argument id="VarName" type="Variant" status="ByRef"/>
+      </method>
+      <method id="VarType" type="VbVarType">
+         <argument id="VarName" type="Variant" status="ByRef"/>
+      </method>
+      <method id="QBColor" type="Integer">
+         <argument id="Color" type="Short" status="ByVal"/>
+      </method>
+      <method id="RGB" type="Integer">
+         <argument id="Red" type="Short" status="ByVal"/>
+         <argument id="Green" type="Short" status="ByVal"/>
+         <argument id="Blue" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Interaction" parent="None" module="on" creatable="off">
+      <method id="AppActivate" type="Void">
+         <argument id="Title" type="Variant" status="ByRef"/>
+         <argument id="Wait" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Beep" type="Void"/>
+      <method id="CreateObject" type="Variant">
+         <argument id="Class" type="String" status="ByVal"/>
+         <argument id="ServerName" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="DoEvents" type="Short"/>
+      <method id="GetObject" type="Variant">
+         <argument id="PathName" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Class" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="InputBox" type="String">
+         <argument id="Prompt" type="Variant" status="ByRef"/>
+         <argument id="Title" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Default" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="XPos" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="YPos" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="HelpFile" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Context" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="MacScript" type="String">
+         <argument id="Script" type="String" status="ByVal"/>
+      </method>
+      <method id="MsgBox" type="VbMsgBoxResult">
+         <argument id="Prompt" type="Variant" status="ByRef"/>
+         <argument id="Buttons" type="VbMsgBoxStyle" status="ByVal" optional="vbOKOnly"/>
+         <argument id="Title" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="HelpFile" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Context" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="SendKeys" type="Void">
+         <argument id="String" type="String" status="ByVal"/>
+         <argument id="Wait" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Shell" type="Double">
+         <argument id="PathName" type="Variant" status="ByRef"/>
+         <argument id="WindowStyle" type="VbAppWinStyle" status="ByVal" optional="vbMinimizedFocus"/>
+      </method>
+      <method id="Partition" type="Variant">
+         <argument id="Number" type="Variant" status="ByRef"/>
+         <argument id="Start" type="Variant" status="ByRef"/>
+         <argument id="Stop" type="Variant" status="ByRef"/>
+         <argument id="Interval" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Choose" type="Variant">
+         <argument id="Index" type="Single" status="ByVal"/>
+         <argument id="Choice" type="Variant" status="RefParamArray" optional="Default"/>
+      </method>
+      <method id="_B_var_Environ" type="Variant">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="_B_str_Environ" type="String">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Switch" type="Variant">
+         <argument id="VarExpr" type="Variant" status="RefParamArray" optional="Default"/>
+      </method>
+      <method id="_B_var_Command" type="Variant"/>
+      <method id="_B_str_Command" type="String"/>
+      <method id="IIf" type="Variant">
+         <argument id="Expression" type="Variant" status="ByRef"/>
+         <argument id="TruePart" type="Variant" status="ByRef"/>
+         <argument id="FalsePart" type="Variant" status="ByRef"/>
+      </method>
+      <method id="GetSetting" type="String">
+         <argument id="AppName" type="String" status="ByVal"/>
+         <argument id="Section" type="String" status="ByVal"/>
+         <argument id="Key" type="String" status="ByVal"/>
+         <argument id="Default" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="SaveSetting" type="Void">
+         <argument id="AppName" type="String" status="ByVal"/>
+         <argument id="Section" type="String" status="ByVal"/>
+         <argument id="Key" type="String" status="ByVal"/>
+         <argument id="Setting" type="String" status="ByVal"/>
+      </method>
+      <method id="DeleteSetting" type="Void">
+         <argument id="AppName" type="String" status="ByVal"/>
+         <argument id="Section" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="GetAllSettings" type="Variant">
+         <argument id="AppName" type="String" status="ByVal"/>
+         <argument id="Section" type="String" status="ByVal"/>
+      </method>
+      <method id="CallByName" type="Variant">
+         <argument id="Object" type="Object" status="ByVal"/>
+         <argument id="ProcName" type="String" status="ByVal"/>
+         <argument id="CallType" type="VbCallType" status="ByVal"/>
+         <argument id="Args" type="Variant" status="RefParamArray" optional="Default"/>
+      </method>
+   </class>
+   <class id="Math" parent="None" module="on" creatable="off">
+      <method id="Abs" type="Variant">
+         <argument id="Number" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Atn" type="Double">
+         <argument id="Number" type="Double" status="ByVal"/>
+      </method>
+      <method id="Cos" type="Double">
+         <argument id="Number" type="Double" status="ByVal"/>
+      </method>
+      <method id="Exp" type="Double">
+         <argument id="Number" type="Double" status="ByVal"/>
+      </method>
+      <method id="Log" type="Double">
+         <argument id="Number" type="Double" status="ByVal"/>
+      </method>
+      <method id="Randomize" type="Void">
+         <argument id="Number" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Rnd" type="Single">
+         <argument id="Number" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Sin" type="Double">
+         <argument id="Number" type="Double" status="ByVal"/>
+      </method>
+      <method id="Sqr" type="Double">
+         <argument id="Number" type="Double" status="ByVal"/>
+      </method>
+      <method id="Tan" type="Double">
+         <argument id="Number" type="Double" status="ByVal"/>
+      </method>
+      <method id="Sgn" type="Variant">
+         <argument id="Number" type="Variant" status="ByRef"/>
+      </method>
+      <method id="Round" type="Variant">
+         <argument id="Number" type="Variant" status="ByRef"/>
+         <argument id="NumDigitsAfterDecimal" type="Integer" status="ByVal" optional="0"/>
+      </method>
+   </class>
+   <class id="Financial" parent="None" module="on" creatable="off">
+      <method id="SLN" type="Double">
+         <argument id="Cost" type="Double" status="ByVal"/>
+         <argument id="Salvage" type="Double" status="ByVal"/>
+         <argument id="Life" type="Double" status="ByVal"/>
+      </method>
+      <method id="SYD" type="Double">
+         <argument id="Cost" type="Double" status="ByVal"/>
+         <argument id="Salvage" type="Double" status="ByVal"/>
+         <argument id="Life" type="Double" status="ByVal"/>
+         <argument id="Period" type="Double" status="ByVal"/>
+      </method>
+      <method id="DDB" type="Double">
+         <argument id="Cost" type="Double" status="ByVal"/>
+         <argument id="Salvage" type="Double" status="ByVal"/>
+         <argument id="Life" type="Double" status="ByVal"/>
+         <argument id="Period" type="Double" status="ByVal"/>
+         <argument id="Factor" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="IPmt" type="Double">
+         <argument id="Rate" type="Double" status="ByVal"/>
+         <argument id="Per" type="Double" status="ByVal"/>
+         <argument id="NPer" type="Double" status="ByVal"/>
+         <argument id="PV" type="Double" status="ByVal"/>
+         <argument id="FV" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Due" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="PPmt" type="Double">
+         <argument id="Rate" type="Double" status="ByVal"/>
+         <argument id="Per" type="Double" status="ByVal"/>
+         <argument id="NPer" type="Double" status="ByVal"/>
+         <argument id="PV" type="Double" status="ByVal"/>
+         <argument id="FV" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Due" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Pmt" type="Double">
+         <argument id="Rate" type="Double" status="ByVal"/>
+         <argument id="NPer" type="Double" status="ByVal"/>
+         <argument id="PV" type="Double" status="ByVal"/>
+         <argument id="FV" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Due" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="PV" type="Double">
+         <argument id="Rate" type="Double" status="ByVal"/>
+         <argument id="NPer" type="Double" status="ByVal"/>
+         <argument id="Pmt" type="Double" status="ByVal"/>
+         <argument id="FV" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Due" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="FV" type="Double">
+         <argument id="Rate" type="Double" status="ByVal"/>
+         <argument id="NPer" type="Double" status="ByVal"/>
+         <argument id="Pmt" type="Double" status="ByVal"/>
+         <argument id="PV" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Due" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="NPer" type="Double">
+         <argument id="Rate" type="Double" status="ByVal"/>
+         <argument id="Pmt" type="Double" status="ByVal"/>
+         <argument id="PV" type="Double" status="ByVal"/>
+         <argument id="FV" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Due" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="Rate" type="Double">
+         <argument id="NPer" type="Double" status="ByVal"/>
+         <argument id="Pmt" type="Double" status="ByVal"/>
+         <argument id="PV" type="Double" status="ByVal"/>
+         <argument id="FV" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Due" type="Variant" status="ByRef" optional="Default"/>
+         <argument id="Guess" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="IRR" type="Double">
+         <argument id="ValueArray" type="Double[]" status="ByRef"/>
+         <argument id="Guess" type="Variant" status="ByRef" optional="Default"/>
+      </method>
+      <method id="MIRR" type="Double">
+         <argument id="ValueArray" type="Double[]" status="ByRef"/>
+         <argument id="FinanceRate" type="Double" status="ByVal"/>
+         <argument id="ReinvestRate" type="Double" status="ByVal"/>
+      </method>
+      <method id="NPV" type="Double">
+         <argument id="Rate" type="Double" status="ByVal"/>
+         <argument id="ValueArray" type="Double[]" status="ByRef"/>
+      </method>
+   </class>
+   <class id="_HiddenModule" parent="None" module="on" creatable="off">
+      <method id="Array" type="Variant">
+         <argument id="ArgList" type="Variant" status="RefParamArray" optional="Default"/>
+      </method>
+      <method id="_B_str_InputB" type="String">
+         <argument id="Number" type="Integer" status="ByVal"/>
+         <argument id="FileNumber" type="Short" status="ByVal"/>
+      </method>
+      <method id="_B_var_InputB" type="Variant">
+         <argument id="Number" type="Integer" status="ByVal"/>
+         <argument id="FileNumber" type="Short" status="ByVal"/>
+      </method>
+      <method id="_B_str_Input" type="String">
+         <argument id="Number" type="Integer" status="ByVal"/>
+         <argument id="FileNumber" type="Short" status="ByVal"/>
+      </method>
+      <method id="_B_var_Input" type="Variant">
+         <argument id="Number" type="Integer" status="ByVal"/>
+         <argument id="FileNumber" type="Short" status="ByVal"/>
+      </method>
+      <method id="Width" type="Void">
+         <argument id="FileNumber" type="Short" status="ByVal"/>
+         <argument id="Width" type="Short" status="ByVal"/>
+      </method>
+      <method id="VarPtr" type="Integer">
+         <argument id="Ptr" type="Void" status="ByRef"/>
+      </method>
+      <method id="StrPtr" type="Integer">
+         <argument id="Ptr" type="String" status="ByVal"/>
+      </method>
+      <method id="ObjPtr" type="Integer">
+         <argument id="Ptr" type="Object" status="ByVal"/>
+      </method>
+   </class>
+   <coclass id="ErrObject">
+      <subclass id="_ErrObject"/>
+   </coclass>
+   <coclass id="Collection">
+      <subclass id="_Collection"/>
+   </coclass>
+</library>
+<Refactor id="[MSVBVM60.dll]">
+      <Migrate location="DoNotDeclare" />
+</Refactor>
+</DescriptionFile>
+

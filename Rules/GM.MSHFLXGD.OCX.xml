@@ -1,0 +1,731 @@
+<DescriptionFile>
+<!--
+Upgrade MSHierarchicalFlexGridLib.MSHFlexGrid to gmRTL.MSHFlexGridLib.MSHFlexGrid
+-->
+<library id="MSHFLXGD.OCX"
+         name="MSHierarchicalFlexGridLib"
+         uuid="0ECD9B60-23AA-11D0-B351-00A0C9055D8E"
+         netVersion="6.0"
+         source="MSHFLXGD.OCX"
+         location="..\runtime\gmRTL.MSHFlexGridLib.dll"
+         axLocation="DoNotDeclare"
+         migName="gmRTL.MSHFlexGridLib"
+         type="Native"
+   >
+   <importlib id="stdole2.tlb"/>
+   <importlib id="msdatsrc.tlb"/>
+   <class id="IVBDataObjectFiles"/>
+   <class id="IVBDataObject"/>
+   <class id="IRecordset"/>
+   <class id="IMSHFlexGrid"/>
+   <class id="DMSHFlexGridEvents"/>
+   <coclass id="DataObject"/>
+   <coclass id="DataObjectFiles"/>
+   <coclass id="MSHFlexGrid"/>
+   <enumeration id="OLEDragConstants">
+      <entry id="flexOLEDragManual" value="0"/>
+      <entry id="flexOLEDragAutomatic" value="1"/>
+   </enumeration>
+   <enumeration id="OLEDropConstants">
+      <entry id="flexOLEDropNone" value="0"/>
+      <entry id="flexOLEDropManual" value="1"/>
+   </enumeration>
+   <enumeration id="DragOverConstants">
+      <entry id="flexEnter" value="0"/>
+      <entry id="flexLeave" value="1"/>
+      <entry id="flexOver" value="2"/>
+   </enumeration>
+   <enumeration id="ClipBoardConstants">
+      <entry id="flexCFText" value="1"/>
+      <entry id="flexCFBitmap" value="2"/>
+      <entry id="flexCFMetafile" value="3"/>
+      <entry id="flexCFDIB" value="8"/>
+      <entry id="flexCFPalette" value="9"/>
+      <entry id="flexCFEMetafile" value="14"/>
+      <entry id="flexCFFiles" value="15"/>
+      <entry id="flexCFRTF" value="0xffffbf01"/>
+   </enumeration>
+   <enumeration id="OLEDropEffectConstants">
+      <entry id="flexOLEDropEffectNone" value="0"/>
+      <entry id="flexOLEDropEffectCopy" value="1"/>
+      <entry id="flexOLEDropEffectMove" value="2"/>
+      <entry id="flexOLEDropEffectScroll" value="0x80000000"/>
+   </enumeration>
+   <enumeration id="ErrorConstants">
+      <entry id="flexerrIllegaFunctionCall" value="5"/>
+      <entry id="flexerrObjIllegalUse" value="425"/>
+      <entry id="flexerrClipInvalidFormat" value="461"/>
+      <entry id="flexerrDataObjectLocked" value="672"/>
+      <entry id="flexerrExpectedAnArgument" value="673"/>
+      <entry id="flexerrRecursiveOLEDrag" value="674"/>
+      <entry id="flexerrUserFormatNotBinArray" value="675"/>
+      <entry id="flexerrDataNotSetForFormat" value="676"/>
+      <entry id="flexerrUnknownError" value="600"/>
+      <entry id="flexerrSubscript" value="381"/>
+      <entry id="flexerrBadValue" value="380"/>
+      <entry id="flexerrGetNotSupported" value="394"/>
+      <entry id="flexerrSetNotPermitted" value="387"/>
+      <entry id="flexerrOutOfMemory" value="7"/>
+      <entry id="flexerrVB30000" value="30000"/>
+      <entry id="flexerrVB30001" value="30001"/>
+      <entry id="flexerrVB30002" value="30002"/>
+      <entry id="flexerrVB30004" value="30004"/>
+      <entry id="flexerrVB30005" value="30005"/>
+      <entry id="flexerrVB30006" value="30006"/>
+      <entry id="flexerrVB30008" value="30008"/>
+      <entry id="flexerrVB30009" value="30009"/>
+      <entry id="flexerrVB30010" value="30010"/>
+      <entry id="flexerrVB30011" value="30011"/>
+      <entry id="flexerrVB30013" value="30013"/>
+      <entry id="flexerrVB30014" value="30014"/>
+      <entry id="flexerrVB30015" value="30015"/>
+      <entry id="flexerrVB30016" value="30016"/>
+      <entry id="flexerrVB30017" value="30017"/>
+      <entry id="flexerrFORMATSTRING" value="30018"/>
+      <entry id="flexerrBadBandNumber" value="30019"/>
+      <entry id="flexerrBadBandColIndex" value="30020"/>
+      <entry id="flexerrNotAvailableWithBandedData" value="30021"/>
+      <entry id="flexerrUnknownBinding" value="30022"/>
+      <entry id="flexerrHROWsNotReleased" value="30023"/>
+   </enumeration>
+   <enumeration id="AppearanceSettings">
+      <entry id="flexFlat" value="0"/>
+      <entry id="flex3D" value="1"/>
+   </enumeration>
+   <enumeration id="BorderStyleSettings">
+      <entry id="flexBorderNone" value="0"/>
+      <entry id="flexBorderSingle" value="1"/>
+   </enumeration>
+   <enumeration id="FocusRectSettings" migName="gmRTL.MSHFlexGridLib.MSHFlexGrid.Enums.FocusRectSettings" migStatus="external">
+      <entry id="flexFocusNone" value="0"/>
+      <entry id="flexFocusLight" value="1"/>
+      <entry id="flexFocusHeavy" value="2"/>
+   </enumeration>
+   <enumeration id="HighLightSettings">
+      <entry id="flexHighlightNever" value="0"/>
+      <entry id="flexHighlightAlways" value="1"/>
+      <entry id="flexHighlightWithFocus" value="2"/>
+   </enumeration>
+   <enumeration id="ScrollBarsSettings">
+      <entry id="flexScrollBarNone" value="0"/>
+      <entry id="flexScrollBarHorizontal" value="1"/>
+      <entry id="flexScrollBarVertical" value="2"/>
+      <entry id="flexScrollBarBoth" value="3"/>
+   </enumeration>
+   <enumeration id="TextStyleSettings" migName="gmRTL.MSHFlexGridLib.MSHFlexGrid.Enums.TextStyleSettings" migStatus="external">
+      <entry id="flexTextFlat" value="0"/>
+      <entry id="flexTextRaised" value="1"/>
+      <entry id="flexTextInset" value="2"/>
+      <entry id="flexTextRaisedLight" value="3"/>
+      <entry id="flexTextInsetLight" value="4"/>
+   </enumeration>
+   <enumeration id="FillStyleSettings">
+      <entry id="flexFillSingle" value="0"/>
+      <entry id="flexFillRepeat" value="1"/>
+   </enumeration>
+   <enumeration id="GridLineSettings" migName="gmRTL.MSHFlexGridLib.MSHFlexGrid.Enums.GridLineSettings" migStatus="external">>
+      <entry id="flexGridNone" value="0"/>
+      <entry id="flexGridFlat" value="1"/>
+      <entry id="flexGridInset" value="2"/>
+      <entry id="flexGridRaised" value="3"/>
+      <entry id="flexGridDashes" value="4"/>
+      <entry id="flexGridDots" value="5"/>
+   </enumeration>
+   <enumeration id="SelectionModeSettings">
+      <entry id="flexSelectionFree" value="0"/>
+      <entry id="flexSelectionByRow" value="1"/>
+      <entry id="flexSelectionByColumn" value="2"/>
+   </enumeration>
+   <enumeration id="MergeCellsSettings">
+      <entry id="flexMergeNever" value="0"/>
+      <entry id="flexMergeFree" value="1"/>
+      <entry id="flexMergeRestrictRows" value="2"/>
+      <entry id="flexMergeRestrictColumns" value="3"/>
+      <entry id="flexMergeRestrictAll" value="4"/>
+   </enumeration>
+   <enumeration id="PictureTypeSettings">
+      <entry id="flexPictureColor" value="0"/>
+      <entry id="flexPictureMonochrome" value="1"/>
+   </enumeration>
+   <enumeration id="AllowUserResizeSettings" migName="gmRTL.MSHFlexGridLib.MSHFlexGrid.Enums.AllowUserResizeSettings" migStatus="external">
+      <entry id="flexResizeNone" value="0"/>
+      <entry id="flexResizeColumns" value="1"/>
+      <entry id="flexResizeRows" value="2"/>
+      <entry id="flexResizeBoth" value="3"/>
+   </enumeration>
+   <enumeration id="MousePointerSettings">
+      <entry id="flexDefault" value="0"/>
+      <entry id="flexArrow" value="1"/>
+      <entry id="flexCross" value="2"/>
+      <entry id="flexIBeam" value="3"/>
+      <entry id="flexIcon" value="4"/>
+      <entry id="flexSize" value="5"/>
+      <entry id="flexSizeNESW" value="6"/>
+      <entry id="flexSizeNS" value="7"/>
+      <entry id="flexSizeNWSE" value="8"/>
+      <entry id="flexSizeEW" value="9"/>
+      <entry id="flexUpArrow" value="10"/>
+      <entry id="flexHourglass" value="11"/>
+      <entry id="flexNoDrop" value="12"/>
+      <entry id="flexArrowHourGlass" value="13"/>
+      <entry id="flexArrowQuestion" value="14"/>
+      <entry id="flexSizeAll" value="15"/>
+      <entry id="flexCustom" value="99"/>
+   </enumeration>
+   <enumeration id="SortSettings">
+      <entry id="flexSortNone" value="0"/>
+      <entry id="flexSortGenericAscending" value="1"/>
+      <entry id="flexSortGenericDescending" value="2"/>
+      <entry id="flexSortNumericAscending" value="3"/>
+      <entry id="flexSortNumericDescending" value="4"/>
+      <entry id="flexSortStringNoCaseAscending" value="5"/>
+      <entry id="flexSortStringNoCaseDescending" value="6"/>
+      <entry id="flexSortStringAscending" value="7"/>
+      <entry id="flexSortStringDescending" value="8"/>
+   </enumeration>
+   <enumeration id="AlignmentSettings" migStatus="external" migName="System.Windows.Forms.DataGridViewContentAlignment">
+      <entry id="flexAlignLeftTop" value="0" migName="TopLeft"/>
+      <entry id="flexAlignLeftCenter" value="1" migName="MiddleLeft"/>
+      <entry id="flexAlignLeftBottom" value="2" migName="BottomLeft"/>
+      <entry id="flexAlignCenterTop" value="3" migName="MiddleTop"/>
+      <entry id="flexAlignCenterCenter" value="4" migName="MiddleCenter"/>
+      <entry id="flexAlignCenterBottom" value="5" migName="BottomCenter"/>
+      <entry id="flexAlignRightTop" value="6" migName="TopRight"/>
+      <entry id="flexAlignRightCenter" value="7" migName="MiddleRight"/>
+      <entry id="flexAlignRightBottom" value="8" migName="BottomRight"/>
+      <entry id="flexAlignGeneral" value="9" migName="NotSet"/>
+   </enumeration>
+   <enumeration id="WordWrapSettings">
+      <entry id="flexSingleLine" value="0"/>
+      <entry id="flexWordBreak" value="1"/>
+      <entry id="flexWordEllipsis" value="2"/>
+      <entry id="flexWordBreakEllipsis" value="3"/>
+   </enumeration>
+   <enumeration id="BandDisplaySettings">
+      <entry id="flexBandDisplayHorizontal" value="0"/>
+      <entry id="flexBandDisplayVertical" value="1"/>
+   </enumeration>
+   <enumeration id="CellTypeSettings">
+      <entry id="flexCellTypeStandard" value="0"/>
+      <entry id="flexCellTypeFixed" value="1"/>
+      <entry id="flexCellTypeHeader" value="2"/>
+      <entry id="flexCellTypeIndent" value="3"/>
+      <entry id="flexCellTypeUnpopulated" value="4"/>
+   </enumeration>
+   <enumeration id="RowSizingSettings">
+      <entry id="flexRowSizeIndividual" value="0"/>
+      <entry id="flexRowSizeAll" value="1"/>
+   </enumeration>
+   <enumeration id="ColHeaderSettings">
+      <entry id="flexColHeaderOff" value="0" migStatus="external" migName="false"/>
+      <entry id="flexColHeaderOn" value="1" migStatus="external" migName="true"/>
+   </enumeration>
+   <class id="IVBDataObjectFiles" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="String" status="indexer">
+         <argument id="lIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="bstrFilename" type="String" status="ByVal"/>
+         <argument id="vIndex" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="vIndex" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="IVBDataObject" parent="IDispatch">
+      <property id="Files" type="DataObjectFiles" status="Out"/>
+      <method id="Clear" type="Void"/>
+      <method id="GetData" type="Variant">
+         <argument id="sFormat" type="Short" status="ByVal"/>
+      </method>
+      <method id="GetFormat" type="Boolean">
+         <argument id="sFormat" type="Short" status="ByVal"/>
+      </method>
+      <method id="SetData" type="Void">
+         <argument id="vValue" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="vFormat" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="IRecordset" parent="IDispatch">
+   </class>
+   <class id="IMSHFlexGrid" parent="IDispatch" default="Text">
+      <property id="Rows" type="Integer" status="InOut" migName="RowCount"/>
+      <property id="FixedRows" type="Integer" status="InOut"/>
+      <property id="FixedCols" type="Integer" status="InOut"/>
+      <property id="Version" type="Short" status="Out"/>
+      <property id="FormatString" type="String" status="InOut"/>
+      <property id="TopRow" type="Integer" status="InOut"/>
+      <property id="LeftCol" type="Integer" status="InOut"/>
+      <property id="Row" type="Integer" status="InOut"/>
+      <property id="Col" type="Integer" status="InOut"/>
+      <property id="RowSel" type="Integer" status="InOut"/>
+      <property id="ColSel" type="Integer" status="InOut"/>
+      <property id="Text" type="String" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="BackColorFixed" type="OLE_COLOR" status="InOut"/>
+      <property id="ForeColorFixed" type="OLE_COLOR" status="InOut"/>
+      <property id="BackColorSel" type="OLE_COLOR" status="InOut"/>
+      <property id="ForeColorSel" type="OLE_COLOR" status="InOut"/>
+      <property id="BackColorBkg" type="OLE_COLOR" status="InOut"/>
+      <property id="BackColorUnpopulated" type="OLE_COLOR" status="InOut"/>
+      <property id="WordWrap" type="Boolean" status="InOut"/>
+      <property id="Font" type="Font" status="InOut"/>
+      <property id="FontWidth" type="Single" status="InOut"/>
+      <property id="FontFixed" type="Font" status="InOut"/>
+      <property id="FontWidthFixed" type="Single" status="InOut"/>
+      <property id="CellFontName" type="String" status="InOut"/>
+      <property id="CellFontSize" type="Single" status="InOut"/>
+      <property id="CellFontBold" type="Boolean" status="InOut"/>
+      <property id="CellFontItalic" type="Boolean" status="InOut"/>
+      <property id="CellFontUnderline" type="Boolean" status="InOut"/>
+      <property id="CellFontStrikeThrough" type="Boolean" status="InOut"/>
+      <property id="CellFontWidth" type="Single" status="InOut"/>
+      <property id="TextStyle" type="TextStyleSettings" status="InOut"/>
+      <property id="TextStyleFixed" type="TextStyleSettings" status="InOut"/>
+      <property id="ScrollTrack" type="Boolean" status="InOut"/>
+      <property id="FocusRect" type="FocusRectSettings" status="InOut"/>
+      <property id="HighLight" type="HighLightSettings" status="InOut"/>
+      <property id="Redraw" type="Boolean" status="InOut" migStatus="delete"/>
+      <property id="ScrollBars" type="ScrollBarsSettings" status="InOut"/>
+      <property id="MouseRow" type="Integer" status="Out"/>
+      <property id="MouseCol" type="Integer" status="Out"/>
+      <property id="CellLeft" type="Integer" status="Out"/>
+      <property id="CellTop" type="Integer" status="Out"/>
+      <property id="CellWidth" type="Integer" status="Out"/>
+      <property id="CellHeight" type="Integer" status="Out"/>
+      <property id="RowHeightMin" type="Integer" status="InOut"/>
+      <property id="FillStyle" type="FillStyleSettings" status="InOut"/>
+      <property id="GridLines" type="GridLineSettings" status="InOut"/>
+      <property id="GridLinesFixed" type="GridLineSettings" status="InOut"/>
+      <property id="GridColor" type="OLE_COLOR" status="InOut"/>
+      <property id="GridColorFixed" type="OLE_COLOR" status="InOut"/>
+      <property id="GridColorUnpopulated" type="OLE_COLOR" status="InOut"/>
+      <property id="CellBackColor" type="OLE_COLOR" status="InOut" migName="RowBackColor"/>
+      <property id="CellForeColor" type="OLE_COLOR" status="InOut" migName="RowForeColor"/>
+      <property id="CellAlignment" type="Short" status="InOut"/>
+      <property id="CellTextStyle" type="TextStyleSettings" status="InOut"/>
+      <property id="CellPictureAlignment" type="Short" status="InOut"/>
+      <property id="Clip" type="String" status="InOut"/>
+      <property id="Sort" type="Short" status="In"/>
+      <property id="SelectionMode" type="SelectionModeSettings" status="InOut"/>
+      <property id="MergeCells" type="MergeCellsSettings" status="InOut"/>
+      <property id="AllowBigSelection" type="Boolean" status="InOut"/>
+      <property id="AllowUserResizing" type="AllowUserResizeSettings" status="InOut"/>
+      <property id="BorderStyle" type="BorderStyleSettings" status="InOut"/>
+      <property id="hWnd" type="Integer" status="Out"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Appearance" type="AppearanceSettings" status="InOut"/>
+      <property id="MousePointer" type="MousePointerSettings" status="InOut"/>
+      <property id="MouseIcon" type="FrxPicture" status="InOut"/>
+      <property id="PictureType" type="PictureTypeSettings" status="InOut"/>
+      <property id="Picture" type="FrxPicture" status="Out"/>
+      <property id="CellPicture" type="FrxPicture" status="InOut"/>
+      <property id="DataSource" type="Object" status="InOut"/>
+      <property id="DataMember" type="MSDATASRC.DataMember" status="InOut"/>
+      <property id="GridLineWidth" type="Short" status="InOut"/>
+      <property id="GridLineWidthFixed" type="Short" status="InOut"/>
+      <property id="GridLineWidthUnpopulated" type="Short" status="InOut"/>
+      <property id="FontName" type="String" status="InOut"/>
+      <property id="FontSize" type="Single" status="InOut"/>
+      <property id="FontBold" type="Boolean" status="InOut"/>
+      <property id="FontItalic" type="Boolean" status="InOut"/>
+      <property id="FontStrikethru" type="Boolean" status="InOut"/>
+      <property id="FontStrikeThrough" type="Boolean" status="InOut"/>
+      <property id="FontUnderline" type="Boolean" status="InOut"/>
+      <property id="RightToLeft" type="Boolean" status="InOut"/>
+      <property id="Recordset" type="IRecordset" status="InOut"/>
+      <property id="Rowset" type="Variant" status="InOut"/>
+      <property id="BandDisplay" type="BandDisplaySettings" status="InOut"/>
+      <property id="GridLinesUnpopulated" type="GridLineSettings" status="InOut"/>
+      <property id="BandLevel" type="Integer" status="Out"/>
+      <property id="Bands" type="Integer" status="Out"/>
+      <property id="CellType" type="CellTypeSettings" status="Out"/>
+      <property id="RowSizingMode" type="RowSizingSettings" status="InOut"/>
+      <property id="RowExpandable" type="Boolean" status="Out"/>
+      <property id="RowExpanded" type="Boolean" status="InOut"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <accessor id="Cols" type="Integer" status="GetSet">
+         <argument id="BandNumber" type="Integer" status="ByVal" optional="0"/>
+      </accessor>
+      <pattern id="Cols.Get" >
+         <all narg="2" code="%1d.GetCols(%2d)"/>
+      </pattern>
+      <pattern id="Cols.Set" >
+         <all narg="3" code="%2d.SetCols(%3d,%1d)\c"/>         
+      </pattern>
+      <accessor id="BackColorBand" type="OLE_COLOR">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="ForeColorBand" type="OLE_COLOR">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="BackColorHeader" type="OLE_COLOR">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="ForeColorHeader" type="OLE_COLOR">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="BackColorIndent" type="OLE_COLOR">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="FontBand" type="Font">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="FontWidthBand" type="Single">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="FontHeader" type="Font">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="FontWidthHeader" type="Single">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="TextStyleBand" type="TextStyleSettings">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="TextStyleHeader" type="TextStyleSettings">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="GridColorBand" type="OLE_COLOR">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="GridColorHeader" type="OLE_COLOR">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="GridColorIndent" type="OLE_COLOR">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="AboutBox" type="Void"/>
+      <accessor id="TextArray" type="String">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="ColAlignment" type="AlignmentSettings" status="GetSet">
+         <argument id="Index" type="Integer" status="ByVal" optional="Default"/>
+      </accessor>
+      <pattern id="ColAlignment.Get">
+         <all narg="2" code="%1d.GetColAlignment(%2d)"/>
+      </pattern>
+      <pattern id="ColAlignment.Set" >
+         <all narg="3" code="%2d.SetColAlignment(%3d,%1d)\c"/>         
+      </pattern>
+      <accessor id="ColAlignmentFixed" type="Short">
+         <argument id="Index" type="Integer" status="ByVal" optional="Default"/>
+      </accessor>
+      <accessor id="ColAlignmentBand" type="Short">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+         <argument id="BandColIndex" type="Integer" status="ByVal" optional="Default"/>
+      </accessor>
+      <accessor id="ColAlignmentHeader" type="Short">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+         <argument id="BandColIndex" type="Integer" status="ByVal" optional="Default"/>
+      </accessor>
+      <accessor id="ColWidth" type="TwipsX">
+         <argument id="Index" type="Integer" status="ByVal"/>
+         <argument id="BandNumber" type="Integer" status="ByVal" optional="0"/>
+      </accessor>
+      <accessor id="RowHeight" type="Integer" status="GetSet">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <pattern id="RowHeight.Get" >
+         <all narg="2" code="%1d.Rows[%2d].Height"/>
+      </pattern>
+      <pattern id="RowHeight.Set" >
+         <all narg="3" code="%2d.Rows[%3d].Height = %1d\c"/>         
+      </pattern>
+      <accessor id="MergeRow" type="Boolean">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="MergeCol" type="Boolean">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="RowPosition" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ColPosition" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+         <argument id="BandNumber" type="Integer" status="ByVal" optional="0"/>
+      </method>
+      <accessor id="RowData" type="Integer">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="ColData" type="Integer">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="TextMatrix" type="String">
+         <argument id="Row" type="Integer" status="ByVal"/>
+         <argument id="Col" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="AddItem" type="Void">
+         <argument id="Item" type="String" status="ByVal"/>
+         <argument id="Index" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="RemoveItem" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Refresh" type="Void"/>
+      <method id="ClearStructure" type="Void"/>
+      <accessor id="RowIsVisible" type="Boolean" status="GetSet">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <pattern id="RowIsVisible.Get" >
+         <all narg="2" code="%1d.Rows[%2d].Visible"/>
+      </pattern>
+      <pattern id="RowIsVisible.Set" >
+         <all narg="3" code="%2d.Rows[%3d].Visible = %1d\c"/>         
+      </pattern>
+      <accessor id="ColIsVisible" type="Boolean">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="RowPos" type="Integer">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="ColPos" type="Integer">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="GridLineWidthBand" type="Short">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="GridLineWidthHeader" type="Short">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="GridLineWidthIndent" type="Short">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="FixedAlignment" type="Short">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="ColHeader" type="ColHeaderSettings" status="GetSet">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <pattern id="ColHeader.Get">
+         <all narg="2" code="%1d.GetColHeader(%2d)"/>
+      </pattern>
+      <pattern id="ColHeader.Set">
+         <all narg="3" code="%2d.SetColHeader(%3d,%1d)\c"/>         
+      </pattern>
+      <accessor id="ColHeaderCaption" type="String">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+         <argument id="BandColIndex" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="BandColIndex" type="Integer"/>
+      <accessor id="BandData" type="Integer">
+         <argument id="BandData" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="BandExpandable" type="Boolean">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="GridLinesBand" type="GridLineSettings">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="GridLinesHeader" type="GridLineSettings">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="GridLinesIndent" type="GridLineSettings">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="BandIndent" type="Integer">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="DataField" type="String">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+         <argument id="BandColIndex" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="CollectBandFieldNameInfo" type="Void">
+         <argument id="force_collection" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetBandName" type="Void">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+         <argument id="BandName" type="String" status="Out"/>
+      </method>
+      <method id="CountColumnsInBand" type="Void">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+         <argument id="Cols" type="Integer" status="Out"/>
+      </method>
+      <method id="GetColumnInBandInfo" type="Void">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+         <argument id="UIIndex" type="Integer" status="ByVal"/>
+         <argument id="ColName" type="String" status="Out"/>
+         <argument id="Caption" type="String" status="Out"/>
+         <argument id="Hidden" type="Boolean" status="Out"/>
+         <argument id="RowsetColIndex" type="Integer" status="Out"/>
+         <argument id="Alignment" type="Short" status="Out"/>
+      </method>
+      <method id="SetColumnInBandInfo" type="Void">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+         <argument id="UIIndex" type="Integer" status="ByVal"/>
+         <argument id="ColName" type="String" status="ByVal"/>
+         <argument id="Caption" type="String" status="ByVal"/>
+         <argument id="Hidden" type="Boolean" status="ByVal"/>
+         <argument id="RowsetColIndex" type="Integer" status="ByVal"/>
+         <argument id="Alignment" type="Short" status="ByVal"/>
+      </method>
+      <method id="ApplyBandFieldNameInfoChanges" type="Void"/>
+      <method id="CollapseAll" type="Void">
+         <argument id="BandNumber" type="Integer" status="ByVal" optional="-1"/>
+      </method>
+      <method id="ExpandAll" type="Void">
+         <argument id="BandNumber" type="Integer" status="ByVal" optional="-1"/>
+      </method>
+      <accessor id="ColWordWrapOption" type="Short" status="GetSet">
+         <argument id="Index" type="Integer" status="ByVal" optional="Default"/>
+      </accessor>
+      <!-- TODO: ColWordWrapOption
+      http://msdn.microsoft.com/en-us/library/office/aa140609(v=office.10).aspx 
+      should use WordWrapSettings
+      -->
+      <pattern id="ColWordWrapOption.Get">
+         <all narg="2" code="%1d.GetColWordWrapOption(%2d)"/>
+      </pattern>
+      <pattern id="ColWordWrapOption.Set">
+         <all narg="3" code="%2d.SetColWordWrapOption(%3d,%1d)\c"/>         
+      </pattern>
+
+      <accessor id="ColWordWrapOptionBand" type="Short">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+         <argument id="BandColIndex" type="Integer" status="ByVal" optional="Default"/>
+      </accessor>
+      <accessor id="ColWordWrapOptionHeader" type="Short">
+         <argument id="BandNumber" type="Integer" status="ByVal"/>
+         <argument id="BandColIndex" type="Integer" status="ByVal" optional="Default"/>
+      </accessor>
+      <accessor id="ColWordWrapOptionFixed" type="Short">
+         <argument id="Index" type="Integer" status="ByVal" optional="Default"/>
+      </accessor>
+      <method id="OLEDrag" type="Void"/>
+   </class>
+   <class id="DMSHFlexGridEvents" parent="None" creatable="off">
+      <event id="Click" netName="Click" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="KeyDown" netName="KeyDownEvent" role="event" netArgs="KeyEventArgs"
+             netHandler="System.Windows.Forms.KeyEventHandler" migPattern="KeyDown" >
+         <argument id="keyCode" type="Integer" status="ByVal" migPattern="%1d = (int)e.KeyCode" />
+         <argument id="shift" type="Integer" status="ByVal" migPattern="%1d = e.Shift?1:0"/>
+      </event>
+      <event id="DblClick" netName="DoubleClick" netHandler="System.EventHandler" netArgs="EventArgs" migPattern="DoubleClick"/>
+      <event id="KeyPress" netName="KeyPressEvent" role="event" netArgs="System.Windows.Forms.KeyPressEventArgs"
+             netHandler="System.Windows.Forms.KeyPressEventHandler" migPattern="KeyPress" >
+         <argument id="keyAscii" type="Integer" status="ByVal" migPattern="%1d = (int)e.KeyChar" />
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_KeyUpEventHandler" netArgs="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_KeyUpEvent">
+         <argument id="keyCode" type="Short" status="Out"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+      </event>
+      <event id="MouseDown" netName="System.Windows.Forms.MouseDownEvent" role="event" netArgs="System.Windows.Forms.MouseEventArgs"
+             netHandler="System.Windows.Forms.MouseEventHandler" migPattern="MouseDown" >
+         <argument id="button" type="Short" status="ByVal" migPattern="%1d = (int)e.Button" />
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d = e.X" />
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d = e.Y" />
+      </event>
+      <event id="MouseMove" netName="MouseMove" netHandler="System.Windows.Forms.MouseEventHandler" netArgs="MouseEventArgs">
+         <argument id="button" type="Short" status="ByVal" migPattern="%1d = (int)e.Button" />
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d = e.X" />
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d = e.Y" />
+      </event>
+      <event id="MouseUp" netName="MouseUp" netHandler="MouseEventHandler" netArgs="MouseEventArgs">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="SelChange" netName="SelChange" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="RowColChange" netName="RowColChange" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="EnterCell" netName="CellEnter" netHandler="DataGridViewCellEventHandler" netArgs="DataGridViewCellEventArgs"/>
+      <event id="LeaveCell" netName="LeaveCell" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="Scroll" netName="Scroll" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="Compare" netName="Compare" netHandler="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_CompareEventHandler" netArgs="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_CompareEvent">
+         <argument id="row1" type="Integer" status="ByVal"/>
+         <argument id="row2" type="Integer" status="ByVal"/>
+         <argument id="cmp" type="Short" status="Out"/>
+      </event>
+      <event id="Collapse" netName="Collapse" netHandler="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_CollapseEventHandler" netArgs="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_CollapseEvent">
+         <argument id="cancel" type="Boolean" status="Out"/>
+      </event>
+      <event id="Expand" netName="Expand" netHandler="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_ExpandEventHandler" netArgs="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_ExpandEvent">
+         <argument id="cancel" type="Boolean" status="Out"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_OLEStartDragEventHandler" netArgs="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_OLEStartDragEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_OLEGiveFeedbackEventHandler" netArgs="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_OLESetDataEventHandler" netArgs="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_OLESetDataEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_OLECompleteDragEventHandler" netArgs="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_OLEDragOverEventHandler" netArgs="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_OLEDragOverEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="state" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_OLEDragDropEventHandler" netArgs="AxMSHierarchicalFlexGridLib.DMSHFlexGridEvents_OLEDragDropEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+   </class>
+   <coclass id="DataObject" creatable="off">
+      <subclass id="IVBDataObject"/>
+   </coclass>
+   <coclass id="DataObjectFiles" creatable="off">
+      <subclass id="IVBDataObjectFiles"/>
+   </coclass>
+   <coclass id="MSHFlexGrid" migStatus="external" migName="gmRTL.MSHFlexGridLib.MSHFlexGrid" role="control">
+      <subclass id="IMSHFlexGrid"/>
+      <subclass id="DMSHFlexGridEvents"/>
+   </coclass>
+</library>
+<Refactor id="[MSHFLXGD.ocx]">    
+<migClass id="NetControl.MSHFlexGrid" migName="Grid" parent="MSHFlexGrid">
+        <property id="BackColor" type="OLE_COLOR" default="System.Drawing.SystemColors.Window" value="BackColor" />  
+
+        <property id="Font" value="Font" type="FontInfo" nPram="3"
+                   vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+                   cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+         />
+        <property id="ForeColor" Type="System.Drawing.SystemColors" default="System.Drawing.SystemColors.ControlText" />
+  
+        <property id="ImeMode" type="System.Windows.Forms.ImeMode" default="System.Windows.Forms.ImeMode.NoControl" />
+        <property id="MousePointer" type="MousePointer" default="System.Windows.Forms.Cursors.Default" migName="Cursor" value="Cursor" />
+                
+        <property id="AllowUserToAddRows" type="Boolean" default="false"/>  
+        <property id="AllowUserToDeleteRows" type="Boolean" default="false"/>  
+        <property id="EditMode" default="DataGridViewEditMode.EditProgrammatically"/>  
+        
+        <!--
+        <property id="RowHeadersVisible" type="boolean" default="false" />
+        <property id="_Band(0).ColHeader" type="Boolean" default="false" migName="ColumnHeadersVisible"/>  
+        -->
+        
+        <property id="Location" value="(Left,Top)" nPram="2"  migPattern="new System.Drawing.Point(%1d, %2d)"  />
+        <property id="Name" type="string" value="SYM.name" />
+        <property id="Size" value="(Width,Height)"  nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)"  />
+        <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+        <property id="TabStop" type="boolean" value="TabStop" default="true" />
+        <property id="RowCount" type="Integer" default="2" value="IMSHFlexGrid.Rows"/>
+        <property id="Visible" type="Boolean" default="true" value="Visible"/>  
+        <property id="Enabled" type="Boolean" default="true" value="Enabled"/>  
+        <property id="ColumnHeadersHeight" type="Integer" default="19"/>
+        <property id="ColumnHeadersVisible" type="Boolean" default="false"/>
+        
+    </migClass>
+</Refactor>
+</DescriptionFile>

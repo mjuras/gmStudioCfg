@@ -1,0 +1,7 @@
+<RefactorLibrary>
+<Refactor id="[ssa3d30.ocx]">
+<Extend id="ISSBase" >
+   <Property id="Default" type="Boolean"  migName="BaseDefault" />
+</Extend>
+</Refactor>
+</RefactorLibrary>

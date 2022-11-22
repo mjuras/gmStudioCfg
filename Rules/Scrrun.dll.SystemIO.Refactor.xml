@@ -1,0 +1,198 @@
+<RefactorLibrary>
+<!--
+Description: Upgrade Scripting File/IO to System.IO; Dictionary to System.Collections.Specialized.OrderedDictionary 
+-->
+<Refactor id="[scrrun.dll]"  event="scrrun" >
+   <Migrate migName="System.IO" libType="Native" location="DoNotDeclare" AssemblyName="System.IO" />
+   <Migrate id="IDictionary.Item" cshPattern="%1d[%2d]" nPram="2" vbnPattern="%1d(%2d)" />
+   <Migrate id="IDictionary.Item.Key" status="ByVal" />
+   <Migrate id="IDictionary.Add.Key" status="ByVal" />
+   <Migrate id="IDictionary.Add.Item" status="ByVal" />
+   <Migrate id="IDictionary.Exists" migName="Contains" />
+   <Migrate id="IDictionary.Exists.Key" status="ByVal" />
+   <Migrate id="IDictionary.Items" migPattern="%1d.Values" nPram="1" />
+   <Migrate id="IDictionary.Key.Key" status="ByVal" />
+   <Migrate id="IDictionary.Keys" migPattern="%1d.Keys.ToArray()" Type="Variant[]" nPram="1" />
+   <Migrate id="IDictionary.Remove.Key" status="ByVal" />
+   <Migrate id="IDictionary.RemoveAll" migName="Clear" />
+   <Migrate id="IDictionary.HashVal" type="Integer" migName="GetHash" />
+   <Migrate id="IDictionary.HashVal.Key" status="ByVal" />
+   <Migrate id="IFileSystem.Drives" migUsercode="scrrun" />
+   <Migrate id="IFileSystem.BuildPath" migPattern="System.IO.Path.Combine(%2d,%3d)" nPram="3" />
+   <Migrate id="IFileSystem.GetDrive" cshPattern="new System.IO.DriveInfo(%2d)" nPram="2" vbnPattern="New System.IO.DriveInfo(%2d)" />
+   <Migrate id="IFileSystem.GetDriveName" cshPattern="System.IO.Path.GetPathRoot(%2d).TrimEnd('\\\')" nPram="2" vbnPattern="System.IO.Path.GetPathRoot(%2d).TrimEnd("\\")" />
+   <Migrate id="IFileSystem.GetParentFolderName" migPattern="System.IO.Path.GetDirectoryName(%2d)" nPram="2" />
+   <Migrate id="IFileSystem.GetFileName" migPattern="System.IO.Path.GetFileName(%2d)" nPram="2" />
+   <Migrate id="IFileSystem.GetBaseName" migPattern="System.IO.Path.GetFileNameWithoutExtension(%2d)" nPram="2" />
+   <Migrate id="IFileSystem.GetExtensionName" migPattern="System.IO.Path.GetExtension(%2d)" nPram="2" />
+   <Migrate id="IFileSystem.GetAbsolutePathName" migPattern="System.IO.Path.GetFullPath(%2d)" nPram="2" />
+   <Migrate id="IFileSystem.GetTempName" migPattern="System.IO.Path.GetTempFileName()" nPram="1" />
+   <Migrate id="IFileSystem.DriveExists" migPattern="new System.IO.DirectoryInfo(%2d).Exists" nPram="2" />
+   <Migrate id="IFileSystem.FileExists" migPattern="System.IO.File.Exists(%2d)" nPram="2" />
+   <Migrate id="IFileSystem.FolderExists" migPattern="System.IO.Directory.Exists(%2d)" nPram="2" />
+   <Migrate id="IFileSystem.GetFile" migPattern="new System.IO.FileInfo(%2d)" nPram="2" />
+   <Migrate id="IFileSystem.GetFolder" migPattern="new System.IO.DirectoryInfo(%2d)" nPram="2" />
+   <Migrate id="IFileSystem.GetSpecialFolder" migPattern="new System.IO.DirectoryInfo(%2d)" nPram="2" />
+   <Migrate id="IFileSystem.DeleteFile" migPattern="System.IO.File.Delete(%2d)\c" nPram="3" />
+   <Migrate id="IFileSystem.DeleteFolder" migPattern="System.IO.Directory.Delete(%2d,%3o)\c" nPram="3" />
+   <Migrate id="IFileSystem.MoveFile" migPattern="System.IO.File.Move(%2d,%3d)\c" nPram="3" />
+   <Migrate id="IFileSystem.CopyFile" migPattern="System.IO.File.Copy(%2d,%3d,%4d)\c" nPram="4" />
+   <Migrate id="IFileSystem.CopyFolder" migPattern="gmRTL.Scripting.FileSysHelper.CopyFolder(%2d,%3d,%4d)\c" nPram="4" />
+   <Migrate id="IFileSystem.CreateFolder" migPattern="System.IO.Directory.CreateDirectory(%2d)" nPram="2" />
+   <Migrate id="IFileSystem.CreateTextFile" migUsercode="scrrun" />
+   <Migrate id="IFileSystem.OpenTextFile" migUsercode="scrrun" />
+   <Migrate id="IDrive.Path" migName="Root.FullName" />
+   <Migrate id="IDrive.DriveLetter" migName="Root.FullName.Substring(0,1)" />
+   <Migrate id="IDrive.ShareName" migName="ShareName()" />
+   <Migrate id="IDrive.DriveType" migName="DriveType()" />
+   <Migrate id="IDrive.RootFolder" migName="Root" />
+   <Migrate id="IDrive.SerialNumber" migStatus="NotImplemented" />
+   <Migrate id="IDrive.IsReady" migName="Exists" />
+   <Migrate id="IDrive.FreeSpace" migName="TotalFreeSpace" />
+   <Migrate id="IFolder.Path" migName="FullName" />
+   <Migrate id="IFolder.ShortPath" migName="ShortPath()" />
+   <Migrate id="IFolder.ShortName" migName="Name" />
+   <Migrate id="IFolder.Drive" migName="Root" />
+   <Migrate id="IFolder.ParentFolder" migName="Parent" />
+   <Migrate id="IFolder.DateCreated" migName="CreationTime" />
+   <Migrate id="IFolder.DateLastModified" migName="LastWriteTime" />
+   <Migrate id="IFolder.DateLastAccessed" migName="LastAccessTime" />
+   <Migrate id="IFolder.Type" migName="Attributes.ToString()" />
+   <Migrate id="IFolder.IsRootFolder" cshPattern="(%1d.Parent == null)" nPram="1" vbnPattern="(%1d.Parent = Nothing)" refType="method" />
+   <Migrate id="IFolder.Size" migStatus="NotImplemented" />
+   <Migrate id="IFolder.SubFolders" migName="GetDirectories()" />
+   <Migrate id="IFolder.Files" migName="GetFiles()" />
+   <Migrate id="IFolder.Delete" migPattern="%1d.Delete(true)\c" nPram="2" />
+   <Migrate id="IFolder.CreateTextFile" migUsercode="scrrun" />
+   <Migrate id="IFolderCollection.Count" migName="Length" />
+   <Migrate id="IFileCollection.Count" migName="Length" />
+   <Migrate id="IFile" migPattern="FileInfo" nPram="0" />
+   <Migrate id="IFile.Path" migName="FullName" />
+   <Migrate id="IFile.ShortName" migName="Name" />
+   <Migrate id="IFile.ParentFolder" migName="Directory" />
+   <Migrate id="IFile.DateCreated" migName="CreationTime" />
+   <Migrate id="IFile.DateLastModified" migName="LastWriteTime" />
+   <Migrate id="IFile.DateLastAccessed" migName="LastAccessTime" />
+   <Migrate id="IFile.Size" cshPattern="%1d.Length" nPram="1" vbnPattern="%1d.Length" refType="method" type="Integer" />
+   <Migrate id="IFile.Type" migName="Attributes.ToString()" />
+   <Migrate id="IFile.Delete" migPattern="%1d.Delete()\c" nPram="2" />
+   <Migrate id="IFile.Copy" migName="CopyTo" />
+   <Migrate id="IFile.Move" migName="MoveTo" />
+   <Migrate id="IFile.OpenAsTextStream" migUsercode="scrrun" />
+   <Migrate id="ITextStream.Line" migPattern="gmRTL.Scripting.FileSysHelper.TextStreamLine(%1d)" nPram="1" refType="method" />
+   <Migrate id="ITextStream.AtEndOfStream" migUsercode="scrrun.read" cshPattern="(%1d.Peek() == -1)" nPram="1" vbnPattern="(%1d.Peek() = -1)" refType="method" />
+   <Migrate id="ITextStream.AtEndOfLine" migUsercode="scrrun.read" cshPattern="(%1d.Peek() == '\\n')" nPram="1" vbnPattern="(%1d.Peek() = Environment.NewLine)" refType="method" />
+   <Migrate id="ITextStream.Read" migUsercode="scrrun.read" migPattern="gmRTL.Scripting.FileSysHelper.ReadN(%1d,%2d)" nPram="2" />
+   <Migrate id="ITextStream.ReadLine" migUsercode="scrrun.read" />
+   <Migrate id="ITextStream.ReadAll" migUsercode="scrrun.read" migName="ReadToEnd" />
+   <Migrate id="ITextStream.Write" migUsercode="scrrun.write" />
+   <Migrate id="ITextStream.WriteLine" migUsercode="scrrun.write" />
+   <Migrate id="ITextStream.WriteBlankLines" cshPattern="for(int _blc=0;_blc&lt; %2d;_blc++)\p%1d.WriteLine()\c\q" nPram="2" />
+   <Migrate id="ITextStream.SkipLine" migName="ReadLine" />
+   <Migrate id="Dictionary" migName="System.Collections.Specialized.OrderedDictionary" Static="On" />
+   <Migrate id="FileSystemObject" migStatus="Static" />
+   <Migrate id="Drive" migName="DirectoryInfo" />
+   <Migrate id="Folder" migName="DirectoryInfo" />
+   <Migrate id="Folders" migName="DirectoryInfo[]" />
+   <Migrate id="File" migName="FileInfo" />
+   <Migrate id="Files" migName="FileInfo[]" />
+   <Migrate id="TextStream" CastType="Off" migName="Stream" />
+   <Migrate id="CompareMethod" migName="VBNET.CompareMethod" Static="On" />
+   <Migrate id="CompareMethod.BinaryCompare" migName="Binary" />
+   <Migrate id="CompareMethod.TextCompare" migName="Text" />
+   <Migrate id="CompareMethod.DatabaseCompare" migName="Database" />
+   <Migrate id="IOMode" migName="FileAccess" />
+   <Migrate id="IOMode.ForReading" migName="Read" />
+   <Migrate id="IOMode.ForWriting" migName="Write" />
+   <Migrate id="IOMode.ForAppending" migName="ReadWrite" />
+   <Migrate id="Tristate" migName="VBNET.TriState" Static="On" />
+   <Migrate id="Tristate.TristateTrue" migName="True" />
+   <Migrate id="Tristate.TristateFalse" migName="False" />
+   <Migrate id="Tristate.TristateUseDefault" migName="UseDefault" />
+   <Migrate id="Tristate.TristateMixed" migName="UseDefault" />
+   <Migrate id="SpecialFolderConst" migName="System.Environment" Static="On" />
+   <Migrate id="SpecialFolderConst.WindowsFolder" migName="GetFolderPath(Environment.SpecialFolder.Windows)" />
+   <Migrate id="SpecialFolderConst.SystemFolder" migName="GetFolderPath(System.Environment.SpecialFolder.System)" />
+   <Migrate id="SpecialFolderConst.TemporaryFolder" migName="System.IO.Path.GetTempPath()" migStatus="external" />
+   <Migrate id="DriveTypeConst" migName="gmRTL.Scripting.Enums.DriveTypeConst" Static="On" />
+
+   <migclass id="DotNet">
+     <method id="ForEachDrive" type="void" nPram="3"
+             cshPattern="foreach(string drvTemp in System.IO.Directory.GetLogicalDrives())\n{\p%3d %1d = new %3d(drvTemp)\c"
+             vbnPattern="Dim drvTemp As String\nFor Each drvTemp in System.IO.Directory.GetLogicalDrives()\pDim %1d As %3d = New %3d(drvTemp)\c">
+         <argument id="Drives" type="variant" status="In"/>
+         <argument id="numb" type="Integer" status="In"/>
+         <argument id="type" type="variant" status="In"/>
+     </method>
+   </migclass>
+   <migClass id="TextReader" netName="System.IO.StreamReader" Creatable="off" parent="TextStream">
+      <method id="OpenAsciiFile" type="TextReader" migPattern="(new System.IO.FileInfo(%2d)).OpenText()">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="IOMode" type="IOMode" status="In" optional="ForReading"/>
+         <argument id="Create" type="Boolean" status="In" optional="false"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+      <method id="OpenAsciiFileFalse" type="TextReader"
+         migPattern="new System.IO.StreamReader(new System.IO.FileStream(%2d,System.IO.FileMode.Open,System.IO.FileAccess.Read,System.IO.FileShare.ReadWrite))">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="IOMode" type="IOMode" status="In" optional="ForReading"/>
+         <argument id="Create" type="Boolean" status="In" optional="false"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+      <method id="FilOpenText" type="TextReader" migPattern="%1d.OpenText()">
+         <argument id="IOMode" type="IOMode" status="In" optional="1"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+   </migClass>
+   <migClass id="TextWriter" netName="System.IO.StreamWriter" Creatable="off" parent="TextStream">
+      <method id="CreateAsciiFile" type="TextWriter" migPattern="(new System.IO.FileInfo(%2d)).CreateText()">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="IOMode" type="IOMode" status="In" optional="ForReading"/>
+         <argument id="Create" type="Boolean" status="In" optional="false"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+      <method id="CreateAsciiFileTrue" type="TextWriter"
+          migPattern="new System.IO.StreamWriter(new System.IO.FileStream(%2d,System.IO.FileMode.Create,System.IO.FileAccess.ReadWrite,System.IO.FileShare.ReadWrite))">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="IOMode" type="IOMode" status="In" optional="ForReading"/>
+         <argument id="Create" type="Boolean" status="In" optional="false"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+      <method id="AppendAsciiFile" type="TextWriter" migPattern="(new System.IO.FileInfo(%2d)).AppendText()">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="IOMode" type="IOMode" status="In" optional="ForReading"/>
+         <argument id="Create" type="Boolean" status="In" optional="false"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+      <method id="CreateAsciiText" type="TextWriter" migPattern="new System.IO.StreamWriter(%2d,!%3d,System.Text.Encoding.ASCII)">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="Overwrite" type="Boolean" status="In" optional="true"/>
+         <argument id="Unicode" type="Boolean" status="In" optional="false"/>
+      </method>
+      <method id="CreateTextUnicode" type="TextWriter" migPattern="new System.IO.StreamWriter(%2d,!%3d,System.Text.Encoding.Unicode)">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="Overwrite" type="Boolean" status="In" optional="true"/>
+         <argument id="Unicode" type="Boolean" status="In" optional="false"/>
+      </method>
+      <method id="FldCreateText" type="TextWriter" migPattern="new System.IO.FileInfo(System.IO.Path.Combine(%1d.FullName,%2d)).CreateText()">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="Overwrite" type="Boolean" status="In" optional="true"/>
+         <argument id="Unicode" type="Boolean" status="In" optional="false"/>
+      </method>
+      <method id="FldAppendText" type="TextWriter" migPattern="new System.IO.FileInfo(System.IO.Path.Combine(%1d.FullName,%2d)).AppendText()">
+         <argument id="filename" type="String" status="In"/>
+         <argument id="Overwrite" type="Boolean" status="In" optional="true"/>
+         <argument id="Unicode" type="Boolean" status="In" optional="false"/>
+      </method>
+      <method id="FilCreateText" type="TextWriter" migPattern="%1d.CreateText()">
+         <argument id="IOMode" type="IOMode" status="In" optional="1"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+      <method id="FilAppendText" type="TextWriter" migPattern="%1d.AppendText()">
+         <argument id="IOMode" type="IOMode" status="In" optional="1"/>
+         <argument id="Format" type="Tristate" status="In" optional="TristateFalse"/>
+      </method>
+   </migClass>
+   <gmSL NameSpace="scrrun" Class="Transform" Source="scrrun.dll.Transform.gmsl" />
+</Refactor>
+</RefactorLibrary>

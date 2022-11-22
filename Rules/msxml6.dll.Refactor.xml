@@ -1,0 +1,145 @@
+<RefactorLibrary>
+<!--
+Description: rules to assist with upgrading MSXML2 to System.Xml
+Note: ErrorStatus=ignore because msxml6 lacks the version neutral coclass names in Win10
+-->
+<Refactor id="[msxml6.dll]" errorStatus="ignore">
+   <Migrate migName="System.Xml" libType="Native" location="DoNotDeclare" AssemblyName="System.Xml" />
+   <Migrate id="IXMLDOMNode" migPattern="XmlNode" nPram="0" />
+   <Migrate id="IXMLDOMNode.nodeName" migName="Name" />
+   <Migrate id="IXMLDOMNode.nodeValue" type="String" migName="Value" />
+   <Migrate id="IXMLDOMNode.nodeType" migName="NodeType" />
+   <Migrate id="IXMLDOMNode.parentNode" migName="ParentNode" />
+   <Migrate id="IXMLDOMNode.childNodes" migName="ChildNodes" />
+   <Migrate id="IXMLDOMNode.firstChild" migName="FirstChild" />
+   <Migrate id="IXMLDOMNode.lastChild" migName="LastChild" />
+   <Migrate id="IXMLDOMNode.nextSibling" migName="Attributes" />
+   <Migrate id="IXMLDOMNode.attributes" migName="Attributes" />
+   <Migrate id="IXMLDOMNode.ownerDocument" migName="OwnerDocument" />
+   <Migrate id="IXMLDOMNode.text" migName="InnerText" />
+   <Migrate id="IXMLDOMNode.nodeTypedValue" type="String" migName="Value" />
+   <Migrate id="IXMLDOMNode.xml" migName="InnerXml" />
+   <Migrate id="IXMLDOMNode.baseName" migName="LocalName" />
+   <Migrate id="IXMLDOMNode.insertBefore" migName="InsertBefore" />
+   <Migrate id="IXMLDOMNode.insertBefore.refChild" type="MSXML2.IXMLDOMNode" />
+   <Migrate id="IXMLDOMNode.removeChild" migName="RemoveChild" />
+   <Migrate id="IXMLDOMNode.appendChild" migName="AppendChild" />
+   <Migrate id="IXMLDOMNode.hasChildNodes" refType="property" migName="HasChildNodes" />
+   <Migrate id="IXMLDOMNode.cloneNode" migName="CloneNode" />
+   <Migrate id="IXMLDOMNode.selectNodes" migName="SelectNodes" />
+   <Migrate id="IXMLDOMNode.selectSingleNode" migName="SelectSingleNode" />
+   <Migrate id="IXMLDOMNodeList" migPattern="XmlNodeList" nPram="0" />
+   <Migrate id="IXMLDOMNodeList.length" migName="Count" />
+   <Migrate id="IXMLDOMNamedNodeMap" migPattern="XmlAttributeCollection" nPram="0" />
+   <Migrate id="IXMLDOMNamedNodeMap.length" migName="Count" />
+   <Migrate id="IXMLDOMNamedNodeMap.getNamedItem" migName="GetNamedItem" />
+   <Migrate id="IXMLDOMNamedNodeMap.setNamedItem" migName="SetNamedItem" />
+   <Migrate id="IXMLDOMNamedNodeMap.removeNamedItem" migName="RemoveNamedItem" />
+   <Migrate id="IXMLDOMDocument.documentElement" migName="DocumentElement" />
+   <Migrate id="IXMLDOMDocument.async" migStatus="Delete" />
+   <Migrate id="IXMLDOMDocument.preserveWhiteSpace" migName="PreserveWhitespace" />
+   <Migrate id="IXMLDOMDocument.createElement" migName="CreateElement" />
+   <Migrate id="IXMLDOMDocument.createTextNode" migName="CreateTextNode" />
+   <Migrate id="IXMLDOMDocument.createComment" migName="CreateComment" />
+   <Migrate id="IXMLDOMDocument.createCDATASection" migName="CreateCDataASection" />
+   <Migrate id="IXMLDOMDocument.createProcessingInstruction" migName="CreateProcessingInstruction" />
+   <Migrate id="IXMLDOMDocument.createAttribute" migName="CreateAttribute" />
+   <Migrate id="IXMLDOMDocument.getElementsByTagName" migName="GetElementsByTagName" />
+   <Migrate id="IXMLDOMDocument.createNode" migName="CreateNode" />
+   <Migrate id="IXMLDOMDocument.load" cshPattern="try{\p%1d.Load(%2d);\q}catch{}\n%1d.HasChildNodes" nPram="2" vbnPattern="%1d.Load(%2d)\n%1d.HasChildNodes" />
+   <Migrate id="IXMLDOMDocument.loadXML" cshPattern="try{%1d.LoadXml(%2d);}catch{}\n%1d.HasChildNodes" nPram="2" vbnPattern="%1d.LoadXml(%2d)\n%1d.HasChildNodes" />
+   <Migrate id="IXMLDOMDocument.save" migName="Save" />
+   <Migrate id="IXMLDOMDocument.save.destination" type="String" />
+   <Migrate id="IXMLDOMElement" migPattern="XmlElement" nPram="0" />
+   <Migrate id="IXMLDOMElement.tagName" migName="Name" />
+   <Migrate id="IXMLDOMElement.getAttribute" migName="GetAttribute" />
+   <Migrate id="IXMLDOMElement.setAttribute" migName="SetAttribute" />
+   <Migrate id="IXMLDOMElement.setAttribute.value" type="String" />
+   <Migrate id="IXMLDOMElement.setAttributeNode" migName="SetAttributeNode" />
+   <Migrate id="IXMLDOMElement.getElementsByTagName" migName="GetElementsByTagName" />
+   <Migrate id="IXMLDOMAttribute" migPattern="XmlAttribute" nPram="0" />
+   <Migrate id="IXMLDOMAttribute.name" migName="Name" />
+   <Migrate id="IXMLDOMAttribute.value" type="String" migName="Value" />
+   <Migrate id="IXMLDOMCDATASection" migPattern="XmlCDataSection" nPram="0" />
+   <Migrate id="IXMLDOMParseError" migPattern="XmlException" nPram="0" />
+   <Migrate id="IXMLDOMParseError.url" migName="SourceUri" />
+   <Migrate id="IXMLDOMParseError.reason" migName="Message" />
+   <Migrate id="IXMLDOMParseError.srcText" migName="Message" />
+   <Migrate id="IXMLDOMParseError.line" migName="LineNumber" />
+   <Migrate id="IXMLDOMParseError.linepos" migName="LinePosition" />
+   <Migrate id="IXMLDOMDocument2.schemas" migName="Schemas" />
+   <Migrate id="IXMLDOMSchemaCollection.add" migName="Add" />
+   <Migrate id="IVBSAXXMLReader.contentHandler" migName="ContentHandler" />
+   <Migrate id="IVBSAXXMLReader.dtdHandler" migName="DtdHandler" />
+   <Migrate id="IVBSAXXMLReader.errorHandler" migName="ErrorHandler" />
+   <Migrate id="IVBSAXXMLReader.putFeature" migName="SetFeature" />
+   <Migrate id="IVBSAXXMLReader.putProperty" cshPattern="%1d.GetProperty(%2d).Value = %3d\c" nPram="3" />
+   <Migrate id="IVBSAXXMLReader.parse" migName="Parse" />
+   <Migrate id="IVBSAXXMLReader.parseURL" migName="Parse" />
+   <Migrate id="IVBSAXContentHandler" migPattern="gmRTL.MSXML.IContentHandler" nPram="0" Static="On" />
+   <Migrate id="IVBSAXContentHandler.documentLocator" type="Variant" migName="DocumentLocator" />
+   <Migrate id="IVBSAXContentHandler.startDocument" migName="StartDocument" />
+   <Migrate id="IVBSAXContentHandler.endDocument" migName="EndDocument" />
+   <Migrate id="IVBSAXContentHandler.startPrefixMapping" migName="StartPrefixMapping" />
+   <Migrate id="IVBSAXContentHandler.startPrefixMapping.strPrefix" status="ByVal" />
+   <Migrate id="IVBSAXContentHandler.startPrefixMapping.strURI" status="ByVal" />
+   <Migrate id="IVBSAXContentHandler.endPrefixMapping" migName="EndPrefixMapping" />
+   <Migrate id="IVBSAXContentHandler.endPrefixMapping.strPrefix" status="ByVal" />
+   <Migrate id="IVBSAXContentHandler.startElement" migName="StartElement" />
+   <Migrate id="IVBSAXContentHandler.startElement.strNamespaceURI" status="ByVal" />
+   <Migrate id="IVBSAXContentHandler.startElement.strLocalName" status="ByVal" />
+   <Migrate id="IVBSAXContentHandler.startElement.strQName" status="ByVal" />
+   <Migrate id="IVBSAXContentHandler.endElement" migName="EndElement" />
+   <Migrate id="IVBSAXContentHandler.endElement.strNamespaceURI" status="ByVal" />
+   <Migrate id="IVBSAXContentHandler.endElement.strLocalName" status="ByVal" />
+   <Migrate id="IVBSAXContentHandler.endElement.strQName" status="ByVal" />
+   <Migrate id="IVBSAXContentHandler.characters" migName="Characters" />
+   <Migrate id="IVBSAXContentHandler.characters.strChars" status="ByVal" />
+   <Migrate id="IVBSAXContentHandler.ignorableWhitespace" migName="IgnorableWhitespace" />
+   <Migrate id="IVBSAXContentHandler.ignorableWhitespace.strChars" status="ByVal" />
+   <Migrate id="IVBSAXContentHandler.processingInstruction" migName="ProcessingInstruction" />
+   <Migrate id="IVBSAXContentHandler.processingInstruction.strTarget" status="ByVal" />
+   <Migrate id="IVBSAXContentHandler.processingInstruction.strData" status="ByVal" />
+   <Migrate id="IVBSAXContentHandler.skippedEntity" migName="SkippedEntity" />
+   <Migrate id="IVBSAXContentHandler.skippedEntity.strName" status="ByVal" />
+   <Migrate id="IVBSAXLocator" migPattern="gmRTL.MSXML.ILocator" nPram="0" Static="On" />
+   <Migrate id="IVBSAXLocator.columnNumber" migName="ColumnNumber" />
+   <Migrate id="IVBSAXLocator.lineNumber" migName="LineNumber" />
+   <Migrate id="IVBSAXAttributes" migPattern="gmRTL.MSXML.IAttributes" nPram="0" Static="On" />
+   <Migrate id="IVBSAXErrorHandler" migPattern="gmRTL.MSXML.IErrorHandler" nPram="0" />
+   <Migrate id="IVBSAXErrorHandler.error" migName="Error" />
+   <Migrate id="IVBSAXErrorHandler.error.strErrorMessage" status="ByVal" />
+   <Migrate id="IVBSAXErrorHandler.fatalError" migName="FatalError" />
+   <Migrate id="IVBSAXErrorHandler.fatalError.strErrorMessage" status="ByVal" />
+   <Migrate id="IVBSAXErrorHandler.ignorableWarning" migName="Warning" />
+   <Migrate id="IVBSAXErrorHandler.ignorableWarning.strErrorMessage" status="ByVal" />
+   <Migrate id="IMXWriter.output" type="String" migName="Output" />
+   <Migrate id="IMXWriter.byteOrderMark" migName="ByteOrderMark" />
+   <Migrate id="IMXWriter.indent" migName="Indent" />
+   <Migrate id="IMXWriter.omitXMLDeclaration" migName="OmitXmlDeclaration" />
+   <Migrate id="IMXWriter.flush" migName="Flush" />
+   <Migrate id="IMXAttributes.setAttribute" migName="SetAttribute" />
+   <Migrate id="XMLDOMDocumentEvents.ondataavailable" netHandler="System.EventHandler" />
+   <Migrate id="XMLDOMDocumentEvents.onreadystatechange" netHandler="System.EventHandler" />
+   <Migrate id="DOMDocument" migName="XmlDocument" />
+   <Migrate id="DOMDocument26" migName="XmlDocument" />
+   <Migrate id="DOMDocument30" migName="XmlDocument" />
+   <Migrate id="DOMDocument40" migName="XmlDocument" />
+   <Migrate id="DOMDocument60" migName="XmlDocument" />
+   <Migrate id="XMLSchemaCache40" migName="Schema.XmlSchemaSet" />
+   <Migrate id="XMLHTTP" migName="System.Net.HttpWebRequest" Static="On" />
+   <Migrate id="XMLHTTP26" migName="System.Net.HttpWebRequest" Static="On" />
+   <Migrate id="XMLHTTP30" migName="System.Net.HttpWebRequest" Static="On" />
+   <Migrate id="XMLHTTP40" migName="System.Net.HttpWebRequest" Static="On" />
+   <Migrate id="XMLHTTP60" migName="System.Net.HttpWebRequest" Static="On" />
+   <Migrate id="SAXXMLReader40" migName="gmRTL.MSXML.SaxXmlParser" Static="On" />
+   <Migrate id="MXXMLWriter40" migName="gmRTL.MSXML.XmlWriter" Static="On" />
+   <Migrate id="SAXAttributes" migName="gmRTL.MSXML.IAttributes" Static="On" />
+   <Migrate id="tagDOMNodeType" migName="XmlNodeType" />
+   <Migrate id="tagDOMNodeType.NODE_ELEMENT" migName="Element" />
+   <Migrate id="tagDOMNodeType.NODE_ATTRIBUTE" migName="Attribute" />
+   <Migrate id="tagDOMNodeType.NODE_TEXT" migName="Text" />
+   <Migrate id="tagDOMNodeType.NODE_CDATA_SECTION" migName="CDATA" />
+   <Migrate id="tagDOMNodeType.NODE_COMMENT" migName="Comment" />
+</Refactor>
+</RefactorLibrary>

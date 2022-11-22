@@ -1,0 +1,1169 @@
+/// <summary>
+/// The ServiceMethod_EditSource method loads the Global include interface. It is called when
+/// when an Asp file is first being loaded. If there is a GlobalImports file loaded, then this
+/// method determines whether the specified asp file is Registered as a GlobalInclude and marks
+/// it accordingly. The UseUserControls for Includes logic is implemented largely in the tool
+/// itself. This method is used to inform the tool that a given include has a GlobalInclude
+/// interface defined.
+/// </summary>
+/// <param name="aspRoot">
+/// The aspRoot parameter specifies the root offset of the load asp file.
+/// </param>
+/// <param name="migNumber">
+/// The migNumber parameter specifies a unique migration number associated with this gmMU. It
+/// is a small value between 1 and 8. The existing implementations of the method do not include
+/// this parameter.
+/// </param>
+
+   static int ServiceMethod_EditSource(int aspRoot, int migNumber)
+   {
+      int        migRuntimeFlag;
+      string     filename;
+      int        oldUnit;
+      int        nameRoot;
+      int        textRoot;
+      int        objRoot;
+      UIntPtr    saveInfo;
+      string     Record;
+      tVbName    vbName;
+      tInfoFile  aspInfo;
+      string     ident;      
+  
+      if(Select.GlobalSettings == null) return 0;
+      if(!Select.UseUserControls) return 0;
+      migRuntimeFlag = mask(migNumber);
+      filename = Store.GetIdent(aspRoot);
+      oldUnit = Store.Unit();
+      Store.Select(StorageUnit.CLIENT);
+      nameRoot = Registry.GetNameRoot("GlobalInclude",filename);
+      if(nameRoot == 0)
+      {
+         Store.Select(oldUnit);
+         return 0;
+      }
+      textRoot = Registry.GetPosting(nameRoot);
+      saveInfo = Script.SaveInfo();
+      Record = Script.UseStream(textRoot,"GlobalInclude");
+      ident = Script.GetAttribute("id",Record);
+      Store.Select(oldUnit);
+      objRoot = Store.ObjectVector(ident,0,ObjectType.Vb_Name);
+      vbName = new tVbName(objRoot,true);
+      vbName.name = aspRoot;
+      vbName.migRuntime = vbName.migRuntime | migRuntimeFlag;
+      aspInfo = new tInfoFile(aspRoot,true);
+      aspInfo.vbName = objRoot;
+      aspInfo.migRuntime = aspInfo.migRuntime | migRuntimeFlag;
+      aspInfo.GLOBALINCLUDE = true;
+      Script.Close();
+      Script.RestoreInfo(saveInfo);
+      return 0;
+   }
+
+/// <summary>
+/// This method sets the type of a component based on the type and status of its IDF
+/// entry. Components in includes are only set once. To ensure this the context flag
+/// is set and checked.
+/// </summary>
+
+   private static void StartPass2_SetType(int objRoot,string typeName,string statusName)
+   {
+      int        newType;
+      int        newContext;
+      int        newStatus;
+      tQuantity  varInfo;
+      bool       fixType;
+
+      varInfo = new tQuantity(objRoot);
+      if(varInfo.FixedType) return;
+      fixType = true;
+      newContext = 0;
+      newStatus = 0;
+      if(typeName == null) newType = BinaryType.Variant;
+      else
+      {
+         newType = Symbol.FullType(typeName, newContext, newStatus);
+         if(newType < 0)
+         {
+            newType = Symbol.FindIdentifier(typeName,0);
+            if(newType <= 0) newType = BinaryType.Variant;
+         }
+      }
+      varInfo = new tQuantity(objRoot,true);
+      varInfo.type = newType;
+      varInfo.reference = 0;
+      varInfo.context = varInfo.context | newContext;
+      if(fixType) varInfo.FixedType = true;
+      varInfo.migStatus =  varInfo.migStatus | newStatus;
+      varInfo.TypeInferred = true;
+      if(newType == BinaryType.Variant) varInfo.ObjectOnly = true;
+      if(statusName != null)
+      {
+         if(Character.Compare(statusName,"ByRef",5) == 0) varInfo.ByRef = true;
+         else if(Character.Compare(statusName,"ByVal",5) == 0) varInfo.ByVal = true;
+      }
+   }
+
+/// <summary>
+/// The StartPass2_AddComponent method adds missing off-page component. Includes can
+/// reference components that are defined no where in the pageslice or are defined
+/// in another include. This method adds missing off-page components to the main
+/// page. All off-page components are added to the page where they are to be
+/// implemented. There are two senarios: the component is nowhere in the page slice
+/// (indicated by a zero objRoot) or the component is defined within an include
+/// (a nonzero objRoot). The identifiers of Include-components are identified with
+/// the prefix "Implement_" and are not entered added to the global namespace.
+/// </summary>
+
+   static int StartPass2_AddComponent(int aspRoot,int objType, string ident,string type,int objRoot)
+   {
+      int        iRoot;
+      string     name;
+      tQuantity  quantity;
+
+      if(objRoot != 0)
+      {
+         quantity = new tQuantity(objRoot, true);
+         quantity.Public = true;
+         name = "Implement_" + ident;
+         ident = name;
+      }
+      if(objType == ObjectType.Variable)
+      {
+         iRoot = Store.ObjectVector(ident,aspRoot,ObjectType.Variable);
+      }
+      else
+      {
+         iRoot = Store.ObjectVector(ident,aspRoot,ObjectType.Subprogram);
+      }
+      StartPass2_SetType(iRoot,type,null);
+      if(objRoot == 0)
+      {
+         Store.AddGlobal(iRoot,aspRoot);
+      }
+      quantity = new tQuantity(iRoot, true);
+      quantity.migTransform = objRoot;
+      quantity.DeadCode = true;
+      return iRoot;
+   }
+
+/// <summary>
+/// Process Arguments of Off-Page Method
+/// </summary>
+
+   private static void StartPass2_ProcessArguments(int objRoot,int addRoot)
+   {
+      string     command;
+      bool       ending;
+      string     ident;
+      int        argAdd;
+      int        argRoot;
+      string     attrId;
+      string     attrType;
+      string     attrStatus;
+      int        nArg;
+      tVariable  argInfo;
+      tVbSub     subInfo;
+
+      nArg = 0;
+      if(objRoot != 0) argRoot = Store.GetFirst(objRoot);
+      else argRoot = 0;
+      while(true)
+      {
+         command = Script.ReadRecord();
+         if(command == null) break;
+         ident = Script.GetTag(command, ending);
+         if(Character.Compare(ident,"method") == 0 && ending) break;
+         if(Character.Compare(ident,"Argument") != 0) continue;
+         nArg = nArg + 1;
+         attrId = Script.GetAttribute("id",command);
+         attrType = Script.GetAttribute("type",command);
+         attrStatus = Script.GetAttribute("status",command);
+         if(addRoot != 0)
+         {
+            argAdd = Store.ObjectVector(attrId,addRoot,ObjectType.Variable);
+            StartPass2_SetType(argAdd,attrType,attrStatus);
+            argInfo = new tVariable(argAdd, true);
+            argInfo.Argument = true;
+         }
+         if(argRoot != 0)
+         {
+            StartPass2_SetType(argRoot,attrType,attrStatus);
+            argRoot = Store.GetNext(argRoot);
+         }
+      }
+      if(addRoot != 0)
+      {
+         subInfo = new tVbSub(addRoot);
+         subInfo.nReq = nArg;
+         subInfo.nArg = nArg;
+      }
+   }
+
+/// <summary>
+/// The VB.NET language requires that implementing components list all of the interface
+/// components that they are implementing. To do this a comma-delimited list of interface
+/// names is stored via the migComment member of the comonent. This method adds the name
+/// of the current interface to the list.
+/// </summary>
+   private static void StartPass2_AddInterfaceName(int objRoot,string incName)
+   {
+      tMigInfo  migInfo;
+      int       nBuffer;
+      string    buffer;
+
+      if(incName == null) return;
+      migInfo = new tMigInfo(objRoot, true);
+      if(migInfo.migComment == null) migInfo.migComment = incName;
+      else
+      {
+         migInfo.migComment = migInfo.migComment + "," + incName;
+      }
+   }
+
+/// <summary>
+/// The ServiceMethod StartPass2 called after the pass1 compiler has defined all global
+/// symbols and loaded all files in the pageslice. This method scans the Registry for
+/// GlobalInclude IDFs for the include files in the pageSlice. Existing global symbols
+/// are fixed to agree with their entries in the IDFs and missing ID symbols are added
+/// to the main page.
+/// </summary>
+
+   static int ServiceMethod_StartPass2(int aspRoot,int migNumber)
+   {
+      int        migRuntimeFlag;
+      tInfoFile  aspInfo;
+      int[]      members = new int[256];
+      int[]      includes = new int[256];
+      int        nMember;
+      int        memb;
+      int        oldUnit;
+      int        incRoot;
+      string     filename;
+      int        nameRoot;
+      int        textRoot;
+      UIntPtr    saveInfo;
+      string     command;
+      string     ident;
+      string     incName;
+      bool       ending;
+      int        objRoot;
+      int        objType;
+      int        hasArguments;
+      int        addRoot;
+      string     id;
+      string     typeName;
+      string     statusName;
+      int        lCol;
+      string     name;
+      string     compName;
+      int        nInclude;
+      int        inc;
+      int        im;
+
+      if(Select.GlobalSettings == null) return 0;
+      if(!Select.UseUserControls) return 0;
+      migRuntimeFlag = mask(migNumber);
+      aspInfo = new tInfoFile(aspRoot);
+      if(aspInfo.interfaces == 0) return 0;
+      Store.GetInfo(aspInfo.interfaces,members);
+      nMember = members[0];
+      for(memb = 1; memb <= nMember; memb = memb+1)
+      {
+         if(members[memb] == aspRoot) break;
+         aspInfo = new tInfoFile(members[memb]);
+         if(aspInfo.interfaces == 0) continue;
+         Store.GetInfo(aspInfo.interfaces,includes);
+         nInclude = includes[0];
+         for(inc = 1; inc <= nInclude; inc = inc + 1)
+         {
+            incRoot = includes[inc];
+            for(im = 1; im <= nMember; im = im + 1)
+            {
+               if(incRoot == members[im]) break;
+            }
+            if(im > nMember)
+            {
+               nMember = nMember + 1;
+               members[nMember] = incRoot;
+            }
+         }
+      }
+      if(nMember == 0) return 0;
+      oldUnit = Store.Unit();
+      for(memb = 1; memb <= nMember; memb = memb + 1)
+      {
+         incRoot = members[memb];
+         filename = Store.GetIdent(incRoot);
+         Store.Select(StorageUnit.CLIENT);
+         nameRoot = Registry.GetNameRoot("GlobalInclude",filename);
+         if(nameRoot == 0)
+         {
+            Store.Select(oldUnit);
+            continue;
+         }
+         textRoot = Registry.GetPosting(nameRoot);
+         saveInfo = Script.SaveInfo();
+         command = Script.UseStream(textRoot,"GlobalInclude");
+         ident = Script.GetAttribute("id",command);
+         Store.Select(oldUnit);
+         aspInfo = new tInfoFile(aspRoot,true);
+         aspInfo.migRuntime = aspInfo.migRuntime | migRuntimeFlag;
+         aspInfo.GLOBALINCLUDE = true;
+         if(ident != null) incName = ident;
+         else incName = null; 
+         while(true)
+         {
+            command = Script.ReadRecord();
+            if(command == null) break;
+            ident = Script.GetTag(command, ending);
+            if(Character.Compare(ident,"interface") == 0 && ending) break;
+            objRoot = 0;
+            objType = 0;
+            hasArguments = 0;
+            addRoot = 0;
+            if(Character.Compare(ident,"Field") == 0 && !ending)
+            {
+               id = Script.GetAttribute("id",command);
+               typeName = Script.GetAttribute("type",command);
+               statusName = Script.GetAttribute("status",command);
+               objType = ObjectType.Variable;
+            }
+            else if(Character.Compare(ident,"Method") == 0 && !ending)
+            { 
+               if(Character.FindFirst(command,0,"/>") > 0) hasArguments = 0;
+               else hasArguments = 1;
+               id = Script.GetAttribute("id",command);
+               typeName = Script.GetAttribute("type",command);
+               statusName = null;
+               objType = ObjectType.Subprogram;
+            }
+            else continue;
+            ident = id;
+            objRoot = Store.FindVector(ident,aspRoot);
+            if(objRoot != 0)
+            {
+               name = Store.GetIdent(objRoot);
+               if(Character.Equals(name,ident) != 0)
+               {
+                  Store.SetName(objRoot,ident);
+               }
+               StartPass2_SetType(objRoot,typeName,null);
+            }
+            else
+            {
+               compName = "Implement_" + ident;
+               objRoot = Store.FindVector(compName,aspRoot);
+               if(objRoot == 0)
+               {
+                  objRoot = Symbol.FindInLibraries(ident);
+                  if(objRoot != 0) StartPass2_SetType(objRoot,typeName,null);
+                  addRoot = StartPass2_AddComponent(aspRoot,objType,id,typeName,objRoot);
+               }
+            }
+            if(objType == ObjectType.Subprogram && hasArguments != 0)
+            {
+               StartPass2_ProcessArguments(objRoot,addRoot);
+            }
+            if(addRoot != 0) objRoot = addRoot;
+            StartPass2_AddInterfaceName(objRoot,incName);
+         }
+         Script.Close();
+         Script.RestoreInfo(saveInfo);
+         Store.Select(oldUnit);
+      }
+      return 0;
+   }
+
+   private static void AuthorInterface_AuthorType(string typeName)
+   {
+      int      type;
+      int      status;
+      int      context;
+      tMigInfo info;
+
+      status = 0;
+      context = 0;
+      if(typeName == null) type = BinaryType.Variant;
+      else
+      {
+         type = Symbol.FullType(typeName,context,status);
+         if(type < 0)
+         {
+            type = Symbol.FindIdentifier(typeName,0);
+            if(type <= 0) type = BinaryType.Variant;
+         }
+      }
+      Symbol.DisplayInfo(type,DisplayType.TARGET_TYPE);
+      info = new tMigInfo(0);
+      info.context = context;
+      info.migStatus = status;
+      if(Select.Dialect == Dialects.vbn)
+      {
+         if(info.D2Array)
+         {
+            if(info.ArrayArray) Write.Text("()()");
+            else Write.Text("(,)");
+         }
+         else if(info.Array) Write.Text("()");
+      }
+      else
+      {
+         if(info.D2Array)
+         {
+            if(info.ArrayArray) Write.Text("[][]");
+            else Write.Text("[,]");
+         }
+         else if(info.Array) Write.Text("[]");
+      }
+   }
+
+/// <summary>]
+/// The method AuthorInterface_FindPath find the path ot a component. All off-page components
+/// referenced in any include within a pageslice are implemented on the main page. When that
+/// component is itself defined in an include the main page implementation must reference it
+/// via instances of the include user controls. This method computes the path from the main
+/// page to the user control defining the component.; At this pont this method only does a
+/// two-level search.
+/// </summary>
+   private static int AuthorInterface_FindPath(int pageRoot,int defRoot,int[] path)
+   {
+      tInfoFile aspInfo;
+      int[]     members = new int[256];
+      int[]     includes = new int[256];
+      int       memb;
+      int       nInclude;
+      int       incl;
+      int       nMember;
+
+      aspInfo = new tInfoFile(pageRoot);
+      if(aspInfo.interfaces == 0) return 0;
+      Store.GetInfo(aspInfo.interfaces,members);
+      nMember = members[0];
+      for(memb = 1; memb <= nMember; memb = memb + 1)
+      {
+         if(defRoot == members[memb])
+         {
+            path[0] = defRoot;
+            return 1;
+         }
+      }
+      for(memb = 1; memb <= nMember; memb = memb + 1)
+      {
+         aspInfo = new tInfoFile(members[memb]);
+         if(aspInfo.interfaces == 0) continue;
+         Store.GetInfo(aspInfo.interfaces,includes);
+         nInclude = includes[0];
+         for(incl = 1; incl <= nInclude; incl = incl + 1)
+         {
+            if(defRoot == includes[incl])
+            {
+               path[0] = members[memb];
+               path[1] = includes[incl];
+               return 2;
+            }
+         }
+      }
+      return 0;
+   }
+
+   private static string AuthorInterface_NameSpace(int scopeRoot,int refRoot)
+   {
+      tInfoFile aspInfo;
+      int        nameSpace;
+      string     ident;
+
+      aspInfo =  new tInfoFile(scopeRoot);
+      nameSpace = aspInfo.libName;
+      if(nameSpace == 0) return null;
+      aspInfo = new tInfoFile(refRoot);
+      if(aspInfo.libName == 0 || aspInfo.libName == nameSpace) return null;
+      ident = Store.GetName(aspInfo.libName);
+      return ident;
+   }
+
+   private static string AuthorInterface_ImplementsName(int objRoot,int pageRoot,string objName)
+   {
+      tMigInfo migInfo;
+      string   implName;
+      string   buffer;
+      string   ident;
+      int      ib;
+      int      lb;
+      int      nIdent;
+      int      refRoot;
+      string   incName;
+      tVbName  vbName;
+
+      implName = null;
+      migInfo = new tMigInfo(objRoot);
+      ident = migInfo.migComment;
+      if(ident == null) return null;
+      buffer = ident;
+      ib = 0;
+      nIdent = 0;
+      while(true)
+      {
+         lb = Character.FindFirst(buffer,ib,",");
+         if(lb == 0) lb = Sizeof(buffer);
+         nIdent = lb - ib;
+         incName = Character.Substr(buffer,ib,nIdent);
+         refRoot = Store.FindVector(incName,0);
+         if(refRoot != 0)
+         {
+            vbName =  new tVbName(refRoot);
+            ident = AuthorInterface_NameSpace(pageRoot,vbName.name);
+            if(ident != null)
+            {
+               if(implName == null) implName = ident + ".";
+               else implName = implName + ident + ".";
+            }
+         }
+         implName = implName + Symbol.UseTemplate("GlobalIntName",incName);
+         if(lb >= Sizeof(buffer)) break;
+         implName = implName + "." + objName;
+         ib = lb + 1;
+         implName = implName + ",";
+      }
+      return implName;
+   }
+
+   private static void AuthorInterface_Field(int objRoot,int aspRoot,string ident, string typeName)
+   {
+      tQuantity quantity;
+      int       refRoot;
+      tVariable varInfo;
+      int       parent;
+      tInfoFile aspInfo;
+      int[]     path = new int[4];
+      int       nPath;
+      string    fieldName;
+      string    name;
+      string    implName;
+      int       iPath;
+
+      if(objRoot == 0)
+      {
+         if(Select.Dialect == Dialects.vbn)
+         {
+            Write.Text("Property ");
+            Write.Text(ident);
+            Write.Text("() As ");
+            AuthorInterface_AuthorType(typeName);
+         }
+         else
+         {
+            AuthorInterface_AuthorType(typeName);
+            Write.Character(" ");
+            Write.Text(ident);
+            Write.Text("{get;set;}");
+         }
+         Write.Record();
+         return;
+      }
+      quantity = new tQuantity(objRoot);
+      if(quantity.migTransform != 0)
+      {
+          refRoot = quantity.migTransform;
+          varInfo = new tVariable(refRoot,true);
+          if(varInfo.DeadCode) varInfo.DeadCode = false;
+      }
+      else refRoot = objRoot;
+      parent = Store.GetParent(refRoot);
+      if(parent != aspRoot)
+      {
+         nPath = AuthorInterface_FindPath(aspRoot,parent,path);
+         fieldName = null;
+         for(iPath = 0; iPath < nPath; iPath = iPath + 1)
+         {
+            aspInfo = new tInfoFile(path[iPath]);
+            if(aspInfo.vbName != 0)
+            {
+               name = Store.GetName(aspInfo.vbName);
+               if(fieldName == null) fieldName = name;
+               else fieldName = fieldName + name;
+               fieldName =  fieldName + "1.";
+            }
+         }
+      }
+      else
+      {
+         fieldName = "local_";
+         if(Select.Dialect == Dialects.vbn)
+         {
+             Write.Text("Public ");
+             Write.Text(fieldName);
+             Write.Text(ident);
+             Write.Text(" As ");
+             AuthorInterface_AuthorType(typeName);
+             Write.Text(" = ");
+             quantity = new tQuantity(objRoot,true);
+             quantity.DeadCode = true;
+             if(quantity.Array || quantity.D2Array) Write.Text("Nothing");
+             else
+             {
+                name = Symbol.InitialValue(quantity.type,quantity.reference);
+                Write.Text(name);
+             }
+         }
+         else
+         {
+             Write.Text("private ");
+             AuthorInterface_AuthorType(typeName);
+             Write.Text(" ");
+             Write.Text(fieldName);
+             Write.Text(ident);
+             Write.Text(" = ");
+             quantity = new tQuantity(objRoot, true);
+             quantity.DeadCode = true;
+             if(quantity.Array || quantity.D2Array) Write.Text("null");
+             else
+             {
+                name = Symbol.InitialValue(quantity.type,quantity.reference);
+                Write.Text(name);
+             }
+             Write.Text(";");
+         }
+         Write.Record();
+      }
+      fieldName = fieldName + ident;
+      if(Select.Dialect == Dialects.vbn)
+      {
+         Write.Text("Public Property ");
+         Write.Text(ident);
+         Write.Text("() As ");
+         AuthorInterface_AuthorType(typeName);
+         implName = AuthorInterface_ImplementsName(objRoot,aspRoot,ident);
+         if(implName != null)
+         {
+            Write.Text(" Implements ");
+            Write.Text(implName);
+            Write.Character(".");
+            Write.Text(ident);
+         }
+         Write.Record();
+
+         Write.ChangeMargin(1);
+         Write.Text("Get");
+         Write.Record();
+         Write.ChangeMargin(1);
+         Write.Text(ident);
+         Write.Text(" = ");
+         Write.Text(fieldName);
+         Write.Record();
+         Write.ChangeMargin(-1);
+         Write.Text("End Get");
+         Write.Record();
+         Write.Text("Set(value As ");
+         AuthorInterface_AuthorType(typeName);
+         Write.Character(")");
+         Write.Record();
+         Write.ChangeMargin(1);
+         Write.Text(fieldName);
+         Write.Text(" = value");
+         Write.Record();
+         Write.ChangeMargin(-1);
+         Write.Text("End Set");
+         Write.Record();
+         Write.ChangeMargin(-1);
+         Write.Text("End Property");
+         Write.Record();
+      }
+      else
+      {
+         Write.Text("public ");
+         AuthorInterface_AuthorType(typeName);
+         Write.Character(" ");
+         Write.Text(ident);
+         Write.Record();
+         Write.Text("{");
+         Write.Record();
+         Write.ChangeMargin(1);
+         Write.Text("set");
+         Write.Record();
+         Write.Text("{");
+         Write.Record();
+         Write.ChangeMargin(1);
+         Write.Text(fieldName);
+         Write.Text(" = value;");
+         Write.Record();
+         Write.ChangeMargin(-1);
+         Write.Text("}");
+         Write.Record();
+         Write.Text("get");
+         Write.Record();
+         Write.Text("{");
+         Write.Record();
+         Write.ChangeMargin(1);
+         Write.Text("return ");
+         Write.Text(fieldName);
+         Write.Character(";");
+         Write.Record();
+         Write.ChangeMargin(-1);
+         Write.Text("}");
+         Write.Record();
+         Write.ChangeMargin(-1);
+         Write.Text("}");
+         Write.Record();
+      }
+   }
+
+   private static void AuthorInterface_Method(int objRoot,int aspRoot,string subName,string typeName,bool hasArguments)
+   {
+      string       implName;
+      bool         isStub;
+      int          parent;
+      tQuantity    quantity;
+      int          refRoot;
+      tMigInfo     migInfo;
+      string       subType;
+      int          nArg;
+      string       command;
+      string       tag;
+      bool         ending;
+      string       ident;
+      string       argType;
+      string       argStatus;
+      string       argRefs;
+      string       name;
+      int[]        path = new int[4];
+      int          nPath;
+      int          iPath;
+      tInfoFile    aspInfo;
+
+      implName = null;
+      isStub = false;
+      parent = 0;
+      if(objRoot != 0)
+      {
+         implName = AuthorInterface_ImplementsName(objRoot,aspRoot,subName);
+         if(implName != null)
+         {
+            quantity = new tQuantity(objRoot);
+            if(quantity.migTransform != 0) refRoot = quantity.migTransform;
+            else refRoot = objRoot;
+            parent = Store.GetParent(refRoot);
+            if(parent == aspRoot)
+            {
+               migInfo =  new tMigInfo(objRoot, true);
+               if(!migInfo.DeadCode)
+               {
+                  migInfo.InInterface = true;
+                  migInfo.migComment = implName;
+                  return;
+               }
+               isStub = true;
+            }
+         }
+      }
+      subType = typeName;
+      if(Select.Dialect == Dialects.vbn)
+      {
+         if(Character.Compare(typeName,"void") == 0) Write.Text("Sub ");
+         else Write.Text("Function ");
+      }
+      else
+      {
+         if(objRoot != 0) Write.Text("public ");
+         if(Character.Compare(typeName,"void") == 0) Write.Text("void");
+         else AuthorInterface_AuthorType(typeName);
+         Write.Character(" ");
+      }
+      Write.Text(subName);
+      if(!hasArguments && objRoot == 0)
+      {
+         Write.Text("()");
+         if(Select.Dialect == Dialects.vbn)
+         {
+            if(Character.Compare(subType,"void") != 0)
+            {
+               Write.Text(" As ");
+               AuthorInterface_AuthorType(subType);
+            }
+         }
+         else Write.Character(";");
+         Write.Record();
+         return;
+      }
+      nArg = 0;
+      argRefs = null;
+      if(hasArguments)
+      {
+         while(true)
+         {
+            command = Script.ReadRecord();
+            if(command == null) break;
+            tag = Script.GetTag(command,ending);
+            if(Character.Compare(tag,"method") == 0 && ending) break;
+            if(Character.Compare(tag,"Argument") != 0) continue;
+            ident = Script.GetAttribute("id",command);
+            argType = Script.GetAttribute("type",command);
+            argStatus = Script.GetAttribute("status",command);
+            if(nArg == 0) Write.Character("(");
+            else Write.Character(",");
+            nArg = nArg + 1;
+            if(objRoot != 0)
+            {
+               if(argRefs != null) argRefs = argRefs + ",";
+            }
+            if(Select.Dialect == Dialects.vbn)
+            {
+               if(Character.Compare(argStatus,"ByRef") == 0)
+               {
+                  Write.Text("ByRef ");
+               }
+               else Write.Text("ByVal ");
+               Write.Text(ident);
+               Write.Text(" As ");
+               AuthorInterface_AuthorType(argType);
+            }
+            else
+            {
+               if(Character.Compare(argStatus,"ByRef") == 0)
+               {
+                  Write.Text("ref ");
+                  if(objRoot != 0)
+                  {
+                     if(argRefs == null) argRefs = "ref ";
+                     else argRefs = argRefs + "ref ";
+                  }
+               }
+               AuthorInterface_AuthorType(argType);
+               Write.Character(" ");
+               Write.Text(ident);
+            }
+            if(objRoot != 0)
+            {
+               if(argRefs == null) argRefs = ident;
+               else argRefs = argRefs + ident;
+            }
+         }
+      }
+      if(nArg == 0) Write.Character("(");
+      Write.Character(")");
+      if(Select.Dialect == Dialects.vbn)
+      {
+         if(Character.Compare(subType,"void") != 0)
+         {
+            Write.Text(" As ");
+            AuthorInterface_AuthorType(subType);
+         }
+      }
+      if(objRoot == 0)
+      {
+         if(Select.Dialect != Dialects.vbn) Write.Text(";");
+         Write.Record();
+         return;
+      }
+      if(Select.Dialect == Dialects.vbn)
+      {
+          Write.Text(" Implements ");
+          Write.Text(implName);
+          Write.Character(".");
+          Write.Text(subName);
+          Write.Record();
+      }
+      else
+      {
+          Write.Record();
+          Write.Text("{");
+          Write.Record();
+      }
+      Write.ChangeMargin(1);
+      if(isStub)
+      {
+         quantity = new tQuantity(objRoot);
+         if(quantity.type != BinaryType.Void)
+         {
+             Write.Text("return ");
+             if(quantity.Array || quantity.D2Array) Write.Text("Nothing");
+             else
+             {
+                 name = Symbol.InitialValue(quantity.type,quantity.reference);
+                 Write.Text(name);
+             }
+         }
+      }
+      else
+      {
+         if(Character.Compare(subType,"void") != 0)
+         {
+             Write.Text("return ");
+         }
+         if(parent != aspRoot)
+         {
+            nPath = AuthorInterface_FindPath(aspRoot,parent,path);
+            for(iPath = 0; iPath < nPath; iPath = iPath + 1)
+            {
+               aspInfo = new tInfoFile(path[iPath]);
+               if(aspInfo.vbName != 0)
+               {
+                  ident = Store.GetName(aspInfo.vbName);
+                  Write.Text(ident);
+                  Write.Text("1.");
+               }
+            }
+         }
+         Write.Text(subName);
+         if(argRefs != null)
+         {
+            Write.Character("(");
+            Write.Text(argRefs);
+            Write.Character(")");
+         }
+         else if (Select.Dialect != Dialects.vbn) Write.Text("()");
+
+      }
+      if (Select.Dialect == Dialects.vbn)
+      {
+          Write.Record();
+          Write.ChangeMargin(-1);
+          if(Character.Compare(typeName,"void") == 0) Write.Text("End Sub");
+          else Write.Text("End Function");
+      }
+      else
+      {
+          Write.Text(";");
+          Write.Record();
+          Write.ChangeMargin(-1);
+          Write.Text("}");
+      }
+      Write.Record();
+   }
+
+/// <summary>
+/// The AuthorClassFile_AuthorInterface authors the interfces for included files. Each include
+/// file that has a GlobalInclude registry entry that describes the missing symbol references
+/// in the include has an interface in the target translation and all references to those
+/// missing symbols are done through the interface. It is this that allows the tool to produce
+/// a single translation for the include even though it is used in many different PageSlices
+/// which implement its missing references in different ways.
+/// </summary>
+
+   private static void AuthorClassFile_AuthorInterface(int aspRoot)
+   {
+      tInfoFile aspInfo;
+      string    filename;
+      int       nameRoot;
+      int       textRoot;
+      int       intRoot;
+      int       migRuntimeFlag;
+      string    ident;
+      string    interfaceName;
+      UIntPtr   saveInfo;
+      string    command;
+      bool      ending;
+      string    idAttr;
+      string    typeAttr;
+      bool      hasArguments;
+
+      aspInfo = new tInfoFile(aspRoot);
+      if(!aspInfo.GLOBALINCLUDE) return;
+      filename = Store.GetIdent(aspRoot);
+      Store.Select(StorageUnit.CLIENT);
+      nameRoot = Registry.GetNameRoot("GlobalInclude",filename);
+      if(nameRoot > 0) textRoot = Registry.GetPosting(nameRoot);
+      else textRoot = 0;
+      Store.Select(StorageUnit.USER);
+      if(textRoot == 0) return;
+      intRoot = aspInfo.vbName;
+      migRuntimeFlag = aspInfo.migRuntime;
+      ident = Store.GetIdent(intRoot);
+      interfaceName = Symbol.UseTemplate("GlobalIntName",ident);
+      if(Select.Dialect == Dialects.vbn)
+      {
+         Write.Text("Public Interface ");
+         Write.Text(interfaceName);
+         Write.Record();
+      }
+      else
+      {
+         Write.Text("public interface ");
+         Write.Text(interfaceName);
+         Write.Record();
+         Write.Character("{");
+         Write.Record();
+      }
+      Write.ChangeMargin(1);
+      Store.Select(StorageUnit.CLIENT);
+      saveInfo = Script.SaveInfo();
+      command = Script.UseStream(textRoot,"GlobalInclude");
+      Store.Select(StorageUnit.USER);
+      while(true)
+      {
+         command = Script.ReadRecord();
+         if(command == null) break;
+         ident = Script.GetTag(command,ending);
+         if(Character.Compare(ident,"interface") == 0 && ending) break;
+         if(Character.Compare(ident,"field") == 0 && !ending)
+         {
+            idAttr = Script.GetAttribute("id",command);
+            typeAttr = Script.GetAttribute("type",command);
+            AuthorInterface_Field(0,0,idAttr,typeAttr);
+            continue;
+         }
+         if(Character.Compare(ident,"Method") == 0 && !ending)
+         {
+            if(Character.FindFirst(command,0,"/>") != 0) hasArguments = false;
+            else hasArguments = true;
+            idAttr = Script.GetAttribute("id",command);
+            typeAttr = Script.GetAttribute("type",command);
+            AuthorInterface_Method(0,0,idAttr,typeAttr,hasArguments);
+         }
+      }
+      Script.Close();
+      Script.RestoreInfo(saveInfo);
+      Store.Select(StorageUnit.USER);
+      Write.ChangeMargin(-1);
+      if(Select.Dialect == Dialects.vbn) Write.Text("End Interface");
+      else Write.Character("}");
+      Write.Record();
+   }
+
+/// <summary>
+/// The method AuthorInterface_NeedImplementation determine if a component needs an
+/// implementation. A given component may well implement references to it in many different
+/// included interfaces, but the implementation is only written once when the first reference
+/// to it is encountered.
+/// </summary>
+
+   private static bool AuthorInterface_NeedImplementation(int objRoot,string incName,int nName)
+   {
+      tMigInfo migInfo;
+      string   strValue;
+      int      nString;
+      int      addr;
+
+      if(objRoot == 0 || nName == 0) return false;
+      migInfo = new tMigInfo(objRoot);
+      addr = migInfo.migComment;
+      if(addr == 0) return false;
+      strValue = Store.GetString(addr);
+      nString = Sizeof(strValue);
+      if(nString < nName) return false;
+      if(Character.Compare(strValue,incName,nName) != 0) return false;
+      if(nName == nString) return true;
+      if(Character.Substr(strValue,nName,1) == ",") return true;
+      return false;
+   }
+
+/// <summary>
+/// The AuthorClassFile_AuthorImplemetation authors the implementation for all includes
+/// </summary>
+
+   private static void AuthorClassFile_AuthorImplementation(int aspRoot)
+   {
+      tInfoFile  aspInfo;
+      int[]      members = new int[256];
+      int        nMember;
+      int        iMember;
+      int        memb;
+      string     filename;
+      int        nameRoot;
+      int        textRoot;
+      string     ident;
+      string     command;
+      UIntPtr    saveInfo;
+      string     incName;
+      int        nName;
+      string     tag;
+      bool       ending;
+      int        objRoot;
+      bool       hasArguments;
+      string     idAttr;
+      string     typeAttr;
+      int        objType;
+      string     compName;
+
+      aspInfo = new tInfoFile(aspRoot);
+      if(aspInfo.references == 0) return;
+      nMember = Store.ReadInfo(members,aspInfo.references)/4;
+      for(memb = 0; memb < nMember; memb = memb + 1)
+      {
+         iMember = members[memb];
+         filename = Store.GetIdent(iMember);
+         Store.Select(StorageUnit.CLIENT);
+         nameRoot = Registry.GetNameRoot("GlobalInclude",filename);
+         if(nameRoot > 0) textRoot = Registry.GetPosting(nameRoot);
+         else textRoot = 0;
+         if(textRoot == 0)
+         {
+            Store.Select(StorageUnit.USER);
+            continue;
+         }
+         saveInfo = Script.SaveInfo();
+         command = Script.UseStream(textRoot,"GlobalInclude");
+         Store.Select(StorageUnit.USER);
+         ident = Script.GetAttribute("id",command);
+         if(ident != null)
+         {
+            incName = ident;
+            nName = Sizeof(incName);
+         }
+         else
+         {
+            incName = null;
+            nName = 0;
+         }
+         while(true)
+         {
+            command = Script.ReadRecord();
+            if(command == null) break;
+            tag = Script.GetTag(command,ending);
+            if(Character.Compare(tag,"interface") == 0 && ending) break;
+            objType = 0;
+            hasArguments = false;
+            if(Character.Compare(tag,"Field") == 0)
+            {
+               idAttr = Script.GetAttribute("id",command);
+               typeAttr = Script.GetAttribute("type",command);
+               objType = ObjectType.Variable;
+            }
+            else if(Character.Compare(tag,"Method") == 0)
+            {
+               if(Character.FindFirst(command,0,"/>") != 0) hasArguments = false;
+               else hasArguments = true;
+               idAttr = Script.GetAttribute("id",command);
+               typeAttr = Script.GetAttribute("type",command);
+               objType = ObjectType.Subprogram;
+            }
+            else continue;
+            ident = idAttr;
+            objRoot = Store.FindVector(ident,aspRoot);
+            if(objRoot == 0)
+            {
+               compName = "Implement_" + ident;
+               objRoot = Store.FindVector(compName,aspRoot);
+            }
+            if(objRoot != 0)
+            {
+               if(AuthorInterface_NeedImplementation(objRoot,incName,nName) == false) continue;
+               if(objType == ObjectType.Variable)
+               {
+                  AuthorInterface_Field(objRoot,aspRoot,idAttr,typeAttr);
+               }
+               else
+               {
+                  AuthorInterface_Method(objRoot,aspRoot,idAttr,typeAttr,hasArguments);
+               }
+            }
+         }
+         Script.Close();
+         Script.RestoreInfo(saveInfo);
+         Store.Select(StorageUnit.USER);
+      }
+   }
+
+   public static int ServiceMethod_AuthorClassFile(int classRoot,int support)
+   {
+      if(support == 0)
+      {
+         AuthorClassFile_AuthorInterface(classRoot);
+         return 1;
+      }
+      if(support == 1)
+      {
+          AuthorClassFile_AuthorImplementation(classRoot);
+          return 1;
+      }
+      return 0;
+   }

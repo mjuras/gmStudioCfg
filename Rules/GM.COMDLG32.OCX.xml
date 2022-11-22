@@ -1,0 +1,200 @@
+<DescriptionFile>
+<!--
+Upgrade MSComDlg to WinForms Dialog Classes using gmRTL.MSComDlg.CommonDialog
+-->
+<library id="COMDLG32.OCX"
+         name="MSComDlg"
+         uuid="F9043C88-F6F2-101A-A3C9-08002B2F49FB"
+         netVersion="1.2"
+         source="COMDLG32.OCX"
+         location="DoNotDeclare"
+         migName="gmRTL.MSComDlg"
+         type="Native"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="ICommonDialog"/>
+   <class id="ICommonDialogEvents"/>
+   <coclass id="CommonDialog"/>
+   <enumeration id="PrinterConstants">
+      <entry id="cdlPDAllPages" value="0"/>
+      <entry id="cdlPDCollate" value="16"/>
+      <entry id="cdlPDDisablePrintToFile" value="0x80000"/>
+      <entry id="cdlPDHidePrintToFile" value="0x100000"/>
+      <entry id="cdlPDNoPageNums" value="8"/>
+      <entry id="cdlPDNoSelection" value="4"/>
+      <entry id="cdlPDNoWarning" value="128"/>
+      <entry id="cdlPDPageNums" value="2"/>
+      <entry id="cdlPDPrintSetup" value="64"/>
+      <entry id="cdlPDPrintToFile" value="32"/>
+      <entry id="cdlPDReturnDC" value="256"/>
+      <entry id="cdlPDReturnDefault" value="1024"/>
+      <entry id="cdlPDReturnIC" value="512"/>
+      <entry id="cdlPDSelection" value="1"/>
+      <entry id="cdlPDHelpButton" value="2048"/>
+      <entry id="cdlPDUseDevModeCopies" value="0x40000"/>
+   </enumeration>
+   <enumeration id="ColorConstants">
+      <entry id="cdlCCRGBInit" value="1"/>
+      <entry id="cdlCCFullOpen" value="2"/>
+      <entry id="cdlCCPreventFullOpen" value="4"/>
+      <entry id="cdlCCHelpButton" value="8"/>
+   </enumeration>
+   <enumeration id="FileOpenConstants">
+      <entry id="cdlOFNReadOnly" value="1"/>
+      <entry id="cdlOFNOverwritePrompt" value="2"/>
+      <entry id="cdlOFNHideReadOnly" value="4"/>
+      <entry id="cdlOFNNoChangeDir" value="8"/>
+      <entry id="cdlOFNHelpButton" value="16"/>
+      <entry id="cdlOFNNoValidate" value="256"/>
+      <entry id="cdlOFNAllowMultiselect" value="512"/>
+      <entry id="cdlOFNExtensionDifferent" value="1024"/>
+      <entry id="cdlOFNPathMustExist" value="2048"/>
+      <entry id="cdlOFNFileMustExist" value="4096"/>
+      <entry id="cdlOFNCreatePrompt" value="8192"/>
+      <entry id="cdlOFNShareAware" value="16384"/>
+      <entry id="cdlOFNNoReadOnlyReturn" value="32768"/>
+      <entry id="cdlOFNNoLongNames" value="0x40000"/>
+      <entry id="cdlOFNExplorer" value="0x80000"/>
+      <entry id="cdlOFNNoDereferenceLinks" value="0x100000"/>
+      <entry id="cdlOFNLongNames" value="0x200000"/>
+   </enumeration>
+   <enumeration id="FontsConstants">
+      <entry id="cdlCFScreenFonts" value="1"/>
+      <entry id="cdlCFPrinterFonts" value="2"/>
+      <entry id="cdlCFBoth" value="3"/>
+      <entry id="cdlCFHelpButton" value="4"/>
+      <entry id="cdlCFEffects" value="256"/>
+      <entry id="cdlCFApply" value="512"/>
+      <entry id="cdlCFANSIOnly" value="1024"/>
+      <entry id="cdlCFNoVectorFonts" value="2048"/>
+      <entry id="cdlCFNoSimulations" value="4096"/>
+      <entry id="cdlCFLimitSize" value="8192"/>
+      <entry id="cdlCFFixedPitchOnly" value="16384"/>
+      <entry id="cdlCFWYSIWYG" value="32768"/>
+      <entry id="cdlCFForceFontExist" value="0x10000"/>
+      <entry id="cdlCFScalableOnly" value="0x20000"/>
+      <entry id="cdlCFTTOnly" value="0x40000"/>
+      <entry id="cdlCFNoFaceSel" value="0x80000"/>
+      <entry id="cdlCFNoStyleSel" value="0x100000"/>
+      <entry id="cdlCFNoSizeSel" value="0x200000"/>
+   </enumeration>
+   <enumeration id="ErrorConstants">
+      <entry id="cdlInvalidPropertyValue" value="380"/>
+      <entry id="cdlGetNotSupported" value="394"/>
+      <entry id="cdlSetNotSupported" value="383"/>
+      <entry id="cdlAlloc" value="32752"/>
+      <entry id="cdlCancel" value="32755"/>
+      <entry id="cdlDialogFailure" value="0xffff8000"/>
+      <entry id="cdlFindResFailure" value="32761"/>
+      <entry id="cdlHelp" value="32751"/>
+      <entry id="cdlInitialization" value="32765"/>
+      <entry id="cdlLoadResFailure" value="32760"/>
+      <entry id="cdlLoadStrFailure" value="32762"/>
+      <entry id="cdlLockResFailure" value="32759"/>
+      <entry id="cdlMemAllocFailure" value="32758"/>
+      <entry id="cdlMemLockFailure" value="32757"/>
+      <entry id="cdlNoFonts" value="24574"/>
+      <entry id="cdlBufferTooSmall" value="20476"/>
+      <entry id="cdlInvalidFileName" value="20477"/>
+      <entry id="cdlSubclassFailure" value="20478"/>
+      <entry id="cdlCreateICFailure" value="28661"/>
+      <entry id="cdlDndmMismatch" value="28662"/>
+      <entry id="cdlGetDevModeFail" value="28666"/>
+      <entry id="cdlInitFailure" value="28665"/>
+      <entry id="cdlLoadDrvFailure" value="28667"/>
+      <entry id="cdlNoDefaultPrn" value="28663"/>
+      <entry id="cdlNoDevices" value="28664"/>
+      <entry id="cdlParseFailure" value="28669"/>
+      <entry id="cdlPrinterCodes" value="28671"/>
+      <entry id="cdlPrinterNotFound" value="28660"/>
+      <entry id="cdlRetDefFailure" value="28668"/>
+      <entry id="cdlSetupFailure" value="28670"/>
+      <entry id="cdlNoTemplate" value="32764"/>
+      <entry id="cdlNoInstance" value="32763"/>
+      <entry id="cdlInvalidSafeModeProcCall" value="680"/>
+   </enumeration>
+   <enumeration id="HelpConstants">
+      <entry id="cdlHelpContext" value="1"/>
+      <entry id="cdlHelpQuit" value="2"/>
+      <entry id="cdlHelpIndex" value="3"/>
+      <entry id="cdlHelpContents" value="3"/>
+      <entry id="cdlHelpHelpOnHelp" value="4"/>
+      <entry id="cdlHelpSetIndex" value="5"/>
+      <entry id="cdlHelpSetContents" value="5"/>
+      <entry id="cdlHelpContextPopup" value="8"/>
+      <entry id="cdlHelpForceFile" value="9"/>
+      <entry id="cdlHelpKey" value="257"/>
+      <entry id="cdlHelpCommandHelp" value="258"/>
+      <entry id="cdlHelpPartialKey" value="261"/>
+   </enumeration>
+   <enumeration id="PrinterOrientationConstants">
+      <entry id="cdlPortrait" value="1"/>
+      <entry id="cdlLandscape" value="2"/>
+   </enumeration>
+   <typedef id="ICommonDialog11" type="ICommonDialog"/>
+   <class id="ICommonDialog" parent="IDispatch" default="_Action">
+      <property id="_Action" type="Short" status="InOut"/>
+      <property id="FileName" type="String" status="InOut"/>
+      <property id="DialogTitle" type="String" status="InOut" />
+      <property id="Filter" type="String" status="InOut"/>
+      <property id="DefaultExt" type="String" status="InOut"/>
+      <property id="InitDir" type="String" status="InOut" migName="InitialDirectory"/>
+      <property id="Color" type="OLE_COLOR" status="InOut"/>
+      <property id="Flags" type="Integer" status="InOut"/>
+      <property id="FontName" type="String" status="InOut"/>
+      <property id="FontBold" type="Boolean" status="InOut"/>
+      <property id="FontItalic" type="Boolean" status="InOut"/>
+      <property id="FontStrikeThru" type="Boolean" status="InOut"/>
+      <property id="FontUnderLine" type="Boolean" status="InOut"/>
+      <property id="FromPage" type="Short" status="InOut"/>
+      <property id="ToPage" type="Short" status="InOut"/>
+      <property id="Min" type="Short" status="InOut"/>
+      <property id="Max" type="Short" status="InOut"/>
+      <property id="Copies" type="Short" status="InOut"/>
+      <property id="CancelError" type="Boolean" status="InOut"/>
+      <property id="HelpFile" type="String" status="InOut"/>
+      <property id="HelpCommand" type="Short" status="InOut"/>
+      <property id="HelpKey" type="String" status="InOut"/>
+      <property id="PrinterDefault" type="Boolean" status="InOut"/>
+      <property id="FilterIndex" type="Short" status="InOut"/>
+      <property id="HelpContext" type="Integer" status="InOut"/>
+      <property id="FontSize" type="Single" status="InOut"/>
+      <property id="Action" type="Short" status="InOut"/>
+      <property id="MaxFileSize" type="Short" status="InOut" migStatus="delete"/>
+      <property id="hDC" type="Integer" status="InOut"/>
+      <property id="FileTitle" type="String" status="InOut"/>
+      <property id="Orientation" type="PrinterOrientationConstants" status="InOut"/>
+      <method id="ShowOpen" type="Void"/>
+      <method id="ShowSave" type="Void"/>
+      <method id="ShowColor" type="Void"/>
+      <method id="ShowFont" type="Void "/>
+      <method id="ShowPrinter" type="Void"/>
+      <method id="ShowHelp" type="Void"/>
+      <method id="AboutBox" type="Void"/>
+   </class>
+   <class id="ICommonDialogEvents" parent="None" creatable="off">
+   </class>
+   <coclass id="CommonDialog" role="define" migPattern="CommonDialog" >
+      <subclass id="ICommonDialog"/>
+      <subclass id="ICommonDialogEvents"/>
+   </coclass>
+   <!--
+   <coclass id="FileSaveDialog" role="define" migPattern="FileSaveDialog" >
+      <subclass id="ICommonDialog"/>
+      <subclass id="ICommonDialogEvents"/>
+   </coclass>
+   <coclass id="FileOpenDialog" role="define" migPattern="FileOpenDialog" >
+      <subclass id="ICommonDialog"/>
+      <subclass id="ICommonDialogEvents"/>
+   </coclass>
+   -->
+</library>
+<Refactor id="[COMDLG32.OCX]">
+   <migClass id="NetControl.CommonDialog" parent="CommonDialog">
+      <!-- no designer initialization needed -->
+   </migClass>
+</Refactor>
+<Refactor id="MSComDlg"  event="cmdlgHandlers" >
+   <gmSL NameSpace="cmdlgHandlers" Class="Transform" Source="GM.COMDLG32.OCX.gmSl" />
+</Refactor>
+</DescriptionFile>

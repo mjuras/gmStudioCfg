@@ -1,0 +1,290 @@
+<DescriptionFile>
+<!--
+Upgrade MSMask Control to WinForms.MaskedTextBox
+Uses a gmsl script to assist with some upgrade features.
+
+Compatibility with Visual Basic 6.0
+MaskedTextBox was designed to retain most of the functionality of the Masked Edit control in Visual Basic 6.0. 
+The following table lists common properties on the Masked Edit control and gives their equivalents on MaskedTextBox.
+
+           MSMask.MaskedBox    WinForm MaskedTextBox
+property	  AllowPrompt         AllowPromptAsInput
+property	  AutoTab             None
+property	  ClipMode            CutCopyMaskFormat
+property	  ClipText            Text (when TextMaskFormat is set to ExcludePromptAndLiterals)
+property	  Format              None
+property	  FormattedText       Text (when TextMaskFormat is set to IncludePromptAndLiterals)
+property	  Mask                Mask
+property	  PromptChar          PromptChar
+property	  PromptInclude       ResetOnPrompt
+event	     ValidationError     MaskInputRejected
+
+-->
+<library id="GM.MSMask32.OCX"
+         name="MSMask"
+         netVersion="1.1"
+         source="MSMask32.OCX"
+         location="DoNotDeclare"
+         migName="System.Windows.Forms"
+         assemblyName="MsMask"
+         type="Native"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IVBDataObject"/>
+   <class id="IVBDataObjectFiles"/>
+   <class id="IMSMask"/>
+   <class id="MaskEdBoxEvents"/>
+   <coclass id="DataObject"/>
+   <coclass id="DataObjectFiles"/>
+   <coclass id="MaskEdBox"/>
+   <enumeration id="OLEDragConstants">
+      <entry id="mskOLEDragManual" value="0"/>
+      <entry id="mskOLEDragAutomatic" value="1"/>
+   </enumeration>
+   <enumeration id="OLEDropConstants">
+      <entry id="mskOLEDropNone" value="0"/>
+      <entry id="mskOLEDropManual" value="1"/>
+      <entry id="mskOLEDropAutomatic" value="2"/>
+   </enumeration>
+   <enumeration id="DragOverConstants">
+      <entry id="mskEnter" value="0"/>
+      <entry id="mskLeave" value="1"/>
+      <entry id="mskOver" value="2"/>
+   </enumeration>
+   <enumeration id="ClipBoardConstants">
+      <entry id="mskCFText" value="1"/>
+      <entry id="mskCFBitmap" value="2"/>
+      <entry id="mskCFMetafile" value="3"/>
+      <entry id="mskCFDIB" value="8"/>
+      <entry id="mskCFPalette" value="9"/>
+      <entry id="mskCFEMetafile" value="14"/>
+      <entry id="mskCFFiles" value="15"/>
+      <entry id="mskCFRTF" value="0xffffbf01"/>
+   </enumeration>
+   <enumeration id="OLEDropEffectConstants">
+      <entry id="mskOLEDropEffectNone" value="0"/>
+      <entry id="mskOLEDropEffectCopy" value="1"/>
+      <entry id="mskOLEDropEffectMove" value="2"/>
+      <entry id="mskOLEDropEffectScroll" value="0x80000000"/>
+   </enumeration>
+   <enumeration id="ErrorConstants">
+      <entry id="mskInvalidPropertyValue" value="380"/>
+      <entry id="mskGetNotSupported" value="394"/>
+      <entry id="mskSetNotSupported" value="383"/>
+      <entry id="mskInvalidProcedureCall" value="5"/>
+      <entry id="mskInvalidObjectUse" value="425"/>
+      <entry id="mskWrongClipboardFormat" value="461"/>
+      <entry id="mskDataObjectLocked" value="672"/>
+      <entry id="mskExpectedAnArgument" value="673"/>
+      <entry id="mskRecursiveOleDrag" value="674"/>
+      <entry id="mskFormatNotByteArray" value="675"/>
+      <entry id="mskDataNotSetForFormat" value="676"/>
+   </enumeration>
+   <enumeration id="BorderStyleConstants">
+      <entry id="mskNone" value="0"/>
+      <entry id="mskFixedSingle" value="1"/>
+   </enumeration>
+   <enumeration id="AppearanceConstants">
+      <entry id="mskFlat" value="0"/>
+      <entry id="mskThreeD" value="1"/>
+   </enumeration>
+   <enumeration id="ClipModeConstants" migName="System.Windows.Forms.MaskFormat" migStatus="external">
+      <entry id="mskIncludeLiterals" value="0" migName="IncludePromptAndLiterals"/>
+      <entry id="mskExcludeLiterals" value="1" migName="ExcludePromptAndLiterals"/>
+   </enumeration>
+   <enumeration id="MousePointerConstants">
+      <entry id="mskDefault" value="0"/>
+      <entry id="mskArrow" value="1"/>
+      <entry id="mskCross" value="2"/>
+      <entry id="mskIBeam" value="3"/>
+      <entry id="mskIcon" value="4"/>
+      <entry id="mskSize" value="5"/>
+      <entry id="mskSizeNESW" value="6"/>
+      <entry id="mskSizeNS" value="7"/>
+      <entry id="mskSizeNWSE" value="8"/>
+      <entry id="mskSizeEW" value="9"/>
+      <entry id="mskUpArrow" value="10"/>
+      <entry id="mskHourglass" value="11"/>
+      <entry id="mskNoDrop" value="12"/>
+      <entry id="mskArrowHourglass" value="13"/>
+      <entry id="mskArrowQuestion" value="14"/>
+      <entry id="mskSizeAll" value="15"/>
+      <entry id="mskCustom" value="99"/>
+   </enumeration>
+   <enumeration id="FormatConstants">
+      <entry id="mskDefaultFormat" value="0"/>
+      <entry id="mskZero" value="1"/>
+      <entry id="mskFloatInteger" value="2"/>
+      <entry id="mskPercent" value="3"/>
+      <entry id="mskExponential" value="4"/>
+      <entry id="mskc" value="5"/>
+      <entry id="mskdddddd" value="6"/>
+      <entry id="mskddmmyy" value="7"/>
+      <entry id="mskddddd" value="8"/>
+      <entry id="mskttttt" value="9"/>
+      <entry id="mskhhmmAMPM" value="10"/>
+      <entry id="mskhhmm" value="11"/>
+   </enumeration>
+   <class id="IVBDataObject" parent="IDispatch">
+      <property id="Files" type="DataObjectFiles" status="Out"/>
+      <method id="Clear" type="Void"/>
+      <method id="GetData" type="Variant">
+         <argument id="sFormat" type="Short" status="ByVal"/>
+      </method>
+      <method id="GetFormat" type="Boolean">
+         <argument id="sFormat" type="Short" status="ByVal"/>
+      </method>
+      <method id="SetData" type="Void">
+         <argument id="vValue" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="vFormat" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="IVBDataObjectFiles" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="String" status="indexer">
+         <argument id="lIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="bstrFilename" type="String" status="ByVal"/>
+         <argument id="vIndex" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="vIndex" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="IMSMask" parent="IDispatch" default="Text">
+      <property id="ClipMode" type="ClipModeConstants" status="InOut" migName="CutCopyMaskFormat"/>
+      <property id="PromptInclude" type="Boolean" status="InOut" migName="ResetOnPrompt"/>
+      <property id="AllowPrompt" type="Boolean" status="InOut" migName="AllowPromptAsInput"/>
+      <property id="AutoTab" type="Boolean" status="InOut" migStatus="NotImplemented" />
+      <property id="MousePointer" type="MousePointerConstants" status="InOut"/>
+      <property id="FontBold" type="Boolean" status="InOut"/>
+      <property id="FontItalic" type="Boolean" status="InOut"/>
+      <property id="FontName" type="String" status="InOut"/>
+      <property id="FontSize" type="Single" status="InOut"/>
+      <property id="FontStrikethru" type="Boolean" status="InOut"/>
+      <property id="FontUnderline" type="Boolean" status="InOut"/>
+      <property id="HideSelection" type="Boolean" status="InOut"/>
+      <property id="MaxLength" type="Short" status="InOut"/>
+      <property id="Format" type="String" status="InOut"/>
+      <property id="Mask" type="String" status="InOut"/>
+      <property id="FormattedText" type="String" status="InOut" migName="GetFormattedText()" />
+      <property id="SelLength" type="Integer" status="InOut" migName="SelectionLength" />
+      <property id="SelStart" type="Integer" status="InOut" migName="SelectionStart" />
+      <property id="SelText" type="String" status="InOut" migName="SelectedText" />
+      <property id="ClipText" type="String" status="InOut" migName="GetClipText()" />
+      <property id="PromptChar" type="Char" status="InOut"/>
+      <property id="defaultText" type="String" status="InOut"/>
+      <property id="Text" type="String" status="InOut" />
+      <property id="MouseIcon" type="FrxPicture" status="GetSetLet"> 
+         <Get npram="1" migPattern="%1d.MouseIcon"/>
+         <Set npram="2" migPattern="%1d.MouseIcon = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_MouseIcon(%1d)\c"/>
+      </property>
+      <property id="Appearance" type="AppearanceConstants" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Font" type="Font" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="hWnd" type="OLE_HANDLE" status="InOut"/>
+      <property id="BorderStyle" type="BorderStyleConstants" status="InOut"/>
+      <property id="OLEDragMode" type="OLEDragConstants" status="InOut"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <method id="AboutBox" type="Void"/>
+      <method id="Refresh" type="Void"/>
+      <method id="OLEDrag" type="Void"/>
+   </class>
+   <class id="MaskEdBoxEvents" parent="None">
+      <event id="Change" netName="TextChanged" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="ValidationError" netName="ValidationError" netHandler="AxMSMask.MaskEdBoxEvents_ValidationErrorEventHandler" netArgs="AxMSMask.MaskEdBoxEvents_ValidationErrorEvent">
+         <argument id="invalidText" type="String" status="Out"/>
+         <argument id="startPosition" type="Short" status="Out"/>
+      </event>
+      <event id="KeyDown" netName="KeyDown" netHandler="KeyEventHandler" netArgs="KeyEventArgs">
+         <argument id="keyCode" type="Integer" status="ByVal"  migPattern="%1d = e.KeyValue"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" role="event" netArgs="System.Windows.Forms.KeyPressEventArgs"
+             netHandler="System.Windows.Forms.KeyPressEventHandler" migPattern="KeyPress" >
+         <argument id="keyAscii" type="Integer" status="ByVal" migPattern="%1d = (int)e.KeyChar" />
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="AxMSMask.MaskEdBoxEvents_KeyUpEventHandler" netArgs="AxMSMask.MaskEdBoxEvents_KeyUpEvent">
+         <argument id="keyCode" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxMSMask.MaskEdBoxEvents_OLEStartDragEventHandler" netArgs="AxMSMask.MaskEdBoxEvents_OLEStartDragEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxMSMask.MaskEdBoxEvents_OLEGiveFeedbackEventHandler" netArgs="AxMSMask.MaskEdBoxEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxMSMask.MaskEdBoxEvents_OLESetDataEventHandler" netArgs="AxMSMask.MaskEdBoxEvents_OLESetDataEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxMSMask.MaskEdBoxEvents_OLECompleteDragEventHandler" netArgs="AxMSMask.MaskEdBoxEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxMSMask.MaskEdBoxEvents_OLEDragOverEventHandler" netArgs="AxMSMask.MaskEdBoxEvents_OLEDragOverEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="state" type="Short" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxMSMask.MaskEdBoxEvents_OLEDragDropEventHandler" netArgs="AxMSMask.MaskEdBoxEvents_OLEDragDropEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+   </class>
+   <coclass id="DataObject" creatable="off">
+      <subclass id="IVBDataObject"/>
+   </coclass>
+   <coclass id="DataObjectFiles" creatable="off">
+      <subclass id="IVBDataObjectFiles"/>
+   </coclass>
+   <coclass id="MaskEdBox" migName="MaskedTextBox" role="control">
+      <subclass id="IMSMask"/>
+      <subclass id="MaskEdBoxEvents"/>
+   </coclass>
+</library>
+<Refactor id="[GM.Msmask32.ocx]" event="msmask32" >
+<migClass id="NetControl.MaskedBox" migName="MaskedTextBox" parent="MaskEdBox">
+    <property id="AllowPromptAsInput" type="boolean" value="IMSMask.AllowPrompt" /> 
+    <property id="BackColor" type="OLE_COLOR" value="IMSMask.BackColor" nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+                default="System.Drawing.SystemColors.Window"
+    />
+    <property id="Enabled" type="boolean" value="IMSMask.Enabled" default="true"/>
+    <property id="ForeColor" type="OLE_COLOR" value="IMSMask.ForeColor" nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+                default="System.Drawing.SystemColors.ControlText" 
+    />   
+    <property id="Location" value="(Left,Top)" nPram="2"  migPattern="new System.Drawing.Point(%1d, %2d)"  />
+    <property id="Mask" type="string" value="IMSMask.Mask" />
+    <property id="MaxLength" type="Integer" value="IMSMask.MaxLength"/>
+    <property id="Name" type="string" value="SYM.name" />
+    <property id="PromptChar" type="String" value="IMSMask.PromptChar" nPram="1" migPattern="%1u"/>  
+    <property id="ResetOnPrompt" type="boolean" value="IMSMask.PromptInclude" /> 
+    <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+    <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+    <property id="TabStop" type="boolean" value="TabStop" default="true" />
+    <property id="Text" type="string" value="IMSMask.Text" />
+    <property id="TextMaskFormat" type="ClipModeConstants" value="IMSMask.ClipMode" default="MaskFormat.IncludePromptAndLiterals"/>
+    
+</migClass>
+
+<gmSL NameSpace="msmask32" Class="Transform" Source="gm.msmasktransform.gmsl" />
+
+</Refactor>
+</DescriptionFile>

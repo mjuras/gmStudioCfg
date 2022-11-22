@@ -1,0 +1,248 @@
+<DescriptionFile>
+<!--
+Upgrade stdole to custom stdole
+-->
+<library id="stdole2.tlb"
+         name="stdole"
+         uuid="00020430-0000-0000-C000-000000000046"
+         netVersion="2.0"
+         source="stdole2.tlb"
+         location="DoNotDeclare"
+         migName="stdole"
+         type="LocalImport"
+   >
+   <class id="IUnknown"/>
+   <class id="IDispatch"/>
+   <class id="IEnumVARIANT"/>
+   <class id="IFont"/>
+   <class id="Font"/>
+   <class id="IPicture"/>
+   <class id="Picture"/>
+   <class id="FontEvents"/>
+   <coclass id="StdPicture"/>
+   <TypeDef id="StdFont" type="Font" />
+   <class id="StdFunctions"/>
+   <enumeration id="OLE_TRISTATE" migStatus="external" migName="gmRTL.Core.Enums.OLE_TRISTATE" >
+      <entry id="Unchecked" value="0"/>
+      <entry id="Checked" value="1"/>
+      <entry id="Gray" value="2"/>
+   </enumeration>
+   <enumeration id="LoadPictureConstants" migStatus="external" migName="gmRTL.Core.Enums.LoadPictureConstants" >
+      <entry id="Default" value="0"/>
+      <entry id="Monochrome" value="1"/>
+      <entry id="VgaColor" value="2"/>
+      <entry id="Color" value="4"/>
+   </enumeration>
+   <structure id="GUID">
+      <member id="Data1" type="Integer"/>
+      <member id="Data2" type="Short"/>
+      <member id="Data3" type="Short"/>
+      <member id="Data4" type="Byte[]"/>
+   </structure>
+   <structure id="DISPPARAMS">
+      <member id="rgvarg" type="Variant"/>
+      <member id="rgdispidNamedArgs" type="Integer"/>
+      <member id="cArgs" type="Integer"/>
+      <member id="cNamedArgs" type="Integer"/>
+   </structure>
+   <structure id="EXCEPINFO">
+      <member id="wCode" type="Short"/>
+      <member id="wReserved" type="Short"/>
+      <member id="bstrSource" type="String"/>
+      <member id="bstrDescription" type="String"/>
+      <member id="bstrHelpFile" type="String"/>
+      <member id="dwHelpContext" type="Integer"/>
+      <member id="pvReserved" type="Void"/>
+      <member id="pfnDeferredFillIn" type="Void"/>
+      <member id="scode" type="Integer"/>
+   </structure>
+   <typedef id="OLE_COLOR" type="Integer"/>
+   <typedef id="OLE_XPOS_PIXELS" type="Integer"/>
+   <typedef id="OLE_YPOS_PIXELS" type="Integer"/>
+   <typedef id="OLE_XSIZE_PIXELS" type="Integer"/>
+   <typedef id="OLE_YSIZE_PIXELS" type="Integer"/>
+   <typedef id="OLE_XPOS_HIMETRIC" type="Integer"/>
+   <typedef id="OLE_YPOS_HIMETRIC" type="Integer"/>
+   <typedef id="OLE_XSIZE_HIMETRIC" type="Integer"/>
+   <typedef id="OLE_YSIZE_HIMETRIC" type="Integer"/>
+   <typedef id="OLE_XPOS_CONTAINER" type="Single"/>
+   <typedef id="OLE_YPOS_CONTAINER" type="Single"/>
+   <typedef id="OLE_XSIZE_CONTAINER" type="Single"/>
+   <typedef id="OLE_YSIZE_CONTAINER" type="Single"/>
+   <typedef id="OLE_HANDLE" type="Integer"/>
+   <typedef id="OLE_OPTEXCLUSIVE" type="Boolean"/>
+   <typedef id="OLE_CANCELBOOL" type="Boolean"/>
+   <typedef id="OLE_ENABLEDEFAULTBOOL" type="Boolean"/>
+   <typedef id="FONTNAME" type="String"/>
+   <typedef id="FONTSIZE" type="Currency"/>
+   <typedef id="FONTBOLD" type="Boolean"/>
+   <typedef id="FONTITALIC" type="Boolean"/>
+   <typedef id="FONTUNDERSCORE" type="Boolean"/>
+   <typedef id="FONTSTRIKETHROUGH" type="Boolean"/>
+   <typedef id="IFontDisp" type="Font"/>
+   <typedef id="IPictureDisp" type="Picture"/>
+   <typedef id="IFontEventsDisp" type="FontEvents"/>
+   <class id="IUnknown" parent="None">
+      <method id="QueryInterface" type="Void">
+         <argument id="riid" type="GUID" status="ByRef"/>
+         <argument id="ppvObj" type="Void" status="Out"/>
+      </method>
+      <method id="AddRef" type="Integer"/>
+      <method id="Release" type="Integer"/>
+   </class>
+   <class id="IDispatch" parent="IUnknown" creatable="off">
+      <method id="GetTypeInfoCount" type="Void">
+         <argument id="pctinfo" type="Integer" status="Out"/>
+      </method>
+      <method id="GetTypeInfo" type="Void">
+         <argument id="itinfo" type="Integer" status="ByVal"/>
+         <argument id="lcid" type="Integer" status="ByVal"/>
+         <argument id="pptinfo" type="Void" status="Out"/>
+      </method>
+      <method id="GetIDsOfNames" type="Void">
+         <argument id="riid" type="GUID" status="ByRef"/>
+         <argument id="rgszNames" type="String" status="ByRef"/>
+         <argument id="cNames" type="Integer" status="ByVal"/>
+         <argument id="lcid" type="Integer" status="ByVal"/>
+         <argument id="rgdispid" type="Integer" status="Out"/>
+      </method>
+      <method id="Invoke" type="Void">
+         <argument id="dispidMember" type="Integer" status="ByVal"/>
+         <argument id="riid" type="GUID" status="ByRef"/>
+         <argument id="lcid" type="Integer" status="ByVal"/>
+         <argument id="wFlags" type="Short" status="ByVal"/>
+         <argument id="pdispparams" type="DISPPARAMS" status="ByRef"/>
+         <argument id="pvarResult" type="Variant" status="Out"/>
+         <argument id="pexcepinfo" type="EXCEPINFO" status="Out"/>
+         <argument id="puArgErr" type="Integer" status="Out"/>
+      </method>
+   </class>
+   <class id="IEnumVARIANT" parent="IUnknown">
+      <method id="Next" type="Void">
+         <argument id="celt" type="Integer" status="ByVal"/>
+         <argument id="rgvar" type="Variant" status="ByRef"/>
+         <argument id="pceltFetched" type="Integer" status="Out"/>
+      </method>
+      <method id="Skip" type="Void">
+         <argument id="celt" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Reset" type="Void"/>
+      <method id="Clone" type="Void">
+         <argument id="ppenum" type="IEnumVARIANT" status="Out"/>
+      </method>
+   </class>
+   <class id="IFont" parent="IUnknown">
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Size" type="Currency" status="InOut"/>
+      <property id="Bold" type="Boolean" status="InOut"/>
+      <property id="Italic" type="Boolean" status="InOut"/>
+      <property id="Underline" type="Boolean" status="InOut"/>
+      <property id="Strikethrough" type="Boolean" status="InOut"/>
+      <property id="Weight" type="Short" status="InOut"/>
+      <property id="Charset" type="Short" status="InOut"/>
+      <property id="hFont" type="OLE_HANDLE" status="Out"/>
+      <method id="Clone" type="Void">
+         <argument id="ppfont" type="StdFont" status="Out"/>
+      </method>
+      <method id="IsEqual" type="Void">
+         <argument id="pfontOther" type="StdFont" status="ByVal"/>
+      </method>
+      <method id="SetRatio" type="Void">
+         <argument id="cyLogical" type="Integer" status="ByVal"/>
+         <argument id="cyHimetric" type="Integer" status="ByVal"/>
+      </method>
+      <method id="AddRefHfont" type="Void">
+         <argument id="hFont" type="OLE_HANDLE" status="ByVal"/>
+      </method>
+      <method id="ReleaseHfont" type="Void">
+         <argument id="hFont" type="OLE_HANDLE" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Font" parent="None" default="Name" creatable="off">
+      <property id="Name" type="String"/>
+      <property id="Size" type="Currency"/>
+      <property id="Bold" type="Boolean"/>
+      <property id="Italic" type="Boolean"/>
+      <property id="Underline" type="Boolean"/>
+      <property id="Strikethrough" type="Boolean"/>
+      <property id="Weight" type="Short"/>
+      <property id="Charset" type="Short"/>
+   </class>
+   <class id="IPicture" parent="IUnknown" migStatus="external" migName="System.Drawing.Image" >
+      <property id="Handle" type="OLE_HANDLE" status="Out"/>
+      <property id="hPal" type="OLE_HANDLE" status="InOut"/>
+      <property id="Type" type="Short" status="Out"/>
+      <property id="Width" type="OLE_XSIZE_HIMETRIC" status="Out"/>
+      <property id="Height" type="OLE_YSIZE_HIMETRIC" status="Out"/>
+      <property id="CurDC" type="Integer" status="Out"/>
+      <property id="KeepOriginalFormat" type="Boolean" status="InOut"/>
+      <property id="Attributes" type="Integer" status="Out"/>
+      <method id="Render" type="Void">
+         <argument id="hdc" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+         <argument id="cx" type="Integer" status="ByVal"/>
+         <argument id="cy" type="Integer" status="ByVal"/>
+         <argument id="xSrc" type="OLE_XPOS_HIMETRIC" status="ByVal"/>
+         <argument id="ySrc" type="OLE_YPOS_HIMETRIC" status="ByVal"/>
+         <argument id="cxSrc" type="OLE_XSIZE_HIMETRIC" status="ByVal"/>
+         <argument id="cySrc" type="OLE_YSIZE_HIMETRIC" status="ByVal"/>
+         <argument id="prcWBounds" type="Void" status="ByRef"/>
+      </method>
+      <method id="SelectPicture" type="Void">
+         <argument id="hdcIn" type="Integer" status="ByVal"/>
+         <argument id="phdcOut" type="Integer" status="Out"/>
+         <argument id="phbmpOut" type="OLE_HANDLE" status="Out"/>
+      </method>
+      <method id="PictureChanged" type="Void"/>
+      <method id="SaveAsFile" type="Void">
+         <argument id="pstm" type="Void" status="ByRef"/>
+         <argument id="fSaveMemCopy" type="Boolean" status="ByVal"/>
+         <argument id="pcbSize" type="Integer" status="Out"/>
+      </method>
+      <method id="SetHdc" type="Void">
+         <argument id="hdc" type="OLE_HANDLE" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Picture" parent="None" default="Handle" creatable="off" migStatus="external">
+      <method id="Handle" nPram="1" type="Integer" migPattern="gmRTL.GUI.ControlHelper.GetHandle(%1d)" migStatus="CallPattern" />
+      <property id="hPal" type="OLE_HANDLE"/>
+      <property id="Type" type="Short"/>
+      <property id="Width" type="OLE_XSIZE_HIMETRIC"/>
+      <property id="Height" type="OLE_YSIZE_HIMETRIC"/>
+      <method id="Render" type="Void">
+         <argument id="hdc" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+         <argument id="cx" type="Integer" status="ByVal"/>
+         <argument id="cy" type="Integer" status="ByVal"/>
+         <argument id="xSrc" type="OLE_XPOS_HIMETRIC" status="ByVal"/>
+         <argument id="ySrc" type="OLE_YPOS_HIMETRIC" status="ByVal"/>
+         <argument id="cxSrc" type="OLE_XSIZE_HIMETRIC" status="ByVal"/>
+         <argument id="cySrc" type="OLE_YSIZE_HIMETRIC" status="ByVal"/>
+         <argument id="prcWBounds" type="Void" status="Out"/>
+      </method>
+   </class>
+   <class id="FontEvents" parent="None">
+      <event id="FontChanged" netName="FontChangedEvent" netHandler="stdole.FontEvents_FontChangedEventHandler">
+         <argument id="propertyName" type="String" status="ByVal"/>
+      </event>
+   </class>
+   <class id="StdFunctions" parent="None" module="on" creatable="off">
+      <method id="LoadPicture" type="IPictureDisp">
+         <argument id="filename" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="widthDesired" type="Integer" status="ByVal" optional="0"/>
+         <argument id="heightDesired" type="Integer" status="ByVal" optional="0"/>
+         <argument id="flags" type="LoadPictureConstants" status="ByVal" optional="Default"/>
+      </method>
+      <method id="SavePicture" type="Void">
+         <argument id="Picture" type="IPictureDisp" status="ByRef"/>
+         <argument id="filename" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <coclass id="StdPicture" migStatus="external" migName="System.Drawing.Image" >
+      <subclass id="Picture"/>
+      <subclass id="IPicture"/>
+   </coclass>
+</library>
+</DescriptionFile>

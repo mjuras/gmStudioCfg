@@ -1,0 +1,49 @@
+<RefactorLibrary>
+<!--
+Description: Map SHDocVw.WebBrowser to WinForms.WebBrowser
+NOTE: shdocvw often is described in ieframe.dll through COM registry data
+-->
+<Refactor id="[ieframe.dll]" >
+
+   <Migrate migName="System.Windows.Forms" libType="Internal" location="DoNotDeclare" AssemblyName="System.Windows.Forms" />
+   <Migrate id="IWebBrowser.Document" type="SHDocVw.HtmlDoc" />
+   <Migrate id="IWebBrowser.LocationName" migName="DocumentTitle" />
+   
+   <Migrate id="IWebBrowser.Navigate" migPattern="%1d.Navigate(%2d,%4o,%5o,%6o)\c" nPram="6" />
+   <Migrate id="IWebBrowser.Navigate.Flags" status="ByVal" Optional="DEF.Overload" />
+   <Migrate id="IWebBrowser.Navigate.TargetFrameName" status="ByVal"  Optional="DEF.Overload" />
+   <Migrate id="IWebBrowser.Navigate.PostData" status="ByVal" type="Byte[]" Optional="DEF.Overload" />
+   <Migrate id="IWebBrowser.Navigate.Headers" status="ByVal" type="String" Optional="DEF.Overload" />
+   
+   <Migrate id="IWebBrowser2.RegisterAsDropTarget" migName="AllowWebBrowserDrop" />
+   <Migrate id="IWebBrowser2.Navigate2" migPattern="%1d.Navigate(%2d)\c" nPram="6" />
+   <Migrate id="IWebBrowser2.Navigate2.URL" status="ByVal" />
+   
+   <Migrate id="IWebBrowser2.AddressBar" migstatus="delete" />
+   <Migrate id="IWebBrowserApp.MenuBar" migstatus="delete" />
+   <Migrate id="IWebBrowserApp.StatusBar" migstatus="delete" />
+   <Migrate id="IWebBrowserApp.ToolBar" migstatus="delete" />
+   
+   <Migrate id="DWebBrowserEvents2.NewWindow2" migName="NewWindow" netHandler="CancelEventHandler" netArgs="CancelEventArgs" />
+   <Migrate id="DWebBrowserEvents2.NewWindow2.ppDisp" status="ByVal" />
+   <Migrate id="DWebBrowserEvents2.NewWindow2.cancel" migPattern="%1d = e.Cancel;" nPram="0" status="ByVal" />
+   <Migrate id="DWebBrowserEvents2.DocumentComplete" migName="DocumentCompleted" />
+   
+
+<migClass id="NetControl.WebBrowser" migName="System.Windows.Forms.WebBrowser" parent="WebBrowser">
+      <property id="Font" value="Font" type="FontInfo" nPram="3"
+                vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+                cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+      />
+      <property id="Location" value="(Left,Top)" nPram="2"  migPattern="new System.Drawing.Point(%1d, %2d)"  />
+      <!--UPGRADE_TODO:   property id="MinimumSize"    
+            added default property: this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+      -->
+      <property id="MinimumSize" default="new System.Drawing.Size(20,20)" />
+      <property id="Name" type="string" value="SYM.name" />
+      <property id="Size" value="(Width,Height)"  nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+      <property id="TabIndex" type="Integer" value="TabIndex" default="0" />       
+   </migClass>   
+   
+</Refactor>
+</RefactorLibrary>

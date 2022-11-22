@@ -1,0 +1,286 @@
+<DescriptionFile>
+<!--
+Upgrade InetCtlsObjects to MigrationSupport.INet.
+-->
+<library id="MSINET.OCX"
+         name="InetCtlsObjects"
+         uuid="48E59290-9880-11CF-9754-00AA00C00908"
+         netVersion="1.0"
+         source="MSINET.OCX"
+         location="%library%\Interop.InetCtlsObjects.dll"
+         axLocation="%library%\AxInterop.InetCtlsObjects.dll"
+         migName="InetCtlsObjects"
+         type="ActiveX"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IInet"/>
+   <class id="DInetEvents"/>
+   <coclass id="Inet"/>
+   <enumeration id="StateConstants">
+      <entry id="icNone" value="0"/>
+      <entry id="icResolvingHost" value="1"/>
+      <entry id="icHostResolved" value="2"/>
+      <entry id="icConnecting" value="3"/>
+      <entry id="icConnected" value="4"/>
+      <entry id="icRequesting" value="5"/>
+      <entry id="icRequestSent" value="6"/>
+      <entry id="icReceivingResponse" value="7"/>
+      <entry id="icResponseReceived" value="8"/>
+      <entry id="icDisconnecting" value="9"/>
+      <entry id="icDisconnected" value="10"/>
+      <entry id="icError" value="11"/>
+      <entry id="icResponseCompleted" value="12"/>
+   </enumeration>
+   <enumeration id="AccessConstants">
+      <entry id="icUseDefault" value="0"/>
+      <entry id="icDirect" value="1"/>
+      <entry id="icNamedProxy" value="2"/>
+   </enumeration>
+   <enumeration id="ProtocolConstants">
+      <entry id="icUnknown" value="0"/>
+      <entry id="icDefault" value="1"/>
+      <entry id="icFTP" value="2"/>
+      <entry id="icGopher" value="3"/>
+      <entry id="icHTTP" value="4"/>
+      <entry id="icHTTPS" value="5"/>
+   </enumeration>
+   <enumeration id="DataTypeConstants">
+      <entry id="icString" value="0"/>
+      <entry id="icByteArray" value="1"/>
+   </enumeration>
+   <enumeration id="ErrorConstants">
+      <entry id="icOutOfMemory" value="7"/>
+      <entry id="icTypeMismatch" value="13"/>
+      <entry id="icInvalidPropertyValue" value="380"/>
+      <entry id="icInetOpenFailed" value="35750"/>
+      <entry id="icUrlOpenFailed" value="35751"/>
+      <entry id="icBadUrl" value="35752"/>
+      <entry id="icProtMismatch" value="35753"/>
+      <entry id="icConnectFailed" value="35754"/>
+      <entry id="icNoRemoteHost" value="35755"/>
+      <entry id="icRequestFailed" value="35756"/>
+      <entry id="icNoExecute" value="35757"/>
+      <entry id="icBlewChunk" value="35758"/>
+      <entry id="icFtpCommandFailed" value="35759"/>
+      <entry id="icUnsupportedType" value="35760"/>
+      <entry id="icTimeout" value="35761"/>
+      <entry id="icUnsupportedCommand" value="35762"/>
+      <entry id="icInvalidOperation" value="35763"/>
+      <entry id="icExecuting" value="35764"/>
+      <entry id="icInvalidForFtp" value="35765"/>
+      <entry id="icOutOfHandles" value="35767"/>
+      <entry id="icInetTimeout" value="35768"/>
+      <entry id="icExtendedError" value="35769"/>
+      <entry id="icIntervalError" value="35770"/>
+      <entry id="icInvalidURL" value="35771"/>
+      <entry id="icUnrecognizedScheme" value="35772"/>
+      <entry id="icNameNotResolved" value="35773"/>
+      <entry id="icProtocolNotFound" value="35774"/>
+      <entry id="icInvalidOption" value="35775"/>
+      <entry id="icBadOptionLength" value="35776"/>
+      <entry id="icOptionNotSettable" value="35777"/>
+      <entry id="icShutDown" value="35778"/>
+      <entry id="icIncorrectUserName" value="35779"/>
+      <entry id="icIncorrectPassword" value="35780"/>
+      <entry id="icLoginFailure" value="35781"/>
+      <entry id="icInetInvalidOperation" value="35782"/>
+      <entry id="icOperationCancelled" value="35783"/>
+      <entry id="icIncorrectHandleType" value="35784"/>
+      <entry id="icIncorrectHandleState" value="35785"/>
+      <entry id="icNotProxyRequest" value="35786"/>
+      <entry id="icRegistryValueNotFound" value="35787"/>
+      <entry id="icBadRegistryParameter" value="35788"/>
+      <entry id="icNoDirectAccess" value="35789"/>
+      <entry id="icNoContext" value="35790"/>
+      <entry id="icNoCallback" value="35791"/>
+      <entry id="icRequestPending" value="35792"/>
+      <entry id="icIncorrectFormat" value="35793"/>
+      <entry id="icItemNotFound" value="35794"/>
+      <entry id="icCannotConnect" value="35795"/>
+      <entry id="icConnectionAborted" value="35796"/>
+      <entry id="icConnectionReset" value="35797"/>
+      <entry id="icForceRetry" value="35798"/>
+      <entry id="icInvalidProxyRequest" value="35799"/>
+      <entry id="icWouldBlock" value="35800"/>
+      <entry id="icHandleExists" value="35802"/>
+      <entry id="icSecCertDateInvalid" value="35803"/>
+      <entry id="icSecCertCnInvalid" value="35804"/>
+      <entry id="icHttpToHttpsOnRedir" value="35805"/>
+      <entry id="icHttpsToHttpOnRedir" value="35806"/>
+      <entry id="icMixedSecurity" value="35807"/>
+      <entry id="icChgPostIsNonSecure" value="35808"/>
+      <entry id="icPostIsNonSecure" value="35809"/>
+      <entry id="icClientAuthCertNeeded" value="35810"/>
+      <entry id="icInvalidCa" value="35811"/>
+      <entry id="icClientAuthNotSetup" value="35812"/>
+      <entry id="icAsyncThreadFailed" value="35813"/>
+      <entry id="icRedirectSchemeChange" value="35814"/>
+      <entry id="icDialogPending" value="35815"/>
+      <entry id="icRetryDialog" value="35816"/>
+      <entry id="icHttpsHttpSubmitRedir" value="35818"/>
+      <entry id="icInsertCdrom" value="35819"/>
+      <entry id="icFtpTransferInProgress" value="35876"/>
+      <entry id="icFtpDropped" value="35877"/>
+      <entry id="icFtpNoPassiveMode" value="35878"/>
+      <entry id="icGopherProtocolError" value="35896"/>
+      <entry id="icGopherNotFile" value="35897"/>
+      <entry id="icGopherDataError" value="35898"/>
+      <entry id="icGopherEndOfData" value="35899"/>
+      <entry id="icGopherInvalidLocator" value="35900"/>
+      <entry id="icGopherIncorrectLocatorType" value="35901"/>
+      <entry id="icGopherNotGopherPlus" value="35902"/>
+      <entry id="icGopherAttributeNotFound" value="35903"/>
+      <entry id="icGopherUnknownLocator" value="35904"/>
+      <entry id="icHttpHeaderNotFound" value="35916"/>
+      <entry id="icHttpDownlevelServer" value="35917"/>
+      <entry id="icHttpInvalidServerResponse" value="35918"/>
+      <entry id="icHttpInvalidHeader" value="35919"/>
+      <entry id="icHttpInvalidQueryRequest" value="35920"/>
+      <entry id="icHttpHeaderAlreadyExists" value="35921"/>
+      <entry id="icHttpRedirectFailed" value="35922"/>
+      <entry id="icHttpCookieNeedsConfirmation" value="35927"/>
+      <entry id="icHttpCookieDeclined" value="35928"/>
+      <entry id="icHttpRedirectNeedsConfirmation" value="35934"/>
+      <entry id="icSecurityChannelError" value="35923"/>
+      <entry id="icUnableToCacheFile" value="35924"/>
+      <entry id="icInternetDisconnected" value="35929"/>
+      <entry id="icServerUnreachable" value="35930"/>
+      <entry id="icProxyServerUnreachable" value="35931"/>
+      <entry id="icBadAutoProxyScript" value="35932"/>
+      <entry id="icUnableToDownloadScript" value="35933"/>
+      <entry id="icSecInvalidCert" value="35935"/>
+      <entry id="icSecCertRevoked" value="35936"/>
+      <entry id="icFailedDueToSecurityCheck" value="35937"/>
+   </enumeration>
+   <class id="IInet" parent="IDispatch" default="_URL">
+      <property id="Protocol" type="ProtocolConstants" status="InOut"/>
+      <property id="RemoteHost" type="String" status="InOut"/>
+      <property id="RemotePort" type="Integer" status="InOut"/>
+      <property id="ResponseInfo" type="String" status="Out"/>
+      <property id="ResponseCode" type="Integer" status="Out"/>
+      <property id="hInternet" type="Integer" status="Out"/>
+      <property id="StillExecuting" type="Boolean" status="Out"/>
+      <property id="URL" type="String" status="InOut"/>
+      <property id="Proxy" type="String" status="InOut"/>
+      <property id="Document" type="String" status="InOut"/>
+      <property id="AccessType" type="AccessConstants" status="InOut"/>
+      <property id="UserName" type="String" status="InOut"/>
+      <property id="Password" type="String" status="InOut"/>
+      <property id="RequestTimeout" type="Integer" status="InOut"/>
+      <property id="_URL" type="String" status="InOut"/>
+      <method id="OpenURL" type="Variant">
+         <argument id="URL" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="DataType" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Execute" type="Void">
+         <argument id="URL" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Operation" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="InputData" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="InputHdrs" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Cancel" type="Void"/>
+      <method id="GetChunk" type="Variant">
+         <argument id="Size" type="Integer" status="ByRef"/>
+         <argument id="DataType" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="GetHeader" type="String">
+         <argument id="HdrName" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="AboutBox" type="Void"/>
+   </class>
+   <class id="DInetEvents" parent="None">
+      <event id="StateChanged" netName="StateChanged" netHandler="AxInetCtlsObjects.DInetEvents_StateChangedEventHandler" netArgs="AxInetCtlsObjects.DInetEvents_StateChangedEvent">
+         <argument id="state" type="Integer" status="ByVal"/>
+      </event>
+   </class>
+   <coclass id="Inet" migStatus="ActiveX" migName="AxInetCtlsObjects.AxInet">
+      <subclass id="IInet"/>
+      <subclass id="DInetEvents"/>
+   </coclass>
+</library>
+
+   <Refactor id="[MSINET.OCX]">
+<!--
+********************************************************** 
+* Library                   
+********************************************************** 
+-->
+      <Migrate migName="gmRTL.InetCtrls"
+         location="DoNotDeclare"
+         libtype="Internal"
+      />
+<!--
+********************************************************** 
+* Classes
+********************************************************** 
+-->
+      <Migrate id="Inet"
+         nPram="0"
+         migPattern="INet"
+      />
+<!--
+********************************************************** 
+* Enums
+********************************************************** 
+-->
+   <Migrate id="AccessConstants"   migname="gmRTL.INetCtls.Enums.AccessConstants" migStatus="external" />
+   <Migrate id="DataTypeConstants" migname="gmRTL.INetCtls.Enums.DataTypeConstants" migStatus="external" />
+   <Migrate id="ProtocolConstants" migname="gmRTL.INetCtls.Enums.ProtocolConstants" migStatus="external" />
+   <Migrate id="StateConstants"    migname="gmRTL.INetCtls.Enums.StateConstants" migStatus="external" />
+<!--
+********************************************************** 
+* Properties and Accessors             
+********************************************************** 
+-->
+<!-- 
+********************************************************** 
+* Methods                 
+********************************************************** 
+-->
+      <!-- remove second param -->
+      <Migrate id="IInet.OpenURL" 
+         type="String" 
+         nPram="3" 
+         migPattern="%1d.OpenUrl(%2d)"
+      />
+
+      <Migrate id="IInet.GetChunk.Size" type="Integer" status="ByVal"/>
+      <Migrate id="IInet.GetChunk.DataType" type="DataTypeConstants" status="ByVal" optional="DEF.Overload" />
+      <Migrate id="IInet.GetChunk" 
+         type="Variant" 
+         nPram="3" 
+         migPattern="%1d.GetChunk(%2d, %3o)"
+      />
+
+      <Migrate id="IInet.Execute.URL" type="String" status="ByVal"/>
+      <Migrate id="IInet.Execute.Operation" type="String" status="ByVal" />
+      <Migrate id="IInet.Execute" 
+         type="Variant" 
+         nPram="5" 
+         migPattern="%1d.Execute(%2d, %3d)"
+      />
+<!-- 
+********************************************************** 
+* EventHandlers           
+********************************************************** 
+-->
+	  <Migrate id="DInetEvents.StateChanged"
+         role="event" 
+         netHandler="gmRTL.INetCtls.INetStateChangedEventHandler" 
+         netArgs="gmRTL.INetCtls.INetStateChangedEventArgs"
+         migPattern="StateChanged"
+      />
+<!--
+********************************************************** 
+* Designer Code 
+********************************************************** 
+--> 
+      <!-- no designer properties needed; make the parent the coClass rather than the control class   -->
+      <migClass id="NetControl.INet" 
+         migName="gmRTL.INetCtls.INet" 
+         parent="Inet"
+      >
+	  </migClass>
+   </Refactor>
+</DescriptionFile>
+

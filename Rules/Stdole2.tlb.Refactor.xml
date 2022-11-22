@@ -1,0 +1,5 @@
+<RefactorLibrary>
+<Refactor id="[stdole2.tlb]" event="stdole2" >
+<gmSL NameSpace="stdole2" Class="ServiceMethods" Source="ServiceMethods.Stdole2.gmsl" />
+</Refactor>
+</RefactorLibrary>

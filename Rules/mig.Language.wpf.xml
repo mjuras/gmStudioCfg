@@ -1,0 +1,141 @@
+<RefactorLibrary>
+<!--
+Description: Assist with upgrading FileSystem List controls to WPF
+Note: Upgrading to WPF translation is now handled using gmslAPI and wpfSubSystem.dll.
+This deprecated gmsl is a historical sample.
+-->
+<Refactor id="[Language.std]" event="stdLanguage" >
+<gmSL NameSpace="stdLanguage" Class="Transform" >
+int DriveListBox(int context,int ctlRoot,int offset)
+{
+
+   int    iCode;
+   int    iProp;
+   int    iValue;
+   string eventName;
+   int    eventRoot;
+   int    ctlType;
+   int    formRoot;
+
+   if(context != EventType.AuthorSubsystem) return 0;
+   for(formRoot = Store.GetParent(ctlRoot); formRoot != 0; formRoot = Store.GetParent(formRoot))
+   {
+      if(Store.GetObjectType(formRoot) == ObjectType.FormFile) break;
+   }
+   if(formRoot == 0) return 0;
+   ctlType = Store.GetObjectType(ctlRoot);
+   iCode = ControlData.LoadCode(ctlRoot);
+   Write.Text("<my:DriveListBox");
+   iProp = ControlData.FindProperty(ctlType,"Left",iCode);
+   if(iProp)
+   {
+      iValue = ControlData.GetValue(iProp);
+      Write.Text(" Canvas.Left=""" + iValue + """");
+   }
+   iProp = ControlData.FindProperty(ctlType,"Top",iCode);
+   if(iProp)
+   {
+      iValue = ControlData.GetValue(iProp);
+      if(iValue >= offset) iValue = iValue - offset;
+      Write.Text(" Canvas.Top=""" + iValue + """");
+   }
+   Write.Text(" Name=""");
+   Write.Text(Store.GetName(ctlRoot));
+   Write.Character("""");
+   iProp = ControlData.FindProperty(ctlType,"Height",iCode);
+   if(iProp)
+   {
+      iValue = ControlData.GetValue(iProp);
+      Write.Text(" Height=""" + iValue + """");
+   }
+   iProp = ControlData.FindProperty(ctlType,"Width",iCode);
+   if(iProp)
+   {
+      iValue = ControlData.GetValue(iProp);
+      Write.Text(" Width=""" + iValue + """");
+   }
+   eventName = Store.GetIdent(ctlRoot) + "_Change";
+   eventRoot = Store.FindVector(eventName,formRoot);
+   if(eventRoot)
+   {
+      Write.Text(" SelectedIndexChanged=""");
+      Write.Text(Store.GetName(eventRoot));
+      Write.Character("""");
+   }
+   iValue = 3;
+   Write.Text(" Margin=""" + iValue + """");
+   Write.Text(" />");
+   Write.Record();
+   Opcode.SetLength(iCode);
+   return 1;
+}
+
+int DirListBox(int context,int ctlRoot,int offset)
+{
+   int    iCode;
+   int    iProp;
+   int    iValue;
+   string eventName;
+   int    eventRoot;
+   int    ctlType;
+   int    formRoot;
+ 
+   if(context != EventType.AuthorSubsystem) return 0;
+   for(formRoot = Store.GetParent(ctlRoot); formRoot != 0; formRoot = Store.GetParent(formRoot))
+   {
+      if(Store.GetObjectType(formRoot) == ObjectType.FormFile) break;
+   }
+   if(formRoot == 0) return 0;
+   ctlType = Store.GetObjectType(ctlRoot);
+   iCode = ControlData.LoadCode(ctlRoot);
+   Write.Text("<my:DirListBox");
+   iProp = ControlData.FindProperty(ctlType,"Left",iCode);
+   if(iProp)
+   {
+      iValue = ControlData.GetValue(iProp);
+      Write.Text(" Canvas.Left=""" + iValue + """");
+   }
+   iProp = ControlData.FindProperty(ctlType,"Top",iCode);
+   if(iProp)
+   {
+      iValue = ControlData.GetValue(iProp);
+      if(iValue >= offset) iValue = iValue - offset;
+      Write.Text(" Canvas.Top=""" + iValue + """");
+   }
+   Write.Text(" Name=""");
+   Write.Text(Store.GetName(ctlRoot));
+   Write.Character("""");
+   iProp = ControlData.FindProperty(ctlType,"Height",iCode);
+   if(iProp)
+   {
+      iValue = ControlData.GetValue(iProp);
+      Write.Text(" Height=""" + iValue + """");
+   }
+   iProp = ControlData.FindProperty(ctlType,"Width",iCode);
+   if(iProp)
+   {
+      iValue = ControlData.GetValue(iProp);
+      Write.Text(" Width=""" + iValue + """");
+   }
+   eventName = Store.GetIdent(ctlRoot) + "_Change";
+   eventRoot = Store.FindVector(eventName,formRoot);
+   if(eventRoot)
+   {
+      Write.Text(" SelectedIndexChanged=""");
+      Write.Text(Store.GetName(eventRoot));
+      Write.Character("""");
+   }
+   iValue = 3;
+   Write.Text(" Margin=""" + iValue + """");
+   Write.Text(" />");
+   Write.Record();
+   Opcode.SetLength(iCode);
+   return 1;
+}
+int FileListBox(int context,int ctlRoot,int offset)
+{
+   return 0;
+}
+</gmsl>
+</Refactor>
+</RefactorLibrary>

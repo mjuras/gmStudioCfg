@@ -1,0 +1,5 @@
+<RefactorLibrary>
+<Refactor id="[MSVBVM60.dll]">
+      <Migrate location="DoNotDeclare" />
+</Refactor>
+</RefactorLibrary>

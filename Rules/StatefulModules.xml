@@ -1,0 +1,80 @@
+<GlobalImports>
+<!--
+This rules file directs the tool in re-authoring BAS modules within DLLs
+to  be thread-safe in ASP.NET.  
+
+It uses an early, somewhat primitive version of gmSL with a VB-like notation.  
+This VB-like notation is no longer supported; gmSL now uses a C-like notation.
+
+More information on gmSL is available in the gmBasic Reference
+at portal.Greatmigrations.com
+-->
+
+
+<gmSL NameSpace="RuntimeDll" Class="StatefulModules" ><![CDATA[
+
+Sub StatefulModules_WebReference
+  #TextStart
+  <Reference Include="System.Web"/>
+  #TextEnd
+End Sub
+
+Sub StatefulModules_KeyDictionary
+   #TextStart
+   Private ReadOnly m_staticKeyDictionary As System.Collections.Generic.Dictionary(Of String, String) = New System.Collections.Generic.Dictionary(Of String, String)
+   #TextEnd
+End Sub
+
+Sub StatefulModules_GetSet(ByVal FieldType As String, ByVal FieldName As String, ByVal DefaultValue As String)
+   #TextStart
+   Public Property (%= FieldName %) As (%= FieldType %)
+       Get
+           Return gmRTL.Stateful.GetStaticPropertyValue(Of (%= FieldType %))(gmRTL.Stateful.GetStaticPropertyKey(m_staticKeyDictionary, "(%= FieldName %)", System.Reflection.MethodBase.GetCurrentMethod()), (%= DefaultValue %))
+       End Get
+       Set(value As (%= FieldType %))
+           gmRTL.Stateful.SetStaticPropertyValue(gmRTL.Stateful.GetStaticPropertyKey(m_staticKeyDictionary, "(%= FieldName %)", System.Reflection.MethodBase.GetCurrentMethod()), value)
+       End Set
+   End Property
+   #TextEnd
+End Sub
+
+Sub StatefulModules_gmRTLStub
+#TextStart
+Public Class Stateful
+   Private Shared dictionaryLock As System.Threading.ReaderWriterLockSlim = New System.Threading.ReaderWriterLockSlim()
+ 
+   Public Shared Function GetStaticPropertyValue(Of T)(key As String, defaultValue As T) As T
+       If System.Web.HttpContext.Current.Items.Contains(key) Then
+           Return CType(System.Web.HttpContext.Current.Items(key), T)
+       Else
+           Return defaultValue
+       End If
+   End Function
+   Public Shared Sub SetStaticPropertyValue(key As String, value As Object)
+       If (System.Web.HttpContext.Current.Items.Contains(key)) Then
+           System.Web.HttpContext.Current.Items(key) = value
+       Else
+           System.Web.HttpContext.Current.Items.Add(key, value)
+       End If
+   End Sub
+   Private Shared Function DeriveKeyFromMethodBase(methodBase As System.Reflection.MethodBase) As String
+       Return String.Format("{0}.{1}", methodBase.DeclaringType.FullName, methodBase.Name.Substring(4))
+   End Function
+   Public Shared Function GetStaticPropertyKey(keyDictionary As System.Collections.Generic.Dictionary(Of String, String), propertyName As String, callingMethod As System.Reflection.MethodBase) As String
+       If keyDictionary.ContainsKey(propertyName) Then
+       Else
+           SyncLock (keyDictionary)
+               If Not keyDictionary.ContainsKey(propertyName) Then
+                   Dim newKey As String = DeriveKeyFromMethodBase(callingMethod)
+                   keyDictionary.Add(propertyName, newKey)
+               End If
+           End SyncLock
+       End If
+
+       Return keyDictionary(propertyName)
+   End Function
+End Class
+#TextEnd
+End Sub
+]]></gmSL>
+</GlobalImports>

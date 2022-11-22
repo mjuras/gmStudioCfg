@@ -1,0 +1,104 @@
+/*
+;/doc/ ****************************************************************************************
+;
+; The method RefactorCode_FindNew is used find the end of a command
+;
+;/doc/ ****************************************************************************************
+*/
+int RefactorCode_FindNew(int iStart, int iEnd)
+{
+   tCodeBlock codptr;
+   int        lastLev0;
+   int        icode;
+   int        addr;
+   int        opcd;
+   int        subcd;
+
+   codptr = Opcode.GetCode();
+   lastLev0 = 0;
+   for(icode = iStart; icode >= 0; icode = Opcode.GetNext(codptr,icode,iEnd))
+   {
+      opcd = Opcode.GetOperation(codptr,icode,subcd);
+      if(opcd == OPC.NEW) return icode;
+   }
+   return 0;
+}
+
+int CheckCode(int position, int check)
+{
+   int _oop;
+   int _osub;
+   tCodeBlock codptr;
+   
+   codptr = Opcode.GetCode();
+   
+   _oop = Opcode.GetOperation(codptr,position,_osub);
+
+   if(_oop != check) return 0;
+   
+   return 1;
+}
+
+int ICommonDialog_Action(int subRoot,int iStart,int iRefer)
+{
+   int         nCode;
+   tCodeBlock  codptr;
+   int         dcode;
+   int	      icode;
+   int         opcd;
+   int         subcd;
+   int         varRoot;
+   int         action;
+   string      method;
+   int         methodRoot;
+   
+   codptr = Opcode.GetCode();
+   nCode = Opcode.GetLength();
+   dcode = RefactorCode_FindNew(iStart, nCode);
+   if (dcode == 0) dcode = nCode;
+   icode = iStart;
+   if (CheckCode(icode, OPC.LIC) == 0) return 0;
+   opcd = Opcode.GetOperation(codptr,icode,action);
+   icode = icode + sizeof(OPC.LIC);
+   
+   // Replace action property assignment with appropriate method call.
+   // Step 1: select operation from interface
+
+   if (action == 1) method = "MSComDlg.ICommonDialog.ShowOpen";
+   else if (action == 2) method = "MSComDlg.ICommonDialog.ShowSave";
+   else if (action == 3) method = "MSComDlg.ICommonDialog.ShowColor";
+   else if (action == 4) method = "MSComDlg.ICommonDialog.ShowFont";
+   else if (action == 5) method = "MSComDlg.ICommonDialog.ShowPrinter";
+   else if (action == 6) method = "MSComDlg.ICommonDialog.ShowHelp";
+   else return 0;
+   methodRoot = Symbol.FindIdentifier(method);
+	
+   // Step 2: replace the action assignment with the method call
+
+   for(icode = iStart; icode >= 0; icode = Opcode.GetNext(codptr,icode,dcode))
+   {
+      opcd = Opcode.GetOperation(codptr,icode,subcd);
+      if(opcd == OPC.STR)
+      {
+         Opcode.SetOperation(codptr,iRefer,OPC.LLP, methodRoot);	
+         Opcode.SetOperation(codptr,icode,OPC.CUP,0);
+         break;
+      }	  
+   }
+   
+   // Step 3: replace the left-hand side and return the updated code
+   
+   nCode = Opcode.DeleteCode(iStart,nCode,5);
+   Opcode.SetLength(nCode);
+   return iRefer;
+}
+
+int hostId(int context,int ctlRoot,int iStart)
+{
+   if(context != EventType.RefactorHost) return 0;
+   if(Select.SubSystem == Dialects.WPF)
+   {
+      Store.SetName(ctlRoot,"gmRTL.WPF");
+   }
+   return 1;
+}

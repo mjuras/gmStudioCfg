@@ -1,0 +1,273 @@
+<DescriptionFile>
+<!--
+Basic Migration of CDONTS to System.Net.Mail
+-->
+<library id="GM.cdonts.dll"
+         name="CDONTS"
+         uuid="0E064ADD-9D99-11D0-ABE5-00AA0064D470"
+         netVersion="1.2"
+         source="cdonts.dll"
+         location="DoNotDeclare"
+         migName="System.Net.Mail"
+         type="Native"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="INewMail"/>
+   <class id="ISession"/>
+   <class id="AddressEntry"/>
+   <class id="Attachment"/>
+   <class id="Attachments"/>
+   <class id="Folder"/>
+   <class id="Messages"/>
+   <class id="Message"/>
+   <class id="Recipient"/>
+   <class id="Recipients"/>
+   <coclass id="NewMail"/>
+   <coclass id="Session"/>
+   <enumeration id="CdoRecipientTypes">
+      <entry id="CdoTo" value="1"/>
+      <entry id="CdoCc" value="2"/>
+      <entry id="CdoBcc" value="3"/>
+   </enumeration>
+   <enumeration id="CdoImportance">
+      <entry id="CdoLow" value="0"/>
+      <entry id="CdoNormal" value="1"/>
+      <entry id="CdoHigh" value="2"/>
+   </enumeration>
+   <enumeration id="CdoAttachmentTypes">
+      <entry id="CdoFileData" value="1"/>
+      <entry id="CdoEmbeddedMessage" value="4"/>
+   </enumeration>
+   <enumeration id="CdoFolderTypes">
+      <entry id="CdoDefaultFolderInbox" value="1"/>
+      <entry id="CdoDefaultFolderOutbox" value="2"/>
+   </enumeration>
+   <enumeration id="CdoMessageFormats">
+      <entry id="CdoMime" value="0"/>
+      <entry id="CdoText" value="1"/>
+   </enumeration>
+   <enumeration id="CdoMailFormats">
+      <entry id="CdoMailFormatMime" value="0"/>
+      <entry id="CdoMailFormatText" value="1"/>
+   </enumeration>
+   <enumeration id="CdoBodyFormats">
+      <entry id="CdoBodyFormatHTML" value="0"/>
+      <entry id="CdoBodyFormatText" value="1"/>
+   </enumeration>
+   <enumeration id="CdoEncodingMethod">
+      <entry id="CdoEncodingUUencode" value="0"/>
+      <entry id="CdoEncodingBase64" value="1"/>
+   </enumeration>
+   <enumeration id="CdoObjectClass">
+      <entry id="CdoSession" value="0"/>
+      <entry id="CdoFolder" value="2"/>
+      <entry id="CdoMsg" value="3"/>
+      <entry id="CdoRecipient" value="4"/>
+      <entry id="CdoAttachment" value="5"/>
+      <entry id="CdoAddressEntry" value="8"/>
+      <entry id="CdoMessages" value="16"/>
+      <entry id="CdoRecipients" value="17"/>
+      <entry id="CdoAttachments" value="18"/>
+      <entry id="CdoClassTotal" value="29"/>
+   </enumeration>
+   <class id="INewMail" parent="IDispatch" default="Value" creatable="off">
+      <property id="To" type="String" status="In"/>
+      <property id="Cc" type="String" status="In"/>
+      <property id="Bcc" type="String" status="In"/>
+      <property id="Body" type="Variant" status="In"/>
+      <property id="Importance" type="Integer" status="In"/>
+      <property id="BodyFormat" type="Integer" status="In"/>
+      <property id="MailFormat" type="Integer" status="In"/>
+      <property id="Subject" type="String" status="In"/>
+      <property id="From" type="String" status="In"/>
+      <property id="ContentLocation" type="String" status="In"/>
+      <property id="ContentBase" type="String" status="In"/>
+      <property id="Version" type="String" status="Out"/>
+      <method id="Value" type="Void">
+         <argument id="bstrHeader" type="String" status="ByVal"/>
+      </method>
+      <method id="Send" type="Void" nPram="6" migPattern="%1d.Send(%2d, %3d, %4d, %5d)\c">
+         <argument id="From" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="To" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Subject" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Body" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Importance" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="AttachFile" type="Void">
+         <argument id="Source" type="Variant" status="ByVal"/>
+         <argument id="FileName" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="EncodingMethod" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="AttachURL" type="Void">
+         <argument id="Source" type="Variant" status="ByVal"/>
+         <argument id="ContentLocation" type="Variant" status="ByVal"/>
+         <argument id="ContentBase" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="EncodingMethod" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="SetLocaleIDs" type="Void">
+         <argument id="CodePageID" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ISession" parent="IDispatch" default="Name" creatable="off">
+      <property id="Application" type="Variant" status="Out"/>
+      <property id="Parent" type="Variant" status="Out"/>
+      <property id="Session" migName="Session_Property" type="Variant" status="Out"/>
+      <property id="Class" type="Integer" status="Out"/>
+      <property id="Version" type="String" status="Out"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="Inbox" type="Variant" status="Out"/>
+      <property id="Outbox" type="Variant" status="Out"/>
+      <property id="MessageFormat" type="Integer" status="InOut"/>
+      <method id="LogonSMTP" type="Void">
+         <argument id="DisplayName" type="Variant" status="ByVal"/>
+         <argument id="Address" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Logoff" type="Void"/>
+      <method id="GetDefaultFolder" type="Variant">
+         <argument id="Type" type="Variant" status="ByVal"/>
+      </method>
+      <method id="GetMessage" type="Variant">
+         <argument id="MessageID" type="Variant" status="ByVal"/>
+         <argument id="StoreID" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="SetLocaleIDs" type="Void">
+         <argument id="CodePageID" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetReserved" type="Void">
+         <argument id="var1" type="Variant" status="ByVal"/>
+         <argument id="var2" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="AddressEntry" parent="IDispatch" default="Name" creatable="off">
+      <property id="Application" type="Variant" status="Out"/>
+      <property id="Parent" type="Variant" status="Out"/>
+      <property id="Session" type="Variant" status="Out"/>
+      <property id="Class" type="Integer" status="Out"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="Address" type="String" status="Out"/>
+      <property id="Type" type="String" status="Out"/>
+   </class>
+   <class id="Attachment" parent="IDispatch" default="Name" creatable="off">
+      <property id="Application" type="Variant" status="Out"/>
+      <property id="Parent" type="Variant" status="Out"/>
+      <property id="Session" type="Variant" status="Out"/>
+      <property id="Class" type="Integer" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Type" type="Integer" status="InOut"/>
+      <property id="Source" type="Variant" status="InOut"/>
+      <property id="ContentLocation" type="Variant" status="Out"/>
+      <property id="ContentBase" type="Variant" status="Out"/>
+      <property id="ContentID" type="Variant" status="Out"/>
+      <method id="Delete" type="Void"/>
+      <method id="ReadFromFile" type="Void">
+         <argument id="FileName" type="String" status="ByVal"/>
+      </method>
+      <method id="WriteToFile" type="Void">
+         <argument id="FileName" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Attachments" parent="IDispatch" default="Item" creatable="off">
+      <property id="Application" type="Variant" status="Out"/>
+      <property id="Parent" type="Variant" status="Out"/>
+      <property id="Session" type="Variant" status="Out"/>
+      <property id="Class" type="Integer" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <accessor id="Item" type="Variant">
+         <argument id="var" type="Variant" status="ByRef"/>
+      </accessor>
+      <method id="Add" type="Variant">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Source" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="ContentLocation" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="ContentBase" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Delete" type="Void"/>
+   </class>
+   <class id="Folder" parent="IDispatch" default="Messages" creatable="off">
+      <property id="Application" type="Variant" status="Out"/>
+      <property id="Parent" type="Variant" status="Out"/>
+      <property id="Session" type="Variant" status="Out"/>
+      <property id="Class" type="Integer" status="Out"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="Messages" type="Variant" status="Out"/>
+   </class>
+   <class id="Messages" parent="IDispatch" default="Item" creatable="off">
+      <property id="Application" type="Variant" status="Out"/>
+      <property id="Parent" type="Variant" status="Out"/>
+      <property id="Session" type="Variant" status="Out"/>
+      <property id="Class" type="Integer" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <accessor id="Item" type="Variant">
+         <argument id="var" type="Variant" status="ByRef"/>
+      </accessor>
+      <method id="Add" type="Variant">
+         <argument id="Subject" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Text" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Importance" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Delete" type="Void"/>
+      <method id="GetFirst" type="Variant"/>
+      <method id="GetNext" type="Variant"/>
+      <method id="GetLast" type="Variant"/>
+      <method id="GetPrevious" type="Variant"/>
+   </class>
+   <class id="Message" parent="IDispatch" default="Subject" creatable="off">
+      <property id="Application" type="Variant" status="Out"/>
+      <property id="Parent" type="Variant" status="Out"/>
+      <property id="Session" type="Variant" status="Out"/>
+      <property id="Class" type="Integer" status="Out"/>
+      <property id="Size" type="Integer" status="Out"/>
+      <property id="Importance" type="Integer" status="InOut"/>
+      <property id="Subject" type="String" status="InOut"/>
+      <property id="Sender" type="Variant" status="Out"/>
+      <property id="TimeSent" type="Variant" status="InOut"/>
+      <property id="TimeReceived" type="Variant" status="InOut"/>
+      <property id="Text" type="Variant" status="InOut"/>
+      <property id="HTMLText" type="Variant" status="InOut"/>
+      <property id="Recipients" type="Variant" status="InOut"/>
+      <property id="Attachments" type="Variant" status="Out"/>
+      <property id="MessageFormat" type="Integer" status="In"/>
+      <property id="ContentLocation" type="Variant" status="InOut"/>
+      <property id="ContentBase" type="Variant" status="InOut"/>
+      <property id="ContentID" type="Variant" status="InOut"/>
+      <method id="Delete" type="Void"/>
+      <method id="Send" type="Void"/>
+   </class>
+   <class id="Recipient" parent="IDispatch" default="Name" creatable="off">
+      <property id="Application" type="Variant" status="Out"/>
+      <property id="Parent" type="Variant" status="Out"/>
+      <property id="Session" type="Variant" status="Out"/>
+      <property id="Class" type="Integer" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Type" type="Integer" status="InOut"/>
+      <property id="Address" type="String" status="InOut"/>
+      <method id="Delete" type="Void"/>
+   </class>
+   <class id="Recipients" parent="IDispatch" default="Item" creatable="off">
+      <property id="Application" type="Variant" status="Out"/>
+      <property id="Parent" type="Variant" status="Out"/>
+      <property id="Session" type="Variant" status="Out"/>
+      <property id="Class" type="Integer" status="Out"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="_NewEnum" type="Object" status="Out"/>
+      <accessor id="Item" type="Variant">
+         <argument id="var" type="Variant" status="ByRef"/>
+      </accessor>
+      <method id="Add" type="Variant">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Address" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Delete" type="Void"/>
+   </class>
+   <coclass id="NewMail" migName="SmtpClient">
+      <subclass id="INewMail"/>
+   </coclass>
+   <coclass id="Session">
+      <subclass id="ISession"/>
+   </coclass>
+</library>
+</DescriptionFile>

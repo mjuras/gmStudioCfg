@@ -1,0 +1,1788 @@
+<DescriptionFile>
+<!--
+Upgrade MSXML2 DOM to System.XML.
+Upgrade MSXML2 SAX to gmRTL.MSXML.
+-->
+<library id="msxml6.dll"
+         name="MSXML2"
+         uuid="F5078F18-C551-11D3-89B9-0000F81FE221"
+         netVersion="6.0"
+         source="msxml6.dll"
+         location="DoNotDeclare"
+         migName="System.Xml"
+         type="Native"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IXMLDOMImplementation"/>
+   <class id="IXMLDOMNode"/>
+   <class id="IXMLDOMNodeList"/>
+   <class id="IXMLDOMNamedNodeMap"/>
+   <class id="IXMLDOMDocument"/>
+   <class id="IXMLDOMDocumentType"/>
+   <class id="IXMLDOMElement"/>
+   <class id="IXMLDOMAttribute"/>
+   <class id="IXMLDOMDocumentFragment"/>
+   <class id="IXMLDOMText"/>
+   <class id="IXMLDOMCharacterData"/>
+   <class id="IXMLDOMComment"/>
+   <class id="IXMLDOMCDATASection"/>
+   <class id="IXMLDOMProcessingInstruction"/>
+   <class id="IXMLDOMEntityReference"/>
+   <class id="IXMLDOMParseError"/>
+   <class id="IXMLDOMDocument2"/>
+   <class id="IXMLDOMSchemaCollection"/>
+   <class id="IXMLDOMDocument3"/>
+   <class id="IXMLDOMNotation"/>
+   <class id="IXMLDOMEntity"/>
+   <class id="IXMLDOMParseError2"/>
+   <class id="IXMLDOMParseErrorCollection"/>
+   <class id="IXTLRuntime"/>
+   <class id="IXSLTemplate"/>
+   <class id="IXSLProcessor"/>
+   <class id="ISAXXMLReader"/>
+   <class id="ISAXEntityResolver"/>
+   <class id="ISAXContentHandler"/>
+   <class id="ISAXLocator"/>
+   <class id="ISAXAttributes"/>
+   <class id="ISAXDTDHandler"/>
+   <class id="ISAXErrorHandler"/>
+   <class id="ISAXXMLFilter"/>
+   <class id="ISAXLexicalHandler"/>
+   <class id="ISAXDeclHandler"/>
+   <class id="IVBSAXXMLReader"/>
+   <class id="IVBSAXEntityResolver"/>
+   <class id="IVBSAXContentHandler" migStatus="external" migName="gmRTL.MSXML.IContentHandler"/>
+   <class id="IVBSAXLocator"/>
+   <class id="IVBSAXAttributes"/>
+   <class id="IVBSAXDTDHandler"/>
+   <class id="IVBSAXErrorHandler"/>
+   <class id="IVBSAXXMLFilter"/>
+   <class id="IVBSAXLexicalHandler"/>
+   <class id="IVBSAXDeclHandler"/>
+   <class id="IMXWriter"/>
+   <class id="IMXAttributes"/>
+   <class id="IMXReaderControl"/>
+   <class id="IMXSchemaDeclHandler"/>
+   <class id="ISchemaElement"/>
+   <class id="ISchemaParticle"/>
+   <class id="ISchemaItem"/>
+   <class id="ISchema"/>
+   <class id="ISchemaItemCollection"/>
+   <class id="ISchemaStringCollection"/>
+   <class id="ISchemaType"/>
+   <class id="ISchemaComplexType"/>
+   <class id="ISchemaAny"/>
+   <class id="ISchemaModelGroup"/>
+   <class id="IMXXMLFilter"/>
+   <class id="IXMLDOMSchemaCollection2"/>
+   <class id="ISchemaAttribute"/>
+   <class id="ISchemaAttributeGroup"/>
+   <class id="ISchemaIdentityConstraint"/>
+   <class id="ISchemaNotation"/>
+   <class id="IXMLDOMSelection"/>
+   <class id="XMLDOMDocumentEvents"/>
+   <class id="IDSOControl"/>
+   <class id="IXMLHTTPRequest"/>
+   <class id="IServerXMLHTTPRequest"/>
+   <class id="IServerXMLHTTPRequest2"/>
+   <class id="IMXNamespacePrefixes"/>
+   <class id="IVBMXNamespaceManager"/>
+   <class id="IMXNamespaceManager"/>
+   <coclass id="DOMDocument"/>
+   <coclass id="DOMDocument26"/>
+   <coclass id="DOMDocument30"/>
+   <coclass id="DOMDocument40"/>
+   <coclass id="DOMDocument60"/>
+   <coclass id="FreeThreadedDOMDocument"/>
+   <coclass id="FreeThreadedDOMDocument26"/>
+   <coclass id="FreeThreadedDOMDocument30"/>
+   <coclass id="FreeThreadedDOMDocument40"/>
+   <coclass id="FreeThreadedDOMDocument60"/>
+   <coclass id="XMLSchemaCache"/>
+   <coclass id="XMLSchemaCache26"/>
+   <coclass id="XMLSchemaCache30"/>
+   <coclass id="XMLSchemaCache40"/>
+   <coclass id="XMLSchemaCache60"/>
+   <coclass id="XSLTemplate"/>
+   <coclass id="XSLTemplate26"/>
+   <coclass id="XSLTemplate30"/>
+   <coclass id="XSLTemplate40"/>
+   <coclass id="XSLTemplate60"/>
+   <coclass id="DSOControl"/>
+   <coclass id="DSOControl26"/>
+   <coclass id="DSOControl30"/>
+   <coclass id="DSOControl40"/>
+   <coclass id="XMLHTTP"/>
+   <coclass id="XMLHTTP26"/>
+   <coclass id="XMLHTTP30"/>
+   <coclass id="XMLHTTP40"/>
+   <coclass id="XMLHTTP60"/>
+   <coclass id="ServerXMLHTTP"/>
+   <coclass id="ServerXMLHTTP30"/>
+   <coclass id="ServerXMLHTTP40"/>
+   <coclass id="ServerXMLHTTP60"/>
+   <coclass id="SAXXMLReader"/>
+   <coclass id="SAXXMLReader30"/>
+   <coclass id="SAXXMLReader40"/>
+   <coclass id="SAXXMLReader60"/>
+   <coclass id="MXXMLWriter"/>
+   <coclass id="MXXMLWriter30"/>
+   <coclass id="MXXMLWriter40"/>
+   <coclass id="MXXMLWriter60"/>
+   <coclass id="MXHTMLWriter"/>
+   <coclass id="MXHTMLWriter30"/>
+   <coclass id="MXHTMLWriter40"/>
+   <coclass id="MXHTMLWriter60"/>
+   <coclass id="SAXAttributes"/>
+   <coclass id="SAXAttributes30"/>
+   <coclass id="SAXAttributes40"/>
+   <coclass id="SAXAttributes60"/>
+   <coclass id="MXNamespaceManager"/>
+   <coclass id="MXNamespaceManager40"/>
+   <coclass id="MXNamespaceManager60"/>
+   <enumeration id="tagDOMNodeType" migName="XmlNodeType">
+      <entry id="NODE_INVALID" value="0"/>
+      <entry id="NODE_ELEMENT" value="1" migName="Element"/>
+      <entry id="NODE_ATTRIBUTE" value="2" migName="Attribute"/>
+      <entry id="NODE_TEXT" value="3" migName="Text"/>
+      <entry id="NODE_CDATA_SECTION" value="4" migName="CDATA"/>
+      <entry id="NODE_ENTITY_REFERENCE" value="5"/>
+      <entry id="NODE_ENTITY" value="6"/>
+      <entry id="NODE_PROCESSING_INSTRUCTION" value="7"/>
+      <entry id="NODE_COMMENT" value="8" migName="Comment"/>
+      <entry id="NODE_DOCUMENT" value="9"/>
+      <entry id="NODE_DOCUMENT_TYPE" value="10"/>
+      <entry id="NODE_DOCUMENT_FRAGMENT" value="11"/>
+      <entry id="NODE_NOTATION" value="12"/>
+   </enumeration>
+   <enumeration id="_SOMITEMTYPE">
+      <entry id="SOMITEM_SCHEMA" value="4096"/>
+      <entry id="SOMITEM_ATTRIBUTE" value="4097"/>
+      <entry id="SOMITEM_ATTRIBUTEGROUP" value="4098"/>
+      <entry id="SOMITEM_NOTATION" value="4099"/>
+      <entry id="SOMITEM_ANNOTATION" value="4100"/>
+      <entry id="SOMITEM_IDENTITYCONSTRAINT" value="4352"/>
+      <entry id="SOMITEM_KEY" value="4353"/>
+      <entry id="SOMITEM_KEYREF" value="4354"/>
+      <entry id="SOMITEM_UNIQUE" value="4355"/>
+      <entry id="SOMITEM_ANYTYPE" value="8192"/>
+      <entry id="SOMITEM_DATATYPE" value="8448"/>
+      <entry id="SOMITEM_DATATYPE_ANYTYPE" value="8449"/>
+      <entry id="SOMITEM_DATATYPE_ANYURI" value="8450"/>
+      <entry id="SOMITEM_DATATYPE_BASE64BINARY" value="8451"/>
+      <entry id="SOMITEM_DATATYPE_BOOLEAN" value="8452"/>
+      <entry id="SOMITEM_DATATYPE_BYTE" value="8453"/>
+      <entry id="SOMITEM_DATATYPE_DATE" value="8454"/>
+      <entry id="SOMITEM_DATATYPE_DATETIME" value="8455"/>
+      <entry id="SOMITEM_DATATYPE_DAY" value="8456"/>
+      <entry id="SOMITEM_DATATYPE_DECIMAL" value="8457"/>
+      <entry id="SOMITEM_DATATYPE_DOUBLE" value="8458"/>
+      <entry id="SOMITEM_DATATYPE_DURATION" value="8459"/>
+      <entry id="SOMITEM_DATATYPE_ENTITIES" value="8460"/>
+      <entry id="SOMITEM_DATATYPE_ENTITY" value="8461"/>
+      <entry id="SOMITEM_DATATYPE_FLOAT" value="8462"/>
+      <entry id="SOMITEM_DATATYPE_HEXBINARY" value="8463"/>
+      <entry id="SOMITEM_DATATYPE_ID" value="8464"/>
+      <entry id="SOMITEM_DATATYPE_IDREF" value="8465"/>
+      <entry id="SOMITEM_DATATYPE_IDREFS" value="8466"/>
+      <entry id="SOMITEM_DATATYPE_INT" value="8467"/>
+      <entry id="SOMITEM_DATATYPE_INTEGER" value="8468"/>
+      <entry id="SOMITEM_DATATYPE_LANGUAGE" value="8469"/>
+      <entry id="SOMITEM_DATATYPE_LONG" value="8470"/>
+      <entry id="SOMITEM_DATATYPE_MONTH" value="8471"/>
+      <entry id="SOMITEM_DATATYPE_MONTHDAY" value="8472"/>
+      <entry id="SOMITEM_DATATYPE_NAME" value="8473"/>
+      <entry id="SOMITEM_DATATYPE_NCNAME" value="8474"/>
+      <entry id="SOMITEM_DATATYPE_NEGATIVEINTEGER" value="8475"/>
+      <entry id="SOMITEM_DATATYPE_NMTOKEN" value="8476"/>
+      <entry id="SOMITEM_DATATYPE_NMTOKENS" value="8477"/>
+      <entry id="SOMITEM_DATATYPE_NONNEGATIVEINTEGER" value="8478"/>
+      <entry id="SOMITEM_DATATYPE_NONPOSITIVEINTEGER" value="8479"/>
+      <entry id="SOMITEM_DATATYPE_NORMALIZEDSTRING" value="8480"/>
+      <entry id="SOMITEM_DATATYPE_NOTATION" value="8481"/>
+      <entry id="SOMITEM_DATATYPE_POSITIVEINTEGER" value="8482"/>
+      <entry id="SOMITEM_DATATYPE_QNAME" value="8483"/>
+      <entry id="SOMITEM_DATATYPE_SHORT" value="8484"/>
+      <entry id="SOMITEM_DATATYPE_STRING" value="8485"/>
+      <entry id="SOMITEM_DATATYPE_TIME" value="8486"/>
+      <entry id="SOMITEM_DATATYPE_TOKEN" value="8487"/>
+      <entry id="SOMITEM_DATATYPE_UNSIGNEDBYTE" value="8488"/>
+      <entry id="SOMITEM_DATATYPE_UNSIGNEDINT" value="8489"/>
+      <entry id="SOMITEM_DATATYPE_UNSIGNEDLONG" value="8490"/>
+      <entry id="SOMITEM_DATATYPE_UNSIGNEDSHORT" value="8491"/>
+      <entry id="SOMITEM_DATATYPE_YEAR" value="8492"/>
+      <entry id="SOMITEM_DATATYPE_YEARMONTH" value="8493"/>
+      <entry id="SOMITEM_DATATYPE_ANYSIMPLETYPE" value="8703"/>
+      <entry id="SOMITEM_SIMPLETYPE" value="8704"/>
+      <entry id="SOMITEM_COMPLEXTYPE" value="9216"/>
+      <entry id="SOMITEM_PARTICLE" value="16384"/>
+      <entry id="SOMITEM_ANY" value="16385"/>
+      <entry id="SOMITEM_ANYATTRIBUTE" value="16386"/>
+      <entry id="SOMITEM_ELEMENT" value="16387"/>
+      <entry id="SOMITEM_GROUP" value="16640"/>
+      <entry id="SOMITEM_ALL" value="16641"/>
+      <entry id="SOMITEM_CHOICE" value="16642"/>
+      <entry id="SOMITEM_SEQUENCE" value="16643"/>
+      <entry id="SOMITEM_EMPTYPARTICLE" value="16644"/>
+      <entry id="SOMITEM_NULL" value="2048"/>
+      <entry id="SOMITEM_NULL_TYPE" value="10240"/>
+      <entry id="SOMITEM_NULL_ANY" value="18433"/>
+      <entry id="SOMITEM_NULL_ANYATTRIBUTE" value="18434"/>
+      <entry id="SOMITEM_NULL_ELEMENT" value="18435"/>
+   </enumeration>
+   <enumeration id="_SCHEMADERIVATIONMETHOD">
+      <entry id="SCHEMADERIVATIONMETHOD_EMPTY" value="0"/>
+      <entry id="SCHEMADERIVATIONMETHOD_SUBSTITUTION" value="1"/>
+      <entry id="SCHEMADERIVATIONMETHOD_EXTENSION" value="2"/>
+      <entry id="SCHEMADERIVATIONMETHOD_RESTRICTION" value="4"/>
+      <entry id="SCHEMADERIVATIONMETHOD_LIST" value="8"/>
+      <entry id="SCHEMADERIVATIONMETHOD_UNION" value="16"/>
+      <entry id="SCHEMADERIVATIONMETHOD_ALL" value="255"/>
+      <entry id="SCHEMADERIVATIONMETHOD_NONE" value="256"/>
+   </enumeration>
+   <enumeration id="_SCHEMATYPEVARIETY">
+      <entry id="SCHEMATYPEVARIETY_NONE" value="0xffffffff"/>
+      <entry id="SCHEMATYPEVARIETY_ATOMIC" value="0"/>
+      <entry id="SCHEMATYPEVARIETY_LIST" value="1"/>
+      <entry id="SCHEMATYPEVARIETY_UNION" value="2"/>
+   </enumeration>
+   <enumeration id="_SCHEMAWHITESPACE">
+      <entry id="SCHEMAWHITESPACE_NONE" value="0xffffffff"/>
+      <entry id="SCHEMAWHITESPACE_PRESERVE" value="0"/>
+      <entry id="SCHEMAWHITESPACE_REPLACE" value="1"/>
+      <entry id="SCHEMAWHITESPACE_COLLAPSE" value="2"/>
+   </enumeration>
+   <enumeration id="_SCHEMAPROCESSCONTENTS">
+      <entry id="SCHEMAPROCESSCONTENTS_NONE" value="0"/>
+      <entry id="SCHEMAPROCESSCONTENTS_SKIP" value="1"/>
+      <entry id="SCHEMAPROCESSCONTENTS_LAX" value="2"/>
+      <entry id="SCHEMAPROCESSCONTENTS_STRICT" value="3"/>
+   </enumeration>
+   <enumeration id="_SCHEMACONTENTTYPE">
+      <entry id="SCHEMACONTENTTYPE_EMPTY" value="0"/>
+      <entry id="SCHEMACONTENTTYPE_TEXTONLY" value="1"/>
+      <entry id="SCHEMACONTENTTYPE_ELEMENTONLY" value="2"/>
+      <entry id="SCHEMACONTENTTYPE_MIXED" value="3"/>
+   </enumeration>
+   <enumeration id="_SCHEMAUSE">
+      <entry id="SCHEMAUSE_OPTIONAL" value="0"/>
+      <entry id="SCHEMAUSE_PROHIBITED" value="1"/>
+      <entry id="SCHEMAUSE_REQUIRED" value="2"/>
+   </enumeration>
+   <enumeration id="_SERVERXMLHTTP_OPTION">
+      <entry id="SXH_OPTION_URL" value="0xffffffff"/>
+      <entry id="SXH_OPTION_URL_CODEPAGE" value="0"/>
+      <entry id="SXH_OPTION_ESCAPE_PERCENT_IN_URL" value="1"/>
+      <entry id="SXH_OPTION_IGNORE_SERVER_SSL_CERT_ERROR_FLAGS" value="2"/>
+      <entry id="SXH_OPTION_SELECT_CLIENT_SSL_CERT" value="3"/>
+   </enumeration>
+   <enumeration id="_SXH_SERVER_CERT_OPTION">
+      <entry id="SXH_SERVER_CERT_IGNORE_UNKNOWN_CA" value="256"/>
+      <entry id="SXH_SERVER_CERT_IGNORE_WRONG_USAGE" value="512"/>
+      <entry id="SXH_SERVER_CERT_IGNORE_CERT_CN_INVALID" value="4096"/>
+      <entry id="SXH_SERVER_CERT_IGNORE_CERT_DATE_INVALID" value="8192"/>
+      <entry id="SXH_SERVER_CERT_IGNORE_ALL_SERVER_ERRORS" value="13056"/>
+   </enumeration>
+   <enumeration id="_SXH_PROXY_SETTING">
+      <entry id="SXH_PROXY_SET_DEFAULT" value="0"/>
+      <entry id="SXH_PROXY_SET_PRECONFIG" value="0"/>
+      <entry id="SXH_PROXY_SET_DIRECT" value="1"/>
+      <entry id="SXH_PROXY_SET_PROXY" value="2"/>
+   </enumeration>
+   <typedef id="DOMNodeType" type="tagDOMNodeType"/>
+   <typedef id="SCHEMADERIVATIONMETHOD" type="_SCHEMADERIVATIONMETHOD"/>
+   <typedef id="SOMITEMTYPE" type="_SOMITEMTYPE"/>
+   <typedef id="SCHEMATYPEVARIETY" type="_SCHEMATYPEVARIETY"/>
+   <typedef id="SCHEMAWHITESPACE" type="_SCHEMAWHITESPACE"/>
+   <typedef id="SCHEMACONTENTTYPE" type="_SCHEMACONTENTTYPE"/>
+   <typedef id="SCHEMAPROCESSCONTENTS" type="_SCHEMAPROCESSCONTENTS"/>
+   <typedef id="SCHEMAUSE" type="_SCHEMAUSE"/>
+   <typedef id="SERVERXMLHTTP_OPTION" type="_SERVERXMLHTTP_OPTION"/>
+   <typedef id="SXH_SERVER_CERT_OPTION" type="_SXH_SERVER_CERT_OPTION"/>
+   <typedef id="SXH_PROXY_SETTING" type="_SXH_PROXY_SETTING"/>
+   <class id="IXMLDOMImplementation" parent="IDispatch" creatable="off">
+      <method id="hasFeature" type="Boolean">
+         <argument id="feature" type="String" status="ByVal"/>
+         <argument id="version" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IXMLDOMNode" parent="IDispatch" creatable="off" migName="XmlNode">
+      <property id="nodeName" type="String" status="Out" migName="Name"/>
+      <property id="nodeValue" type="String" status="InOut" migName="Value"/>
+      <property id="nodeType" type="DOMNodeType" status="Out" migName="NodeType"/>
+      <property id="parentNode" type="IXMLDOMNode" status="Out" migName="ParentNode"/>
+      <property id="childNodes" type="IXMLDOMNodeList" status="Out" migName="ChildNodes" />
+      <property id="firstChild" type="IXMLDOMNode" status="Out" migName="FirstChild"/>
+      <property id="lastChild" type="IXMLDOMNode" status="Out" migName="LastChild"/>
+      <property id="previousSibling" type="IXMLDOMNode" status="Out"/>
+      <property id="nextSibling" type="IXMLDOMNode" status="Out" migName="NextSibling"/>
+      <property id="attributes" type="IXMLDOMNamedNodeMap" status="Out" migName="Attributes"/>
+      <property id="ownerDocument" type="IXMLDOMDocument" status="Out" migName="OwnerDocument"/>
+      <property id="nodeTypeString" type="String" status="Out"/>
+      <property id="text" type="String" status="InOut" migName="InnerText" />
+      <property id="specified" type="Boolean" status="Out"/>
+      <property id="definition" type="IXMLDOMNode" status="Out"/>
+      <property id="nodeTypedValue" status="InOut" migName="Value" type="String"/>
+      <property id="dataType" type="String" status="InOut"/>
+      <property id="xml" type="String" status="Out" migName="InnerXml"/>
+      <property id="parsed" type="Boolean" status="Out"/>
+      <property id="namespaceURI" type="String" status="Out" migName="NamespaceURI" />
+      <property id="prefix" type="String" status="Out"/>
+      <property id="baseName" type="String" status="Out" migName="LocalName"/>
+      <method id="insertBefore" type="IXMLDOMNode" migName="InsertBefore">
+         <argument id="newChild" type="IXMLDOMNode" status="ByVal"/>
+         <argument id="refChild" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+      <method id="replaceChild" type="IXMLDOMNode" migName="ReplaceChild">
+         <argument id="newChild" type="IXMLDOMNode" status="ByVal"/>
+         <argument id="oldChild" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+      <method id="removeChild" type="IXMLDOMNode" migName="RemoveChild">
+         <argument id="childNode" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+      <method id="appendChild" type="IXMLDOMNode" migName="AppendChild">
+         <argument id="newChild" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+      <Property id="hasChildNodes" type="Boolean" migName="HasChildNodes"/> <!-- reftype changed from Method -->
+      <method id="cloneNode" type="IXMLDOMNode" migName="CloneNode">
+         <argument id="deep" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="transformNode" type="String">
+         <argument id="stylesheet" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+      <method id="selectNodes" type="IXMLDOMNodeList" migName="SelectNodes">
+         <argument id="queryString" type="String" status="ByVal"/>
+      </method>
+      <method id="selectSingleNode" type="IXMLDOMNode" migName="SelectSingleNode">
+         <argument id="queryString" type="String" status="ByVal"/>
+      </method>
+      <method id="transformNodeToObject" type="Void">
+         <argument id="stylesheet" type="IXMLDOMNode" status="ByVal"/>
+         <argument id="outputObject" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IXMLDOMNodeList" parent="IDispatch" default="item" creatable="off" migName="XmlNodeList">
+      <property id="length" type="Integer" status="Out" migName="Count"/>
+      <property id="_newEnum" type="Object" status="Out"/>
+      <method id="item" type="IXMLDOMNode" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="nextNode" type="IXMLDOMNode"/>
+      <method id="reset" type="Void"/>
+   </class>
+   <class id="IXMLDOMNamedNodeMap" parent="IDispatch" default="item" creatable="off" migName="XmlAttributeCollection">
+      <property id="length" type="Integer" status="Out" migName="Count"/>
+      <property id="_newEnum" type="Object" status="Out"/>
+      <method id="getNamedItem" type="IXMLDOMNode" migName="GetNamedItem">
+         <argument id="name" type="String" status="ByVal"/>
+      </method>
+      <method id="setNamedItem" type="IXMLDOMNode" migName="SetNamedItem">
+         <argument id="newItem" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+      <method id="removeNamedItem" type="IXMLDOMNode" migName="RemoveNamedItem">
+         <argument id="name" type="String" status="ByVal"/>
+      </method>
+      <method id="item" type="IXMLDOMNode" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="getQualifiedItem" type="IXMLDOMNode">
+         <argument id="baseName" type="String" status="ByVal"/>
+         <argument id="namespaceURI" type="String" status="ByVal"/>
+      </method>
+      <method id="removeQualifiedItem" type="IXMLDOMNode">
+         <argument id="baseName" type="String" status="ByVal"/>
+         <argument id="namespaceURI" type="String" status="ByVal"/>
+      </method>
+      <method id="nextNode" type="IXMLDOMNode"/>
+      <method id="reset" type="Void"/>
+   </class>
+   <class id="IXMLDOMDocument" parent="IXMLDOMNode" migName="XmlDocument">
+      <property id="doctype" type="IXMLDOMDocumentType" status="Out"/>
+      <property id="implementation" type="IXMLDOMImplementation" status="Out"/>
+      <property id="documentElement" type="IXMLDOMElement" status="InOut" migName="DocumentElement"/>
+      <property id="readyState" type="Integer" status="Out"/>
+      <property id="parseError" type="IXMLDOMParseError" status="Out"/>
+      <property id="url" type="String" status="Out"/>
+      <property id="async" type="Boolean" status="InOut" migStatus="delete" />
+      <property id="validateOnParse" type="Boolean" status="InOut"/>
+      <property id="resolveExternals" type="Boolean" status="InOut"/>
+      <property id="preserveWhiteSpace" type="Boolean" status="InOut" migname="PreserveWhitespace"/>
+      <property id="onreadystatechange" type="Variant" status="In"/>
+      <property id="ondataavailable" type="Variant" status="In"/>
+      <property id="ontransformnode" type="Variant" status="In"/>
+      <method id="createElement" type="IXMLDOMElement" migName="CreateElement">
+         <argument id="tagName" type="String" status="ByVal"/>
+      </method>
+      <method id="createDocumentFragment" type="IXMLDOMDocumentFragment"/>
+      <method id="createTextNode" type="IXMLDOMText" migName="CreateTextNode">
+         <argument id="data" type="String" status="ByVal"/>
+      </method>
+      <method id="createComment" type="IXMLDOMComment" migName="CreateComment">
+         <argument id="data" type="String" status="ByVal"/>
+      </method>
+      <method id="createCDATASection" type="IXMLDOMCDATASection" migName="CreateCDataASection">
+         <argument id="data" type="String" status="ByVal"/>
+      </method>
+      <method id="createProcessingInstruction" type="IXMLDOMProcessingInstruction" migName="CreateProcessingInstruction">
+         <argument id="target" type="String" status="ByVal"/>
+         <argument id="data" type="String" status="ByVal"/>
+      </method>
+      <method id="createAttribute" type="IXMLDOMAttribute" migName="CreateAttribute">
+         <argument id="name" type="String" status="ByVal"/>
+      </method>
+      <method id="createEntityReference" type="IXMLDOMEntityReference">
+         <argument id="name" type="String" status="ByVal"/>
+      </method>
+      <method id="getElementsByTagName" type="IXMLDOMNodeList" migName="GetElementsByTagName">
+         <argument id="tagName" type="String" status="ByVal"/>
+      </method>
+      <method id="createNode" type="IXMLDOMNode" migName="CreateNode">
+         <argument id="type" type="tagDOMNodeType" status="ByVal"/>
+         <argument id="name" type="String" status="ByVal"/>
+         <argument id="namespaceURI" type="String" status="ByVal"/>
+      </method>
+      <method id="nodeFromID" type="IXMLDOMNode">
+         <argument id="idString" type="String" status="ByVal"/>
+      </method>
+      <method id="load" type="Boolean" 
+             nPram="2"
+             cshPattern="try{\p%1d.Load(%2d);\q}catch{}\n%1d.HasChildNodes"
+             vbnPattern="%1d.Load(%2d)\n%1d.HasChildNodes">
+         <argument id="xmlSource" type="Variant" status="ByVal"/>
+      </method>
+      <method id="abort" type="Void"/>
+      <method id="loadXML" type="Boolean"
+             nPram="2" 
+             cshPattern="try{%1d.LoadXml(%2d);}catch{}\n%1d.HasChildNodes"
+             vbnPattern="%1d.LoadXml(%2d)\n%1d.HasChildNodes"
+      >
+        <argument id="bstrXML" type="String" status="ByVal"/>
+      </method>
+      <method id="save" type="Void" migName="Save">
+         <argument id="destination" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IXMLDOMDocumentType" parent="IXMLDOMNode" creatable="off">
+      <property id="name" type="String" status="Out"/>
+      <property id="entities" type="IXMLDOMNamedNodeMap" status="Out"/>
+      <property id="notations" type="IXMLDOMNamedNodeMap" status="Out"/>
+   </class>
+   <class id="IXMLDOMElement" parent="IXMLDOMNode" creatable="off" migName="XmlElement">
+      <property id="tagName" type="String" status="Out" migName="Name"/>
+      <method id="getAttribute" type="String" migName="GetAttribute">
+         <argument id="name" type="String" status="ByVal"/>
+      </method>
+      <method id="setAttribute" type="Void" migName="SetAttribute">
+         <argument id="name" type="String" status="ByVal"/>
+         <argument id="value" type="String" status="ByVal"/>
+      </method>
+      <method id="removeAttribute" type="Void" migname="RemoveAttribute">
+         <argument id="name" type="String" status="ByVal"/>
+      </method>
+      <method id="getAttributeNode" type="IXMLDOMAttribute" migname="GetAttributeNode">
+         <argument id="name" type="String" status="ByVal"/>
+      </method>
+      <method id="setAttributeNode" type="IXMLDOMAttribute" migName="SetAttributeNode">
+         <argument id="DOMAttribute" type="IXMLDOMAttribute" status="ByVal"/>
+      </method>
+      <method id="removeAttributeNode" type="IXMLDOMAttribute">
+         <argument id="DOMAttribute" type="IXMLDOMAttribute" status="ByVal"/>
+      </method>
+      <method id="getElementsByTagName" type="IXMLDOMNodeList" migName="GetElementsByTagName">
+         <argument id="tagName" type="String" status="ByVal"/>
+      </method>
+      <method id="normalize" type="Void"/>
+   </class>
+   <class id="IXMLDOMAttribute" parent="IXMLDOMNode" creatable="off" migName="XmlAttribute">
+      <property id="name" type="String" status="Out" migName="Name"/>
+      <property id="value" type="String" status="InOut" migName="Value"/>
+   </class>
+   <class id="IXMLDOMDocumentFragment" parent="IXMLDOMNode" creatable="off">
+   </class>
+   <class id="IXMLDOMCharacterData" parent="IXMLDOMNode" creatable="off">
+      <property id="data" type="String" status="InOut"/>
+      <property id="length" type="Integer" status="Out"/>
+      <method id="substringData" type="String">
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="count" type="Integer" status="ByVal"/>
+      </method>
+      <method id="appendData" type="Void">
+         <argument id="data" type="String" status="ByVal"/>
+      </method>
+      <method id="insertData" type="Void">
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="data" type="String" status="ByVal"/>
+      </method>
+      <method id="deleteData" type="Void">
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="count" type="Integer" status="ByVal"/>
+      </method>
+      <method id="replaceData" type="Void">
+         <argument id="offset" type="Integer" status="ByVal"/>
+         <argument id="count" type="Integer" status="ByVal"/>
+         <argument id="data" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IXMLDOMText" parent="IXMLDOMCharacterData" creatable="off" migName="XmlText">
+      <method id="splitText" type="IXMLDOMText">
+         <argument id="offset" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IXMLDOMComment" parent="IXMLDOMCharacterData" creatable="off">
+   </class>
+   <class id="IXMLDOMCDATASection" parent="IXMLDOMText" creatable="off" migName="XmlCDataSection">
+   </class>
+   <class id="IXMLDOMProcessingInstruction" parent="IXMLDOMNode" creatable="off">
+      <property id="target" type="String" status="Out"/>
+      <property id="data" type="String" status="InOut"/>
+   </class>
+   <class id="IXMLDOMEntityReference" parent="IXMLDOMNode" creatable="off">
+   </class>
+   <class id="IXMLDOMParseError" parent="IDispatch" default="errorCode" creatable="off" migName="XmlException" >
+      <property id="errorCode" type="Integer" status="Out" />
+      <property id="url" type="String" status="Out" migName="SourceUri"/>
+      <property id="reason" type="String" status="Out" migName="Message"/>
+      <property id="srcText" type="String" status="Out" migName="Message"/>
+      <property id="line" type="Integer" status="Out" migName="LineNumber"/>
+      <property id="linepos" type="Integer" status="Out" migName="LinePosition"/>
+      <property id="filepos" type="Integer" status="Out"/>
+   </class>
+   <class id="IXMLDOMDocument2" parent="IXMLDOMDocument" creatable="off">
+      <property id="namespaces" type="XMLSchemaCache" status="Out"/>
+      <property id="schemas" type="Variant" status="InOut" migName="Schemas"/>
+      <method id="validate" type="IXMLDOMParseError" migName="Validate"/>
+      <method id="setProperty" type="Void">
+         <argument id="name" type="String" status="ByVal"/>
+         <argument id="value" type="Variant" status="ByVal"/>
+      </method>
+      <method id="getProperty" type="Variant">
+         <argument id="name" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IXMLDOMSchemaCollection" parent="IDispatch" default="namespaceURI" creatable="off">
+      <property id="length" type="Integer" status="Out"/>
+      <property id="_newEnum" type="Object" status="Out"/>
+      <method id="add" type="Void" migName="Add">
+         <argument id="namespaceURI" type="String" status="ByVal"/>
+         <argument id="var" type="Variant" status="ByVal"/>
+      </method>
+      <method id="get" type="IXMLDOMNode">
+         <argument id="namespaceURI" type="String" status="ByVal"/>
+      </method>
+      <method id="remove" type="Void">
+         <argument id="namespaceURI" type="String" status="ByVal"/>
+      </method>
+      <method id="namespaceURI" type="String" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="addCollection" type="Void">
+         <argument id="otherCollection" type="XMLSchemaCache" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IXMLDOMDocument3" parent="IXMLDOMDocument2" creatable="off">
+      <method id="validateNode" type="IXMLDOMParseError">
+         <argument id="node" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+      <method id="importNode" type="IXMLDOMNode">
+         <argument id="node" type="IXMLDOMNode" status="ByVal"/>
+         <argument id="deep" type="Boolean" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IXMLDOMNotation" parent="IXMLDOMNode" creatable="off">
+      <property id="publicId" type="Variant" status="Out"/>
+      <property id="systemId" type="Variant" status="Out"/>
+   </class>
+   <class id="IXMLDOMEntity" parent="IXMLDOMNode" creatable="off">
+      <property id="publicId" type="Variant" status="Out"/>
+      <property id="systemId" type="Variant" status="Out"/>
+      <property id="notationName" type="String" status="Out"/>
+   </class>
+   <class id="IXMLDOMParseError2" parent="IXMLDOMParseError" creatable="off">
+      <property id="errorXPath" type="String" status="Out"/>
+      <property id="allErrors" type="IXMLDOMParseErrorCollection" status="Out"/>
+      <property id="errorParametersCount" type="Integer" status="Out"/>
+      <method id="errorParameters" type="String">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IXMLDOMParseErrorCollection" parent="IDispatch" default="item" creatable="off">
+      <property id="length" type="Integer" status="Out"/>
+      <property id="next" type="IXMLDOMParseError2" status="Out"/>
+      <property id="_newEnum" type="Object" status="Out"/>
+      <method id="item" type="IXMLDOMParseError2" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="reset" type="Void"/>
+   </class>
+   <class id="IXTLRuntime" parent="IXMLDOMNode" creatable="off">
+      <method id="uniqueID" type="Integer">
+         <argument id="pNode" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+      <method id="depth" type="Integer">
+         <argument id="pNode" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+      <method id="childNumber" type="Integer">
+         <argument id="pNode" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+      <method id="ancestorChildNumber" type="Integer">
+         <argument id="bstrNodeName" type="String" status="ByVal"/>
+         <argument id="pNode" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+      <method id="absoluteChildNumber" type="Integer">
+         <argument id="pNode" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+      <method id="formatIndex" type="String">
+         <argument id="lIndex" type="Integer" status="ByVal"/>
+         <argument id="bstrFormat" type="String" status="ByVal"/>
+      </method>
+      <method id="formatNumber" type="String">
+         <argument id="dblNumber" type="Double" status="ByVal"/>
+         <argument id="bstrFormat" type="String" status="ByVal"/>
+      </method>
+      <method id="formatDate" type="String">
+         <argument id="varDate" type="Variant" status="ByVal"/>
+         <argument id="bstrFormat" type="String" status="ByVal"/>
+         <argument id="varDestLocale" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="formatTime" type="String">
+         <argument id="varTime" type="Variant" status="ByVal"/>
+         <argument id="bstrFormat" type="String" status="ByVal"/>
+         <argument id="varDestLocale" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="IXSLTemplate" parent="IDispatch" creatable="off">
+      <property id="stylesheet" type="IXMLDOMNode" status="InOut"/>
+      <method id="createProcessor" type="IXSLProcessor"/>
+   </class>
+   <class id="IXSLProcessor" parent="IDispatch" creatable="off">
+      <property id="input" type="Variant" status="InOut"/>
+      <property id="ownerTemplate" type="XSLTemplate" status="Out"/>
+      <property id="startMode" type="String" status="Out"/>
+      <property id="startModeURI" type="String" status="Out"/>
+      <property id="output" type="Variant" status="InOut"/>
+      <property id="readyState" type="Integer" status="Out"/>
+      <property id="stylesheet" type="IXMLDOMNode" status="Out"/>
+      <method id="setStartMode" type="Void">
+         <argument id="mode" type="String" status="ByVal"/>
+         <argument id="namespaceURI" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="transform" type="Boolean"/>
+      <method id="reset" type="Void"/>
+      <method id="addParameter" type="Void">
+         <argument id="baseName" type="String" status="ByVal"/>
+         <argument id="parameter" type="Variant" status="ByVal"/>
+         <argument id="namespaceURI" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="addObject" type="Void">
+         <argument id="obj" type="Object" status="ByVal"/>
+         <argument id="namespaceURI" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ISAXXMLReader" parent="IUnknown">
+      <method id="getFeature" type="Boolean">
+         <argument id="pwchName" type="Integer" status="ByRef"/>
+      </method>
+      <method id="putFeature" type="Void">
+         <argument id="pwchName" type="Integer" status="ByRef"/>
+         <argument id="vfValue" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="getProperty" type="Variant">
+         <argument id="pwchName" type="Integer" status="ByRef"/>
+      </method>
+      <method id="putProperty" type="Void">
+         <argument id="pwchName" type="Integer" status="ByRef"/>
+         <argument id="varValue" type="Variant" status="ByVal"/>
+      </method>
+      <method id="getEntityResolver" type="ISAXEntityResolver"/>
+      <method id="putEntityResolver" type="Void">
+         <argument id="pResolver" type="ISAXEntityResolver" status="ByVal"/>
+      </method>
+      <method id="getContentHandler" type="MXXMLWriter"/>
+      <method id="putContentHandler" type="Void">
+         <argument id="pHandler" type="MXXMLWriter" status="ByVal"/>
+      </method>
+      <method id="getDTDHandler" type="MXXMLWriter"/>
+      <method id="putDTDHandler" type="Void">
+         <argument id="pHandler" type="MXXMLWriter" status="ByVal"/>
+      </method>
+      <method id="getErrorHandler" type="MXXMLWriter"/>
+      <method id="putErrorHandler" type="Void">
+         <argument id="pHandler" type="MXXMLWriter" status="ByVal"/>
+      </method>
+      <method id="getBaseURL" type="Integer"/>
+      <method id="putBaseURL" type="Void">
+         <argument id="pwchBaseUrl" type="Integer" status="ByRef"/>
+      </method>
+      <method id="getSecureBaseURL" type="Integer"/>
+      <method id="putSecureBaseURL" type="Void">
+         <argument id="pwchSecureBaseUrl" type="Integer" status="ByRef"/>
+      </method>
+      <method id="parse" type="Void">
+         <argument id="varInput" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="parseURL" type="Void">
+         <argument id="pwchUrl" type="Integer" status="ByRef"/>
+      </method>
+   </class>
+   <class id="ISAXEntityResolver" parent="IUnknown">
+      <method id="resolveEntity" type="Variant">
+         <argument id="pwchPublicId" type="Integer" status="ByRef"/>
+         <argument id="pwchSystemId" type="Integer" status="ByRef"/>
+      </method>
+   </class>
+   <class id="ISAXContentHandler" parent="IUnknown">
+      <method id="putDocumentLocator" type="Void">
+         <argument id="pLocator" type="ISAXLocator" status="ByVal"/>
+      </method>
+      <method id="startDocument" type="Void"/>
+      <method id="endDocument" type="Void"/>
+      <method id="startPrefixMapping" type="Void">
+         <argument id="pwchPrefix" type="Integer" status="ByRef"/>
+         <argument id="cchPrefix" type="Integer" status="ByVal"/>
+         <argument id="pwchUri" type="Integer" status="ByRef"/>
+         <argument id="cchUri" type="Integer" status="ByVal"/>
+      </method>
+      <method id="endPrefixMapping" type="Void">
+         <argument id="pwchPrefix" type="Integer" status="ByRef"/>
+         <argument id="cchPrefix" type="Integer" status="ByVal"/>
+      </method>
+      <method id="startElement" type="Void">
+         <argument id="pwchNamespaceUri" type="Integer" status="ByRef"/>
+         <argument id="cchNamespaceUri" type="Integer" status="ByVal"/>
+         <argument id="pwchLocalName" type="Integer" status="ByRef"/>
+         <argument id="cchLocalName" type="Integer" status="ByVal"/>
+         <argument id="pwchQName" type="Integer" status="ByRef"/>
+         <argument id="cchQName" type="Integer" status="ByVal"/>
+         <argument id="pAttributes" type="SAXAttributes" status="ByVal"/>
+      </method>
+      <method id="endElement" type="Void">
+         <argument id="pwchNamespaceUri" type="Integer" status="ByRef"/>
+         <argument id="cchNamespaceUri" type="Integer" status="ByVal"/>
+         <argument id="pwchLocalName" type="Integer" status="ByRef"/>
+         <argument id="cchLocalName" type="Integer" status="ByVal"/>
+         <argument id="pwchQName" type="Integer" status="ByRef"/>
+         <argument id="cchQName" type="Integer" status="ByVal"/>
+      </method>
+      <method id="characters" type="Void">
+         <argument id="pwchChars" type="Integer" status="ByRef"/>
+         <argument id="cchChars" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ignorableWhitespace" type="Void">
+         <argument id="pwchChars" type="Integer" status="ByRef"/>
+         <argument id="cchChars" type="Integer" status="ByVal"/>
+      </method>
+      <method id="processingInstruction" type="Void">
+         <argument id="pwchTarget" type="Integer" status="ByRef"/>
+         <argument id="cchTarget" type="Integer" status="ByVal"/>
+         <argument id="pwchData" type="Integer" status="ByRef"/>
+         <argument id="cchData" type="Integer" status="ByVal"/>
+      </method>
+      <method id="skippedEntity" type="Void">
+         <argument id="pwchName" type="Integer" status="ByRef"/>
+         <argument id="cchName" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ISAXLocator" parent="IUnknown">
+      <method id="getColumnNumber" type="Integer"/>
+      <method id="getLineNumber" type="Integer"/>
+      <method id="getPublicId" type="Integer"/>
+      <method id="getSystemId" type="Integer"/>
+   </class>
+   <class id="ISAXAttributes" parent="IUnknown">
+      <method id="getLength" type="Integer"/>
+      <method id="getURI" type="Void">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="ppwchUri" type="Integer" status="Out"/>
+         <argument id="pcchUri" type="Integer" status="Out"/>
+      </method>
+      <method id="getLocalName" type="Void">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="ppwchLocalName" type="Integer" status="Out"/>
+         <argument id="pcchLocalName" type="Integer" status="Out"/>
+      </method>
+      <method id="getQName" type="Void">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="ppwchQName" type="Integer" status="Out"/>
+         <argument id="pcchQName" type="Integer" status="Out"/>
+      </method>
+      <method id="getName" type="Void">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="ppwchUri" type="Integer" status="Out"/>
+         <argument id="pcchUri" type="Integer" status="Out"/>
+         <argument id="ppwchLocalName" type="Integer" status="Out"/>
+         <argument id="pcchLocalName" type="Integer" status="Out"/>
+         <argument id="ppwchQName" type="Integer" status="Out"/>
+         <argument id="pcchQName" type="Integer" status="Out"/>
+      </method>
+      <method id="getIndexFromName" type="Integer">
+         <argument id="pwchUri" type="Integer" status="ByRef"/>
+         <argument id="cchUri" type="Integer" status="ByVal"/>
+         <argument id="pwchLocalName" type="Integer" status="ByRef"/>
+         <argument id="cchLocalName" type="Integer" status="ByVal"/>
+      </method>
+      <method id="getIndexFromQName" type="Integer">
+         <argument id="pwchQName" type="Integer" status="ByRef"/>
+         <argument id="cchQName" type="Integer" status="ByVal"/>
+      </method>
+      <method id="getType" type="Void">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="ppwchType" type="Integer" status="Out"/>
+         <argument id="pcchType" type="Integer" status="Out"/>
+      </method>
+      <method id="getTypeFromName" type="Void">
+         <argument id="pwchUri" type="Integer" status="ByRef"/>
+         <argument id="cchUri" type="Integer" status="ByVal"/>
+         <argument id="pwchLocalName" type="Integer" status="ByRef"/>
+         <argument id="cchLocalName" type="Integer" status="ByVal"/>
+         <argument id="ppwchType" type="Integer" status="Out"/>
+         <argument id="pcchType" type="Integer" status="Out"/>
+      </method>
+      <method id="getTypeFromQName" type="Void">
+         <argument id="pwchQName" type="Integer" status="ByRef"/>
+         <argument id="cchQName" type="Integer" status="ByVal"/>
+         <argument id="ppwchType" type="Integer" status="Out"/>
+         <argument id="pcchType" type="Integer" status="Out"/>
+      </method>
+      <method id="getValue" type="Void">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="ppwchValue" type="Integer" status="Out"/>
+         <argument id="pcchValue" type="Integer" status="Out"/>
+      </method>
+      <method id="getValueFromName" type="Void">
+         <argument id="pwchUri" type="Integer" status="ByRef"/>
+         <argument id="cchUri" type="Integer" status="ByVal"/>
+         <argument id="pwchLocalName" type="Integer" status="ByRef"/>
+         <argument id="cchLocalName" type="Integer" status="ByVal"/>
+         <argument id="ppwchValue" type="Integer" status="Out"/>
+         <argument id="pcchValue" type="Integer" status="Out"/>
+      </method>
+      <method id="getValueFromQName" type="Void">
+         <argument id="pwchQName" type="Integer" status="ByRef"/>
+         <argument id="cchQName" type="Integer" status="ByVal"/>
+         <argument id="ppwchValue" type="Integer" status="Out"/>
+         <argument id="pcchValue" type="Integer" status="Out"/>
+      </method>
+   </class>
+   <class id="ISAXDTDHandler" parent="IUnknown">
+      <method id="notationDecl" type="Void">
+         <argument id="pwchName" type="Integer" status="ByRef"/>
+         <argument id="cchName" type="Integer" status="ByVal"/>
+         <argument id="pwchPublicId" type="Integer" status="ByRef"/>
+         <argument id="cchPublicId" type="Integer" status="ByVal"/>
+         <argument id="pwchSystemId" type="Integer" status="ByRef"/>
+         <argument id="cchSystemId" type="Integer" status="ByVal"/>
+      </method>
+      <method id="unparsedEntityDecl" type="Void">
+         <argument id="pwchName" type="Integer" status="ByRef"/>
+         <argument id="cchName" type="Integer" status="ByVal"/>
+         <argument id="pwchPublicId" type="Integer" status="ByRef"/>
+         <argument id="cchPublicId" type="Integer" status="ByVal"/>
+         <argument id="pwchSystemId" type="Integer" status="ByRef"/>
+         <argument id="cchSystemId" type="Integer" status="ByVal"/>
+         <argument id="pwchNotationName" type="Integer" status="ByRef"/>
+         <argument id="cchNotationName" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ISAXErrorHandler" parent="IUnknown">
+      <method id="error" type="Void">
+         <argument id="pLocator" type="ISAXLocator" status="ByVal"/>
+         <argument id="pwchErrorMessage" type="Integer" status="ByRef"/>
+         <argument id="hrErrorCode" type="Variant" status="ByVal"/>
+      </method>
+      <method id="fatalError" type="Void">
+         <argument id="pLocator" type="ISAXLocator" status="ByVal"/>
+         <argument id="pwchErrorMessage" type="Integer" status="ByRef"/>
+         <argument id="hrErrorCode" type="Variant" status="ByVal"/>
+      </method>
+      <method id="ignorableWarning" type="Void">
+         <argument id="pLocator" type="ISAXLocator" status="ByVal"/>
+         <argument id="pwchErrorMessage" type="Integer" status="ByRef"/>
+         <argument id="hrErrorCode" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ISAXXMLFilter" parent="ISAXXMLReader">
+      <method id="getParent" type="SAXXMLReader"/>
+      <method id="putParent" type="Void">
+         <argument id="pReader" type="SAXXMLReader" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ISAXLexicalHandler" parent="IUnknown">
+      <method id="startDTD" type="Void">
+         <argument id="pwchName" type="Integer" status="ByRef"/>
+         <argument id="cchName" type="Integer" status="ByVal"/>
+         <argument id="pwchPublicId" type="Integer" status="ByRef"/>
+         <argument id="cchPublicId" type="Integer" status="ByVal"/>
+         <argument id="pwchSystemId" type="Integer" status="ByRef"/>
+         <argument id="cchSystemId" type="Integer" status="ByVal"/>
+      </method>
+      <method id="endDTD" type="Void"/>
+      <method id="startEntity" type="Void">
+         <argument id="pwchName" type="Integer" status="ByRef"/>
+         <argument id="cchName" type="Integer" status="ByVal"/>
+      </method>
+      <method id="endEntity" type="Void">
+         <argument id="pwchName" type="Integer" status="ByRef"/>
+         <argument id="cchName" type="Integer" status="ByVal"/>
+      </method>
+      <method id="startCDATA" type="Void"/>
+      <method id="endCDATA" type="Void"/>
+      <method id="comment" type="Void">
+         <argument id="pwchChars" type="Integer" status="ByRef"/>
+         <argument id="cchChars" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ISAXDeclHandler" parent="IUnknown">
+      <method id="elementDecl" type="Void">
+         <argument id="pwchName" type="Integer" status="ByRef"/>
+         <argument id="cchName" type="Integer" status="ByVal"/>
+         <argument id="pwchModel" type="Integer" status="ByRef"/>
+         <argument id="cchModel" type="Integer" status="ByVal"/>
+      </method>
+      <method id="attributeDecl" type="Void">
+         <argument id="pwchElementName" type="Integer" status="ByRef"/>
+         <argument id="cchElementName" type="Integer" status="ByVal"/>
+         <argument id="pwchAttributeName" type="Integer" status="ByRef"/>
+         <argument id="cchAttributeName" type="Integer" status="ByVal"/>
+         <argument id="pwchType" type="Integer" status="ByRef"/>
+         <argument id="cchType" type="Integer" status="ByVal"/>
+         <argument id="pwchValueDefault" type="Integer" status="ByRef"/>
+         <argument id="cchValueDefault" type="Integer" status="ByVal"/>
+         <argument id="pwchValue" type="Integer" status="ByRef"/>
+         <argument id="cchValue" type="Integer" status="ByVal"/>
+      </method>
+      <method id="internalEntityDecl" type="Void">
+         <argument id="pwchName" type="Integer" status="ByRef"/>
+         <argument id="cchName" type="Integer" status="ByVal"/>
+         <argument id="pwchValue" type="Integer" status="ByRef"/>
+         <argument id="cchValue" type="Integer" status="ByVal"/>
+      </method>
+      <method id="externalEntityDecl" type="Void">
+         <argument id="pwchName" type="Integer" status="ByRef"/>
+         <argument id="cchName" type="Integer" status="ByVal"/>
+         <argument id="pwchPublicId" type="Integer" status="ByRef"/>
+         <argument id="cchPublicId" type="Integer" status="ByVal"/>
+         <argument id="pwchSystemId" type="Integer" status="ByRef"/>
+         <argument id="cchSystemId" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IVBSAXXMLReader" parent="IDispatch" creatable="off">
+      <property id="entityResolver" type="IVBSAXEntityResolver" status="InOut"/>
+      <property id="contentHandler" type="MXXMLWriter" status="InOut" migName="ContentHandler"/>
+      <property id="dtdHandler" type="MXXMLWriter" status="InOut" migName="DtdHandler"/>
+      <property id="errorHandler" type="MXXMLWriter" status="InOut" migName="ErrorHandler"/>
+      <property id="baseURL" type="String" status="InOut"/>
+      <property id="secureBaseURL" type="String" status="InOut"/>
+      <method id="getFeature" type="Boolean">
+         <argument id="strName" type="String" status="ByVal"/>
+      </method>
+      <method id="putFeature" type="Void" migName="SetFeature">
+         <argument id="strName" type="String" status="ByVal"/>
+         <argument id="fValue" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="getProperty" type="Variant">
+         <argument id="strName" type="String" status="ByVal"/>
+      </method>
+      <method id="putProperty" type="Void" nPram="3" cshPattern="%1d.GetProperty(%2d).Value = %3d\c">
+         <argument id="strName" type="String" status="ByVal"/>
+         <argument id="varValue" type="Variant" status="ByVal"/>
+      </method>
+      <method id="parse" type="Void" migName="Parse">
+         <argument id="varInput" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="parseURL" type="Void" migName="Parse">
+         <argument id="strURL" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IVBSAXEntityResolver" parent="IDispatch" creatable="off">
+      <method id="resolveEntity" type="Variant">
+         <argument id="strPublicId" type="String" status="ByRef"/>
+         <argument id="strSystemId" type="String" status="ByRef"/>
+      </method>
+   </class>
+   <class id="IVBSAXContentHandler" parent="IDispatch" creatable="off" migStatus="external" migName="gmRTL.MSXML.IContentHandler">
+      <property id="documentLocator" type="gmRTL.MSXML.ILocator" status="In" migName="DocumentLocator"/>
+      <method id="startDocument" type="Void" migName="StartDocument"/>
+      <method id="endDocument" type="Void" migName="EndDocument"/>
+      <method id="startPrefixMapping" type="Void" migName="StartPrefixMapping">
+         <argument id="strPrefix" type="String" status="ByVal"/>
+         <argument id="strURI" type="String" status="ByVal"/>
+      </method>
+      <method id="endPrefixMapping" type="Void" migName="EndPrefixMapping">
+         <argument id="strPrefix" type="String" status="ByVal"/>
+      </method>
+      <method id="startElement" type="Void" migName="StartElement">
+         <argument id="strNamespaceURI" type="String" status="ByVal"/>
+         <argument id="strLocalName" type="String" status="ByVal"/>
+         <argument id="strQName" type="String" status="ByVal"/>
+         <argument id="oAttributes" type="SAXAttributes" status="ByVal"/>
+      </method>
+      <method id="endElement" type="Void" migName="EndElement">
+         <argument id="strNamespaceURI" type="String" status="ByVal"/>
+         <argument id="strLocalName" type="String" status="ByVal"/>
+         <argument id="strQName" type="String" status="ByVal"/>
+      </method>
+      <method id="characters" type="Void" migName="Characters">
+         <argument id="strChars" type="String" status="ByVal"/>
+      </method>
+      <method id="ignorableWhitespace" type="Void" migName="IgnorableWhitespace">
+         <argument id="strChars" type="String" status="ByVal"/>
+      </method>
+      <method id="processingInstruction" type="Void" migName="ProcessingInstruction">
+         <argument id="strTarget" type="String" status="ByVal"/>
+         <argument id="strData" type="String" status="ByVal"/>
+      </method>
+      <method id="skippedEntity" type="Void"  migName="SkippedEntity">
+         <argument id="strName" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IVBSAXLocator" parent="IDispatch" creatable="off" migStatus="external" migName="gmRTL.MSXML.ILocator">
+      <property id="columnNumber" type="Integer" status="Out" migName="ColumnNumber"/>
+      <property id="lineNumber" type="Integer" status="Out" migName="LineNumber"/>
+      <property id="publicId" type="String" status="Out"/>
+      <property id="systemId" type="String" status="Out"/>
+   </class>
+   <class id="IVBSAXAttributes" parent="IDispatch" creatable="off" migStatus="external" migName="gmRTL.MSXML.IAttributes">
+      <property id="length" type="Integer" status="Out"/>
+      <method id="getURI" type="String">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="getLocalName" type="String">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="getQName" type="String">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="getIndexFromName" type="Integer">
+         <argument id="strURI" type="String" status="ByVal"/>
+         <argument id="strLocalName" type="String" status="ByVal"/>
+      </method>
+      <method id="getIndexFromQName" type="Integer">
+         <argument id="strQName" type="String" status="ByVal"/>
+      </method>
+      <method id="getType" type="String">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="getTypeFromName" type="String">
+         <argument id="strURI" type="String" status="ByVal"/>
+         <argument id="strLocalName" type="String" status="ByVal"/>
+      </method>
+      <method id="getTypeFromQName" type="String">
+         <argument id="strQName" type="String" status="ByVal"/>
+      </method>
+      <method id="getValue" type="String">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="getValueFromName" type="String">
+         <argument id="strURI" type="String" status="ByVal"/>
+         <argument id="strLocalName" type="String" status="ByVal"/>
+      </method>
+      <method id="getValueFromQName" type="String">
+         <argument id="strQName" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IVBSAXDTDHandler" parent="IDispatch" creatable="off">
+      <method id="notationDecl" type="Void">
+         <argument id="strName" type="String" status="ByRef"/>
+         <argument id="strPublicId" type="String" status="ByRef"/>
+         <argument id="strSystemId" type="String" status="ByRef"/>
+      </method>
+      <method id="unparsedEntityDecl" type="Void">
+         <argument id="strName" type="String" status="ByRef"/>
+         <argument id="strPublicId" type="String" status="ByRef"/>
+         <argument id="strSystemId" type="String" status="ByRef"/>
+         <argument id="strNotationName" type="String" status="ByRef"/>
+      </method>
+   </class>
+   <class id="IVBSAXErrorHandler" parent="IDispatch" creatable="off" migName="gmRTL.MSXML.IErrorHandler">
+      <method id="error" type="Void" migName="Error">
+         <argument id="oLocator" type="IVBSAXLocator" status="ByVal"/>
+         <argument id="strErrorMessage" type="String" status="ByVal"/>
+         <argument id="nErrorCode" type="Integer" status="ByVal"/>
+      </method>
+      <method id="fatalError" type="Void" migName="FatalError">
+         <argument id="oLocator" type="IVBSAXLocator" status="ByVal"/>
+         <argument id="strErrorMessage" type="String" status="ByVal"/>
+         <argument id="nErrorCode" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ignorableWarning" type="Void" migName="Warning">
+         <argument id="oLocator" type="IVBSAXLocator" status="ByVal"/>
+         <argument id="strErrorMessage" type="String" status="ByVal"/>
+         <argument id="nErrorCode" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IVBSAXXMLFilter" parent="IDispatch" creatable="off">
+      <property id="parent" type="SAXXMLReader" status="InOut"/>
+   </class>
+   <class id="IVBSAXLexicalHandler" parent="IDispatch" creatable="off">
+      <method id="startDTD" type="Void">
+         <argument id="strName" type="String" status="ByRef"/>
+         <argument id="strPublicId" type="String" status="ByRef"/>
+         <argument id="strSystemId" type="String" status="ByRef"/>
+      </method>
+      <method id="endDTD" type="Void"/>
+      <method id="startEntity" type="Void">
+         <argument id="strName" type="String" status="ByRef"/>
+      </method>
+      <method id="endEntity" type="Void">
+         <argument id="strName" type="String" status="ByRef"/>
+      </method>
+      <method id="startCDATA" type="Void"/>
+      <method id="endCDATA" type="Void"/>
+      <method id="comment" type="Void">
+         <argument id="strChars" type="String" status="ByRef"/>
+      </method>
+   </class>
+   <class id="IVBSAXDeclHandler" parent="IDispatch" creatable="off">
+      <method id="elementDecl" type="Void">
+         <argument id="strName" type="String" status="ByRef"/>
+         <argument id="strModel" type="String" status="ByRef"/>
+      </method>
+      <method id="attributeDecl" type="Void">
+         <argument id="strElementName" type="String" status="ByRef"/>
+         <argument id="strAttributeName" type="String" status="ByRef"/>
+         <argument id="strType" type="String" status="ByRef"/>
+         <argument id="strValueDefault" type="String" status="ByRef"/>
+         <argument id="strValue" type="String" status="ByRef"/>
+      </method>
+      <method id="internalEntityDecl" type="Void">
+         <argument id="strName" type="String" status="ByRef"/>
+         <argument id="strValue" type="String" status="ByRef"/>
+      </method>
+      <method id="externalEntityDecl" type="Void">
+         <argument id="strName" type="String" status="ByRef"/>
+         <argument id="strPublicId" type="String" status="ByRef"/>
+         <argument id="strSystemId" type="String" status="ByRef"/>
+      </method>
+   </class>
+   <class id="IMXWriter" parent="IDispatch" creatable="off">
+      <property id="output" type="String" status="InOut" migName="Output"/>
+      <property id="encoding" type="String" status="InOut"/>
+      <property id="byteOrderMark" type="Boolean" status="InOut" migName="ByteOrderMark"/>
+      <property id="indent" type="Boolean" status="InOut" migName="Indent"/>
+      <property id="standalone" type="Boolean" status="InOut"/>
+      <property id="omitXMLDeclaration" type="Boolean" status="InOut" migName="OmitXmlDeclaration"/>
+      <property id="version" type="String" status="InOut"/>
+      <property id="disableOutputEscaping" type="Boolean" status="InOut"/>
+      <method id="flush" type="Void" migName="Flush"/>
+   </class>
+   <class id="IMXAttributes" parent="IDispatch" creatable="off">
+      <method id="addAttribute" type="Void">
+         <argument id="strURI" type="String" status="ByVal"/>
+         <argument id="strLocalName" type="String" status="ByVal"/>
+         <argument id="strQName" type="String" status="ByVal"/>
+         <argument id="strType" type="String" status="ByVal"/>
+         <argument id="strValue" type="String" status="ByVal"/>
+      </method>
+      <method id="addAttributeFromIndex" type="Void">
+         <argument id="varAtts" type="Variant" status="ByVal"/>
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="clear" type="Void"/>
+      <method id="removeAttribute" type="Void">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="setAttribute" type="Void" migName="SetAttribute">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="strURI" type="String" status="ByVal"/>
+         <argument id="strLocalName" type="String" status="ByVal"/>
+         <argument id="strQName" type="String" status="ByVal"/>
+         <argument id="strType" type="String" status="ByVal"/>
+         <argument id="strValue" type="String" status="ByVal"/>
+      </method>
+      <method id="setAttributes" type="Void">
+         <argument id="varAtts" type="Variant" status="ByVal"/>
+      </method>
+      <method id="setLocalName" type="Void">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="strLocalName" type="String" status="ByVal"/>
+      </method>
+      <method id="setQName" type="Void">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="strQName" type="String" status="ByVal"/>
+      </method>
+      <method id="setType" type="Void">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="strType" type="String" status="ByVal"/>
+      </method>
+      <method id="setURI" type="Void">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="strURI" type="String" status="ByVal"/>
+      </method>
+      <method id="setValue" type="Void">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="strValue" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IMXReaderControl" parent="IDispatch" creatable="off">
+      <method id="abort" type="Void"/>
+      <method id="resume" type="Void"/>
+      <method id="suspend" type="Void"/>
+   </class>
+   <class id="IMXSchemaDeclHandler" parent="IDispatch" creatable="off">
+      <method id="schemaElementDecl" type="Void">
+         <argument id="oSchemaElement" type="ISchemaElement" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ISchemaItem" parent="IDispatch" creatable="off">
+      <property id="name" type="String" status="Out"/>
+      <property id="namespaceURI" type="String" status="Out"/>
+      <property id="schema" type="ISchema" status="Out"/>
+      <property id="id" type="String" status="Out"/>
+      <property id="itemType" type="SOMITEMTYPE" status="Out"/>
+      <property id="unhandledAttributes" type="SAXAttributes" status="Out"/>
+      <method id="writeAnnotation" type="Boolean">
+         <argument id="annotationSink" type="Object" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ISchemaParticle" parent="ISchemaItem" creatable="off">
+      <property id="minOccurs" type="Variant" status="Out"/>
+      <property id="maxOccurs" type="Variant" status="Out"/>
+   </class>
+   <class id="ISchemaElement" parent="ISchemaParticle" creatable="off">
+      <property id="type" type="ISchemaType" status="Out"/>
+      <property id="scope" type="ISchemaComplexType" status="Out"/>
+      <property id="defaultValue" type="String" status="Out"/>
+      <property id="fixedValue" type="String" status="Out"/>
+      <property id="isNillable" type="Boolean" status="Out"/>
+      <property id="identityConstraints" type="ISchemaItemCollection" status="Out"/>
+      <property id="substitutionGroup" type="ISchemaElement" status="Out"/>
+      <property id="substitutionGroupExclusions" type="SCHEMADERIVATIONMETHOD" status="Out"/>
+      <property id="disallowedSubstitutions" type="SCHEMADERIVATIONMETHOD" status="Out"/>
+      <property id="isAbstract" type="Boolean" status="Out"/>
+      <property id="isReference" type="Boolean" status="Out"/>
+   </class>
+   <class id="ISchema" parent="ISchemaItem" creatable="off">
+      <property id="targetNamespace" type="String" status="Out"/>
+      <property id="version" type="String" status="Out"/>
+      <property id="types" type="ISchemaItemCollection" status="Out"/>
+      <property id="elements" type="ISchemaItemCollection" status="Out"/>
+      <property id="attributes" type="ISchemaItemCollection" status="Out"/>
+      <property id="attributeGroups" type="ISchemaItemCollection" status="Out"/>
+      <property id="modelGroups" type="ISchemaItemCollection" status="Out"/>
+      <property id="notations" type="ISchemaItemCollection" status="Out"/>
+      <property id="schemaLocations" type="ISchemaStringCollection" status="Out"/>
+   </class>
+   <class id="ISchemaItemCollection" parent="IDispatch" default="item" creatable="off">
+      <property id="length" type="Integer" status="Out"/>
+      <property id="_newEnum" type="Object" status="Out"/>
+      <method id="item" type="ISchemaItem" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="itemByName" type="ISchemaItem">
+         <argument id="name" type="String" status="ByVal"/>
+      </method>
+      <method id="itemByQName" type="ISchemaItem">
+         <argument id="name" type="String" status="ByVal"/>
+         <argument id="namespaceURI" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ISchemaStringCollection" parent="IDispatch" default="item" creatable="off">
+      <property id="length" type="Integer" status="Out"/>
+      <property id="_newEnum" type="Object" status="Out"/>
+      <method id="item" type="String" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ISchemaType" parent="ISchemaItem" creatable="off">
+      <property id="baseTypes" type="ISchemaItemCollection" status="Out"/>
+      <property id="final" type="SCHEMADERIVATIONMETHOD" status="Out"/>
+      <property id="variety" type="SCHEMATYPEVARIETY" status="Out"/>
+      <property id="derivedBy" type="SCHEMADERIVATIONMETHOD" status="Out"/>
+      <property id="minExclusive" type="String" status="Out"/>
+      <property id="minInclusive" type="String" status="Out"/>
+      <property id="maxExclusive" type="String" status="Out"/>
+      <property id="maxInclusive" type="String" status="Out"/>
+      <property id="totalDigits" type="Variant" status="Out"/>
+      <property id="fractionDigits" type="Variant" status="Out"/>
+      <property id="length" type="Variant" status="Out"/>
+      <property id="minLength" type="Variant" status="Out"/>
+      <property id="maxLength" type="Variant" status="Out"/>
+      <property id="enumeration" type="ISchemaStringCollection" status="Out"/>
+      <property id="whitespace" type="SCHEMAWHITESPACE" status="Out"/>
+      <property id="patterns" type="ISchemaStringCollection" status="Out"/>
+      <method id="isValid" type="Boolean">
+         <argument id="data" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ISchemaComplexType" parent="ISchemaType" creatable="off">
+      <property id="isAbstract" type="Boolean" status="Out"/>
+      <property id="anyAttribute" type="ISchemaAny" status="Out"/>
+      <property id="attributes" type="ISchemaItemCollection" status="Out"/>
+      <property id="contentType" type="SCHEMACONTENTTYPE" status="Out"/>
+      <property id="contentModel" type="ISchemaModelGroup" status="Out"/>
+      <property id="prohibitedSubstitutions" type="SCHEMADERIVATIONMETHOD" status="Out"/>
+   </class>
+   <class id="ISchemaAny" parent="ISchemaParticle" creatable="off">
+      <property id="namespaces" type="ISchemaStringCollection" status="Out"/>
+      <property id="processContents" type="SCHEMAPROCESSCONTENTS" status="Out"/>
+   </class>
+   <class id="ISchemaModelGroup" parent="ISchemaParticle" creatable="off">
+      <property id="particles" type="ISchemaItemCollection" status="Out"/>
+   </class>
+   <class id="IMXXMLFilter" parent="IDispatch" creatable="off">
+      <property id="entityResolver" type="Object" status="InOut"/>
+      <property id="contentHandler" type="Object" status="InOut"/>
+      <property id="dtdHandler" type="Object" status="InOut"/>
+      <property id="errorHandler" type="Object" status="InOut"/>
+      <method id="getFeature" type="Boolean">
+         <argument id="strName" type="String" status="ByVal"/>
+      </method>
+      <method id="putFeature" type="Void">
+         <argument id="strName" type="String" status="ByVal"/>
+         <argument id="fValue" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="getProperty" type="Variant">
+         <argument id="strName" type="String" status="ByVal"/>
+      </method>
+      <method id="putProperty" type="Void">
+         <argument id="strName" type="String" status="ByVal"/>
+         <argument id="varValue" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IXMLDOMSchemaCollection2" parent="IXMLDOMSchemaCollection" creatable="off">
+      <property id="validateOnLoad" type="Boolean" status="InOut"/>
+      <method id="validate" type="Void"/>
+      <method id="getSchema" type="ISchema">
+         <argument id="namespaceURI" type="String" status="ByVal"/>
+      </method>
+      <method id="getDeclaration" type="ISchemaItem">
+         <argument id="node" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ISchemaAttribute" parent="ISchemaItem" creatable="off">
+      <property id="type" type="ISchemaType" status="Out"/>
+      <property id="scope" type="ISchemaComplexType" status="Out"/>
+      <property id="defaultValue" type="String" status="Out"/>
+      <property id="fixedValue" type="String" status="Out"/>
+      <property id="use" type="SCHEMAUSE" status="Out"/>
+      <property id="isReference" type="Boolean" status="Out"/>
+   </class>
+   <class id="ISchemaAttributeGroup" parent="ISchemaItem" creatable="off">
+      <property id="anyAttribute" type="ISchemaAny" status="Out"/>
+      <property id="attributes" type="ISchemaItemCollection" status="Out"/>
+   </class>
+   <class id="ISchemaIdentityConstraint" parent="ISchemaItem" creatable="off">
+      <property id="selector" type="String" status="Out"/>
+      <property id="fields" type="ISchemaStringCollection" status="Out"/>
+      <property id="referencedKey" type="ISchemaIdentityConstraint" status="Out"/>
+   </class>
+   <class id="ISchemaNotation" parent="ISchemaItem" creatable="off">
+      <property id="systemIdentifier" type="String" status="Out"/>
+      <property id="publicIdentifier" type="String" status="Out"/>
+   </class>
+   <class id="IXMLDOMSelection" parent="IXMLDOMNodeList" creatable="off">
+      <property id="expr" type="String" status="InOut"/>
+      <property id="context" type="IXMLDOMNode" status="InOut"/>
+      <method id="peekNode" type="IXMLDOMNode"/>
+      <method id="matches" type="IXMLDOMNode">
+         <argument id="pNode" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+      <method id="removeNext" type="IXMLDOMNode"/>
+      <method id="removeAll" type="Void"/>
+      <method id="clone" type="IXMLDOMSelection"/>
+      <method id="getProperty" type="Variant">
+         <argument id="name" type="String" status="ByVal"/>
+      </method>
+      <method id="setProperty" type="Void">
+         <argument id="name" type="String" status="ByVal"/>
+         <argument id="value" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="XMLDOMDocumentEvents" parent="None">
+      <event id="ondataavailable" netName="ondataavailable" netHandler="System.EventHandler"/>
+      <event id="onreadystatechange" netName="onreadystatechange" netHandler="System.EventHandler"/>
+   </class>
+   <class id="IDSOControl" parent="IDispatch">
+      <property id="XMLDocument" type="IXMLDOMDocument" status="InOut"/>
+      <property id="JavaDSOCompatible" type="Integer" status="InOut"/>
+      <property id="readyState" type="Integer" status="Out"/>
+   </class>
+   <class id="IXMLHTTPRequest" parent="IDispatch" creatable="off">
+      <property id="status" type="Integer" status="Out"/>
+      <property id="statusText" type="String" status="Out"/>
+      <property id="responseXML" type="Object" status="Out"/>
+      <property id="responseText" type="String" status="Out"/>
+      <property id="responseBody" type="Variant" status="Out"/>
+      <property id="responseStream" type="Variant" status="Out"/>
+      <property id="readyState" type="Integer" status="Out"/>
+      <property id="onreadystatechange" type="Object" status="In"/>
+      <method id="open" type="Void">
+         <argument id="bstrMethod" type="String" status="ByVal"/>
+         <argument id="bstrUrl" type="String" status="ByVal"/>
+         <argument id="varAsync" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="bstrUser" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="bstrPassword" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="setRequestHeader" type="Void">
+         <argument id="bstrHeader" type="String" status="ByVal"/>
+         <argument id="bstrValue" type="String" status="ByVal"/>
+      </method>
+      <method id="getResponseHeader" type="String">
+         <argument id="bstrHeader" type="String" status="ByVal"/>
+      </method>
+      <method id="getAllResponseHeaders" type="String"/>
+      <method id="send" type="Void">
+         <argument id="varBody" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="abort" type="Void"/>
+   </class>
+   <class id="IServerXMLHTTPRequest" parent="IXMLHTTPRequest" creatable="off">
+      <method id="setTimeouts" type="Void">
+         <argument id="resolveTimeout" type="Integer" status="ByVal"/>
+         <argument id="connectTimeout" type="Integer" status="ByVal"/>
+         <argument id="sendTimeout" type="Integer" status="ByVal"/>
+         <argument id="receiveTimeout" type="Integer" status="ByVal"/>
+      </method>
+      <method id="waitForResponse" type="Boolean">
+         <argument id="timeoutInSeconds" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="getOption" type="Variant">
+         <argument id="option" type="SERVERXMLHTTP_OPTION" status="ByVal"/>
+      </method>
+      <method id="setOption" type="Void">
+         <argument id="option" type="SERVERXMLHTTP_OPTION" status="ByVal"/>
+         <argument id="value" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IServerXMLHTTPRequest2" parent="IServerXMLHTTPRequest" creatable="off">
+      <method id="setProxy" type="Void">
+         <argument id="proxySetting" type="SXH_PROXY_SETTING" status="ByVal"/>
+         <argument id="varProxyServer" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="varBypassList" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="setProxyCredentials" type="Void">
+         <argument id="bstrUserName" type="String" status="ByVal"/>
+         <argument id="bstrPassword" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IMXNamespacePrefixes" parent="IDispatch" default="item" creatable="off">
+      <property id="length" type="Integer" status="Out"/>
+      <property id="_newEnum" type="Object" status="Out"/>
+      <method id="item" type="String" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IVBMXNamespaceManager" parent="IDispatch" creatable="off">
+      <property id="allowOverride" type="Boolean" status="InOut"/>
+      <method id="reset" type="Void"/>
+      <method id="pushContext" type="Void"/>
+      <method id="pushNodeContext" type="Void">
+         <argument id="contextNode" type="IXMLDOMNode" status="ByVal"/>
+         <argument id="fDeep" type="Boolean" status="ByVal" optional="true"/>
+      </method>
+      <method id="popContext" type="Void"/>
+      <method id="declarePrefix" type="Void">
+         <argument id="prefix" type="String" status="ByVal"/>
+         <argument id="namespaceURI" type="String" status="ByVal"/>
+      </method>
+      <method id="getDeclaredPrefixes" type="IMXNamespacePrefixes"/>
+      <method id="getPrefixes" type="IMXNamespacePrefixes">
+         <argument id="namespaceURI" type="String" status="ByVal"/>
+      </method>
+      <method id="getURI" type="Variant">
+         <argument id="prefix" type="String" status="ByVal"/>
+      </method>
+      <method id="getURIFromNode" type="Variant">
+         <argument id="strPrefix" type="String" status="ByVal"/>
+         <argument id="contextNode" type="IXMLDOMNode" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IMXNamespaceManager" parent="IUnknown">
+      <method id="putAllowOverride" type="Void">
+         <argument id="fOverride" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="getAllowOverride" type="Boolean"/>
+      <method id="reset" type="Void"/>
+      <method id="pushContext" type="Void"/>
+      <method id="pushNodeContext" type="Void">
+         <argument id="contextNode" type="IXMLDOMNode" status="ByVal"/>
+         <argument id="fDeep" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="popContext" type="Void"/>
+      <method id="declarePrefix" type="Void">
+         <argument id="prefix" type="Integer" status="ByRef"/>
+         <argument id="namespaceURI" type="Integer" status="ByRef"/>
+      </method>
+      <method id="getDeclaredPrefix" type="Void">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="pwchPrefix" type="Integer" status="ByRef"/>
+         <argument id="pcchPrefix" type="Integer" status="ByRef"/>
+      </method>
+      <method id="getPrefix" type="Void">
+         <argument id="pwszNamespaceURI" type="Integer" status="ByRef"/>
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="pwchPrefix" type="Integer" status="ByRef"/>
+         <argument id="pcchPrefix" type="Integer" status="ByRef"/>
+      </method>
+      <method id="getURI" type="Void">
+         <argument id="pwchPrefix" type="Integer" status="ByRef"/>
+         <argument id="pContextNode" type="IXMLDOMNode" status="ByVal"/>
+         <argument id="pwchUri" type="Integer" status="ByRef"/>
+         <argument id="pcchUri" type="Integer" status="ByRef"/>
+      </method>
+   </class>
+   <coclass id="DOMDocument" migName="XmlDocument">
+      <subclass id="IXMLDOMDocument2"/>
+      <subclass id="XMLDOMDocumentEvents"/>
+   </coclass>
+   <coclass id="DOMDocument26" migName="XmlDocument">
+      <subclass id="IXMLDOMDocument2"/>
+      <subclass id="XMLDOMDocumentEvents"/>
+   </coclass>
+   <coclass id="DOMDocument30" migName="XmlDocument">
+      <subclass id="IXMLDOMDocument2"/>
+      <subclass id="XMLDOMDocumentEvents"/>
+   </coclass>
+   <coclass id="DOMDocument40" migName="XmlDocument">
+      <subclass id="IXMLDOMDocument2"/>
+      <subclass id="XMLDOMDocumentEvents"/>
+   </coclass>
+   <coclass id="DOMDocument60" migName="XmlDocument">
+      <subclass id="IXMLDOMDocument3"/>
+      <subclass id="XMLDOMDocumentEvents"/>
+   </coclass>
+   <coclass id="FreeThreadedDOMDocument">
+      <subclass id="IXMLDOMDocument2"/>
+      <subclass id="XMLDOMDocumentEvents"/>
+   </coclass>
+   <coclass id="FreeThreadedDOMDocument26">
+      <subclass id="IXMLDOMDocument2"/>
+      <subclass id="XMLDOMDocumentEvents"/>
+   </coclass>
+   <coclass id="FreeThreadedDOMDocument30">
+      <subclass id="IXMLDOMDocument2"/>
+      <subclass id="XMLDOMDocumentEvents"/>
+   </coclass>
+   <coclass id="FreeThreadedDOMDocument40">
+      <subclass id="IXMLDOMDocument2"/>
+      <subclass id="XMLDOMDocumentEvents"/>
+   </coclass>
+   <coclass id="FreeThreadedDOMDocument60" migName="XmlDocument">
+      <subclass id="IXMLDOMDocument3"/>
+      <subclass id="XMLDOMDocumentEvents"/>
+   </coclass>
+   <coclass id="XMLSchemaCache" migName="Schema.XmlSchemaSet">
+      <subclass id="IXMLDOMSchemaCollection"/>
+   </coclass>
+   <coclass id="XMLSchemaCache26" migName="Schema.XmlSchemaSet">
+      <subclass id="IXMLDOMSchemaCollection"/>
+   </coclass>
+   <coclass id="XMLSchemaCache30" migName="Schema.XmlSchemaSet">
+      <subclass id="IXMLDOMSchemaCollection"/>
+   </coclass>
+   <coclass id="XMLSchemaCache40" migName="Schema.XmlSchemaSet">
+      <subclass id="IXMLDOMSchemaCollection2"/>
+   </coclass>
+   <coclass id="XMLSchemaCache60" migName="Schema.XmlSchemaSet">
+      <subclass id="IXMLDOMSchemaCollection2"/>
+   </coclass>
+   <coclass id="XSLTemplate">
+      <subclass id="IXSLTemplate"/>
+   </coclass>
+   <coclass id="XSLTemplate26">
+      <subclass id="IXSLTemplate"/>
+   </coclass>
+   <coclass id="XSLTemplate30">
+      <subclass id="IXSLTemplate"/>
+   </coclass>
+   <coclass id="XSLTemplate40">
+      <subclass id="IXSLTemplate"/>
+   </coclass>
+   <coclass id="XSLTemplate60">
+      <subclass id="IXSLTemplate"/>
+   </coclass>
+   <coclass id="DSOControl">
+      <subclass id="IDSOControl"/>
+   </coclass>
+   <coclass id="DSOControl26">
+      <subclass id="IDSOControl"/>
+   </coclass>
+   <coclass id="DSOControl30">
+      <subclass id="IDSOControl"/>
+   </coclass>
+   <coclass id="DSOControl40">
+      <subclass id="IDSOControl"/>
+   </coclass>
+   <coclass id="XMLHTTP" migName="System.Net.HttpWebRequest" migStatus="external">
+      <subclass id="IXMLHTTPRequest"/>
+   </coclass>
+   <coclass id="XMLHTTP26" migName="System.Net.HttpWebRequest" migStatus="external">
+      <subclass id="IXMLHTTPRequest"/>
+   </coclass>
+   <coclass id="XMLHTTP30" migName="System.Net.HttpWebRequest" migStatus="external">
+      <subclass id="IXMLHTTPRequest"/>
+   </coclass>
+   <coclass id="XMLHTTP40" migName="System.Net.HttpWebRequest" migStatus="external">
+      <subclass id="IXMLHTTPRequest"/>
+   </coclass>
+   <coclass id="XMLHTTP60" migName="System.Net.HttpWebRequest" migStatus="external">
+      <subclass id="IXMLHTTPRequest"/>
+   </coclass>
+   <coclass id="ServerXMLHTTP">
+      <subclass id="IServerXMLHTTPRequest"/>
+   </coclass>
+   <coclass id="ServerXMLHTTP30">
+      <subclass id="IServerXMLHTTPRequest"/>
+   </coclass>
+   <coclass id="ServerXMLHTTP40">
+      <subclass id="IServerXMLHTTPRequest2"/>
+   </coclass>
+   <coclass id="ServerXMLHTTP60">
+      <subclass id="IServerXMLHTTPRequest2"/>
+   </coclass>
+   <coclass id="SAXXMLReader">
+      <subclass id="IVBSAXXMLReader"/>
+      <subclass id="ISAXXMLReader"/>
+      <subclass id="IMXReaderControl"/>
+   </coclass>
+   <coclass id="SAXXMLReader30">
+      <subclass id="IVBSAXXMLReader"/>
+      <subclass id="ISAXXMLReader"/>
+      <subclass id="IMXReaderControl"/>
+   </coclass>
+   <coclass id="SAXXMLReader40" migStatus="external" migName="gmRTL.MSXML.SaxXmlParser">
+      <subclass id="IVBSAXXMLReader"/>
+      <subclass id="ISAXXMLReader"/>
+   </coclass>
+   <coclass id="SAXXMLReader60">
+      <subclass id="IVBSAXXMLReader"/>
+      <subclass id="ISAXXMLReader"/>
+   </coclass>
+   <coclass id="MXXMLWriter">
+      <subclass id="IMXWriter"/>
+      <subclass id="ISAXContentHandler"/>
+      <subclass id="ISAXErrorHandler"/>
+      <subclass id="ISAXDTDHandler"/>
+      <subclass id="ISAXLexicalHandler"/>
+      <subclass id="ISAXDeclHandler"/>
+      <subclass id="IVBSAXContentHandler"/>
+      <subclass id="IVBSAXDeclHandler"/>
+      <subclass id="IVBSAXDTDHandler"/>
+      <subclass id="IVBSAXErrorHandler"/>
+      <subclass id="IVBSAXLexicalHandler"/>
+   </coclass>
+   <coclass id="MXXMLWriter30">
+      <subclass id="IMXWriter"/>
+      <subclass id="ISAXContentHandler"/>
+      <subclass id="ISAXDeclHandler"/>
+      <subclass id="ISAXDTDHandler"/>
+      <subclass id="ISAXErrorHandler"/>
+      <subclass id="ISAXLexicalHandler"/>
+      <subclass id="IVBSAXContentHandler"/>
+      <subclass id="IVBSAXDeclHandler"/>
+      <subclass id="IVBSAXDTDHandler"/>
+      <subclass id="IVBSAXErrorHandler"/>
+      <subclass id="IVBSAXLexicalHandler"/>
+   </coclass>
+   <coclass id="MXXMLWriter40" migStatus="external" migName="gmRTL.MSXML.XmlWriter">
+      <subclass id="IMXWriter"/>
+      <subclass id="ISAXContentHandler"/>
+      <subclass id="ISAXDeclHandler"/>
+      <subclass id="ISAXDTDHandler"/>
+      <subclass id="ISAXErrorHandler"/>
+      <subclass id="ISAXLexicalHandler"/>
+      <subclass id="IVBSAXContentHandler"/>
+      <subclass id="IVBSAXDeclHandler"/>
+      <subclass id="IVBSAXDTDHandler"/>
+      <subclass id="IVBSAXErrorHandler"/>
+      <subclass id="IVBSAXLexicalHandler"/>
+   </coclass>
+   <coclass id="MXXMLWriter60">
+      <subclass id="IMXWriter"/>
+      <subclass id="ISAXContentHandler"/>
+      <subclass id="ISAXDeclHandler"/>
+      <subclass id="ISAXDTDHandler"/>
+      <subclass id="ISAXErrorHandler"/>
+      <subclass id="ISAXLexicalHandler"/>
+      <subclass id="IVBSAXContentHandler"/>
+      <subclass id="IVBSAXDeclHandler"/>
+      <subclass id="IVBSAXDTDHandler"/>
+      <subclass id="IVBSAXErrorHandler"/>
+      <subclass id="IVBSAXLexicalHandler"/>
+   </coclass>
+   <coclass id="MXHTMLWriter">
+      <subclass id="IMXWriter"/>
+      <subclass id="ISAXContentHandler"/>
+      <subclass id="ISAXErrorHandler"/>
+      <subclass id="ISAXDTDHandler"/>
+      <subclass id="ISAXLexicalHandler"/>
+      <subclass id="ISAXDeclHandler"/>
+      <subclass id="IVBSAXContentHandler"/>
+      <subclass id="IVBSAXDeclHandler"/>
+      <subclass id="IVBSAXDTDHandler"/>
+      <subclass id="IVBSAXErrorHandler"/>
+      <subclass id="IVBSAXLexicalHandler"/>
+   </coclass>
+   <coclass id="MXHTMLWriter30">
+      <subclass id="IMXWriter"/>
+      <subclass id="ISAXContentHandler"/>
+      <subclass id="ISAXDeclHandler"/>
+      <subclass id="ISAXDTDHandler"/>
+      <subclass id="ISAXErrorHandler"/>
+      <subclass id="ISAXLexicalHandler"/>
+      <subclass id="IVBSAXContentHandler"/>
+      <subclass id="IVBSAXDeclHandler"/>
+      <subclass id="IVBSAXDTDHandler"/>
+      <subclass id="IVBSAXErrorHandler"/>
+      <subclass id="IVBSAXLexicalHandler"/>
+   </coclass>
+   <coclass id="MXHTMLWriter40">
+      <subclass id="IMXWriter"/>
+      <subclass id="ISAXContentHandler"/>
+      <subclass id="ISAXDeclHandler"/>
+      <subclass id="ISAXDTDHandler"/>
+      <subclass id="ISAXErrorHandler"/>
+      <subclass id="ISAXLexicalHandler"/>
+      <subclass id="IVBSAXContentHandler"/>
+      <subclass id="IVBSAXDeclHandler"/>
+      <subclass id="IVBSAXDTDHandler"/>
+      <subclass id="IVBSAXErrorHandler"/>
+      <subclass id="IVBSAXLexicalHandler"/>
+   </coclass>
+   <coclass id="MXHTMLWriter60">
+      <subclass id="IMXWriter"/>
+      <subclass id="ISAXContentHandler"/>
+      <subclass id="ISAXDeclHandler"/>
+      <subclass id="ISAXDTDHandler"/>
+      <subclass id="ISAXErrorHandler"/>
+      <subclass id="ISAXLexicalHandler"/>
+      <subclass id="IVBSAXContentHandler"/>
+      <subclass id="IVBSAXDeclHandler"/>
+      <subclass id="IVBSAXDTDHandler"/>
+      <subclass id="IVBSAXErrorHandler"/>
+      <subclass id="IVBSAXLexicalHandler"/>
+   </coclass>
+   <coclass id="SAXAttributes" migStatus="external" migName="gmRTL.MSXML.IAttributes">
+      <subclass id="IMXAttributes"/>
+      <subclass id="IVBSAXAttributes"/>
+      <subclass id="ISAXAttributes"/>
+   </coclass>
+   <coclass id="SAXAttributes30">
+      <subclass id="IMXAttributes"/>
+      <subclass id="IVBSAXAttributes"/>
+      <subclass id="ISAXAttributes"/>
+   </coclass>
+   <coclass id="SAXAttributes40">
+      <subclass id="IMXAttributes"/>
+      <subclass id="IVBSAXAttributes"/>
+      <subclass id="ISAXAttributes"/>
+   </coclass>
+   <coclass id="SAXAttributes60">
+      <subclass id="IMXAttributes"/>
+      <subclass id="IVBSAXAttributes"/>
+      <subclass id="ISAXAttributes"/>
+   </coclass>
+   <coclass id="MXNamespaceManager">
+      <subclass id="IVBMXNamespaceManager"/>
+      <subclass id="IMXNamespaceManager"/>
+   </coclass>
+   <coclass id="MXNamespaceManager40">
+      <subclass id="IVBMXNamespaceManager"/>
+      <subclass id="IMXNamespaceManager"/>
+   </coclass>
+   <coclass id="MXNamespaceManager60">
+      <subclass id="IVBMXNamespaceManager"/>
+      <subclass id="IMXNamespaceManager"/>
+   </coclass>
+</library>
+</DescriptionFile>

@@ -1,0 +1,147 @@
+<RefactorLibrary>
+<!--
+Description: Map Threed20 controls to WinForms controls
+-->
+<Refactor id="[Threed20.ocx]">
+
+<Migrate location="DoNotDeclare"  migName = "System.Windows.Forms" />
+<Migrate id="SSPanel" migName="Panel" />
+<Migrate id="SSCommand" migName="Button" />
+
+<Migrate id="ISSButtonBase.Caption" migName="Text" />
+<Migrate id="ISSPanel.Caption" migName="Text" />
+
+<Migrate id="DSSCommandEvents.Click" migName="Click" />
+<Migrate id="DSSPanelEvents.Click" migName="Click" />
+
+<Migrate id="DSSPanel.Picture" migName="BackgroundImage" />
+
+<Extend id="ISSButtonBase">
+   <Property id="Picture" type="FrxPicture" migName="Image" />
+</Extend>
+
+<Migrate id="ISSButtonBase.PictureDisabled" migStatus="MustCorrect" />
+
+<Migrate id="DSSPanel.BevelOuter" migStatus="MustCorrect" />
+<Migrate id="DSSPanel.BevelWidth" migStatus="MustCorrect" />
+
+<migClass id="NetControl.SSPanel" migName="System.Windows.Forms.Panel" parent="SSPanel">
+   <property id="BackColor" type="OLE_COLOR"
+             value="BackColor"
+             nPram="3"
+             vbnPattern="System.Drawing.Color.FromARGB(%3d, %2d, %1d)"
+             cshPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+             default="System.Drawing.SystemColors.Control"
+   />
+   <property id="Font" value="Font" type="FontInfo"
+             nPram="3"
+             vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+             cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+   />
+   <property id="Size"
+             value="(Width,Height)"
+             nPram="2"
+             vbnPattern="New System.Drawing.Size(%1d, %2d)"
+             cshPattern="new System.Drawing.Size(%1d, %2d)"
+   />
+   <property id="Location"
+             value="(Left,Top)"
+             nPram="2"
+             vbnPattern="New System.Drawing.Point(%1d, %2d)"
+             cshPattern="new System.Drawing.Point(%1d, %2d)"
+   />
+   <property id="TabIndex" type="Integer"
+             value="TabIndex"
+             default="0"
+   />
+   <property id="Text" 
+             value="Caption"
+   />
+   <property id="Enabled" type="Boolean"
+             value="Enabled"
+             default="True"
+   />
+   <property id="ForeColor" type="OLE_COLOR"
+             value="ForeColor"
+             nPram="3"
+             vbnPattern="System.Drawing.Color.FromARGB(%3d, %2d, %1d)"
+             cshPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+             default="System.Drawing.SystemColors.ControlText"
+   />
+   <property id="Visible" type="Boolean"
+             value="Visible"
+             default="True"
+   />
+   <property id="Name" type="string"
+             value="SYM.name"
+   />
+   <property id="ToolTipText" type="string"
+             migStatus="external"
+             value="ToolTipText"
+             nPram="3"
+             cshPattern="this.ToolTip1.SetToolTip(this.%1d,%3d);"
+             vbnPattern="Me.ToolTip1.SetToolTip(Me.%1d,%3d)"
+   />
+</migClass>
+
+<migClass id="NetControl.SSCommand" migName="System.Windows.Forms.Button" parent="SSCommand">
+   <property id="BackColor" type="OLE_COLOR"
+             value="BackColor"
+             nPram="3"
+             vbnPattern="System.Drawing.Color.FromARGB(%3d, %2d, %1d)"
+             cshPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+             default="System.Drawing.SystemColors.Control"
+   />
+   <property id="Font" value="Font" type="FontInfo"
+             nPram="3"
+             vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+             cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+   />
+   <property id="Size"
+             value="(Width,Height)"
+             nPram="2"
+             vbnPattern="New System.Drawing.Size(%1d, %2d)"
+             cshPattern="new System.Drawing.Size(%1d, %2d)"
+   />
+   <property id="Location"
+             value="(Left,Top)"
+             nPram="2"
+             vbnPattern="New System.Drawing.Point(%1d, %2d)"
+             cshPattern="new System.Drawing.Point(%1d, %2d)"
+   />
+   <property id="TabIndex" type="Integer"
+             value="TabIndex"
+             default="0"
+   />
+   <property id="Text" 
+             value="Caption"
+   />
+   <property id="Enabled" type="Boolean"
+             value="Enabled"
+             default="True"
+   />
+   <property id="ForeColor" type="OLE_COLOR"
+             value="ForeColor"
+             nPram="3"
+             vbnPattern="System.Drawing.Color.FromARGB(%3d, %2d, %1d)"
+             cshPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+             default="System.Drawing.SystemColors.ControlText"
+   />
+   <property id="Visible" type="Boolean"
+             value="Visible"
+             default="True"
+   />
+   <property id="Name" type="string"
+             value="SYM.name"
+   />
+   <property id="ToolTipText" type="string"
+             migStatus="external"
+             value="ToolTipText"
+             nPram="3"
+             cshPattern="this.ToolTip1.SetToolTip(this.%1d,%3d);"
+             vbnPattern="Me.ToolTip1.SetToolTip(Me.%1d,%3d)"
+   />
+</migClass>
+
+</Refactor>
+</RefactorLibrary>

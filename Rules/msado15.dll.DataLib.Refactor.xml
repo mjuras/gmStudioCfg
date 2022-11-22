@@ -1,0 +1,163 @@
+<RefactorLibrary>
+<!-- 
+Description: Map ADODB to gmRTL.DataLib
+-->
+<Refactor id="[msado15.dll]">
+
+<Migrate location="DoNotDeclare" migName="gmRTL.DataLib" type="Internal" />
+
+<Migrate id="Command" migName="gmRTL.DataLib.SqlClient.Command" migStatus="External" />
+<Migrate id="Command15" migName="gmRTL.DataLib.SqlClient.Command" migStatus="External" />
+
+
+<Migrate id="Command15.ActiveConnection" type="Connection" migName="Connection" status="ByVal" />
+<Migrate id="Command15.ActiveConnection" type="Connection" status="GetSetLet"/>
+<Migrate id="Command15.ActiveConnection.Get" npram="1" migPattern="%1d.Connection"/>
+<Migrate id="Command15.ActiveConnection.Set" npram="2" migPattern="%1d.Connection = %2d\c"/>
+<Migrate id="Command15.ActiveConnection.Let" npram="2" migPattern="%2d.InitializeConnection(%1d)\c"/>
+
+<Migrate id="Command15.Execute" type="Recordset" npram="4" migPattern="%1d.Execute(%2o,%3o,%4o)" />
+<Migrate id="Command15.Execute.RecordsAffected" status="ByRef" type="Integer" optional="DEF.Overload" />
+<Migrate id="Command15.Execute.Parameters" status="ByVal" optional="DEF.Overload" />
+<Migrate id="Command15.Execute.Options" type="ExecuteOptionEnum" optional="DEF.Overload" />
+
+<Migrate id="CommandTypeEnum" migName="System.Data.CommandType" migStatus="External" />
+<Migrate id="CommandTypeEnum.adCmdStoredProc" migName="StoredProcedure"/>
+<Migrate id="CommandTypeEnum.adCmdText" migName="Text"/>
+
+<Migrate id="Connection" migName="gmRTL.DataLib.SqlClient.Connection" migStatus="External"/>
+<Migrate id="Connection15.Execute" nPram="4" migPattern="%1d.Execute(%2d,%3o,%4o)" />
+<Migrate id="Connection15.Execute.Options" type="ExecuteOptionEnum" optional="DEF.Overload" />
+<Migrate id="Connection15.Execute.RecordsAffected"  status="ByRef" type="Integer" optional="DEF.Overload" />
+<Migrate id="Connection15.Open" nPram="5" migPattern="%1d.Open(%2o,%3o,%4o,%5o)\c" />
+<Migrate id="Connection15.Open.ConnectionString" optional="DEF.Overload"/>
+<Migrate id="Connection15.Open.Options" optional="DEF.Overload"/>
+<Migrate id="Connection15.Open.Password" optional="DEF.Overload"/>
+<Migrate id="Connection15.Open.UserID" optional="DEF.Overload"/>
+<Migrate id="Connection15.State" type="ObjectStateEnum" />
+
+<Migrate id="CursorLocationEnum.adUseClientBatch" migName="adUseClient"/>
+<Migrate id="CursorLocationEnum.adUseNone" migStatus="NotImplemented"/>
+
+<Migrate id="DataTypeEnum" migName="System.Data.SqlDbType" migStatus="External" />
+<Migrate id="DataTypeEnum.adArray" migName="VarBinary"/>
+<Migrate id="DataTypeEnum.adBSTR" migName="Char"/>
+<Migrate id="DataTypeEnum.adBigInt" migName="BigInt"/>
+<Migrate id="DataTypeEnum.adBinary" migName="Binary" />
+<Migrate id="DataTypeEnum.adBoolean" migName="Bit"/>
+<Migrate id="DataTypeEnum.adChapter" migName="Variant"/>
+<Migrate id="DataTypeEnum.adChar" migName="Char"/>
+<Migrate id="DataTypeEnum.adCurrency" migName="Money"/>
+<Migrate id="DataTypeEnum.adDBDate" migName="DateTime"/>
+<Migrate id="DataTypeEnum.adDBTime" migName="Time"/>
+<Migrate id="DataTypeEnum.adDBTimeStamp" migName="DateTimeOffset"/>
+<Migrate id="DataTypeEnum.adDate" migName="Date"/>
+<Migrate id="DataTypeEnum.adDecimal" migName="Decimal"/>
+<Migrate id="DataTypeEnum.adDouble" migName="Float"/>
+<Migrate id="DataTypeEnum.adEmpty" migName="Variant"/>
+<Migrate id="DataTypeEnum.adError" migName="SmallInt"/>
+<Migrate id="DataTypeEnum.adFileTime" migName="DateTime"/>
+<Migrate id="DataTypeEnum.adGUID" migName="UniqueIdentifier"/>
+<Migrate id="DataTypeEnum.adIDispatch" migName="Variant"/>
+<Migrate id="DataTypeEnum.adIUnknown" migName="Variant"/>
+<Migrate id="DataTypeEnum.adInteger" migName="Int"/>
+<Migrate id="DataTypeEnum.adLongVarBinary" migName="VarBinary"/>
+<Migrate id="DataTypeEnum.adLongVarChar" migName="Text"/>
+<Migrate id="DataTypeEnum.adLongVarWChar" migName="NText"/>
+<Migrate id="DataTypeEnum.adNumeric" migName="Int"/>
+<Migrate id="DataTypeEnum.adPropVariant" migName="Variant"/>
+<Migrate id="DataTypeEnum.adSingle" migName="Real"/>
+<Migrate id="DataTypeEnum.adSmallInt" migName="SmallInt"/>
+<Migrate id="DataTypeEnum.adTinyInt" migName="TinyInt"/>
+<Migrate id="DataTypeEnum.adUnsignedBigInt" migName="BigInt"/>
+<Migrate id="DataTypeEnum.adUnsignedInt" migName="Int"/>
+<Migrate id="DataTypeEnum.adUnsignedSmallInt" migName="SmallInt"/>
+<Migrate id="DataTypeEnum.adUnsignedTinyInt" migName="TinyInt"/>
+<Migrate id="DataTypeEnum.adUserDefined" migName="Udt"/>
+<Migrate id="DataTypeEnum.adVarBinary" migName="VarBinary"/>
+<Migrate id="DataTypeEnum.adVarChar" migName="VarChar"/>
+<Migrate id="DataTypeEnum.adVarNumeric" migName="Variant"/>
+<Migrate id="DataTypeEnum.adVarWChar" migName="NVarChar"/>
+<Migrate id="DataTypeEnum.adVariant" migName="Variant"/>
+<Migrate id="DataTypeEnum.adWChar" migName="NChar"/>
+
+<Migrate id="Field" migName="gmRTL.DataLib.SqlClient.Field" migStatus="External" />
+<Migrate id="Field20.Type" migName="ProviderDbType" />
+
+<Migrate id="Fields" migName="gmRTL.DataLib.SqlClient.Fields" migStatus="External" />
+<Migrate id="Fields.Append" nPram="6" migPattern="%1d.Append(%2d,%3d,%4o,%6o)\c" />
+<Migrate id="Fields.Append.DefinedSize" optional="DEF.Overload"/>
+<Migrate id="Fields.Append.FieldValue" optional="DEF.Overload"/>
+
+<Migrate id="ObjectStateEnum" migName="System.Data.ConnectionState" migStatus="External"/>
+<Migrate id="ObjectStateEnum.adStateClosed" migName="Closed"/>
+<Migrate id="ObjectStateEnum.adStateConnecting" migName="Connecting"/>
+<Migrate id="ObjectStateEnum.adStateExecuting" migName="Executing"/>
+<Migrate id="ObjectStateEnum.adStateFetching" migName="Fetching"/>
+<Migrate id="ObjectStateEnum.adStateOpen" migName="Open"/>
+
+<Migrate id="Parameter" migName="System.Data.SqlClient.SqlParameter" migStatus="External" />
+<Migrate id="_Parameter.Name" migName="ParameterName"/>
+<Migrate id="_Parameter.Value" migStatus="isDbNull" />
+<Migrate id="_Parameter.Type" migName="SqlDbType"/>
+<Migrate id="_Parameter.NumericScale" type="Integer" migName="Scale"/>
+
+<Migrate id="ParameterDirectionEnum" migName="System.Data.ParameterDirection" migStatus="External"/>
+<Migrate id="ParameterDirectionEnum.adParamInput" migName="Input"/>
+<Migrate id="ParameterDirectionEnum.adParamInputOutput" migName="InputOutput"/>
+<Migrate id="ParameterDirectionEnum.adParamOutput" migName="Output"/>
+<Migrate id="ParameterDirectionEnum.adParamReturnValue" migName="ReturnValue"/>
+
+<Migrate id="Properties.Item" type="String" />
+
+<Migrate id="Property.Name" type="String" status="Out" migName="Key"/>
+<Migrate id="Property.Value" type="String" status="InOut"/>
+
+<Migrate id="Recordset" migName="gmRTL.DataLib.SqlClient.Recordset" migStatus="External" />
+
+<Migrate id="Recordset15.AbsolutePage" migStatus="NotImplemented"/>
+<Migrate id="Recordset15.AbsolutePosition" type="Integer" />
+<Migrate id="Recordset15.ActiveConnection" type="Connection" Status="ByVal" />
+<Migrate id="Recordset15.Bookmark" type="Integer" />
+<Migrate id="Recordset15.Delete" nPram="2" migPattern="%1d.Delete(%2o)\c" />
+<Migrate id="Recordset15.Delete.AffectRecords" type="AffectEnum" status="ByVal" optional="DEF.Overload"/>
+<Migrate id="Recordset15.Filter" type="String"/>
+<Migrate id="Recordset15.Find" nPram="5" migPattern="%1d.Find(%2o,%3o,%4o,%5o)\c" />
+<Migrate id="Recordset15.Find.SkipRecords" optional="-1"/>
+<Migrate id="Recordset15.Find.SearchDirection" optional="DEF.Overload"/>
+<Migrate id="Recordset15.Find.Start" optional="DEF.Overload"/>
+<Migrate id="Recordset15.GetRows" type="Object[,]" nPram="4" migPattern="%1d.GetRows(%2o,%3o,%4o)"/>
+<Migrate id="Recordset15.GetRows.Rows" optional="DEF.Overload"/>
+<Migrate id="Recordset15.GetRows.Start" optional="DEF.Overload"/>
+<Migrate id="Recordset15.GetRows.Fields" optional="DEF.Overload"/>
+<Migrate id="Recordset15.MarshalOptions" migStatus="NotImplemented" />
+<Migrate id="Recordset15.NextRecordset.RecordsAffected" type="Integer" />
+<Migrate id="Recordset15.Move.Start" type="Integer" optional="DEF.Overload" />
+<Migrate id="Recordset15.Open" nPram="6" migPattern="%1d.Open(%2o, %3o, %4o, %5o)\c" />
+<Migrate id="Recordset15.Open.Source" type="Object" />
+<Migrate id="Recordset15.Open.ActiveConnection" type="Object" optional="Default" />
+<Migrate id="Recordset15.Open.Options" type="Object" optional="DEF.Overload" />
+<Migrate id="Recordset15.PageCount" migStatus="NotImplemented" />
+<Migrate id="Recordset15.PageSize" migStatus="NotImplemented" />
+<Migrate id="Recordset15.Requery.Options" type="ExecuteOptionEnum" />
+<!-- 
+<Migrate id="Recordset15.Source" status="GetSet">
+   <Get npram="1" migPattern="%1d.Source"/>
+   <Set npram="2" migPattern="%1d.SetSource(%2d)\c"/>
+</Migrate>
+-->
+<Migrate id="Recordset15.State" type="ObjectStateEnum" />
+<Migrate id="Recordset15.Status" type="RecordStatusEnum" />
+<Migrate id="Recordset15.Update" nPram="3" migPattern="%1d.Update(%2o,%3o)\c" />
+<Migrate id="Recordset15.Update.Fields" optional="Def.Overload"/>
+<Migrate id="Recordset15.Update.Values" optional="Def.Overload"/>
+
+<Migrate id="Recordset20.Clone" nPram="2" migPattern="%1d.Clone(%2o)" />
+<Migrate id="Recordset20.Clone.LockType" optional="DEF.Overload"/>
+
+<Migrate id="_DynaCollection.Append" migName="Add" />
+
+<Migrate id="RecordSetEvents.MoveComplete" migPattern="MoveComplete" Role="Event" netHandler="EventHandler" netArgs="EventArgs" />
+
+</Refactor>
+</RefactorLibrary>

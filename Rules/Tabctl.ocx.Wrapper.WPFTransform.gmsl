@@ -1,0 +1,733 @@
+// Supports WinForms and WPF (when using gmSL scripts)
+
+void dbg(string msg)
+{
+    //System.LogMessage(msg);
+}
+
+void dbgIf(int condition, string msg)
+{
+   if (condition)
+   {
+      System.LogMessage(msg);
+   }
+}
+
+void SSTab_AuthorProperties(int ctlRoot,int iStart)
+{
+   tCodeBlock codptr;
+   int        pcnt;
+   int        ctlType;
+   int        tabs;
+   int        tabsPerRow;
+   int        tabHeight;
+   int        tabWidth;
+   int        tabIndex;
+   string     ident;
+   int        iTab;
+   int        nOper;
+   tCodeBlock tabCaption;
+   tCodeBlock tabControlName;
+   int        icode;
+   int        oper;
+   int        tabNo;
+   int        addr;
+   string     caption;
+   int        index;
+   string     addName;
+   int        iFormStart;
+   int        Style;
+
+   // Author the tabControl initialization
+   codptr = Opcode.GetCode();     
+   pcnt = Opcode.GetLength();
+   ctlType = Store.GetObjectType(ctlRoot);
+   tabs = ControlData.FindProperty(ctlType,"Tabs",iStart);
+   if(tabs) tabs = ControlData.GetValue(tabs);
+   else tabs = 3;
+   tabsPerRow = ControlData.FindProperty(ctlType,"TabsPerRow",iStart);
+   if(tabsPerRow) tabsPerRow = ControlData.GetValue(tabsPerRow);
+   else tabsPerRow = tabs;
+   tabHeight = ControlData.FindProperty(ctlType,"TabHeight",iStart);
+   if(tabHeight) tabHeight = ControlData.GetValue(tabHeight);
+   else tabHeight = 0;
+
+   // When using GetSet patterns for IDE members, I had to add Width to the 
+   // SSTab IDF and change the search point to get this
+   // tabWidth = ControlData.FindProperty(OPC.IDE,"Width",iStart);
+   iFormStart = ControlData.LoadCode(ctlRoot);
+   tabWidth = ControlData.FindProperty(ctlType,"Width",iFormStart);
+   if(tabWidth) tabWidth = ControlData.GetValue(tabWidth);
+   else tabWidth = 0;
+   tabIndex = ControlData.FindProperty(ctlType,"Tab",iStart);
+   if(tabIndex) tabIndex = ControlData.GetValue(tabIndex);
+   else tabIndex = 0;
+   // if set, assume Style=1; TODO: add enum entry conversion
+   style = ControlData.FindProperty(ctlType,"Style",iStart);
+   if(style) style = 1; 
+   else style = 0;
+
+dbg("SSTab_AuthorProperties");
+dbg("tabs="+tabs);
+dbg("tabsperRow="+tabsPerRow);
+dbg("tabHeight="+tabHeight);
+dbg("tabWidth="+tabWidth);
+dbg("tabIndex="+tabIndex);
+dbg("style="+style);
+
+   ident = Store.GetName(ctlRoot);
+
+   for(iTab = 0; iTab < tabs; iTab = iTab + 1)
+   {
+      if(Select.Dialect == Dialects.vbn) Write.Text("Me.");
+      else Write.Text("this.");
+      Write.Text(ident);
+      Write.Text(".Controls.Add(");
+      Write.Text(ident);
+      Write.Text("_TabPage_");
+      Write.Integer(iTab,0);
+      if(Select.Dialect == Dialects.vbn) Write.Text(")");
+      else Write.Text(");");
+      Write.Record();
+   }
+
+   if(Select.Dialect == Dialects.vbn) Write.Text("Me.");
+   else Write.Text("this.");
+   Write.Text(ident);
+   if(Select.Dialect == Dialects.vbn) Write.Text(".ItemSize = New System.Drawing.Size(");
+   else Write.Text(".ItemSize = new System.Drawing.Size(");
+   Write.Integer((tabWidth-5)/tabsPerRow,0);
+   Write.Text(",");
+   //Write.Integer((tabHeight-1)/30+1,0);
+   Write.Integer(tabHeight-18,0);
+   if(Select.Dialect == Dialects.vbn) Write.Text(")");
+   else Write.Text(");");
+   Write.Record();
+
+   /*
+   if(Select.Dialect == Dialects.vbn) Write.Text("Me.");
+   else Write.Text("this.");
+   Write.Text(ident);
+   Write.Text(".TabPages.Count = " + tabs);
+   if(Select.Dialect != Dialects.vbn) Write.Text(";");
+   Write.Record();
+   */
+   
+   if(Select.Dialect == Dialects.vbn) Write.Text("Me.");
+   else Write.Text("this.");
+   Write.Text(ident);
+   if (tabsPerRow==tabs && style==0)
+   {
+      Write.Text(".SizeMode = System.Windows.Forms.TabSizeMode.Fixed");
+   }
+   else
+   {
+      Write.Text(".SizeMode = System.Windows.Forms.TabSizeMode.Normal");
+   }
+   if(Select.Dialect != Dialects.vbn) Write.Text(";");
+   Write.Record();
+
+   if(Select.Dialect == Dialects.vbn) Write.Text("Me.");
+   else Write.Text("this.");
+   Write.Text(ident);
+   Write.Text(".SelectedIndex = ");
+   Write.Integer(tabIndex,0);
+   if(Select.Dialect != Dialects.vbn) Write.Text(";");
+   Write.Record();
+   
+   // Author the tabPages initialization
+   
+   tabCaption = CodePattern.Read("LIC,LSC,TAB.Caption",nOper); 
+   tabControlName = CodePattern.Read("LIC,LIC,LSC,TAB.ControlName",nOper); 
+   for(iTab = 0; iTab < tabs; iTab = iTab + 1)
+   {
+      if(Select.Dialect == Dialects.vbn)
+      {
+         Write.Text("'");
+         Write.Record();
+         Write.Text("'  ");
+         Write.Text(ident);
+         Write.Text("_TabPage_");
+         Write.Integer(iTab,0);
+         Write.Record();
+         Write.Text("'");
+      }
+      else
+      {
+         Write.Text("//");
+         Write.Record();
+         Write.Text("//  ");
+         Write.Text(ident);
+         Write.Text("_TabPage_");
+         Write.Integer(iTab,0);
+         Write.Record();
+         Write.Text("//");
+      }
+      Write.Record();
+      for(icode = iStart; icode > 0; icode = Opcode.GetNext(codptr,icode,pcnt))
+      {
+         if(CodePattern.Match(icode,tabCaption))
+         {
+            oper = Opcode.GetOperation(codptr,icode,tabNo);
+            if(tabNo == iTab)
+            {
+               oper = Opcode.GetOperation(codptr,icode+sizeof(OPC.LIC),addr);
+               caption = Store.GetString(addr);
+               if(Select.Dialect == Dialects.vbn)
+               {
+                  Write.Text(ident);
+                  Write.Text("_TabPage_");
+                  Write.Integer(iTab,0);
+                  Write.Text(".Text = ");
+                  Write.Character("""");
+                  Write.Text(caption);
+                  Write.Character("""");
+                  Write.Record();
+               }
+               else
+               {
+                  Write.Text(ident);
+                  Write.Text("_TabPage_");
+                  Write.Integer(iTab,0);
+                  Write.Text(".Text = @");
+                  Write.Character("""");
+                  Write.Text(caption);
+                  Write.Character("""");
+                  Write.Character(";");
+                  Write.Record();
+               }
+               break;
+            }
+         }
+      }
+      // must add control in reverse order to preserve zOrder
+      int child[512];
+      int nChild = 0;
+      for(icode = iStart; icode > 0; icode = Opcode.GetNext(codptr,icode,pcnt))
+      {
+         if(CodePattern.Match(icode,tabControlName))
+         {
+            oper = Opcode.GetOperation(codptr,icode,tabNo);
+            if(tabNo == iTab)
+            {
+               oper = Opcode.GetOperation(codptr,icode+sizeof(OPC.LIC)+sizeof(OPC.LIC),addr);
+               caption = Store.GetString(addr);
+               if (isControl(ctlRoot, caption) == 1)
+               {                  
+                  child[nChild] = addr;
+                  nChild = nChild + 1;
+               }
+            }
+         }
+      }
+      string eol = "";
+      if(Select.Dialect == Dialects.csh) eol = ";";
+      nChild = nChild - 1;
+      while(nChild >=0)
+      {
+         caption = Store.GetString(child[nChild]);
+         
+         index = Character.FindFirst(caption,0,"(");
+         if(!index) addName = caption;
+         else addName = "_" + Character.Substr(caption,0,index-1) + "_" + Character.Substr(caption,index,-(index+1));
+            
+         string ControlAdd1 = ident + "_TabPage_" + iTab + ".Controls.Add(" + addName + ")" + eol;
+         Write.Line(ControlAdd1);
+         nChild = nChild - 1;
+      }
+   }
+}
+
+int isControl(int ctlRoot, string ctlName)
+{   
+   string fullCtlName = Symbol.FullName(ctlRoot) + "." + ctlName;
+   int findCtl = Symbol.FindIdentifier(fullCtlName);
+   if (findCtl == 0) return 1; // Indeterminate assume its a Control
+   int ctlType = Store.GetObjectType(findCtl);
+   string typeName =  Symbol.FullName(ctlType);  
+   if (typeName == "MSComDlg.CommonDialog") return 0; // Not a Control
+   // TODO: use type metadata to determine if a type is a control or not. (look at role)
+   return 1;
+}
+
+void SSTab_AuthorSubsystem(int ctlRoot,int offset)
+{
+   // not used when doing WPF by gmAPI
+   tCodeBlock codptr;
+   int        pcnt;
+   int        iStart;
+   int        iProp;
+   int        iValue;
+   int        icode;
+   int        iTab;
+   int        tabs;
+   int        tabsPerRow;
+   int        tabHeight;
+   int        tabWidth;
+   int        tabIndex;
+   tCodeBlock tabCaption;
+   tCodeBlock tabControlName;
+   int        nOper;
+   string     eventName;
+   int        eventRoot;
+   int        ctlType;
+   int        childRoot;
+   int        formRoot;
+   tLibComp   ctlInfo;
+   string     ident;
+   int        oper;
+   int        tabNo;
+   int        addr;
+   string     caption;
+   int        index;
+   int        isubCode;
+
+   ctlType = Store.GetObjectType(ctlRoot);
+   ctlInfo = Store.DeltaVector(ctlRoot);
+   ctlInfo.PropertyBag = False;
+   iStart = ControlData.LoadCode(ctlRoot);
+   codptr = Opcode.GetCode();     
+   pcnt = Opcode.GetLength();
+   for(formRoot = Store.GetParent(ctlRoot); formRoot != 0; formRoot = Store.GetParent(formRoot))
+   {
+      if(Store.GetObjectType(formRoot) == ObjectType.FormFile) break;
+   }
+
+   tabs = ControlData.FindProperty(ctlType,"Tabs",iStart);
+dbg("tabs="+tabs);
+   if(tabs) tabs = ControlData.GetValue(tabs);
+   else tabs = 3;
+   tabsPerRow = ControlData.FindProperty(ctlType,"TabsPerRow",iStart);
+   if(tabsPerRow) tabsPerRow = ControlData.GetValue(tabsPerRow);
+   else tabsPerRow = tabs;
+   tabHeight = ControlData.FindProperty(ctlType,"TabHeight",iStart);
+   if(tabHeight) tabHeight = ControlData.GetValue(tabHeight);
+   else tabHeight = 0;
+   tabWidth = ControlData.FindProperty(OPC.IDE,"Width",iStart);
+   if(tabWidth) tabWidth = ControlData.GetValue(tabWidth);
+   else tabWidth = 0;
+   tabIndex = ControlData.FindProperty(ctlType,"Tab",iStart);
+   if(tabIndex) tabIndex = ControlData.GetValue(tabIndex);
+   else tabIndex = 0;
+
+dbg("SSTab_AuthorSubsystem");
+dbg("tabs="+tabs);
+dbg("tabsperRow="+tabsPerRow);
+dbg("tabHeight="+tabHeight);
+dbg("tabWidth="+tabWidth);
+dbg("tabIndex="+tabIndex);
+
+   ident = Store.GetName(ctlRoot);
+   Write.Text("<TabControl");
+   Write.Text(" Name=""");
+   Write.Text(ident);
+   Write.Character("""");
+   iProp = ControlData.FindProperty(ctlType,"Left",iStart);
+dbg("Left="+iProp);
+   if(iProp)
+   {
+      iValue = ControlData.GetValue(iProp);
+      Write.Text(" Canvas.Left=""" + iValue + """");
+   }
+   iProp = ControlData.FindProperty(ctlType,"Top",iStart);
+dbg("Top="+iProp);
+   if(iProp)
+   {
+      iValue = ControlData.GetValue(iProp);
+      if(iValue >= offset) iValue = iValue - offset;
+      Write.Text(" Canvas.Top=""" + iValue + """");
+   }
+   iProp = ControlData.FindProperty(ctlType,"Height",iStart);
+dbg("Height="+iProp);
+   if(iProp)
+   {
+      iValue = ControlData.GetValue(iProp);
+      Write.Text(" Height=""" + iValue + """");
+   }
+   iProp = ControlData.FindProperty(ctlType,"Width",iStart);
+dbg("Width="+iProp);
+   if(iProp)
+   {
+      iValue = ControlData.GetValue(iProp);
+      Write.Text(" Width=""" + iValue + """");
+   }
+   iValue = 3;
+   Write.Text(" Margin=""" + iValue + """");
+   Write.Text(">");
+   Write.Record();
+   Write.ChangeMargin(1);
+
+   tabCaption = CodePattern.Read("LIC,LSC,TAB.Caption",nOper); 
+   tabControlName = CodePattern.Read("LIC,LIC,LSC,TAB.ControlName",nOper);
+
+   for(iTab = 0; iTab < tabs; iTab = iTab + 1)
+   {
+      for(icode = iStart; icode > 0; icode = Opcode.GetNext(codptr,icode,pcnt))
+      {
+         if(CodePattern.Match(icode,tabCaption))
+         {
+            oper = Opcode.GetOperation(codptr,icode,tabNo);
+            if(tabNo == iTab)
+            {
+               oper = Opcode.GetOperation(codptr,icode+sizeof(OPC.LIC),addr);
+               caption = Store.GetString(addr);
+               Write.Text("<TabItem");
+               Write.Text(" Name=""");
+               Write.Text(ident);
+               Write.Text("_TabPage_" + iTab + """");
+               Write.Text(" Header=""" + caption + """");
+               Write.Text(">");
+               Write.Record(); 
+               Write.ChangeMargin(1);
+               Write.Line("<Canvas>");
+               Write.ChangeMargin(1);
+               for(isubCode = iStart; isubCode > 0; isubCode = Opcode.GetNext(codptr,isubCode,pcnt))
+               {
+                  if(CodePattern.Match(isubCode,tabControlName))
+                  {
+                     oper = Opcode.GetOperation(codptr,isubCode,tabNo);
+                     if(tabNo == iTab)
+                     {
+                        oper = Opcode.GetOperation(codptr,isubCode+sizeof(OPC.LIC)+sizeof(OPC.LIC),addr);
+                        caption = Store.GetString(addr);
+                        childRoot = Store.FindVector(caption,ctlRoot);
+                        if(childRoot)
+                        {
+                           WPFSubsystem.WPFAuthorControl(formRoot,childRoot,offset);
+                        }
+                     }
+                  }
+               }
+               Write.ChangeMargin(-1);
+               Write.Line("</Canvas>");    
+               Write.ChangeMargin(-1);
+               Write.Line("</TabItem>");
+            }
+         }   
+      }
+   }
+   Write.ChangeMargin(-1);
+   Write.Line("</TabControl>");
+
+   Opcode.SetLength(iStart);
+}
+
+
+void SSTab_AuthorDeclarations(int ctlRoot,int iStart)
+{
+   string     ident;
+   tCodeBlock codptr;
+   int        ctlType;
+   int        tabs;
+   int        iTab;
+
+   ident = Store.GetName(ctlRoot);
+   codptr = Opcode.GetCode();     
+   ctlType = Store.GetObjectType(ctlRoot);
+   tabs = ControlData.FindProperty(ctlType,"Tabs",iStart);
+   if(tabs) tabs = ControlData.GetValue(tabs);
+   else tabs = 3;
+   for(iTab = 0; iTab < tabs; iTab = iTab + 1)
+   {
+      if(Select.Dialect == Dialects.vbn)
+      {
+         Write.Line("Private  Dim " + ident + "_TabPage_" + iTab + " As System.Windows.Forms.TabPage");
+      }
+      else
+      {
+         Write.Line("private System.Windows.Forms.TabPage " + ident + "_TabPage_" + iTab + ";");
+      }
+   }
+}
+
+void SSTab_AuthorAllocations(int ctlRoot,int iStart)
+{
+   string     ident;
+   tCodeBlock codptr;
+   int        ctlType;
+   int        tabs;
+   int        iTab;
+
+   ident = Store.GetName(ctlRoot);
+   codptr = Opcode.GetCode();     
+   ctlType = Store.GetObjectType(ctlRoot);
+   tabs = ControlData.FindProperty(ctlType,"Tabs",iStart);
+   if(tabs) tabs = ControlData.GetValue(tabs);
+   else tabs = 3;
+   for(iTab = 0; iTab < tabs; iTab = iTab + 1)
+   {
+      if(Select.Dialect == Dialects.vbn)
+      {
+         Write.Line("Me." + ident + "_TabPage_" + iTab + " = New System.Windows.Forms.TabPage()");
+      }
+      else
+      {
+         Write.Line("this." + ident + "_TabPage_" + iTab + " = new System.Windows.Forms.TabPage();");
+      }
+   }
+}
+
+void SSTab_AdjustProperties(int ctlRoot,int iStart)
+{
+   string     ident;
+   int ctlType;
+   int tabOrientation;
+   int tabs;
+   int tabsPerRow;
+   int tabHeight;
+   int Y;
+   int delta;
+   int levels[19];
+   int iRoot;
+   int objType;
+   int iChild;
+   int iLeft;
+   int left;
+   int iTop;
+   int top;
+   int isdb;
+
+   ctlType = Store.GetObjectType(ctlRoot);
+   tabOrientation = ControlData.FindProperty(ctlType,"TabOrientation",iStart);
+   if(tabOrientation) tabOrientation = ControlData.GetValue(tabOrientation);
+   if(tabOrientation != 0) Y = 0;
+   else
+   {
+      tabs = ControlData.FindProperty(ctlType,"Tabs",iStart);
+      if(tabs) tabs = ControlData.GetValue(tabs);
+      else tabs = 3;
+      tabsPerRow = ControlData.FindProperty(ctlType,"TabsPerRow",iStart);
+      if(tabsPerRow) tabsPerRow = ControlData.GetValue(tabsPerRow);
+      else tabsPerRow = tabs;
+      tabHeight = ControlData.FindProperty(ctlType,"TabHeight",iStart);
+      if(tabHeight) tabHeight = ControlData.GetValue(tabHeight);
+      else tabHeight = 0;
+      if(tabs == tabsPerRow) Y = 1;
+      else Y = (tabs-1)/tabsPerRow + 1;
+      Y = Y * ((tabHeight*1000)/1765);
+      Y = Y + (18 * 15); //TODO: verify that this is always the same number (might need sliding scale)
+   }
+   for(iRoot = Store.FindFirstChild(levels,ctlRoot); iRoot; iRoot = Store.FindNextChild(levels))
+   {
+      objType = Store.GetObjectType(iRoot);
+      if(objType <= Defines.NOBJECT_NAME) continue;
+      iChild = ControlData.LoadCode(iRoot);
+      if(iChild == 0) continue;
+      ident = Store.GetName(iRoot);
+      delta = 0;
+
+
+      iLeft = ControlData.FindProperty(objType,"Left",iChild);
+      if(iLeft == 0) iLeft = ControlData.FindProperty(OPC.IDE,"Left",iChild);
+
+      if(iLeft)
+      {
+         left = ControlData.GetValue(iLeft);
+         if(left < -60000)
+         {
+            left = left + 75000;
+            delta = 1;
+            ControlData.ReplaceValue(iLeft,OPC.LIC,left);
+         }
+      }
+      if(Store.GetParent(iRoot) == ctlRoot && Y > 0)
+      {
+         if(objType == OPC.LIN)
+         {
+            iTop = ControlData.FindProperty(OPC.LIN,"Y1",iChild);
+            if(iTop)
+            {
+               top = ControlData.GetValue(iTop) - Y;
+               delta = 1;
+               ControlData.ReplaceValue(iTop,OPC.LIC,top);
+            }
+            iTop = ControlData.FindProperty(OPC.LIN,"Y2",iChild);
+            if(iTop)
+            {
+               top = ControlData.GetValue(iTop) - Y;
+               delta = 1;
+               ControlData.ReplaceValue(iTop,OPC.LIC,top);
+            }
+         }
+         else
+         {
+            iTop = ControlData.FindProperty(objType,"Top",iChild);
+            if(iTop == 0) iTop = ControlData.FindProperty(OPC.IDE,"Top",iChild);
+            if(iTop)
+            {
+               top = ControlData.GetValue(iTop) - Y - 45;
+               delta = 1;
+               ControlData.ReplaceValue(iTop,OPC.LIC,top);
+            }
+         }
+      }
+      if(delta) ControlData.SaveCode(iRoot,iChild);
+      Opcode.SetLength(iChild);
+   }
+}
+
+int SSTab_ReadIndex()
+{
+   int        tokenType;
+   string     token;
+   int        propIndex;
+   tCodeBlock codptr;
+   int        pcnt;
+
+   token = Parser.GetToken(tokenType);
+   if(token != "(") return 0;
+   token = Parser.GetToken(tokenType);
+   if(tokenType != LexemeType.Integer) return 0;
+   propIndex = token;
+   token = Parser.GetToken(tokenType);
+   if(token != ")") return 0;
+   codptr = Opcode.GetCode();     
+   pcnt = Opcode.GetLength();
+   Opcode.SetOperation(codptr,pcnt,OPC.LIC,propIndex);
+   return 1;
+}
+
+int SSTab_UndefinedProperty()
+{
+   int    rescan;
+   int    tokenType;
+   string token;
+   int    propRoot;
+   int    iRet;
+
+   rescan = Parser.ResetInput();
+   token = Parser.GetToken(tokenType);
+   iRet = 0;
+   if(token == "TabCaption")
+   {  
+      propRoot = Symbol.FindIdentifier("TabDlg.TabUndefined.TabCaption");
+      iRet = SSTab_ReadIndex();
+   }
+   else if(token == "TabPicture")
+   {  
+      propRoot = Symbol.FindIdentifier("TabDlg.TabUndefined.TabPicture");
+      iRet = SSTab_ReadIndex();
+   }
+   else if(token == "Tab")
+   {
+      iRet = SSTab_ReadIndex();
+      if(iRet != 0)
+      {
+         token = Parser.GetToken(tokenType);
+         if(token != ".") iRet = 0;
+      }
+      if(iRet != 0)
+      {
+         token = Parser.GetToken(tokenType);
+         if(token == "ControlEnabled")
+         {
+            propRoot = Symbol.FindIdentifier("TabDlg.TabUndefined.TabEnabled");
+         }
+         else if(token == "ControlCount")
+         {
+            propRoot = Symbol.FindIdentifier("TabDlg.TabUndefined.TabControlCount");
+         }
+         else if(token == "Control")
+         {
+            iRet = SSTab_ReadIndex();
+            if(iRet != 0)
+            {
+               token = Parser.GetToken(tokenType);
+               if(token != ".")
+               {
+                  Parser.ResetInput();
+                  propRoot = Symbol.FindIdentifier("TabDlg.TabUndefined.TabControlName");
+               }
+               else
+               {
+                  token = Parser.GetToken(tokenType);
+                  if(token == "Enabled")
+                  {
+                     propRoot = Symbol.FindIdentifier("TabDlg.TabUndefined.Enabled");
+                  }
+                  else iRet = 0;
+               }
+            }
+         }
+      }
+   }
+   if(iRet == 0)
+   {
+      Parser.SetInput(rescan);
+      token = Parser.GetToken(tokenType);
+      propRoot = 0;
+   }
+   return propRoot;
+}
+    
+int SSTab(int context,int ctlRoot,int iStart)
+{
+   int iRet;
+
+   if(context == EventType.AdjustProperties)
+   {
+      SSTab_AdjustProperties(ctlRoot,iStart);
+      return 1;
+   }
+   if(context == EventType.AuthorDeclarations)
+   {
+      SSTab_AuthorDeclarations(ctlRoot,iStart);
+      return 1;
+   }
+   if(context == EventType.AuthorAllocations)
+   {
+      SSTab_AuthorAllocations(ctlRoot,iStart);
+      return 1;
+   }
+   if(context == EventType.AuthorProperties)
+   {
+      SSTab_AuthorProperties(ctlRoot,iStart);
+      return 1;
+   }
+   if(context == EventType.UndefinedProperty)
+   {
+      iRet = SSTab_UndefinedProperty();
+      return iRet;
+   }
+   if(context == EventType.AuthorSubsystem)
+   {
+      // not used with gmAPI
+      SSTab_AuthorSubsystem(ctlRoot,iStart);
+      return 1;
+   }
+   if(context == EventType.ControlMigration)
+   {
+      return ControlMigration.BlockAddRange;
+   }
+   return 0;
+}
+
+int DSSTabCtlEvents_Click(int subRoot,int icode,int iRefer)
+{
+   tCodeBlock codptr;
+   tCodeBlock callEvent;
+   int        nOper;
+   int        pcnt;
+   int        nextOp;
+   int        lcode;
+
+   if(subRoot < Defines.OPC_MAXIMUM) return 0;
+   codptr = Opcode.GetCode();
+   pcnt = Opcode.GetLength();
+   callEvent = CodePattern.Read("LDA,LLP,Argument,CUE.Call1",nOper);
+   lcode = CodePattern.Match(iRefer,callEvent);
+   if(lcode > 0)
+   {
+      nextOp = lcode - sizeof(OPC.CUE);
+      pcnt = Opcode.ExpandCode(nextOp,pcnt,sizeof(OPC.PAT) - sizeof(OPC.CUE));
+      Opcode.SetOperation(codptr,nextOp,OPC.PAT,Symbol.FindIdentifier("TabDlg.SSTabLogic.CallSSTabClick"));
+      Opcode.SetLength(pcnt);
+      return iRefer;
+   }
+   return 0;
+}
+
+int HostId(int context,int ctlRoot,int iStart)
+{
+   return 0;
+}

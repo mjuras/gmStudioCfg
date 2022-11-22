@@ -1,0 +1,45 @@
+<RefactorLibrary>
+<Refactor id="[mscomctl.ocx]">
+<Migrate id="IButtons.ControlDefault.Index" status="ByVal" />
+<Migrate id="IButtons.Item.Index" status="ByVal" />
+<Migrate id="IButtons.Remove.Index" status="ByVal" />
+<Migrate id="IButtons.Add.Index" status="ByVal" />
+<Migrate id="IButtonMenus.ControlDefault.Index" status="ByVal" />
+<Migrate id="IButtonMenus.Item.Index" status="ByVal" />
+<Migrate id="IButtonMenus.Remove.Index" status="ByVal" />
+<Migrate id="IButtonMenus.Add.Index" status="ByVal" />
+<Migrate id="IPanels.ControlDefault.Index" status="ByVal" />
+<Migrate id="IPanels.Add.Index" status="ByVal" />
+<Migrate id="IPanels.Item.Index" status="ByVal" />
+<Migrate id="IPanels.Remove.Index" status="ByVal" />
+<Migrate id="INodes.ControlDefault.Index" status="ByVal" />
+<Migrate id="INodes.Item.Index" status="ByVal" />
+<Migrate id="INodes.Remove.Index" status="ByVal" />
+<Migrate id="IListView.FindItem.Index" status="ByVal" />
+<Migrate id="IListItems.ControlDefault.Index" status="ByVal" />
+<Migrate id="IListItems.Add.Index" status="ByVal" />
+<Migrate id="IListItems.Item.Index" status="ByVal" />
+<Migrate id="IListItems.Remove.Index" status="ByVal" />
+<Migrate id="IColumnHeaders.ControlDefault.Index" status="ByVal" />
+<Migrate id="IColumnHeaders.Add_PreVB98.Index" status="ByVal" />
+<Migrate id="IColumnHeaders.Item.Index" status="ByVal" />
+<Migrate id="IColumnHeaders.Remove.Index" status="ByVal" />
+<Migrate id="IColumnHeaders.Add.Index" status="ByVal" />
+<Migrate id="IListSubItems.ControlDefault.Index" status="ByVal" />
+<Migrate id="IListSubItems.Add.Index" status="ByVal" />
+<Migrate id="IListSubItems.Item.Index" status="ByVal" />
+<Migrate id="IListSubItems.Remove.Index" status="ByVal" />
+<Migrate id="IImages.ControlDefault.Index" status="ByVal" />
+<Migrate id="IImages.Add.Index" status="ByVal" />
+<Migrate id="IImages.Item.Index" status="ByVal" />
+<Migrate id="IImages.Remove.Index" status="ByVal" />
+<Migrate id="IComboItems._CollectionDefault.Index" status="ByVal" />
+<Migrate id="IComboItems.Item.Index" status="ByVal" />
+<Migrate id="IComboItems.Add.Index" status="ByVal" />
+<Migrate id="IComboItems.Remove.Index" status="ByVal" />
+<Migrate id="ITabs.ControlDefault.pvIndex" status="ByVal" />
+<Migrate id="ITabs.Item.pvIndex" status="ByVal" />
+<Migrate id="ITabs.Remove.pvIndex" status="ByVal" />
+<Migrate id="ITabs.Add.pvIndex" status="ByVal" />
+</Refactor>
+</RefactorLibrary>

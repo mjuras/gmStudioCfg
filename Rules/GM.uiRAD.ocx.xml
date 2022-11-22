@@ -1,0 +1,173 @@
+<DescriptionFile>
+<!--
+Upgrade UI_RAD to MigrationSupport.UIRAD
+-->
+<library id="uiRAD.ocx"
+         name="UI_RAD"
+         uuid="7D5961FA-D791-4CB4-91AC-7C457EACE75A"
+         source="uiRAD.ocx"
+         location="%library%\Interop.UI_RAD.dll"
+         axLocation="%library%\AxInterop.UI_RAD.dll"
+         migName="UI_RAD"
+         type="ActiveX"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="_uiRAD"/>
+   <class id="_ResizerRules"/>
+   <class id="__uiRAD"/>
+   <coclass id="uiRAD"/>
+   <coclass id="ResizerRules"/>
+   <enumeration id="FieldFormats">
+      <entry id="ffNone" value="0"/>
+      <entry id="ffUpperCase" value="1"/>
+      <entry id="ffLowerCase" value="2"/>
+      <entry id="ffProperCase" value="3"/>
+      <entry id="ffCurrency" value="4"/>
+      <entry id="ffPercent" value="5"/>
+      <entry id="ffShortInteger" value="6"/>
+      <entry id="ffLongInteger" value="7"/>
+      <entry id="ffShortDate" value="8"/>
+      <entry id="ffMediumDate" value="9"/>
+      <entry id="ffLongDate" value="10"/>
+      <entry id="ffShortTime" value="11"/>
+      <entry id="ffMediumTime" value="12"/>
+      <entry id="ffLongTime" value="13"/>
+      <entry id="ffText" value="14"/>
+      <entry id="ffNumeric" value="15"/>
+      <entry id="ffCustom" value="16"/>
+   </enumeration>
+   <enumeration id="ResizeRules">
+      <entry id="ExpandWidth" value="0"/>
+      <entry id="ExpandHeight" value="1"/>
+      <entry id="ExpandRight" value="2"/>
+      <entry id="ExpandLeft" value="3"/>
+      <entry id="ExpandBottom" value="4"/>
+      <entry id="FitBottomToTop" value="5"/>
+      <entry id="FitTopToBottom" value="6"/>
+      <entry id="FitLeftToRight" value="7"/>
+      <entry id="FitRightToLeft" value="8"/>
+      <entry id="AlignRightToRight" value="9"/>
+      <entry id="AlignRightToLeft" value="10"/>
+      <entry id="AlignLeftToLeft" value="11"/>
+      <entry id="AlignLeftToRight" value="12"/>
+      <entry id="AlignTopToTop" value="13"/>
+      <entry id="AlignTopToBottom" value="14"/>
+      <entry id="AlignBottomToTop" value="15"/>
+      <entry id="AlignBottomToBottom" value="16"/>
+   </enumeration>
+   <class id="_uiRAD" parent="IDispatch">
+      <property id="BeepOnInvalid" type="Boolean" status="InOut"/>
+      <property id="DefeatAutoTab" type="Boolean" status="InOut"/>
+      <property id="InvalidColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="InvalidText" type="String" status="InOut"/>
+      <property id="UpdateMode" type="Boolean" status="InOut"/>
+      <property id="Resizer" type="ResizerRules" status="Out"/>
+      <method id="ClearTextProperties" type="Void"/>
+      <method id="InvalidControl" type="Object"/>
+      <method id="NextTab" type="Void"/>
+      <method id="RegisterContainer" type="Void">
+         <argument id="oCont" type="Object" status="ByRef"/>
+      </method>
+      <method id="RegisterControl" type="Void">
+         <argument id="cControl" type="Object" status="ByRef"/>
+         <argument id="bAutoTab" type="Boolean" status="ByRef"/>
+         <argument id="bAutoSelect" type="Boolean" status="ByRef"/>
+         <argument id="FieldFormat" type="FieldFormats" status="ByRef"/>
+         <argument id="CustomFormat" type="String" status="ByRef" optional="Default"/>
+      </method>
+      <method id="About" type="Void"/>
+   </class>
+   <class id="_ResizerRules" parent="IDispatch">
+      <method id="Resize" type="Void"/>
+      <method id="AddRule" type="Void">
+         <argument id="objContextSource" type="Object" status="ByRef"/>
+         <argument id="BorderPadding" type="Integer" status="ByRef"/>
+         <argument id="RuleToApply" type="ResizeRules" status="ByRef"/>
+         <argument id="ControlsToApplyRuleAgainst" type="Variant" status="RefParamArray"/>
+      </method>
+   </class>
+   <class id="__uiRAD" parent="None">
+      <event id="NotifyChange" netName="NotifyChangeEvent" netHandler="UI_RAD.__uiRAD_NotifyChangeEventHandler" netArgs="UI_RAD.__uiRAD_NotifyChangeEvent">
+         <argument id="ControlObject" type="Object" status="ByRef"/>
+      </event>
+      <event id="NotifyInvalid" netName="NotifyInvalidEvent" netHandler="UI_RAD.__uiRAD_NotifyInvalidEventHandler" netArgs="UI_RAD.__uiRAD_NotifyInvalidEvent">
+         <argument id="ControlObject" type="Object" status="ByRef"/>
+      </event>
+   </class>
+   <coclass id="uiRAD" creatable="off">
+      <subclass id="_uiRAD"/>
+      <subclass id="__uiRAD"/>
+   </coclass>
+   <coclass id="ResizerRules">
+      <subclass id="_ResizerRules"/>
+   </coclass>
+</library>
+<Refactor id="[uiRAD.ocx]" >
+<!--
+**********************************************************
+* Library
+* libtype="Internal" to remove ocxState entry
+**********************************************************
+-->
+   <Migrate
+      libtype="Internal"
+      location="DoNotDeclare"
+      migName="gmRTL.UI_RAD"
+      libtype="localimport"
+   />
+<!--
+**********************************************************
+* Classes and Enums
+**********************************************************
+-->
+   <Migrate id="uiRad"
+            nPram="0"
+            migPattern="uiRad"
+   />
+
+   <Migrate id="FieldFormats" migName="uiRad.FieldFormats" />
+<!--
+**********************************************************
+* Properties
+**********************************************************
+-->
+   <Migrate id="_uiRAD.BeepOnInvalid" migstatus="delete" />
+<!--
+**********************************************************
+* Methods
+**********************************************************
+-->
+   <Migrate id="_uiRAD.ClearTextProperties"
+      nPram="0"
+      cshPattern="gmRTL.UI_RAD.uiRad.ClearTextProperties(this)\c"
+      vbnPattern="gmRTL.UI_RAD.uiRad.ClearTextProperties(Me)\c"
+   />
+
+   <Migrate id="_uiRAD.RegisterContainer" migstatus="delete" />
+
+   <Migrate id="_uiRAD.RegisterControl.cControl" status="ByVal" />
+   <Migrate id="_uiRAD.RegisterControl.bAutoTab" status="ByVal" />
+   <Migrate id="_uiRAD.RegisterControl.bAutoSelect" status="ByVal" />
+   <Migrate id="_uiRAD.RegisterControl.FieldFormat" status="ByVal" />
+   <Migrate id="_uiRAD.RegisterControl.CustomFormat" status="ByVal" optional="Default"/>
+
+   <Migrate id="_uiRAD.RegisterControl"
+      nPram="6"
+      migPattern="%1d.RegisterControl(%2d,%3d,%4d,%5d,%6o)\c"
+   />
+<!--
+**********************************************************
+* Designer Code 
+**********************************************************
+-->
+   <migClass id="NetControl.uiRad"
+             migName="uiRad"
+             parent="uiRad"
+   >
+   <!-- this component has no designer properties to initialize -->
+   </migClass>
+
+</Refactor>
+</DescriptionFile>
+
+

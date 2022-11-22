@@ -1,0 +1,843 @@
+<DescriptionFile>
+<!--
+Upgrade MSComCtl2 to Winforms:
+MonthView to MonthCalendar"
+UpDown to NumericUpDown
+DTPicker to DateTimePicker
+
+Note: Using older-style refactor/migrate conventions 
+-->
+<library id="MSCOMCT2.OCX"
+         name="MSComCtl2"
+         uuid="86CF1D34-0C5F-11D2-A9FC-0000F8754DA1"
+         source="MSCOMCT2.OCX"
+         location="%library%\Interop.MSComCtl2.dll"
+         axLocation="%library%\AxInterop.MSComCtl2.dll"
+         migName="MSComCtl2"
+         type="ActiveX"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IVBDataObject"/>
+   <class id="IVBDataObjectFiles"/>
+   <class id="IAnimation"/>
+   <class id="DAnimationEvents"/>
+   <class id="IUpDown"/>
+   <class id="DUpDownEvents"/>
+   <class id="IMonthView"/>
+   <class id="DMonthViewEvents"/>
+   <class id="IDTPicker"/>
+   <class id="DDTPickerEvents"/>
+   <class id="IFlatSB"/>
+   <class id="DFlatSBEvents"/>
+   <coclass id="DataObject"/>
+   <coclass id="DataObjectFiles"/>
+   <coclass id="Animation"/>
+   <coclass id="UpDown"/>
+   <coclass id="MonthView"/>
+   <coclass id="DTPicker"/>
+   <coclass id="FlatScrollBar"/>
+   <enumeration id="OLEDropConstants">
+      <entry id="cc2OLEDropNone" value="0"/>
+      <entry id="cc2OLEDropManual" value="1"/>
+   </enumeration>
+   <enumeration id="DragOverConstants">
+      <entry id="cc2Enter" value="0"/>
+      <entry id="cc2Leave" value="1"/>
+      <entry id="cc2Over" value="2"/>
+   </enumeration>
+   <enumeration id="ClipBoardConstants">
+      <entry id="cc2CFText" value="1"/>
+      <entry id="cc2CFBitmap" value="2"/>
+      <entry id="cc2CFMetafile" value="3"/>
+      <entry id="cc2CFDIB" value="8"/>
+      <entry id="cc2CFPalette" value="9"/>
+      <entry id="cc2CFEMetafile" value="14"/>
+      <entry id="cc2CFFiles" value="15"/>
+      <entry id="cc2CFRTF" value="0xffffbf01"/>
+   </enumeration>
+   <enumeration id="OLEDropEffectConstants">
+      <entry id="cc2OLEDropEffectNone" value="0"/>
+      <entry id="cc2OLEDropEffectCopy" value="1"/>
+      <entry id="cc2OLEDropEffectMove" value="2"/>
+      <entry id="cc2OLEDropEffectScroll" value="0x80000000"/>
+   </enumeration>
+   <enumeration id="ErrorConstants">
+      <entry id="cc2BadFileNameOrNumber" value="52"/>
+      <entry id="cc2FileNotFound" value="53"/>
+      <entry id="cc2InvalidPropertyValue" value="380"/>
+      <entry id="cc2SetNotSupportedAtRuntime" value="382"/>
+      <entry id="cc2SetNotSupported" value="383"/>
+      <entry id="cc2GetNotSupported" value="394"/>
+      <entry id="cc2DataObjectLocked" value="672"/>
+      <entry id="cc2ExpectedAnArgument" value="673"/>
+      <entry id="cc2InvalidProcedureCall" value="5"/>
+      <entry id="cc2InvalidObjectUse" value="425"/>
+      <entry id="cc2WrongClipboardFormat" value="461"/>
+      <entry id="cc2RecursiveOleDrag" value="674"/>
+      <entry id="cc2FormatNotByteArray" value="675"/>
+      <entry id="cc2DataNotSetForFormat" value="676"/>
+      <entry id="cc2InconsistentObject" value="35750"/>
+      <entry id="cc2ErrorDuringSet" value="35751"/>
+      <entry id="cc2ErrorOpeningVideo" value="35752"/>
+      <entry id="cc2ErrorPlayingVideo" value="35753"/>
+      <entry id="cc2VideoNotOpen" value="35755"/>
+      <entry id="cc2ErrorStoppingVideo" value="35757"/>
+      <entry id="cc2ErrorClosingVideo" value="35758"/>
+      <entry id="cc2CantStopAutoPlay" value="35759"/>
+      <entry id="cc2NoValidBuddyCtl" value="35754"/>
+      <entry id="cc2AutoBuddyNotSet" value="35756"/>
+      <entry id="cc2BuddyNotASibling" value="35760"/>
+      <entry id="cc2NoUpDownAsBuddy" value="35761"/>
+      <entry id="cc2InvalidRange" value="35770"/>
+      <entry id="cc2InvalidMaxDate" value="35771"/>
+      <entry id="cc2InvalidMinDate" value="35772"/>
+      <entry id="cc2DateOutOfRange" value="35773"/>
+      <entry id="cc2InvalidMaxDateMin" value="35774"/>
+      <entry id="cc2InvalidMinDateMax" value="35775"/>
+      <entry id="cc2InvalidRowColValue" value="35776"/>
+      <entry id="cc2InvalidRowColTotal" value="35777"/>
+      <entry id="cc2MonthViewError" value="35778"/>
+      <entry id="cc2SetDayMultiSelectOn" value="35779"/>
+      <entry id="cc2SetDayOfWeekMultiSelectOn" value="35780"/>
+      <entry id="cc2SetMonthMultiSelectOn" value="35781"/>
+      <entry id="cc2SetWeekMultiSelectOn" value="35782"/>
+      <entry id="cc2SetYearMultiSelectOn" value="35783"/>
+      <entry id="cc2SetMaxSelCountMultiSelectOff" value="35784"/>
+      <entry id="cc2SetSelEndMultiSelectOff" value="35785"/>
+      <entry id="cc2SetSelStartMultiSelectOff" value="35786"/>
+      <entry id="cc2NullValueNotAllowed" value="35787"/>
+      <entry id="cc2DTPickerError" value="35788"/>
+      <entry id="cc2ScrollValueOutOfRange" value="35789"/>
+   </enumeration>
+   <enumeration id="AppearanceConstants">
+      <entry id="cc2Flat" value="0"/>
+      <entry id="cc23D" value="1"/>
+   </enumeration>
+   <enumeration id="BorderStyleConstants">
+      <entry id="cc2None" value="0"/>
+      <entry id="cc2FixedSingle" value="1"/>
+   </enumeration>
+   <enumeration id="MousePointerConstants">
+      <entry id="cc2Default" value="0"/>
+      <entry id="cc2Arrow" value="1"/>
+      <entry id="cc2Cross" value="2"/>
+      <entry id="cc2IBeam" value="3"/>
+      <entry id="cc2Icon" value="4"/>
+      <entry id="cc2Size" value="5"/>
+      <entry id="cc2SizeNESW" value="6"/>
+      <entry id="cc2SizeNS" value="7"/>
+      <entry id="cc2SizeNWSE" value="8"/>
+      <entry id="cc2SizeEW" value="9"/>
+      <entry id="cc2UpArrow" value="10"/>
+      <entry id="cc2Hourglass" value="11"/>
+      <entry id="cc2NoDrop" value="12"/>
+      <entry id="cc2ArrowHourglass" value="13"/>
+      <entry id="cc2ArrowQuestion" value="14"/>
+      <entry id="cc2SizeAll" value="15"/>
+      <entry id="cc2Custom" value="99"/>
+   </enumeration>
+   <enumeration id="OrientationConstants">
+      <entry id="cc2OrientationVertical" value="0"/>
+      <entry id="cc2OrientationHorizontal" value="1"/>
+   </enumeration>
+   <enumeration id="BackStyleConstants">
+      <entry id="cc2BackstyleTransparent" value="0"/>
+      <entry id="cc2BackstyleOpaque" value="1"/>
+   </enumeration>
+   <enumeration id="AlignmentConstants">
+      <entry id="cc2AlignmentLeft" value="0"/>
+      <entry id="cc2AlignmentRight" value="1"/>
+   </enumeration>
+   <enumeration id="DayConstants">
+      <entry id="mvwSunday" value="1"/>
+      <entry id="mvwMonday" value="2"/>
+      <entry id="mvwTuesday" value="3"/>
+      <entry id="mvwWednesday" value="4"/>
+      <entry id="mvwThursday" value="5"/>
+      <entry id="mvwFriday" value="6"/>
+      <entry id="mvwSaturday" value="7"/>
+   </enumeration>
+   <enumeration id="MonthConstants">
+      <entry id="mvwJanuary" value="1"/>
+      <entry id="mvwFebruary" value="2"/>
+      <entry id="mvwMarch" value="3"/>
+      <entry id="mvwApril" value="4"/>
+      <entry id="mvwMay" value="5"/>
+      <entry id="mvwJune" value="6"/>
+      <entry id="mvwJuly" value="7"/>
+      <entry id="mvwAugust" value="8"/>
+      <entry id="mvwSeptember" value="9"/>
+      <entry id="mvwOctober" value="10"/>
+      <entry id="mvwNovember" value="11"/>
+      <entry id="mvwDecember" value="12"/>
+   </enumeration>
+   <enumeration id="MonthViewHitTestAreas">
+      <entry id="mvwCalendarBack" value="0"/>
+      <entry id="mvwCalendarDate" value="1"/>
+      <entry id="mvwCalendarDateNext" value="2"/>
+      <entry id="mvwCalendarDatePrev" value="3"/>
+      <entry id="mvwCalendarDay" value="4"/>
+      <entry id="mvwCalendarWeekNum" value="5"/>
+      <entry id="mvwNoWhere" value="6"/>
+      <entry id="mvwTitleBack" value="7"/>
+      <entry id="mvwTitleBtnNext" value="8"/>
+      <entry id="mvwTitleBtnPrev" value="9"/>
+      <entry id="mvwTitleMonth" value="10"/>
+      <entry id="mvwTitleYear" value="11"/>
+      <entry id="mvwTodayLink" value="12"/>
+   </enumeration>
+   <enumeration id="FormatConstants">
+      <entry id="dtpLongDate" value="0"/>
+      <entry id="dtpShortDate" value="1"/>
+      <entry id="dtpTime" value="2"/>
+      <entry id="dtpCustom" value="3"/>
+   </enumeration>
+   <enumeration id="FlatScrollBarAppearanceConstants">
+      <entry id="fsb3D" value="0"/>
+      <entry id="fsbFlat" value="1"/>
+      <entry id="fsbTrack3D" value="2"/>
+   </enumeration>
+   <enumeration id="ArrowsConstants">
+      <entry id="cc2Both" value="0"/>
+      <entry id="cc2LeftUp" value="1"/>
+      <entry id="cc2RightDown" value="2"/>
+   </enumeration>
+   <class id="IVBDataObject" parent="IDispatch">
+      <property id="Files" type="DataObjectFiles" status="Out"/>
+      <method id="Clear" type="Void"/>
+      <method id="GetData" type="Variant">
+         <argument id="sFormat" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetFormat" type="Boolean">
+         <argument id="sFormat" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetData" type="Void">
+         <argument id="vValue" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="vFormat" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="IVBDataObjectFiles" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="String" status="indexer">
+         <argument id="lIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="bstrFilename" type="String" status="ByVal"/>
+         <argument id="vIndex" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="vIndex" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="stdole.IUnknown"/>
+   </class>
+   <class id="IAnimation" parent="IDispatch">
+      <property id="AutoPlay" type="Boolean" status="InOut"/>
+      <property id="BackStyle" type="BackStyleConstants" status="InOut"/>
+      <property id="Center" type="Boolean" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="hWnd" type="stdole.OLE_HANDLE" status="Out"/>
+      <property id="BackColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <method id="Close" type="Void"/>
+      <method id="Open" type="Void">
+         <argument id="bstrFilename" type="String" status="ByVal"/>
+      </method>
+      <method id="Play" type="Void">
+         <argument id="varRepeatCount" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="varStartFrame" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="varEndFrame" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Stop" type="Void"/>
+      <method id="AboutBox" type="Void"/>
+      <method id="OLEDrag" type="Void"/>
+   </class>
+   <class id="DAnimationEvents" parent="None">
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="System.EventArgs"/>
+      <event id="DblClick" netName="DblClickEvent" netHandler="System.EventHandler" netArgs="System.EventArgs"/>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="MSComCtl2.DAnimationEvents_MouseDownEventHandler" netArgs="MSComCtl2.DAnimationEvents_MouseDownEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="MSComCtl2.DAnimationEvents_MouseMoveEventHandler" netArgs="MSComCtl2.DAnimationEvents_MouseMoveEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="MSComCtl2.DAnimationEvents_MouseUpEventHandler" netArgs="MSComCtl2.DAnimationEvents_MouseUpEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDragEvent" netHandler="MSComCtl2.DAnimationEvents_OLEStartDragEventHandler" netArgs="MSComCtl2.DAnimationEvents_OLEStartDragEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="AllowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedbackEvent" netHandler="MSComCtl2.DAnimationEvents_OLEGiveFeedbackEventHandler" netArgs="MSComCtl2.DAnimationEvents_OLEGiveFeedbackEvent">
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="DefaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetDataEvent" netHandler="MSComCtl2.DAnimationEvents_OLESetDataEventHandler" netArgs="MSComCtl2.DAnimationEvents_OLESetDataEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="DataFormat" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDragEvent" netHandler="MSComCtl2.DAnimationEvents_OLECompleteDragEventHandler" netArgs="MSComCtl2.DAnimationEvents_OLECompleteDragEvent">
+         <argument id="Effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOverEvent" netHandler="MSComCtl2.DAnimationEvents_OLEDragOverEventHandler" netArgs="MSComCtl2.DAnimationEvents_OLEDragOverEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="Button" type="Integer" status="ByRef"/>
+         <argument id="Shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="State" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDropEvent" netHandler="MSComCtl2.DAnimationEvents_OLEDragDropEventHandler" netArgs="MSComCtl2.DAnimationEvents_OLEDragDropEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="Button" type="Integer" status="ByRef"/>
+         <argument id="Shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+   </class>
+   <class id="IUpDown" parent="IDispatch" default="Value">
+      <property id="Value" type="Integer" status="InOut"/>
+      <property id="Acceleration" type="Integer" status="InOut"/>
+      <property id="Alignment" type="AlignmentConstants" status="InOut"/>
+      <property id="AutoBuddy" type="Boolean" status="InOut"/>
+      <property id="BuddyControl" type="Variant" status="InOut"/>
+      <property id="Increment" type="Integer" status="InOut"/>
+      <property id="Max" type="Integer" status="InOut"/>
+      <property id="Min" type="Integer" status="InOut"/>
+      <property id="Orientation" type="OrientationConstants" status="InOut"/>
+      <property id="SyncBuddy" type="Boolean" status="InOut"/>
+      <property id="Wrap" type="Boolean" status="InOut"/>
+      <property id="BuddyProperty" type="Variant" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="hWnd" type="stdole.OLE_HANDLE" status="Out"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <method id="AboutBox" type="Void"/>
+      <method id="OLEDrag" type="Void"/>
+   </class>
+   <class id="DUpDownEvents" parent="None">
+      <event id="Change" netName="ChangeEvent" netHandler="System.EventHandler" netArgs="System.EventArgs"/>
+      <event id="DownClick" netName="DownClickEvent" netHandler="MSComCtl2.DUpDownEvents_DownClickEventHandler" netArgs="MSComCtl2.DUpDownEvents_DownClickEvent"/>
+      <event id="UpClick" netName="UpClickEvent" netHandler="MSComCtl2.DUpDownEvents_UpClickEventHandler" netArgs="MSComCtl2.DUpDownEvents_UpClickEvent"/>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="MSComCtl2.DUpDownEvents_MouseDownEventHandler" netArgs="MSComCtl2.DUpDownEvents_MouseDownEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="MSComCtl2.DUpDownEvents_MouseMoveEventHandler" netArgs="MSComCtl2.DUpDownEvents_MouseMoveEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="MSComCtl2.DUpDownEvents_MouseUpEventHandler" netArgs="MSComCtl2.DUpDownEvents_MouseUpEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDragEvent" netHandler="MSComCtl2.DUpDownEvents_OLEStartDragEventHandler" netArgs="MSComCtl2.DUpDownEvents_OLEStartDragEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="AllowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedbackEvent" netHandler="MSComCtl2.DUpDownEvents_OLEGiveFeedbackEventHandler" netArgs="MSComCtl2.DUpDownEvents_OLEGiveFeedbackEvent">
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="DefaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetDataEvent" netHandler="MSComCtl2.DUpDownEvents_OLESetDataEventHandler" netArgs="MSComCtl2.DUpDownEvents_OLESetDataEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="DataFormat" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDragEvent" netHandler="MSComCtl2.DUpDownEvents_OLECompleteDragEventHandler" netArgs="MSComCtl2.DUpDownEvents_OLECompleteDragEvent">
+         <argument id="Effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOverEvent" netHandler="MSComCtl2.DUpDownEvents_OLEDragOverEventHandler" netArgs="MSComCtl2.DUpDownEvents_OLEDragOverEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="Button" type="Integer" status="ByRef"/>
+         <argument id="Shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="State" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDropEvent" netHandler="MSComCtl2.DUpDownEvents_OLEDragDropEventHandler" netArgs="MSComCtl2.DUpDownEvents_OLEDragDropEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="Button" type="Integer" status="ByRef"/>
+         <argument id="Shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+   </class>
+   <class id="IMonthView" parent="IDispatch" default="_Value">
+      <property id="Appearance" type="AppearanceConstants" status="InOut"/>
+      <property id="BackColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="BorderStyle" type="BorderStyleConstants" status="InOut"/>
+      <property id="Day" type="Integer" status="InOut"/>
+      <property id="DayOfWeek" type="DayConstants" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Font" type="stdole.IFontDisp" status="InOut"/>
+      <property id="ForeColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="hWnd" type="stdole.OLE_HANDLE" status="InOut"/>
+      <property id="MaxDate" type="Date" status="InOut"/>
+      <property id="MaxSelCount" type="Integer" status="InOut"/>
+      <property id="MinDate" type="Date" status="InOut"/>
+      <property id="Month" type="MonthConstants" status="InOut"/>
+      <property id="MonthBackColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="MonthColumns" type="Integer" status="InOut"/>
+      <property id="MonthRows" type="Integer" status="InOut"/>
+      <property id="MouseIcon" type="stdole.IPictureDisp" status="InOut"/>
+      <property id="MousePointer" type="MousePointerConstants" status="InOut"/>
+      <property id="MultiSelect" type="Boolean" status="InOut"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <property id="ScrollRate" type="Integer" status="InOut"/>
+      <property id="SelEnd" type="Date" status="InOut"/>
+      <property id="SelStart" type="Date" status="InOut"/>
+      <property id="ShowToday" type="Boolean" status="InOut"/>
+      <property id="ShowWeekNumbers" type="Boolean" status="InOut"/>
+      <property id="StartOfWeek" type="DayConstants" status="InOut"/>
+      <property id="TitleBackColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="TitleForeColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="TrailingForeColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="Value" type="Date" status="InOut"/>
+      <property id="_Value" type="Date" status="InOut"/>
+      <property id="Week" type="Integer" status="InOut"/>
+      <property id="Year" type="Integer" status="InOut"/>
+      <accessor id="DayBold" type="Boolean">
+         <argument id="dateIndex" type="Date" status="ByVal"/>
+      </accessor>
+      <accessor id="VisibleDays" type="Date">
+         <argument id="sIndex" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="AboutBox" type="Void"/>
+      <method id="ComputeControlSize" type="Void">
+         <argument id="Rows" type="Integer" status="ByVal"/>
+         <argument id="Columns" type="Integer" status="ByVal"/>
+         <argument id="Width" type="Single" status="Out"/>
+         <argument id="Height" type="Single" status="Out"/>
+      </method>
+      <method id="HitTest" type="MonthViewHitTestAreas">
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+         <argument id="Date" type="Date" status="Out"/>
+      </method>
+      <method id="OLEDrag" type="Void"/>
+      <method id="Refresh" type="Void"/>
+   </class>
+   <class id="DMonthViewEvents" parent="None">
+      <event id="DateClick" netName="DateClickEvent" netHandler="MSComCtl2.DMonthViewEvents_DateClickEventHandler" netArgs="MSComCtl2.DMonthViewEvents_DateClickEvent">
+         <argument id="DateClicked" type="Date" status="ByVal"/>
+      </event>
+      <event id="DateDblClick" netName="DateDblClickEvent" netHandler="MSComCtl2.DMonthViewEvents_DateDblClickEventHandler" netArgs="MSComCtl2.DMonthViewEvents_DateDblClickEvent">
+         <argument id="DateDblClicked" type="Date" status="ByVal"/>
+      </event>
+      <event id="GetDayBold" netName="GetDayBoldEvent" netHandler="MSComCtl2.DMonthViewEvents_GetDayBoldEventHandler" netArgs="MSComCtl2.DMonthViewEvents_GetDayBoldEvent">
+         <argument id="StartDate" type="Date" status="ByVal"/>
+         <argument id="Count" type="Integer" status="ByVal"/>
+         <argument id="State" type="Boolean[]" status="ByRef"/>
+      </event>
+      <event id="SelChange" netName="SelChangeEvent" netHandler="MSComCtl2.DMonthViewEvents_SelChangeEventHandler" netArgs="MSComCtl2.DMonthViewEvents_SelChangeEvent">
+         <argument id="StartDate" type="Date" status="ByVal"/>
+         <argument id="EndDate" type="Date" status="ByVal"/>
+         <argument id="Cancel" type="Boolean" status="Out"/>
+      </event>
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="System.EventArgs"/>
+      <event id="DblClick" netName="DblClickEvent" netHandler="System.EventHandler" netArgs="System.EventArgs"/>
+      <event id="KeyDown" netName="KeyDownEvent" netHandler="MSComCtl2.DMonthViewEvents_KeyDownEventHandler" netArgs="MSComCtl2.DMonthViewEvents_KeyDownEvent">
+         <argument id="KeyCode" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="MSComCtl2.DMonthViewEvents_KeyUpEventHandler" netArgs="MSComCtl2.DMonthViewEvents_KeyUpEvent">
+         <argument id="KeyCode" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="MSComCtl2.DMonthViewEvents_KeyPressEventHandler" netArgs="MSComCtl2.DMonthViewEvents_KeyPressEvent">
+         <argument id="KeyAscii" type="Integer" status="Out"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="MSComCtl2.DMonthViewEvents_MouseDownEventHandler" netArgs="MSComCtl2.DMonthViewEvents_MouseDownEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="MSComCtl2.DMonthViewEvents_MouseMoveEventHandler" netArgs="MSComCtl2.DMonthViewEvents_MouseMoveEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="MSComCtl2.DMonthViewEvents_MouseUpEventHandler" netArgs="MSComCtl2.DMonthViewEvents_MouseUpEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDragEvent" netHandler="MSComCtl2.DMonthViewEvents_OLEStartDragEventHandler" netArgs="MSComCtl2.DMonthViewEvents_OLEStartDragEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="AllowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedbackEvent" netHandler="MSComCtl2.DMonthViewEvents_OLEGiveFeedbackEventHandler" netArgs="MSComCtl2.DMonthViewEvents_OLEGiveFeedbackEvent">
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="DefaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetDataEvent" netHandler="MSComCtl2.DMonthViewEvents_OLESetDataEventHandler" netArgs="MSComCtl2.DMonthViewEvents_OLESetDataEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="DataFormat" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDragEvent" netHandler="MSComCtl2.DMonthViewEvents_OLECompleteDragEventHandler" netArgs="MSComCtl2.DMonthViewEvents_OLECompleteDragEvent">
+         <argument id="Effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOverEvent" netHandler="MSComCtl2.DMonthViewEvents_OLEDragOverEventHandler" netArgs="MSComCtl2.DMonthViewEvents_OLEDragOverEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="Button" type="Integer" status="ByRef"/>
+         <argument id="Shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="State" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDropEvent" netHandler="MSComCtl2.DMonthViewEvents_OLEDragDropEventHandler" netArgs="MSComCtl2.DMonthViewEvents_OLEDragDropEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="Button" type="Integer" status="ByRef"/>
+         <argument id="Shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+   </class>
+   <class id="IDTPicker" parent="IDispatch" default="_Value">
+      <property id="Format" type="FormatConstants" status="InOut"/>
+      <property id="CalendarBackColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="CalendarForeColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="CalendarTitleBackColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="CalendarTitleForeColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="CalendarTrailingForeColor" type="stdole.OLE_COLOR" status="InOut"/>
+      <property id="CheckBox" type="Boolean" status="InOut"/>
+      <property id="CustomFormat" type="String" status="InOut"/>
+      <property id="Day" type="Variant" status="InOut"/>
+      <property id="DayOfWeek" type="Variant" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Font" type="stdole.IFontDisp" status="InOut"/>
+      <property id="Hour" type="Variant" status="InOut"/>
+      <property id="hWnd" type="stdole.OLE_HANDLE" status="InOut"/>
+      <property id="MaxDate" type="Date" status="InOut"/>
+      <property id="MinDate" type="Date" status="InOut"/>
+      <property id="Minute" type="Variant" status="InOut"/>
+      <property id="Month" type="Variant" status="InOut"/>
+      <property id="MouseIcon" type="stdole.IPictureDisp" status="InOut"/>
+      <property id="MousePointer" type="MousePointerConstants" status="InOut"/>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut"/>
+      <property id="Second" type="Variant" status="InOut"/>
+      <property id="UpDown" type="Boolean" status="InOut"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="_Value" type="Variant" status="InOut"/>
+      <property id="Year" type="Variant" status="InOut"/>
+      <method id="AboutBox" type="Void"/>
+      <method id="OLEDrag" type="Void"/>
+      <method id="Refresh" type="Void"/>
+   </class>
+   <class id="DDTPickerEvents" parent="None">
+      <event id="CallbackKeyDown" netName="CallbackKeyDownEvent" netHandler="MSComCtl2.DDTPickerEvents_CallbackKeyDownEventHandler" netArgs="MSComCtl2.DDTPickerEvents_CallbackKeyDownEvent">
+         <argument id="KeyCode" type="Integer" status="ByVal"/>
+         <argument id="Shift" type="Integer" status="ByVal"/>
+         <argument id="CallbackField" type="String" status="ByVal"/>
+         <argument id="CallbackDate" type="Date" status="ByRef"/>
+      </event>
+      <event id="Change" netName="ChangeEvent" netHandler="System.EventHandler" netArgs="System.EventArgs"/>
+      <event id="CloseUp" netName="CloseUpEvent" netHandler="MSComCtl2.DDTPickerEvents_CloseUpEventHandler" netArgs="MSComCtl2.DDTPickerEvents_CloseUpEvent"/>
+      <event id="DropDown" netName="DropDownEvent" netHandler="MSComCtl2.DDTPickerEvents_DropDownEventHandler" netArgs="MSComCtl2.DDTPickerEvents_DropDownEvent"/>
+      <event id="Format" netName="FormatEvent" netHandler="MSComCtl2.DDTPickerEvents_FormatEventHandler" netArgs="MSComCtl2.DDTPickerEvents_FormatEvent">
+         <argument id="CallbackField" type="String" status="ByVal"/>
+         <argument id="FormattedString" type="String" status="Out"/>
+      </event>
+      <event id="FormatSize" netName="FormatSizeEvent" netHandler="MSComCtl2.DDTPickerEvents_FormatSizeEventHandler" netArgs="MSComCtl2.DDTPickerEvents_FormatSizeEvent">
+         <argument id="CallbackField" type="String" status="ByVal"/>
+         <argument id="Size" type="Integer" status="Out"/>
+      </event>
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="System.EventArgs"/>
+      <event id="DblClick" netName="DblClickEvent" netHandler="System.EventHandler" netArgs="System.EventArgs"/>
+      <event id="KeyDown" netName="KeyDownEvent" netHandler="MSComCtl2.DDTPickerEvents_KeyDownEventHandler" netArgs="MSComCtl2.DDTPickerEvents_KeyDownEvent">
+         <argument id="KeyCode" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="MSComCtl2.DDTPickerEvents_KeyUpEventHandler" netArgs="MSComCtl2.DDTPickerEvents_KeyUpEvent">
+         <argument id="KeyCode" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="MSComCtl2.DDTPickerEvents_KeyPressEventHandler" netArgs="MSComCtl2.DDTPickerEvents_KeyPressEvent">
+         <argument id="KeyAscii" type="Integer" status="Out"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="MSComCtl2.DDTPickerEvents_MouseDownEventHandler" netArgs="MSComCtl2.DDTPickerEvents_MouseDownEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="MSComCtl2.DDTPickerEvents_MouseMoveEventHandler" netArgs="MSComCtl2.DDTPickerEvents_MouseMoveEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="MSComCtl2.DDTPickerEvents_MouseUpEventHandler" netArgs="MSComCtl2.DDTPickerEvents_MouseUpEvent">
+         <argument id="Button" type="Integer" status="Out"/>
+         <argument id="Shift" type="Integer" status="Out"/>
+         <argument id="x" type="stdole.OLE_XPOS_PIXELS" status="Out"/>
+         <argument id="y" type="stdole.OLE_YPOS_PIXELS" status="Out"/>
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDragEvent" netHandler="MSComCtl2.DDTPickerEvents_OLEStartDragEventHandler" netArgs="MSComCtl2.DDTPickerEvents_OLEStartDragEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="AllowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedbackEvent" netHandler="MSComCtl2.DDTPickerEvents_OLEGiveFeedbackEventHandler" netArgs="MSComCtl2.DDTPickerEvents_OLEGiveFeedbackEvent">
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="DefaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetDataEvent" netHandler="MSComCtl2.DDTPickerEvents_OLESetDataEventHandler" netArgs="MSComCtl2.DDTPickerEvents_OLESetDataEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="DataFormat" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDragEvent" netHandler="MSComCtl2.DDTPickerEvents_OLECompleteDragEventHandler" netArgs="MSComCtl2.DDTPickerEvents_OLECompleteDragEvent">
+         <argument id="Effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOverEvent" netHandler="MSComCtl2.DDTPickerEvents_OLEDragOverEventHandler" netArgs="MSComCtl2.DDTPickerEvents_OLEDragOverEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="Button" type="Integer" status="ByRef"/>
+         <argument id="Shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="State" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDropEvent" netHandler="MSComCtl2.DDTPickerEvents_OLEDragDropEventHandler" netArgs="MSComCtl2.DDTPickerEvents_OLEDragDropEvent">
+         <argument id="Data" type="DataObject" status="ByRef"/>
+         <argument id="Effect" type="Integer" status="ByRef"/>
+         <argument id="Button" type="Integer" status="ByRef"/>
+         <argument id="Shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+   </class>
+   <class id="IFlatSB" parent="IDispatch" default="_Value">
+      <property id="Appearance" type="FlatScrollBarAppearanceConstants" status="InOut"/>
+      <property id="Arrows" type="ArrowsConstants" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="hWnd" type="stdole.OLE_HANDLE" status="InOut"/>
+      <property id="LargeChange" type="Integer" status="InOut"/>
+      <property id="Min" type="Integer" status="InOut"/>
+      <property id="Max" type="Integer" status="InOut"/>
+      <property id="MouseIcon" type="stdole.IPictureDisp" status="InOut"/>
+      <property id="MousePointer" type="MousePointerConstants" status="InOut"/>
+      <property id="Orientation" type="OrientationConstants" status="InOut"/>
+      <property id="SmallChange" type="Integer" status="InOut"/>
+      <property id="Value" type="Integer" status="InOut"/>
+      <property id="_Value" type="Integer" status="InOut"/>
+      <method id="AboutBox" type="Void"/>
+      <method id="Refresh" type="Void"/>
+   </class>
+   <class id="DFlatSBEvents" parent="None">
+      <event id="Change" netName="ChangeEvent" netHandler="System.EventHandler" netArgs="System.EventArgs"/>
+      <event id="Scroll" netName="ScrollEvent" netHandler="System.EventHandler" netArgs="System.EventArgs"/>
+   </class>
+   <coclass id="DataObject" creatable="off">
+      <subclass id="IVBDataObject"/>
+   </coclass>
+   <coclass id="DataObjectFiles" creatable="off">
+      <subclass id="IVBDataObjectFiles"/>
+   </coclass>
+   <coclass id="Animation">
+      <subclass id="IAnimation"/>
+      <subclass id="DAnimationEvents"/>
+   </coclass>
+   <coclass id="UpDown">
+      <subclass id="IUpDown"/>
+      <subclass id="DUpDownEvents"/>
+   </coclass>
+   <coclass id="MonthView">
+      <subclass id="IMonthView"/>
+      <subclass id="DMonthViewEvents"/>
+   </coclass>
+   <coclass id="DTPicker">
+      <subclass id="IDTPicker"/>
+      <subclass id="DDTPickerEvents"/>
+   </coclass>
+   <coclass id="FlatScrollBar">
+      <subclass id="IFlatSB"/>
+      <subclass id="DFlatSBEvents"/>
+   </coclass>
+</library>
+<Refactor id="[MSCOMCT2.OCX]">
+<!--
+********************************************************** 
+* Library                   
+********************************************************** 
+-->
+   <Migrate libtype="Internal"
+            nPram="0"
+            migPattern="System.Windows.Forms"
+   />
+<!-- 
+********************************************************** 
+* Uses COM Interop
+********************************************************** 
+-->
+   <Migrate  id="DataObject"       migStatus="UsesCOM"/>
+   <Migrate  id="DataObjectFiles"  migStatus="UsesCOM"/>
+   <Migrate  id="Animation"        migStatus="UsesCOM"/>
+   <Migrate  id="FlatScrollBar"    migStatus="UsesCOM"/>
+<!--
+********************************************************** 
+* Classes
+********************************************************** 
+-->
+
+   <Migrate id="MonthView"
+            nPram="0"
+            migPattern="MonthCalendar"
+            role="control"
+   />
+   <Migrate id="UpDown"
+            nPram="0"
+            migPattern="NumericUpDown"
+            role="control"
+   />
+
+   <Migrate id="DTPicker" migName="DateTimePicker" />
+
+<!--
+********************************************************** 
+* Classes
+********************************************************** 
+-->
+   <Migrate id="FormatConstants" migName="DateTimePickerFormat"  />
+
+   <Migrate id="FormatConstants.dtpLongDate" migName="Long"  />
+   <Migrate id="FormatConstants.dtpShortDate" migName="Short"  />
+   <Migrate id="FormatConstants.dtpTime" migName="Time"  />
+   <Migrate id="FormatConstants.dtpCustom" migName="Custom"  />
+
+<!--
+********************************************************** 
+* Properties              
+********************************************************** 
+-->
+   <Migrate id="IMonthView.Value" status="GetSet" >
+       <Get nPram="1" migPattern="%1d.SelectionStart" />
+       <Let nPram="2" migPattern="%2d.SetDate(%1d)\c" />
+   </Migrate>
+
+   <Migrate id="IMonthView.MaxSelCount" 
+            migName="MaxSelectionCount" 
+   />
+
+   <Migrate id="IDTPicker.UpDown" migName="ShowUpDown"  />
+   <Migrate id="IDTPicker._Value" migName="Value" type="Date" />
+   <Migrate id="IDTPicker.Value" migName="Value" type="Date" />
+
+   <Migrate id="IUpDown.Min" migName="Minimum"  />
+   <Migrate id="IUpDown.Max" migName="Maximum"  />
+   
+   <Extend id="IUpDown" >
+      <Property id="Text" type="String" />
+   </Extend>
+   
+   <!-- connection to other control has changed -->
+   
+   <Migrate id="IUpDown.BuddyControl" migStatus="delete"  />
+   <Migrate id="IUpDown.BuddyProperty" migStatus="delete"  />
+   <Migrate id="IUpDown.SyncBuddy" migStatus="delete"  />
+   
+<!-- 
+********************************************************** 
+* Methods                 
+********************************************************** 
+-->
+<!-- 
+********************************************************** 
+* EventHandlers           
+********************************************************** 
+-->
+   <Migrate id="DMonthViewEvents.DateClick" 
+            role="event" 
+            netHandler="System.Windows.Forms.DateRangeEventHandler" 
+            netArgs="DateRangeEventArgs"
+            migPattern="DateSelected"
+   />
+   <Migrate id="DMonthViewEvents.DateClick.DateClicked" 
+      migPattern="%1d = e.Start"
+   />
+   <Migrate id="DUpDownEvents.Change" 
+            role="event" 
+            netHandler="System.EventHandler" 
+            netArgs="System.EventArgs"
+            migPattern="ValueChanged"
+   />
+   <Migrate id="DDTPickerEvents.Change" 
+            role="event" 
+            netHandler="System.EventHandler" 
+            netArgs="System.EventArgs"
+            migPattern="ValueChanged"
+   />
+<!--
+********************************************************** 
+* Designer Code 
+********************************************************** 
+-->
+   <migClass id="NetControl.MonthView" 
+             migName="System.Windows.Forms.MonthView"
+             parent="MonthView"
+   >
+      <property id="FirstDayOfWeek" type="MSComCtl2.DayConstants"
+                value="IMonthView.StartOfWeek"
+                default="Day.Sunday"
+      />
+      <property id="Font" value="Font" type="FontInfo" 
+                nPram="3"
+                vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+                cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+      />
+      <property id="ForeColor" type="OLE_COLOR"
+                value="IMonthView.ForeColor"
+                nPram="3"
+                vbnPattern="System.Drawing.Color.FromARGB(%3d, %2d, %1d)"
+                cshPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+                default="System.Drawing.SystemColors.ControlText"
+      />
+      <property id="Location"
+                value="(Left,Top)"
+                nPram="2"
+                vbnPattern="New System.Drawing.Point(%1d, %2d)"
+                cshPattern="new System.Drawing.Point(%1d, %2d)"
+      />
+      <property id="MaxSelectionCount" type="Integer"
+                value="IMonthView.MaxSelCount"
+                default="1"
+      />
+      <property id="Name" type="string"
+                value="SYM.name"
+      />
+      <property id="Size"
+                value="(Width,Height)"
+                nPram="2"
+                vbnPattern="New System.Drawing.Size(%1d, %2d)"
+                cshPattern="new System.Drawing.Size(%1d, %2d)"
+      />
+      <property id="TabIndex" type="Integer"
+                value="TabIndex"
+                default="0"
+      />
+   </migClass>
+</Refactor>
+</DescriptionFile>
+

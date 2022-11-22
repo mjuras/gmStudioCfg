@@ -1,0 +1,1079 @@
+<DescriptionFile>
+<!--
+Suppresses declaration or VBRUN stub
+-->
+<library id="msvbvm60_3.dll"
+         name="VBRUN"
+         uuid="EA544A21-C82D-11D1-A3E4-00A0C90AEA82"
+         netVersion="6.0"
+         source="msvbvm60_3.dll"
+         location="%library%\Interop.VBRUN.dll"
+         migName="VBRUN"
+         type="LocalImport"
+   >
+   <importlib id="stdole2.tlb"/>
+   <importlib id="msdatsrc.tlb"/>
+   <importlib id="msstdfmt.dll"/>
+   <class id="PropertyBag_VB5"/>
+   <class id="_PropertyBag"/>
+   <class id="DataObjectFiles"/>
+   <class id="DataObject"/>
+   <class id="AmbientProperties"/>
+   <class id="SelectedControls"/>
+   <class id="ParentControls"/>
+   <class id="ContainedControls"/>
+   <class id="DataBindings"/>
+   <class id="DataBinding"/>
+   <class id="EventParameter"/>
+   <class id="EventParameters"/>
+   <class id="EventInfo"/>
+   <class id="Hyperlink"/>
+   <class id="AsyncProperty_VB5"/>
+   <class id="AsyncProperty"/>
+   <class id="DataMembers"/>
+   <class id="IClassModuleEvt"/>
+   <class id="IDataSourceClassEvt"/>
+   <class id="IPersistableClassEvt"/>
+   <class id="IPersistableDataSourceClassEvt"/>
+   <class id="IDataProviderClassEvt"/>
+   <class id="IPersistableDataProviderClassEvt"/>
+   <class id="_DClass"/>
+   <class id="_DDataBoundClass"/>
+   <class id="_DDataSourceClass"/>
+   <class id="_DDataBoundAndDataSourceClass"/>
+   <class id="_DPersistableClass"/>
+   <class id="_DPersistableDataSourceClass"/>
+   <class id="LicenseInfo"/>
+   <class id="Licenses"/>
+   <class id="IProjectControl"/>
+   <class id="IVbeRuntimeHost"/>
+   <coclass id="PropertyBag"/>
+   <class id="RecordsetTypeConstants"/>
+   <enumeration id="PaletteModeConstants">
+      <entry id="vbPaletteModeHalftone" value="0"/>
+      <entry id="vbPaletteModeUseZOrder" value="1"/>
+      <entry id="vbPaletteModeCustom" value="2"/>
+      <entry id="vbPaletteModeContainer" value="3"/>
+      <entry id="vbPaletteModeNone" value="4"/>
+      <entry id="vbPaletteModeObject" value="5"/>
+   </enumeration>
+   <enumeration id="AsyncTypeConstants">
+      <entry id="vbAsyncTypePicture" value="0"/>
+      <entry id="vbAsyncTypeFile" value="1"/>
+      <entry id="vbAsyncTypeByteArray" value="2"/>
+   </enumeration>
+   <enumeration id="AsyncReadConstants">
+      <entry id="vbAsyncReadSynchronousDownload" value="1"/>
+      <entry id="vbAsyncReadOfflineOperation" value="8"/>
+      <entry id="vbAsyncReadForceUpdate" value="16"/>
+      <entry id="vbAsyncReadResynchronize" value="512"/>
+      <entry id="vbAsyncReadGetFromCacheIfNetFail" value="0x80000"/>
+   </enumeration>
+   <enumeration id="AsyncStatusCodeConstants">
+      <entry id="vbAsyncStatusCodeError" value="0"/>
+      <entry id="vbAsyncStatusCodeFindingResource" value="1"/>
+      <entry id="vbAsyncStatusCodeConnecting" value="2"/>
+      <entry id="vbAsyncStatusCodeRedirecting" value="3"/>
+      <entry id="vbAsyncStatusCodeBeginDownloadData" value="4"/>
+      <entry id="vbAsyncStatusCodeDownloadingData" value="5"/>
+      <entry id="vbAsyncStatusCodeEndDownloadData" value="6"/>
+      <entry id="vbAsyncStatusCodeUsingCachedCopy" value="10"/>
+      <entry id="vbAsyncStatusCodeSendingRequest" value="11"/>
+      <entry id="vbAsyncStatusCodeMIMETypeAvailable" value="13"/>
+      <entry id="vbAsyncStatusCodeCacheFileNameAvailable" value="14"/>
+      <entry id="vbAsyncStatusCodeBeginSyncOperation" value="15"/>
+      <entry id="vbAsyncStatusCodeEndSyncOperation" value="16"/>
+   </enumeration>
+   <enumeration id="LogEventTypeConstants">
+      <entry id="vbLogEventTypeError" value="1"/>
+      <entry id="vbLogEventTypeWarning" value="2"/>
+      <entry id="vbLogEventTypeInformation" value="4"/>
+   </enumeration>
+   <enumeration id="QueryUnloadConstants">
+      <entry id="vbFormControlMenu" value="0"/>
+      <entry id="vbFormCode" value="1"/>
+      <entry id="vbAppWindows" value="2"/>
+      <entry id="vbAppTaskManager" value="3"/>
+      <entry id="vbFormMDIForm" value="4"/>
+      <entry id="vbFormOwner" value="5"/>
+   </enumeration>
+   <enumeration id="ZOrderConstants">
+      <entry id="vbBringToFront" value="0"/>
+      <entry id="vbSendToBack" value="1"/>
+   </enumeration>
+   <enumeration id="ShiftConstants">
+      <entry id="vbShiftMask" value="1"/>
+      <entry id="vbCtrlMask" value="2"/>
+      <entry id="vbAltMask" value="4"/>
+   </enumeration>
+   <enumeration id="MouseButtonConstants">
+      <entry id="vbLeftButton" value="1"/>
+      <entry id="vbRightButton" value="2"/>
+      <entry id="vbMiddleButton" value="4"/>
+   </enumeration>
+   <enumeration id="ApplicationStartConstants">
+      <entry id="vbSModeStandalone" value="0"/>
+      <entry id="vbSModeAutomation" value="1"/>
+   </enumeration>
+   <enumeration id="ScrollBarConstants">
+      <entry id="vbSBNone" value="0"/>
+      <entry id="vbHorizontal" value="1"/>
+      <entry id="vbVertical" value="2"/>
+      <entry id="vbBoth" value="3"/>
+   </enumeration>
+   <enumeration id="ShapeConstants">
+      <entry id="vbShapeRectangle" value="0"/>
+      <entry id="vbShapeSquare" value="1"/>
+      <entry id="vbShapeOval" value="2"/>
+      <entry id="vbShapeCircle" value="3"/>
+      <entry id="vbShapeRoundedRectangle" value="4"/>
+      <entry id="vbShapeRoundedSquare" value="5"/>
+   </enumeration>
+   <enumeration id="PictureTypeConstants">
+      <entry id="vbPicTypeNone" value="0"/>
+      <entry id="vbPicTypeBitmap" value="1"/>
+      <entry id="vbPicTypeMetafile" value="2"/>
+      <entry id="vbPicTypeIcon" value="3"/>
+      <entry id="vbPicTypeEMetafile" value="4"/>
+   </enumeration>
+   <enumeration id="ComboBoxConstants">
+      <entry id="vbComboDropdown" value="0"/>
+      <entry id="vbComboSimple" value="1"/>
+      <entry id="vbComboDropdownList" value="2"/>
+   </enumeration>
+   <enumeration id="MultiSelectConstants">
+      <entry id="vbMultiSelectNone" value="0"/>
+      <entry id="vbMultiSelectSimple" value="1"/>
+      <entry id="vbMultiSelectExtended" value="2"/>
+   </enumeration>
+   <enumeration id="DataErrorConstants">
+      <entry id="vbDataErrContinue" value="0"/>
+      <entry id="vbDataErrDisplay" value="1"/>
+   </enumeration>
+   <enumeration id="DataValidateConstants">
+      <entry id="vbDataActionCancel" value="0"/>
+      <entry id="vbDataActionMoveFirst" value="1"/>
+      <entry id="vbDataActionMovePrevious" value="2"/>
+      <entry id="vbDataActionMoveNext" value="3"/>
+      <entry id="vbDataActionMoveLast" value="4"/>
+      <entry id="vbDataActionAddNew" value="5"/>
+      <entry id="vbDataActionUpdate" value="6"/>
+      <entry id="vbDataActionDelete" value="7"/>
+      <entry id="vbDataActionFind" value="8"/>
+      <entry id="vbDataActionBookmark" value="9"/>
+      <entry id="vbDataActionClose" value="10"/>
+      <entry id="vbDataActionUnload" value="11"/>
+   </enumeration>
+   <enumeration id="DataBOFconstants">
+      <entry id="vbMoveFirst" value="0"/>
+      <entry id="vbBOF" value="1"/>
+   </enumeration>
+   <enumeration id="DataEOFConstants">
+      <entry id="vbMoveLast" value="0"/>
+      <entry id="vbEOF" value="1"/>
+      <entry id="vbAddNew" value="2"/>
+   </enumeration>
+   <enumeration id="DefaultCursorTypeConstants">
+      <entry id="vbUseDefaultCursor" value="0"/>
+      <entry id="vbUseODBCCursor" value="1"/>
+      <entry id="vbUseServersideCursor" value="2"/>
+   </enumeration>
+   <enumeration id="VariantTypeConstants">
+      <entry id="vbVEmpty" value="0"/>
+      <entry id="vbVNull" value="1"/>
+      <entry id="vbVInteger" value="2"/>
+      <entry id="vbVLong" value="3"/>
+      <entry id="vbVSingle" value="4"/>
+      <entry id="vbVDouble" value="5"/>
+      <entry id="vbVCurrency" value="6"/>
+      <entry id="vbVDate" value="7"/>
+      <entry id="vbVString" value="8"/>
+   </enumeration>
+   <enumeration id="LinkErrorConstants">
+      <entry id="vbWrongFormat" value="1"/>
+      <entry id="vbDDESourceClosed" value="6"/>
+      <entry id="vbTooManyLinks" value="7"/>
+      <entry id="vbDataTransferFailed" value="8"/>
+   </enumeration>
+   <enumeration id="LinkModeConstants">
+      <entry id="vbLinkNone" value="0"/>
+      <entry id="vbLinkSource" value="1"/>
+      <entry id="vbLinkAutomatic" value="1"/>
+      <entry id="vbLinkManual" value="2"/>
+      <entry id="vbLinkNotify" value="3"/>
+   </enumeration>
+   <enumeration id="OldLinkModeConstants">
+      <entry id="vbHot" value="1"/>
+      <entry id="vbServer" value="1"/>
+      <entry id="vbCold" value="2"/>
+   </enumeration>
+   <enumeration id="ClipBoardConstants">
+      <entry id="vbCFLink" value="0xffffbf00"/>
+      <entry id="vbCFText" value="1"/>
+      <entry id="vbCFBitmap" value="2"/>
+      <entry id="vbCFMetafile" value="3"/>
+      <entry id="vbCFDIB" value="8"/>
+      <entry id="vbCFPalette" value="9"/>
+      <entry id="vbCFEMetafile" value="14"/>
+      <entry id="vbCFFiles" value="15"/>
+      <entry id="vbCFRTF" value="0xffffbf01"/>
+   </enumeration>
+   <enumeration id="DragOverConstants">
+      <entry id="vbEnter" value="0"/>
+      <entry id="vbLeave" value="1"/>
+      <entry id="vbOver" value="2"/>
+   </enumeration>
+   <enumeration id="DragConstants">
+      <entry id="vbCancel" value="0"/>
+      <entry id="vbBeginDrag" value="1"/>
+      <entry id="vbEndDrag" value="2"/>
+   </enumeration>
+   <enumeration id="DragModeConstants">
+      <entry id="vbManual" value="0"/>
+      <entry id="vbAutomatic" value="1"/>
+   </enumeration>
+   <enumeration id="OLEDropEffectConstants">
+      <entry id="vbDropEffectNone" value="0"/>
+      <entry id="vbDropEffectCopy" value="1"/>
+      <entry id="vbDropEffectMove" value="2"/>
+      <entry id="vbDropEffectScroll" value="0x80000000"/>
+   </enumeration>
+   <enumeration id="OLEDragConstants">
+      <entry id="vbOLEDragManual" value="0"/>
+      <entry id="vbOLEDragAutomatic" value="1"/>
+   </enumeration>
+   <enumeration id="OLEDropConstants">
+      <entry id="vbOLEDropNone" value="0"/>
+      <entry id="vbOLEDropManual" value="1"/>
+      <entry id="vbOLEDropAutomatic" value="2"/>
+   </enumeration>
+   <enumeration id="FormShowConstants">
+      <entry id="vbModeless" value="0"/>
+      <entry id="vbModal" value="1"/>
+   </enumeration>
+   <enumeration id="FormArrangeConstants">
+      <entry id="vbCascade" value="0"/>
+      <entry id="vbTileHorizontal" value="1"/>
+      <entry id="vbTileVertical" value="2"/>
+      <entry id="vbArrangeIcons" value="3"/>
+   </enumeration>
+   <enumeration id="FormWindowStateConstants">
+      <entry id="vbNormal" value="0"/>
+      <entry id="vbMinimized" value="1"/>
+      <entry id="vbMaximized" value="2"/>
+   </enumeration>
+   <enumeration id="KeyCodeConstants">
+      <entry id="vbKeyLButton" value="1"/>
+      <entry id="vbKeyRButton" value="2"/>
+      <entry id="vbKeyCancel" value="3"/>
+      <entry id="vbKeyMButton" value="4"/>
+      <entry id="vbKeyBack" value="8"/>
+      <entry id="vbKeyTab" value="9"/>
+      <entry id="vbKeyClear" value="12"/>
+      <entry id="vbKeyReturn" value="13"/>
+      <entry id="vbKeyShift" value="16"/>
+      <entry id="vbKeyControl" value="17"/>
+      <entry id="vbKeyMenu" value="18"/>
+      <entry id="vbKeyPause" value="19"/>
+      <entry id="vbKeyCapital" value="20"/>
+      <entry id="vbKeyEscape" value="27"/>
+      <entry id="vbKeySpace" value="32"/>
+      <entry id="vbKeyPageUp" value="33"/>
+      <entry id="vbKeyPageDown" value="34"/>
+      <entry id="vbKeyEnd" value="35"/>
+      <entry id="vbKeyHome" value="36"/>
+      <entry id="vbKeyLeft" value="37"/>
+      <entry id="vbKeyUp" value="38"/>
+      <entry id="vbKeyRight" value="39"/>
+      <entry id="vbKeyDown" value="40"/>
+      <entry id="vbKeySelect" value="41"/>
+      <entry id="vbKeyPrint" value="42"/>
+      <entry id="vbKeyExecute" value="43"/>
+      <entry id="vbKeySnapshot" value="44"/>
+      <entry id="vbKeyInsert" value="45"/>
+      <entry id="vbKeyDelete" value="46"/>
+      <entry id="vbKeyHelp" value="47"/>
+      <entry id="vbKeyNumlock" value="144"/>
+      <entry id="vbKeyScrollLock" value="145"/>
+      <entry id="vbKeyA" value="65"/>
+      <entry id="vbKeyB" value="66"/>
+      <entry id="vbKeyC" value="67"/>
+      <entry id="vbKeyD" value="68"/>
+      <entry id="vbKeyE" value="69"/>
+      <entry id="vbKeyF" value="70"/>
+      <entry id="vbKeyG" value="71"/>
+      <entry id="vbKeyH" value="72"/>
+      <entry id="vbKeyI" value="73"/>
+      <entry id="vbKeyJ" value="74"/>
+      <entry id="vbKeyK" value="75"/>
+      <entry id="vbKeyL" value="76"/>
+      <entry id="vbKeyM" value="77"/>
+      <entry id="vbKeyN" value="78"/>
+      <entry id="vbKeyO" value="79"/>
+      <entry id="vbKeyP" value="80"/>
+      <entry id="vbKeyQ" value="81"/>
+      <entry id="vbKeyR" value="82"/>
+      <entry id="vbKeyS" value="83"/>
+      <entry id="vbKeyT" value="84"/>
+      <entry id="vbKeyU" value="85"/>
+      <entry id="vbKeyV" value="86"/>
+      <entry id="vbKeyW" value="87"/>
+      <entry id="vbKeyX" value="88"/>
+      <entry id="vbKeyY" value="89"/>
+      <entry id="vbKeyZ" value="90"/>
+      <entry id="vbKey0" value="48"/>
+      <entry id="vbKey1" value="49"/>
+      <entry id="vbKey2" value="50"/>
+      <entry id="vbKey3" value="51"/>
+      <entry id="vbKey4" value="52"/>
+      <entry id="vbKey5" value="53"/>
+      <entry id="vbKey6" value="54"/>
+      <entry id="vbKey7" value="55"/>
+      <entry id="vbKey8" value="56"/>
+      <entry id="vbKey9" value="57"/>
+      <entry id="vbKeyNumpad0" value="96"/>
+      <entry id="vbKeyNumpad1" value="97"/>
+      <entry id="vbKeyNumpad2" value="98"/>
+      <entry id="vbKeyNumpad3" value="99"/>
+      <entry id="vbKeyNumpad4" value="100"/>
+      <entry id="vbKeyNumpad5" value="101"/>
+      <entry id="vbKeyNumpad6" value="102"/>
+      <entry id="vbKeyNumpad7" value="103"/>
+      <entry id="vbKeyNumpad8" value="104"/>
+      <entry id="vbKeyNumpad9" value="105"/>
+      <entry id="vbKeyMultiply" value="106"/>
+      <entry id="vbKeyAdd" value="107"/>
+      <entry id="vbKeySeparator" value="108"/>
+      <entry id="vbKeySubtract" value="109"/>
+      <entry id="vbKeyDecimal" value="110"/>
+      <entry id="vbKeyDivide" value="111"/>
+      <entry id="vbKeyF1" value="112"/>
+      <entry id="vbKeyF2" value="113"/>
+      <entry id="vbKeyF3" value="114"/>
+      <entry id="vbKeyF4" value="115"/>
+      <entry id="vbKeyF5" value="116"/>
+      <entry id="vbKeyF6" value="117"/>
+      <entry id="vbKeyF7" value="118"/>
+      <entry id="vbKeyF8" value="119"/>
+      <entry id="vbKeyF9" value="120"/>
+      <entry id="vbKeyF10" value="121"/>
+      <entry id="vbKeyF11" value="122"/>
+      <entry id="vbKeyF12" value="123"/>
+      <entry id="vbKeyF13" value="124"/>
+      <entry id="vbKeyF14" value="125"/>
+      <entry id="vbKeyF15" value="126"/>
+      <entry id="vbKeyF16" value="127"/>
+   </enumeration>
+   <enumeration id="MenuAccelConstants">
+      <entry id="vbMenuAccelCtrlA" value="1"/>
+      <entry id="vbMenuAccelCtrlB" value="2"/>
+      <entry id="vbMenuAccelCtrlC" value="3"/>
+      <entry id="vbMenuAccelCtrlD" value="4"/>
+      <entry id="vbMenuAccelCtrlE" value="5"/>
+      <entry id="vbMenuAccelCtrlF" value="6"/>
+      <entry id="vbMenuAccelCtrlG" value="7"/>
+      <entry id="vbMenuAccelCtrlH" value="8"/>
+      <entry id="vbMenuAccelCtrlI" value="9"/>
+      <entry id="vbMenuAccelCtrlJ" value="10"/>
+      <entry id="vbMenuAccelCtrlK" value="11"/>
+      <entry id="vbMenuAccelCtrlL" value="12"/>
+      <entry id="vbMenuAccelCtrlM" value="13"/>
+      <entry id="vbMenuAccelCtrlN" value="14"/>
+      <entry id="vbMenuAccelCtrlO" value="15"/>
+      <entry id="vbMenuAccelCtrlP" value="16"/>
+      <entry id="vbMenuAccelCtrlQ" value="17"/>
+      <entry id="vbMenuAccelCtrlR" value="18"/>
+      <entry id="vbMenuAccelCtrlS" value="19"/>
+      <entry id="vbMenuAccelCtrlT" value="20"/>
+      <entry id="vbMenuAccelCtrlU" value="21"/>
+      <entry id="vbMenuAccelCtrlV" value="22"/>
+      <entry id="vbMenuAccelCtrlW" value="23"/>
+      <entry id="vbMenuAccelCtrlX" value="24"/>
+      <entry id="vbMenuAccelCtrlY" value="25"/>
+      <entry id="vbMenuAccelCtrlZ" value="26"/>
+      <entry id="vbMenuAccelF1" value="27"/>
+      <entry id="vbMenuAccelF2" value="28"/>
+      <entry id="vbMenuAccelF3" value="29"/>
+      <entry id="vbMenuAccelF4" value="30"/>
+      <entry id="vbMenuAccelF5" value="31"/>
+      <entry id="vbMenuAccelF6" value="32"/>
+      <entry id="vbMenuAccelF7" value="33"/>
+      <entry id="vbMenuAccelF8" value="34"/>
+      <entry id="vbMenuAccelF9" value="35"/>
+      <entry id="vbMenuAccelF11" value="36"/>
+      <entry id="vbMenuAccelF12" value="37"/>
+      <entry id="vbMenuAccelCtrlF1" value="38"/>
+      <entry id="vbMenuAccelCtrlF2" value="39"/>
+      <entry id="vbMenuAccelCtrlF3" value="40"/>
+      <entry id="vbMenuAccelCtrlF4" value="41"/>
+      <entry id="vbMenuAccelCtrlF5" value="42"/>
+      <entry id="vbMenuAccelCtrlF6" value="43"/>
+      <entry id="vbMenuAccelCtrlF7" value="44"/>
+      <entry id="vbMenuAccelCtrlF8" value="45"/>
+      <entry id="vbMenuAccelCtrlF9" value="46"/>
+      <entry id="vbMenuAccelCtrlF11" value="47"/>
+      <entry id="vbMenuAccelCtrlF12" value="48"/>
+      <entry id="vbMenuAccelShiftF1" value="49"/>
+      <entry id="vbMenuAccelShfitF2" value="50"/>
+      <entry id="vbMenuAccelShiftF3" value="51"/>
+      <entry id="vbMenuAccelShiftF4" value="52"/>
+      <entry id="vbMenuAccelShiftF5" value="53"/>
+      <entry id="vbMenuAccelShiftF6" value="54"/>
+      <entry id="vbMenuAccelShiftF7" value="55"/>
+      <entry id="vbMenuAccelShiftF8" value="56"/>
+      <entry id="vbMenuAccelShiftF9" value="57"/>
+      <entry id="vbMenuAccelShiftF11" value="58"/>
+      <entry id="vbMenuAccelShiftF12" value="59"/>
+      <entry id="vbMenuAccelShiftCtrlF1" value="60"/>
+      <entry id="vbMenuAccelShiftCtrlF2" value="61"/>
+      <entry id="vbMenuAccelShiftCtrlF3" value="62"/>
+      <entry id="vbMenuAccelShiftCtrlF4" value="63"/>
+      <entry id="vbMenuAccelShiftCtrlF5" value="64"/>
+      <entry id="vbMenuAccelShiftCtrlF6" value="65"/>
+      <entry id="vbMenuAccelShiftCtrlF7" value="66"/>
+      <entry id="vbMenuAccelShiftCtrlF8" value="67"/>
+      <entry id="vbMenuAccelShiftCtrlF9" value="68"/>
+      <entry id="vbMenuAccelShiftCtrlF11" value="69"/>
+      <entry id="vbMenuAccelShiftCtrlF12" value="70"/>
+      <entry id="vbMenuAccelCtrlIns" value="71"/>
+      <entry id="vbMenuAccelShiftIns" value="72"/>
+      <entry id="vbMenuAccelDel" value="73"/>
+      <entry id="vbMenuAccelShiftDel" value="74"/>
+      <entry id="vbMenuAccelAltBksp" value="75"/>
+   </enumeration>
+   <enumeration id="ColorConstants">
+      <entry id="vbBlack" value="0"/>
+      <entry id="vbRed" value="255"/>
+      <entry id="vbGreen" value="65280"/>
+      <entry id="vbYellow" value="65535"/>
+      <entry id="vbBlue" value="0xff0000"/>
+      <entry id="vbMagenta" value="0xff00ff"/>
+      <entry id="vbCyan" value="0xffff00"/>
+      <entry id="vbWhite" value="0xffffff"/>
+   </enumeration>
+   <enumeration id="SystemColorConstants">
+      <entry id="vbScrollBars" value="0x80000000"/>
+      <entry id="vbDesktop" value="0x80000001"/>
+      <entry id="vbActiveTitleBar" value="0x80000002"/>
+      <entry id="vbInactiveTitleBar" value="0x80000003"/>
+      <entry id="vbMenuBar" value="0x80000004"/>
+      <entry id="vbWindowBackground" value="0x80000005"/>
+      <entry id="vbWindowFrame" value="0x80000006"/>
+      <entry id="vbMenuText" value="0x80000007"/>
+      <entry id="vbWindowText" value="0x80000008"/>
+      <entry id="vbTitleBarText" value="0x80000009"/>
+      <entry id="vbActiveBorder" value="0x8000000a"/>
+      <entry id="vbInactiveBorder" value="0x8000000b"/>
+      <entry id="vbApplicationWorkspace" value="0x8000000c"/>
+      <entry id="vbHighlight" value="0x8000000d"/>
+      <entry id="vbHighlightText" value="0x8000000e"/>
+      <entry id="vbButtonFace" value="0x8000000f"/>
+      <entry id="vbButtonShadow" value="0x80000010"/>
+      <entry id="vbGrayText" value="0x80000011"/>
+      <entry id="vbButtonText" value="0x80000012"/>
+      <entry id="vbActiveTitleBarText" value="0x80000009"/>
+      <entry id="vbInactiveTitleBarText" value="0x80000013"/>
+      <entry id="vbInactiveCaptionText" value="0x80000013"/>
+      <entry id="vb3DHighlight" value="0x80000014"/>
+      <entry id="vb3DFace" value="0x8000000f"/>
+      <entry id="vb3DShadow" value="0x80000010"/>
+      <entry id="vb3DDKShadow" value="0x80000015"/>
+      <entry id="vb3DLight" value="0x80000016"/>
+      <entry id="vbInfoText" value="0x80000017"/>
+      <entry id="vbInfoBackground" value="0x80000018"/>
+   </enumeration>
+   <enumeration id="AlignConstants">
+      <entry id="vbAlignNone" value="0"/>
+      <entry id="vbAlignTop" value="1"/>
+      <entry id="vbAlignBottom" value="2"/>
+      <entry id="vbAlignLeft" value="3"/>
+      <entry id="vbAlignRight" value="4"/>
+   </enumeration>
+   <enumeration id="AlignmentConstants">
+      <entry id="vbLeftJustify" value="0"/>
+      <entry id="vbRightJustify" value="1"/>
+      <entry id="vbCenter" value="2"/>
+   </enumeration>
+   <enumeration id="FormBorderStyleConstants">
+      <entry id="vbBSNone" value="0"/>
+      <entry id="vbFixedSingle" value="1"/>
+      <entry id="vbSizable" value="2"/>
+      <entry id="vbFixedDouble" value="3"/>
+      <entry id="vbFixedDialog" value="3"/>
+      <entry id="vbFixedToolWindow" value="4"/>
+      <entry id="vbSizableToolWindow" value="5"/>
+   </enumeration>
+   <enumeration id="BorderStyleConstants">
+      <entry id="vbTransparent" value="0"/>
+      <entry id="vbBSSolid" value="1"/>
+      <entry id="vbBSDash" value="2"/>
+      <entry id="vbBSDot" value="3"/>
+      <entry id="vbBSDashDot" value="4"/>
+      <entry id="vbBSDashDotDot" value="5"/>
+      <entry id="vbBSInsideSolid" value="6"/>
+   </enumeration>
+   <enumeration id="MousePointerConstants">
+      <entry id="vbDefault" value="0"/>
+      <entry id="vbArrow" value="1"/>
+      <entry id="vbCrosshair" value="2"/>
+      <entry id="vbIbeam" value="3"/>
+      <entry id="vbIconPointer" value="4"/>
+      <entry id="vbSizePointer" value="5"/>
+      <entry id="vbSizeNESW" value="6"/>
+      <entry id="vbSizeNS" value="7"/>
+      <entry id="vbSizeNWSE" value="8"/>
+      <entry id="vbSizeWE" value="9"/>
+      <entry id="vbUpArrow" value="10"/>
+      <entry id="vbHourglass" value="11"/>
+      <entry id="vbNoDrop" value="12"/>
+      <entry id="vbArrowHourglass" value="13"/>
+      <entry id="vbArrowQuestion" value="14"/>
+      <entry id="vbSizeAll" value="15"/>
+      <entry id="vbCustom" value="99"/>
+   </enumeration>
+   <enumeration id="DrawModeConstants">
+      <entry id="vbBlackness" value="1"/>
+      <entry id="vbNotMergePen" value="2"/>
+      <entry id="vbMaskNotPen" value="3"/>
+      <entry id="vbNotCopyPen" value="4"/>
+      <entry id="vbMaskPenNot" value="5"/>
+      <entry id="vbInvert" value="6"/>
+      <entry id="vbXorPen" value="7"/>
+      <entry id="vbNotMaskPen" value="8"/>
+      <entry id="vbMaskPen" value="9"/>
+      <entry id="vbNotXorPen" value="10"/>
+      <entry id="vbNop" value="11"/>
+      <entry id="vbMergeNotPen" value="12"/>
+      <entry id="vbCopyPen" value="13"/>
+      <entry id="vbMergePenNot" value="14"/>
+      <entry id="vbMergePen" value="15"/>
+      <entry id="vbWhiteness" value="16"/>
+   </enumeration>
+   <enumeration id="StartUpPositionConstants">
+      <entry id="vbStartUpManual" value="0"/>
+      <entry id="vbStartUpOwner" value="1"/>
+      <entry id="vbStartUpScreen" value="2"/>
+      <entry id="vbStartUpWindowsDefault" value="3"/>
+   </enumeration>
+   <enumeration id="DrawStyleConstants">
+      <entry id="vbSolid" value="0"/>
+      <entry id="vbDash" value="1"/>
+      <entry id="vbDot" value="2"/>
+      <entry id="vbDashDot" value="3"/>
+      <entry id="vbDashDotDot" value="4"/>
+      <entry id="vbInvisible" value="5"/>
+      <entry id="vbInsideSolid" value="6"/>
+   </enumeration>
+   <enumeration id="FillStyleConstants">
+      <entry id="vbFSSolid" value="0"/>
+      <entry id="vbFSTransparent" value="1"/>
+      <entry id="vbHorizontalLine" value="2"/>
+      <entry id="vbVerticalLine" value="3"/>
+      <entry id="vbUpwardDiagonal" value="4"/>
+      <entry id="vbDownwardDiagonal" value="5"/>
+      <entry id="vbCross" value="6"/>
+      <entry id="vbDiagonalCross" value="7"/>
+   </enumeration>
+   <enumeration id="ScaleModeConstants">
+      <entry id="vbUser" value="0"/>
+      <entry id="vbTwips" value="1"/>
+      <entry id="vbPoints" value="2"/>
+      <entry id="vbPixels" value="3"/>
+      <entry id="vbCharacters" value="4"/>
+      <entry id="vbInches" value="5"/>
+      <entry id="vbMillimeters" value="6"/>
+      <entry id="vbCentimeters" value="7"/>
+      <entry id="vbHimetric" value="8"/>
+      <entry id="vbContainerPosition" value="9"/>
+      <entry id="vbContainerSize" value="10"/>
+   </enumeration>
+   <enumeration id="OLEContainerConstants">
+      <entry id="vbOLELinked" value="0"/>
+      <entry id="vbOLEEmbedded" value="1"/>
+      <entry id="vbOLENone" value="3"/>
+      <entry id="vbOLEEither" value="2"/>
+      <entry id="vbOLEAutomatic" value="0"/>
+      <entry id="vbOLEFrozen" value="1"/>
+      <entry id="vbOLEManual" value="2"/>
+      <entry id="vbOLEActivateManual" value="0"/>
+      <entry id="vbOLEActivateGetFocus" value="1"/>
+      <entry id="vbOLEActivateDoubleclick" value="2"/>
+      <entry id="vbOLEActivateAuto" value="3"/>
+      <entry id="vbOLESizeClip" value="0"/>
+      <entry id="vbOLESizeStretch" value="1"/>
+      <entry id="vbOLESizeAutoSize" value="2"/>
+      <entry id="vbOLESizeZoom" value="3"/>
+      <entry id="vbOLEDisplayContent" value="0"/>
+      <entry id="vbOLEDisplayIcon" value="1"/>
+      <entry id="vbOLEChanged" value="0"/>
+      <entry id="vbOLESaved" value="1"/>
+      <entry id="vbOLEClosed" value="2"/>
+      <entry id="vbOLERenamed" value="3"/>
+      <entry id="vbOLEPrimary" value="0"/>
+      <entry id="vbOLEShow" value="0xffffffff"/>
+      <entry id="vbOLEOpen" value="0xfffffffe"/>
+      <entry id="vbOLEHide" value="0xfffffffd"/>
+      <entry id="vbOLEUIActivate" value="0xfffffffc"/>
+      <entry id="vbOLEInPlaceActivate" value="0xfffffffb"/>
+      <entry id="vbOLEDiscardUndoState" value="0xfffffffa"/>
+      <entry id="vbOLEFlagGrayed" value="1"/>
+      <entry id="vbOLEFlagDisabled" value="2"/>
+      <entry id="vbOLEFlagChecked" value="8"/>
+      <entry id="vbOLEFlagSeparator" value="2048"/>
+      <entry id="vbOLEMiscFlagMemStorage" value="1"/>
+      <entry id="vbOLEMiscFlagDisableInPlace" value="2"/>
+   </enumeration>
+   <enumeration id="MenuControlConstants">
+      <entry id="vbPopupMenuLeftAlign" value="0"/>
+      <entry id="vbPopupMenuCenterAlign" value="4"/>
+      <entry id="vbPopupMenuRightAlign" value="8"/>
+      <entry id="vbPopupMenuLeftButton" value="0"/>
+      <entry id="vbPopupMenuRightButton" value="2"/>
+   </enumeration>
+   <enumeration id="PrinterObjectConstants">
+      <entry id="vbPRCMMonochrome" value="1"/>
+      <entry id="vbPRCMColor" value="2"/>
+      <entry id="vbPRDPSimplex" value="1"/>
+      <entry id="vbPRDPHorizontal" value="2"/>
+      <entry id="vbPRDPVertical" value="3"/>
+      <entry id="vbPRORPortrait" value="1"/>
+      <entry id="vbPRORLandscape" value="2"/>
+      <entry id="vbPRPQDraft" value="0xffffffff"/>
+      <entry id="vbPRPQLow" value="0xfffffffe"/>
+      <entry id="vbPRPQMedium" value="0xfffffffd"/>
+      <entry id="vbPRPQHigh" value="0xfffffffc"/>
+      <entry id="vbPRBNUpper" value="1"/>
+      <entry id="vbPRBNLower" value="2"/>
+      <entry id="vbPRBNMiddle" value="3"/>
+      <entry id="vbPRBNManual" value="4"/>
+      <entry id="vbPRBNEnvelope" value="5"/>
+      <entry id="vbPRBNEnvManual" value="6"/>
+      <entry id="vbPRBNAuto" value="7"/>
+      <entry id="vbPRBNTractor" value="8"/>
+      <entry id="vbPRBNSmallFmt" value="9"/>
+      <entry id="vbPRBNLargeFmt" value="10"/>
+      <entry id="vbPRBNLargeCapacity" value="11"/>
+      <entry id="vbPRBNCassette" value="14"/>
+      <entry id="vbPRPSLetter" value="1"/>
+      <entry id="vbPRPSLetterSmall" value="2"/>
+      <entry id="vbPRPSTabloid" value="3"/>
+      <entry id="vbPRPSLedger" value="4"/>
+      <entry id="vbPRPSLegal" value="5"/>
+      <entry id="vbPRPSStatement" value="6"/>
+      <entry id="vbPRPSExecutive" value="7"/>
+      <entry id="vbPRPSA3" value="8"/>
+      <entry id="vbPRPSA4" value="9"/>
+      <entry id="vbPRPSA4Small" value="10"/>
+      <entry id="vbPRPSA5" value="11"/>
+      <entry id="vbPRPSB4" value="12"/>
+      <entry id="vbPRPSB5" value="13"/>
+      <entry id="vbPRPSFolio" value="14"/>
+      <entry id="vbPRPSQuarto" value="15"/>
+      <entry id="vbPRPS10x14" value="16"/>
+      <entry id="vbPRPS11x17" value="17"/>
+      <entry id="vbPRPSNote" value="18"/>
+      <entry id="vbPRPSEnv9" value="19"/>
+      <entry id="vbPRPSEnv10" value="20"/>
+      <entry id="vbPRPSEnv11" value="21"/>
+      <entry id="vbPRPSEnv12" value="22"/>
+      <entry id="vbPRPSEnv14" value="23"/>
+      <entry id="vbPRPSCSheet" value="24"/>
+      <entry id="vbPRPSDSheet" value="25"/>
+      <entry id="vbPRPSESheet" value="26"/>
+      <entry id="vbPRPSEnvDL" value="27"/>
+      <entry id="vbPRPSEnvC3" value="29"/>
+      <entry id="vbPRPSEnvC4" value="30"/>
+      <entry id="vbPRPSEnvC5" value="28"/>
+      <entry id="vbPRPSEnvC6" value="31"/>
+      <entry id="vbPRPSEnvC65" value="32"/>
+      <entry id="vbPRPSEnvB4" value="33"/>
+      <entry id="vbPRPSEnvB5" value="34"/>
+      <entry id="vbPRPSEnvB6" value="35"/>
+      <entry id="vbPRPSEnvItaly" value="36"/>
+      <entry id="vbPRPSEnvMonarch" value="37"/>
+      <entry id="vbPRPSEnvPersonal" value="38"/>
+      <entry id="vbPRPSFanfoldUS" value="39"/>
+      <entry id="vbPRPSFanfoldStdGerman" value="40"/>
+      <entry id="vbPRPSFanfoldLglGerman" value="41"/>
+      <entry id="vbPRPSUser" value="256"/>
+   </enumeration>
+   <enumeration id="RasterOpConstants">
+      <entry id="vbDstInvert" value="0x550009"/>
+      <entry id="vbMergeCopy" value="0xc000ca"/>
+      <entry id="vbMergePaint" value="0xbb0226"/>
+      <entry id="vbNotSrcCopy" value="0x330008"/>
+      <entry id="vbNotSrcErase" value="0x1100a6"/>
+      <entry id="vbSrcAnd" value="0x8800c6"/>
+      <entry id="vbSrcCopy" value="0xcc0020"/>
+      <entry id="vbSrcErase" value="0x440328"/>
+      <entry id="vbSrcInvert" value="0x660046"/>
+      <entry id="vbSrcPaint" value="0xee0086"/>
+      <entry id="vbPatCopy" value="0xf00021"/>
+      <entry id="vbPatPaint" value="0xfb0a09"/>
+      <entry id="vbPatInvert" value="0x5a0049"/>
+   </enumeration>
+   <enumeration id="CheckBoxConstants">
+      <entry id="vbUnchecked" value="0"/>
+      <entry id="vbChecked" value="1"/>
+      <entry id="vbGrayed" value="2"/>
+   </enumeration>
+   <enumeration id="LoadResConstants">
+      <entry id="vbResBitmap" value="0"/>
+      <entry id="vbResIcon" value="1"/>
+      <entry id="vbResCursor" value="2"/>
+   </enumeration>
+   <enumeration id="ButtonConstants">
+      <entry id="vbButtonStandard" value="0"/>
+      <entry id="vbButtonGraphical" value="1"/>
+   </enumeration>
+   <enumeration id="ListBoxConstants">
+      <entry id="vbListBoxStandard" value="0"/>
+      <entry id="vbListBoxCheckbox" value="1"/>
+   </enumeration>
+   <enumeration id="ParentControlsType">
+      <entry id="vbNoExtender" value="0"/>
+      <entry id="vbExtender" value="1"/>
+   </enumeration>
+   <enumeration id="LoadPictureSizeConstants">
+      <entry id="vbLPSmall" value="0"/>
+      <entry id="vbLPLarge" value="1"/>
+      <entry id="vbLPSmallShell" value="2"/>
+      <entry id="vbLPLargeShell" value="3"/>
+      <entry id="vbLPCustom" value="4"/>
+   </enumeration>
+   <enumeration id="LoadPictureColorConstants">
+      <entry id="vbLPDefault" value="0"/>
+      <entry id="vbLPMonochrome" value="1"/>
+      <entry id="vbLPVGAColor" value="2"/>
+      <entry id="vbLPColor" value="3"/>
+   </enumeration>
+   <enumeration id="HitResultConstants">
+      <entry id="vbHitResultOutside" value="0"/>
+      <entry id="vbHitResultTransparent" value="1"/>
+      <entry id="vbHitResultClose" value="2"/>
+      <entry id="vbHitResultHit" value="3"/>
+   </enumeration>
+   <enumeration id="LogModeConstants">
+      <entry id="vbLogAuto" value="0"/>
+      <entry id="vbLogOff" value="1"/>
+      <entry id="vbLogToFile" value="2"/>
+      <entry id="vbLogToNT" value="3"/>
+      <entry id="vbLogOverwrite" value="16"/>
+      <entry id="vbLogThreadID" value="32"/>
+   </enumeration>
+   <class id="PropertyBag_VB5" parent="IDispatch" creatable="off">
+      <method id="ReadProperty" type="Variant">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="DefaultValue" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="WriteProperty" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Value" type="Variant" status="ByVal"/>
+         <argument id="DefaultValue" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="_PropertyBag" parent="IDispatch">
+      <property id="Contents" type="Variant" status="InOut"/>
+      <method id="ReadProperty" type="Variant">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="DefaultValue" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="WriteProperty" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Value" type="Variant" status="ByVal"/>
+         <argument id="DefaultValue" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="DataObjectFiles" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="String" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="Filename" type="String" status="ByVal"/>
+         <argument id="index" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="DataObject" parent="IDispatch" creatable="off">
+      <property id="Files" type="DataObjectFiles" status="Out"/>
+      <method id="Clear" type="Void"/>
+      <method id="SetData" type="Void">
+         <argument id="Value" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Format" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="GetData" type="Variant">
+         <argument id="Format" type="Short" status="ByVal"/>
+      </method>
+      <method id="GetFormat" type="Boolean">
+         <argument id="Format" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <class id="AmbientProperties" parent="IDispatch" creatable="off">
+      <property id="BackColor" type="OLE_COLOR" status="Out"/>
+      <property id="DisplayName" type="String" status="Out"/>
+      <property id="Font" type="Font" status="Out"/>
+      <property id="ForeColor" type="OLE_COLOR" status="Out"/>
+      <property id="LocaleID" type="Integer" status="Out"/>
+      <property id="MessageReflect" type="Boolean" status="Out"/>
+      <property id="ScaleUnits" type="String" status="Out"/>
+      <property id="TextAlign" type="Short" status="Out"/>
+      <property id="UserMode" type="Boolean" status="Out"/>
+      <property id="UIDead" type="Boolean" status="Out"/>
+      <property id="ShowGrabHandles" type="Boolean" status="Out"/>
+      <property id="ShowHatching" type="Boolean" status="Out"/>
+      <property id="DisplayAsDefault" type="Boolean" status="Out"/>
+      <property id="SupportsMnemonics" type="Boolean" status="Out"/>
+      <property id="Palette" type="FrxPicture" status="Out"/>
+      <property id="RightToLeft" type="Boolean" status="Out"/>
+   </class>
+   <class id="SelectedControls" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="Object" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="ParentControls" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="ParentControlsType" type="ParentControlsType" status="InOut"/>
+      <method id="Item" type="Object" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="ContainedControls" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="Object" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="DataBindings" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="Object" status="indexer">
+         <argument id="_Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="DataBinding" parent="IDispatch" default="DataField" creatable="off">
+      <property id="PropertyName" type="String" status="Out"/>
+      <property id="DataField" type="String" status="InOut"/>
+      <property id="DataChanged" type="Boolean" status="InOut"/>
+      <property id="DataSourceName" type="String" status="InOut"/>
+      <property id="IsDataSource" type="Boolean" status="Out"/>
+      <property id="IsBindable" type="Boolean" status="Out"/>
+      <property id="DataMember" type="MSDATASRC.DataMember" status="InOut"/>
+      <property id="DataFormat" type="StdFormat.DataFormat" status="InOut"/>
+      <property id="DataSource" type="MSDATASRC.DataSource" status="InOut"/>
+   </class>
+   <class id="EventParameter" parent="IDispatch" default="Value" creatable="off">
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Name" type="String" status="Out"/>
+   </class>
+   <class id="EventParameters" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="EventParameter" status="indexer">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="EventInfo" parent="IDispatch" default="Name" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <property id="EventParameters" type="EventParameters" status="Out"/>
+   </class>
+   <class id="Hyperlink" parent="IDispatch" creatable="off">
+      <method id="GoForward" type="Void"/>
+      <method id="GoBack" type="Void"/>
+      <method id="NavigateTo" type="Void">
+         <argument id="Target" type="String" status="ByVal"/>
+         <argument id="Location" type="String" status="ByVal" optional="Default"/>
+         <argument id="FrameName" type="String" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="AsyncProperty_VB5" parent="IDispatch" creatable="off">
+      <property id="Value" type="Variant" status="Out"/>
+      <property id="AsyncType" type="AsyncTypeConstants" status="Out"/>
+      <property id="PropertyName" type="String" status="Out"/>
+   </class>
+   <class id="AsyncProperty" parent="IDispatch" creatable="off">
+      <property id="Value" type="Variant" status="Out"/>
+      <property id="AsyncType" type="AsyncTypeConstants" status="Out"/>
+      <property id="PropertyName" type="String" status="Out"/>
+      <property id="Target" type="String" status="Out"/>
+      <property id="BytesRead" type="Integer" status="Out"/>
+      <property id="BytesMax" type="Integer" status="Out"/>
+      <property id="Status" type="String" status="Out"/>
+      <property id="StatusCode" type="AsyncStatusCodeConstants" status="Out"/>
+   </class>
+   <class id="DataMembers" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="MSDATASRC.DataMember" status="indexer">
+         <argument id="index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="DataMember" type="MSDATASRC.DataMember" status="ByVal"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="IClassModuleEvt" parent="IUnknown">
+      <method id="Initialize" type="Void"/>
+      <method id="Terminate" type="Void"/>
+   </class>
+   <class id="IDataSourceClassEvt" parent="IUnknown">
+      <method id="Initialize" type="Void"/>
+      <method id="Terminate" type="Void"/>
+      <method id="GetDataMember" type="Void">
+         <argument id="DataMember" type="String" status="ByRef"/>
+         <argument id="Data" type="Object" status="Out"/>
+      </method>
+   </class>
+   <class id="IPersistableClassEvt" parent="IUnknown">
+      <method id="Initialize" type="Void"/>
+      <method id="Terminate" type="Void"/>
+      <method id="InitProperties" type="Void"/>
+      <method id="ReadProperties" type="Void">
+         <argument id="PropBag" type="PropertyBag" status="ByRef"/>
+      </method>
+      <method id="WriteProperties" type="Void">
+         <argument id="PropBag" type="PropertyBag" status="ByRef"/>
+      </method>
+   </class>
+   <class id="IPersistableDataSourceClassEvt" parent="IUnknown">
+      <method id="Initialize" type="Void"/>
+      <method id="Terminate" type="Void"/>
+      <method id="GetDataMember" type="Void">
+         <argument id="DataMember" type="String" status="ByRef"/>
+         <argument id="Data" type="Object" status="Out"/>
+      </method>
+      <method id="InitProperties" type="Void"/>
+      <method id="ReadProperties" type="Void">
+         <argument id="PropBag" type="PropertyBag" status="ByRef"/>
+      </method>
+      <method id="WriteProperties" type="Void">
+         <argument id="PropBag" type="PropertyBag" status="ByRef"/>
+      </method>
+   </class>
+   <class id="IDataProviderClassEvt" parent="IUnknown">
+      <method id="Initialize" type="Void"/>
+      <method id="Terminate" type="Void"/>
+      <method id="GetDataMember" type="Void">
+         <argument id="DataMember" type="String" status="ByRef"/>
+         <argument id="Data" type="Object" status="Out"/>
+      </method>
+      <method id="DataConnection" type="Void">
+         <argument id="ConnectionString" type="String" status="ByRef"/>
+      </method>
+   </class>
+   <class id="IPersistableDataProviderClassEvt" parent="IUnknown">
+      <method id="Initialize" type="Void"/>
+      <method id="Terminate" type="Void"/>
+      <method id="GetDataMember" type="Void">
+         <argument id="DataMember" type="String" status="ByRef"/>
+         <argument id="Data" type="Object" status="Out"/>
+      </method>
+      <method id="DataConnection" type="Void">
+         <argument id="ConnectionString" type="String" status="ByVal"/>
+      </method>
+      <method id="InitProperties" type="Void"/>
+      <method id="ReadProperties" type="Void">
+         <argument id="PropBag" type="PropertyBag" status="ByRef"/>
+      </method>
+      <method id="WriteProperties" type="Void">
+         <argument id="PropBag" type="PropertyBag" status="ByRef"/>
+      </method>
+   </class>
+   <class id="_DClass" parent="None">
+   </class>
+   <class id="_DDataBoundClass" parent="None">
+      <method id="PropertyChanged" type="Void">
+         <argument id="PropertyName" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CanPropertyChange" type="Boolean">
+         <argument id="PropertyName" type="String" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="_DDataSourceClass" parent="None">
+      <property id="DataMembers" type="DataMembers" status="Out"/>
+      <method id="DataMemberChanged" type="Void">
+         <argument id="DataMember" type="MSDATASRC.DataMember" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="_DDataBoundAndDataSourceClass" parent="None">
+      <property id="DataMembers" type="DataMembers" status="Out"/>
+      <method id="PropertyChanged" type="Void">
+         <argument id="PropertyName" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CanPropertyChange" type="Boolean">
+         <argument id="PropertyName" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="DataMemberChanged" type="Void">
+         <argument id="DataMember" type="MSDATASRC.DataMember" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="_DPersistableClass" parent="None">
+      <method id="PropertyChanged" type="Void">
+         <argument id="PropertyName" type="String" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="_DPersistableDataSourceClass" parent="None">
+      <property id="DataMembers" type="DataMembers" status="Out"/>
+      <method id="PropertyChanged" type="Void">
+         <argument id="PropertyName" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="DataMemberChanged" type="Void">
+         <argument id="DataMember" type="MSDATASRC.DataMember" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="LicenseInfo" parent="IDispatch" default="ProgId" creatable="off">
+      <property id="ProgId" type="String" status="Out"/>
+      <property id="LicenseKey" type="String" status="Out"/>
+   </class>
+   <class id="Licenses" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="LicenseInfo" status="indexer">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="String">
+         <argument id="ProgId" type="String" status="ByVal"/>
+         <argument id="LicenseKey" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="IProjectControl" parent="IUnknown">
+      <method id="RetainProject" type="Void"/>
+      <method id="UnloadProject" type="Void"/>
+      <method id="IsRetained" type="Boolean"/>
+      <method id="IsPermanent" type="Boolean"/>
+   </class>
+   <class id="IVbeRuntimeHost" parent="IUnknown">
+      <method id="get_AppObject" type="Void">
+         <argument id="pguidTypeInfo" type="stdole.GUID" status="ByRef"/>
+         <argument id="ppdispAppObject" type="Object" status="Out"/>
+      </method>
+   </class>
+   <class id="RecordsetTypeConstants" parent="None" module="on" creatable="off">
+      <constant id="vbRSTypeTable" type="Short" value="0"/>
+      <constant id="vbRSTypeDynaset" type="Short" value="1"/>
+      <constant id="vbRSTypeSnapShot" type="Short" value="2"/>
+   </class>
+   <coclass id="PropertyBag">
+      <subclass id="_PropertyBag"/>
+   </coclass>
+</library>
+<Refactor id="[msvbvm60_3.dll]">
+      <Migrate location="DoNotDeclare" />
+</Refactor>
+</DescriptionFile>

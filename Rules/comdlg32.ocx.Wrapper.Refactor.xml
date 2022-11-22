@@ -1,0 +1,22 @@
+<RefactorLibrary>
+<!--
+Description: rules to assist with upgrading CommonDialog to Winforms Dialog Wrapper
+-->
+<Refactor id="[comdlg32.ocx]" >
+   <Migrate migName="gmRTL.MSComDlg" libType="Native" location="..\bin\gmRTL.MSComDlg.dll" AssemblyName="gmRTL.MSComDlg" />
+   <Migrate id="ICommonDialog.InitDir" migName="InitialDirectory" />
+   <Migrate id="ICommonDialog.MaxFileSize" migStatus="Delete" />
+   <Migrate id="ICommonDialog.ShowFont" type="Variant" />
+   <Migrate id="CommonDialog" migName="CommonDialog" />
+</Refactor>
+<Refactor id="[COMDLG32.OCX]">
+<!--
+This empty migClass suppresses the default designer initialization statements.
+-->
+   <migClass id="NetControl.CommonDialog" parent="CommonDialog">
+   </migClass>
+</Refactor>
+<Refactor id="MSComDlg"  event="cmdlgHandlers" >
+   <gmSL NameSpace="cmdlgHandlers" Class="Transform" Source="COMDLG32.OCX.Wrapper.gmSl" />
+</Refactor>
+</RefactorLibrary>

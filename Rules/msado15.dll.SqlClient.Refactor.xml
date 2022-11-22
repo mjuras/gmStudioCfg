@@ -1,0 +1,189 @@
+<RefactorLibrary>
+<!-- 
+Description: Upgrade ADODB to ADODB.NET API using SqlClient
+Upgrade All RecordSets to Datareaders
+-->
+<Refactor id="[msado15.dll]">
+
+<!--Migrate location="DoNotDeclare" type="Internal" migName="System.Data" /-->
+<Migrate type="Internal" migName="System.Data" />
+
+<Migrate id="Connection" migName="SqlClient.SqlConnection" />
+<Migrate id="Command" migName="SqlClient.SqlCommand" />
+<!-- TODO: need to migrate recordsets to both readers, datasets, and datatables -->
+<Migrate id="Recordset" migName="SqlClient.SqlDataReader" />
+<Migrate id="Parameter" migName="SqlClient.SqlParameter" />
+<Migrate id="Fields" migName="SqlClient.SqlDataReader" />
+
+<Migrate id="CommandTypeEnum" migName="System.Data.CommandType" migStatus="External" />
+<Migrate id="CommandTypeEnum.adCmdText" migName="Text"/>
+<Migrate id="CommandTypeEnum.adCmdStoredProc" migName="StoredProcedure"/>
+
+<Migrate id="DataTypeEnum" migName="System.Data.SqlDbType" migStatus="External" />
+<Migrate id="DataTypeEnum.adEmpty" migName="Variant"/>
+<Migrate id="DataTypeEnum.adTinyInt" migName="TinyInt"/>
+<Migrate id="DataTypeEnum.adSmallInt" migName="SmallInt"/>
+<Migrate id="DataTypeEnum.adInteger" migName="Int"/>
+<Migrate id="DataTypeEnum.adBigInt" migName="BigInt"/>
+<Migrate id="DataTypeEnum.adUnsignedTinyInt" migName="TinyInt"/>
+<Migrate id="DataTypeEnum.adUnsignedSmallInt" migName="SmallInt"/>
+<Migrate id="DataTypeEnum.adUnsignedInt" migName="Int"/>
+<Migrate id="DataTypeEnum.adUnsignedBigInt" migName="BigInt"/>
+<Migrate id="DataTypeEnum.adSingle" migName="Real"/>
+<Migrate id="DataTypeEnum.adDouble" migName="Float"/>
+<Migrate id="DataTypeEnum.adCurrency" migName="Money"/>
+<Migrate id="DataTypeEnum.adDecimal" migName="Decimal"/>
+<Migrate id="DataTypeEnum.adNumeric" migName="Int"/>
+<Migrate id="DataTypeEnum.adBoolean" migName="Bit"/>
+<Migrate id="DataTypeEnum.adError" migName="SmallInt"/>
+<Migrate id="DataTypeEnum.adUserDefined" migName="Udt"/>
+<Migrate id="DataTypeEnum.adVariant" migName="Variant"/>
+<Migrate id="DataTypeEnum.adIDispatch" migName="Variant"/>
+<Migrate id="DataTypeEnum.adIUnknown" migName="Variant"/>
+<Migrate id="DataTypeEnum.adGUID" migName="UniqueIdentifier"/>
+<Migrate id="DataTypeEnum.adDate" migName="Date"/>
+<Migrate id="DataTypeEnum.adDBDate" migName="DateTime"/>
+<Migrate id="DataTypeEnum.adDBTime" migName="Time"/>
+<Migrate id="DataTypeEnum.adDBTimeStamp" migName="DateTimeOffset"/>
+<Migrate id="DataTypeEnum.adBSTR" migName="Char"/>
+<Migrate id="DataTypeEnum.adChar" migName="Char"/>
+<Migrate id="DataTypeEnum.adVarChar" migName="VarChar"/>
+<Migrate id="DataTypeEnum.adLongVarChar" migName="Text"/>
+<Migrate id="DataTypeEnum.adWChar" migName="NChar"/>
+<Migrate id="DataTypeEnum.adVarWChar" migName="NVarChar"/>
+<Migrate id="DataTypeEnum.adLongVarWChar" migName="NText"/>
+<Migrate id="DataTypeEnum.adBinary" migName="Binary" />
+<Migrate id="DataTypeEnum.adVarBinary" migName="VarBinary"/>
+<Migrate id="DataTypeEnum.adLongVarBinary" migName="VarBinary"/>
+<Migrate id="DataTypeEnum.adChapter" migName="Variant"/>
+<Migrate id="DataTypeEnum.adFileTime" migName="DateTime"/>
+<Migrate id="DataTypeEnum.adPropVariant" migName="Variant"/>
+<Migrate id="DataTypeEnum.adVarNumeric" migName="Variant"/>
+<Migrate id="DataTypeEnum.adArray" migName="VarBinary"/>
+
+<Migrate id="CursorLocationEnum" migStatus="NotImplemented"/>
+<Migrate id="Recordset15.CursorLocation" migStatus="NotImplemented"/>
+
+<Migrate id="CursorTypeEnum" migName="gmRTL.DataLib.CursorTypeEnum" migStatus="External"/>
+   
+<Migrate id="LockTypeEnum" migName="gmRTL.DataLib.LockTypeEnum" migStatus="External"/>
+
+<Migrate id="ObjectStateEnum" migName="System.Data.ConnectionState" migStatus="External"/>
+<Migrate id="ObjectStateEnum.adStateClosed" migName="Closed"/>
+<Migrate id="ObjectStateEnum.adStateOpen" migName="Open"/>
+<Migrate id="ObjectStateEnum.adStateConnecting" migName="Connecting"/>
+<Migrate id="ObjectStateEnum.adStateExecuting" migName="Executing"/>
+<Migrate id="ObjectStateEnum.adStateFetching" migName="Fetching"/>
+
+<Migrate id="ParameterDirectionEnum" migName="System.Data.ParameterDirection" migStatus="External"/>
+<Migrate id="ParameterDirectionEnum.adParamInput" migName="Input"/>
+<Migrate id="ParameterDirectionEnum.adParamOutput" migName="Output"/>
+<Migrate id="ParameterDirectionEnum.adParamInputOutput" migName="InputOutput"/>
+<Migrate id="ParameterDirectionEnum.adParamReturnValue" migName="ReturnValue"/>
+
+<Migrate id="_ADO.Properties" migStatus="NotImplemented" />
+<Migrate id="Property.Value" migStatus="NotImplemented" />
+
+<Migrate id="_DynaCollection.Append" migName="Add" />
+
+<Migrate id="Connection15.CommandTimeout" migStatus="NotImplemented" />
+<Migrate id="Connection15.ConnectionTimeout" migStatus="NotImplemented" />
+<Migrate id="Connection15.CursorLocation" migStatus="NotImplemented" />
+<Migrate id="Connection15.State" type="ObjectStateEnum" />
+<Migrate id="Connection15.Open" nPram="5" migPattern="%1d.Open(%2o,%3o,%4o,%5o)\c" />
+<Migrate id="Connection15.Open.ConnectionString" optional="DEF.Overload"/>
+<Migrate id="Connection15.Open.UserID" optional="DEF.Overload"/>
+<Migrate id="Connection15.Open.Password" optional="DEF.Overload"/>
+<Migrate id="Connection15.Open.Options" optional="DEF.Overload"/>
+<!--Migrate id="Connection15.Execute" nPram="4" migPattern="%1d.Execute(%2d,%3o)"/-->
+<Migrate id="Connection15.Execute.RecordsAffected" type="Integer" optional="DEF.Overload"/>
+<Migrate id="Connection15.Execute.Options" type="Integer" optional="DEF.Overload"/>
+
+<Migrate id="Recordset15.AbsolutePage" migStatus="NotImplemented"/>
+<Migrate id="Recordset15.AbsolutePosition" type="Integer" />
+<Migrate id="Recordset15.ActiveConnection" type="Connection" status="ByVal" migName="Connection"  migStatus="NotImplemented"/>
+<Migrate id="Recordset15.BOF" migName="BOF()" />
+<Migrate id="Recordset15.Bookmark" migStatus="NotImplemented" />
+<Migrate id="Recordset15.CursorLocation" migStatus="NotImplemented" />
+<Migrate id="Recordset15.CursorType" migStatus="NotImplemented" />
+<Migrate id="Recordset15.EOF" migName="Read()" />
+<Migrate id="Recordset15.Fields" migName="GetFieldHelpers()" />
+<Migrate id="Recordset15.Filter" type="String"/>
+<Migrate id="Recordset15.LockType" migStatus="NotImplemented" />
+<Migrate id="Recordset15.MarshalOptions" migStatus="NotImplemented" />
+<Migrate id="Recordset15.Open" nPram="6" migPattern="%1d = (new System.Data.SqlClient.SqlCommand(%2d, %3d)).ExecuteReader()\c" />
+<Migrate id="Recordset15.Open.ActiveConnection" optional="DEF.Overload" />
+<Migrate id="Recordset15.Open.ActiveConnection" optional="null" />
+<Migrate id="Recordset15.Open.Source" optional="null" />
+<Migrate id="Recordset15.PageCount" migStatus="NotImplemented" />
+<Migrate id="Recordset15.PageSize" migStatus="NotImplemented" />
+<Migrate id="Recordset15.RecordCount" migName="RecordsAffected" />
+<Migrate id="Recordset15.State" type="ObjectStateEnum" migName="IsClosed" />
+<Migrate id="Recordset15.Status" type="RecordStatusEnum" />
+
+</Refactor>
+<Refactor id="ADODB" event="adodbHandlers" >
+   <migclass id="DotNet">
+      <method id="CreateCommand" type="void" migPattern="(%1d = %2d()).CommandText = %4d\c">
+         <argument id="conn" type="Object" status="ByVal" />
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="SqlString" type="Variant" status="ByVal"/>
+      </method>
+      <Method id="NonStringParameters" type="object" cshPattern="%1d.Add(new System.Data.SqlClient.SqlParameter(\S@%2d\S, null))" vbnPattern="%1d.Add(new System.Data.SqlClient.SqlParameter(\S@%2d\S, \S\S))">
+         <argument id="index" type="Integer" status="ByVal" />
+      </Method>
+      <Method id="StringParameters" type="object" cshPattern="%1d.Add(new System.Data.SqlClient.SqlParameter(%2d, null))" vbnPattern="%1d.Add(new System.Data.SqlClient.SqlParameter(%2d, \S\S))">
+         <argument id="index" type="Integer" status="ByVal" />
+      </Method>
+      
+      <!--
+      migrate to inline patterns
+      <method id="Connection_Execute_ReturnRecordset" type="Recordset" nPram="4" migPattern="(new System.Data.SqlClient.SqlCommand(%2d, %1d)).ExecuteReader()">
+         <argument id="CommandText" type="String" status="ByVal"/>
+         <argument id="RecordsAffected" type="Integer" status="ByRef" optional="DEF.Overload"/>
+         <argument id="Options" type="ExecuteOptionEnum" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="Connection_Execute_NonQuery" type="Recordset" nPram="4" migPattern="(new System.Data.SqlClient.SqlCommand(%2d, %1d)).ExecuteNonQuery()">
+         <argument id="CommandText" type="String" status="ByVal"/>
+         <argument id="RecordsAffected" type="Integer" status="ByRef" optional="DEF.Overload"/>
+         <argument id="Options" type="ExecuteOptionEnum" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      -->
+      
+      <!--
+      migrate to extension methods
+      -->
+      <method id="Connection_Execute_ReturnRecordset" type="Recordset" nPram="4" migPattern="%1d.GetRecords(%2d,%3o)">
+         <argument id="CommandText" type="String" status="ByVal"/>
+         <argument id="RecordsAffected" type="Integer" status="ByRef" optional="DEF.Overload"/>
+         <argument id="Options" type="ExecuteOptionEnum" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="Connection_Execute_NonQuery" type="Recordset" nPram="4" migPattern="%1d.Execute(%2d,%3o)">
+         <argument id="CommandText" type="String" status="ByVal"/>
+         <argument id="RecordsAffected" type="Integer" status="ByRef" optional="DEF.Overload"/>
+         <argument id="Options" type="ExecuteOptionEnum" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      
+      
+      <method id="Command_Execute_ReturnRecordset" type="Recordset" nPram="4" migPattern="%1d.ExecuteReader(%2o,%3o,%4o)">
+         <argument id="CommandText" type="String" status="ByVal"/>
+         <argument id="RecordsAffected" type="Integer" status="ByRef" optional="DEF.Overload"/>
+         <argument id="Options" type="ExecuteOptionEnum" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="Command_Execute_NonQuery" type="Recordset" nPram="4" migPattern="%1d.ExecuteNonQuery(%2d,%3o,%4o)">
+         <argument id="CommandText" type="String" status="ByVal"/>
+         <argument id="RecordsAffected" type="Integer" status="ByRef" optional="DEF.Overload"/>
+         <argument id="Options" type="ExecuteOptionEnum" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      
+      <method id="RecordSet_Start_Using_Reader_Read" type="Recordset" nPram="2" migPattern="DataTableReader dtReader = %1d.CreateDataReader()">
+         <argument id="mRecordset" type="Recordset" status="ByVal"/>
+      </method>
+      <property id="RecordSet_EOF_Reader_Read" type="Recordset" nPram="2" migPattern="dtReader.Read()"/>
+   </migClass>
+   
+   <gmSL NameSpace="adodbHandlers" Class="Transform" Source="msado15.dll.SqlClient.Transform.gmsl" />
+</Refactor>
+
+
+</RefactorLibrary>

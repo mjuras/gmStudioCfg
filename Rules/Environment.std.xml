@@ -1,0 +1,78 @@
+<EnvironmentFile>
+<!--
+Description: gmBasic Environment File setting global rules
+The Environment.std.xml provides a location for setting global translation options.
+-->
+<!--
+Registry-StubBaseClass rules specify a control base class for stub controls forms. These base 
+classes replace the default, System.Windows.Control, that is not visible in the VS designer.
+-->
+      <Registry type="StubBaseClass" source="ActiveBar3Library.ActiveBar3"                                        target="System.Windows.Forms.ToolBar" />
+      <Registry type="StubBaseClass" source="ActiveResizer.SSResizer"                                             target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="ActiveScroll.SSScroll"                                               target="System.Windows.Forms.ScrollBar" />
+      <Registry type="StubBaseClass" source="ActiveTabs.SSActiveTabPanel"                                         target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="ActiveTabs.SSActiveTabs"                                             target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="ActiveToolBars.SSActiveToolBars"                                     target="System.Windows.Forms.ToolBar" />
+      <Registry type="StubBaseClass" source="C1SizerLib.C1Elastic"                                                target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="C1SizerLib.C1Tab"                                                    target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="ComCtl2.UpDown"                                                      target="System.Windows.Forms.NumericUpDown" />
+      <Registry type="StubBaseClass" source="ComctlLib.ProgressBar"                                               target="System.Windows.Forms.ProgressBar" />
+      <Registry type="StubBaseClass" source="ComctlLib.Slider"                                                    target="System.Windows.Forms.ScrollBar" />
+      <Registry type="StubBaseClass" source="ComctlLib.StatusBar"                                                 target="System.Windows.Forms.StatusBar" />
+      <Registry type="StubBaseClass" source="CrystalActiveXReportViewerLib11_5.CrystalActiveXReportViewer"        target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="FPSpreadADO.fpSpread"                                                target="System.Windows.Forms.DataGridView" />
+      <Registry type="StubBaseClass" source="GraphsLib.Graph"                                                     target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="INKEDLib.InkEdit"                                                    target="System.Windows.Forms.RichTextBox" />
+      <Registry type="StubBaseClass" source="LEADLib.LEAD"                                                        target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="LpLib.fpCombo"                                                       target="System.Windows.Forms.ComboBox" />
+      <Registry type="StubBaseClass" source="LpLib.fpList"                                                        target="System.Windows.Forms.ListBox" />
+      <Registry type="StubBaseClass" source="MBSplit.Splitter"                                                    target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="MSComCtl2.Animation"                                                 target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="MSComCtl2.DTPicker"                                                  target="System.Windows.Forms.DateTimePicker" />
+      <Registry type="StubBaseClass" source="MSComCtl2.FlatScrollBar"                                             target="System.Windows.Forms.ScrollBar" />
+      <Registry type="StubBaseClass" source="MSComCtl2.MonthView"                                                 target="System.Windows.Forms.MonthCalendar" />
+      <Registry type="StubBaseClass" source="MSComCtl2.UpDown"                                                    target="System.Windows.Forms.NumericUpDown" />
+      <Registry type="StubBaseClass" source="MSComctlLib.ListView"                                                target="System.Windows.Forms.ListView" />
+      <Registry type="StubBaseClass" source="MSComctlLib.ProgressBar"                                             target="System.Windows.Forms.ProgressBar" />
+      <Registry type="StubBaseClass" source="MSComctlLib.Slider"                                                  target="System.Windows.Forms.ScrollBar" />
+      <Registry type="StubBaseClass" source="MSComctlLib.StatusBar"                                               target="System.Windows.Forms.StatusBar" />     
+      <Registry type="StubBaseClass" source="MSComctlLib.TabStrip"                                                target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="MSComctlLib.Toolbar"                                                 target="System.Windows.Forms.ToolBar" />
+      <Registry type="StubBaseClass" source="MSComctlLib.TreeView"                                                target="System.Windows.Forms.TreeView" />
+      <Registry type="StubBaseClass" source="MSDataGridLib.DataGrid"                                              target="System.Windows.Forms.DataGridView" />
+      <Registry type="StubBaseClass" source="MSDataListLib.DataCombo"                                             target="System.Windows.Forms.ComboBox" />
+      <Registry type="StubBaseClass" source="MSFlexGridLib.MSFlexGrid"                                            target="System.Windows.Forms.DataGridView" />
+      <Registry type="StubBaseClass" source="MSGrid.Grid"                                                         target="System.Windows.Forms.DataGridView" />      
+      <Registry type="StubBaseClass" source="MSMask.MaskEdBox"                                                    target="System.Windows.Forms.MaskedTextBox" />
+      <Registry type="StubBaseClass" source="PVCOLORCOMBOBOXLib.PVColorCombo"                                     target="System.Windows.Forms.ComboBox" />
+      <Registry type="StubBaseClass" source="PVCOMBOLib.PVComboBox"                                               target="System.Windows.Forms.ComboBox" />
+      <Registry type="StubBaseClass" source="PVMaskEditLib.PVMaskEdit"                                            target="System.Windows.Forms.MaskedTextBox" />
+      <Registry type="StubBaseClass" source="Pesgo32eLib.Pesgo"                                                   target="System.Windows.Forms.GroupBox" />      
+      <Registry type="StubBaseClass" source="RichTextLib.RichTextBox"                                             target="System.Windows.Forms.RichTextBox" />
+      <Registry type="StubBaseClass" source="SHDocVw.InternetExplorer"                                            target="System.Windows.Forms.WebBrowser" />
+      <Registry type="StubBaseClass" source="SSActiveTreeView.SSTree"                                             target="System.Windows.Forms.TreeView" />
+      <Registry type="StubBaseClass" source="SSCalendarWidgets_A.SSDateCombo"                                     target="System.Windows.Forms.DateTimePicker" />
+      <Registry type="StubBaseClass" source="SSSplitter.SSSplitter"                                               target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="SonicVBSuite.SonicClick"                                             target="System.Windows.Forms.Button" />
+      <Registry type="StubBaseClass" source="SonicVBSuite.SonicFrame"                                             target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="SonicVBSuite.SonicProBar"                                            target="System.Windows.Forms.ProgressBar" />
+      <Registry type="StubBaseClass" source="TabDlg.SSTab"                                                        target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="Threed.SSCheck"                                                      target="System.Windows.Forms.CheckBox" />
+      <Registry type="StubBaseClass" source="Threed.SSFrame"                                                      target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="Threed.SSPanel"                                                      target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="TrueDBGrid50.TDBGrid"                                                target="System.Windows.Forms.DataGridView" />
+      <Registry type="StubBaseClass" source="TrueOleDBGrid80.TDBGrid"                                             target="System.Windows.Forms.DataGridView" />
+      <Registry type="StubBaseClass" source="UltraGrid.ISSObjectBase"                                             target="System.Windows.Forms.DataGridView" />
+      <Registry type="StubBaseClass" source="VSFlex7Ctl.VSFlexGrid"                                               target="System.Windows.Forms.DataGridView" />
+      <Registry type="StubBaseClass" source="VSFlex7L.VSFlexGrid"                                                 target="System.Windows.Forms.DataGridView" />
+      <Registry type="StubBaseClass" source="VSFlex7LCtl.VSFlexGrid"                                              target="System.Windows.Forms.DataGridView" />
+      <Registry type="StubBaseClass" source="VSFlex8L.VSFlexGrid"                                                 target="System.Windows.Forms.DataGridView" />
+      <Registry type="StubBaseClass" source="VSPDFLibCtl.VSPDF"                                                   target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="VSViewPort7Lib.VSViewPort"                                           target="System.Windows.Forms.GroupBox" />      
+      <Registry type="StubBaseClass" source="[gmRTL.GUI].DirListBox"                                              target="System.Windows.Forms.ListBox" />
+      <Registry type="StubBaseClass" source="[gmRTL.GUI].DriveListBox"                                            target="System.Windows.Forms.ListBox" />
+      <Registry type="StubBaseClass" source="[gmRTL.GUI].FileListBox"                                             target="System.Windows.Forms.ListBox" />
+      <Registry type="StubBaseClass" source="[gmRTL.GUI].ShapeControl"                                            target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="vsOcx6Lib.vsElastic"                                                 target="System.Windows.Forms.GroupBox" />
+      <Registry type="StubBaseClass" source="vsOcx6Lib.vsIndexTab"                                                target="System.Windows.Forms.GroupBox" />
+</EnvironmentFile>   

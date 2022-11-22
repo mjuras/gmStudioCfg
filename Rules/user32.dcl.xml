@@ -1,0 +1,340 @@
+<DescriptionFile>
+<library id="user32.dcl"
+         name="user32"
+         source="user32.dcl"
+         location="user32.dcl"
+         type="LocalImport"
+   >
+   <enumeration id="ESW">
+      <entry id="SW_HIDE" value="0"/>
+      <entry id="SW_SHOWNORMAL" value="1"/>
+      <entry id="SW_NORMAL" value="1"/>
+      <entry id="SW_SHOWMINIMIZED" value="2"/>
+      <entry id="SW_SHOWMAXIMIZED" value="3"/>
+      <entry id="SW_MAXIMIZE" value="3"/>
+      <entry id="SW_SHOWNOACTIVATE" value="4"/>
+      <entry id="SW_SHOW" value="5"/>
+      <entry id="SW_MINIMIZE" value="6"/>
+      <entry id="SW_SHOWMINNOACTIVE" value="7"/>
+      <entry id="SW_SHOWNA" value="8"/>
+      <entry id="SW_RESTORE" value="9"/>
+      <entry id="SW_SHOWDEFAULT" value="10"/>
+      <entry id="SW_MAX" value="10"/>
+   </enumeration>
+   <structure id="MSGBOXPARAMS">
+      <member id="cbSize" type="Integer"/>
+      <member id="hwndOwner" type="Integer"/>
+      <member id="hInstance" type="Integer"/>
+      <member id="lpszText" type="Integer"/>
+      <member id="lpszCaption" type="Integer"/>
+      <member id="dwStyle" type="Integer"/>
+      <member id="lpszIcon" type="Integer"/>
+      <member id="dwContextHelpId" type="Integer"/>
+      <member id="lpfnMsgBoxCallback" type="Integer"/>
+      <member id="dwLanguageId" type="Integer"/>
+   </structure>
+   <structure id="POINTL">
+      <member id="x" type="Integer"/>
+      <member id="y" type="Integer"/>
+   </structure>
+   <structure id="RECT">
+      <member id="left" type="Integer"/>
+      <member id="top" type="Integer"/>
+      <member id="right" type="Integer"/>
+      <member id="bottom" type="Integer"/>
+   </structure>
+   <structure id="WINDOWPLACEMENT">
+      <member id="Length" type="Integer"/>
+      <member id="flags" type="Integer"/>
+      <member id="ShowCmd" type="ESW"/>
+      <member id="ptMinPosition" type="POINTL"/>
+      <member id="ptMaxPosition" type="POINTL"/>
+      <member id="rcNormalPosition" type="RECT"/>
+   </structure>
+   <class id="Methods" parent="None" module="on" creatable="off">
+      <method id="AppendMenu" type="Integer">
+         <argument id="hMenu" type="Integer" status="ByVal"/>
+         <argument id="fuFlags" type="Integer" status="ByVal"/>
+         <argument id="idNewItem" type="Integer" status="ByVal"/>
+         <argument id="lpNewItem" type="String" status="ByVal"/>
+      </method>
+      <method id="CallWindowProc" type="Integer">
+         <argument id="lpPrevWndFunc" type="Integer" status="ByVal"/>
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="Msg" type="Integer" status="ByVal"/>
+         <argument id="wParam" type="Integer" status="ByVal"/>
+         <argument id="lParam" type="Void" status="Out"/>
+      </method>
+      <method id="ClientToScreen" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="lpPoint" type="POINTL" status="Out"/>
+      </method>
+      <method id="CloseClipboard" type="Integer">
+      </method>
+      <method id="CreateWindowEx" type="Integer">
+         <argument id="dwExStyle" type="Integer" status="ByVal"/>
+         <argument id="lpClassName" type="String" status="ByVal"/>
+         <argument id="lpWindowName" type="String" status="ByVal"/>
+         <argument id="dwStyle" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+         <argument id="nWidth" type="Integer" status="ByVal"/>
+         <argument id="nHeight" type="Integer" status="ByVal"/>
+         <argument id="hwndParent" type="Integer" status="ByVal"/>
+         <argument id="hMenu" type="Integer" status="ByVal"/>
+         <argument id="hInstance" type="Integer" status="ByVal"/>
+         <argument id="lpParam" type="Void" status="Out"/>
+      </method>
+      <method id="DestroyWindow" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+      </method>
+      <method id="DrawIcon" type="Integer">
+         <argument id="hDC" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+         <argument id="hicon" type="Integer" status="ByVal"/>
+      </method>
+      <method id="DrawIconEx" type="Integer">
+         <argument id="hDC" type="Integer" status="ByVal"/>
+         <argument id="xLeft" type="Integer" status="ByVal"/>
+         <argument id="yTop" type="Integer" status="ByVal"/>
+         <argument id="hicon" type="Integer" status="ByVal"/>
+         <argument id="cxWidth" type="Integer" status="ByVal"/>
+         <argument id="cyWidth" type="Integer" status="ByVal"/>
+         <argument id="istepIfAniCur" type="Integer" status="ByVal"/>
+         <argument id="hbrFlickerFreeDraw" type="Integer" status="ByVal"/>
+         <argument id="diFlags" type="Integer" status="ByVal"/>
+      </method>
+      <method id="DrawText" type="Integer">
+         <argument id="hDC" type="Integer" status="ByVal"/>
+         <argument id="lpString" type="String" status="ByVal"/>
+         <argument id="nCount" type="Integer" status="ByVal"/>
+         <argument id="lpRect" type="RECT" status="ByRef"/>
+         <argument id="uFormat" type="Integer" status="ByVal"/>
+      </method>
+      <method id="EnableWindow" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="fEnable" type="Integer" status="ByVal"/>
+      </method>
+      <method id="FindWindow" type="Integer">
+         <argument id="lpszClassName" type="String" status="ByVal"/>
+         <argument id="lpszWindow" type="String" status="ByVal"/>
+      </method>
+      <method id="GetAsyncKeyState" type="Short">
+         <argument id="nKeyState" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetClientRect" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="lpRect" type="RECT" status="ByRef"/>
+      </method>
+      <method id="GetClipboardData" type="Integer" >
+         <argument id="wFormat" type="integer" status="ByVal" >
+      </method>
+      <method id="GetCursorPos" type="Integer">
+         <argument id="lpPoint" type="POINTL" status="ByRef"/>
+      </method>
+      <method id="GetDC" type="Integer">
+         <argument id="hWnd" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetDesktopWindow" type="Integer" >
+      </method>
+      <method id="GetForegroundWindow" type="Integer" >
+      </method>
+      <method id="GetKeyboardState" type="Integer">
+         <argument id="lpbKeyState" type="Byte" status="ByRef"/>
+      </method>
+      <method id="GetKeyboardType" type="Integer">
+         <argument id="nTypeFlag" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetKeyState" type="Short">
+         <argument id="nKeyState" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetSysColor" type="Integer">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetWindowDC" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetWindowPlacement" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="lpwndpl" type="WINDOWPLACEMENT" status="ByRef"/>
+      </method>
+      <method id="GetWindowThreadProcessId" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="lpdwProcessId" type="Integer" status="Out"/>
+      </method>
+      <method id="GetWindowRect" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="lpRect" type="RECT" status="ByRef"/>
+      </method>
+      <method id="GetWindowWord" type="Short">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="EmptyClipboard" Type="Boolean" >
+      </method>
+      <method id="EnumChildWindows" type="Integer">
+         <argument id="hwndParent" type="Integer" status="ByVal"/>
+         <argument id="lpEnumFunction" type="Integer" status="ByVal"/>
+         <argument id="lParam" type="Void" status="Out"/>
+      </method>
+      <method id="EnumWindows" type="Integer">
+         <argument id="lpEnumFunction" type="Integer" status="ByVal"/>
+         <argument id="lParam" type="Void" status="Out"/>
+      </method>
+      <method id="InsertMenu" type="Integer">
+         <argument id="hMenu" type="Integer" status="ByVal"/>
+         <argument id="idItem" type="Integer" status="ByVal"/>
+         <argument id="fuFlags" type="Integer" status="ByVal"/>
+         <argument id="idNewItem" type="Integer" status="ByVal"/>
+         <argument id="lpNewItem" type="String" status="ByVal"/>
+      </method>
+      <method id="IsWindow" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+      </method>
+      <method id="keybd_event" type="void" >
+         <argument id="bKv" type="Byte" status="ByVal" > 
+         <argument id="bScan" type="Byte" status="ByVal" >
+         <argument id="dwFlags" type="Integer" status="ByVal" >
+         <argument id="dwExtraInfo" type="Integer" status="ByVal" >
+      </method>
+      <method id="KillTimer" type="Integer">
+         <argument id="hWnd" type="Integer" status="ByVal" >
+         <argument id="nIDEvent" type="Integer" status="ByVal">
+      </method>
+      <method id="LoadString" type="Integer">
+         <argument id="hInst" type="Integer" status="ByVal"/>
+         <argument id="idResource" type="Integer" status="ByVal"/>
+         <argument id="lpszBuffer" type="String" status="ByVal"/>
+         <argument id="cbBuffer" type="Integer" status="ByVal"/>
+      </method>
+      <method id="LockWindowUpdate" type="Integer">
+         <argument id="hwndLock" type="Integer" status="ByVal"/>
+      </method>
+      <method id="MessageBoxIndirect" type="Integer">
+         <argument id="msgParams" type="MSGBOXPARAMS" status="Out"/>
+      </method>
+      <method id="ModifyMenu" type="Integer">
+         <argument id="hMenu" type="Integer" status="ByVal"/>
+         <argument id="idItem" type="Integer" status="ByVal"/>
+         <argument id="fuFlags" type="Integer" status="ByVal"/>
+         <argument id="idNewItem" type="Integer" status="ByVal"/>
+         <argument id="lpNewItem" type="String" status="ByVal"/>
+      </method>
+      <method id="PostMessage" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="uMsg" type="Integer" status="ByVal"/>
+         <argument id="wParam" type="Void" status="ByVal"/>
+         <argument id="lParam" type="Void" status="ByVal"/>
+      </method>
+      <method id="OpenClipboard" type="Integer" >
+         <argument id="hwnd" type="Integer" status="ByVal">
+       </method>
+      <method id="RegisterClipboardFormat" type="Integer">
+         <argument id="lpszFormat" type="String" status="ByVal"/>
+      </method>
+      <method id="ReleaseDC" type="Integer">
+         <argument id="hWnd" type="Integer" status="ByVal"/>
+         <argument id="hDC" type="Integer" status="ByVal">
+      </method>
+      <method id="RemoveProp" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="lpString" type="String" status="ByVal"/>
+      </method>
+      <method id="SendMessage" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="uMsg" type="Integer" status="ByVal"/>
+         <argument id="wParam" type="Void" status="ByVal"/>
+         <argument id="lParam" type="Void" status="ByVal"/>
+      </method>
+      <method id="SetClipboardData" type="Integer">
+         <argument id="wFormat" type="Integer" status="ByVal"/>
+         <argument id="hMem" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetCursorPos" type="Void">
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetFocus" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetKeyboardState" type="Integer">
+         <argument id="lpbKeyState" type="Byte" status="ByRef"/>
+      </method>
+      <method id="SetParent" type="Integer">
+         <argument id="hwndChild" type="Integer" status="ByVal"/>
+         <argument id="hwndNewParent" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetSysColors" type="Integer">
+         <argument id="cElements" type="Integer" status="ByVal"/>
+         <argument id="lpaElements" type="Integer" status="ByRef"/>
+         <argument id="lpaRgbValues" type="Integer" status="ByRef"/>
+      </method>
+      <method id="SetTimer" type="Integer">
+         <argument id="hWnd" type="Integer" status="ByVal">
+         <argument id="nIDEvent" type="Integer" status="ByVal">
+         <argument id="uElapse" type="Integer" status="ByVal">
+         <argument id="lpTimerProc" type="Integer" status="ByVal">
+      </method>
+      <method id="SetWindowPlacement" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="lpwndpl" type="WINDOWPLACEMENT" status="Out"/>
+      </method>
+      <method id="SetWindowLong" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="nValue" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetWindowPos" type="Integer">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="hwndInsertAfter" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+         <argument id="cx" type="Integer" status="ByVal"/>
+         <argument id="cy" type="Integer" status="ByVal"/>
+         <argument id="fuFlags" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetWindowText" type="Void">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="lpsz" type="String" status="ByVal"/>
+      </method>
+      <method id="SetWindowWord" type="Short">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+         <argument id="nValue" type="Short" status="ByVal"/>
+      </method>
+      <method id="ShowScrollBar" type="Void">
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="fnBar" type="Integer" status="ByVal"/>
+         <argument id="fShow" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SystemParametersInfo" type="Integer">
+         <argument id="uiAction" type="Integer" status="ByVal"/>
+         <argument id="uiParam" type="Integer" status="ByVal"/>
+         <argument id="pvParam" type="Void" status="Out"/>
+         <argument id="fWinIni" type="Integer" status="ByVal"/>
+      </method>
+      <method id="TrackPopupMenu" type="Integer">
+         <argument id="hMenu" type="Integer" status="ByVal"/>
+         <argument id="fuFlags" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+         <argument id="nReserved" type="Integer" status="ByVal"/>
+         <argument id="hwnd" type="Integer" status="ByVal"/>
+         <argument id="lprc" type="Void" status="Out"/>
+      </method>
+      <method id="WindowFromPoint" type="Integer">
+         <argument id="xPoint" type="Integer" status="ByVal"/>
+         <argument id="yPoint" type="Integer" status="ByVal"/>
+      </method>
+      <method id="WinHelp" type="Integer">
+         <argument id="hwndMain" type="Integer" status="ByVal"/>
+         <argument id="lpszHelp" type="String" status="ByVal"/>
+         <argument id="usCommand" type="Integer" status="ByVal"/>
+         <argument id="ulData" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+</library>
+</DescriptionFile>
+
+

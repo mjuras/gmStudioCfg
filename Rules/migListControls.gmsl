@@ -1,0 +1,180 @@
+/*
+Description: ListBox\ComboBox ItemData migration logic
+
+These migration event handlers upgrade binary List Control ItemData in a source
+form's frx file to .NET code in a form's Designer file. 
+
+To activate this upgrade, add the following statements before the compile:
+
+   <Select SubSystem5="mig" />   
+   <registry type="Table" source="ItemData" target="none" />
+   <gmSL Class="Demo" source="%UserFolder%\migListControls.gmsl" /> 
+*/
+
+int migAdjustProperties(int iRoot,int iStart)
+{
+/*
+migAdjustProperties is the AdjustProperties handler for SubSystem=mig.
+It is called before gmBasic begins processing the PropertyBag code 
+associated with a control.  The implementation here examines the control code
+and stores List and ItemData information for ListBox and ComboBox controls
+if appropriate. 
+*/
+   tCodeBlock codptr;
+   int        ctlType;
+   int        listAddr;
+   int        itemDataAddr;
+   int        list;
+   int        itemData;
+   int        Record[2];
+   int        index;
+   int        pairRoot;
+   int        postPair;
+   Handle     storeArea;
+
+   // if the control is not a ListBox or ComboBox, exit
+   
+   ctlType = Store.GetObjectType(iRoot);
+   if(ctlType != OPC.LSB && ctlType != OPC.CBO) return 0;
+   
+   // if the control code does not initialize List or ItemData, exit
+   
+   codptr = Opcode.GetCode();
+   listAddr = ControlData.FindProperty(ctlType,"List",iStart);
+   itemDataAddr = ControlData.FindProperty(ctlType,"ItemData",iStart);
+   if(listAddr == 0 || itemDataAddr == 0) return 0;
+   
+   Opcode.GetOperation(codptr,listAddr,list);
+   Opcode.GetOperation(codptr,itemDataAddr,itemData);
+   
+   // if the ItemData is all zeros, exit
+   
+   int hasItemData = 0;
+   string content = Store.GetString(itemData);
+   Parser.SetStatement(content);
+   string token;
+   int tokenType;
+   while(true)
+   {
+      token = Parser.GetToken(tokenType);
+      if(tokenType == 0) break;
+      if(token != ",")
+      {
+         if (token != "0") 
+         {
+            hasItemData = 1;
+            break;
+         }
+      }
+   }
+   //// System.LogMessage("ItemData Content=" + content + " hasItemData" + hasItemData);
+   if (hasItemData==0) return 0;
+
+   // Setup PostingPair to store List and ItemData for the control
+
+   pairRoot = Registry.GetNameRoot("Table","ItemData");
+   postPair = Registry.GetPosting(pairRoot);
+   storeArea = Store.GetHandle();
+   if(postPair == 0)
+   {
+      postPair = PostingPair.Create(storeArea);
+      Registry.SetPosting(pairRoot,postPair);
+   }
+
+   // store the control with its List and ItemData strings
+   
+   Record[0] = list;
+   Record[1] = itemData;   
+   index = Store.String(Record);   
+   PostingPair.Write(storeArea,postPair,iRoot,index);
+   
+   // Remove the List item initialization from the control code;
+   // List item initialization will be authored by the 
+   // InitializeCode handler instead. 
+   
+   Opcode.Delete(listAddr,2);
+   
+   // return 1 to notify the system of a change to the model
+   return 1;
+}
+int migInitializeCode(int iRoot,int iStart)
+{
+/*
+migInitializeCode is the InitializeCode handler for SubSystem=mig.
+It is called when gmBasic is authoring the InitializeCode method
+for a form.  The implementation here authors code to initialize 
+List and ItemData with information for ListBox and ComboBox 
+controls stored previously by migAdjustProperties.
+*/
+   int        itemData;
+   int        Record[2];
+   int        levels[19];
+   int        iChild;
+   int        index;
+   string     listEntry;
+   string     itemEntry;
+   string     tokens[64];
+   string     token;
+   int        nToken;
+   int        tokenType;
+   int        member;
+   int        pairRoot;
+   int        postPair;
+   Handle     storeArea;
+
+   // If there is no ItemData stored, exit
+   pairRoot = Registry.GetNameRoot("Table","ItemData");
+   postPair = Registry.GetPosting(pairRoot);
+   if(postPair == 0) return 0;
+   
+   // examine all the controls on the form 
+   storeArea = Store.GetHandle();
+   for(iChild = Store.FindFirstChild(levels,iRoot); iChild != 0; iChild = Store.FindNextChild(levels))
+   {
+      // if a control has ItemData write code initialize  it with ItemData instances
+      index = PostingPair.Find(storeArea,postPair,iChild);
+      if(index != 0)
+      {
+          System.LogMessage("Adding ItemData for Control " + Symbol.FullName(iChild)); 
+          if(Select.Dialect == Dialects.vbn)
+          {
+             Write.Line("Me." + Store.GetName(iChild) + ".Items.AddRange(new gmRTL.GUI.ControlHelper.GetItemData() {");
+          }
+          else Write.Line("this." + Store.GetName(iChild) + ".Items.AddRange(new gmRTL.GUI.ControlHelper.GetItemData[] {");
+          Store.GetInfo(index,Record);
+          listEntry = Store.GetString(Record[0]);
+          itemEntry = Store.GetString(Record[1]);
+          //System.LogMessage("listEntry=" + listEntry);
+          Parser.SetStatement(listEntry);
+          nToken = 0;
+          while(true)
+          {
+            token = Parser.GetToken(tokenType);
+            if(tokenType == 0) break;
+            //System.LogMessage("parsing List: " + nToken + ". token=[" + token + "] tokenType=[" + tokenType +"]");
+            if(token != ",")
+            {
+               tokens[nToken] = token;
+               nToken = nToken + 1;
+            }
+         }
+         //System.LogMessage("itemEntry=" + itemEntry);
+         Parser.SetStatement(itemEntry);
+         Write.ChangeMargin(1);
+         for(member = 0; member < nToken; member = member + 1)
+         {
+            token = Parser.GetToken(tokenType);
+            //System.LogMessage("parsing Item: " + member + ". token=[" + token + "] tokenType=[" + tokenType +"]");
+            Write.Text("new gmRTL.GUI.ControlHelper.GetItemData(""");
+            Write.Text(tokens[member] + """," + token + ")");
+            if(member < (nToken-1)) Write.Text(",");
+            else if(Select.Dialect == Dialects.vbn) Write.Text("})");
+            else Write.Text("});");
+            Write.Record();
+            token = Parser.GetToken(tokenType);
+         }
+         Write.ChangeMargin(-1);
+      }
+   }
+   return 0;
+}

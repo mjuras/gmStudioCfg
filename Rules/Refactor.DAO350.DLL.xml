@@ -1,0 +1,5 @@
+<RefactorLibrary>
+<Refactor id="[DAO350.DLL]" >
+   <Migrate id="_Field.Value" IsDbNull="On" />
+</Refactor>
+</RefactorLibrary>

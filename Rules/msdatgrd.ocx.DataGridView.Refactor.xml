@@ -1,0 +1,68 @@
+<RefactorLibrary>
+<!-- 
+Description: Map MSDataGridLib.DataGrid to WinForms.DataGridView 
+-->
+<Refactor id="[msdatgrd.ocx]" event="msdatgrd">
+<!--
+Library
+-->
+<Migrate location="DoNotDeclare"  migName="System.Windows.Forms" libType="Internal" />
+<!--
+Extentions
+-->
+<!-- DataGridViewTriState is used to upgrade a boolean to an enum -->
+<Extend>
+  <enumeration id="DataGridViewTriState" migStatus="External">
+      <entry id="False"  value="0" />
+      <entry id="True"   value="-1" />
+   </enumeration>
+</Extend>
+<!--
+Enums
+-->
+<Migrate id="AlignmentConstants" migName="DataGridViewContentAlignment" />
+<Migrate id="AlignmentConstants.dbgLeft" migName="MiddleLeft" />
+<Migrate id="AlignmentConstants.dbgRight" migName="MiddleRight" />
+<Migrate id="AlignmentConstants.dbgCenter" migName="MiddleCenter" />
+<Migrate id="AlignmentConstants.dbgGeneral" migName="TopLeft" />
+<!--
+Classes
+-->
+<Migrate id="Column" migName="DataGridViewColumn"  />
+<Migrate id="Column.Locked" migName="ReadOnly" />
+<Migrate id="Column.Alignment" migName="DefaultCellStyle.Alignment" />
+<Migrate id="Column.AllowSizing" type="DataGridViewTriState" migName="Resizable" />
+<!-- Column(i).Text is upgraded to an extension method in gmRTL.Core.dll see MSDataGridLibHelpers.cs  -->
+<Migrate id="Column.Text" migName="GetText()" migStatus="extension"/>
+<Migrate id="Column.Width" type="TwipsX"  />
+
+<Migrate id="DataGrid" migName="DataGridView" role="Control" />
+
+<Migrate id="DDataGridEvents.SelChange" migName="SelectionChanged" netHandler="System.EventHandler" netArgs="EventArgs"/>
+
+<Migrate id="IDataGrid.AllowRowSizing" type="Boolean" migName="AllowUserToResizeRows" />
+<Migrate id="IDataGrid.DataSource" type="Object" />
+<Migrate id="IDataGrid.Row" status="GetSet">
+   <Get nPram="1" migPattern="%1d.SelectedRows[0].Index" />
+   <Set nPram="2" migPattern="%2d.Rows[%1D].Selected = true\c" />
+</Migrate>
+<Migrate id="IDataGrid.Col" status="GetSet">
+   <Get nPram="1" migPattern="%1d.SelectedColumns[0].Index"  />
+   <Set nPram="2" migPattern="%2d.Columns[%1D].Selected = true\c" />
+</Migrate>
+<!--
+Designers
+-->
+<MigClass id="NetControl.DataGrid" migName="System.Windows.Forms.DataGridView" parent="DataGrid">
+   <property id="Font" value="Font" type="FontInfo" nPram="3"
+             vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+             cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+   />
+   <property id="Location" value="(Left,Top)" nPram="2" migPattern="new System.Drawing.Point(%1d, %2d)"  />
+   <property id="Name" type="string" value="SYM.name" />
+   <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+   <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+</MigClass>
+
+</Refactor>
+</RefactorLibrary>

@@ -1,0 +1,19 @@
+int TDBGrid(int context,int ctlRoot,int iStart)
+{
+int formRoot;
+tMigInfo fileInfo;
+
+   if (context == EventType.AdjustProperties)
+   {
+      for(formRoot = Store.GetParent(ctlRoot); formRoot != 0; formRoot = Store.GetParent(formRoot))
+      {
+         if(Store.GetObjectType(formRoot) == ObjectType.FormFile) break;
+      }
+      if(formRoot == 0) return 0;
+      fileInfo = Store.GetVector(formRoot);
+      fileInfo.Resources = 1;
+      //string theFile = Symbol.FullName(formRoot);
+      //System.LogMessage("Set Resources flag on "  + theFile);
+   }   
+   return 0;
+}

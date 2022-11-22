@@ -1,0 +1,1990 @@
+<DescriptionFile>
+<!--
+Upgrade DDActiveReports2 to stronger typed API by replacing variants with stronger types.
+-->
+<library id="actrpt2.dll"
+         name="DDActiveReports2"
+         uuid="A7973091-BC64-4F16-84D4-A4BE059B4927"
+         netVersion="2.0"
+         source="actrpt2.dll"
+         location="%library%\Interop.DDActiveReports2.dll"
+         migName="DDActiveReports2"
+         type="LocalImport"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IDDFont"/>
+   <class id="IBorder"/>
+   <class id="IHistory"/>
+   <class id="ITocEntry"/>
+   <class id="IToc"/>
+   <class id="IPaperSizes"/>
+   <class id="IPrinter"/>
+   <class id="ICanvas"/>
+   <class id="IPages"/>
+   <class id="IPaneControls"/>
+   <class id="IPanes"/>
+   <class id="IPane"/>
+   <class id="IDDTool"/>
+   <class id="IDDTools"/>
+   <class id="IDDToolBar"/>
+   <class id="IControls"/>
+   <class id="IarError"/>
+   <class id="IReturnBool"/>
+   <class id="IReturnString"/>
+   <class id="ISection"/>
+   <class id="ISectionEvents"/>
+   <class id="ILabel"/>
+   <class id="IField"/>
+   <class id="IImage"/>
+   <class id="ILine"/>
+   <class id="IDataCtrl"/>
+   <class id="ISections"/>
+   <class id="IDAODataCtrl"/>
+   <class id="ISubReport"/>
+   <class id="IDDOleObj"/>
+   <class id="ICheckBox"/>
+   <class id="IRenderCanvas"/>
+   <class id="IDDFlexSize"/>
+   <class id="IARParameter"/>
+   <class id="IARParameters"/>
+   <class id="IarErrors"/>
+   <class id="IRptFields"/>
+   <class id="IRptField"/>
+   <class id="IPageSettings"/>
+   <class id="IXMLDataControl"/>
+   <class id="IFrame"/>
+   <class id="IDDFormat"/>
+   <class id="IBarCode"/>
+   <class id="IPageBreak"/>
+   <class id="IRDODataCtrl"/>
+   <class id="IShape"/>
+   <class id="IActiveReport"/>
+   <class id="IActiveReportEvents"/>
+   <class id="IRichEdit"/>
+   <class id="IRichEditEvents"/>
+   <coclass id="Border"/>
+   <coclass id="History"/>
+   <coclass id="TocEntry"/>
+   <coclass id="TOC"/>
+   <coclass id="PaperSizes"/>
+   <coclass id="Canvas"/>
+   <coclass id="Printer"/>
+   <coclass id="Pages"/>
+   <coclass id="DDToolBar"/>
+   <coclass id="DDTools"/>
+   <coclass id="DDTool"/>
+   <coclass id="RptField"/>
+   <coclass id="ReturnString"/>
+   <coclass id="ReturnBool"/>
+   <coclass id="Section"/>
+   <coclass id="Label"/>
+   <coclass id="Controls"/>
+   <coclass id="Field"/>
+   <coclass id="Image"/>
+   <coclass id="Line"/>
+   <coclass id="DataControl"/>
+   <coclass id="Sections"/>
+   <coclass id="DAODataControl"/>
+   <coclass id="DAOFileBrowser"/>
+   <coclass id="SubReport"/>
+   <coclass id="OLE"/>
+   <coclass id="CheckBox"/>
+   <coclass id="Shape"/>
+   <coclass id="PageBreak"/>
+   <coclass id="RDODataControl"/>
+   <coclass id="ActiveReport"/>
+   <coclass id="RichEdit"/>
+   <coclass id="arErrors"/>
+   <coclass id="arError"/>
+   <coclass id="RptFields"/>
+   <coclass id="PageSettings"/>
+   <coclass id="XMLDataControl"/>
+   <coclass id="Frame"/>
+   <coclass id="Panes"/>
+   <coclass id="Pane"/>
+   <coclass id="PaneControls"/>
+   <coclass id="Barcode"/>
+   <coclass id="ARParameters"/>
+   <coclass id="ARParameter"/>
+   <enumeration id="ADOCursorLocation">
+      <entry id="ddADOUseServer" value="2"/>
+      <entry id="ddADOUseClient" value="3"/>
+   </enumeration>
+   <enumeration id="ADOCursorType">
+      <entry id="ddADOOpenForwardOnly" value="0"/>
+      <entry id="ddADOOpenKeyset" value="1"/>
+      <entry id="ddADOOpenDynamic" value="2"/>
+      <entry id="ddADOOpenStatic" value="3"/>
+   </enumeration>
+   <enumeration id="ReportStatus">
+      <entry id="DDStatIdle" value="0"/>
+      <entry id="DDStatRunning" value="1"/>
+      <entry id="DDStatCompleted" value="2"/>
+      <entry id="DDStatCancelled" value="3"/>
+   </enumeration>
+   <enumeration id="FindResults">
+      <entry id="ddFRNotFound" value="0"/>
+      <entry id="ddFRFound" value="1"/>
+      <entry id="ddFREndOfPages" value="2"/>
+      <entry id="ddFRBeginningOfPages" value="3"/>
+   </enumeration>
+   <enumeration id="SplitTypes">
+      <entry id="ddTopSplit" value="0"/>
+      <entry id="ddBottomSplit" value="1"/>
+      <entry id="ddLeftSplit" value="2"/>
+      <entry id="ddRightSplit" value="3"/>
+   </enumeration>
+   <enumeration id="SaveOptionTypes">
+      <entry id="ddSOFile" value="1"/>
+      <entry id="ddSOByteArray" value="2"/>
+   </enumeration>
+   <enumeration id="LineStyle">
+      <entry id="ddLSTransparent" value="0"/>
+      <entry id="ddLSSolid" value="1"/>
+      <entry id="ddLSDash" value="2"/>
+      <entry id="ddLSDot" value="3"/>
+      <entry id="ddLSDashDot" value="4"/>
+      <entry id="ddLSDashDotDot" value="5"/>
+   </enumeration>
+   <enumeration id="BorderLineStyle">
+      <entry id="ddBLNone" value="0"/>
+      <entry id="ddBLSolid" value="1"/>
+      <entry id="ddBLDash" value="2"/>
+      <entry id="ddBLDot" value="3"/>
+      <entry id="ddBLDashDot" value="4"/>
+      <entry id="ddBLDashDotDot" value="5"/>
+      <entry id="ddBLDouble" value="6"/>
+      <entry id="ddBLThickSolid" value="7"/>
+      <entry id="ddBLThickDash" value="8"/>
+      <entry id="ddBLThickDot" value="9"/>
+      <entry id="ddBLThickDashDot" value="10"/>
+      <entry id="ddBLThickDashDotDot" value="11"/>
+      <entry id="ddBLThickDouble" value="12"/>
+      <entry id="ddBLExtraThickSolid" value="13"/>
+   </enumeration>
+   <enumeration id="JobStatus">
+      <entry id="ddJSIdle" value="0"/>
+      <entry id="ddJSPrinting" value="1"/>
+      <entry id="ddJSCompleted" value="2"/>
+      <entry id="ddJSAborted" value="3"/>
+   </enumeration>
+   <enumeration id="PrtCollate">
+      <entry id="COLLATE_FALSE" value="0"/>
+      <entry id="COLLATE_TRUE" value="1"/>
+      <entry id="COLLATE_PRINTERDEFAULT" value="0xffffffff"/>
+   </enumeration>
+   <enumeration id="PrtQuality">
+      <entry id="ddPQDraft" value="0xffffffff"/>
+      <entry id="ddPQLow" value="0xfffffffe"/>
+      <entry id="ddPQMedium" value="0xfffffffd"/>
+      <entry id="ddPQHigh" value="0xfffffffc"/>
+   </enumeration>
+   <enumeration id="PrtDuplex">
+      <entry id="ddDXSimplex" value="1"/>
+      <entry id="ddDXHorizontal" value="2"/>
+      <entry id="ddDXVertical" value="3"/>
+      <entry id="ddDXPrinterDefault" value="0xffffffff"/>
+   </enumeration>
+   <enumeration id="PrtOrientation">
+      <entry id="ddOPortrait" value="1"/>
+      <entry id="ddOLandscape" value="2"/>
+      <entry id="ddODefault" value="0xffffffff"/>
+   </enumeration>
+   <enumeration id="BackStyle">
+      <entry id="ddBKTransparent" value="0"/>
+      <entry id="ddBKNormal" value="1"/>
+   </enumeration>
+   <enumeration id="ADOLockType">
+      <entry id="ddADOLockUnspecified" value="0xffffffff"/>
+      <entry id="ddADOLockReadOnly" value="1"/>
+      <entry id="ddADOLockPessimistic" value="2"/>
+      <entry id="ddADOLockOptimistic" value="3"/>
+      <entry id="ddADOLockBatchOptimistic" value="4"/>
+   </enumeration>
+   <enumeration id="ADOConnectMode">
+      <entry id="ddADOModeUnknown" value="0"/>
+      <entry id="ddADOModeRead" value="1"/>
+      <entry id="ddADOModeWrite" value="2"/>
+      <entry id="ddADOModeReadWrite" value="3"/>
+      <entry id="ddADOModeShareDenyRead" value="4"/>
+      <entry id="ddADOModeShareDenyWrite" value="8"/>
+      <entry id="ddADOModeShareExclusive" value="12"/>
+      <entry id="ddADOModeShareDenyNone" value="16"/>
+   </enumeration>
+   <enumeration id="LayoutAction">
+      <entry id="ddLAPrintSection" value="1"/>
+      <entry id="ddLAMoveLayout" value="2"/>
+      <entry id="ddLANextRecord" value="4"/>
+   </enumeration>
+   <enumeration id="FindConstants">
+      <entry id="rtfWholeWord" value="2"/>
+      <entry id="rtfMatchCase" value="4"/>
+      <entry id="rtfDown" value="8"/>
+      <entry id="rtfUp" value="16"/>
+   </enumeration>
+   <enumeration id="DisplayConstants">
+      <entry id="rtfDisplayContent" value="0"/>
+      <entry id="rtfDisplayIcon" value="1"/>
+   </enumeration>
+   <enumeration id="ModeConstants">
+      <entry id="DDDesign" value="0"/>
+      <entry id="DDFieldReplace" value="1"/>
+   </enumeration>
+   <enumeration id="FormatChangeConstants">
+      <entry id="DDFontName" value="0"/>
+      <entry id="DDFontSize" value="1"/>
+      <entry id="DDUnderline" value="2"/>
+      <entry id="DDStrikethru" value="3"/>
+      <entry id="DDItalic" value="4"/>
+      <entry id="DDTextColor" value="5"/>
+      <entry id="DDBackgroundColor" value="6"/>
+      <entry id="DDTextBackgroundColor" value="7"/>
+   </enumeration>
+   <enumeration id="ScrollBarsConstants">
+      <entry id="rtfScrollBarsNone" value="0"/>
+      <entry id="rtfHorizontal" value="1"/>
+      <entry id="rtfVertical" value="2"/>
+      <entry id="rtfBoth" value="3"/>
+   </enumeration>
+   <enumeration id="SelAlignmentConstants">
+      <entry id="rtfLeft" value="0"/>
+      <entry id="rtfRight" value="1"/>
+      <entry id="rtfCenter" value="2"/>
+      <entry id="rtfAlignmentNone" value="3"/>
+   </enumeration>
+   <enumeration id="ErrorConstants">
+      <entry id="rtfOutOfMemory" value="7"/>
+      <entry id="rtfInvalidPropertyValue" value="380"/>
+      <entry id="rtfInvalidPropertyArrayIndex" value="381"/>
+      <entry id="rtfSetNotSupported" value="383"/>
+      <entry id="rtfSetNotPermitted" value="387"/>
+      <entry id="rtfGetNotSupported" value="394"/>
+      <entry id="rtfInvalidProcedureCall" value="5"/>
+      <entry id="rtfInvalidObjectUse" value="425"/>
+      <entry id="rtfWrongClipboardFormat" value="461"/>
+      <entry id="rtfDataObjectLocked" value="672"/>
+      <entry id="rtfExpectedAnArgument" value="673"/>
+      <entry id="rtfRecursiveOleDrag" value="674"/>
+      <entry id="rtfFormatNotByteArray" value="675"/>
+      <entry id="rtfDataNotSetInFormat" value="676"/>
+      <entry id="rtfPathFileAccessError" value="75"/>
+      <entry id="rtfInvalidFileFormat" value="321"/>
+      <entry id="rtfInvalidCharPosition" value="32000"/>
+      <entry id="rtfInvalidHdc" value="32001"/>
+      <entry id="rtfCannotLoadFile" value="32002"/>
+      <entry id="rtfProtected" value="32011"/>
+      <entry id="rtfInvalidKeyName" value="32005"/>
+      <entry id="rtfInvalidClassName" value="32006"/>
+      <entry id="rtfKeyNotFound" value="32007"/>
+      <entry id="rtfOLESourceRequired" value="32008"/>
+      <entry id="rtfNonUniqueKey" value="32009"/>
+      <entry id="rtfInvalidObject" value="32010"/>
+      <entry id="rtfOleCreate" value="32012"/>
+      <entry id="rtfOleServer" value="32013"/>
+   </enumeration>
+   <enumeration id="MousePointerConstants">
+      <entry id="rtfDefault" value="0"/>
+      <entry id="rtfArrow" value="1"/>
+      <entry id="rtfCross" value="2"/>
+      <entry id="rtfIBeam" value="3"/>
+      <entry id="rtfIcon" value="4"/>
+      <entry id="rtfSize" value="5"/>
+      <entry id="rtfSizeNESW" value="6"/>
+      <entry id="rtfSizeNS" value="7"/>
+      <entry id="rtfSizeNWSE" value="8"/>
+      <entry id="rtfSizeEW" value="9"/>
+      <entry id="rtfUpArrow" value="10"/>
+      <entry id="rtfHourglass" value="11"/>
+      <entry id="rtfNoDrop" value="12"/>
+      <entry id="rtfArrowHourglass" value="13"/>
+      <entry id="rtfArrowQuestion" value="14"/>
+      <entry id="rtfSizeAll" value="15"/>
+      <entry id="rtfCustom" value="99"/>
+   </enumeration>
+   <enumeration id="LoadSaveConstants">
+      <entry id="rtfRTF" value="0"/>
+      <entry id="rtfText" value="1"/>
+   </enumeration>
+   <enumeration id="BorderStyleConstants">
+      <entry id="rtfNoBorder" value="0"/>
+      <entry id="rtfFixedSingle" value="1"/>
+   </enumeration>
+   <enumeration id="AppearanceConstants">
+      <entry id="rtfFlat" value="0"/>
+      <entry id="rtfThreeD" value="1"/>
+   </enumeration>
+   <enumeration id="BarCodeStyle">
+      <entry id="ddbcNone" value="0"/>
+      <entry id="ddbcAnsi39" value="1"/>
+      <entry id="ddbcAnsi39x" value="2"/>
+      <entry id="ddbcCode_2_of_5" value="3"/>
+      <entry id="ddbcCode25intlv" value="4"/>
+      <entry id="ddbcCode25mat" value="5"/>
+      <entry id="ddbcCode39" value="6"/>
+      <entry id="ddbcCode39x" value="7"/>
+      <entry id="ddbcCode_128_A" value="8"/>
+      <entry id="ddbcCode_128_B" value="9"/>
+      <entry id="ddbcCode_128_C" value="10"/>
+      <entry id="ddbcCode_128auto" value="11"/>
+      <entry id="ddbcCode_93" value="12"/>
+      <entry id="ddbcCode93x" value="13"/>
+      <entry id="ddbcMSI" value="14"/>
+      <entry id="ddbcPostNet" value="15"/>
+      <entry id="ddbcCodabar" value="16"/>
+      <entry id="ddbcEAN_8" value="17"/>
+      <entry id="ddbcEAN_13" value="18"/>
+      <entry id="ddbcUPC_A" value="19"/>
+      <entry id="ddbcUPC_E0" value="20"/>
+      <entry id="ddbcUPC_E1" value="21"/>
+      <entry id="ddbcRM4SCC" value="22"/>
+      <entry id="ddbcUCCEAN128" value="23"/>
+   </enumeration>
+   <enumeration id="BarCodeDirection">
+      <entry id="ddbcLeftToRight" value="0"/>
+      <entry id="ddbcRightToLeft" value="1"/>
+      <entry id="ddbcTopToBottom" value="2"/>
+      <entry id="ddbcBottomToTop" value="3"/>
+   </enumeration>
+   <enumeration id="BarCodeCaptionPosition">
+      <entry id="ddbcCaptionNone" value="0"/>
+      <entry id="ddbcCaptionAbove" value="1"/>
+      <entry id="ddbcCaptionBelow" value="2"/>
+   </enumeration>
+   <enumeration id="RDOResultsetType">
+      <entry id="ddRDOOpenKeyset" value="1"/>
+      <entry id="ddRDOOpenStatic" value="3"/>
+   </enumeration>
+   <enumeration id="RDOCursorDriver">
+      <entry id="ddRDOUseIfNeeded" value="0"/>
+      <entry id="ddRDOUseODBC" value="1"/>
+      <entry id="ddRDOUseServer" value="2"/>
+      <entry id="ddRDOUseClientBatch" value="3"/>
+      <entry id="ddRDOUseNone" value="4"/>
+   </enumeration>
+   <enumeration id="RDOLockType">
+      <entry id="ddRDOConcurReadOnly" value="1"/>
+      <entry id="ddRDOConcurLock" value="2"/>
+      <entry id="ddRDOConcurRowver" value="3"/>
+      <entry id="ddRDOConcurValues" value="4"/>
+      <entry id="ddRDOConcurBatch" value="5"/>
+   </enumeration>
+   <enumeration id="RDOPrompt">
+      <entry id="ddRDODriverPrompt" value="0"/>
+      <entry id="ddRDODriverNoPrompt" value="1"/>
+      <entry id="ddRDODriverComplete" value="2"/>
+      <entry id="ddRDODriverCompleteRequired" value="3"/>
+   </enumeration>
+   <enumeration id="SummaryFunctions">
+      <entry id="ddSFSum" value="0"/>
+      <entry id="ddSFAvg" value="1"/>
+      <entry id="ddSFCount" value="2"/>
+      <entry id="ddSFMin" value="3"/>
+      <entry id="ddSFMax" value="4"/>
+      <entry id="ddSFVar" value="5"/>
+      <entry id="ddSFVarP" value="6"/>
+      <entry id="ddSFStdDev" value="7"/>
+      <entry id="ddSFStdDevP" value="8"/>
+      <entry id="ddSFDSum" value="9"/>
+      <entry id="ddSFDAvg" value="10"/>
+      <entry id="ddSFDCount" value="11"/>
+      <entry id="ddSFDVar" value="12"/>
+      <entry id="ddSFDVarP" value="13"/>
+      <entry id="ddSFDStdDev" value="14"/>
+      <entry id="ddSFDStdDevP" value="15"/>
+   </enumeration>
+   <enumeration id="SummaryType">
+      <entry id="ddSMNone" value="0"/>
+      <entry id="ddSMGrandTotal" value="1"/>
+      <entry id="ddSMPageTotal" value="2"/>
+      <entry id="ddSMSubTotal" value="3"/>
+      <entry id="ddSMPageCount" value="4"/>
+   </enumeration>
+   <enumeration id="SummaryRunningType">
+      <entry id="ddSRNone" value="0"/>
+      <entry id="ddSRGroup" value="1"/>
+      <entry id="ddSRAll" value="2"/>
+   </enumeration>
+   <enumeration id="ShapeType">
+      <entry id="ddSHRectangle" value="0"/>
+      <entry id="ddSHEllipse" value="1"/>
+      <entry id="ddSHRoundRect" value="2"/>
+   </enumeration>
+   <enumeration id="VerticalTextAlignment">
+      <entry id="ddTXTop" value="0"/>
+      <entry id="ddTXMiddle" value="1"/>
+      <entry id="ddTXBottom" value="2"/>
+   </enumeration>
+   <enumeration id="NewPageConstants">
+      <entry id="ddNPNone" value="0"/>
+      <entry id="ddNPBefore" value="1"/>
+      <entry id="ddNPAfter" value="2"/>
+      <entry id="ddNPBeforeAfter" value="3"/>
+   </enumeration>
+   <enumeration id="ColumnDirections">
+      <entry id="ddCDDownAcross" value="0"/>
+      <entry id="ddCDAcrossDown" value="1"/>
+   </enumeration>
+   <enumeration id="SectionType">
+      <entry id="ddSTReportHeader" value="0"/>
+      <entry id="ddSTReportFooter" value="1"/>
+      <entry id="ddSTPageHeader" value="2"/>
+      <entry id="ddSTPageFooter" value="3"/>
+      <entry id="ddSTGroupHeader" value="4"/>
+      <entry id="ddSTGroupFooter" value="5"/>
+      <entry id="ddSTDetail" value="6"/>
+   </enumeration>
+   <enumeration id="RepeatStyle">
+      <entry id="ddRepeatNone" value="0"/>
+      <entry id="ddRepeatOnPage" value="1"/>
+      <entry id="ddRepeatOnColumn" value="2"/>
+      <entry id="ddRepeatAll" value="3"/>
+      <entry id="ddRepeatOnPageIncludeNoDetail" value="4"/>
+   </enumeration>
+   <enumeration id="GrpKeepTogether">
+      <entry id="ddGrpNone" value="0"/>
+      <entry id="ddGrpFirstDetail" value="1"/>
+      <entry id="ddGrpAll" value="2"/>
+   </enumeration>
+   <enumeration id="DAOCursorType">
+      <entry id="ddDAODefaultCursor" value="0"/>
+      <entry id="ddDAOODBCCursor" value="1"/>
+      <entry id="ddDAOServerSideCursor" value="2"/>
+   </enumeration>
+   <enumeration id="DAODefaultType">
+      <entry id="ddDAOUseODBC" value="1"/>
+      <entry id="ddDAOUseJet" value="2"/>
+   </enumeration>
+   <enumeration id="DAORecordsetType">
+      <entry id="ddDAOTable" value="0"/>
+      <entry id="ddDAODynaset" value="1"/>
+      <entry id="ddDAOSnapShot" value="2"/>
+   </enumeration>
+   <enumeration id="PictureAlignment">
+      <entry id="ddPATopLeft" value="0"/>
+      <entry id="ddPATopRight" value="1"/>
+      <entry id="ddPACenter" value="2"/>
+      <entry id="ddPABottomLeft" value="3"/>
+      <entry id="ddPABottomRight" value="4"/>
+   </enumeration>
+   <enumeration id="SizeMode">
+      <entry id="ddSMClip" value="0"/>
+      <entry id="ddSMStretch" value="1"/>
+      <entry id="ddSMZoom" value="2"/>
+   </enumeration>
+   <enumeration id="TextAlignment">
+      <entry id="ddTXLeft" value="0"/>
+      <entry id="ddTXRight" value="1"/>
+      <entry id="ddTXCenter" value="2"/>
+   </enumeration>
+   <structure id="TEXTMETRICW">
+      <member id="tmHeight" type="Integer"/>
+      <member id="tmAscent" type="Integer"/>
+      <member id="tmDescent" type="Integer"/>
+      <member id="tmInternalLeading" type="Integer"/>
+      <member id="tmExternalLeading" type="Integer"/>
+      <member id="tmAveCharWidth" type="Integer"/>
+      <member id="tmMaxCharWidth" type="Integer"/>
+      <member id="tmWeight" type="Integer"/>
+      <member id="tmOverhang" type="Integer"/>
+      <member id="tmDigitizedAspectX" type="Integer"/>
+      <member id="tmDigitizedAspectY" type="Integer"/>
+      <member id="tmFirstChar" type="Short"/>
+      <member id="tmLastChar" type="Short"/>
+      <member id="tmDefaultChar" type="Short"/>
+      <member id="tmBreakChar" type="Short"/>
+      <member id="tmItalic" type="Byte"/>
+      <member id="tmUnderlined" type="Byte"/>
+      <member id="tmStruckOut" type="Byte"/>
+      <member id="tmPitchAndFamily" type="Byte"/>
+      <member id="tmCharSet" type="Byte"/>
+   </structure>
+   <structure id="RemotableHandle">
+      <member id="fContext" type="Integer"/>
+      <member id="u" type="__MIDL_IWinTypes_0009"/>
+   </structure>
+   <union id="__MIDL_IWinTypes_0009">
+      <member id="hInproc" type="Integer"/>
+      <member id="hRemote" type="Integer"/>
+   </union>
+   <structure id="Size">
+      <member id="cx" type="Integer"/>
+      <member id="cy" type="Integer"/>
+   </structure>
+   <typedef id="wireHFONT" type="RemotableHandle"/>
+   <typedef id="wireHDC" type="RemotableHandle"/>
+   <class id="IDDFont" parent="IDispatch" default="Name" creatable="off">
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Size" type="Currency" status="InOut"/>
+      <property id="Bold" type="Integer" status="InOut"/>
+      <property id="Italic" type="Integer" status="InOut"/>
+      <property id="Underline" type="Integer" status="InOut"/>
+      <property id="Strikethrough" type="Integer" status="InOut"/>
+      <property id="Weight" type="Short" status="InOut"/>
+      <property id="Charset" type="Short" status="InOut"/>
+      <property id="hFont" type="wireHFONT" status="Out"/>
+      <property id="Angle" type="Short" status="InOut"/>
+      <method id="Clone" type="Void">
+         <argument id="ppFont" type="Font" status="Out"/>
+      </method>
+      <method id="IsEqual" type="Void">
+         <argument id="pFontOther" type="Font" status="ByVal"/>
+      </method>
+      <method id="SetRatio" type="Void">
+         <argument id="cyLogical" type="Integer" status="ByVal"/>
+         <argument id="cyHimetric" type="Integer" status="ByVal"/>
+      </method>
+      <method id="QueryTextMetrics" type="Void">
+         <argument id="pTM" type="TEXTMETRICW" status="Out"/>
+      </method>
+      <method id="AddRefHfont" type="Void">
+         <argument id="hFont" type="wireHFONT" status="ByVal"/>
+      </method>
+      <method id="ReleaseHfont" type="Void">
+         <argument id="hFont" type="wireHFONT" status="ByVal"/>
+      </method>
+      <method id="SetHdc" type="Void">
+         <argument id="hDC" type="wireHDC" status="ByVal"/>
+      </method>
+      <method id="DeviceHeight" type="Void">
+         <argument id="pDevHeight" type="Integer" status="Out"/>
+      </method>
+   </class>
+   <class id="IBorder" parent="IDispatch" creatable="off">
+      <property id="TopStyle" type="BorderLineStyle" status="InOut"/>
+      <property id="LeftStyle" type="BorderLineStyle" status="InOut"/>
+      <property id="RightStyle" type="BorderLineStyle" status="InOut"/>
+      <property id="BottomStyle" type="BorderLineStyle" status="InOut"/>
+      <property id="TopColor" type="OLE_COLOR" status="InOut"/>
+      <property id="LeftColor" type="OLE_COLOR" status="InOut"/>
+      <property id="RightColor" type="OLE_COLOR" status="InOut"/>
+      <property id="BottomColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Shadow" type="Boolean" status="InOut"/>
+   </class>
+   <class id="IHistory" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Short" status="Out"/>
+      <property id="Position" type="Short" status="Out"/>
+      <method id="Item" type="Void">
+         <argument id="Index" type="Variant" status="ByVal"/>
+         <argument id="pageNumber" type="Integer" status="Out"/>
+      </method>
+      <method id="Back" type="Void"/>
+      <method id="Forward" type="Void"/>
+   </class>
+   <class id="ITocEntry" parent="IDispatch" default="Name" creatable="off">
+      <property id="Name" type="String" status="InOut"/>
+      <property id="pageNumber" type="Integer" status="InOut"/>
+      <property id="PageOffset" type="Short" status="InOut"/>
+   </class>
+   <class id="IToc" parent="IDispatch" default="Item" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="History" type="History" status="Out"/>
+      <property id="CurrentPage" type="Integer" status="InOut"/>
+      <property id="SelectedItem" type="Integer" status="Out"/>
+      <method id="Item" type="TocEntry">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="text" type="String" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="text" type="String" status="ByVal"/>
+      </method>
+      <method id="RemoveAll" type="Void"/>
+      <method id="Navigate" type="Void">
+         <argument id="TocEntry" type="String" status="ByVal"/>
+      </method>
+      <method id="GotoPage" type="Void">
+         <argument id="pageNumber" type="Integer" status="ByVal"/>
+      </method>
+      <method id="pageNumber" type="Integer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IPaperSizes" parent="IDispatch" default="Item" creatable="off">
+      <method id="_NewEnum" type="Variant"/>
+      <method id="Item" type="Short">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Count" type="Short"/>
+      <method id="Name" type="String">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IPrinter" parent="IDispatch" default="DeviceName" creatable="off">
+      <property id="DeviceName" type="String" status="InOut"/>
+      <property id="NDevices" type="Integer" status="Out"/>
+      <property id="NPorts" type="Integer" status="Out"/>
+      <property id="DPI" type="Integer" status="Out"/>
+      <property id="Duplex" type="PrtDuplex" status="InOut"/>
+      <property id="PrintQuality" type="PrtQuality" status="InOut"/>
+      <property id="TwipsPerPixelX" type="Single" status="Out"/>
+      <property id="TwipsPerPixelY" type="Single" status="Out"/>
+      <property id="PaperWidth" type="Single" status="InOut"/>
+      <property id="PaperHeight" type="Single" status="InOut"/>
+      <property id="Orientation" type="PrtOrientation" status="InOut"/>
+      <property id="Collate" type="Short" status="InOut"/>
+      <property id="ColorMode" type="Short" status="InOut"/>
+      <property id="Copies" type="Short" status="InOut"/>
+      <property id="PaperBin" type="Short" status="InOut"/>
+      <property id="PaperSize" type="Short" status="InOut"/>
+      <property id="PaperSizes" type="PaperSizes" status="Out"/>
+      <property id="FromPage" type="Integer" status="InOut"/>
+      <property id="ToPage" type="Integer" status="InOut"/>
+      <property id="MaxPage" type="Integer" status="InOut"/>
+      <property id="Port" type="String" status="InOut"/>
+      <property id="TrackDefault" type="Boolean" status="InOut"/>
+      <property id="Status" type="JobStatus" status="Out"/>
+      <property id="FileName" type="String" status="InOut"/>
+      <property id="hDC" type="OLE_HANDLE" status="Out"/>
+      <property id="DisplayProgressDialog" type="Boolean" status="InOut"/>
+      <property id="DeviceCopies" type="Short" status="InOut"/>
+      <property id="PaperBins" type="Variant" status="Out"/>
+      <property id="PaperBinNames" type="Variant" status="Out"/>
+      <property id="RenderMode" type="Integer" status="InOut"/>
+      <accessor id="Devices" type="String">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="Ports" type="String">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="StartJob" type="Void">
+         <argument id="documentName" type="String" status="ByVal"/>
+      </method>
+      <method id="EndJob" type="Void"/>
+      <method id="_PrintPage" type="Void">
+         <argument id="Canvas" type="Canvas" status="ByVal"/>
+      </method>
+      <method id="Escape" type="Void">
+         <argument id="code" type="String" status="ByVal"/>
+      </method>
+      <method id="_SetupDialog" type="Void">
+         <argument id="ParentWindowHandle" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_PrintDialog" type="Void">
+         <argument id="ParentWindowHandle" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="AbortJob" type="Void"/>
+      <method id="PrintDialog" type="Boolean">
+         <argument id="ParentWindowHandle" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="SetupDialog" type="Boolean">
+         <argument id="ParentWindowHandle" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_PrepDC" type="OLE_HANDLE"/>
+      <method id="PrintPage" type="Void">
+         <argument id="Canvas" type="Canvas" status="ByVal"/>
+         <argument id="left" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="top" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="width" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="height" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="StartPage" type="Void"/>
+      <method id="EndPage" type="Void"/>
+   </class>
+   <class id="ICanvas" parent="IDispatch" creatable="off">
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Font" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Font"/>
+         <Set npram="2" migPattern="%1d.Font = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Font(%1d)\c"/>
+      </property>
+      <property id="Alignment" type="Short" status="InOut"/>
+      <property id="TextAngle" type="Integer" status="InOut"/>
+      <property id="VerticalAlignment" type="Short" status="InOut"/>
+      <property id="PenStyle" type="Short" status="InOut"/>
+      <property id="PenWidth" type="Short" status="InOut"/>
+      <property id="BackStyle" type="BackStyle" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="width" type="Integer" status="InOut"/>
+      <property id="height" type="Integer" status="InOut"/>
+      <property id="Orientation" type="PrtOrientation" status="InOut"/>
+      <property id="Picture" type="FrxPicture" status="Out"/>
+      <method id="DrawLine" type="Void">
+         <argument id="x1" type="Integer" status="ByVal"/>
+         <argument id="y1" type="Integer" status="ByVal"/>
+         <argument id="x2" type="Integer" status="ByVal"/>
+         <argument id="y2" type="Integer" status="ByVal"/>
+      </method>
+      <method id="DrawRect" type="Void">
+         <argument id="left" type="Integer" status="ByVal"/>
+         <argument id="top" type="Integer" status="ByVal"/>
+         <argument id="width" type="Integer" status="ByVal"/>
+         <argument id="height" type="Integer" status="ByVal"/>
+      </method>
+      <method id="XRST" type="Void"/>
+      <method id="TextOut" type="Void">
+         <argument id="text" type="String" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </method>
+      <method id="DrawText" type="Void">
+         <argument id="text" type="String" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+         <argument id="width" type="Integer" status="ByVal"/>
+         <argument id="height" type="Integer" status="ByVal"/>
+      </method>
+      <method id="DrawEnhMeta" type="Void">
+         <argument id="handle" type="OLE_HANDLE" status="ByVal"/>
+         <argument id="left" type="Integer" status="ByVal"/>
+         <argument id="top" type="Integer" status="ByVal"/>
+         <argument id="width" type="Integer" status="ByVal"/>
+         <argument id="height" type="Integer" status="ByVal"/>
+      </method>
+      <method id="DrawEllipse" type="Void">
+         <argument id="left" type="Integer" status="ByVal"/>
+         <argument id="top" type="Integer" status="ByVal"/>
+         <argument id="width" type="Integer" status="ByVal"/>
+         <argument id="height" type="Integer" status="ByVal"/>
+      </method>
+      <method id="DrawRoundRect" type="Void">
+         <argument id="left" type="Integer" status="ByVal"/>
+         <argument id="top" type="Integer" status="ByVal"/>
+         <argument id="width" type="Integer" status="ByVal"/>
+         <argument id="height" type="Integer" status="ByVal"/>
+         <argument id="w" type="Integer" status="ByVal"/>
+         <argument id="h" type="Integer" status="ByVal"/>
+      </method>
+      <method id="FillRect" type="Void">
+         <argument id="left" type="Integer" status="ByVal"/>
+         <argument id="top" type="Integer" status="ByVal"/>
+         <argument id="width" type="Integer" status="ByVal"/>
+         <argument id="height" type="Integer" status="ByVal"/>
+      </method>
+      <method id="MeasureText" type="Void">
+         <argument id="text" type="String" status="ByVal"/>
+         <argument id="width" type="Integer" status="Out"/>
+         <argument id="height" type="Integer" status="Out"/>
+      </method>
+      <method id="IntersectClipRect" type="Void">
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+         <argument id="w" type="Integer" status="ByVal"/>
+         <argument id="h" type="Integer" status="ByVal"/>
+      </method>
+      <method id="PushClipRect" type="Void"/>
+      <method id="PopClipRect" type="Void"/>
+      <method id="Save" type="Void">
+         <argument id="FileName" type="String" status="ByVal"/>
+      </method>
+      <method id="Load" type="Void">
+         <argument id="FileName" type="String" status="ByVal"/>
+      </method>
+      <method id="Overlay" type="Void">
+         <argument id="Canvas" type="Canvas" status="ByVal"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="DrawPicture" type="Void">
+         <argument id="Picture" type="FrxPicture" status="ByVal"/>
+         <argument id="left" type="Integer" status="ByVal"/>
+         <argument id="top" type="Integer" status="ByVal"/>
+         <argument id="width" type="Integer" status="ByVal"/>
+         <argument id="height" type="Integer" status="ByVal"/>
+      </method>
+      <method id="MeasureParagraphHeight" type="Integer">
+         <argument id="text" type="String" status="ByVal"/>
+         <argument id="width" type="Integer" status="ByVal"/>
+      </method>
+      <method id="DrawTextLink" type="Void">
+         <argument id="text" type="String" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+         <argument id="width" type="Integer" status="ByVal"/>
+         <argument id="height" type="Integer" status="ByVal"/>
+         <argument id="hyperLink" type="String" status="ByVal"/>
+      </method>
+      <method id="DrawPictureLink" type="Void">
+         <argument id="Picture" type="FrxPicture" status="ByVal"/>
+         <argument id="left" type="Integer" status="ByVal"/>
+         <argument id="top" type="Integer" status="ByVal"/>
+         <argument id="width" type="Integer" status="ByVal"/>
+         <argument id="height" type="Integer" status="ByVal"/>
+         <argument id="hyperLink" type="String" status="ByVal"/>
+      </method>
+      <method id="_ExtRender" type="Void">
+         <argument id="hDC" type="OLE_HANDLE" status="ByVal"/>
+         <argument id="r1" type="Void" status="Out"/>
+         <argument id="r2" type="Void" status="Out"/>
+         <argument id="lx" type="Double" status="ByVal"/>
+         <argument id="ly" type="Double" status="ByVal"/>
+         <argument id="pMode" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IPages" parent="IDispatch" default="Item" creatable="off">
+      <property id="Password" type="String" status="InOut"/>
+      <method id="_NewEnum" type="Variant"/>
+      <method id="Item" type="Canvas">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Count" type="Integer"/>
+      <method id="Add" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="RemoveAll" type="Void"/>
+      <method id="InsertNew" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Commit" type="Void"/>
+      <method id="_Save" type="Void">
+         <argument id="FileName" type="String" status="ByVal"/>
+      </method>
+      <method id="_Load" type="Void">
+         <argument id="FileName" type="String" status="ByVal"/>
+      </method>
+      <method id="Insert" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+         <argument id="Canvas" type="Canvas" status="ByVal"/>
+      </method>
+      <method id="Save" type="Void">
+         <argument id="FileName" type="String" status="ByVal"/>
+         <argument id="options" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="vData" type="Variant" status="Out" optional="Default"/>
+      </method>
+      <method id="Load" type="Void">
+         <argument id="FileName" type="Variant" status="ByVal"/>
+      </method>
+      <method id="GetPagesInRange" type="Pages">
+         <argument id="rangeString" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IPaneControls" parent="IDispatch" default="Item" creatable="off">
+      <method id="_NewEnum" type="Variant"/>
+      <method id="Item" type="Control">
+         <argument id="Index" type="Short" status="ByVal"/>
+      </method>
+      <method id="Count" type="Short"/>
+      <method id="Add" type="Void">
+         <argument id="Control" type="Object" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IPanes" parent="IDispatch" default="Item" creatable="off">
+      <method id="_NewEnum" type="Variant"/>
+      <method id="Item" type="Pane">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Count" type="Short"/>
+      <method id="Add" type="Void">
+         <argument id="ParentName" type="String" status="ByVal"/>
+         <argument id="Split" type="SplitTypes" status="ByVal"/>
+         <argument id="NewPaneName" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IPane" parent="IDispatch" creatable="off">
+      <property id="left" type="Single" status="Out"/>
+      <property id="top" type="Single" status="Out"/>
+      <property id="width" type="Single" status="Out"/>
+      <property id="height" type="Single" status="Out"/>
+      <property id="Border" type="Border" status="Out"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="BackStyle" type="BackStyle" status="InOut"/>
+      <property id="CloseBorder" type="Boolean" status="InOut"/>
+      <property id="Controls" type="PaneControls" status="InOut"/>
+      <property id="Name" type="String" status="InOut"/>
+   </class>
+   <class id="IDDTool" parent="IDispatch" default="Caption" creatable="off">
+      <property id="Caption" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="Type" type="Short" status="InOut"/>
+      <property id="Checked" type="Boolean" status="InOut"/>
+      <property id="Tooltip" type="String" status="InOut"/>
+      <property id="ID" type="Short" status="InOut"/>
+      <property id="Style" type="Short" status="InOut"/>
+      <method id="AddIcon" type="Void">
+         <argument id="Picture" type="FrxPicture" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IDDTools" parent="IDispatch" default="Item" creatable="off">
+      <method id="Item" type="DDTool">
+         <argument id="Index" type="Short" status="ByVal"/>
+      </method>
+      <method id="Count" type="Integer"/>
+      <method id="Add" type="Void">
+         <argument id="Caption" type="String" status="ByVal"/>
+      </method>
+      <method id="Insert" type="Void">
+         <argument id="Index" type="Short" status="ByVal"/>
+         <argument id="Caption" type="String" status="ByVal"/>
+      </method>
+      <method id="AddEx" type="DDTool">
+         <argument id="Caption" type="String" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Variant"/>
+   </class>
+   <class id="IDDToolBar" parent="IDispatch" creatable="off">
+      <property id="DisplayToolTips" type="Boolean" status="InOut"/>
+      <property id="Font" type="Font" status="InOut"/>
+      <property id="_Retired" type="Font" status="In"/>
+      <property id="Tools" type="DDTools" status="Out"/>
+      <method id="Refresh" type="Void"/>
+   </class>
+   <class id="IControls" parent="IDispatch" default="Item" creatable="off">
+      <method id="Count" type="Short"/>
+      <method id="Item" type="Control">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Object">
+         <argument id="progID" type="String" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Variant"/>
+      <method id="RemoveAll" type="Void"/>
+   </class>
+   <class id="IarError" parent="IDispatch" default="Description" creatable="off">
+      <property id="Description" type="String" status="InOut"/>
+      <property id="Number" type="Integer" status="InOut"/>
+      <property id="Source" type="String" status="InOut"/>
+   </class>
+   <class id="IReturnBool" parent="IDispatch" default="Value" creatable="off">
+      <property id="Value" type="Boolean" status="InOut"/>
+   </class>
+   <class id="IReturnString" parent="IDispatch" default="Value" creatable="off">
+      <property id="Value" type="String" status="InOut"/>
+   </class>
+   <class id="ISection" parent="IDispatch" default="_Name" creatable="off">
+      <property id="Name" type="String" status="InOut"/>
+      <property id="height" type="Single" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="NewPage" type="NewPageConstants" status="InOut"/>
+      <property id="NewColumn" type="NewPageConstants" status="InOut"/>
+      <property id="ColumnCount" type="Short" status="InOut"/>
+      <property id="ColumnDirection" type="ColumnDirections" status="InOut"/>
+      <property id="KeepTogether" type="Boolean" status="InOut"/>
+      <property id="BackStyle" type="BackStyle" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="CanGrow" type="Boolean" status="InOut"/>
+      <property id="CanShrink" type="Boolean" status="InOut"/>
+      <property id="ColumnLayout" type="Boolean" status="InOut"/>
+      <property id="GrpKeepTogether" type="GrpKeepTogether" status="InOut"/>
+      <property id="Repeat" type="RepeatStyle" status="InOut"/>
+      <property id="DataField" type="String" status="InOut"/>
+      <property id="GroupValue" type="Variant" status="InOut"/>
+      <property id="Type" type="SectionType" status="Out"/>
+      <property id="UnderlayNext" type="Boolean" status="InOut"/>
+      <property id="IsRepeating" type="Boolean" status="Out"/>
+      <property id="Controls" type="Controls" status="Out"/>
+      <property id="_Name" type="String" status="Out"/>
+      <property id="ColumnSpacing" type="Single" status="InOut"/>
+      <property id="Script" type="String" status="InOut"/>
+      <property id="PrintAtBottom" type="Boolean" status="InOut"/>
+      <method id="PrintSection" type="Void"/>
+      <method id="FBP" type="Void"/>
+      <method id="FAP" type="Void"/>
+      <method id="FDR" type="Void">
+         <argument id="packet" type="Integer" status="ByVal"/>
+      </method>
+      <method id="RSInit" type="Void"/>
+      <method id="RSCleanup" type="Void"/>
+      <method id="RSNext" type="Void"/>
+      <method id="RSUpdateBound" type="Void"/>
+      <method id="RSUpdateGrpVal" type="Void"/>
+      <method id="RSSetupBindings" type="Void"/>
+      <method id="RSCacheGrpVal" type="Void"/>
+      <method id="FFMT" type="Void"/>
+      <method id="RSUpdateTotals" type="Void">
+         <argument id="packet" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetLayoutIndex" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="RSTDATA" type="Void">
+         <argument id="param" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SR" type="Void">
+         <argument id="action" type="Integer" status="ByVal"/>
+         <argument id="lParam" type="Integer" status="ByVal"/>
+      </method>
+      <method id="BKPDATA" type="Void">
+         <argument id="cookie" type="Integer" status="ByVal"/>
+      </method>
+      <method id="RSUndoUpdateTotals" type="Void">
+         <argument id="packet" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+   </class>
+   <class id="ISectionEvents" parent="None" creatable="off">
+      <event id="Format" netName="Format" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="BeforePrint" netName="BeforePrint" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="AfterPrint" netName="AfterPrint" netHandler="System.EventHandler" netArgs="EventArgs"/>
+   </class>
+   <class id="ILabel" parent="IDispatch" default="Caption" creatable="off">
+      <property id="Caption" type="String" status="InOut"/>
+      <property id="BackStyle" type="BackStyle" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Font" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Font"/>
+         <Set npram="2" migPattern="%1d.Font = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Font(%1d)\c"/>
+      </property>
+      <property id="Angle" type="Short" status="InOut"/>
+      <property id="Alignment" type="TextAlignment" status="InOut"/>
+      <property id="VerticalAlignment" type="VerticalTextAlignment" status="InOut"/>
+      <property id="Border" type="Border" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="left" type="Single" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <property id="width" type="Single" status="InOut"/>
+      <property id="height" type="Single" status="InOut"/>
+      <property id="MultiLine" type="Boolean" status="InOut"/>
+      <property id="Style" type="String" status="InOut"/>
+      <property id="hyperLink" type="String" status="InOut"/>
+      <property id="WordWrap" type="Boolean" status="InOut"/>
+      <property id="ClassName" type="String" status="InOut"/>
+      <method id="ZOrder" type="Void">
+         <argument id="Position" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IField" parent="IDispatch" default="text" creatable="off">
+      <property id="text" type="String" status="InOut"/>
+      <property id="BackStyle" type="BackStyle" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Font" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Font"/>
+         <Set npram="2" migPattern="%1d.Font = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Font(%1d)\c"/>
+      </property>
+      <property id="Alignment" type="TextAlignment" status="InOut"/>
+      <property id="OutputFormat" type="String" status="InOut"/>
+      <property id="CanGrow" type="Boolean" status="InOut"/>
+      <property id="CanShrink" type="Boolean" status="InOut"/>
+      <property id="VerticalAlignment" type="VerticalTextAlignment" status="InOut"/>
+      <property id="DataValue" type="Variant" status="InOut"/>
+      <property id="SummaryType" type="SummaryType" status="InOut"/>
+      <property id="SummaryFunc" type="SummaryFunctions" status="InOut"/>
+      <property id="SummaryGroup" type="String" status="InOut"/>
+      <property id="SummaryRunning" type="SummaryRunningType" status="InOut"/>
+      <property id="SummaryDistinctField" type="String" status="InOut"/>
+      <property id="SummaryDistinctValue" type="String" status="InOut"/>
+      <property id="Border" type="Border" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="left" type="Single" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <property id="width" type="Single" status="InOut"/>
+      <property id="height" type="Single" status="InOut"/>
+      <property id="DataField" type="String" status="InOut"/>
+      <property id="MultiLine" type="Boolean" status="InOut"/>
+      <property id="Style" type="String" status="InOut"/>
+      <property id="hyperLink" type="String" status="InOut"/>
+      <property id="WordWrap" type="Boolean" status="InOut"/>
+      <property id="ClassName" type="String" status="InOut"/>
+      <method id="ZOrder" type="Void">
+         <argument id="Position" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IImage" parent="IDispatch" default="Picture" creatable="off">
+      <property id="Picture" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Picture"/>
+         <Set npram="2" migPattern="%1d.Picture = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Picture(%1d)\c"/>
+      </property>
+      <property id="BackStyle" type="BackStyle" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="LineStyle" type="LineStyle" status="InOut"/>
+      <property id="LineColor" type="OLE_COLOR" status="InOut"/>
+      <property id="LineWeight" type="Short" status="InOut"/>
+      <property id="SizeMode" type="SizeMode" status="InOut"/>
+      <property id="PictureAlignment" type="PictureAlignment" status="InOut"/>
+      <property id="Border" type="Border" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="left" type="Single" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <property id="width" type="Single" status="InOut"/>
+      <property id="height" type="Single" status="InOut"/>
+      <property id="DataField" type="String" status="InOut"/>
+      <property id="hyperLink" type="String" status="InOut"/>
+      <method id="ZOrder" type="Void">
+         <argument id="Position" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ILine" parent="IDispatch" creatable="off">
+      <property id="LineColor" type="OLE_COLOR" status="InOut"/>
+      <property id="LineWeight" type="Short" status="InOut"/>
+      <property id="LineStyle" type="LineStyle" status="InOut"/>
+      <property id="Border" type="Border" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="x1" type="Single" status="InOut"/>
+      <property id="y1" type="Single" status="InOut"/>
+      <property id="x2" type="Single" status="InOut"/>
+      <property id="y2" type="Single" status="InOut"/>
+      <method id="ZOrder" type="Void">
+         <argument id="Position" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IDataCtrl" parent="IDispatch" creatable="off">
+      <property id="ConnectionString" type="String" status="InOut"/>
+      <property id="Source" type="String" status="InOut"/>
+      <property id="RecordSet" type="Object" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.RecordSet"/>
+         <Set npram="2" migPattern="%1d.RecordSet = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_RecordSet(%1d)\c"/>
+      </property>
+      <property id="Provider" type="String" status="InOut"/>
+      <property id="DataSourceName" type="String" status="InOut"/>
+      <property id="UserID" type="String" status="InOut"/>
+      <property id="Password" type="String" status="InOut"/>
+      <property id="CommandTimeout" type="Integer" status="InOut"/>
+      <property id="ConnectionTimeout" type="Integer" status="InOut"/>
+      <property id="LockType" type="Integer" status="InOut"/>
+      <property id="DefaultDatabase" type="String" status="InOut"/>
+      <property id="IsolationLevel" type="Integer" status="InOut"/>
+      <property id="NRecords" type="Integer" status="Out"/>
+      <property id="MaxRows" type="Integer" status="InOut"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="left" type="Single" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <property id="Connection" type="Object" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Connection"/>
+         <Set npram="2" migPattern="%1d.Connection = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Connection(%1d)\c"/>
+      </property>
+      <property id="CursorLocation" type="ADOCursorLocation" status="InOut"/>
+      <property id="CursorType" type="ADOCursorType" status="InOut"/>
+      <method id="Refresh" type="Void"/>
+   </class>
+   <class id="ISections" parent="IDispatch" default="Item" creatable="off">
+      <method id="_NewEnum" type="Variant"/>
+      <method id="Item" type="Section">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Count" type="Short"/>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="insertionIndex" type="Integer" status="ByVal"/>
+         <argument id="Type" type="SectionType" status="ByVal"/>
+         <argument id="height" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IDAODataCtrl" parent="IDispatch" creatable="off">
+      <property id="Connect" type="String" status="InOut"/>
+      <property id="DatabaseName" type="String" status="InOut"/>
+      <property id="DefaultCursorType" type="DAOCursorType" status="InOut"/>
+      <property id="DefaultType" type="DAODefaultType" status="InOut"/>
+      <property id="Exclusive" type="Boolean" status="InOut"/>
+      <property id="options" type="Integer" status="InOut"/>
+      <property id="RecordsetType" type="DAORecordsetType" status="InOut"/>
+      <property id="RecordSource" type="String" status="InOut"/>
+      <property id="RecordSet" type="Object" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.RecordSet"/>
+         <Set npram="2" migPattern="%1d.RecordSet = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_RecordSet(%1d)\c"/>
+      </property>
+      <property id="SystemDB" type="String" status="InOut"/>
+      <property id="UserName" type="String" status="InOut"/>
+      <property id="Password" type="String" status="InOut"/>
+      <property id="MaxRows" type="Integer" status="InOut"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="left" type="Single" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <method id="Refresh" type="Void"/>
+   </class>
+   <class id="ISubReport" parent="IDispatch" default="object" creatable="off">
+      <property id="ReportName" type="String" status="InOut"/>
+      <property id="object" type="ActiveReport" status="GetSet" migName="report">
+         <Get npram="1" migPattern="%1d.report"/>
+         <Set npram="2" migPattern="%1d.report = %2d\c"/>
+      </property>
+      <property id="Border" type="Border" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="left" type="Single" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <property id="width" type="Single" status="InOut"/>
+      <property id="height" type="Single" status="InOut"/>
+      <property id="CanGrow" type="Boolean" status="InOut"/>
+      <property id="CanShrink" type="Boolean" status="InOut"/>
+      <property id="DataField" type="String" status="InOut"/>
+      <method id="ZOrder" type="Void">
+         <argument id="Position" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IDDOleObj" parent="IDispatch" default="Value" creatable="off">
+      <property id="Class" type="String" status="InOut"/>
+      <property id="Status" type="Short" status="Out"/>
+      <property id="VerbCount" type="Short" status="Out"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="BackStyle" type="BackStyle" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="object" type="Object" status="Out"/>
+      <property id="Border" type="Border" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="left" type="Single" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <property id="width" type="Single" status="InOut"/>
+      <property id="height" type="Single" status="InOut"/>
+      <property id="DataField" type="String" status="InOut"/>
+      <property id="PictureAlignment" type="PictureAlignment" status="InOut"/>
+      <property id="SizeMode" type="SizeMode" status="InOut"/>
+      <method id="_CreateEmbedded" type="Void"/>
+      <method id="InsertObject" type="Void"/>
+      <method id="Edit" type="Void"/>
+      <method id="Open" type="Void"/>
+      <method id="GetVerbName" type="Void">
+         <argument id="Index" type="Integer" status="ByVal"/>
+         <argument id="Name" type="String" status="Out"/>
+      </method>
+      <method id="GetVerbFlag" type="Integer">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetVerbAttrib" type="Integer">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetVerbID" type="Integer">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="DoVerb" type="Void">
+         <argument id="ID" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetUserType" type="String">
+         <argument id="Type" type="Short" status="ByVal"/>
+      </method>
+      <method id="CreateEmbedded" type="Void">
+         <argument id="FileName" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ZOrder" type="Void">
+         <argument id="Position" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ICheckBox" parent="IDispatch" default="Value" creatable="off">
+      <property id="Value" type="Boolean" status="InOut"/>
+      <property id="BackStyle" type="BackStyle" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Font" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Font"/>
+         <Set npram="2" migPattern="%1d.Font = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Font(%1d)\c"/>
+      </property>
+      <property id="Alignment" type="TextAlignment" status="InOut"/>
+      <property id="Caption" type="String" status="InOut"/>
+      <property id="Border" type="Border" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="left" type="Single" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <property id="width" type="Single" status="InOut"/>
+      <property id="height" type="Single" status="InOut"/>
+      <property id="DataField" type="String" status="InOut"/>
+      <property id="Style" type="String" status="InOut"/>
+      <property id="ClassName" type="String" status="InOut"/>
+      <method id="ZOrder" type="Void">
+         <argument id="Position" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IRenderCanvas" parent="IUnknown" creatable="off">
+      <method id="Render" type="Void">
+         <argument id="pCanvas" type="Canvas" status="ByVal"/>
+         <argument id="pRect" type="Void" status="Out"/>
+         <argument id="pClipRect" type="Void" status="Out"/>
+      </method>
+      <method id="Render2" type="Void">
+         <argument id="hTempDC" type="OLE_HANDLE" status="ByVal"/>
+         <argument id="pCanvas" type="Canvas" status="ByVal"/>
+         <argument id="pRect" type="Void" status="Out"/>
+         <argument id="pClipRect" type="Void" status="Out"/>
+      </method>
+   </class>
+   <class id="IDDFlexSize" parent="IUnknown">
+      <method id="UpdateSize" type="Void">
+         <argument id="changed" type="Boolean" status="ByRef"/>
+         <argument id="newSize" type="Size" status="ByRef"/>
+         <argument id="vbCommit" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="CalcCut" type="Void">
+         <argument id="pos" type="Integer" status="ByRef"/>
+      </method>
+      <method id="CanCut" type="Void">
+         <argument id="pos" type="Integer" status="ByVal"/>
+      </method>
+      <method id="BackUpInstanceData" type="Void"/>
+      <method id="RestoreInstanceData" type="Void"/>
+   </class>
+   <class id="IARParameter" parent="IDispatch" default="Value" creatable="off">
+      <property id="Key" type="String" status="InOut"/>
+      <property id="Prompt" type="String" status="InOut"/>
+      <property id="Value" type="String" status="InOut"/>
+      <property id="DefaultValue" type="String" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+   </class>
+   <class id="IARParameters" parent="IDispatch" default="Item" creatable="off">
+      <method id="_NewEnum" type="Variant"/>
+      <method id="Item" type="ARParameter">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Count" type="Short"/>
+   </class>
+   <class id="IarErrors" parent="IDispatch" default="Item" creatable="off">
+      <method id="Item" type="arError">
+         <argument id="Index" type="Short" status="ByVal"/>
+      </method>
+      <method id="Count" type="Short"/>
+      <method id="AddError" type="arError">
+         <argument id="Source" type="String" status="ByVal"/>
+         <argument id="Number" type="Integer" status="ByVal"/>
+         <argument id="Description" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IRptFields" parent="IDispatch" default="Item" creatable="off">
+      <method id="_NewEnum" type="Variant"/>
+      <method id="Item" type="RptField">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Count" type="Short"/>
+      <method id="Add" type="Object">
+         <argument id="Name" type="String" status="ByVal"/>
+      </method>
+      <method id="Remove" type="Void">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="RemoveAll" type="Void"/>
+   </class>
+   <class id="IRptField" parent="IDispatch" default="Value" creatable="off">
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+   </class>
+   <class id="IPageSettings" parent="IDispatch" creatable="off">
+      <property id="LeftMargin" type="Single" status="InOut"/>
+      <property id="TopMargin" type="Single" status="InOut"/>
+      <property id="RightMargin" type="Single" status="InOut"/>
+      <property id="BottomMargin" type="Single" status="InOut"/>
+      <property id="Gutter" type="Single" status="InOut"/>
+      <property id="MirrorMargins" type="Boolean" status="InOut"/>
+      <property id="PaperSize" type="Short" status="InOut"/>
+      <property id="PaperWidth" type="Single" status="InOut"/>
+      <property id="PaperHeight" type="Single" status="InOut"/>
+      <property id="Orientation" type="PrtOrientation" status="InOut"/>
+      <property id="PageVerticalAlignment" type="VerticalTextAlignment" status="InOut"/>
+      <property id="PaperBin" type="Short" status="InOut"/>
+      <property id="Duplex" type="PrtDuplex" status="InOut"/>
+      <property id="Collate" type="PrtCollate" status="InOut"/>
+   </class>
+   <class id="IXMLDataControl" parent="IDispatch" creatable="off">
+      <property id="Name" type="String" status="InOut"/>
+      <property id="left" type="Single" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="NodeList" type="Variant" status="InOut"/>
+      <property id="Count" type="Integer" status="Out"/>
+      <property id="CurrentPosition" type="Integer" status="Out"/>
+      <property id="EOF" type="Boolean" status="Out"/>
+      <property id="BOF" type="Boolean" status="Out"/>
+      <property id="FileURL" type="String" status="InOut"/>
+      <property id="RecordsetPattern" type="String" status="InOut"/>
+      <property id="ValidateOnParse" type="Boolean" status="InOut"/>
+      <method id="MoveNext" type="Void"/>
+      <method id="Field" type="Variant">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="AsNodeList" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="LoadXML" type="Void">
+         <argument id="XMLString" type="String" status="ByVal"/>
+      </method>
+      <method id="Reset" type="Void"/>
+   </class>
+   <class id="IFrame" parent="IDispatch" creatable="off">
+      <property id="Panes" type="Panes" status="InOut"/>
+      <property id="Border" type="Border" status="Out"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="CloseBorder" type="Boolean" status="InOut"/>
+      <property id="left" type="Single" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <property id="width" type="Single" status="InOut"/>
+      <property id="height" type="Single" status="InOut"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="CanGrow" type="Boolean" status="InOut"/>
+      <property id="CanShrink" type="Boolean" status="InOut"/>
+      <method id="ZOrder" type="Void">
+         <argument id="Position" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IDDFormat" parent="IDispatch" creatable="off">
+      <method id="DDFormat" type="Void">
+         <argument id="Source" type="Variant" status="ByRef"/>
+         <argument id="dest" type="Variant" status="ByRef"/>
+      </method>
+      <method id="SetDefaultBoundValue" type="Void">
+         <argument id="val" type="Variant" status="ByRef"/>
+      </method>
+   </class>
+   <class id="IBarCode" parent="IDispatch" default="Caption" creatable="off">
+      <property id="Caption" type="String" status="InOut"/>
+      <property id="Style" type="BarCodeStyle" status="InOut"/>
+      <property id="Direction" type="BarCodeDirection" status="InOut"/>
+      <property id="BarWidth" type="Short" status="InOut"/>
+      <property id="Alignment" type="TextAlignment" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Font" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Font"/>
+         <Set npram="2" migPattern="%1d.Font = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Font(%1d)\c"/>
+      </property>
+      <property id="CaptionPosition" type="BarCodeCaptionPosition" status="InOut"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="left" type="Single" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <property id="width" type="Single" status="InOut"/>
+      <property id="height" type="Single" status="InOut"/>
+      <method id="ZOrder" type="Void">
+         <argument id="Position" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IPageBreak" parent="IDispatch" creatable="off">
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+   </class>
+   <class id="IRDODataCtrl" parent="IDispatch" creatable="off">
+      <property id="DataSourceName" type="String" status="InOut"/>
+      <property id="SQL" type="String" status="InOut"/>
+      <property id="LoginTimeout" type="Integer" status="InOut"/>
+      <property id="Version" type="String" status="InOut"/>
+      <property id="Connect" type="String" status="InOut"/>
+      <property id="QueryTimeout" type="Integer" status="InOut"/>
+      <property id="RowsetSize" type="Integer" status="InOut"/>
+      <property id="ResultsetType" type="RDOResultsetType" status="InOut"/>
+      <property id="MaxRows" type="Integer" status="InOut"/>
+      <property id="LogMessages" type="String" status="InOut"/>
+      <property id="KeysetSize" type="Integer" status="InOut"/>
+      <property id="Resultset" type="Object" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Resultset"/>
+         <Set npram="2" migPattern="%1d.Resultset = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Resultset(%1d)\c"/>
+      </property>
+      <property id="options" type="Short" status="InOut"/>
+      <property id="UserName" type="String" status="InOut"/>
+      <property id="Password" type="String" status="InOut"/>
+      <property id="CursorDriver" type="RDOCursorDriver" status="InOut"/>
+      <property id="Connection" type="Object" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Connection"/>
+         <Set npram="2" migPattern="%1d.Connection = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Connection(%1d)\c"/>
+      </property>
+      <property id="ErrorThreshold" type="Integer" status="InOut"/>
+      <property id="LockType" type="RDOLockType" status="InOut"/>
+      <property id="Prompt" type="RDOPrompt" status="InOut"/>
+      <property id="Environment" type="Object" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Environment"/>
+         <Set npram="2" migPattern="%1d.Environment = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Environment(%1d)\c"/>
+      </property>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="left" type="Single" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <method id="Refresh" type="Void"/>
+   </class>
+   <class id="IShape" parent="IDispatch" creatable="off">
+      <property id="BackStyle" type="BackStyle" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="LineColor" type="OLE_COLOR" status="InOut"/>
+      <property id="LineStyle" type="LineStyle" status="InOut"/>
+      <property id="LineWeight" type="Short" status="InOut"/>
+      <property id="Shape" migName="Shape_Property" type="ShapeType" status="InOut"/>
+      <property id="Border" type="Border" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="left" type="Single" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <property id="width" type="Single" status="InOut"/>
+      <property id="height" type="Single" status="InOut"/>
+      <method id="ZOrder" type="Void">
+         <argument id="Position" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IActiveReport" parent="IDispatch" default="PrintWidth" creatable="off">
+      <property id="object" type="ActiveReport" status="GetSet" migName="report">
+         <Get npram="1" migPattern="%1d.report"/>
+         <Set npram="2" migPattern="%1d.report = %2d\c"/>
+      </property>
+      <property id="PrintWidth" type="Single" status="InOut"/>
+      <property id="_GridVisible" type="Boolean" status="InOut"/>
+      <property id="_GridX" type="Short" status="InOut"/>
+      <property id="_GridY" type="Short" status="InOut"/>
+      <property id="_PageLeftMargin" type="Single" status="InOut"/>
+      <property id="_PageTopMargin" type="Single" status="InOut"/>
+      <property id="_PageRightMargin" type="Single" status="InOut"/>
+      <property id="_PageBottomMargin" type="Single" status="InOut"/>
+      <property id="pageNumber" type="Integer" status="Out"/>
+      <property id="Sections" type="Sections" status="Out"/>
+      <property id="Canvas" type="Canvas" status="Out"/>
+      <property id="TOC" type="TOC" status="Out"/>
+      <property id="documentName" type="String" status="InOut"/>
+      <property id="PageBorder" type="Border" status="Out"/>
+      <property id="Version" type="String" status="InOut"/>
+      <property id="Printer" type="Printer" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Printer"/>
+         <Set npram="2" migPattern="%1d.Printer = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Printer(%1d)\c"/>
+      </property>
+      <property id="Pages" type="Pages" status="Out"/>
+      <property id="LayoutAction" type="Short" status="InOut"/>
+      <property id="MaxPages" type="Integer" status="InOut"/>
+      <property id="TOCVisible" type="Boolean" status="InOut"/>
+      <property id="TOCEnabled" type="Boolean" status="InOut"/>
+      <property id="TOCWidth" type="Integer" status="InOut"/>
+      <property id="ToolbarVisible" type="Boolean" status="InOut"/>
+      <property id="Zoom" type="Short" status="InOut"/>
+      <property id="Toolbar" type="DDToolBar" status="Out"/>
+      <property id="Errors" type="arErrors" status="Out"/>
+      <property id="Fields" type="RptFields" status="Out"/>
+      <property id="PageSettings" type="PageSettings" status="Out"/>
+      <property id="Script" type="String" status="InOut"/>
+      <property id="Watermark" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Watermark"/>
+         <Set npram="2" migPattern="%1d.Watermark = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Watermark(%1d)\c"/>
+      </property>
+      <property id="WatermarkAlignment" type="PictureAlignment" status="InOut"/>
+      <property id="WatermarkSizeMode" type="SizeMode" status="InOut"/>
+      <property id="WatermarkPrintOnPages" type="String" status="InOut"/>
+      <property id="ParentReport" type="ActiveReport" status="Out"/>
+      <property id="RulerVisible" type="Boolean" status="InOut"/>
+      <property id="ScriptLanguage" type="String" status="InOut"/>
+      <property id="Parameters" type="ARParameters" status="Out"/>
+      <property id="ShowParameterUI" type="Boolean" status="InOut"/>
+      <property id="Status" type="ReportStatus" status="Out"/>
+      <property id="ScriptDebuggerEnabled" type="Boolean" status="InOut"/>
+      <property id="AllowSplitters" type="Boolean" status="InOut"/>
+      <property id="UserData" type="Variant" status="InOut"/>
+      <property id="ShowMessages" type="Boolean" status="InOut"/>
+      <method id="About" type="Void"/>
+      <method id="PrintReport" type="Void">
+         <argument id="bDisplayDialog" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="DoFireReportStart" type="Void"/>
+      <method id="DoFireReportEnd" type="Void"/>
+      <method id="DoFirePageStart" type="Void"/>
+      <method id="DoFirePageEnd" type="Void"/>
+      <method id="DoFireNoData" type="Void"/>
+      <method id="Restart" type="Void"/>
+      <method id="Stop" type="Void"/>
+      <method id="Cancel" type="Void"/>
+      <method id="GetReport" type="ActiveReport"/>
+      <method id="Export" type="Void">
+         <argument id="ExportObject" type="Object" status="ByVal"/>
+      </method>
+      <method id="Run" type="Void">
+         <argument id="RunInBackground" type="Boolean" status="ByVal" optional="Default"/>
+      </method>
+      <method id="PageSetup" type="Boolean">
+         <argument id="hWndParent" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Flags" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="FSECT" type="Void">
+         <argument id="code" type="Short" status="ByVal"/>
+         <argument id="pS" type="OLE_HANDLE" status="ByVal"/>
+      </method>
+      <method id="Localize" type="Void">
+         <argument id="stringid" type="Short" status="ByVal"/>
+         <argument id="text" type="String" status="ByVal"/>
+      </method>
+      <method id="Refresh" type="Void"/>
+      <method id="SaveLayout" type="Variant">
+         <argument id="FileName" type="String" status="ByVal"/>
+         <argument id="SerializeOptions" type="SaveOptionTypes" status="ByVal"/>
+      </method>
+      <method id="LoadLayout" type="Void">
+         <argument id="Data" type="Variant" status="ByRef"/>
+      </method>
+      <method id="AddControlLicense" type="Void">
+         <argument id="progID" type="String" status="ByVal"/>
+         <argument id="licenseKey" type="String" status="ByVal"/>
+      </method>
+      <method id="AddNamedItem" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Value" type="Object" status="ByVal"/>
+      </method>
+      <method id="ResetScripts" type="Void"/>
+      <method id="AddCode" type="Void">
+         <argument id="Script" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IActiveReportEvents" parent="None">
+      <event id="ReportStart" netName="ReportStart" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="ReportEnd" netName="ReportEnd" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="PageStart" netName="PageStart" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="PageEnd" netName="PageEnd" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="NoData" netName="NoData" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="PrintProgress" netName="PrintProgress" netHandler="DDActiveReports2.IActiveReportEvents_PrintProgressEventHandler" netArgs="DDActiveReports2.IActiveReportEvents_PrintProgressEvent">
+         <argument id="pageNumber" type="Integer" status="ByVal"/>
+      </event>
+      <event id="Error" netName="Error" netHandler="DDActiveReports2.IActiveReportEvents_ErrorEventHandler" netArgs="DDActiveReports2.IActiveReportEvents_ErrorEvent">
+         <argument id="number" type="Short" status="ByVal"/>
+         <argument id="description" type="ReturnString" status="ByVal"/>
+         <argument id="scode" type="Integer" status="ByVal"/>
+         <argument id="source" type="String" status="ByVal"/>
+         <argument id="helpFile" type="String" status="ByVal"/>
+         <argument id="helpContext" type="Integer" status="ByVal"/>
+         <argument id="cancelDisplay" type="ReturnBool" status="ByVal"/>
+      </event>
+      <event id="ToolbarClick" netName="ToolbarClick" netHandler="DDActiveReports2.IActiveReportEvents_ToolbarClickEventHandler" netArgs="DDActiveReports2.IActiveReportEvents_ToolbarClickEvent">
+         <argument id="tool" type="DDTool" status="ByVal"/>
+      </event>
+      <event id="TOCClick" netName="TOCClick" netHandler="DDActiveReports2.IActiveReportEvents_TOCClickEventHandler" netArgs="DDActiveReports2.IActiveReportEvents_TOCClickEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="itemIndex" type="Integer" status="ByVal"/>
+         <argument id="flags" type="Integer" status="ByVal"/>
+      </event>
+      <event id="TOCSelChange" netName="TOCSelChange" netHandler="DDActiveReports2.IActiveReportEvents_TOCSelChangeEventHandler" netArgs="DDActiveReports2.IActiveReportEvents_TOCSelChangeEvent">
+         <argument id="itemIndex" type="Integer" status="ByVal"/>
+      </event>
+      <event id="KeyDown" netName="KeyDownEvent" netHandler="DDActiveReports2.IActiveReportEvents_KeyDownEventHandler" netArgs="DDActiveReports2.IActiveReportEvents_KeyDownEvent">
+         <argument id="keyCode" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="DDActiveReports2.IActiveReportEvents_KeyUpEventHandler" netArgs="DDActiveReports2.IActiveReportEvents_KeyUpEvent">
+         <argument id="keyCode" type="Short" status="ByRef"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="DDActiveReports2.IActiveReportEvents_KeyPressEventHandler" netArgs="DDActiveReports2.IActiveReportEvents_KeyPressEvent">
+         <argument id="keyAscii" type="Short" status="ByRef"/>
+      </event>
+      <event id="PrintAborted" netName="PrintAborted" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="DataInitialize" netName="DataInitialize" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="FetchData" netName="FetchData" netHandler="DDActiveReports2.IActiveReportEvents_FetchDataEventHandler" netArgs="DDActiveReports2.IActiveReportEvents_FetchDataEvent">
+         <argument id="eOF" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="hyperLink" netName="hyperLink" netHandler="DDActiveReports2.IActiveReportEvents_hyperLinkEventHandler" netArgs="DDActiveReports2.IActiveReportEvents_hyperLinkEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="link" type="String" status="ByRef"/>
+      </event>
+      <event id="MouseOver" netName="MouseOver" netHandler="DDActiveReports2.IActiveReportEvents_MouseOverEventHandler" netArgs="DDActiveReports2.IActiveReportEvents_MouseOverEvent">
+         <argument id="pageX" type="Integer" status="ByVal"/>
+         <argument id="pageY" type="Integer" status="ByVal"/>
+         <argument id="hyperLink" type="String" status="ByVal"/>
+      </event>
+      <event id="FindProgress" netName="FindProgress" netHandler="DDActiveReports2.IActiveReportEvents_FindProgressEventHandler" netArgs="DDActiveReports2.IActiveReportEvents_FindProgressEvent">
+         <argument id="result" type="FindResults" status="ByVal"/>
+      </event>
+      <event id="PromptDialogClosed" netName="PromptDialogClosed" netHandler="DDActiveReports2.IActiveReportEvents_PromptDialogClosedEventHandler" netArgs="DDActiveReports2.IActiveReportEvents_PromptDialogClosedEvent">
+         <argument id="cancelled" type="Boolean" status="ByVal"/>
+      </event>
+   </class>
+   <class id="IRichEdit" parent="IDispatch" creatable="off">
+      <property id="Appearance" type="AppearanceConstants" status="InOut"/>
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="BulletIndent" type="Integer" status="InOut"/>
+      <property id="DisableNoScroll" type="Boolean" status="InOut"/>
+      <property id="HideSelection" type="Boolean" status="InOut"/>
+      <property id="Hwnd" type="OLE_HANDLE" status="Out"/>
+      <property id="MaxLength" type="Integer" status="InOut"/>
+      <property id="MultiLine" type="Boolean" status="InOut"/>
+      <property id="ScrollBars" type="ScrollBarsConstants" status="InOut"/>
+      <property id="SelAlignment" type="SelAlignmentConstants" status="InOut"/>
+      <property id="SelBold" type="Variant" status="InOut"/>
+      <property id="SelBullet" type="Variant" status="InOut"/>
+      <property id="SelCharOffset" type="Variant" status="InOut"/>
+      <property id="_SelColor" type="OLE_COLOR" status="InOut"/>
+      <property id="_SelFontName" type="String" status="InOut"/>
+      <property id="_SelFontSize" type="Integer" status="InOut"/>
+      <property id="_SelHangingIndent" type="Integer" status="InOut"/>
+      <property id="SelItalic" type="Variant" status="InOut"/>
+      <property id="SelLength" type="Integer" status="InOut"/>
+      <property id="SelProtected" type="Variant" status="InOut"/>
+      <property id="_SelRightIndent" type="Integer" status="InOut"/>
+      <property id="SelStart" type="Integer" status="InOut"/>
+      <property id="SelStrikeThru" type="Variant" status="InOut"/>
+      <property id="SelTabCount" type="Integer" status="Out"/>
+      <property id="SelText" type="String" status="InOut"/>
+      <property id="SelUnderline" type="Variant" status="InOut"/>
+      <property id="text" type="String" status="InOut"/>
+      <property id="SelTabs" type="Variant" status="In"/>
+      <property id="_SelIndent" type="Integer" status="InOut"/>
+      <property id="_SelTextBackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Font" type="Font" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Font"/>
+         <Set npram="2" migPattern="%1d.Font = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Font(%1d)\c"/>
+      </property>
+      <property id="TextRTF" type="String" status="InOut"/>
+      <property id="Border" type="Border" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Visible" type="Boolean" status="InOut"/>
+      <property id="Tag" type="Variant" status="InOut"/>
+      <property id="left" type="Single" status="InOut"/>
+      <property id="top" type="Single" status="InOut"/>
+      <property id="width" type="Single" status="InOut"/>
+      <property id="height" type="Single" status="InOut"/>
+      <property id="DataField" type="String" status="InOut"/>
+      <property id="CanGrow" type="Boolean" status="InOut"/>
+      <property id="CanShrink" type="Boolean" status="InOut"/>
+      <property id="SelFontName" type="Variant" status="InOut"/>
+      <property id="SelFontSize" type="Variant" status="InOut"/>
+      <property id="SelColor" type="Variant" status="InOut"/>
+      <property id="SelTextBackColor" type="Variant" status="InOut"/>
+      <property id="SelIndent" type="Variant" status="InOut"/>
+      <property id="SelRightIndent" type="Variant" status="InOut"/>
+      <property id="SelHangingIndent" type="Variant" status="InOut"/>
+      <property id="BackStyle" type="BackStyle" status="InOut"/>
+      <method id="About" type="Void"/>
+      <method id="LoadFile" type="Void">
+         <argument id="szPathName" type="String" status="ByVal"/>
+         <argument id="lsFileType" type="LoadSaveConstants" status="ByVal"/>
+      </method>
+      <method id="SaveFile" type="Void">
+         <argument id="szPathName" type="String" status="ByVal"/>
+         <argument id="lsFileType" type="LoadSaveConstants" status="ByVal"/>
+      </method>
+      <accessor id="GetTab" type="Integer">
+         <argument id="nIndex" type="Integer" status="ByVal"/>
+      </accessor>
+      <method id="SaveStream" type="Void">
+         <argument id="pStream" type="Object" status="ByVal"/>
+         <argument id="lsFileType" type="LoadSaveConstants" status="ByVal"/>
+      </method>
+      <method id="LoadStream" type="Void">
+         <argument id="pStream" type="Object" status="ByVal"/>
+         <argument id="lsFileType" type="LoadSaveConstants" status="ByVal"/>
+      </method>
+      <method id="Find" type="Integer">
+         <argument id="szText" type="String" status="ByVal"/>
+         <argument id="nStart" type="Integer" status="ByVal"/>
+         <argument id="nEnd" type="Integer" status="ByVal"/>
+         <argument id="fcType" type="FindConstants" status="ByVal"/>
+         <argument id="pnEnd" type="Integer" status="Out"/>
+      </method>
+      <method id="Cut" type="Void"/>
+      <method id="Paste" type="Void"/>
+      <method id="Copy" type="Void"/>
+      <method id="InsertField" type="Boolean">
+         <argument id="szFieldName" type="String" status="ByVal"/>
+         <argument id="nPos" type="Integer" status="ByVal"/>
+      </method>
+      <method id="DeleteField" type="Boolean">
+         <argument id="szFieldName" type="String" status="ByVal"/>
+         <argument id="nPos" type="Integer" status="ByVal"/>
+         <argument id="bDeleteAll" type="Boolean" status="ByVal"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="ReplaceField" type="Void">
+         <argument id="bstrField" type="String" status="ByVal"/>
+         <argument id="bstrValue" type="String" status="ByVal"/>
+      </method>
+      <method id="SelectField" type="Boolean">
+         <argument id="FieldName" type="String" status="ByVal"/>
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </method>
+      <method id="ZOrder" type="Void">
+         <argument id="Position" type="Short" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IRichEditEvents" parent="None" creatable="off">
+      <event id="Change" netName="Change" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="Click" netName="ClickEvent" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="DblClick" netName="DblClick" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="KeyDown" netName="KeyDownEvent" netHandler="DDActiveReports2.IRichEditEvents_KeyDownEventHandler" netArgs="DDActiveReports2.IRichEditEvents_KeyDownEvent">
+         <argument id="keyCode" type="Short" status="Out"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="DDActiveReports2.IRichEditEvents_KeyUpEventHandler" netArgs="DDActiveReports2.IRichEditEvents_KeyUpEvent">
+         <argument id="keyCode" type="Short" status="Out"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="DDActiveReports2.IRichEditEvents_KeyPressEventHandler" netArgs="DDActiveReports2.IRichEditEvents_KeyPressEvent">
+         <argument id="keyAscii" type="Short" status="Out"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="DDActiveReports2.IRichEditEvents_MouseDownEventHandler" netArgs="DDActiveReports2.IRichEditEvents_MouseDownEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseMove" netName="MouseMoveEvent" netHandler="DDActiveReports2.IRichEditEvents_MouseMoveEventHandler" netArgs="DDActiveReports2.IRichEditEvents_MouseMoveEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="DDActiveReports2.IRichEditEvents_MouseUpEventHandler" netArgs="DDActiveReports2.IRichEditEvents_MouseUpEvent">
+         <argument id="button" type="Short" status="ByVal"/>
+         <argument id="shift" type="Short" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="SelChange" netName="SelChange" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="Error" netName="Error" netHandler="DDActiveReports2.IRichEditEvents_ErrorEventHandler" netArgs="DDActiveReports2.IRichEditEvents_ErrorEvent">
+         <argument id="number" type="Short" status="ByVal"/>
+         <argument id="description" type="ReturnString" status="ByVal"/>
+         <argument id="scode" type="Integer" status="ByVal"/>
+         <argument id="source" type="String" status="ByVal"/>
+         <argument id="helpFile" type="String" status="ByVal"/>
+         <argument id="helpContext" type="Integer" status="ByVal"/>
+         <argument id="cancelDisplay" type="ReturnBool" status="ByRef"/>
+      </event>
+      <event id="FormatChange" netName="FormatChange" netHandler="DDActiveReports2.IRichEditEvents_FormatChangeEventHandler" netArgs="DDActiveReports2.IRichEditEvents_FormatChangeEvent">
+         <argument id="fcChange" type="FormatChangeConstants" status="ByVal"/>
+      </event>
+   </class>
+   <coclass id="Border" uuid="21CE2C92-48AF-11D1-AA0B-0060081C43D9" creatable="off">
+      <subclass id="IBorder"/>
+   </coclass>
+   <coclass id="History" uuid="C1D9E21A-EA25-40C7-BD9D-1D7425220B27" creatable="off">
+      <subclass id="IHistory"/>
+   </coclass>
+   <coclass id="TocEntry" uuid="CCC6DCD3-8A14-4ABA-A615-3BC4A69E4E84" creatable="off">
+      <subclass id="ITocEntry"/>
+   </coclass>
+   <coclass id="TOC" uuid="DFEB15D8-6753-4E54-BA71-40C83C2F3A32" creatable="off">
+      <subclass id="IToc"/>
+   </coclass>
+   <coclass id="PaperSizes" uuid="B31B60C2-64FC-11D1-AA58-0060081C43D9" creatable="off">
+      <subclass id="IPaperSizes"/>
+   </coclass>
+   <coclass id="Canvas" uuid="0014F800-74B1-46A7-9060-DDD9653306F9">
+      <subclass id="ICanvas"/>
+   </coclass>
+   <coclass id="Printer" uuid="5C210E01-F309-11D0-A8E9-00A0C90F29FC">
+      <subclass id="IPrinter"/>
+   </coclass>
+   <coclass id="Pages" uuid="4AB670E2-96C7-11D1-8B77-3C346B000000" creatable="off">
+      <subclass id="IPages"/>
+   </coclass>
+   <coclass id="DDToolBar" uuid="3CB5B0C2-8CF9-11D1-8B5E-9AD7CD000000">
+      <subclass id="IDDToolBar"/>
+   </coclass>
+   <coclass id="DDTools" uuid="3CB5B0C4-8CF9-11D1-8B5E-9AD7CD000000">
+      <subclass id="IDDTools"/>
+   </coclass>
+   <coclass id="DDTool" uuid="FA0BFF22-8D3D-11D1-8B5E-9AD7CD000000">
+      <subclass id="IDDTool"/>
+   </coclass>
+   <coclass id="RptField" uuid="55CCD8A2-FD9F-11D2-A933-00C04FA372BC" creatable="off">
+      <subclass id="IRptField"/>
+   </coclass>
+   <coclass id="ReturnString" uuid="B0678828-EEDD-4A0C-8760-0117D90D1F87" creatable="off">
+      <subclass id="IReturnString"/>
+   </coclass>
+   <coclass id="ReturnBool" uuid="C30B4E1C-E47D-4E2B-AE2B-3401CC6AB4B4" creatable="off">
+      <subclass id="IReturnBool"/>
+   </coclass>
+   <coclass id="Section" uuid="565572DE-EE6D-4B3C-A3AD-04B84BBB75D8" creatable="off">
+      <subclass id="ISection"/>
+      <subclass id="ISectionEvents"/>
+   </coclass>
+   <coclass id="Label" uuid="CFDA4F68-E23A-4704-BE78-108ECED908DD" creatable="off">
+      <subclass id="ILabel"/>
+   </coclass>
+   <coclass id="Controls" uuid="5A941F30-775E-11D1-8B19-56CB34000000" creatable="off">
+      <subclass id="IControls"/>
+   </coclass>
+   <coclass id="Field" uuid="8B635B5C-0C12-4E1A-904B-E94FFB443E81" creatable="off">
+      <subclass id="IField"/>
+   </coclass>
+   <coclass id="Image" uuid="9B69B132-2F2C-4D19-8776-61D81C36F4DD" creatable="off">
+      <subclass id="IImage"/>
+   </coclass>
+   <coclass id="Line" uuid="00D27F3B-261B-4556-94C4-8DAC4C674BED" creatable="off">
+      <subclass id="ILine"/>
+   </coclass>
+   <coclass id="DataControl" uuid="C567D337-ABB7-44A8-90F6-7729442476D9" creatable="off">
+      <subclass id="IDataCtrl"/>
+   </coclass>
+   <coclass id="Sections" uuid="47B7C2A1-168C-11D1-A956-0060081C43D9" creatable="off">
+      <subclass id="ISections"/>
+   </coclass>
+   <coclass id="DAODataControl" uuid="4A47A995-000C-48A9-BFED-12DE0DA9123B" creatable="off">
+      <subclass id="IDAODataCtrl"/>
+   </coclass>
+   <coclass id="DAOFileBrowser" uuid="0F0BBB91-18EF-11D1-A95E-0060081C43D9">
+   </coclass>
+   <coclass id="SubReport" uuid="1C2C8EC2-EFE0-4400-9AA1-1E5D86689759" creatable="off">
+      <subclass id="ISubReport"/>
+   </coclass>
+   <coclass id="OLE" uuid="F95EFF3C-11D7-41F6-BCC7-19736C333AC8" creatable="off">
+      <subclass id="IDDOleObj"/>
+   </coclass>
+   <coclass id="CheckBox" uuid="1B7607B5-A47D-41C8-981C-9DC5A46BF684" creatable="off">
+      <subclass id="ICheckBox"/>
+   </coclass>
+   <coclass id="Shape" uuid="365E5E1D-9596-44F0-B292-AC77E740F31F" creatable="off">
+      <subclass id="IShape"/>
+   </coclass>
+   <coclass id="PageBreak" uuid="9A474B20-0E43-4776-8B80-D78D1378569A" creatable="off">
+      <subclass id="IPageBreak"/>
+   </coclass>
+   <coclass id="RDODataControl" uuid="A5A3F5A3-1AD4-48B4-B904-D5319C1D7BFE" creatable="off">
+      <subclass id="IRDODataCtrl"/>
+   </coclass>
+   <coclass id="ActiveReport" uuid="9EB8768B-CDFA-44DF-8F3E-857A8405E1DB">
+      <subclass id="IActiveReport"/>
+      <subclass id="IActiveReportEvents"/>
+   </coclass>
+   <coclass id="RichEdit" uuid="FB759E03-99D3-4A0A-9285-8D0AC65C2A5A" creatable="off">
+      <subclass id="IRichEdit"/>
+      <subclass id="IRichEditEvents"/>
+   </coclass>
+   <coclass id="arErrors" uuid="1102A4ED-0604-11D2-AB23-00C04FA372BC" creatable="off">
+      <subclass id="IarErrors"/>
+   </coclass>
+   <coclass id="arError" uuid="1102A4EF-0604-11D2-AB23-00C04FA372BC" creatable="off">
+      <subclass id="IarError"/>
+   </coclass>
+   <coclass id="RptFields" uuid="BC252217-EEAD-11D2-AD21-00C04FA372BC" creatable="off">
+      <subclass id="IRptFields"/>
+   </coclass>
+   <coclass id="PageSettings" uuid="2FAC5CD7-8133-4D38-8854-139CB0582CA0" creatable="off">
+      <subclass id="IPageSettings"/>
+   </coclass>
+   <coclass id="XMLDataControl" uuid="2070E619-B3E4-4010-852D-374DC2B3E09A" creatable="off">
+      <subclass id="IXMLDataControl"/>
+   </coclass>
+   <coclass id="Frame" uuid="5139C978-F1E5-4195-AD53-80F94ADDE3C5" creatable="off">
+      <subclass id="IFrame"/>
+   </coclass>
+   <coclass id="Panes" uuid="390A8480-5DB2-4206-8840-2218CEF8BF12" creatable="off">
+      <subclass id="IPanes"/>
+   </coclass>
+   <coclass id="Pane" uuid="B806D35C-2CA3-4809-99C0-E5E1BD88BBBF" creatable="off">
+      <subclass id="IPane"/>
+   </coclass>
+   <coclass id="PaneControls" uuid="8C0E9534-9699-4FFE-9EBB-AB4EFF7C8D72" creatable="off">
+      <subclass id="IPaneControls"/>
+   </coclass>
+   <coclass id="Barcode" uuid="D6B8644A-6F1E-44F3-B1EF-153DAA316911" creatable="off">
+      <subclass id="IBarCode"/>
+   </coclass>
+   <coclass id="ARParameters" uuid="899D15B1-73EA-47B5-BFCF-6AD6A43F03A3" creatable="off">
+      <subclass id="IARParameters"/>
+   </coclass>
+   <coclass id="ARParameter" uuid="9F340342-B4E7-44D5-BE9C-D44AAC9B854E" creatable="off">
+      <subclass id="IARParameter"/>
+   </coclass>
+</library>
+</DescriptionFile>

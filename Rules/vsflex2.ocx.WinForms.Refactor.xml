@@ -1,0 +1,83 @@
+<RefactorLibrary>
+<!--
+Description: Map vsFlexLib.vsFlexArray to WinForms.DataGridView wrapper
+-->
+   <Refactor id="[Vsflex2.ocx]">
+<!-- 
+Library 
+-->   
+   <Migrate migName="gmRTL.vsFlexLib" libType="Internal" location="DoNotDeclare" axLocation="DoNotDeclare" />
+<!--
+CoClasses 
+-->   
+   <Migrate id="vsFlexArray" migName="vsFlexArray" role="Control" migStatus="NeedsInit"/>
+<!--
+Enums
+-->   
+   <Migrate id="AlignmentSettings" migName="DataGridViewContentAlignment" migStatus="External" />
+   <Migrate id="AlignmentSettings.flexAlignLeftTop" migName="DataGridViewContentAlignment.TopLeft" migStatus="External"/>
+   <Migrate id="AlignmentSettings.flexAlignLeftCenter" migName="DataGridViewContentAlignment.MiddleLeft" migStatus="External"/>
+   <Migrate id="AlignmentSettings.flexAlignLeftBottom" migName="DataGridViewContentAlignment.BottomLeft" migStatus="External"/>
+   <Migrate id="AlignmentSettings.flexAlignCenterTop" migName="DataGridViewContentAlignment.TopCenter" migStatus="External"/>
+   <Migrate id="AlignmentSettings.flexAlignCenterCenter" migName="DataGridViewContentAlignment.MiddleCenter" migStatus="External"/>
+   <Migrate id="AlignmentSettings.flexAlignCenterBottom" migName="DataGridViewContentAlignment.BottomCenter" migStatus="External"/>
+   <Migrate id="AlignmentSettings.flexAlignRightTop" migName="DataGridViewContentAlignment.TopRight" migStatus="External"/>
+   <Migrate id="AlignmentSettings.flexAlignRightCenter" migName="DataGridViewContentAlignment.MiddleRight" migStatus="External"/>
+   <Migrate id="AlignmentSettings.flexAlignRightBottom" migName="DataGridViewContentAlignment.BottomRight" migStatus="External"/>
+   <Migrate id="AlignmentSettings.flexAlignGeneral" migName="DataGridViewContentAlignment.NotSet"/>  migStatus="External"  
+
+   <Migrate id="AllowUserResizeSettings" migName="gmRTL.vsFlexLib.vsFlexArray.AllowUserResizeSettings" migStatus="external" />
+   <Migrate id="AllowUserResizeSettings.flexResizeNone" migName="gmRTL.vsFlexLib.vsFlexArray.AllowUserResizeSettings.flexResizeNone" migStatus="external" />
+
+   <Migrate id="AppearanceSettings" migName="vsFlexArray.AppearanceSettings" />
+   
+   <Migrate id="ScrollBarsSettings" migName="ScrollBars" migStatus="External" />
+   <Migrate id="ScrollBarsSettings.flexScrollBarNone" migName="ScrollBars.None" migStatus="External" />
+   <Migrate id="ScrollBarsSettings.flexScrollBarHorizontal" migName="ScrollBars.Horizontal" migStatus="External" />
+   <Migrate id="ScrollBarsSettings.flexScrollBarVertical" migName="ScrollBars.Vertical" migStatus="External" />
+   <Migrate id="ScrollBarsSettings.flexScrollBarBoth" migName="ScrollBars.Both" migStatus="External" />
+   
+   <Migrate id="SelModeSettings" migName="DataGridViewSelectionMode" migStatus="external" />
+   <Migrate id="SelModeSettings.flexSelectionFree" migName="DataGridViewSelectionMode.CellSelect" migStatus="external" />
+   <Migrate id="SelModeSettings.flexSelectionByRow" migName="DataGridViewSelectionMode.FullRowSelect" migStatus="external" />
+   <Migrate id="SelModeSettings.flexSelectionByColumn" migName="DataGridViewSelectionMode.FullColumnSelect" migStatus="external" />
+   <Migrate id="SelModeSettings.flexSelectionListBox" migName="DataGridViewSelectionMode..FullRowSelect" migStatus="external" />
+   
+   <Migrate id="FocusRectSettings" migName="vsFlexArray.FocusRectSettings" />
+<!--
+Interfaces
+-->   
+   <Migrate id="_DvsFlexArray.ColAlignment" type="AlignmentSettings" />
+   <Migrate id="_DvsFlexArray.Rows" migName="MaxRows" />
+
+   <Migrate id="_DvsFlexArrayEvents.MouseDown" migName="MouseDown" netHandler="System.Windows.Forms.MouseEventHandler" netArgs="System.Windows.Forms.MouseEventArgs" />
+   <Migrate id="_DvsFlexArrayEvents.MouseDown.button" cshPattern="%1d = (int)e.Button" nPram="0" vbnPattern="%1d = e.Button" type="Integer" />
+   <Migrate id="_DvsFlexArrayEvents.MouseDown.shift" cshPattern="%1d = (int)Control.ModifierKeys" nPram="0" vbnPattern="%1d = Control.ModifierKeys" type="Integer" />
+   <Migrate id="_DvsFlexArrayEvents.MouseDown.x" migName="X" />
+   <Migrate id="_DvsFlexArrayEvents.MouseDown.y" migName="Y" />
+   
+   <Migrate id="_DvsFlexArrayEvents.KeyDown" migPattern="KeyDown" nPram="3" Role="Event" netHandler="System.Windows.Forms.KeyEventHandler" netArgs="KeyEventArgs" />
+   <Migrate id="_DvsFlexArrayEvents.KeyDown.keyCode" cshPattern="%1d = (int)e.KeyCode" nPram="0" vbnPattern="%1d = e.KeyCode" status="ByVal" type="Integer" />
+   <Migrate id="_DvsFlexArrayEvents.KeyDown.shift" migPattern="%1d = e.Shift" nPram="0" type="Boolean" />
+<!--
+Designers
+-->   
+   <migClass id="NetControl.vsFlexArray" migName="gmRTL.vsFlexLib.vsFlexArray" parent="vsFlexArray">
+      <property id="AllowUserToResizeColumns" default="true" />
+      <property id="Enabled" type="Boolean" value="_DvsFlexArray.Enabled" default="true" />
+      <property id="ExtendLastCol" type="Boolean" value="_DvsFlexArray.ExtendLastCol" default="true" />
+      <property id="FormatString" type="String" value="_DvsFlexArray.FormatString" default="true" />
+      <property id="Location" value="(Left,Top)" nPram="2" migPattern="new System.Drawing.Point(%1d, %2d)" />
+      <property id="MaxRows" type="integer" value="_DvsFlexArray.Rows" />
+      <property id="Name" type="string" value="SYM.name" />
+      <property id="RowTemplate.Height" default="18" />
+      <property id="ScrollBars" type="ScrollBarsSettings" value="_DvsFlexArray.ScrollBars" />
+      <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d,%2d)" />
+      <!--
+      Setting SelectionMode was causing the column header to also be highlighted.
+      property id="SelectionMode" value="SelectionModeSettings" value="_DvsFlexArray.SelectionMode" /
+      -->
+      <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+   </migClass>
+   </Refactor>
+</RefactorLibrary>

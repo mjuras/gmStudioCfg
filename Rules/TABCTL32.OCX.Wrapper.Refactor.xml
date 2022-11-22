@@ -1,0 +1,91 @@
+<RefactorLibrary>
+<!--
+Description: Upgrade TabDlg to extended gmRTL.TabDlg.TabControl
+-->
+<Refactor id="[TABCTL32.OCX]" event="tabctl" >
+   <Migrate migName="gmRTL.TabDlg" libType="Native" location="DoNotDeclare" />
+
+   <Migrate id="MousePointerConstants.ssHourGlass" migName="System.Windows.Forms.Cursors.WaitCursor" migStatus="External"/>
+   <Migrate id="MousePointerConstants.ssDefault" migName="System.Windows.Forms.Cursors.Default"  migStatus="External"/>
+
+   <Migrate id="TabOrientationConstants" migName="System.Windows.Forms.TabAlignment" Static="On" />
+   <Migrate id="TabOrientationConstants.ssTabOrientationTop" migName="Top" />
+   <Migrate id="TabOrientationConstants.ssTabOrientationBottom" migName="Bottom" />
+   <Migrate id="TabOrientationConstants.ssTabOrientationLeft" migName="Left" />
+   <Migrate id="TabOrientationConstants.ssTabOrientationRight" migName="Right" />
+
+   <Migrate id="SSTab" migName="TabControl" role="Control"/>
+
+   <Migrate id="ISSTabCtl.hWnd" migName="Handle" />
+   <Migrate id="ISSTabCtl._Tab" migName="_Tab()" />
+   <Migrate id="ISSTabCtl.MousePointer"migName="Cursor" />
+   <Migrate id="ISSTabCtl.TabsPerRow" migName="TabCount" />
+   <Migrate id="ISSTabCtl.Tabs" status="GetSetLet">
+      <Get nPram="1" migPattern="%1d.TabPages.Count" />
+      <Set nPram="2" migPattern="%2d.Set_TabPagesCount(%1d)\c" />
+   </Migrate>
+   <Migrate id="ISSTabCtl.Tab" migName="SelectedIndex" />
+   <Migrate id="ISSTabCtl.TabOrientation" migName="Alignment" />
+   <Migrate id="ISSTabCtl.TabHeight" status="GetSetLet" type="TwipsY" >
+      <Get nPram="1" migPattern="%1d.TabHeight" />
+      <Set nPram="2" migPattern="%2d.TabHeight = %1d\c" />
+   </Migrate>
+   <Migrate id="ISSTabCtl.TabMaxWidth" type="TwipsX" migStatus="NotImplemented" />
+   <Migrate id="ISSTabCtl.OLEDropMode" migPattern="%2d.OLEDropMode(%1d)\c" nPram="0" />
+   <Migrate id="ISSTabCtl.TabVisible" status="GetSetLet" >
+      <Get nPram="2" cshPattern="%1d.TabPages[%2d].Visible" vbnPattern="%1d.TabPages(%2d).Visible" />
+      <Set nPram="3" migPattern="%2d.SetTabVisible(%3d,%1d)\c" />
+   </Migrate>
+   <Migrate id="ISSTabCtl.TabEnabled" status="GetSetLet" >
+      <Get nPram="2" migPattern="%1d.GetTabEnabled(%2d)" />
+      <Set nPram="3" migPattern="%2d.TabPages[%3d].Enabled = %1d\c" />
+   </Migrate>
+   <Migrate id="ISSTabCtl.TabCaption" status="GetSetLet" >
+      <Get nPram="2" cshPattern="%1d.TabPages[%2d].Text" vbnPattern="%1d.TabPages(%2d).Text" />
+      <Set nPram="3" cshPattern="%2d.TabPages[%3d].Text = %1d\c" vbnPattern="%2d.TabPages(%3d).Text = %1d\c" />
+   </Migrate>
+
+   <Migrate id="DSSTabCtlEvents.KeyPress" migPattern="KeyPress" nPram="2" Role="Event" netHandler="System.Windows.Forms.KeyPressEventHandler" netArgs="System.Windows.Forms.KeyPressEventArgs" />
+   <Migrate id="DSSTabCtlEvents.KeyPress.keyAscii" migPattern="%1d = (int)e.KeyChar" nPram="0" status="ByVal" type="Integer" />
+   <Migrate id="DSSTabCtlEvents.KeyDown" migPattern="KeyDown" nPram="3" Role="Event" netHandler="System.Windows.Forms.KeyEventHandler" netArgs="KeyEventArgs" />
+   <Migrate id="DSSTabCtlEvents.KeyDown.keyCode" cshPattern="%1d = (int)e.KeyCode" nPram="0" vbnPattern="%1d = e.KeyCode" />
+   <Migrate id="DSSTabCtlEvents.KeyDown.shift" migPattern="%1d = e.Shift" nPram="0" type="Boolean" />
+   <Migrate id="DSSTabCtlEvents.MouseMove" migName="MouseMove" netHandler="System.Windows.Forms.MouseEventHandler" netArgs="MouseEventArgs" />
+   <Migrate id="DSSTabCtlEvents.MouseMove.button" cshPattern="%1d = (int)e.Button" nPram="0" vbnPattern="%1d = e.Button" />
+   <Migrate id="DSSTabCtlEvents.MouseMove.shift" cshPattern="%1d = (int)Control.ModifierKeys" nPram="0" vbnPattern="%1d = Control.ModifierKeys" />
+   <Migrate id="DSSTabCtlEvents.MouseMove.x" migPattern="%1d=e.X" nPram="0" />
+   <Migrate id="DSSTabCtlEvents.MouseMove.y" migPattern="%1d=e.Y" nPram="0" />
+   <Migrate id="DSSTabCtlEvents.Click" migName="SelectedIndexChanged" netHandler="System.EventHandler" netArgs="EventArgs" />
+   <Migrate id="DSSTabCtlEvents.Click.previousTab" migPattern="%1d = 0; // UPGRADE_TODO" nPram="0" />
+   
+    <!--
+    Designer Class
+    -->
+    <migClass id="NetControl.SSTab" migName="System.Windows.Forms.TabControl" parent="SSTab">
+       <property id="Alignment" type="TabOrientation" value="ISSTabCtl.TabOrientation" />
+       <property id="Location" value="(Left,Top)" nPram="2"  migPattern="new System.Drawing.Point(%1d, %2d)" />
+       <property id="Name" type="string" value="SYM.name" />
+       <property id="Multiline" type="boolean" default="true" />
+       <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+       <!-- property id="SizeMode" default="System.Windows.Forms.TabSizeMode.Normal" /-->
+       <property id="TabIndex" type="Integer" default="0" />
+       <property id="TabStop" type="boolean" value="TabStop" default="true" />        
+    </migClass>
+    <migClass id="TabUndefined">
+       <property id="TabCaption" type="String" opcode="TAB.Caption" />
+       <property id="TabPicture" type="FrxPicture" opcode="TAB.Picture" />
+       <property id="TabEnabled" type="Boolean" opcode="TAB.Enabled" />
+       <property id="TabControlCount" type="Integer" opcode="TAB.Count" />
+       <property id="TabControlName" type="String" opcode="TAB.ControlName" />
+       <property id="Enabled" type="Boolean" opcode="TAB.ControlEnabled" />
+   </migClass>
+   <migClass id="SSTabLogic" >
+      <Method id="CallSSTabClick" type="void" nPram="3"
+         vbnPattern="%1d(Nothing,EventArgs.Empty)\c"
+         cshPattern="%1d(null,EventArgs.Empty)\c"
+      />
+   </migClass>
+   <gmSL NameSpace="tabctl" Class="Transform" Source="Tabctl32.ocx.Wrapper.Transform.gmsl" />
+</Refactor>
+
+</RefactorLibrary>

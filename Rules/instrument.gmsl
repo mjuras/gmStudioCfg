@@ -1,0 +1,703 @@
+/*
+;/hdr/ ****************************************************************************************
+;
+; Instrument.gmsl: Instrument VB6 Source code
+;
+; This gmSL support class helps in the instrumentation of VB6 source code so that it will
+; create an activity log at runtime. The process is driven by the VBPs and the files they
+; reference. No other files are involved in the trace logging instrumentation process; however,
+; this class modifies the original VB6 source code so that it can be rebuilt to produce trace
+; logging messages. It is this modified VB6 source that is then migrated. Having the identical
+; trace messages in both the source code and the migrated code greatly facilitates testing.
+; It is strongly recommended that a source tree copy be performed to create the code base that
+; will be instrumented. It may in fact be necessary to test that the copied source tree does in
+; fact build in VB6. This support class will then modify the files in this copied source tree 
+; and those copied and then instrumented files will be used for future migration work.
+;
+;/hdr/ ****************************************************************************************
+*/
+
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>Instrument</b> tells this module to inject instrumentation into the output.  
+; If return 0 the original code is output.  This allows us to make sure no code is lost when
+; using this module.
+;
+;/doc/ ****************************************************************************************
+*/
+int Instrument()
+{
+    return 1;
+}
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>InstrumentInsertModule</b> tells this module to inject instrumentation into the output.  
+; If return 0 the original code is output.  This allows us to make sure no code is lost when
+; using this module.
+;
+;/doc/ ****************************************************************************************
+*/
+int InstrumentInsertModule()
+{
+    return 1;
+}
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>InstrumentInsertModule</b> tells this module to inject instrumentation into the output.  
+; If return 0 the original code is output.  This allows us to make sure no code is lost when
+; using this module.
+;
+;/doc/ ****************************************************************************************
+*/
+int InstrumentExtreme()
+{
+    return 0;
+}
+
+
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>AuthorTraceLoggerModule</b> authors the actual VB6 module that produces the
+; trace messages. It is assumed that the user might well want to modify this method. This class
+; assumes that each VB6 project receives its own version of this file. Thus, the name of the
+; method id always the same, but the name of the file is preceded by the project name.
+;
+;/doc/ ****************************************************************************************
+*/
+void AuthorTraceLoggerModule()
+{
+#TextStart
+cat >(%= Project.DeployLocation %)(%= Project.Name %)_gmTraceLogger.bas <<'!)(!'
+Attribute VB_Name = "gmTraceLogger"
+Option Explicit
+
+Private Const projectName = "(%= Project.Name %)"
+Private Const logPath = "C:\temp\gmTraceLogger_vb6.log"
+Private gmTraceLogger_Indent As Integer
+Private gmTraceLogger_Started As Boolean
+Private ProfileDict As String
+Const ProfileOnly As Boolean = True ' True: unique method names only, False: all calls
+
+Public Sub gmTraceLogger_DecIndent()
+   If (ProfileOnly) Then Exit Sub
+   gmTraceLogger_Indent = gmTraceLogger_Indent - 1
+   If (gmTraceLogger_Indent <= 0) Then
+      Debug.Print "gmTraceLogger_Indent <=0"
+      gmTraceLogger_Indent = 0
+   End If
+End Sub
+
+Public Sub gmTraceLogger_IncIndent()
+   If (ProfileOnly) Then Exit Sub
+   gmTraceLogger_Indent = gmTraceLogger_Indent + 1
+End Sub
+
+Public Function AddSlashToPath(ByVal path As String) As String
+   If Right(path, 1) <> "\" Then
+      path = path & "\"
+   End If
+   AddSlashToPath = path
+End Function
+
+Public Sub gmTraceLogger_WriteLine(rpt As String)
+   Dim i As Integer
+   i = FreeFile
+
+   Dim inExe As Boolean, appPath As String, dirAppPath As String
+   appPath = AddSlashToPath(App.path) & App.EXEName & ".exe"
+   dirAppPath = Dir(appPath, vbNormal)
+   inExe = (dirAppPath <> "")
+
+   If gmTraceLogger_Started Or Not inExe Then
+      Open logPath For Append As i
+   Else
+      Dim dirLogpath As String
+      dirLogpath = Dir(logPath)
+      If (dirLogpath <> "") Then Kill logPath
+      Open logPath For Output As i
+      gmTraceLogger_Started = True
+   End If
+   
+   If (ProfileOnly) Then
+      If (InStr(ProfileDict, rpt & ",") = 0) Then
+          ProfileDict = ProfileDict & rpt & ","
+          Debug.Print "PROFILE:" & projectName & "." & rpt
+          Print #i, projectName & "." & rpt
+      End If
+   Else
+      Dim indentStr As String
+      indentStr = Space(3 * gmTraceLogger_Indent)
+      Debug.Print "TRACE:" & projectName & "." & rpt
+      Print #i, indentStr & projectName & "." & rpt
+   End If
+   
+   Close i
+End Sub
+!)(!
+#TextEnd
+}
+
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>AuthorTraceLoggerBlock</b> authors the actual code block. Every method that is
+; instrumented will have this block of code added before the first line.  For example:
+;
+;   Private Sub SyncRSPointer_rsClients_grdClients(ClientNo As Long)
+;  ' This routine will make the current record of rsClients coincide with the current grid record
+;   On Error GoTo ErrorHandler
+;   ...
+;
+; will be modified to be as follows:
+;
+;   Private Sub SyncRSPointer_rsClients_grdClients(ClientNo As Long)
+;        
+;   [trace logging block]
+;    
+;  ' This routine will make the current record of rsClients coincide with the current grid record
+;   On Error GoTo ErrorHandler
+;   ...
+;
+; Again it is assumed that the user may well want to modify this code. The parameter
+; <b>className</b> is the name of the class containing the method and the parameter 
+; <b>methodName</b> is the name of the method.
+;
+;/doc/ ****************************************************************************************
+*/
+void AuthorTraceLoggerBlock(string className, string methodName)
+{
+    if (Instrument())
+    {
+#TextStart
+     gmTraceLogger_WriteLine("(%= className %).(%= methodName%)")     ' added by gmBasic
+     gmTraceLogger_IncIndent
+#TextEnd
+    }
+    // author statements for args
+    // call stack
+}
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>AuthorTraceLoggerReference</b> authors the reference to the module that that
+; produces the trace messages. It must be compatible with the <b>AuthorTraceLoggerModule</b>
+; method It is assumed that the user might well want to modify this method.
+;
+;/doc/ ****************************************************************************************
+*/
+void AuthorTraceLoggerReference()
+{
+    if (InstrumentInsertModule())
+    {
+   #TextStart
+   Module=gmTraceLogger; (%= Project.Name %)_gmTraceLogger.bas
+   #TextEnd
+    }
+}
+
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>AuthorTraceLogging</b> is the main control method for the class. It is called
+; from a gmPL script with the following gneral content:
+;
+;  <gmBasic>
+;    <Storage Action="Create" Identifier=""%JobId%" />
+;    <gmSL namespace="gmSL" class="Instrument" Source="Instrument.gmsl" />
+;    <Load Project="%SrcPath(1)%" />
+;       ...
+;    <Load Project="%SrcPath(n)%" />
+;    <Output Status="New" Filename="%BndPath%" />
+;    <Output Status="New" Filename="%BndPath%.(%= Select.AppNameSpace %).bnd" />
+;    <RunCommand Id="Instrument.AuthorTraceLogging" Prams="(%= Select.AppNameSpace %)" />
+;    <Storage Action="Close" />
+;  </gmBasic>
+;
+; The <b> scope parameter specifies which files are to be instrumented:
+;
+; if scope is ALL, all loaded VBPs are instrumented; this is the most common usage
+; if scope is a VBP Name then all methods in all files in the specified VBP will be instrumented 
+; if scope is a file name all methods in the specified file will be instrumented
+; if scope is a fully qualified method name, that method will be instrumented
+;
+; Note that to simply processing the <b>AppNameSpace</b> select attribute is used to contain
+; scope string. It can be specified on the command line of the tool by adding to it
+; "AppNameSpace=scope"
+;
+;/doc/ ****************************************************************************************
+*/
+void AuthorTraceLogging(String scope)
+{
+   int     iRoot;
+   int     objType;
+   string  filename;
+   int     localStart;
+   int     xtnStart;
+   int     length;
+   int     doLogging;
+
+   for(iRoot = Store.GetFirst(0); iRoot != 0; iRoot = Store.GetNext(iRoot))
+   {
+      objType = Store.GetObjectType(iRoot);
+      if(objType != ObjectType.ProjectFile) continue;
+      filename = Store.GetIdent(iRoot);
+      if(Character.FindFirst(filename,0,".vbp") == 0) continue;
+      doLogging = AuthorInstrumentedVbpFile(iRoot,scope);
+      if(doLogging != 0)
+      {
+         length = System.ParseFileName(filename,localStart,xtnStart);
+         Project.DeployLocation = Character.Substr(filename,0,localStart);
+         AuthorTraceLoggerModule();
+         if (Instrument())
+         {
+            ProcessProjectFile(filename,scope);
+         }
+      }
+   }
+}
+
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>AuthorInstrumentedVbpFile</b> authors the instrumented project file for the
+; loaded project whose root offset is in the parameter <b>iRoot</b>. The parameter <b>scope</b>
+; is as specified by the user. If scope is All or if it begins with an name that matches the
+; project name then an instrumented project file is authored and the method returns a one.
+; If the scope is not All and does not match the name of the project, nothing is authored and a
+; zero is returned.
+;
+;/doc/ ****************************************************************************************
+*/
+int AuthorInstrumentedVbpFile(int iRoot, string scope)
+{
+   int    textRoot;
+   Handle textStream;
+   int    nRecord;
+   int    curRecord;
+   int    rai;
+   int    length;
+   string record;
+   string filename;
+   int    needTraceLogger;
+   string scopeName;
+   int    tokenType;
+
+   Parser.SetStatement(scope);
+   scopeName = Parser.GetToken(tokenType);
+   filename = Store.GetIdent(iRoot);
+   System.LogMessage("Processing " + filename);
+   textRoot = System.LoadFile(filename,1);
+   textStream = Text.Open(Store.GetHandle(),textRoot);
+   nRecord = Text.Maximum(textStream);
+   for(curRecord = 1; curRecord <= nRecord; curRecord = curRecord + 1)
+   {
+      Text.Position(textStream,curRecord);
+      record = Text.Access(textStream, length, rai, 0);
+      if(Character.Compare(record,"Name=",5) == 0)
+      {
+         project.Name = Character.Substr(record,6,length-7);
+         if(scopeName != "all" && scopeName != project.Name) return 0;
+         break;
+      }
+   }
+   Write.Line("cat >" + filename + " <<'!)(!'");
+   needTraceLogger = 1;
+   for(curRecord = 1; curRecord <= nRecord; curRecord = curRecord + 1)
+   {
+      Text.Position(textStream,curRecord);
+      record = Text.Access(textStream, length, rai, 0);
+      if(needTraceLogger)
+      {
+         if(Character.Compare(record,"class=",6) == 0 ||
+            Character.Compare(record,"form=",5) == 0  ||
+            Character.Compare(record,"module=",7) == 0)
+         {
+            needTraceLogger = 0;
+            AuthorTraceLoggerReference();
+         }
+      }
+      Write.Line(record)
+   }
+   Write.Line("!)(!");
+   Text.Close(textStream);
+   if(needTraceLogger)
+   {
+      System.LogMessage("Warning#001: The project file<" + filename +
+                          "> did not get TraceLogger entry");
+   }
+   return 1;
+}
+
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>ProcessProjectFile</b> scans a project file looking for classes, modules, and
+; forms. If the component is not blocked by the <b>scope</b> string then the method 
+; <b>AuthorInstrumentedCodeFile</b> is called to instrument the methods within the file.
+;
+;/doc/ ****************************************************************************************
+*/
+void ProcessProjectFile(string projectFileName, string scope)
+{
+   int    textRoot;
+   Handle textStream;
+   int    nRecord;
+   int    curRecord;
+   int    rai;
+   int    length;
+   string record;
+   string pairName;
+   int    iSemi;
+   string className;
+   string localName;
+   string codeFile;
+   int    localStart;
+   int    xtnStart;
+   int    nName;
+   string scopeName;
+   int    tokenType;
+   string scopeMethod;
+   string token;
+
+   scopeMethod = "all";
+   if(scope == "all") scopeName = "all";
+   else
+   {
+      Parser.SetStatement(scope);
+      scopeName = Parser.GetToken(tokenType);
+      scopeName = Parser.GetToken(tokenType);
+      if(scopeName != ".") scopeName = "all";
+      else
+      {
+         scopeName =  Parser.GetToken(tokenType);
+         token = Parser.GetToken(tokenType);
+         if(token == ".") scopeMethod = Parser.GetToken(tokenType);
+      }      
+   }
+   textRoot = System.LoadFile(projectFileName,1);
+   if(textRoot == 0) return;
+   textStream = Text.Open(Store.GetHandle(),textRoot);
+   nRecord = Text.Maximum(textStream);
+   for(curRecord = 1; curRecord <= nRecord; curRecord = curRecord + 1)
+   {
+      Text.Position(textStream,curRecord);
+      record = Text.Access(textStream, length, rai, 0);
+      if(length < 8) continue;
+      if(Character.Compare(record,"Module=",7) == 0)
+      {
+         pairName = Character.Substr(record,7,length-7);
+         iSemi = Character.FindFirst(pairName,0,";");
+         className = Character.SubStr(pairname,0,iSemi-1);
+         localName = Character.SubStr(pairName,iSemi+1,length-8-iSemi);
+         codeFile = System.MakePathName(Project.DeployLocation,localName,"");
+      }
+      else if(Character.Compare(record,"Class=",6) == 0)
+      {
+         pairName = Character.Substr(record,6,length-6);
+         iSemi = Character.FindFirst(pairName,0,";");
+         className = Character.SubStr(pairname,0,iSemi-1);
+         localName = Character.SubStr(pairName,iSemi+1,length-7-iSemi);
+         codeFile = System.MakePathName(Project.DeployLocation,localName,"");
+      }
+      else if(Character.Compare(record,"Form=",5) == 0)
+      {
+         localName = Character.Substr(record,5,length-5);
+         codeFile = System.MakePathName(Project.DeployLocation,localName,"");
+         nName = System.ParseFileName(codeFile,localStart,xtnStart);
+         className = Character.SubStr(codeFile,localStart,xtnStart-localStart);
+      }
+      else if(Character.Compare(record,"UserControl=",12) == 0)
+      {
+         localName = Character.Substr(record,12,length-12);
+         codeFile = System.MakePathName(Project.DeployLocation,localName,"");
+         nName = System.ParseFileName(codeFile,localStart,xtnStart);
+         className = Character.SubStr(codeFile,localStart,xtnStart-localStart);
+      }
+      else continue;
+      if(scopeName == "all" || scopeName == className)
+      {
+         AuthorInstrumentedCodeFile(codeFile,className,scopeMethod);
+      }
+   }
+   Text.Close(textStream);
+}
+
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>CopyFileWithoutChange</b> copies a file without adding any instrumentation. It
+; is not currently used, but is uninstrumented files are desired within the bundlr, then this
+; method could be called to do this.
+;
+;/doc/ ****************************************************************************************
+*/
+void CopyFileWithoutChange(string filename)
+{
+   int    textRoot;
+   Handle textStream;
+   int    nRecord;
+   int    curRecord;
+   int    rai;
+   int    length;
+   string record;
+
+   textRoot = System.LoadFile(filename,1);
+   if(textRoot == 0)
+   {
+      System.LogMessage("Warning#002: The code file file<" + filename + "> could not be loaded");
+      return;
+   }
+   textStream = Text.Open(Store.GetHandle(),textRoot);
+   nRecord = Text.Maximum(textStream);
+   Write.Line("cat >" + filename + " <<'!)(!'");
+   for(curRecord = 1; curRecord <= nRecord; curRecord = curRecord + 1)
+   {
+      Text.Position(textStream,curRecord);
+      record = Text.Access(textStream, length, rai, 0);
+      Write.Line(record);
+   }
+   Text.Close(textStream);
+   Write.Line("!)(!");
+}
+
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>InstrumentLineNo</b> instruments a line number trace call only if instrument return 1
+;
+;/doc/ ****************************************************************************************
+*/
+void InstrumentLineNo(int line, int spacing, string record)
+{
+    if (Instrument())
+    {
+        string spaced;
+        string mline;
+        
+        if (record != "")
+        {
+            record = Character.Replace(record,"""", "'");
+            mline = line + ": " + record
+        }
+        else
+        {
+            mline = line;
+        }
+        
+        
+        spaced = SetLineSpacing("gmTraceLogger_WriteLine(""" + mline + """)", spacing);
+        Write.Line(spaced);
+    }
+}
+
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>InstrumentLine</b> instruments a line only if instrument return 1
+;
+;/doc/ ****************************************************************************************
+*/
+void InstrumentLine(string line)
+{
+    if (Instrument())
+    {
+        Write.Line(line);
+    }
+}
+
+
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>GetLineSpacing</b> returns the count of spaces at the start of a string
+;
+;/doc/ ****************************************************************************************
+*/
+int GetLineSpacing(string line)
+{
+    int x;
+    int cnt;
+    cnt = 0;
+    for (x = 0;x < 9999;x=x+1)
+    {
+        if (Character.Substr(line,x,1) == " ")
+        {
+            cnt = cnt + 1;
+        }
+        else
+        {
+            break;
+        }
+    }
+    
+    return cnt;
+}
+
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>SetLineSpacing</b> adds spacing number of spaces to the start of a line
+;
+;/doc/ ****************************************************************************************
+*/
+string SetLineSpacing(string line, int spacing)
+{
+    string mout;
+    int x;
+    
+    mout = line;
+    for (x = 0;x < spacing;x=x+1)
+    {
+        mout = " " + mout;
+    }
+    
+    return mout;
+}
+
+/*
+;/doc/ ****************************************************************************************
+;
+; The method <b>AuthorInstrumentedCodeFile</b> scans a code file for Sub or Function
+; declarations and adds the instrumentation as specified unless the particular method is
+; blocked by the scope specification.
+;
+;/doc/ ****************************************************************************************
+*/
+void AuthorInstrumentedCodeFile(string filename,string className,string scopeMethod)
+{
+   int    textRoot;
+   Handle textStream;
+   int    nRecord;
+   int    curRecord;
+   int    rai;
+   int    length;
+   int    llength;
+   string record;
+   string lrecord;
+   string token;
+   int    tokenType;
+   string methodName;
+   int    isEnd;
+   int    isExit;
+   int    inMethod;
+   int    intMethodCnt;
+   int    spacing;
+
+
+   textRoot = System.LoadFile(filename,1);
+   if(textRoot == 0)
+   {
+      System.LogMessage("Warning#003: The code file file<" + filename + "> could not be loaded");
+      return;
+   }
+   textStream = Text.Open(Store.GetHandle(),textRoot);
+   nRecord = Text.Maximum(textStream);
+   Write.Line("cat >" + filename + " <<'!)(!'");
+   lrecord = "";
+   for(curRecord = 1; curRecord <= nRecord; curRecord = curRecord + 1)
+   {
+      Text.Position(textStream,curRecord);
+      record = Text.Access(textStream, length, rai, 0);
+      
+      if(length < 5)
+      {
+         Write.Line(record);
+         continue;
+      }
+      Parser.SetStatement(record);
+      token = Parser.GetToken(tokenType);
+      if(token == "'" || token == "REM")
+      {
+         Write.Line(record);
+         continue;
+      }
+      isEnd = (token=="end");
+      isExit= (token=="exit");            
+      while(1)
+      {
+         if(token != "private" &&
+            token != "public" &&
+            token != "friend" &&
+            token != "global" &&
+            token != "default" &&
+            token != "end" &&
+            token != "exit") break;
+         token = Parser.GetToken(tokenType);
+      }
+      // TODO: add support for properties
+      
+      if(token == "Sub" || token == "Function")
+      {
+         if (isEnd==0 && isExit==0)
+         {
+             methodName = Parser.GetToken(tokenType);
+             if(Character.Substr(record,length-2,2) == " _")
+             {
+                spacing = GetLineSpacing(record);
+                while(1)
+                {
+                   Write.Line(record);
+                   curRecord = curRecord + 1;
+                   Text.Position(textStream,curRecord);
+                   record = Text.Access(textStream, length, rai, 0);
+                   if(Character.Substr(record,length-2,2) != " _") break;
+                }
+             }
+         }    
+         if(scopeMethod == "all" || scopeMethod == methodName)
+         {
+           if (isEnd==1)
+           {
+                if (isEnd) inMethod = 0;
+                InstrumentLine("Call gmTraceLogger_DecIndent()");
+                Write.Line(record);      
+           }
+           else if(isExit==1)
+           {
+                InstrumentLine("Call gmTraceLogger_DecIndent() : " + record);
+           }
+           else
+           {
+               Write.Line(record);
+               AuthorTraceLoggerBlock(className,methodName);
+               inMethod = 1;
+               intMethodCnt = 1;
+           }
+         }
+         else
+         {
+            Write.Line(record);
+         }
+      }
+      else 
+      {
+        if (InstrumentExtreme())
+        {
+            if(Character.Substr(record,length-2,2) != " _" && 
+               Character.Substr(lrecord,llength-2,2) != " _")
+            {
+                spacing = GetLineSpacing(record);
+                if (inMethod && token != "Case")
+                {
+                    InstrumentLineNo(intMethodCnt,spacing,record);
+                    intMethodCnt = intMethodCnt + 1;
+                }
+            }
+            Write.Line(record);
+         }
+         else
+         {
+            Write.Line(record);
+         }
+      }
+      
+      lrecord = record;
+      llength = length;
+   } 
+   Text.Close(textStream);
+   Write.Line("!)(!");
+}

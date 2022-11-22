@@ -1,0 +1,55 @@
+<RefactorLibrary>
+<!--
+Description: Map MSGrid.Grid control to MigrationSupport.MSGRid
+-->
+<Refactor id="[GRID32.OCX]">
+<!-- 
+Library
+-->
+<Migrate libType="Internal" location="DoNotDeclare" axLocation="DoNotDeclare" migName="gmRTL.MSGrid.Grid"/>
+<!-- 
+CoClasses
+-->
+<Migrate id="Grid" role="Control" migName="MSGrid" migStatus="NeedsInit"/>
+<!-- 
+Enums
+-->
+<Migrate id="ScrollBarsConstants" migName="ScrollBars" migStatus="External" />
+<Migrate id="ScrollBarsConstants.grdNone" migName="ScrollBars.None" migStatus="External" />
+<Migrate id="ScrollBarsConstants.grdHorizontal" migName="ScrollBars.Horizontal" migStatus="External" />
+<Migrate id="ScrollBarsConstants.grdVertical" migName="ScrollBars.Vertical" migStatus="External" />
+<Migrate id="ScrollBarsConstants.grdBoth" migName="ScrollBars.Both" migStatus="External" />
+<!-- 
+Interfaces
+-->
+<Migrate id="IGridCtrl.Rows" migName="MaxRows" />
+<Migrate id="IGridCtrl.ColWidth" type="TwipsX"   />
+<!--
+Designers
+-->
+<migClass id="NetControl.Grid" migName="Grid" parent="Grid">
+    <property id="BackColor" type="OLE_COLOR" value="IGridCtrl.BackColor" nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+                default="System.Drawing.SystemColors.Window"
+    />
+    <property id="ColumnHeadersVisible" type="Boolean" value="IGridCtrl.FixedRows" default="true" />
+    <property id="Cols" type="Integer" value="IGridCtrl.Cols" default="3"/>
+    <property id="Enabled" type="boolean" value="IGridCtrl.Enabled" default="true"/>
+    <property id="ForeColor" type="OLE_COLOR" value="IGridCtrl.ForeColor" nPram="3"
+                migPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+                default="System.Drawing.SystemColors.ControlText" 
+    />   
+    
+    <property id="Location" value="(Left,Top)" nPram="2"  migPattern="new System.Drawing.Point(%1d, %2d)"  />
+    <property id="MaxRows" type="Integer" value="IGridCtrl.Rows" default="1"/>
+    <property id="Name" type="string" value="SYM.name" />
+    <property id="RowTemplate.Height" default="18" />
+    <property id="RowHeadersVisible" type="Boolean" value="IGridCtrl.FixedCols" default="true" />
+    <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+    <property id="ScrollBars" type="ScrollBarConstants" value="IGridCtrl.ScrollBars" />
+    <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+    <property id="TabStop" type="boolean" value="TabStop" default="true" />
+</migClass>
+
+</Refactor>
+</RefactorLibrary>

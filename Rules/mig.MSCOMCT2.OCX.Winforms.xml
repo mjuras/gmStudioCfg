@@ -1,0 +1,180 @@
+<RefactorLibrary>
+<!--
+Description: Details of MSComCtl2 to WinForms upgrade
+-->
+<Refactor id="[mscomct2.ocx]">
+<!--
+********************************************************** 
+* Library                   
+********************************************************** 
+-->
+   <Migrate LibType="Internal" location="DoNotDeclare" migName="System.Windows.Forms" />
+<!-- 
+********************************************************** 
+* Uses COM Interop/Stub
+********************************************************** 
+-->
+   <Migrate  id="DataObject"       migStatus="UsesCOM"/>
+   <Migrate  id="DataObjectFiles"  migStatus="UsesCOM"/>
+   <Migrate  id="Animation"        migStatus="UsesCOM"/>
+   <Migrate  id="FlatScrollBar"    migStatus="UsesCOM"/>
+<!--
+********************************************************** 
+* Classes
+********************************************************** 
+-->
+
+   <Migrate id="MonthView" migName="MonthCalendar" role="control" />
+   <Migrate id="UpDown" migName="NumericUpDown" role="control" />
+   <Migrate id="DTPicker" migName="DateTimePicker" role="Control" />
+
+<!--
+********************************************************** 
+* Classes
+********************************************************** 
+-->
+   <Migrate id="FormatConstants" migName="DateTimePickerFormat"  />
+
+   <Migrate id="FormatConstants.dtpLongDate" migName="Long"  />
+   <Migrate id="FormatConstants.dtpShortDate" migName="Short"  />
+   <Migrate id="FormatConstants.dtpTime" migName="Time"  />
+   <Migrate id="FormatConstants.dtpCustom" migName="Custom"  />
+
+   <Migrate id="DayConstants" migName="Day" />
+   
+   <Migrate id="DayConstants.mvwSunday" migName="Sunday" />
+   <Migrate id="DayConstants.mvwMonday" migName="Monday" />
+   <Migrate id="DayConstants.mvwTuesday" migName="Tuesday" />
+   <Migrate id="DayConstants.mvwWednesday" migName="Wednesday" />
+   <Migrate id="DayConstants.mvwThursday" migName="Thursday" />
+   <Migrate id="DayConstants.mvwFriday" migName="Friday" />
+   <Migrate id="DayConstants.mvwSaturday" migName="Saturday" />
+
+<!--
+********************************************************** 
+* Properties              
+********************************************************** 
+-->
+   <Migrate id="IMonthView.Value" status="GetSet" >
+       <Get nPram="1" migPattern="%1d.SelectionStart" />
+       <Let nPram="2" migPattern="%2d.SetDate(%1d)\c" />
+   </Migrate>
+
+   <Migrate id="IMonthView.MaxSelCount"  migName="MaxSelectionCount" />
+
+   <Migrate id="IDTPicker.UpDown" migName="ShowUpDown"  />
+   <Migrate id="IDTPicker._Value" migName="Value" type="Date" />
+   <Migrate id="IDTPicker.Value" migName="Value" type="Date" />
+   <Migrate id="IDTPicker.CheckBox" migName="ShowCheckBox" />
+
+   <Migrate id="IUpDown.Min" migName="Minimum"  />
+   <Migrate id="IUpDown.Max" migName="Maximum"  />
+   
+   <Extend id="IUpDown" >
+      <Property id="Text" type="String" />
+   </Extend>
+   
+   <!-- connection to other control has changed -->
+   
+   <Migrate id="IUpDown.AutoBuddy" migStatus="NotImplemented" />
+   <Migrate id="IUpDown.BuddyControl" migStatus="NotImplemented" />
+   <Migrate id="IUpDown.BuddyProperty" migStatus="NotImplemented" />
+   <Migrate id="IUpDown.SyncBuddy" migStatus="NotImplemented" />
+   <Migrate id="IUpDown.Wrap" migStatus="NotImplemented" />
+   
+<!-- 
+********************************************************** 
+* Methods                 
+********************************************************** 
+-->
+<!-- 
+********************************************************** 
+* EventHandlers           
+********************************************************** 
+-->
+   <Migrate id="DMonthViewEvents.DateClick" 
+            role="event" 
+            netHandler="System.Windows.Forms.DateRangeEventHandler" 
+            netArgs="DateRangeEventArgs"
+            migPattern="DateSelected"
+   />
+   <Migrate id="DMonthViewEvents.DateClick.DateClicked" 
+      migPattern="%1d = e.Start"
+   />
+   <Migrate id="DUpDownEvents.Change" 
+            role="event" 
+            netHandler="System.EventHandler" 
+            netArgs="System.EventArgs"
+            migPattern="ValueChanged"
+   />
+   <!-- TODO: We need a better solution for this. -->
+   <Migrate id="DUpDownEvents.DownClick" 
+            role="event" 
+            netHandler="System.EventHandler" 
+            netArgs="System.EventArgs"
+            migPattern="ValueChanged"
+   />
+   <!-- TODO: We need a better solution for this. -->
+   <Migrate id="DUpDownEvents.UpClick" 
+            role="event" 
+            netHandler="System.EventHandler" 
+            netArgs="System.EventArgs"
+            migPattern="ValueChanged"
+   />
+   <Migrate id="DDTPickerEvents.Change" 
+            role="event" 
+            netHandler="System.EventHandler" 
+            netArgs="System.EventArgs"
+            migName="ValueChanged"
+   />
+<!--
+********************************************************** 
+* Designer Code 
+********************************************************** 
+-->
+   <migClass id="NetControl.MonthView" 
+             migName="System.Windows.Forms.MonthView"
+             parent="MonthView"
+   >
+      <property id="FirstDayOfWeek" type="MSComCtl2.DayConstants"
+                value="IMonthView.StartOfWeek"
+                default="Day.Sunday"
+      />
+      <property id="Font" value="Font" type="FontInfo" 
+                nPram="3"
+                vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+                cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+      />
+      <property id="ForeColor" type="OLE_COLOR"
+                value="IMonthView.ForeColor"
+                nPram="3"
+                vbnPattern="System.Drawing.Color.FromARGB(%3d, %2d, %1d)"
+                cshPattern="System.Drawing.Color.FromArgb(%3d, %2d, %1d)"
+                default="System.Drawing.SystemColors.ControlText"
+      />
+      <property id="Location"
+                value="(Left,Top)"
+                nPram="2"
+                vbnPattern="New System.Drawing.Point(%1d, %2d)"
+                cshPattern="new System.Drawing.Point(%1d, %2d)"
+      />
+      <property id="MaxSelectionCount" type="Integer"
+                value="IMonthView.MaxSelCount"
+                default="1"
+      />
+      <property id="Name" type="string"
+                value="SYM.name"
+      />
+      <property id="Size"
+                value="(Width,Height)"
+                nPram="2"
+                vbnPattern="New System.Drawing.Size(%1d, %2d)"
+                cshPattern="new System.Drawing.Size(%1d, %2d)"
+      />
+      <property id="TabIndex" type="Integer"
+                value="TabIndex"
+                default="0"
+      />
+   </migClass>
+</Refactor>
+</RefactorLibrary>

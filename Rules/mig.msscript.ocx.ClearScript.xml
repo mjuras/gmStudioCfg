@@ -1,0 +1,51 @@
+<RefactorLibrary>
+<!--
+!doc! Upgrade MSScriptControl to ClearScript 
+
+See: Introduction to Windows Script Technologies
+https://docs.microsoft.com/en-us/previous-versions/tn-archive/ee176792(v=technet.10)
+
+See: ClearScript on GitHub
+https://github.com/microsoft/ClearScript
+
+Activation:
+
+   <Registry type="MigFile" source="msscript.ocx" target="mig.MSScriptControl_to_ClearScript" />
+
+Notes: 
+
+If BuildFile==off, use libType=LocalImport" to suppress ActiveX interop conventions.
+else use libType=Internal" to suppress stub generation and reference.
+
+The concept of Modules id not present in ClearScript. I found using a ScriptEngine
+instance is adequate for most purposes.  Modules have migStatus=static to 
+to remove instance creation and destruction. Some additional work is typically needed.
+-->
+<Refactor id="[msscript.ocx]">
+<Migrate location="..\..\usr\runtime\bin\ClearScript.dll"
+         migName="Microsoft.ClearScript.Windows"
+         assemblyName="ClearScript"
+         libtype="LocalImport"         
+/>
+
+<Migrate id="IScriptControl.AddCode" migName="Execute" />
+<Migrate id="IScriptControl.Run" type="Variant" nPram="3" cshPattern="((object)%1d.Script.%2u(%3d))" vbnPattern="(%1d.Evaluate(String.Format(\s%2u({0}, {1})\s,%3d)))" />
+<Migrate id="IScriptControl.Run.Parameters" type="Object" />
+<Migrate id="IScriptControl.Language" migStatus="delete" />
+<Migrate id="IScriptControl.Eval" migName="Evaluate" />
+<Migrate id="IScriptControl.AddCode" migName="ExecuteCommand" />
+<Migrate id="IScriptControl.AddObject" migName="AddHostObject" />
+<Migrate id="IScriptControl.AddObject.AddMembers" optional="DEF.Overload" />
+
+<Migrate id="IScriptModule.AddCode" migName="ExecuteCommand" />
+<Migrate id="IScriptModule.Run" migName="Execute" />
+<Migrate id="IScriptModule.Run.Parameters" status="ParamArray" />
+
+<Migrate id="IScriptModuleCollection.Add" migStatus="delete"/>
+<Migrate id="IScriptModuleCollection.Add.Object" status="ByVal" />
+
+<Migrate id="Module" migName="VBScriptEngine" role="define" migStatus="static"/>
+<Migrate id="ScriptControl" migPattern="VBScriptEngine" role="define" migStatus=""/>
+
+</Refactor>
+</RefactorLibrary>

@@ -1,0 +1,78 @@
+<RefactorLibrary>
+<!--
+Description: Map pvTreeViewX to a Winforms.TreeView with extension method support.
+-->
+<Refactor id="[pvtreex.ocx]" >
+
+   <Migrate migName="gmRTL.PVTreeViewLib" location="DoNotDeclare" />
+<!--
+Classes
+-->   
+   <Migrate id="PVTreeViewX" migName="gmRTL.PVTreeViewLib.PVTreeViewX" Role="Control" Static="On" />
+<!--
+Enums
+-->   
+
+<Migrate id="ADDCONSTANT" migName="PVTreeViewX.ADDCONSTANT" />
+<Migrate id="GETCONSTANT" migName="PVTreeViewX.GETCONSTANT" />
+<Migrate id="OPENCONSTANT" migName="PVTreeViewX.OPENCONSTANT" />
+<Migrate id="CLOSECONSTANT" migName="PVTreeViewX.CLOSECONSTANT" />
+<Migrate id="SELECTCONSTANT" migName="PVTreeViewX.SELECTCONSTANT" />
+
+<!--
+Logic API
+-->   
+   <!--Migrate id="_DPVTreeView3.Branches" migName="Nodes" /-->
+   <!--Migrate id="PVIBranch.Add" nPram="4" migPattern="%1d.Add(%4d)"/-->
+   
+
+<!--
+Event Handlers
+-->     
+
+<Migrate id="_DPVTreeView3Events.AfterSelChange" netargs="gmRTL.PVTreeViewLib.PVTreeViewX.AfterSelChangeEventArgs" netHandler="gmRTL.PVTreeViewLib.PVTreeViewX.AfterSelChangeEventHandler" />
+<Migrate id="_DPVTreeView3Events.BeforeExpand"   netargs="gmRTL.PVTreeViewLib.PVTreeViewX.BeforeExpandedEventArgs" netHandler="gmRTL.PVTreeViewLib.PVTreeViewX.BeforeExpandedEventHandler"  migName="BeforeExpanded" />
+<Migrate id="_DPVTreeView3Events.LButtonDown"    netargs="gmRTL.PVTreeViewLib.PVTreeViewX.LButtonDownEventArgs"    netHandler="gmRTL.PVTreeViewLib.PVTreeViewX.LButtonDownEventHandler" />
+<Migrate id="_DPVTreeView3Events.LButtonUp"      netargs="gmRTL.PVTreeViewLib.PVTreeViewX.LButtonUpEventArgs"      netHandler="gmRTL.PVTreeViewLib.PVTreeViewX.LButtonUpEventHandler" />
+<Migrate id="_DPVTreeView3Events.RButtonDown"    netargs="gmRTL.PVTreeViewLib.PVTreeViewX.RButtonDownEventArgs"    netHandler="gmRTL.PVTreeViewLib.PVTreeViewX.RButtonDownEventHandler" />
+<Migrate id="_DPVTreeView3Events.RButtonUp"      netargs="gmRTL.PVTreeViewLib.PVTreeViewX.RButtonUpEventArgs"      netHandler="gmRTL.PVTreeViewLib.PVTreeViewX.RButtonUpEventHandler" />
+<Migrate id="_DPVTreeView3Events.OLESetData"     netargs="gmRTL.PVTreeViewLib.PVTreeViewX.OLESetDataEventArgs"     netHandler="gmRTL.PVTreeViewLib.PVTreeViewX.OLESetDataEventHandler" />
+
+<!--
+Designer Code
+
+ AllowInPlaceEditing = false;                                                                                                                  default        
+ AlwaysShowSelection = true;                                                                                                                   default            
+ Appearance = 1;                                                                                                                               default        
+ CustomDefaultPicture = (System.Drawing.Image)resources.GetObject("FrxData0000.CustomDefaultPicture");                                         upgraded
+ DataMember = "";                                                                                                                              default        
+ EnableToolTips = false;                                                                                                                       default        
+ Font = new System.Drawing.Font("Courier New",8.25F,System.Drawing.FontStyle.Regular,System.Drawing.GraphicsUnit.Point,(System.Byte)(0));      upgrade        
+ ImageList = <name of ImageList used in code>                                                                                                  added          
+ Indent = 20;                                                                                                                                  default        
+ Location = new System.Drawing.Point(0, 32);                                                                                                   upgrade        
+ MultiColumnStyle = MigrationSupport.TreeView.MULTICOLCONSTANT.pvtMultiColVariableWidth;                                                       default        
+ Name = "tvAgencies";                                                                                                                          upgrade        
+ NumberOfColumns = 2;                                                                                                                          default        
+ OLEDragMode = MigrationSupport.TreeView.OLEDRAGCONSTANT.pvtOLEDragAutomatic;                                                                  default        
+ OLEDropMode = MigrationSupport.TreeView.OLEDROPCONSTANT.pvtOLEDropManual;                                                                     default        
+ Size = new System.Drawing.Size(257, 401);                                                                                                     upgrade        
+ TabIndex = 1;                                                                                                                                 upgrade        
+-->     
+
+<migClass id="NetControl.PVTreeViewX" migName="System.Windows.Forms.TreeView" parent="PVTreeViewX">
+   <property id="CustomDefaultPicture" type="FrxPicture" value="_DPVTreeView3.CustomDefaultPicture"/>
+   <property id="Enabled" type="Boolean" value="Enabled" default="true" />
+   <property id="Font" value="Font" type="FontInfo" nPram="3"
+             vbnPattern="New System.Drawing.Font(\s%1d\s, %2d!, %3d, System.Drawing.GraphicsUnit.Point, CType(0,Byte))"
+             cshPattern="new System.Drawing.Font(\s%1d\s, %2dF, %3d, System.Drawing.GraphicsUnit.Point, (System.Byte)(0))"
+   />
+   <property id="ImageList" default="this.ilTreePic" />
+   <property id="Location" value="(Left,Top)" nPram="2" migPattern="new System.Drawing.Point(%1d, %2d)" />
+   <property id="Name" type="string" value="SYM.name" />
+   <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d,%2d)" />
+   <property id="TabIndex" type="Integer" value="TabIndex" default="0" />
+</migClass>
+
+</Refactor>
+</RefactorLibrary>

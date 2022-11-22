@@ -1,0 +1,778 @@
+int RefactorCode_FindAssign(int varRoot,int iEnd)
+{
+   tCodeBlock codptr;
+   int        lastLev0;
+   int        icode;
+   int        addr;
+   int        opcd;
+   int        subcd;
+
+   codptr = Opcode.GetCode();
+   lastLev0 = 0;
+   for(icode = 0; icode >= 0; icode = Opcode.GetNext(codptr,icode,iEnd))
+   {
+      opcd = Opcode.GetOperation(codptr,icode,subcd);
+      if(opcd == OPC.LEV && subcd == 0) lastLev0 = icode;
+      else if(opcd == OPC.LDA && subcd == varRoot)
+      {
+         opcd = Opcode.GetOperation(codptr,icode+sizeof(OPC.LDA),subcd);
+         if(opcd == OPC.STR) return lastLev0;
+      }           
+   }
+   return 0;
+}
+
+int RefactorCode_ReplaceAssign(int iAssign, string replacement)
+{
+   tCodeBlock codptr;
+   int        nCode;
+   int        iEnd;
+   int        nDelete;
+   int        addr;
+
+   codptr = Opcode.GetCode();
+   nCode = Opcode.GetLength();
+   iEnd = Opcode.FindArgumentEnd(codptr,iAssign,nCode);
+   iAssign = iAssign + sizeof(OPC.LEV);
+   nDelete = iEnd - iAssign - sizeof(OPC.LSC) - sizeof(OPC.ARG);
+   if(nDelete > 0)
+   {
+      nCode = Opcode.DeleteCode(iAssign,nCode,nDelete);
+      Opcode.SetLength(nCode);
+   }
+   addr = Store.String(replacement);
+   Opcode.SetOperation(codptr,iAssign,OPC.LSC,addr);
+   return nDelete;
+}
+
+int Connection15_ConnectionString(int subRoot,int iStart,int iRefer)
+{
+   tCodeBlock codptr;
+   int        nCode;
+   int        opcd;
+   int        subcd;
+   int        icode;
+   int        iEnd;
+   int        localVar;
+   int        iAssign;
+   string     connect;
+   int        iPos;
+   int        semi;
+   int        nDelete;
+   int        addr;
+/*
+   Step 1: Verify that this is a local variable assignment to a property.
+*/
+   codptr = Opcode.GetCode();
+   nCode = Opcode.GetLength();
+   opcd = Opcode.GetOperation(codptr,iStart,localVar);
+   if(opcd != OPC.LDA) return 0;
+   icode = iRefer + sizeof(OPC.LLP);
+   opcd = Opcode.GetOperation(codptr,icode,subcd);
+   if(opcd != OPC.MEM) return 0;
+   icode = icode + sizeof(OPC.MEM);
+   opcd = Opcode.GetOperation(codptr,icode,subcd);
+   if(opcd != OPC.STR) return 0;
+/* 
+   Step 2: Look for a preceeding string assignent to this local variable.
+*/
+   iAssign = RefactorCode_FindAssign(localVar,iStart);
+   if(iAssign == 0) return 0;
+/*   
+   Step 3: Obtain the actual string value being assigned to the local variable.
+*/
+   iEnd = Opcode.FindArgumentEnd(codptr,iAssign,nCode);
+   connect = Opcode.GetString(iAssign,iEnd);
+   if(!connect) return 0;
+/*
+   Step 4: Remove the atrribute-values pairs that are not to be used.
+*/
+   iPos = Character.FindFirst(connect,0,"Driver=");
+   if(iPos)
+   {
+      iPos = iPos - 1;
+      semi = Character.FindFirst(connect,iPos,";");
+      if(semi)
+      {
+         connect = Character.Remove(connect,iPos,semi);
+      }
+   }
+   iPos = Character.FindFirst(connect,0,"DSN=");
+   if(iPos)
+   {
+      iPos = iPos - 1;
+      semi = Character.FindFirst(connect,iPos,";");
+      if(semi)
+      {
+         connect = Character.Remove(connect,iPos,semi);
+      }
+   }
+/*
+   Step 5: Replace the old string expression with the revised string.
+*/
+   nDelete = RefactorCode_ReplaceAssign(iAssign,connect);
+   iRefer = iRefer - nDelete;
+   return iRefer;
+}
+
+int checkForSet(int subRoot,int iStart,int iRefer)
+{
+   tCodeBlock codptr;
+   int        nCode;
+   int        opcd;
+   int        subcd;
+   int        icode;
+   int        varRoot;
+   tVariable  varInfo;
+
+    // The first set makes certain that the expected type of reference is present and it obtains the root of the Results variable.
+ 
+    codptr = Opcode.GetCode();
+    nCode = Opcode.GetLength();
+    icode = iRefer;
+    opcd = Opcode.GetOperation(codptr,icode,subcd);
+    if(opcd != OPC.REF) return 0;
+    icode = icode + sizeof(OPC.REF);
+    opcd = Opcode.GetOperation(codptr,icode,subcd);
+    if(opcd != OPC.ARG) return 0;
+    icode = icode + sizeof(OPC.ARG);
+    opcd = Opcode.GetOperation(codptr,icode,subcd);
+    if(opcd != OPC.CMD) return 0;
+    if(subcd != OPC.CMD.Set) return 0;
+
+    return 1;
+}
+
+
+int Command15_Execute(int subRoot,int iStart,int iRefer) 
+{
+    //System.LogMessage("Command15_Execute::sub<" + Symbol.FullName(subRoot,-1) + "> iStart=" + iStart + " iRefer=" + iRefer);
+    return locFix_Execute(subRoot,iStart,iRefer,"Command");
+}
+
+int Connection15_Execute(int subRoot,int iStart,int iRefer) 
+{
+    //System.LogMessage("Connection15_Execute::sub<" + Symbol.FullName(subRoot,-1) + "> iStart=" + iStart + " iRefer=" + iRefer);
+    return locFix_Execute(subRoot,iStart,iRefer,"Connection");
+}
+
+int Recordset15_Open(int subRoot, int iStart, int iRefer)
+{
+    //System.LogMessage("Recordset15_Open::sub<" + Symbol.FullName(subRoot,-1) + "> iStart=" + iStart + " iRefer=" + iRefer);
+    //return RearrangeRecordsetOpenDataReader(subRoot,iStart,iRefer);
+    
+    return RemoveRecordsetCtor(subRoot, iStart, iRefer);
+    
+    //return 0;
+}
+
+
+int Command15_Parameters(int subRoot,int icode,int iRefer)
+{
+   int         nCode;
+   tCodeBlock  codptr;
+   int         iEnd;
+   int         opcd;
+   int         subc;
+   int         parameters;  
+   int         paramTypeLoc;
+   
+   nCode = Opcode.GetLength();
+   codptr = Opcode.GetCode();
+   iEnd = Opcode.FindArgumentEnd(codptr,iRefer+7,nCode);
+   opcd = Opcode.GetOperation(codptr,iEnd,subc);
+   if(opcd != OPC.COL || subc != OPC.COL.Item) return 0;
+   
+   paramTypeLoc = iEnd-(sizeof(OPC.ARG));
+   opcd = Opcode.GetOperation(codptr,paramTypeLoc,subc);
+   if (opcd == OPC.ARG && subc == OPC.ARG.String)
+   {
+      parameters = Symbol.FindIdentifier("ADODB.DotNet.StringParameters");
+   }
+   else
+   {
+      parameters = Symbol.FindIdentifier("ADODB.DotNet.NonStringParameters");
+   }
+   
+   nCode = Opcode.ExpandCode(iEnd,nCode,sizeof(OPC.PAT) - sizeof(OPC.COL));
+   Opcode.SetLength(nCode);
+   Opcode.SetOperation(codptr,iEnd,OPC.PAT,parameters);
+   return iRefer;
+}
+
+/*
+TODO: Make the  CommentOut only apply to the method.  It is currently being applied to rs as well and rs disappears from a later call.
+This is suspected to be because its commented out.  
+*/
+int RearrangeRecordsetOpenDataReader(int subRoot, int iStart, int iRefer)
+{
+   tCodeBlock codptr;
+   int        nCode;
+   int        opcd;
+   int        subcd;
+   int        icode;
+   int        varRoot;
+   tVariable  varInfo;
+   int        pcnt;
+   int        nOper;
+   tCodeBlock setConn;
+   int        rc;
+   int        lastVar = 0;
+   int        lastVarLoc = 0;
+   int        pat;
+   int        lastNew = -1;
+
+   codptr = Opcode.GetCode();
+   nCode = Opcode.GetLength();
+/*
+   Step 1: Make certain the reference is present and obtain the root of the results
+   variable.
+*/
+   //Find the last New before the Open Recordset
+   for(icode = 0; icode < irefer; icode = Opcode.GetNext(codptr,icode,nCode))
+   {
+      opcd = Opcode.GetOperation(codptr,icode,subcd);
+      if (opcd == OPC.NEW) lastNew = icode + sizeof(OPC.NEW);
+   }
+   
+   //If not found, drop out
+   if (lastNew == -1) return 0;
+   
+   //Grab the variable which should be the Recordset
+   opcd = Opcode.GetOperation(codptr,lastNew,varRoot);
+
+   icode = lastNew;
+/*
+   Step 2: Set the DEADCODE property of the results variable to True to block its declaration.
+*/
+   varInfo = Store.DeltaVector(varRoot);
+   varInfo.DeadCode = True;
+/*
+   Step 3: Change the SET command to an using command and insert the type declaration code in it
+   for the results variable.
+*/
+
+   
+   System.LogMessage("Adding Using");
+
+   Opcode.SetOperation(codptr,icode,OPC.IFS,OPC.IFS.Using);
+   nCode = Opcode.ExpandCode(icode,nCode,sizeof(OPC.TYV));
+   iRefer = iRefer + sizeof(OPC.TYV);
+   Opcode.SetLength(nCode);
+   Opcode.SetOperation(codptr,icode,OPC.TYV,varRoot);
+   
+   //System.LogMessage("icode:" + icode);
+   //Opcode.DumpCode(icode-20, icode+20);
+   
+   return iRefer;
+}
+
+int Recordset15_EOF(int subRoot,int iStart,int iRefer)
+{
+   int        nCode;
+   tCodeBlock codptr;
+   int        opcd;
+   int        subcd;
+   int        icode;
+   
+   /*
+   Works
+   240 |           |           |                      | NEW    | 254 If Not adrstLoad.EOF Then
+   243 |           |           |                      | LEV    | Nest0
+   245 |     1.245 |     1.245 | ADODB.Recordset      | LDA    | Variable:adrstLoad:453245
+   250 |     2.250 |     1.245 | Boolean              | LLP    | Component:EOF:295312
+   255 |     1.245 |     1.245 | Boolean              | MEM    | Child
+   257 |     1.245 |     1.245 | Boolean              | NOT    | Arithmetic
+   259 |     1.245 |           |                      | ARG    | Boolean
+   261 |     1.245 |           |                      | IFS    | IfStatement
+   */
+   
+/*
+    Breaks
+   193 |           |           |                      | NEW    | 131 Do While Not .EOF
+   196 |           |           |                      | LEV    | Nest0
+   198 |     1.198 |     1.198 | ADODB.Recordset      | LDA    | Variable:adrstConnections:438834
+   203 |     2.203 |     1.198 | Boolean              | LLP    | Component:EOF:295312
+   208 |     1.198 |     1.198 | Boolean              | MEM    | Child
+   210 |     1.198 |           |                      | ARG    | Boolean
+   212 |     1.198 |           |                      | NOT    | Arithmetic
+   214 |     1.198 |           |                      | IFS    | DoWhile
+   */
+   nCode = Opcode.GetLength();
+   codptr = Opcode.GetCode();
+   icode = iRefer + sizeof(OPC.LLP);
+   opcd = Opcode.GetOperation(codptr,icode,subcd);
+   if(opcd != OPC.MEM) return 0;
+   icode = icode + sizeof(OPC.MEM);
+   opcd = Opcode.GetOperation(codptr,icode,subcd);
+   
+   if(opcd == OPC.NOT) 
+   {
+       nCode = Opcode.DeleteCode(icode,nCode,sizeof(OPC.NOT));
+   }
+   else if (opcd == OPC.ARG)
+   {   
+       icode = icode + sizeof(OPC.ARG);
+       opcd = Opcode.GetOperation(codptr,icode,subcd);
+      
+       if(opcd != OPC.NOT) 
+       {
+           return 0;
+       }
+       
+       nCode = Opcode.DeleteCode(icode,nCode,sizeof(OPC.NOT));
+   }
+   else
+   {
+      return 0;
+   }
+   
+   Opcode.SetLength(nCode);
+   return iRefer;
+}
+
+int RemoveRecordsetCtor(int subRoot, int iStart, int iRefer)
+{
+   tCodeBlock codptr;
+   int        pcnt;
+   int        nOper;
+   int        iCode;
+   tCodeBlock patt1;
+   tCodeBlock patt2;
+   int        rc;
+   int        opcd;
+   int        subcd;
+   int        varRoot; 
+   int        lastNew = -1;
+   int        mstart = 0;
+
+   codptr = Opcode.GetCode();
+   pcnt = Opcode.GetLength();
+
+   //Find the last New before the Open Recordset
+   for(icode = 0; icode < irefer; icode = Opcode.GetNext(codptr,icode,pcnt))
+   {
+      opcd = Opcode.GetOperation(codptr,icode,subcd);
+      if (opcd == OPC.NEW) lastNew = icode + sizeof(OPC.NEW);
+   }
+   
+   //If not found, drop out
+   if (lastNew == -1) return 0;
+   
+   //Grab the variable which should be the Recordset
+   opcd = Opcode.GetOperation(codptr,lastNew,varRoot);
+   
+   
+   patt1 = CodePattern.Read("LDA,LEV,LLP,ARG,SPV.New,CMD.Set",nOper);
+   patt2 = CodePattern.Read("LDA,LEV,LLP,LLP,MEM,ARG,SPV.New,CMD.Set",nOper);
+   
+   
+   
+   //Find the last New before the Open Recordset
+   for(icode = 0; icode < irefer; icode = Opcode.GetNext(codptr,icode,pcnt))
+   {
+      opcd = Opcode.GetOperation(codptr,icode,subcd);
+      if (opcd == OPC.LDA && subcd == varRoot)
+      {
+          rc = CodePattern.Match(icode,patt1);
+          if (rc == 0) rc = CodePattern.Match(icode,patt2);
+            
+          if (rc != 0)
+          {
+              mstart = rc - sizeof(OPC.CMT);
+              //System.LogMessage("Removing Recordset CTOR " + mstart);
+              iRefer = Opcode.CommentOut(mstart,OPC.CMT.Delete);
+              return iRefer;
+              //Opcode.DumpCode(icode - 30, icode + 30);
+          }
+      }
+   }
+   
+   /*
+   435 |     1.435 |     1.435 | ADODB.Recordset      | LDA    | Variable:adrstLoad:445310                                                                           
+   440 |     1.435 |     1.435 | ADODB.Recordset      | LEV    | Nest0                                                                                               
+   442 |     2.442 |     2.442 | ADODB.Recordset      | LLP    | Coclass:Recordset:331379                                                                            
+   447 |     2.442 |     1.435 | ADODB.Recordset      | ARG    | Object                                                                                              
+   449 |     2.442 |     2.449 | Variant              | SPV    | New                                                                                                 
+   451 |           |     3.451 | Void                 | CMD    | Set   
+   
+   
+    29 |      1.29 |      1.29 | ADODB.Recordset      | LDA    | Variable:adrstLoad:441998
+    34 |      1.29 |      1.29 | ADODB.Recordset      | LEV    | Nest0
+    36 |      2.36 |      2.36 | Void                 | LLP    | Library:ADODB:298524
+    41 |      3.41 |      2.36 | ADODB.Recordset      | LLP    | Coclass:Recordset:331379
+    46 |      2.36 |      2.36 | ADODB.Recordset      | MEM    | Child
+    48 |      2.36 |      1.29 | ADODB.Recordset      | ARG    | Object
+    50 |      2.36 |      2.50 | Variant              | SPV    | New
+    52 |           |      3.52 | Void                 | CMD    | Set
+   */
+   
+   //Opcode.DumpCode(lastNew-100, lastNew+100);
+   
+   return 0;
+   //iRefer = Opcode.CommentOut(lastNew-2,OPC.CMT.Delete);
+   //return iRefer;
+}
+
+/*
+TODO: Make the  CommentOut only apply to the method.  It is currently being applied to rs as well and rs disappears from a later call.
+This is suspected to be because its commented out.  
+*/
+int RearrangeRecordsetOpenDataset(int subRoot, int iStart, int iRefer)
+{
+   tCodeBlock codptr;
+   int        pcnt;
+   int        nOper;
+   int        iCode;
+   tCodeBlock setConn;
+   int        rc;
+   int        opcd;
+   int        subcd;
+   int        varRoot; 
+   int        lastVar = 0;
+   int        lastVarLoc = 0;
+   int        pat;
+   int        lastNew = -1;
+
+   codptr = Opcode.GetCode();
+   pcnt = Opcode.GetLength();
+
+   //Find the last New before the Open Recordset
+   for(icode = 0; icode < irefer; icode = Opcode.GetNext(codptr,icode,pcnt))
+   {
+      opcd = Opcode.GetOperation(codptr,icode,subcd);
+      if (opcd == OPC.NEW) lastNew = icode + sizeof(OPC.NEW);
+   }
+   
+   //If not found, drop out
+   if (lastNew == -1) return 0;
+   
+   //Grab the variable which should be the Recordset
+   opcd = Opcode.GetOperation(codptr,lastNew,varRoot);
+   
+   //Init code pattern
+   setConn = CodePattern.Read("LDA,LLP,MEM,LEV,LDA",nOper);
+
+   //Find varRoot.ActiveConnection = conn Then use conn to add to Open if open has a null connection
+   for(icode = 0; icode < lastNew; icode = Opcode.GetNext(codptr,icode,pcnt))
+   {
+      rc = CodePattern.Match(icode,setConn);
+      if(rc != 0)
+      {
+         opcd = Opcode.GetOperation(codptr,icode,subcd);
+         
+         //Make sure the variables match
+         if (subcd == varRoot)
+         {
+            //Get variable of the new active connection for the Open call
+            lastVarLoc = rc-sizeof(OPC.LDA);
+            opcd = Opcode.GetOperation(codptr,lastVarLoc,subcd);
+            
+            //System.LogMessage("Found Active Connection variable " + lastVarLoc + "  vr:" + subcd);
+            
+            lastVar = subcd;
+            break;
+         }
+      }
+   }
+   
+   //If no activeconnection found drop out
+   if (lastVarLoc == 0) return 0;
+   
+   //Comment out RecordSet.ActiveConnect = variable
+   int delta = 0;
+   
+   //Scan for a null connection parameter
+   setConn = CodePattern.Read("LDA,LEV,LDA,ARG,LEV,SPV.Null",nOper);
+   
+   rc = CodePattern.Match(lastNew,setConn);
+   
+   //If it is not null, drop out
+   if(rc == 0) return iRefer;
+   
+   //Change SPV.Null into LDA lastVar
+   rc = rc - sizeof(OPC.SPV);
+   
+   delta = sizeof(OPC.LDA) - sizeof(OPC.SPV);
+   pcnt = Opcode.ExpandCode(rc, pcnt, delta);
+   Opcode.SetOperation(codptr,rc,OPC.LDA,lastVar);
+   
+   //Update iRefer to properly handle code change
+   iRefer = iRefer + delta;
+   //When updating code, you need to Set new Length
+   Opcode.SetLength(pcnt);
+   
+   return iRefer;
+}
+
+
+int __Recordset15_Close(int subRoot,int icode,int iRefer)
+{
+   int         nCode;
+   tCodeBlock  codptr;
+
+   iRefer = Opcode.CommentOut(iRefer,OPC.CMT.Delete);
+   iRefer = iRefer + sizeof(OPC.CMT);
+   nCode = Opcode.GetLength();
+   codptr = Opcode.GetCode();
+   nCode = Opcode.ExpandCode(iRefer,nCode,sizeof(OPC.IFS));
+   Opcode.SetLength(nCode);
+   Opcode.SetOperation(codptr,iRefer,OPC.IFS,OPC.IFS.EndUsing);
+   
+   System.LogMessage("Adding EndUsing");
+   return iRefer;
+}
+
+
+int Recordset15_State(int subRoot,int icode,int iRefer)
+{
+    //System.LogMessage("RecordSet_State iRefer:" + iRefer  + "  icode:" + icode);
+    //Opcode.DumpCode(0, 100);
+    return 0;
+}
+/*
+int Recordset15_State(int subRoot,int icode,int iRefer)
+
+   //System.LogMessage("RecordSet_State");
+   
+   //iRefer = Opcode.CommentOut(iRefer,OPC.CMT.CommentOut);
+   //return iRefer;
+    Opcode.DumpCode(iRefer - 30, iRefer + 30);
+    return iRefer;
+
+    }
+    */
+
+int locFix_Execute(int subRoot,int iStart,int iRefer, string type) 
+{
+   tCodeBlock codptr;
+   int        pcnt;
+   int        nOper;
+   tCodeBlock callExecute;
+   int        rc;
+   int        opcd;
+   int        subcd;
+   int        pat;
+   string     str; 
+   int        log;
+   
+   log = 0;
+   
+   codptr = Opcode.GetCode();
+   //Opcode.DumpCode(irefer,irefer+16);
+   
+   str = Symbol.FullName(subRoot,-1);
+   //if (log) Opcode.DumpCode(0, irefer+20);
+   
+   pcnt = Opcode.GetLength();
+   callExecute = CodePattern.Read("LLP,MEM.Child,Argument,Argument,Argument,CUF.Args3",nOper);
+   rc = CodePattern.Match(iRefer,callExecute);
+   if(rc == 0) return 0;
+   opcd = Opcode.GetOperation(codptr,rc,subcd);
+   if(opcd == OPC.IOF && subcd == OPC.IOF.SystemFunc)
+   {
+      pat = Symbol.FindIdentifier("ADODB.DotNet." + type + "_Execute_NonQuery",0);
+      //System.LogMessage("ADODB.DotNet.ExecuteNonQuery");
+   }
+   else
+   {
+      pat = Symbol.FindIdentifier("ADODB.DotNet." + type + "_Execute_ReturnRecordset",0);
+      //System.LogMessage("ADODB.DotNet.ExecuteReturnRecordSet");
+   }
+   rc = rc - sizeof(OPC.CUF);
+   pcnt = Opcode.ExpandCode(rc,pcnt,sizeof(OPC.PAT) - sizeof(OPC.CUF));
+   Opcode.SetOperation(codptr,rc,OPC.PAT,pat);
+   pcnt = Opcode.DeleteCode(iRefer,pcnt,sizeof(OPC.LDA) + sizeof(OPC.MEM));
+   Opcode.SetLength(pcnt);
+   return iRefer;
+}
+
+int Connection15_State(int subRoot,int iStart,int iRefer)
+{
+   //System.LogMessage("Connection15_State::sub<" + Symbol.FullName(subRoot,-1) + "> iStart=" + iStart + " iRefer=" + iRefer);
+   return 0;
+}
+
+int Field20_Value(int subRoot,int iStart,int iRefer)
+{
+   int         nOper;
+   int         nCode;
+   int         rc;
+   tCodeBlock  codptr;
+   tCodeBlock  patt1;
+   int         log;
+   string      str;
+   int         opcd;
+   int         subcd;
+   int         varRoot;
+   int         icode;
+   
+   nCode = Opcode.GetLength();
+   codptr = Opcode.GetCode();
+
+   opcd = Opcode.GetOperation(codptr,iRefer-sizeof(OPC.LDA),varRoot);
+   patt1 = CodePattern.Read("LLP,MEM.Child,TYV,IFS.ForEach",nOper);
+   
+   for(icode = 0; icode >= 0; icode = Opcode.GetNext(codptr,icode,iRefer))
+   {
+      opcd = Opcode.GetOperation(codptr,icode,subcd);
+      if (opcd == OPC.LDA && subcd == varRoot)
+      {
+           rc = CodePattern.Match(icode+sizeof(OPC.LDA)+sizeof(OPC.LDA),patt1);
+           if(rc > 0) return 0;
+      }
+   }
+   
+   /*
+   str = Symbol.FullName(subRoot,-1);
+   if (str == "NutPro.MyPyramid.ReturnMyPyramidDailyFoodAmounts")
+   {
+        log = 1;
+   }
+   if (log) System.LogMessage("var:" + varRoot);
+   if (log) Opcode.DumpCode(iRefer - 50, iRefer+20);
+   if (log) System.LogMessage("Recordset15_Fields::sub<" + Symbol.FullName(subRoot,-1) + ", " + Symbol.FullName(subRoot,0) + "> icode=" + icode + " iRefer=" + iRefer);
+   */
+   
+   nCode = Opcode.DeleteCode(iRefer,nCode,sizeof(OPC.LLP) + sizeof(OPC.MEM));
+   Opcode.SetLength(nCode);
+   return iRefer;
+}
+
+int Recordset15_Fields(int subRoot,int icode,int iRefer)
+{
+   int         nOper;
+   int         nCode;
+   int         rc;
+   tCodeBlock  codptr;
+   tCodeBlock  patt1;
+   int         log;
+   string      str;
+   
+/*
+LLP    | Component:Fields:986390
+   275 |     2.265 |     2.265 | ADODB.Fields         | MEM    | Child
+   277 |           |           |                      | IFS    | ForEach
+   */
+   nCode = Opcode.GetLength();
+   codptr = Opcode.GetCode();
+   
+   patt1 = CodePattern.Read("LLP,MEM.Child,TYV,IFS.ForEach",nOper);
+   rc = CodePattern.Match(iRefer,patt1);
+   if(rc > 0) return 0;
+   
+   nCode = Opcode.DeleteCode(iRefer,nCode,sizeof(OPC.LLP) + sizeof(OPC.MEM));
+   Opcode.SetLength(nCode);
+   return iRefer;
+}
+
+/*
+We don't want to delete all MoveNext, just the ones in a while EOF loop
+The others might need helper classes
+*/
+int Recordset15_MoveNext(int subRoot,int icode,int iRefer)
+{
+   //System.LogMessage("Removing MoveNext");
+   
+   iRefer = Opcode.CommentOut(iRefer,OPC.CMT.Delete);
+   return iRefer;
+}
+
+/*
+We don't want to delete all MoveFirst
+*/
+int Recordset15_MoveFirst(int subRoot,int icode,int iRefer)
+{
+   //System.LogMessage("Removing MoveFirst");
+   
+   iRefer = Opcode.CommentOut(iRefer,OPC.CMT.CommentOut);
+   return iRefer;
+}
+
+
+int Command15_CommandText(int subRoot,int iStart,int iRefer)
+{
+   tCodeBlock codptr;
+   int        nCode;
+   int        opcd;
+   int        subcd;
+   int        icode;
+   int        sqlString;
+   int        sqlVar;
+   string     query;
+   int        iAssign;
+   int        index;
+   int        iPos;
+   int        lPos;
+   int        nDelete;
+   int        createCommand;
+   int        iEnd;
+   
+/*
+   Step 1: Make certain that this is a valid CreateQuery call and obtain the variable that contains the
+   SQL Query 
+*/
+   codptr = Opcode.GetCode();
+   nCode = Opcode.GetLength();
+   icode = iRefer;
+   
+   
+   sqlString = icode - (sizeof(OPC.ARG) + sizeof(OPC.LDA) + sizeof(OPC.LDA));
+   opcd = Opcode.GetOperation(codptr,sqlString,sqlVar);
+
+/* 
+   Step 2: Look for a preceeding string assignent to this local variable.
+*/
+   iAssign = RefactorCode_FindAssign(sqlVar,iRefer);
+   if(iAssign == 0) return 0;
+/*   
+   Step 3: Obtain the actual string value being assigned to the local variable.
+*/
+   iEnd = Opcode.FindArgumentEnd(codptr,iAssign,nCode);
+   query = Opcode.GetString(iAssign,iEnd);
+   if(!query) return 0;
+/*
+   Step 4: If there is a constant query string replace the ?'s with @index and
+   if necessary relace it in the code.
+*/ 
+   if(iAssign)
+   {
+      iPos = 0;
+      for(index = 0; index < 10; index = index + 1)
+      {
+         lPos = Character.FindFirst(query,iPos,"?");
+         if(!lPos) break;
+         iPos = iPos + lPos - 1;
+         query = Character.Remove(query,iPos,1);
+         query = Character.Insert(query,iPos,"@" + index);
+      }
+      if(iPos != 0)
+      {   
+         nDelete = RefactorCode_ReplaceAssign(iAssign,query);
+         iRefer = iRefer - nDelete;
+         sqlString = sqlString - nDelete;
+      }
+   }
+/*
+   Step 5: Replace the CreateQuery call with a CreateCommannd call.
+*/ 
+   iEnd = sqlString;
+   opcd = Opcode.GetOperation(codptr,iEnd,subcd);
+   if(opcd != OPC.CUF) return 0;
+   iEnd = iEnd + sizeof(OPC.CUF);
+   opcd = Opcode.GetOperation(codptr,iEnd,subcd);
+   if(opcd != OPC.REF) return 0;
+   iEnd = iEnd + sizeof(OPC.REF);
+   opcd = Opcode.GetOperation(codptr,iEnd,subcd);
+   if(opcd != OPC.ARG) return 0;
+   iEnd = iEnd + sizeof(OPC.ARG);
+   opcd = Opcode.GetOperation(codptr,iEnd,subcd);
+   if(opcd != OPC.CMD) return 0;
+   iEnd = iEnd + sizeof(OPC.CMD);
+   nDelete = iEnd - sqlString - sizeof(OPC.PAT);
+   createCommand = Symbol.FindIdentifier("RDO.DotNet.CreateCommand");
+   nCode = Opcode.DeleteCode(sqlString,nCode,6);
+   Opcode.SetLength(nCode);
+   Opcode.SetOperation(codptr,sqlString,OPC.PAT,createCommand);
+   return iRefer;
+}

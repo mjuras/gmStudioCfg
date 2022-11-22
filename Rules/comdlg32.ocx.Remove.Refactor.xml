@@ -1,0 +1,28 @@
+<RefactorLibrary>
+<!--
+Description: rules to assist with upgrading CommonDialog to Winforms Dialog components
+Remove the control and migrate a few members to the newer API, but generally
+this just sets the stage to use a Reathor to rework the calling code with a hand-coded logic.
+-->
+<Refactor id="[comdlg32.ocx]" >
+   <Migrate migName="Remove.CommonDialog" libType="Internal" location="DoNotDeclare" AssemblyName="Remove.CommonDialog" />
+   <Migrate id="ICommonDialog.DialogTitle" migName="Title" />
+   <Migrate id="ICommonDialog.InitDir" migName="InitialDirectory" />
+   <Migrate id="ICommonDialog.Flags" migName="Options" migStatus="NotImplemented" />
+   <Migrate id="ICommonDialog.CancelError" migStatus="NotImplemented" />
+   <Migrate id="ICommonDialog.ShowOpen" migName="ShowDialogOpen" />
+   <Migrate id="ICommonDialog.ShowSave" migName="ShowDialogSave" />
+   <Migrate id="ICommonDialog.ShowColor" migName="ShowDialogColor" />
+   <Migrate id="ICommonDialog.ShowFont" type="Variant" migName="ShowDialogFont" />
+   <Migrate id="ICommonDialog.ShowPrinter" migName="ShowDialogPrinter" />
+   <Migrate id="ICommonDialog.ShowHelp" migName="ShowDialogHelp" />
+   <Migrate id="CommonDialog" migName="CommonDialog" Role="Define" />
+   <migClass id="NetControl.CommonDialog"
+             migName="Remove.OpenFileDialog"
+             parent="CommonDialog"
+   >
+   <!-- no designer code for this component -->
+   </migClass>    
+</Refactor>
+
+</RefactorLibrary>

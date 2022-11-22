@@ -1,0 +1,1355 @@
+<DescriptionFile>
+<!-- 
+Rules to upgrade ADODB to System.Data with Helpers 
+-->
+<library id="GM.ADODB_to_System.Data.Odbc.dll"
+         name="ADODB"
+         uuid="B691E011-1797-432E-907A-4D8C69339129"
+         netVersion="6.0"
+         source="msado15.dll"
+         location="DoNotDeclare"
+         migName="System.Data"
+         type="Native"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="_Collection"/>
+   <class id="_DynaCollection"/>
+   <class id="_ADO"/>
+   <class id="Properties"/>
+   <class id="Property"/>
+   <class id="Error"/>
+   <class id="Errors"/>
+   <class id="Command15"/>
+   <class id="_Connection"/>
+   <class id="Connection15"/>
+   <class id="_Recordset"/>
+   <class id="Recordset21"/>
+   <class id="Recordset20"/>
+   <class id="Recordset15"/>
+   <class id="Fields"/>
+   <class id="Fields20"/>
+   <class id="Fields15"/>
+   <class id="Field"/>
+   <class id="Field20"/>
+   <class id="_Parameter"/>
+   <class id="Parameters"/>
+   <class id="Command25"/>
+   <class id="_Command"/>
+   <class id="ConnectionEventsVt"/>
+   <class id="RecordsetEventsVt"/>
+   <class id="ConnectionEvents"/>
+   <class id="RecordsetEvents"/>
+   <class id="ADOConnectionConstruction15"/>
+   <class id="ADOConnectionConstruction"/>
+   <class id="_Record"/>
+   <class id="_Stream"/>
+   <class id="ADORecordConstruction"/>
+   <class id="ADOStreamConstruction"/>
+   <class id="ADOCommandConstruction"/>
+   <class id="ADORecordsetConstruction"/>
+   <class id="Field15"/>
+   <coclass id="Connection"/>
+   <coclass id="Record"/>
+   <coclass id="Stream"/>
+   <coclass id="Command"/>
+   <coclass id="Recordset"/>
+   <coclass id="Parameter"/>
+   <enumeration id="CursorTypeEnum">
+      <entry id="adOpenUnspecified" value="0xffffffff"/>
+      <entry id="adOpenForwardOnly" value="0"/>
+      <entry id="adOpenKeyset" value="1"/>
+      <entry id="adOpenDynamic" value="2"/>
+      <entry id="adOpenStatic" value="3"/>
+   </enumeration>
+   <enumeration id="CursorOptionEnum">
+      <entry id="adHoldRecords" value="256"/>
+      <entry id="adMovePrevious" value="512"/>
+      <entry id="adAddNew" value="0x1000400"/>
+      <entry id="adDelete" value="0x1000800"/>
+      <entry id="adUpdate" value="0x1008000"/>
+      <entry id="adBookmark" value="8192"/>
+      <entry id="adApproxPosition" value="16384"/>
+      <entry id="adUpdateBatch" value="0x10000"/>
+      <entry id="adResync" value="0x20000"/>
+      <entry id="adNotify" value="0x40000"/>
+      <entry id="adFind" value="0x80000"/>
+      <entry id="adSeek" value="0x400000"/>
+      <entry id="adIndex" value="0x800000"/>
+   </enumeration>
+   <enumeration id="LockTypeEnum">
+      <entry id="adLockUnspecified" value="0xffffffff"/>
+      <entry id="adLockReadOnly" value="1"/>
+      <entry id="adLockPessimistic" value="2"/>
+      <entry id="adLockOptimistic" value="3"/>
+      <entry id="adLockBatchOptimistic" value="4"/>
+   </enumeration>
+   <enumeration id="ExecuteOptionEnum">
+      <entry id="adOptionUnspecified" value="0xffffffff"/>
+      <entry id="adAsyncExecute" value="16"/>
+      <entry id="adAsyncFetch" value="32"/>
+      <entry id="adAsyncFetchNonBlocking" value="64"/>
+      <entry id="adExecuteNoRecords" value="128"/>
+      <entry id="adExecuteStream" value="1024"/>
+      <entry id="adExecuteRecord" value="2048"/>
+   </enumeration>
+   <enumeration id="ConnectOptionEnum">
+      <entry id="adConnectUnspecified" value="0xffffffff"/>
+      <entry id="adAsyncConnect" value="16"/>
+   </enumeration>
+   <enumeration id="ObjectStateEnum" migName="System.Data.ConnectionState" migStatus="External">
+      <entry id="adStateClosed" value="0" migName="Closed"/>
+      <entry id="adStateOpen" value="1" migName="Open"/>
+      <entry id="adStateConnecting" value="2" migName="Connecting"/>
+      <entry id="adStateExecuting" value="4" migName="Executing"/>
+      <entry id="adStateFetching" value="8" migName="Fetching"/>
+   </enumeration>
+   <enumeration id="CursorLocationEnum">
+      <entry id="adUseNone" value="1" migStatus="Delete"/>
+      <entry id="adUseServer" value="2"/>
+      <entry id="adUseClient" value="3"/>
+      <entry id="adUseClientBatch" value="3" migName="adUseClient"/>
+   </enumeration>
+   <enumeration id="DataTypeEnum" migName="System.Data.SqlDbType" migStatus="External">
+      <entry id="adEmpty" value="0" migName="Variant"/>
+      <entry id="adTinyInt" value="16" migName="TinyInt"/>
+      <entry id="adSmallInt" value="2" migName="SmallInt"/>
+      <entry id="adInteger" value="3" migName="Int"/>
+      <entry id="adBigInt" value="20" migName="BigInt"/>
+      <entry id="adUnsignedTinyInt" value="17"/>
+      <entry id="adUnsignedSmallInt" value="18"/>
+      <entry id="adUnsignedInt" value="19"/>
+      <entry id="adUnsignedBigInt" value="21"/>
+      <entry id="adSingle" value="4"/>
+      <entry id="adDouble" value="5" migName="Float"/>
+      <entry id="adCurrency" value="6" migName="Money"/>
+      <entry id="adDecimal" value="14" migName="Decimal"/>
+      <entry id="adNumeric" value="131" migName="Decimal"/>
+      <entry id="adBoolean" value="11" migName="Bit"/>
+      <entry id="adError" value="10"/>
+      <entry id="adUserDefined" value="132"/>
+      <entry id="adVariant" value="12"/>
+      <entry id="adIDispatch" value="9"/>
+      <entry id="adIUnknown" value="13"/>
+      <entry id="adGUID" value="72"/>
+      <entry id="adDate" value="7" migName="DateTime"/>
+      <entry id="adDBDate" value="133" migName="DateTime"/>
+      <entry id="adDBTime" value="134" migName="Time"/>
+      <entry id="adDBTimeStamp" value="135" migName="DateTime"/>
+      <entry id="adBSTR" value="8" migName="NChar"/>
+      <entry id="adChar" value="129" migName="Char"/>
+      <entry id="adVarChar" value="200" migName="VarChar"/>
+      <entry id="adLongVarChar" value="201" migName="VarChar"/>
+      <entry id="adWChar" value="NChar" migName="NChar"/>
+      <entry id="adVarWChar" value="202"/>
+      <entry id="adLongVarWChar" value="203" migName="NText"/>
+      <entry id="adBinary" value="128"/>
+      <entry id="adVarBinary" value="204" migName="Binary"/>
+      <entry id="adLongVarBinary" value="205"/>
+      <entry id="adChapter" value="136" migStatus="NotImplemented"/>
+      <entry id="adFileTime" value="64"/>
+      <entry id="adPropVariant" value="138"/>
+      <entry id="adVarNumeric" value="139" migName="Decimal"/>
+      <entry id="adArray" value="8192"/>
+   </enumeration>
+   <enumeration id="FieldAttributeEnum">
+      <entry id="adFldUnspecified" value="0xffffffff"/>
+      <entry id="adFldMayDefer" value="2"/>
+      <entry id="adFldUpdatable" value="4"/>
+      <entry id="adFldUnknownUpdatable" value="8"/>
+      <entry id="adFldFixed" value="16"/>
+      <entry id="adFldIsNullable" value="32"/>
+      <entry id="adFldMayBeNull" value="64"/>
+      <entry id="adFldLong" value="128"/>
+      <entry id="adFldRowID" value="256"/>
+      <entry id="adFldRowVersion" value="512"/>
+      <entry id="adFldCacheDeferred" value="4096"/>
+      <entry id="adFldIsChapter" value="8192"/>
+      <entry id="adFldNegativeScale" value="16384"/>
+      <entry id="adFldKeyColumn" value="32768"/>
+      <entry id="adFldIsRowURL" value="0x10000"/>
+      <entry id="adFldIsDefaultStream" value="0x20000"/>
+      <entry id="adFldIsCollection" value="0x40000"/>
+   </enumeration>
+   <enumeration id="EditModeEnum">
+      <entry id="adEditNone" value="0"/>
+      <entry id="adEditInProgress" value="1"/>
+      <entry id="adEditAdd" value="2"/>
+      <entry id="adEditDelete" value="4"/>
+   </enumeration>
+   <enumeration id="RecordStatusEnum">
+      <entry id="adRecOK" value="0"/>
+      <entry id="adRecNew" value="1"/>
+      <entry id="adRecModified" value="2"/>
+      <entry id="adRecDeleted" value="4"/>
+      <entry id="adRecUnmodified" value="8"/>
+      <entry id="adRecInvalid" value="16"/>
+      <entry id="adRecMultipleChanges" value="64"/>
+      <entry id="adRecPendingChanges" value="128"/>
+      <entry id="adRecCanceled" value="256"/>
+      <entry id="adRecCantRelease" value="1024"/>
+      <entry id="adRecConcurrencyViolation" value="2048"/>
+      <entry id="adRecIntegrityViolation" value="4096"/>
+      <entry id="adRecMaxChangesExceeded" value="8192"/>
+      <entry id="adRecObjectOpen" value="16384"/>
+      <entry id="adRecOutOfMemory" value="32768"/>
+      <entry id="adRecPermissionDenied" value="0x10000"/>
+      <entry id="adRecSchemaViolation" value="0x20000"/>
+      <entry id="adRecDBDeleted" value="0x40000"/>
+   </enumeration>
+   <enumeration id="GetRowsOptionEnum">
+      <entry id="adGetRowsRest" value="0xffffffff"/>
+   </enumeration>
+   <enumeration id="PositionEnum">
+      <entry id="adPosUnknown" value="0xffffffff"/>
+      <entry id="adPosBOF" value="0xfffffffe"/>
+      <entry id="adPosEOF" value="0xfffffffd"/>
+   </enumeration>
+   <enumeration id="BookmarkEnum">
+      <entry id="adBookmarkCurrent" value="0"/>
+      <entry id="adBookmarkFirst" value="1"/>
+      <entry id="adBookmarkLast" value="2"/>
+   </enumeration>
+   <enumeration id="MarshalOptionsEnum">
+      <entry id="adMarshalAll" value="0"/>
+      <entry id="adMarshalModifiedOnly" value="1"/>
+   </enumeration>
+   <enumeration id="AffectEnum">
+      <entry id="adAffectCurrent" value="1"/>
+      <entry id="adAffectGroup" value="2"/>
+      <entry id="adAffectAll" value="3"/>
+      <entry id="adAffectAllChapters" value="4"/>
+   </enumeration>
+   <enumeration id="ResyncEnum">
+      <entry id="adResyncUnderlyingValues" value="1"/>
+      <entry id="adResyncAllValues" value="2"/>
+   </enumeration>
+   <enumeration id="CompareEnum">
+      <entry id="adCompareLessThan" value="0"/>
+      <entry id="adCompareEqual" value="1"/>
+      <entry id="adCompareGreaterThan" value="2"/>
+      <entry id="adCompareNotEqual" value="3"/>
+      <entry id="adCompareNotComparable" value="4"/>
+   </enumeration>
+   <enumeration id="FilterGroupEnum">
+      <entry id="adFilterNone" value="0"/>
+      <entry id="adFilterPendingRecords" value="1"/>
+      <entry id="adFilterAffectedRecords" value="2"/>
+      <entry id="adFilterFetchedRecords" value="3"/>
+      <entry id="adFilterPredicate" value="4"/>
+      <entry id="adFilterConflictingRecords" value="5"/>
+   </enumeration>
+   <enumeration id="SearchDirectionEnum">
+      <entry id="adSearchForward" value="1"/>
+      <entry id="adSearchBackward" value="0xffffffff"/>
+   </enumeration>
+   <enumeration id="PersistFormatEnum">
+      <entry id="adPersistADTG" value="0"/>
+      <entry id="adPersistXML" value="1"/>
+   </enumeration>
+   <enumeration id="StringFormatEnum">
+      <entry id="adClipString" value="2"/>
+   </enumeration>
+   <enumeration id="ConnectPromptEnum">
+      <entry id="adPromptAlways" value="1"/>
+      <entry id="adPromptComplete" value="2"/>
+      <entry id="adPromptCompleteRequired" value="3"/>
+      <entry id="adPromptNever" value="4"/>
+   </enumeration>
+   <enumeration id="ConnectModeEnum">
+      <entry id="adModeUnknown" value="0"/>
+      <entry id="adModeRead" value="1"/>
+      <entry id="adModeWrite" value="2"/>
+      <entry id="adModeReadWrite" value="3"/>
+      <entry id="adModeShareDenyRead" value="4"/>
+      <entry id="adModeShareDenyWrite" value="8"/>
+      <entry id="adModeShareExclusive" value="12"/>
+      <entry id="adModeShareDenyNone" value="16"/>
+      <entry id="adModeRecursive" value="0x400000"/>
+   </enumeration>
+   <enumeration id="RecordCreateOptionsEnum">
+      <entry id="adCreateCollection" value="8192"/>
+      <entry id="adCreateStructDoc" value="0x80000000"/>
+      <entry id="adCreateNonCollection" value="0"/>
+      <entry id="adOpenIfExists" value="0x2000000"/>
+      <entry id="adCreateOverwrite" value="0x4000000"/>
+      <entry id="adFailIfNotExists" value="0xffffffff"/>
+   </enumeration>
+   <enumeration id="RecordOpenOptionsEnum">
+      <entry id="adOpenRecordUnspecified" value="0xffffffff"/>
+      <entry id="adOpenSource" value="0x800000"/>
+      <entry id="adOpenOutput" value="0x800000"/>
+      <entry id="adOpenAsync" value="4096"/>
+      <entry id="adDelayFetchStream" value="16384"/>
+      <entry id="adDelayFetchFields" value="32768"/>
+      <entry id="adOpenExecuteCommand" value="0x10000"/>
+   </enumeration>
+   <enumeration id="IsolationLevelEnum">
+      <entry id="adXactUnspecified" value="0xffffffff"/>
+      <entry id="adXactChaos" value="16"/>
+      <entry id="adXactReadUncommitted" value="256"/>
+      <entry id="adXactBrowse" value="256"/>
+      <entry id="adXactCursorStability" value="4096"/>
+      <entry id="adXactReadCommitted" value="4096"/>
+      <entry id="adXactRepeatableRead" value="0x10000"/>
+      <entry id="adXactSerializable" value="0x100000"/>
+      <entry id="adXactIsolated" value="0x100000"/>
+   </enumeration>
+   <enumeration id="XactAttributeEnum">
+      <entry id="adXactCommitRetaining" value="0x20000"/>
+      <entry id="adXactAbortRetaining" value="0x40000"/>
+      <entry id="adXactAsyncPhaseOne" value="0x80000"/>
+      <entry id="adXactSyncPhaseOne" value="0x100000"/>
+   </enumeration>
+   <enumeration id="PropertyAttributesEnum">
+      <entry id="adPropNotSupported" value="0"/>
+      <entry id="adPropRequired" value="1"/>
+      <entry id="adPropOptional" value="2"/>
+      <entry id="adPropRead" value="512"/>
+      <entry id="adPropWrite" value="1024"/>
+   </enumeration>
+   <enumeration id="ErrorValueEnum">
+      <entry id="adErrProviderFailed" value="3000"/>
+      <entry id="adErrInvalidArgument" value="3001"/>
+      <entry id="adErrOpeningFile" value="3002"/>
+      <entry id="adErrReadFile" value="3003"/>
+      <entry id="adErrWriteFile" value="3004"/>
+      <entry id="adErrNoCurrentRecord" value="3021"/>
+      <entry id="adErrIllegalOperation" value="3219"/>
+      <entry id="adErrCantChangeProvider" value="3220"/>
+      <entry id="adErrInTransaction" value="3246"/>
+      <entry id="adErrFeatureNotAvailable" value="3251"/>
+      <entry id="adErrItemNotFound" value="3265"/>
+      <entry id="adErrObjectInCollection" value="3367"/>
+      <entry id="adErrObjectNotSet" value="3420"/>
+      <entry id="adErrDataConversion" value="3421"/>
+      <entry id="adErrObjectClosed" value="3704"/>
+      <entry id="adErrObjectOpen" value="3705"/>
+      <entry id="adErrProviderNotFound" value="3706"/>
+      <entry id="adErrBoundToCommand" value="3707"/>
+      <entry id="adErrInvalidParamInfo" value="3708"/>
+      <entry id="adErrInvalidConnection" value="3709"/>
+      <entry id="adErrNotReentrant" value="3710"/>
+      <entry id="adErrStillExecuting" value="3711"/>
+      <entry id="adErrOperationCancelled" value="3712"/>
+      <entry id="adErrStillConnecting" value="3713"/>
+      <entry id="adErrInvalidTransaction" value="3714"/>
+      <entry id="adErrNotExecuting" value="3715"/>
+      <entry id="adErrUnsafeOperation" value="3716"/>
+      <entry id="adwrnSecurityDialog" value="3717"/>
+      <entry id="adwrnSecurityDialogHeader" value="3718"/>
+      <entry id="adErrIntegrityViolation" value="3719"/>
+      <entry id="adErrPermissionDenied" value="3720"/>
+      <entry id="adErrDataOverflow" value="3721"/>
+      <entry id="adErrSchemaViolation" value="3722"/>
+      <entry id="adErrSignMismatch" value="3723"/>
+      <entry id="adErrCantConvertvalue" value="3724"/>
+      <entry id="adErrCantCreate" value="3725"/>
+      <entry id="adErrColumnNotOnThisRow" value="3726"/>
+      <entry id="adErrURLDoesNotExist" value="3727"/>
+      <entry id="adErrTreePermissionDenied" value="3728"/>
+      <entry id="adErrInvalidURL" value="3729"/>
+      <entry id="adErrResourceLocked" value="3730"/>
+      <entry id="adErrResourceExists" value="3731"/>
+      <entry id="adErrCannotComplete" value="3732"/>
+      <entry id="adErrVolumeNotFound" value="3733"/>
+      <entry id="adErrOutOfSpace" value="3734"/>
+      <entry id="adErrResourceOutOfScope" value="3735"/>
+      <entry id="adErrUnavailable" value="3736"/>
+      <entry id="adErrURLNamedRowDoesNotExist" value="3737"/>
+      <entry id="adErrDelResOutOfScope" value="3738"/>
+      <entry id="adErrPropInvalidColumn" value="3739"/>
+      <entry id="adErrPropInvalidOption" value="3740"/>
+      <entry id="adErrPropInvalidValue" value="3741"/>
+      <entry id="adErrPropConflicting" value="3742"/>
+      <entry id="adErrPropNotAllSettable" value="3743"/>
+      <entry id="adErrPropNotSet" value="3744"/>
+      <entry id="adErrPropNotSettable" value="3745"/>
+      <entry id="adErrPropNotSupported" value="3746"/>
+      <entry id="adErrCatalogNotSet" value="3747"/>
+      <entry id="adErrCantChangeConnection" value="3748"/>
+      <entry id="adErrFieldsUpdateFailed" value="3749"/>
+      <entry id="adErrDenyNotSupported" value="3750"/>
+      <entry id="adErrDenyTypeNotSupported" value="3751"/>
+      <entry id="adErrProviderNotSpecified" value="3753"/>
+      <entry id="adErrConnectionStringTooLong" value="3754"/>
+   </enumeration>
+   <enumeration id="ParameterAttributesEnum">
+      <entry id="adParamSigned" value="16"/>
+      <entry id="adParamNullable" value="64"/>
+      <entry id="adParamLong" value="128"/>
+   </enumeration>
+   <enumeration id="ParameterDirectionEnum" migName="System.Data.ParameterDirection" migStatus="External">
+      <entry id="adParamUnknown" value="0"/>
+      <entry id="adParamInput" value="1" migName="Input"/>
+      <entry id="adParamOutput" value="2" migName="Output"/>
+      <entry id="adParamInputOutput" value="3" migName="InputOutput"/>
+      <entry id="adParamReturnValue" value="4" migName="ReturnValue"/>
+   </enumeration>
+   <enumeration id="CommandTypeEnum" migName="System.Data.CommandType" migStatus="External">
+      <entry id="adCmdUnspecified" value="0xffffffff"/>
+      <entry id="adCmdUnknown" value="8"/>
+      <entry id="adCmdText" value="1" migName="Text"/>
+      <entry id="adCmdTable" value="2"/>
+      <entry id="adCmdStoredProc" value="4" migName="StoredProcedure"/>
+      <entry id="adCmdFile" value="256"/>
+      <entry id="adCmdTableDirect" value="512"/>
+   </enumeration>
+   <enumeration id="EventStatusEnum">
+      <entry id="adStatusOK" value="1"/>
+      <entry id="adStatusErrorsOccurred" value="2"/>
+      <entry id="adStatusCantDeny" value="3"/>
+      <entry id="adStatusCancel" value="4"/>
+      <entry id="adStatusUnwantedEvent" value="5"/>
+   </enumeration>
+   <enumeration id="EventReasonEnum">
+      <entry id="adRsnAddNew" value="1"/>
+      <entry id="adRsnDelete" value="2"/>
+      <entry id="adRsnUpdate" value="3"/>
+      <entry id="adRsnUndoUpdate" value="4"/>
+      <entry id="adRsnUndoAddNew" value="5"/>
+      <entry id="adRsnUndoDelete" value="6"/>
+      <entry id="adRsnRequery" value="7"/>
+      <entry id="adRsnResynch" value="8"/>
+      <entry id="adRsnClose" value="9"/>
+      <entry id="adRsnMove" value="10"/>
+      <entry id="adRsnFirstChange" value="11"/>
+      <entry id="adRsnMoveFirst" value="12"/>
+      <entry id="adRsnMoveNext" value="13"/>
+      <entry id="adRsnMovePrevious" value="14"/>
+      <entry id="adRsnMoveLast" value="15"/>
+   </enumeration>
+   <enumeration id="SchemaEnum">
+      <entry id="adSchemaProviderSpecific" value="0xffffffff"/>
+      <entry id="adSchemaAsserts" value="0"/>
+      <entry id="adSchemaCatalogs" value="1"/>
+      <entry id="adSchemaCharacterSets" value="2"/>
+      <entry id="adSchemaCollations" value="3"/>
+      <entry id="adSchemaColumns" value="4"/>
+      <entry id="adSchemaCheckConstraints" value="5"/>
+      <entry id="adSchemaConstraintColumnUsage" value="6"/>
+      <entry id="adSchemaConstraintTableUsage" value="7"/>
+      <entry id="adSchemaKeyColumnUsage" value="8"/>
+      <entry id="adSchemaReferentialContraints" value="9"/>
+      <entry id="adSchemaReferentialConstraints" value="9"/>
+      <entry id="adSchemaTableConstraints" value="10"/>
+      <entry id="adSchemaColumnsDomainUsage" value="11"/>
+      <entry id="adSchemaIndexes" value="12"/>
+      <entry id="adSchemaColumnPrivileges" value="13"/>
+      <entry id="adSchemaTablePrivileges" value="14"/>
+      <entry id="adSchemaUsagePrivileges" value="15"/>
+      <entry id="adSchemaProcedures" value="16"/>
+      <entry id="adSchemaSchemata" value="17"/>
+      <entry id="adSchemaSQLLanguages" value="18"/>
+      <entry id="adSchemaStatistics" value="19"/>
+      <entry id="adSchemaTables" value="20"/>
+      <entry id="adSchemaTranslations" value="21"/>
+      <entry id="adSchemaProviderTypes" value="22"/>
+      <entry id="adSchemaViews" value="23"/>
+      <entry id="adSchemaViewColumnUsage" value="24"/>
+      <entry id="adSchemaViewTableUsage" value="25"/>
+      <entry id="adSchemaProcedureParameters" value="26"/>
+      <entry id="adSchemaForeignKeys" value="27"/>
+      <entry id="adSchemaPrimaryKeys" value="28"/>
+      <entry id="adSchemaProcedureColumns" value="29"/>
+      <entry id="adSchemaDBInfoKeywords" value="30"/>
+      <entry id="adSchemaDBInfoLiterals" value="31"/>
+      <entry id="adSchemaCubes" value="32"/>
+      <entry id="adSchemaDimensions" value="33"/>
+      <entry id="adSchemaHierarchies" value="34"/>
+      <entry id="adSchemaLevels" value="35"/>
+      <entry id="adSchemaMeasures" value="36"/>
+      <entry id="adSchemaProperties" value="37"/>
+      <entry id="adSchemaMembers" value="38"/>
+      <entry id="adSchemaTrustees" value="39"/>
+      <entry id="adSchemaFunctions" value="40"/>
+      <entry id="adSchemaActions" value="41"/>
+      <entry id="adSchemaCommands" value="42"/>
+      <entry id="adSchemaSets" value="43"/>
+   </enumeration>
+   <enumeration id="FieldStatusEnum">
+      <entry id="adFieldOK" value="0"/>
+      <entry id="adFieldCantConvertValue" value="2"/>
+      <entry id="adFieldIsNull" value="3"/>
+      <entry id="adFieldTruncated" value="4"/>
+      <entry id="adFieldSignMismatch" value="5"/>
+      <entry id="adFieldDataOverflow" value="6"/>
+      <entry id="adFieldCantCreate" value="7"/>
+      <entry id="adFieldUnavailable" value="8"/>
+      <entry id="adFieldPermissionDenied" value="9"/>
+      <entry id="adFieldIntegrityViolation" value="10"/>
+      <entry id="adFieldSchemaViolation" value="11"/>
+      <entry id="adFieldBadStatus" value="12"/>
+      <entry id="adFieldDefault" value="13"/>
+      <entry id="adFieldIgnore" value="15"/>
+      <entry id="adFieldDoesNotExist" value="16"/>
+      <entry id="adFieldInvalidURL" value="17"/>
+      <entry id="adFieldResourceLocked" value="18"/>
+      <entry id="adFieldResourceExists" value="19"/>
+      <entry id="adFieldCannotComplete" value="20"/>
+      <entry id="adFieldVolumeNotFound" value="21"/>
+      <entry id="adFieldOutOfSpace" value="22"/>
+      <entry id="adFieldCannotDeleteSource" value="23"/>
+      <entry id="adFieldReadOnly" value="24"/>
+      <entry id="adFieldResourceOutOfScope" value="25"/>
+      <entry id="adFieldAlreadyExists" value="26"/>
+      <entry id="adFieldPendingInsert" value="0x10000"/>
+      <entry id="adFieldPendingDelete" value="0x20000"/>
+      <entry id="adFieldPendingChange" value="0x40000"/>
+      <entry id="adFieldPendingUnknown" value="0x80000"/>
+      <entry id="adFieldPendingUnknownDelete" value="0x100000"/>
+   </enumeration>
+   <enumeration id="SeekEnum">
+      <entry id="adSeekFirstEQ" value="1"/>
+      <entry id="adSeekLastEQ" value="2"/>
+      <entry id="adSeekAfterEQ" value="4"/>
+      <entry id="adSeekAfter" value="8"/>
+      <entry id="adSeekBeforeEQ" value="16"/>
+      <entry id="adSeekBefore" value="32"/>
+   </enumeration>
+   <enumeration id="ADCPROP_UPDATECRITERIA_ENUM">
+      <entry id="adCriteriaKey" value="0"/>
+      <entry id="adCriteriaAllCols" value="1"/>
+      <entry id="adCriteriaUpdCols" value="2"/>
+      <entry id="adCriteriaTimeStamp" value="3"/>
+   </enumeration>
+   <enumeration id="ADCPROP_ASYNCTHREADPRIORITY_ENUM">
+      <entry id="adPriorityLowest" value="1"/>
+      <entry id="adPriorityBelowNormal" value="2"/>
+      <entry id="adPriorityNormal" value="3"/>
+      <entry id="adPriorityAboveNormal" value="4"/>
+      <entry id="adPriorityHighest" value="5"/>
+   </enumeration>
+   <enumeration id="ADCPROP_AUTORECALC_ENUM">
+      <entry id="adRecalcUpFront" value="0"/>
+      <entry id="adRecalcAlways" value="1"/>
+   </enumeration>
+   <enumeration id="ADCPROP_UPDATERESYNC_ENUM">
+      <entry id="adResyncNone" value="0"/>
+      <entry id="adResyncAutoIncrement" value="1"/>
+      <entry id="adResyncConflicts" value="2"/>
+      <entry id="adResyncUpdates" value="4"/>
+      <entry id="adResyncInserts" value="8"/>
+      <entry id="adResyncAll" value="15"/>
+   </enumeration>
+   <enumeration id="MoveRecordOptionsEnum">
+      <entry id="adMoveUnspecified" value="0xffffffff"/>
+      <entry id="adMoveOverWrite" value="1"/>
+      <entry id="adMoveDontUpdateLinks" value="2"/>
+      <entry id="adMoveAllowEmulation" value="4"/>
+   </enumeration>
+   <enumeration id="CopyRecordOptionsEnum">
+      <entry id="adCopyUnspecified" value="0xffffffff"/>
+      <entry id="adCopyOverWrite" value="1"/>
+      <entry id="adCopyAllowEmulation" value="4"/>
+      <entry id="adCopyNonRecursive" value="2"/>
+   </enumeration>
+   <enumeration id="StreamTypeEnum">
+      <entry id="adTypeBinary" value="1"/>
+      <entry id="adTypeText" value="2"/>
+   </enumeration>
+   <enumeration id="LineSeparatorEnum">
+      <entry id="adLF" value="10"/>
+      <entry id="adCR" value="13"/>
+      <entry id="adCRLF" value="0xffffffff"/>
+   </enumeration>
+   <enumeration id="StreamOpenOptionsEnum">
+      <entry id="adOpenStreamUnspecified" value="0xffffffff"/>
+      <entry id="adOpenStreamAsync" value="1"/>
+      <entry id="adOpenStreamFromRecord" value="4"/>
+   </enumeration>
+   <enumeration id="StreamWriteEnum">
+      <entry id="adWriteChar" value="0"/>
+      <entry id="adWriteLine" value="1"/>
+      <entry id="stWriteChar" value="0"/>
+      <entry id="stWriteLine" value="1"/>
+   </enumeration>
+   <enumeration id="SaveOptionsEnum">
+      <entry id="adSaveCreateNotExist" value="1"/>
+      <entry id="adSaveCreateOverWrite" value="2"/>
+   </enumeration>
+   <enumeration id="FieldEnum">
+      <entry id="adDefaultStream" value="0xffffffff"/>
+      <entry id="adRecordURL" value="0xfffffffe"/>
+   </enumeration>
+   <enumeration id="StreamReadEnum">
+      <entry id="adReadAll" value="0xffffffff"/>
+      <entry id="adReadLine" value="0xfffffffe"/>
+   </enumeration>
+   <enumeration id="RecordTypeEnum">
+      <entry id="adSimpleRecord" value="0"/>
+      <entry id="adCollectionRecord" value="1"/>
+      <entry id="adStructDoc" value="2"/>
+   </enumeration>
+   <typedef id="ADO_LONGPTR" type="Integer"/>
+   <typedef id="PositionEnum_Param" type="PositionEnum"/>
+   <typedef id="SearchDirection" type="SearchDirectionEnum"/>
+   <class id="_Collection" parent="IDispatch" creatable="off">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="_NewEnum" type="Object"/>
+      <method id="Refresh" type="Void" />
+   </class>
+   <class id="_DynaCollection" parent="_Collection" creatable="off">
+      <method id="Append" type="Void" migName="Add">
+         <argument id="Object" type="Object" status="ByVal"/>
+      </method>
+      <method id="Delete" type="Void">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_ADO" parent="IDispatch" creatable="off">
+      <property id="Properties" type="Properties" status="Out"/>
+   </class>
+   <class id="Properties" parent="_Collection" default="Item" creatable="off">
+      <method id="Item" type="Object" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Property" parent="IDispatch" default="Value" creatable="off">
+      <property id="Value" type="Variant" status="InOut" />
+      <property id="Name" type="String" status="Out"/>
+      <property id="Type" type="DataTypeEnum" status="Out"/>
+      <property id="Attributes" type="Integer" status="InOut"/>
+   </class>
+   <class id="Error" parent="IDispatch" default="Description" creatable="off">
+      <property id="Number" type="Integer" status="Out"/>
+      <property id="Source" type="String" status="Out"/>
+      <property id="Description" type="String" status="Out"/>
+      <property id="HelpFile" type="String" status="Out"/>
+      <property id="HelpContext" type="Integer" status="Out"/>
+      <property id="SQLState" type="String" status="Out"/>
+      <property id="NativeError" type="Integer" status="Out"/>
+   </class>
+   <class id="Errors" parent="_Collection" default="Item" creatable="off">
+      <method id="Item" type="Error" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Clear" type="Void"/>
+   </class>
+   <class id="Command15" parent="_ADO" default="Parameters" migName="System.Data.Odbc.OdbcCommand" migStatus="External">
+      <property id="ActiveConnection" type="Connection" status="ByVal" migName="Connection"/>
+      <property id="CommandText" type="String" status="InOut"/>
+      <property id="CommandTimeout" type="Integer" status="InOut"/>
+      <property id="Prepared" type="Boolean" status="InOut"/>
+      <property id="Parameters" type="Parameters" status="Out"/>
+      <property id="CommandType" type="CommandTypeEnum" status="InOut"/>
+      <property id="Name" type="String" status="InOut"/>
+      <!--method id="Execute" type="Recordset" nPram="4" migPattern="%1d.ExecuteNonQuery()"-->
+      <method id="Execute" type="Recordset" >
+         <argument id="RecordsAffected" type="Integer" status="ByRef" optional="DEF.Overload"/>
+         <argument id="Parameters" type="Variant" status="ByRef" optional="DEF.Overload"/>
+         <argument id="Options" type="ExecuteOptionEnum" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="CreateParameter" type="Parameter">
+         <argument id="Name" type="String" status="ByVal" optional="Default"/>
+         <argument id="Type" type="DataTypeEnum" status="ByVal" optional="adEmpty"/>
+         <argument id="Direction" type="ParameterDirectionEnum" status="ByVal" optional="adParamInput"/>
+         <argument id="Size" type="ADO_LONGPTR" status="ByVal" optional="0"/>
+         <argument id="Value" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="Connection15" parent="_ADO">
+      <property id="ConnectionString" type="String" status="InOut"/>
+      <property id="CommandTimeout" type="Integer" status="InOut"/>
+      <property id="ConnectionTimeout" type="Integer" status="InOut"/>
+      <property id="Version" type="String" status="Out"/>
+      <property id="Errors" type="Errors" status="Out"/>
+      <property id="DefaultDatabase" type="String" status="InOut"/>
+      <property id="IsolationLevel" type="IsolationLevelEnum" status="InOut"/>
+      <property id="Attributes" type="Integer" status="InOut"/>
+      <property id="CursorLocation" type="CursorLocationEnum" status="InOut" migStatus="Delete"/>
+      <property id="Mode" type="ConnectModeEnum" status="InOut"/>
+      <property id="Provider" type="String" status="InOut"/>
+      <property id="State" type="ObjectStateEnum" status="Out"/>
+      <method id="Close" type="Void"/>
+      <method id="Execute" type="Recordset" nPram="4">
+         <argument id="CommandText" type="String" status="ByVal"/>
+         <argument id="RecordsAffected" type="Integer" status="ByRef" optional="DEF.Overload"/>
+         <argument id="Options" type="ExecuteOptionEnum" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="BeginTrans" type="Integer"/>
+      <method id="CommitTrans" type="Void"/>
+      <method id="RollbackTrans" type="Void"/>
+      <method id="Open" type="Void" nPram="5" migPattern="%1d.Open(%2o,%3o,%4o,%5o)\c">
+         <argument id="ConnectionString" type="String" status="ByVal" optional="DEF.Overload"/>
+         <argument id="UserID" type="String" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Password" type="String" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Options" type="Integer" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="OpenSchema" type="Recordset">
+         <argument id="Schema" type="SchemaEnum" status="ByVal"/>
+         <argument id="Restrictions" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="SchemaID" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="_Connection" parent="Connection15" creatable="off">
+      <method id="Cancel" type="Void"/>
+   </class>
+   <class id="Recordset15" parent="_ADO" default="Fields">
+      <property id="AbsolutePosition" type="Integer" status="InOut"/>
+      <property id="ActiveConnection" type="Connection" status="ByVal"/>
+      <property id="BOF" type="Boolean" status="Out"/>
+      <property id="Bookmark" type="Integer" status="InOut" migStatus="NotImplemented" migComment="UPGRADE_INFO: not implemented"/>
+      <property id="CacheSize" type="Integer" status="InOut"/>
+      <property id="CursorType" type="CursorTypeEnum" status="InOut" migStatus="NotImplemented" migComment="UPGRADE_INFO: not implemented"/>
+      <property id="EOF" type="Boolean" status="Out" migName="Read()"/>
+      <property id="Fields" type="Fields" status="Out" migName="GetFieldHelpers()"/>
+      <property id="LockType" type="LockTypeEnum" status="InOut"  migStatus="NotImplemented" migComment="UPGRADE_INFO: not implemented"/>
+      <property id="MaxRecords" type="Integer" status="InOut"/>
+      <property id="RecordCount" type="Integer" status="Out" migName="RecordsAffected"/>
+      <property id="Source" type="Variant" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Source"/>
+         <Set npram="2" migPattern="%1d.SetSource(%2d)\c"/>
+         <Let npram="2" migPattern="%2d.Source = %1d\c"/>
+      </property>
+      <property id="AbsolutePage" type="PositionEnum_Param" status="InOut" migStatus="NotImplemented" migComment="UPGRADE_INFO: not implemented"/>
+      <property id="EditMode" type="EditModeEnum" status="Out" migStatus="NotImplemented"/>
+      <property id="Filter" type="String" status="InOut"/>
+      <property id="PageCount" type="Integer" status="Out" migStatus="NotImplemented" migComment="UPGRADE_INFO: not implemented"/>
+      <property id="PageSize" type="Integer" status="InOut" migStatus="NotImplemented" migComment="UPGRADE_INFO: not implemented"/>
+      <property id="Sort" type="String" status="InOut"/>
+      <property id="Status" type="RecordStatusEnum" status="Out"/>
+      <property id="State" type="ObjectStateEnum" status="Out" migName="IsClosed"/>
+      <property id="CursorLocation" type="CursorLocationEnum" status="InOut" migStatus="NotImplemented"/>
+      <property id="MarshalOptions" type="MarshalOptionsEnum" status="InOut" migStatus="NotImplemented"/>
+      <method id="AddNew" type="Void">
+         <argument id="FieldList" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Values" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CancelUpdate" type="Void"/>
+      <method id="Close" type="Void"/>
+      <method id="Delete" type="Void" nPram="2" migPattern="%1d.Delete(%2o)\c">
+         <argument id="AffectRecords" type="AffectEnum" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="GetRows" type="Object[,]" nPram="4" migPattern="%1d.GetRows(%2o,%3o,%4o)">
+         <argument id="Rows" type="Integer" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Start" type="Variant" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Fields" type="Variant" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="Move" type="Void">
+         <argument id="NumRecords" type="Integer" status="ByVal"/>
+         <argument id="Start" type="Integer" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="MoveNext" type="Void"/>
+      <method id="MovePrevious" type="Void"/>
+      <method id="MoveFirst" type="Void"/>
+      <method id="MoveLast" type="Void"/>
+      <!--method id="Open" type="Void" nPram="6" migPattern="%1d = (new System.Data.Odbc.OdbcCommand(%2d, %3d)).ExecuteReader()\c"-->
+      <method id="Open" type="Void" nPram="6" migPattern="%1d = (gmRTL.DataLib.DataHelperss.newCommand(%2d, %3d)).ExecuteReader()\c">
+         <argument id="Source" type="Variant" status="ByVal" optional="null"/>
+         <argument id="ActiveConnection" type="Variant" status="ByVal" optional="null"/>
+         <argument id="CursorType" type="CursorTypeEnum" status="ByVal" optional="adOpenUnspecified"/>
+         <argument id="LockType" type="LockTypeEnum" status="ByVal" optional="adLockUnspecified"/>
+         <argument id="Options" type="Integer" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="Requery" type="Void">
+         <argument id="Options" type="Integer" status="ByVal" optional="-1"/>
+      </method>
+      <method id="_xResync" type="Void">
+         <argument id="AffectRecords" type="AffectEnum" status="ByVal" optional="adAffectAll"/>
+      </method>
+      <method id="Update" type="Void" nPram="3" migPattern="%1d.Update(%2o,%3o)\c">
+         <argument id="Fields" type="Variant" status="ByVal" optional="Def.Overload"/>
+         <argument id="Values" type="Variant" status="ByVal" optional="Def.Overload"/>
+      </method>
+      <method id="_xClone" type="Recordset"/>
+      <method id="UpdateBatch" type="Void" nPram="2">
+         <argument id="AffectRecords" type="AffectEnum" status="ByVal" optional="adAffectAll"/>
+      </method>
+      <method id="CancelBatch" type="Void">
+         <argument id="AffectRecords" type="AffectEnum" status="ByVal" optional="adAffectAll"/>
+      </method>
+      <method id="NextRecordset" type="Recordset">
+         <argument id="RecordsAffected" type="Integer" status="Out" optional="Def.Overload"/>
+      </method>
+      <method id="Supports" type="Boolean">
+         <argument id="CursorOptions" type="CursorOptionEnum" status="ByVal"/>
+      </method>
+      <accessor id="Collect" type="Variant">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Find" type="Void" nPram="5" migPattern="%1d.Find(%2o,%3o,%4o,%5o)\c">
+         <argument id="Criteria" type="String" status="ByVal"/>
+         <argument id="SkipRecords" type="Integer" status="ByVal" optional="-1"/>
+         <argument id="SearchDirection" type="SearchDirectionEnum" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Start" type="Variant" status="ByVal" optional="DEF.Overload"/>
+      </method>
+   </class>
+   <class id="Recordset20" parent="Recordset15">
+      <property id="DataSource" type="Object" status="InOut"/>
+      <property id="ActiveCommand" type="Object" status="Out"/>
+      <property id="StayInSync" type="Boolean" status="InOut"/>
+      <property id="DataMember" type="String" status="InOut"/>
+      <method id="Cancel" type="Void"/>
+      <method id="_xSave" type="Void">
+         <argument id="FileName" type="String" status="ByVal" optional="Default"/>
+         <argument id="PersistFormat" type="PersistFormatEnum" status="ByVal" optional="adPersistADTG"/>
+      </method>
+      <method id="GetString" type="String">
+         <argument id="StringFormat" type="StringFormatEnum" status="ByVal" optional="adClipString"/>
+         <argument id="NumRows" type="Integer" status="ByVal" optional="-1"/>
+         <argument id="ColumnDelimeter" type="String" status="ByVal" optional="Default"/>
+         <argument id="RowDelimeter" type="String" status="ByVal" optional="Default"/>
+         <argument id="NullExpr" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CompareBookmarks" type="CompareEnum">
+         <argument id="Bookmark1" type="Variant" status="ByVal"/>
+         <argument id="Bookmark2" type="Variant" status="ByVal"/>
+      </method>
+      <method id="Clone" type="Recordset">
+         <argument id="LockType" type="LockTypeEnum" status="ByVal" optional="adLockUnspecified"/>
+      </method>
+      <method id="Resync" type="Void">
+         <argument id="AffectRecords" type="AffectEnum" status="ByVal" optional="adAffectAll"/>
+         <argument id="ResyncValues" type="ResyncEnum" status="ByVal" optional="adResyncAllValues"/>
+      </method>
+   </class>
+   <class id="Recordset21" parent="Recordset20">
+      <property id="Index" type="String" status="InOut"/>
+      <method id="Seek" type="Void">
+         <argument id="KeyValues" type="Variant" status="ByVal"/>
+         <argument id="SeekOption" type="SeekEnum" status="ByVal" optional="adSeekFirstEQ"/>
+      </method>
+   </class>
+   <class id="_Recordset" parent="Recordset21" creatable="off">
+      <method id="Save" type="Void">
+         <argument id="Destination" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="PersistFormat" type="PersistFormatEnum" status="ByVal" optional="adPersistADTG"/>
+      </method>
+   </class>
+   <class id="Fields15" parent="_Collection" default="Item">
+      <method id="Item" type="Field" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Fields20" parent="Fields15">
+      <method id="_Append" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Type" type="DataTypeEnum" status="ByVal"/>
+         <argument id="DefinedSize" type="ADO_LONGPTR" status="ByVal" optional="0"/>
+         <argument id="Attrib" type="FieldAttributeEnum" status="ByVal" optional="adFldUnspecified"/>
+      </method>
+      <method id="Delete" type="Void">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Fields" parent="Fields20" creatable="off" migName="Odbc.OdbcDataReader">
+      <method id="Append" type="Void" nPram="6" migPattern="%1d.Append(%2d,%3d,%4o,%6o)\c">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Type" type="DataTypeEnum" status="ByVal"/>
+         <argument id="DefinedSize" type="Integer" status="ByVal" optional="DEF.Overload"/>
+         <argument id="Attrib" type="FieldAttributeEnum" status="ByVal" optional="adFldUnspecified"/>
+         <argument id="FieldValue" type="Variant" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="Update" type="Void"/>
+      <method id="Resync" type="Void">
+         <argument id="ResyncValues" type="ResyncEnum" status="ByVal" optional="adResyncAllValues"/>
+      </method>
+      <method id="CancelUpdate" type="Void"/>
+   </class>
+   <class id="Field20" parent="_ADO" default="Value" migName="gmRTL.DataLib.Helpers.FieldHelper" migStatus="External">
+      <property id="ActualSize" type="Integer" status="Out"/>
+      <property id="Attributes" type="Integer" status="InOut"/>
+      <property id="DefinedSize" type="Integer" status="InOut"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="Type" type="DataTypeEnum" status="InOut" migName="ProviderDbType"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Precision" type="Byte" status="InOut"/>
+      <property id="NumericScale" type="Byte" status="InOut"/>
+      <property id="OriginalValue" type="Variant" status="Out"/>
+      <property id="UnderlyingValue" type="Variant" status="Out"/>
+      <property id="DataFormat" type="Object" status="InOut"/>
+      <method id="AppendChunk" type="Void">
+         <argument id="Data" type="Variant" status="ByVal"/>
+      </method>
+      <method id="GetChunk" type="Variant">
+         <argument id="Length" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Field" parent="Field20" creatable="off" migName="gmRTL.DataLib.Helpers.FieldHelper" migStatus="External">
+      <property id="Status" type="Integer" status="Out"/>
+   </class>
+   <class id="_Parameter" parent="_ADO" default="Value" creatable="off">
+      <property id="Name" type="String" status="InOut" migName="ParameterName"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Type" type="DataTypeEnum" status="InOut" migName="SqlDbType"/>
+      <property id="Direction" type="ParameterDirectionEnum" status="InOut"/>
+      <property id="Precision" type="Byte" status="InOut"/>
+      <property id="NumericScale" type="Byte" status="InOut" migName="Scale"/>
+      <property id="Size" type="Integer" status="InOut"/>
+      <property id="Attributes" type="Integer" status="InOut"/>
+      <method id="AppendChunk" type="Void">
+         <argument id="Val" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Parameters" parent="_DynaCollection" default="Item" creatable="off"  migName="System.Data.Common.DbParameterCollection" migStatus="External">
+      <accessor id="Item" type="Parameter" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+   </class>
+   <class id="Command25" parent="Command15" migName="System.Data.Common.DbCommand" migStatus="External">
+      <property id="State" type="Integer" status="Out"/>
+      <method id="Cancel" type="Void"/>
+   </class>
+   <class id="_Command" parent="Command25" creatable="off" migName="System.Data.Common.DbCommand" migStatus="External">
+      <property id="CommandStream" type="Variant" status="InOut"/>
+      <property id="Dialect" type="String" status="InOut"/>
+      <property id="NamedParameters" type="Boolean" status="InOut"/>
+   </class>
+   <class id="ConnectionEventsVt" parent="IUnknown">
+      <method id="InfoMessage" type="Void">
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </method>
+      <method id="BeginTransComplete" type="Void">
+         <argument id="TransactionLevel" type="Integer" status="ByVal"/>
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </method>
+      <method id="CommitTransComplete" type="Void">
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </method>
+      <method id="RollbackTransComplete" type="Void">
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </method>
+      <method id="WillExecute" type="Void">
+         <argument id="Source" type="String" status="ByRef"/>
+         <argument id="CursorType" type="CursorTypeEnum" status="ByRef"/>
+         <argument id="LockType" type="LockTypeEnum" status="ByRef"/>
+         <argument id="Options" type="Integer" status="ByRef"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pCommand" type="Command" status="ByVal"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </method>
+      <method id="ExecuteComplete" type="Void">
+         <argument id="RecordsAffected" type="Integer" status="ByVal"/>
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pCommand" type="Command" status="ByVal"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </method>
+      <method id="WillConnect" type="Void">
+         <argument id="ConnectionString" type="String" status="ByRef"/>
+         <argument id="UserID" type="String" status="ByRef"/>
+         <argument id="Password" type="String" status="ByRef"/>
+         <argument id="Options" type="Integer" status="ByRef"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </method>
+      <method id="ConnectComplete" type="Void">
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </method>
+      <method id="Disconnect" type="Void">
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </method>
+   </class>
+   <class id="RecordsetEventsVt" parent="IUnknown">
+      <method id="WillChangeField" type="Void">
+         <argument id="cFields" type="Integer" status="ByVal"/>
+         <argument id="Fields" type="Variant" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </method>
+      <method id="FieldChangeComplete" type="Void">
+         <argument id="cFields" type="Integer" status="ByVal"/>
+         <argument id="Fields" type="Variant" status="ByVal"/>
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </method>
+      <method id="WillChangeRecord" type="Void">
+         <argument id="adReason" type="EventReasonEnum" status="ByVal"/>
+         <argument id="cRecords" type="Integer" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </method>
+      <method id="RecordChangeComplete" type="Void">
+         <argument id="adReason" type="EventReasonEnum" status="ByVal"/>
+         <argument id="cRecords" type="Integer" status="ByVal"/>
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </method>
+      <method id="WillChangeRecordset" type="Void">
+         <argument id="adReason" type="EventReasonEnum" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </method>
+      <method id="RecordsetChangeComplete" type="Void">
+         <argument id="adReason" type="EventReasonEnum" status="ByVal"/>
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </method>
+      <method id="WillMove" type="Void">
+         <argument id="adReason" type="EventReasonEnum" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </method>
+      <method id="MoveComplete" type="Void">
+         <argument id="adReason" type="EventReasonEnum" status="ByVal"/>
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </method>
+      <method id="EndOfRecordset" type="Void">
+         <argument id="fMoreData" type="Boolean" status="ByRef"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </method>
+      <method id="FetchProgress" type="Void">
+         <argument id="Progress" type="Integer" status="ByVal"/>
+         <argument id="MaxProgress" type="Integer" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </method>
+      <method id="FetchComplete" type="Void">
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ConnectionEvents" parent="None" creatable="off">
+      <event id="InfoMessage" netName="InfoMessage" netHandler="ADODB.ConnectionEvents_InfoMessageEventHandler">
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </event>
+      <event id="BeginTransComplete" netName="BeginTransComplete" netHandler="ADODB.ConnectionEvents_BeginTransCompleteEventHandler">
+         <argument id="transactionLevel" type="Integer" status="ByVal"/>
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </event>
+      <event id="CommitTransComplete" netName="CommitTransComplete" netHandler="ADODB.ConnectionEvents_CommitTransCompleteEventHandler">
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </event>
+      <event id="RollbackTransComplete" netName="RollbackTransComplete" netHandler="ADODB.ConnectionEvents_RollbackTransCompleteEventHandler">
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </event>
+      <event id="WillExecute" netName="WillExecute" netHandler="ADODB.ConnectionEvents_WillExecuteEventHandler">
+         <argument id="source" type="String" status="ByRef"/>
+         <argument id="cursorType" type="CursorTypeEnum" status="ByRef"/>
+         <argument id="lockType" type="LockTypeEnum" status="ByRef"/>
+         <argument id="options" type="Integer" status="ByRef"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pCommand" type="Command" status="ByVal"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </event>
+      <event id="ExecuteComplete" netName="ExecuteComplete" netHandler="ADODB.ConnectionEvents_ExecuteCompleteEventHandler">
+         <argument id="recordsAffected" type="Integer" status="ByVal"/>
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pCommand" type="Command" status="ByVal"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </event>
+      <event id="WillConnect" netName="WillConnect" netHandler="ADODB.ConnectionEvents_WillConnectEventHandler">
+         <argument id="connectionString" type="String" status="ByRef"/>
+         <argument id="userID" type="String" status="ByRef"/>
+         <argument id="password" type="String" status="ByRef"/>
+         <argument id="options" type="Integer" status="ByRef"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </event>
+      <event id="ConnectComplete" netName="ConnectComplete" netHandler="ADODB.ConnectionEvents_ConnectCompleteEventHandler">
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </event>
+      <event id="Disconnect" netName="Disconnect" netHandler="ADODB.ConnectionEvents_DisconnectEventHandler">
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pConnection" type="Connection" status="ByVal"/>
+      </event>
+   </class>
+   <class id="RecordsetEvents" parent="None" creatable="off">
+      <event id="WillChangeField" netName="WillChangeField" netHandler="ADODB.RecordsetEvents_WillChangeFieldEventHandler">
+         <argument id="cFields" type="Integer" status="ByVal"/>
+         <argument id="fields" type="Variant" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </event>
+      <event id="FieldChangeComplete" netName="FieldChangeComplete" netHandler="ADODB.RecordsetEvents_FieldChangeCompleteEventHandler">
+         <argument id="cFields" type="Integer" status="ByVal"/>
+         <argument id="fields" type="Variant" status="ByVal"/>
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </event>
+      <event id="WillChangeRecord" netName="WillChangeRecord" netHandler="ADODB.RecordsetEvents_WillChangeRecordEventHandler">
+         <argument id="adReason" type="EventReasonEnum" status="ByVal"/>
+         <argument id="cRecords" type="Integer" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </event>
+      <event id="RecordChangeComplete" netName="RecordChangeComplete" netHandler="ADODB.RecordsetEvents_RecordChangeCompleteEventHandler">
+         <argument id="adReason" type="EventReasonEnum" status="ByVal"/>
+         <argument id="cRecords" type="Integer" status="ByVal"/>
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </event>
+      <event id="WillChangeRecordset" netName="WillChangeRecordset" netHandler="ADODB.RecordsetEvents_WillChangeRecordsetEventHandler">
+         <argument id="adReason" type="EventReasonEnum" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </event>
+      <event id="RecordsetChangeComplete" netName="RecordsetChangeComplete" netHandler="ADODB.RecordsetEvents_RecordsetChangeCompleteEventHandler">
+         <argument id="adReason" type="EventReasonEnum" status="ByVal"/>
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </event>
+      <event id="WillMove" netName="WillMove" netHandler="ADODB.RecordsetEvents_WillMoveEventHandler">
+         <argument id="adReason" type="EventReasonEnum" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recoardset" status="ByVal"/>
+      </event>
+      <event id="MoveComplete" netName="MoveComplete" netHandler="EventHandler" netArgs="EventArgs">
+         <argument id="adReason" type="EventReasonEnum" status="ByVal" migStatus="NotImplemented"/>
+         <argument id="pError" type="Error" status="ByVal" migStatus="NotImplemented"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByVal" migStatus="NotImplemented"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal" migStatus="NotImplemented"/>
+      </event>
+      <event id="EndOfRecordset" netName="EndOfRecordset" netHandler="ADODB.RecordsetEvents_EndOfRecordsetEventHandler">
+         <argument id="fMoreData" type="Boolean" status="ByRef"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </event>
+      <event id="FetchProgress" netName="FetchProgress" netHandler="ADODB.RecordsetEvents_FetchProgressEventHandler">
+         <argument id="progress" type="Integer" status="ByVal"/>
+         <argument id="maxProgress" type="Integer" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </event>
+      <event id="FetchComplete" netName="FetchComplete" netHandler="ADODB.RecordsetEvents_FetchCompleteEventHandler">
+         <argument id="pError" type="Error" status="ByVal"/>
+         <argument id="adStatus" type="EventStatusEnum" status="ByRef"/>
+         <argument id="pRecordset" type="Recordset" status="ByVal"/>
+      </event>
+   </class>
+   <class id="ADOConnectionConstruction15" parent="IUnknown" creatable="off">
+      <property id="DSO" type="Object" status="Out"/>
+      <property id="Session" type="Object" status="Out"/>
+      <method id="WrapDSOandSession" type="Void">
+         <argument id="pDSO" type="Object" status="ByVal"/>
+         <argument id="pSession" type="Object" status="ByVal"/>
+      </method>
+   </class>
+   <class id="ADOConnectionConstruction" parent="ADOConnectionConstruction15" creatable="off">
+   </class>
+   <class id="_Record" parent="_ADO" default="Fields">
+      <property id="ActiveConnection" type="Connection" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.ActiveConnection"/>
+         <Set npram="2" migPattern="%1d.ActiveConnection = %2d\c"/>
+         <Let npram="2" migPattern="%2d.Connection = %1d\c"/>
+      </property>
+      <property id="State" type="ObjectStateEnum" status="Out"/>
+      <property id="Source" type="String" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Source"/>
+         <Set npram="2" migPattern="%1d.Source = %2d\c"/>
+         <Let npram="2" migPattern="%2d.Source = %1d\c"/>
+      </property>
+      <property id="Mode" type="ConnectModeEnum" status="InOut"/>
+      <property id="ParentURL" type="String" status="Out"/>
+      <property id="Fields" type="Fields" status="Out"/>
+      <property id="RecordType" type="RecordTypeEnum" status="Out"/>
+      <method id="MoveRecord" type="String">
+         <argument id="Source" type="String" status="ByVal" optional="Default"/>
+         <argument id="Destination" type="String" status="ByVal" optional="Default"/>
+         <argument id="UserName" type="String" status="ByVal" optional="Default"/>
+         <argument id="Password" type="String" status="ByVal" optional="Default"/>
+         <argument id="Options" type="MoveRecordOptionsEnum" status="ByVal" optional="adMoveUnspecified"/>
+         <argument id="Async" type="Boolean" status="ByVal" optional="false"/>
+      </method>
+      <method id="CopyRecord" type="String">
+         <argument id="Source" type="String" status="ByVal" optional="Default"/>
+         <argument id="Destination" type="String" status="ByVal" optional="Default"/>
+         <argument id="UserName" type="String" status="ByVal" optional="Default"/>
+         <argument id="Password" type="String" status="ByVal" optional="Default"/>
+         <argument id="Options" type="CopyRecordOptionsEnum" status="ByVal" optional="adCopyUnspecified"/>
+         <argument id="Async" type="Boolean" status="ByVal" optional="false"/>
+      </method>
+      <method id="DeleteRecord" type="Void">
+         <argument id="Source" type="String" status="ByVal" optional="Default"/>
+         <argument id="Async" type="Boolean" status="ByVal" optional="false"/>
+      </method>
+      <method id="Open" type="Void">
+         <argument id="Source" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="ActiveConnection" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Mode" type="ConnectModeEnum" status="ByVal" optional="adModeUnknown"/>
+         <argument id="CreateOptions" type="RecordCreateOptionsEnum" status="ByVal" optional="adFailIfNotExists"/>
+         <argument id="Options" type="RecordOpenOptionsEnum" status="ByVal" optional="adOpenRecordUnspecified"/>
+         <argument id="UserName" type="String" status="ByVal" optional="Default"/>
+         <argument id="Password" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Close" type="Void"/>
+      <method id="GetChildren" type="Recordset"/>
+      <method id="Cancel" type="Void"/>
+   </class>
+   <class id="_Stream" parent="IDispatch">
+      <property id="Size" type="Integer" status="Out"/>
+      <property id="EOS" type="Boolean" status="Out"/>
+      <property id="Position" type="Integer" status="InOut"/>
+      <property id="Type" type="StreamTypeEnum" status="InOut"/>
+      <property id="LineSeparator" type="LineSeparatorEnum" status="InOut"/>
+      <property id="State" type="ObjectStateEnum" status="Out"/>
+      <property id="Mode" type="ConnectModeEnum" status="InOut"/>
+      <property id="Charset" type="String" status="InOut"/>
+      <method id="Read" type="Variant">
+         <argument id="NumBytes" type="Integer" status="ByVal" optional="-1"/>
+      </method>
+      <method id="Open" type="Void">
+         <argument id="Source" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Mode" type="ConnectModeEnum" status="ByVal" optional="adModeUnknown"/>
+         <argument id="Options" type="StreamOpenOptionsEnum" status="ByVal" optional="adOpenStreamUnspecified"/>
+         <argument id="UserName" type="String" status="ByVal" optional="Default"/>
+         <argument id="Password" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Close" type="Void"/>
+      <method id="SkipLine" type="Void"/>
+      <method id="Write" type="Void">
+         <argument id="Buffer" type="Variant" status="ByVal"/>
+      </method>
+      <method id="SetEOS" type="Void"/>
+      <method id="CopyTo" type="Void">
+         <argument id="DestStream" type="Stream" status="ByVal"/>
+         <argument id="CharNumber" type="Integer" status="ByVal" optional="-1"/>
+      </method>
+      <method id="Flush" type="Void"/>
+      <method id="SaveToFile" type="Void">
+         <argument id="FileName" type="String" status="ByVal"/>
+         <argument id="Options" type="SaveOptionsEnum" status="ByVal" optional="adSaveCreateNotExist"/>
+      </method>
+      <method id="LoadFromFile" type="Void">
+         <argument id="FileName" type="String" status="ByVal"/>
+      </method>
+      <method id="ReadText" type="String">
+         <argument id="NumChars" type="Integer" status="ByVal" optional="-1"/>
+      </method>
+      <method id="WriteText" type="Void">
+         <argument id="Data" type="String" status="ByVal"/>
+         <argument id="Options" type="StreamWriteEnum" status="ByVal" optional="adWriteChar"/>
+      </method>
+      <method id="Cancel" type="Void"/>
+   </class>
+   <class id="ADORecordConstruction" parent="IDispatch" creatable="off">
+      <property id="Row" type="Object" status="InOut"/>
+      <property id="ParentRow" type="Object" status="In"/>
+   </class>
+   <class id="ADOStreamConstruction" parent="IDispatch" creatable="off">
+      <property id="Stream" type="Object" status="InOut"/>
+   </class>
+   <class id="ADOCommandConstruction" parent="IUnknown" creatable="off">
+      <property id="OLEDBCommand" type="Object" status="InOut"/>
+   </class>
+   <class id="ADORecordsetConstruction" parent="IDispatch" creatable="off">
+      <property id="Rowset" type="Object" status="InOut"/>
+      <property id="Chapter" type="ADO_LONGPTR" status="InOut"/>
+      <property id="RowPosition" type="Object" status="InOut"/>
+   </class>
+   <class id="Field15" parent="_ADO" default="Value">
+      <property id="ActualSize" type="Integer" status="Out"/>
+      <property id="Attributes" type="Integer" status="Out"/>
+      <property id="DefinedSize" type="Integer" status="Out"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="Type" type="DataTypeEnum" status="Out"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Precision" type="Byte" status="Out"/>
+      <property id="NumericScale" type="Byte" status="Out"/>
+      <property id="OriginalValue" type="Variant" status="Out"/>
+      <property id="UnderlyingValue" type="Variant" status="Out"/>
+      <method id="AppendChunk" type="Void">
+         <argument id="Data" type="Variant" status="ByVal"/>
+      </method>
+      <method id="GetChunk" type="Variant">
+         <argument id="Length" type="Integer" status="ByVal"/>
+      </method>
+   </class>
+   <coclass id="Connection" migName="Odbc.OdbcConnection">
+      <subclass id="_Connection"/>
+      <subclass id="ConnectionEvents"/>
+   </coclass>
+   <coclass id="Record">
+      <subclass id="_Record"/>
+   </coclass>
+   <coclass id="Stream">
+      <subclass id="_Stream"/>
+   </coclass>
+   <coclass id="Command" migName="Odbc.OdbcCommand">
+      <subclass id="_Command"/>
+   </coclass>
+   <coclass id="Recordset" migName="Odbc.OdbcDataReader">
+      <subclass id="_Recordset"/>
+      <subclass id="RecordsetEvents"/>
+   </coclass>
+   <coclass id="Parameter" migName="Odbc.OdbcParameter">
+      <subclass id="_Parameter"/>
+   </coclass>
+</library>
+
+<Refactor id="ADODB" event="adodbHandlers" >
+
+   <migclass id="DotNet">
+      <method id="CreateCommand" type="void" migPattern="(%1d = %2d()).CommandText = %4d\c">
+         <argument id="conn" type="Object" status="ByVal" />
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="SqlString" type="Variant" status="ByVal"/>
+      </method>
+      <Method id="NonStringParameters" type="object" cshPattern="%1d.Add(new System.Data.Odbc.OdbcParameter(\S@%2d\S, null))" vbnPattern="%1d.Add(new System.Data.Odbc.OdbcParameter(\S@%2d\S, \S\S))">
+         <argument id="index" type="Integer" status="ByVal" />
+      </Method>
+      <Method id="StringParameters" type="object" cshPattern="%1d.Add(new System.Data.Odbc.OdbcParameter(%2d, null))" vbnPattern="%1d.Add(new System.Data.Odbc.OdbcParameter(%2d, \S\S))">
+         <argument id="index" type="Integer" status="ByVal" />
+      </Method>
+      
+      <!--method id="Connection_Execute_ReturnRecordset" type="Recordset" nPram="4" migPattern="(new System.Data.Odbc.OdbcCommand(%2d, %1d)).ExecuteReader()"-->
+      <method id="Connection_Execute_ReturnRecordset" type="Recordset" nPram="4" migPattern="(gmRTL.DataLib.DataHelperss.newCommand(%2d, %1d)).ExecuteReader()">
+         <argument id="CommandText" type="String" status="ByVal"/>
+         <argument id="RecordsAffected" type="Integer" status="ByRef" optional="DEF.Overload"/>
+         <argument id="Options" type="ExecuteOptionEnum" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <!--method id="Connection_Execute_NonQuery" type="Recordset" nPram="4" migPattern="(new System.Data.Odbc.OdbcCommand(%2d, %1d)).ExecuteNonQuery()"-->
+      <method id="Connection_Execute_NonQuery" type="Recordset" nPram="4" migPattern="(gmRTL.DataLib.DataHelperss.newCommand(%2d, %1d)).ExecuteNonQuery()">
+         <argument id="CommandText" type="String" status="ByVal"/>
+         <argument id="RecordsAffected" type="Integer" status="ByRef" optional="DEF.Overload"/>
+         <argument id="Options" type="ExecuteOptionEnum" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="Command_Execute_ReturnRecordset" type="Recordset" nPram="4" migPattern="%1d.ExecuteReader(%2o,%3o,%4o)">
+         <argument id="CommandText" type="String" status="ByVal"/>
+         <argument id="RecordsAffected" type="Integer" status="ByRef" optional="DEF.Overload"/>
+         <argument id="Options" type="ExecuteOptionEnum" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      <method id="Command_Execute_NonQuery" type="Recordset" nPram="4" migPattern="%1d.ExecuteNonQuery(%2d,%3o,%4o)">
+         <argument id="CommandText" type="String" status="ByVal"/>
+         <argument id="RecordsAffected" type="Integer" status="ByRef" optional="DEF.Overload"/>
+         <argument id="Options" type="ExecuteOptionEnum" status="ByVal" optional="DEF.Overload"/>
+      </method>
+      
+      <method id="RecordSet_Start_Using_Reader_Read" type="Recordset" nPram="2" migPattern="DataTableReader dtReader = %1d.CreateDataReader()">
+         <argument id="mRecordset" type="Recordset" status="ByVal"/>
+      </method>
+      <property id="RecordSet_EOF_Reader_Read" type="Recordset" nPram="2" migPattern="dtReader.Read()"/>
+      
+   </migClass>
+
+
+ <gmSL NameSpace="adodbHandlers" Class="Transform" Source="ADODB_odbc_Transform.gmsl" />
+</Refactor>
+ 
+</DescriptionFile>

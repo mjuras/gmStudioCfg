@@ -1,0 +1,327 @@
+<DescriptionFile>
+<!--
+Description: Upgrade TabDlg to WinForms.TabControl
+-->
+<library id="GM.TABCTL32.OCX"
+         name="TabDlg"
+         source="TABCTL32.OCX"
+         location="DoNotDeclare"
+         migName="System.Windows.Forms"
+         type="Native"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="IVBDataObject"/>
+   <class id="IVBDataObjectFiles"/>
+   <class id="ISSTabCtl"/>
+   <class id="DSSTabCtlEvents"/>
+   <coclass id="DataObject"/>
+   <coclass id="DataObjectFiles"/>
+   <coclass id="SSTab"/>
+   <enumeration id="OLEDropConstants" >
+      <entry id="ssOLEDropNone" value="0"/>
+      <entry id="ssOLEDropManual" value="1"/>
+   </enumeration>
+   <enumeration id="DragOverConstants">
+      <entry id="ssEnter" value="0"/>
+      <entry id="ssLeave" value="1"/>
+      <entry id="ssOver" value="2"/>
+   </enumeration>
+   <enumeration id="ClipBoardConstants">
+      <entry id="ssCFText" value="1"/>
+      <entry id="ssCFBitmap" value="2"/>
+      <entry id="ssCFMetafile" value="3"/>
+      <entry id="ssCFDIB" value="8"/>
+      <entry id="ssCFPalette" value="9"/>
+      <entry id="ssCFEMetafile" value="14"/>
+      <entry id="ssCFFiles" value="15"/>
+      <entry id="ssCFRTF" value="0xffffbf01"/>
+   </enumeration>
+   <enumeration id="OLEDropEffectConstants">
+      <entry id="ssOLEDropEffectNone" value="0"/>
+      <entry id="ssOLEDropEffectCopy" value="1"/>
+      <entry id="ssOLEDropEffectMove" value="2"/>
+      <entry id="ssOLEDropEffectScroll" value="0x80000000"/>
+   </enumeration>
+   <enumeration id="ErrorConstants">
+      <entry id="ssOutOfMemory" value="7"/>
+      <entry id="ssInvalidPropertyValue" value="380"/>
+      <entry id="ssSetNotSupported" value="383"/>
+      <entry id="ssGetNotSupported" value="394"/>
+      <entry id="ssBadIndex" value="381"/>
+      <entry id="ssInvalidPicture" value="481"/>
+      <entry id="ssDataObjectLocked" value="672"/>
+      <entry id="ssExpectedAnArgument" value="673"/>
+      <entry id="ssInvalidProcedureCall" value="5"/>
+      <entry id="ssInvalidObjectUse" value="425"/>
+      <entry id="ssWrongClipboardFormat" value="461"/>
+      <entry id="ssRecursiveOleDrag" value="674"/>
+      <entry id="ssFormatNotByteArray" value="675"/>
+      <entry id="ssDataNotSetForFormat" value="676"/>
+   </enumeration>
+   <enumeration id="MousePointerConstants">
+      <entry id="ssDefault" value="0"/>
+      <entry id="ssArrow" value="1"/>
+      <entry id="ssCross" value="2"/>
+      <entry id="ssIBeam" value="3"/>
+      <entry id="ssIcon" value="4"/>
+      <entry id="ssSize" value="5"/>
+      <entry id="ssSizeNESW" value="6"/>
+      <entry id="ssSizeNS" value="7"/>
+      <entry id="ssSizeNWSE" value="8"/>
+      <entry id="ssSizeEW" value="9"/>
+      <entry id="ssUpArrow" value="10"/>
+      <entry id="ssHourglass" value="11"/>
+      <entry id="ssNoDrop" value="12"/>
+      <entry id="ssArrowHourglass" value="13"/>
+      <entry id="ssArrowQuestion" value="14"/>
+      <entry id="ssSizeAll" value="15"/>
+      <entry id="ssCustom" value="99"/>
+   </enumeration>
+   <enumeration id="TabOrientationConstants" migName="System.Windows.Forms.TabAlignment" migStatus="external">
+      <entry id="ssTabOrientationTop"    value="0" migName="Top" />
+      <entry id="ssTabOrientationBottom" value="1" migName="Bottom" />
+      <entry id="ssTabOrientationLeft"   value="2" migName="Left" />
+      <entry id="ssTabOrientationRight"  value="3" migName="Right" />
+   </enumeration>
+   <enumeration id="StyleConstants">
+      <entry id="ssStyleTabbedDialog" value="0"/>
+      <entry id="ssStylePropertyPage" value="1"/>
+   </enumeration>
+   <class id="IVBDataObject" parent="IDispatch">
+      <property id="Files" type="DataObjectFiles" status="Out"/>
+      <method id="Clear" type="Void"/>
+      <method id="GetData" type="Variant">
+         <argument id="sFormat" type="integer" status="ByVal"/>
+      </method>
+      <method id="GetFormat" type="Boolean">
+         <argument id="sFormat" type="integer" status="ByVal"/>
+      </method>
+      <method id="SetData" type="Void">
+         <argument id="vValue" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="vFormat" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="IVBDataObjectFiles" parent="IDispatch" default="Item">
+      <property id="Count" type="Integer" status="Out"/>
+      <method id="Item" type="String" status="indexer">
+         <argument id="lIndex" type="Integer" status="ByVal"/>
+      </method>
+      <method id="Add" type="Void">
+         <argument id="bstrFilename" type="String" status="ByVal"/>
+         <argument id="vIndex" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Clear" type="Void"/>
+      <method id="Remove" type="Void">
+         <argument id="vIndex" type="Variant" status="ByVal"/>
+      </method>
+      <method id="_NewEnum" type="Object"/>
+   </class>
+   <class id="ISSTabCtl" parent="IDispatch" default="_Tab">
+      <property id="BackColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Font" type="Font" status="InOut"/>
+      <property id="ForeColor" type="OLE_COLOR" status="InOut"/>
+      <property id="Caption" type="String" status="InOut"/>
+      <property id="Enabled" type="Boolean" status="InOut"/>
+      <property id="hWnd" type="OLE_HANDLE" status="InOut" migName="Handle" />
+      <property id="_Tab" type="Integer" status="InOut" migName="_Tab()"/>
+      <property id="TabsPerRow" type="Integer" status="InOut" migName="TabCount" />
+      <property id="Tabs" type="Integer" status="InOut" migName="TabPages.Count" />
+      <property id="Rows" type="Integer" status="InOut"/>
+      <property id="Top" type="TwipsY" status="GetSet" />
+        <pattern id="Top.Set" >
+            <wpf narg="2" code="Canvas.SetLeft(%2d,(double)(%1d))\c" />
+            <all narg="2" code="%2d.Left = %1d\c" />
+        </pattern>  
+        <pattern id="Top.Get" >
+            <wpf narg="1" code="(int)Canvas.GetTop(%1d)" />
+            <all narg="1" code="%1d.Top" />
+        </pattern>
+      <property id="Left" type="TwipsX" status="GetSet" />
+           <pattern id="Left.Get" >
+              <wpf narg="1" code="(int)Canvas.GetLeft(%1d)" />
+              <all narg="1" code="%1d.Left" />
+           </pattern>
+           <pattern id="Left.Set" >
+              <wpf narg="2" code="Canvas.SetLeft(%2d,(double)(%1d))\c" />
+              <all narg="2" code="%2d.Left = %1d\c" />
+           </pattern>  
+      <property id="Height" type="TwipsY" status="InOut" />
+      <property id="Width" type="TwipsX" status="InOut" />
+      <property id="Tab" type="Integer" status="InOut" migName="SelectedIndex"/>
+      <property id="TabOrientation" type="TabOrientationConstants" status="InOut" migName="Alignment" />
+      <property id="Picture" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.Picture"/>
+         <Set npram="2" migPattern="%1d.Picture = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_Picture(%1d)\c"/>
+      </property>
+      <property id="ShowFocusRect" type="Boolean" status="InOut"/>
+      <property id="WordWrap" type="Boolean" status="InOut"/>
+      <property id="Style" type="StyleConstants" status="InOut"/>
+      <property id="TabHeight" type="TwipsY" status="GetSet"/>
+      <pattern id="TabHeight.Get" >
+         <wpf narg="1" code="((TabItem)%1d.Items[0]).ActualHeight"/>
+         <all narg="1" code="%1d.TabHeight"/>
+      </pattern>
+      <pattern id="TabHeight.Set" >
+         <wpf narg="2" code="((TabItem)%2d.Items[0]).Height = %1d\c"/>
+         <all narg="2" code="%2d.TabHeight = %1d\c"/>
+      </pattern>
+      <property id="TabMaxWidth" type="TwipsX" status="InOut" migStatus="NotImplemented"/>
+      <property id="MousePointer" type="MousePointerConstants" status="InOut"/>
+      <property id="MouseIcon" type="FrxPicture" status="GetSetLet">
+         <Get npram="1" migPattern="%1d.MouseIcon"/>
+         <Set npram="2" migPattern="%1d.MouseIcon = %2d\c"/>
+         <Let npram="2" migPattern="%2d.let_MouseIcon(%1d)\c"/>
+      </property>
+      <property id="OLEDropMode" type="OLEDropConstants" status="InOut" migPattern="%2d.OLEDropMode(%1d)\c"/>
+      <method id="OLEDrag" type="Void"/>
+      <accessor id="TabPicture" type="FrxPicture">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <accessor id="TabVisible" type="Boolean" status="GetSet">
+         <argument id="Index" type="Integer" status="ByVal"/>
+      </accessor>
+      <pattern id="TabVisible.Get" >
+         <wpf narg="2" code="((TabItem)%1d.Items[%2d]).IsVisible"/>
+         <csh narg="2" code="%1d.TabPages[%2d].Visible"/>
+         <vbn narg="2" code="%1d.TabPages(%2d).Visible"/>
+      </pattern>
+      <pattern id="TabVisible.Set" >
+         <wpf narg="2" code="((TabItem)%1d.Items[%2d]).IsVisible" />
+         <all narg="3" code="%2d.SetTabVisible(%3d,%1d)\c" />
+      </pattern>
+      <accessor id="TabEnabled" type="Boolean" status="GetSet">
+         <argument id="sIndex" type="Integer" status="ByVal"/>
+      </accessor>
+      <pattern id="TabEnabled.Get" >
+         <wpf narg="2" code="((TabItem)%1d.Items[%2d]).IsEnabled"/>
+         <all narg="2" code="%1d.GetTabEnabled(%2d)"/>
+      </pattern>
+      <pattern id="TabEnabled.Set" >
+         <wpf narg="3" code="((TabItem)%2d.Items[%3d]).IsEnabled = %1d\c" />
+         <all narg="3" code="%2d.TabPages[%3d].Enabled = %1d\c" />
+      </pattern>
+      <accessor id="TabCaption" type="String" nPram="2" status="GetSet">
+         <argument id="sIndex" type="Integer" status="ByVal"/>
+      </accessor>
+      <pattern id="TabCaption.Get" >
+         <wpf narg="2" code="((TabItem)%1d.Items[%2d]).Header"/>
+         <csh narg="2" code="%1d.TabPages[%2d].Text"/>
+         <vbn narg="2" code="%1d.TabPages(%2d).Text"/>
+      </pattern>
+      <pattern id="TabCaption.Set" >
+         <wpf narg="2" code="((TabItem)%1d.Items[%2d]).Header"/>
+         <csh narg="3" code="%2d.TabPages[%3d].Text = %1d\c"/>
+         <vbn narg="3" code="%2d.TabPages(%3d).Text = %1d\c"/>
+      </pattern>
+      <method id="AboutBox" type="Void"/>
+   </class>
+   <class id="DSSTabCtlEvents" parent="None">
+      <event id="DblClick" netName="DblClick" netHandler="System.EventHandler" netArgs="EventArgs"/>
+      <event id="KeyDown" netName="KeyDownEvent" role="event"  netArgs="KeyEventArgs" netHandler="System.Windows.Forms.KeyEventHandler" migPattern="KeyDown" >
+         <argument id="keyCode" type="Integer" status="ByVal" cshPattern="%1d = (int)e.KeyCode" vbnPattern="%1d = e.KeyCode"/>
+         <argument id="shift" type="Boolean" status="ByVal" migPattern="%1d = e.Shift"/>
+      </event>
+      <event id="KeyPress" netName="KeyPressEvent" netHandler="AxTabDlg.DSSTabCtlEvents_KeyPressEventHandler" netArgs="AxTabDlg.DSSTabCtlEvents_KeyPressEvent">
+         <argument id="keyAscii" type="Integer" status="Out"/>
+      </event>
+      <event id="KeyUp" netName="KeyUpEvent" netHandler="AxTabDlg.DSSTabCtlEvents_KeyUpEventHandler" netArgs="AxTabDlg.DSSTabCtlEvents_KeyUpEvent">
+         <argument id="keyCode" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseDown" netName="MouseDownEvent" netHandler="AxTabDlg.DSSTabCtlEvents_MouseDownEventHandler" netArgs="AxTabDlg.DSSTabCtlEvents_MouseDownEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="MouseMove" netName="MouseMove" netHandler="System.Windows.Forms.MouseEventHandler" netArgs="MouseEventArgs">
+         <argument id="button" type="Integer" status="ByVal" cshPattern="%1d = (int)e.Button" vbnPattern="%1d = e.Button" />
+         <argument id="shift" type="Integer" status="ByVal" cshPattern="%1d = (int)Control.ModifierKeys" vbnPattern="%1d = Control.ModifierKeys" />
+         <argument id="x" type="Integer" status="ByVal" migPattern="%1d=e.X"/>
+         <argument id="y" type="Integer" status="ByVal" migPattern="%1d=e.Y"/>
+      </event>
+      <event id="MouseUp" netName="MouseUpEvent" netHandler="AxTabDlg.DSSTabCtlEvents_MouseUpEventHandler" netArgs="AxTabDlg.DSSTabCtlEvents_MouseUpEvent">
+         <argument id="button" type="Integer" status="ByVal"/>
+         <argument id="shift" type="Integer" status="ByVal"/>
+         <argument id="x" type="Integer" status="ByVal"/>
+         <argument id="y" type="Integer" status="ByVal"/>
+      </event>
+      <event id="Click" netName="SelectedIndexChanged" netHandler="System.EventHandler" netArgs="EventArgs">
+         <argument id="previousTab" type="Integer" status="ByVal" migPattern="%1d = 0; // UPGRADE_TODO" />
+      </event>
+      <event id="OLEStartDrag" netName="OLEStartDrag" netHandler="AxTabDlg.DSSTabCtlEvents_OLEStartDragEventHandler" netArgs="AxTabDlg.DSSTabCtlEvents_OLEStartDragEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="allowedEffects" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEGiveFeedback" netName="OLEGiveFeedback" netHandler="AxTabDlg.DSSTabCtlEvents_OLEGiveFeedbackEventHandler" netArgs="AxTabDlg.DSSTabCtlEvents_OLEGiveFeedbackEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="defaultCursors" type="Boolean" status="ByRef"/>
+      </event>
+      <event id="OLESetData" netName="OLESetData" netHandler="AxTabDlg.DSSTabCtlEvents_OLESetDataEventHandler" netArgs="AxTabDlg.DSSTabCtlEvents_OLESetDataEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="dataFormat" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLECompleteDrag" netName="OLECompleteDrag" netHandler="AxTabDlg.DSSTabCtlEvents_OLECompleteDragEventHandler" netArgs="AxTabDlg.DSSTabCtlEvents_OLECompleteDragEvent">
+         <argument id="effect" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragOver" netName="OLEDragOver" netHandler="AxTabDlg.DSSTabCtlEvents_OLEDragOverEventHandler" netArgs="AxTabDlg.DSSTabCtlEvents_OLEDragOverEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+         <argument id="state" type="Integer" status="ByRef"/>
+      </event>
+      <event id="OLEDragDrop" netName="OLEDragDrop" netHandler="AxTabDlg.DSSTabCtlEvents_OLEDragDropEventHandler" netArgs="AxTabDlg.DSSTabCtlEvents_OLEDragDropEvent">
+         <argument id="data" type="DataObject" status="ByRef"/>
+         <argument id="effect" type="Integer" status="ByRef"/>
+         <argument id="button" type="Integer" status="ByRef"/>
+         <argument id="shift" type="Integer" status="ByRef"/>
+         <argument id="x" type="Single" status="ByRef"/>
+         <argument id="y" type="Single" status="ByRef"/>
+      </event>
+   </class>
+   <coclass id="DataObject" uuid="2334D2B2-713E-11CF-8AE5-00AA00C00905" creatable="off">
+      <subclass id="IVBDataObject"/>
+   </coclass>
+   <coclass id="DataObjectFiles" uuid="2334D2B4-713E-11CF-8AE5-00AA00C00905" creatable="off">
+      <subclass id="IVBDataObjectFiles"/>
+   </coclass>
+   <coclass id="SSTab"  uuid="BDC217C5-ED16-11CD-956C-0000C04E4C0A" migName="TabControl" role="Control">
+      <subclass id="ISSTabCtl"/>
+      <subclass id="DSSTabCtlEvents"/>
+   </coclass>
+</library>
+<Refactor id="[GM.tabctl32.ocx]" event="tabctl" >
+    <!--
+    NOTE: The control initialization specification is extended with a gmSL authorProperties handler
+    -->
+    <migClass id="NetControl.SSTab" migName="System.Windows.Forms.TabControl" parent="SSTab">
+       <property id="Alignment" type="TabOrientation" value="ISSTabCtl.TabOrientation" />
+       <property id="Location" value="(Left,Top)" nPram="2"  migPattern="new System.Drawing.Point(%1d, %2d)" />
+       <property id="Name" type="string" value="SYM.name" />
+       <property id="Multiline" type="boolean" default="true" />
+       <property id="Size" value="(Width,Height)" nPram="2" migPattern="new System.Drawing.Size(%1d, %2d)" />
+       <!-- property id="SizeMode" default="System.Windows.Forms.TabSizeMode.Normal" /-->
+       <property id="TabIndex" type="Integer" default="0" />
+       <property id="TabStop" type="boolean" value="TabStop" default="true" />        
+    </migClass>
+    <migClass id="TabUndefined">
+       <property id="TabCaption" type="String" opcode="TAB.Caption" />
+       <property id="TabPicture" type="FrxPicture" opcode="TAB.Picture" />
+       <property id="TabEnabled" type="Boolean" opcode="TAB.Enabled" />
+       <property id="TabControlCount" type="Integer" opcode="TAB.Count" />
+       <property id="TabControlName" type="String" opcode="TAB.ControlName" />
+       <property id="Enabled" type="Boolean" opcode="TAB.ControlEnabled" />
+   </migClass>
+   <migClass id="SSTabLogic" >
+      <Method id="CallSSTabClick" type="void" nPram="3"
+         vbnPattern="%1d(Nothing,EventArgs.Empty)\c"
+         cshPattern="%1d(null,EventArgs.Empty)\c"
+      />
+   </migClass>
+   <gmSL NameSpace="tabctl" Class="Transform" Source="Tabctl32.Transform.gmsl" />
+</Refactor>
+</DescriptionFile>

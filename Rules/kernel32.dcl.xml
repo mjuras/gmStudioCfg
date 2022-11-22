@@ -1,0 +1,334 @@
+<DescriptionFile>
+<library id="kernel32.dcl"
+         name="kernel32"
+         source="kernel32.dcl"
+         location="kernel32.dcl"
+         type="LocalImport"
+   >
+   <enumeration id="EFORMAT_MESSAGE">
+      <entry id="FORMAT_MESSAGE_NONE" value="0"/>
+      <entry id="FORMAT_MESSAGE_ALLOCATE_BUFFER" value="256"/>
+      <entry id="FORMAT_MESSAGE_IGNORE_INSERTS" value="512"/>
+      <entry id="FORMAT_MESSAGE_FROM_STRING" value="1024"/>
+      <entry id="FORMAT_MESSAGE_FROM_HMODULE" value="2048"/>
+      <entry id="FORMAT_MESSAGE_FROM_SYSTEM" value="4096"/>
+      <entry id="FORMAT_MESSAGE_ARGUMENT_ARRAY" value="8192"/>
+      <entry id="FORMAT_MESSAGE_MAX_WIDTH_MASK" value="255"/>
+   </enumeration>
+   <enumeration id="ESW">
+      <entry id="SW_HIDE" value="0"/>
+      <entry id="SW_SHOWNORMAL" value="1"/>
+      <entry id="SW_NORMAL" value="1"/>
+      <entry id="SW_SHOWMINIMIZED" value="2"/>
+      <entry id="SW_SHOWMAXIMIZED" value="3"/>
+      <entry id="SW_MAXIMIZE" value="3"/>
+      <entry id="SW_SHOWNOACTIVATE" value="4"/>
+      <entry id="SW_SHOW" value="5"/>
+      <entry id="SW_MINIMIZE" value="6"/>
+      <entry id="SW_SHOWMINNOACTIVE" value="7"/>
+      <entry id="SW_SHOWNA" value="8"/>
+      <entry id="SW_RESTORE" value="9"/>
+      <entry id="SW_SHOWDEFAULT" value="10"/>
+      <entry id="SW_MAX" value="10"/>
+   </enumeration>
+   <structure id="MEMORYSTATUS">
+      <member id="dwLength" type="Integer"/>
+      <member id="dwMemoryLoad" type="Integer"/>
+      <member id="dwTotalPhys" type="Integer"/>
+      <member id="dwAvailPhys" type="Integer"/>
+      <member id="dwTotalPageFile" type="Integer"/>
+      <member id="dwAvailPageFile" type="Integer"/>
+      <member id="dwTotalVirtual" type="Integer"/>
+      <member id="dwAvailVirtual" type="Integer"/>
+   </structure>
+   <structure id="PROCESS_INFORMATION">
+      <member id="hProcess" type="Integer"/>
+      <member id="hThread" type="Integer"/>
+      <member id="dwProcessId" type="Integer"/>
+      <member id="dwThreadId" type="Integer"/>
+   </structure>
+   <structure id="OFSTRUCT">
+      <member id="cBytes" type="Byte"/>
+      <member id="fFixedDisk" type="Byte"/>
+      <member id="nErrCode" type="Short"/>
+      <member id="reserved1" type="Short"/>
+      <member id="reserved2" type="Short"/>
+      <member id="szPathName" type="Byte[]"/>
+   </structure>
+   <structure id="OSVERSIONINFO">
+      <member id="dwOSVersionInfoSize" type="Integer"/>
+      <member id="dwMajorVersion" type="Integer"/>
+      <member id="dwMinorVersion" type="Integer"/>
+      <member id="dwBuildNumber" type="Integer"/>
+      <member id="dwPlatformId" type="Integer"/>
+      <member id="szCSDVersion" type="Byte[]"/>
+   </structure>
+   <structure id="STARTUPINFO">
+      <member id="cb" type="Integer"/>
+      <member id="lpReserved" type="Integer"/>
+      <member id="lpDesktop" type="Integer"/>
+      <member id="lpTitle" type="Integer"/>
+      <member id="dwX" type="Integer"/>
+      <member id="dwY" type="Integer"/>
+      <member id="dwXSize" type="Integer"/>
+      <member id="dwYSize" type="Integer"/>
+      <member id="dwXCountChars" type="Integer"/>
+      <member id="dwYCountChars" type="Integer"/>
+      <member id="dwFillAttribute" type="Integer"/>
+      <member id="dwFlags" type="Integer"/>
+      <member id="wShowWindow" type="ESW"/>
+      <member id="lpReserved2" type="Integer"/>
+      <member id="hStdInput" type="Integer"/>
+      <member id="hStdOutput" type="Integer"/>
+      <member id="hStdError" type="Integer"/>
+   </structure>
+   <structure id="SYSTEMTIME">
+      <member id="wYear" type="Short"/>
+      <member id="wMonth" type="Short"/>
+      <member id="wDayOfWeek" type="Short"/>
+      <member id="wDay" type="Short"/>
+      <member id="wHour" type="Short"/>
+      <member id="wMinute" type="Short"/>
+      <member id="wSecond" type="Short"/>
+      <member id="wMilliseconds" type="Short"/>
+   </structure>
+   <structure id="SYSTEM_INFO">
+      <member id="wProcessorArchitecture" type="Short"/>
+      <member id="wReserved" type="Short"/>
+      <member id="dwPageSize" type="Integer"/>
+      <member id="lpMinimumApplicationAddress" type="Integer"/>
+      <member id="lpMaximumApplicationAddress" type="Integer"/>
+      <member id="dwActiveProcessorMask" type="Integer"/>
+      <member id="dwNumberOfProcessors" type="Integer"/>
+      <member id="dwProcessorType" type="Integer"/>
+      <member id="dwAllocationGranularity" type="Integer"/>
+      <member id="wProcessorLevel" type="Short"/>
+      <member id="wProcessorRevision" type="Short"/>
+   </structure>
+   <class id="Methods" parent="None" module="on" creatable="off">
+      <method id="CloseHandle" type="Integer">
+         <argument id="hObject" type="Integer" status="ByVal"/>
+      </method>
+      <method id="CreateFile" type="Integer">
+         <argument id="lpFileName" type="String" status="ByVal"/>
+         <argument id="dwDesiredAccess" type="Integer" status="ByVal"/>
+         <argument id="dwShareMode" type="Integer" status="ByVal"/>
+         <argument id="lpSecurityAttributes" type="Void" status="ByRef" optional="0"/>
+         <argument id="dwCreationDisposition" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dwFlagsAndAttributes" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="hTemplateFile" type="Integer" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateMutex" type="Integer">
+         <argument id="lpMutexAttributes" type="Void" status="ByRef" optional="0"/>
+         <argument id="bInitialOwner" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="lpName" type="String" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateProcess" type="Integer">
+         <argument id="lpApplicationName" type="String" status="ByVal"/>
+         <argument id="lpCommandLine" type="String" status="ByVal"/>
+         <argument id="lpProcessAttributes" type="Void" status="ByRef" optional="0"/>
+         <argument id="lpThreadAttributes" type="Void" status="ByRef" optional="0"/>
+         <argument id="bInheritHandles" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="dwCreationFlags" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="lpEnvironment" type="Integer" status="ByVal" optional="Default"/>
+         <argument id="lpCurrentDirectory" type="String" status="ByVal" optional="Default"/>
+         <argument id="lpStartupInfo" type="STARTUPINFO" status="ByVal" optional="Default"/>
+         <argument id="lpProcessInformation" type="PROCESS_INFORMATION" status="ByVal" optional="Default"/>
+      </method>
+      <method id="FileTimeToLocalFileTime" type="Integer">
+         <argument id="lpFileTime" type="Void" status="Out"/>
+         <argument id="lpLocalFileTime" type="Void" status="Out"/>
+      </method>
+      <method id="FileTimeToSystemTime" type="Integer">
+         <argument id="lpFileTime" type="Void" status="Out"/>
+         <argument id="lpSystemTime" type="SYSTEMTIME" status="Out"/>
+      </method>
+      <method id="FindFirstFile" type="Integer">
+         <argument id="lpFileName" type="String" status="ByVal"/>
+         <argument id="lpFindFileData" type="Void" status="Out"/>
+      </method>
+      <method id="FormatMessage" type="Integer">
+         <argument id="dwFlags" type="EFORMAT_MESSAGE" status="ByVal"/>
+         <argument id="lpSource" type="Integer" status="ByVal"/>
+         <argument id="dwMessageId" type="Integer" status="ByVal"/>
+         <argument id="dwLanguageId" type="Integer" status="ByVal"/>
+         <argument id="lpBuffer" type="String" status="ByVal"/>
+         <argument id="nSize" type="Integer" status="ByVal"/>
+         <argument id="Arguments" type="Void" status="Out"/>
+      </method>
+      <method id="FreeLibrary" type="Void">
+         <argument id="hInst" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GetCompressedFileSize" type="Integer">
+         <argument id="lpFileName" type="String" status="ByVal"/>
+         <argument id="lpFileSizeHigh" type="Integer" status="ByRef"/>
+      </method>
+      <method id="GetComputerName" type="Integer">
+         <argument id="lpBuffer" type="String" status="ByVal"/>
+         <argument id="nSize" type="Integer" status="ByRef"/>
+      </method>
+      <method id="GetExitCodeProcess" type="Integer">
+         <argument id="hProcess" type="Integer" status="ByVal"/>
+         <argument id="lpExitCode" type="Integer" status="ByRef"/>
+      </method>
+      <method id="GetFileTime" type="Integer">
+         <argument id="hFile" type="Integer" status="ByVal"/>
+         <argument id="lpCreationTime" type="Void" status="Out"/>
+         <argument id="lpLastAccessTime" type="Void" status="Out"/>
+         <argument id="lpLastWriteTime" type="Void" status="Out"/>
+      </method>
+      <method id="GetFullPathName" type="Integer">
+         <argument id="lpFileName" type="String" status="ByVal"/>
+         <argument id="nBufferLength" type="Integer" status="ByVal"/>
+         <argument id="lpBuffer" type="String" status="ByVal"/>
+         <argument id="lpFilePart" type="Integer" status="Out"/>
+      </method>
+      <method id="GetLastError" type="Integer"/>
+      <method id="GetPrivateProfileInt" type="Integer">
+         <argument id="lpAppName" type="String" status="ByVal"/>
+         <argument id="lpKeyName" type="String" status="ByVal"/>
+         <argument id="nDefault" type="Integer" status="ByVal"/>
+         <argument id="lpFileName" type="String" status="ByVal"/>
+      </method>
+      <method id="GetPrivateProfileString" type="Integer">
+         <argument id="lpszSection" type="String" status="ByVal"/>
+         <argument id="lpszEntry" type="String" status="ByVal"/>
+         <argument id="lpszDefault" type="String" status="ByVal"/>
+         <argument id="lpszReturnBuffer" type="String" status="ByVal"/>
+         <argument id="cbReturnBuffer" type="Integer" status="ByVal"/>
+         <argument id="lpszFileName" type="String" status="ByVal"/>
+      </method>
+      <method id="GetTickCount" type="Integer" nPram="0" migPattern="(Environment.TickCount & Int32.MaxValue)" />
+      <method id="GetVersionEx" type="Integer">
+         <argument id="lpVersionInformation" type="OSVERSIONINFO" status="Out"/>
+      </method>
+      <method id="GetSystemInfo" type="Void">
+         <argument id="lpSystemInfo" type="SYSTEM_INFO" status="Out"/>
+      </method>
+      <method id="GetStdHandle" type="Integer">
+         <argument id="nStdHandle" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GlobalAlloc" type="Integer">
+         <argument id="fuAlloc" type="Integer" status="ByVal"/>
+         <argument id="cbAlloc" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GlobalFree" type="Integer" >
+         <argument id="hMem" type="Integer" status="ByVal" />
+      </method>
+      <method id="GlobalLock" type="Integer">
+         <argument id="hglb" type="Integer" status="ByVal"/>
+      </method>
+      <method id="GlobalMemoryStatus" type="Void">
+         <argument id="lpBuffer" type="MEMORYSTATUS" status="Out"/>
+      </method>
+      <method id="GlobalUnlock" type="Integer">
+         <argument id="hglb" type="Integer" status="ByVal"/>
+      </method>
+      <method id="LoadLibrary" type="Integer">
+         <argument id="lpLibFileName" type="String" status="ByVal"/>
+      </method>
+      <method id="LoadLibraryEx" type="Integer">
+         <argument id="lpLibFileName" type="String" status="ByVal"/>
+         <argument id="hFile" type="Integer" status="ByVal"/>
+         <argument id="dwFlags" type="Integer" status="ByVal"/>
+      </method>
+      <method id="LocalFileTimeToFileTime" type="Integer">
+         <argument id="lpLocalFileTime" type="Void" status="Out"/>
+         <argument id="lpFileTime" type="Void" status="Out"/>
+      </method>
+      <method id="lstrcat" type="String" nPram="3" migPattern="String.Concat(%2d,%3d)">
+         <argument id="lpszDst" type="String" status="ByVal"/>
+         <argument id="lpszSrc" type="String" status="ByVal"/>
+      </method>
+      <method id="lstrcpy" type="Integer">
+         <argument id="lpszDst" type="String" status="ByVal"/>
+         <argument id="lpszSrc" type="String" status="ByVal"/>
+      </method>
+      <method id="lstrlen" type="Integer">
+         <argument id="lpsz" type="String" status="ByVal"/>
+      </method>
+      <method id="MultiByteToWideChar" type="Integer">
+         <argument id="codepage" type="Integer" status="ByVal"/>
+         <argument id="dwFlags" type="Integer" status="ByVal"/>
+         <argument id="lpMultiByteStr" type="String" status="ByVal"/>
+         <argument id="cchMultiByte" type="Integer" status="ByVal"/>
+         <argument id="lpWideCharStr" type="String" status="ByVal"/>
+         <argument id="cchWideChar" type="Integer" status="ByVal"/>
+      </method>
+      <method id="OpenFile" type="Integer">
+         <argument id="lpFileName" type="String" status="ByVal"/>
+         <argument id="lpReOpenBuff" type="OFSTRUCT" status="Out"/>
+         <argument id="uStyle" type="Integer" status="ByVal"/>
+      </method>
+      <method id="OpenProcess" type="Integer">
+         <argument id="dwDesiredAccess" type="Integer" status="ByVal"/>
+         <argument id="bInheritHandle" type="Integer" status="ByVal"/>
+         <argument id="dwProcessID" type="Integer" status="ByVal"/>
+      </method>
+      <method id="QueryPerformanceCounter" type="Integer">
+         <argument id="lpPerformanceCount" type="Void" status="Out"/>
+      </method>
+      <method id="QueryPerformanceFrequency" type="Integer">
+         <argument id="lpFrequency" type="Void" status="Out"/>
+      </method>
+      <method id="RtlMoveMemory" type="Void">
+         <argument id="pvDst" type="Void" status="ByRef"/>
+         <argument id="pvSrc" type="Void" status="ByRef"/>
+         <argument id="cbCopy" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SetFileTime" type="Integer">
+         <argument id="hFile" type="Integer" status="ByVal"/>
+         <argument id="lpCreationTime" type="Void" status="Out"/>
+         <argument id="lpLastAccessTime" type="Void" status="Out"/>
+         <argument id="lpLastWriteTime" type="Void" status="Out"/>
+      </method>
+      <method id="SetSystemTime" type="Integer">
+         <argument id="lpSystemTime" type="SYSTEMTIME" status="Out"/>
+      </method>
+      <method id="Sleep" type="Void" nPram="2" migPattern="System.Threading.Thread.Sleep(%2d)\c">
+         <argument id="dwMilliseconds" type="Integer" status="ByVal"/>
+      </method>
+      <method id="SystemTimeToFileTime" type="Integer">
+         <argument id="lpSystemTime" type="SYSTEMTIME" status="Out"/>
+         <argument id="lpFileTime" type="Void" status="Out"/>
+      </method>
+      <method id="TerminateProcess" type="Integer">
+         <argument id="hProcess" type="Integer" status="ByVal"/>
+         <argument id="uExitCode" type="Integer" status="ByVal"/>
+      </method>
+      <method id="WaitForMultipleObjects" type="Integer">
+         <argument id="nCount" type="Integer" status="ByVal"/>
+         <argument id="lpHandles" type="Integer" status="Out"/>
+         <argument id="bWaitAll" type="Integer" status="ByVal"/>
+         <argument id="dwMilliseconds" type="Integer" status="ByVal"/>
+      </method>
+      <method id="WaitForSingleObject" type="Integer">
+         <argument id="lpHandles" type="Integer" status="ByVal"/>
+         <argument id="dwMilliseconds" type="Integer" status="ByVal"/>
+      </method>
+      <method id="WideCharToMultiByte" type="Integer">
+         <argument id="codepage" type="Integer" status="ByVal"/>
+         <argument id="dwFlags" type="Integer" status="ByVal"/>
+         <argument id="lpWideCharStr" type="String" status="ByVal"/>
+         <argument id="cchWideChar" type="Integer" status="ByVal"/>
+         <argument id="lpMultiByteStr" type="String" status="ByVal"/>
+         <argument id="cchMultiByte" type="Integer" status="ByVal"/>
+         <argument id="lpDefaultChar" type="String" status="ByVal"/>
+         <argument id="lpUsedDefaultChar" type="Integer" status="Out"/>
+      </method>
+      <method id="WriteFile" type="Integer">
+         <argument id="hFile" type="Integer" status="ByVal"/>
+         <argument id="lpBuffer" type="Void" status="ByVal"/>
+         <argument id="nNumberOfBytesToWrite" type="Integer" status="ByVal"/>
+         <argument id="lpNumberOfBytesWritten" type="Integer" status="ByRef"/>
+         <argument id="lpOverlapped" type="Integer" status="ByVal"/>
+      </method>
+      <method id="WritePrivateProfileString" type="Integer">
+         <argument id="lpszSection" type="String" status="ByVal"/>
+         <argument id="lpszEntry" type="String" status="ByVal"/>
+         <argument id="lpszString" type="String" status="ByVal"/>
+         <argument id="lpszFileName" type="String" status="ByVal"/>
+      </method>
+   </class>
+</library>
+</DescriptionFile>

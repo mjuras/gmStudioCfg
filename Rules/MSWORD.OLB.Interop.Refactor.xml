@@ -1,0 +1,34 @@
+<RefactorLibrary>
+<!--
+Description: rules to improve MSWord translation
+-->
+<Refactor id="[MSWORD.OLB]" >
+   <Migrate ImplicitByRef="On" />
+   <!-- 
+   Uncomment below to migrate for Interop
+   <Migrate migName="Microsoft.Office.Interop.Word" location="..\runtime\Interop.Microsoft.Office.Interop.Word.dll" ImplicitByRef="On" AssemblyName="Microsoft.Office.Interop.Word" /> 
+   -->
+   <Migrate id="Languages.Item.Index" status="ByVal" />
+   <Migrate id="Documents.Item" cshPattern="%1d[%2d]" nPram="2" vbnPattern="%1d(%2d)" ZeroBased="On" />
+   <Migrate id="Documents.Item.Index" status="ByVal" />
+   <Migrate id="Bookmarks.Item" cshPattern="%1d[%2d]" nPram="2" vbnPattern="%1d(%2d)" />
+   <Migrate id="Bookmarks.Item.Index" status="ByVal" />
+   <Migrate id="Sections.Item" cshPattern="%1d[%2d]" nPram="2" vbnPattern="%1d(%2d)" />
+   <Migrate id="Rows.Item" cshPattern="%1d[%2d]" nPram="2" vbnPattern="%1d(%2d)" />
+   <Migrate id="Cells.Item" cshPattern="%1d[%2d]" nPram="2" vbnPattern="%1d(%2d)" />
+   <Migrate id="Borders.Item" cshPattern="%1d[%2d]" nPram="2" vbnPattern="%1d(%2d)" />
+   <Migrate id="Selection.MoveRight.Unit" status="ByVal" />
+   <Migrate id="Selection.MoveRight.Count" status="ByVal" />
+   <Migrate id="Selection.MoveRight.Extend" status="ByVal" />
+   <Migrate id="Selection.InsertRowsBelow.NumRows" status="ByVal" />
+   <Migrate id="Selection.InsertRowsAbove.NumRows" status="ByVal" />
+   <Migrate id="HeadersFooters.Item" cshPattern="%1d[%2d]" nPram="2" vbnPattern="%1d(%2d)" />
+   <Migrate id="Shapes.Item" cshPattern="%1d[%2d]" nPram="2" vbnPattern="%1d(%2d)" />
+   <Migrate id="Shapes.Item.Index" status="ByVal" />
+   
+   <Migrate id="_Document.CustomDocumentProperties" type="CustomProperties"/>   
+   <Migrate id="CustomProperties.Item.Index" status="ByVal"/>
+   
+   <!-- <Migrate id="Application" migName="dynamic" Static="On" /> -->
+</Refactor>
+</RefactorLibrary>
