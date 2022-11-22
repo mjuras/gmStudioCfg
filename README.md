@@ -1,10 +1,11 @@
-﻿# gmStudioCfg
+# gmStudioCfg
 
 Using gmStudio configuration files to experiment with GitHub.
 
-There are two types of configuration files:
+There are three types of configuration files distributed with gmStudio:
 
-* Metalang files that direct the translation engine
-* Settings files that direct the gmStudo IDE
+* [Metalang files](https://github.com/mjuras/gmStudioCfg/tree/master/Metalang) that direct the standard operation of the translation engine
+* [Settings files](https://github.com/mjuras/gmStudioCfg/tree/master/Settings) that direct the gmStudo IDE
+* [Sample Rules files](https://github.com/mjuras/gmStudioCfg/tree/master/Rules) that direct custom operation of the translation engine
 
 
