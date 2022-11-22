@@ -1,0 +1,19 @@
+<gmBasic>
+<!--
+This gmPL script initiates semantic reports and information audits.
+The logic for the reports is defined in the program gmMetrics.exe
+using gmAPI.  Please contact Great Migrations to learn more about
+gmAPI and gmMetrics.
+-->
+    <Select Target="%UserFolder%"/>
+    <Select CodeSize="500000"/>
+    <Select VirtualRoot="%VirtualRoot%"/>
+    <Select DeployLocation="%VirtualRoot%\..\SrcPrep"/>
+    %AuditMode%
+    <Storage action="Open" identifier="%InfoFile%" />
+    <Output Status="New" Filename="%RptPath%" StripTrail="on" %Syntax% />
+    <Search>
+            <%InfoType% %Project% />
+    </Search>
+    <Storage Action="Close" />
+</gmBasic>

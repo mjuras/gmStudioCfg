@@ -1,0 +1,201 @@
+<!--
+ScriptRule Overview
+
+   The ScriptRule.xml file defines named collections of script commands that
+   may be conditionally merged with the template translation script creating 
+   different actual translation scripts. This makes it possible, with one 
+   template, to automate a variety of common and task-specific upgrade options.
+
+   ScriptRule files are also needed for API-based upgrade tasks.  These 
+   tasks use an EXE implemented using gmAPI rather than a XML script template.  
+   The gmAPI framework includes a ScriptRule class providing services to 
+   integrate ScriptRule file content with other gmAPI services.
+
+ScriptRule File Syntax
+
+   A ScriptRule file is an XML document that may contain one or more ScriptRule 
+   elements.  These elements and their attributes are described below.
+
+<ScriptRule id="name" Condition="condition" > elements
+
+   ScriptRule elements contain named script command collections
+   
+   The id attribute is the name of the ScriptRule and is also used 
+   in your translation script to activate the rule.
+
+   The Condition attribute is used to control which rules are merged into 
+   to the actual translation script.
+
+<Command Condition="condition"> elements
+
+   Command elements are children of a ScriptRule that specify the content
+   that should be merged into the translation script template.  The following 
+   types of Command elements are currently supported:
+
+   Option       Inserts commands that replace the <ScriptRule> tag in the 
+                merged transcript, typically Select, Reference, and Registry commands.
+             
+   Load         Insert commands as children of the Load block. Typically Fixcommands.
+   
+   Compile      Inserts commands as children of the Compile block. Typically
+                Select, Reference, Fix, and Refactor commands.
+             
+   Analyse      Inserts commands as children of the Analyse block
+   PreAnalyse   Inserts commands before the Analyse block, typically refactor commands
+   PostAnalyse  Inserts commands after the Analyse block, typically refactor commands
+   
+   Author       Inserts commands as children of the Author block, typically Fix commands
+
+   PostAuthor   Inserts commands after the Author block, typically top level gmPL commands
+
+   The Condition attribute is used to control which commands are merged into 
+   to the actual translation script.
+
+Condition attributes
+
+   A Condition attribute may be applied to any other element. It specifies the 
+   condition under which the element and its children will be merged with the 
+   template script to create the actual script.
+
+   Syntax                %variable_expression% op 'value_expression'
+   
+   where 
+   
+   variable_expression   all script variables and other characters 
+   op                    == true if %variable_expression% == value_expression
+                         != true if %variable_expression% != value_expression
+                         =~ true if %variable_expression% matches regex value_expression
+                         !~ true if %variable_expression% does not match regex value_expression
+                         
+   value_expression      a constant string or regex pattern
+   
+   Comparisons are case insensitive using trimmed strings.
+                         
+   Relational operators are not supported, but you can use
+      Condition="var1.var2=='val1.val2'" to simulate locical AND
+      Condition="var=~'val1|val2'"       to simulate logical OR
+
+   For example  Condition="%SrcName%=='ScanToolUI'" indicates that the associated 
+                element will only be merged for upgrade tasks having SrcName equal
+                to the string "ScanToolUI".
+               
+<ForEach>, <Iterator>, and <Each> elements
+
+   ForEach elements are children of the ScriptRule. They allow repeating 
+   Command elements for each file in a specified folder that meets 
+   certain criteria.  This element may also be used to copy files
+   from the specified folder to the .NET project folder.
+   
+   The set of files to iterate over is defined by a <Iterator/FileInfo> element 
+   according to its attributes:  
+   
+   The FileInfo@Criteria attribute is a search pattern (e.g. *.wav) used to 
+   get files from the source folder.  
+   
+   The FileInfo@Folder attribute specifies the folder to search for files.
+   The default is the source folder associated with the upgrade task.
+   %SrcFolder%, %UserFolder%, and %ProjFolder% script variables may also be used.
+
+   The FileInfo@Recurse attribute may be "All" or "Top".  The default is "All".  
+   If Files="All", the root of the source folder and all of its sub-folders are 
+   searched; if Files="Top", only the root of the source folder is searched.
+   
+   The FileInfo@CopyFiles attribute may be "On" or "Off".  The default is "On". If 
+   CopyFiles="on", the files found in the source project folder will be copied
+   to the corresponding .NET project folder with directory structure preserved.
+   The folders and files are copied prior to the translation process.
+   
+   Within the <Each> block, the notation %FileInfo.member% may be used to refer 
+   to information about the files found in the source folder:
+
+   %FileInfo.RelativeName%: path relative to the source project root
+   %FileInfo.Name%: file name
+   %FileInfo.FullName%: full path
+   %FileInfo.DirectoryName%: parent folder name
+
+Activating a ScriptRule
+
+   Adding a <ScriptRule> tag to the script requests the merging of the named
+   script collection.
+
+   <ScriptRule id="name" attributeList /> 
+
+   The id attribute specifies the command collection to add.
+
+   The attributeList specifies variables that may be referenced elsewhere 
+   in the ScriptRule. Variable references are case insensitive. 
+
+   For example the following ScriptRule tag: 
+
+   <ScriptRule id="IncludeResources" Criteria="*.wav" /> 
+
+   requests loading the command collection named IncludeResouces and 
+   creates a ScriptRule variable named %Criteria% with value = "*.wav"
+   
+Specifying the ScriptRule file
+
+   By default, the ScriptRule XML is located in a file called ScriptRule.xml 
+   and is typically kept in the workspace\usr folder.
+   
+   If desired, you may specify an alternate location using a FileName attribute
+   for example:
+   
+   <ScriptRule id="ADODBUpgrade" FileName="..\usr\ADODB.Rules.xml" /> 
+   
+   The above loads the ScriptRule file named ..\usr\ADODB.Rules.xml 
+   (relative to the workspace log folder).  And then merges in the 
+   ScriptRule element having id="ADODBUpgrade":
+   
+   <ScriptRule id="ADODBUpgrade" Condition="%TaskTag%=='upg'" >
+   ... rules to perform ADODBUpgrade for tasks having TaskTag=='upg' ...
+   </ScriptRule>
+   
+See Also:
+
+   For more information, see the "Eval" VB6 Upgrade sample here 
+   https://portal.greatmigrations.com/display/GMG/Samples
+-->
+<ScriptRules>
+<!-- Here is a sample of the ScriptRule syntax -->
+<ScriptRule id="StandardUpgrade">
+   <Option>
+      <!-- directories for configuration files -->
+
+      <select Target="%UserFolder%" />
+      <Select Local="%IdfFromCodeFolder%" />
+      <Select System="%IdfFromIdlFolder%" />
+
+      <!-- translation options -->
+
+      <Select Progress="1" />
+      <Select DevEnv="%DevEnv%" />
+      <Select Dialect="%Dialect%" />
+      <Select BuildFile="local" />
+
+      <!-- directories for deployment and external assemblies -->
+
+      <select VirtualRoot="%VirtualRoot%" />
+      <Select DeployLocation="%NetProjFolder%" />
+      <Select Library="%RuntimeFolder%" />
+
+      <!-- custom processing commands -->
+
+   </Option>
+   <Compile Condition="%SrcName%=~'Project1|Project2'" >
+      <!-- pre-edits -->
+      <!-- compile refactors commands-->
+   </Compile>
+   <PreAnalyse>
+      <!-- pre-analyse refactor commands -->
+   </PreAnalyse>
+   <PostAnalyse>
+      <!-- post-analyse refactors commands-->
+   </PostAnalyse>
+   <Author Condition="%SrcName%=~'Project1|Project2'" >
+      <!-- post-edits -->          
+   </Author>
+   <PostAuthor>
+      <!-- post-author refactors commands-->
+   </PostAuthor>
+</ScriptRule>
+</ScriptRules>

@@ -1,0 +1,48 @@
+<gmBasic>
+<Storage Action="Create" Identifier="%JobId%" />
+
+<!-- Directories for Upgrade Solution files -->
+
+<select VirtualRoot="%VirtualRoot%" />
+<select Target="%UserFolder%" />
+<Select Local="%IdfFromCodeFolder%" />
+<Select System="%IdfFromIdlFolder%" />
+
+<!-- Translation options -->
+
+<Select Progress="1" />
+<Select DevEnv="%DevEnv%" />
+<Select Dialect="%Dialect%" />
+<Select AspNetCompiler="on" />
+<Select CompilerWarnings="on" />
+<Select BuildFile="off"/>
+<Select DeployLocation="%NetProjFolder%" />
+<Select Library="%RuntimeFolder%" />
+
+<!-- Visual Studio Web Application Project GUID -->
+<Registry type="guid" source="Project" target="{%TaskGuid%}" />
+<if lang="csh">
+<Registry type="guid" source="ProjectType2" target="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}" />
+</if>
+<if lang="vbn">
+<Registry type="guid" source="ProjectType2" target="{F184B08F-C81C-45F6-A57F-5ABD9991F28F}" />
+</if>
+
+%PreCompile%
+
+<!-- COM REFERENCES -->
+%ReferenceList%
+
+<Compile PageSlice="%SrcPath%">
+</Compile>
+
+%PreAnalyse%
+<Analyse />
+
+<Output Status="New" Filename="%BndPath%" />
+<Author name="%MigName%">
+</Author>
+<Output Status="Close"/>
+
+<Storage Action="Close" />
+</gmBasic>

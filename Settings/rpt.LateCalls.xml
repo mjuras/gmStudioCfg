@@ -1,0 +1,17 @@
+<gmGlobal>
+<!--
+Description: gmGlobal Script for LateCalls analysis
+https://portal.greatmigrations.com/display/GMG/Support+Statement%3A+Unused+Symbol+Analysis+and+Reporting
+-->
+   <Storage Action="Create" Identifier="%MigName%-LateCalls" />
+   <LoadEnvironment />
+   <Select Progress="2" />
+   <Select MaxOutputWidth="2048" />
+   <InformationFiles>
+   %VbiList%
+   </InformationFiles>   
+   <Output Status="New" Filename="%ReportPath%" />
+   <FindCallByName ShowDetails="on" />
+   <Output Status="Close" />
+   <Storage Action="Close" />
+</gmGlobal>

@@ -1,0 +1,13 @@
+<gmBasic>
+<Storage Action="Create" Identifier="SrcOrder"/>
+<Output Status="New" Filename="%SrcOrdLogPath%" />
+
+<select system="%IdfFromIdlFolder%" />
+<select local="%IdfFromCodeFolder%" />
+<select target="%UserFolder%" />
+<Select virtualRoot="%VirtualRoot%"/>
+%foreach project%
+<Load Project="%SrcPath%"/>
+%endloop%
+<BuildOrder />
+</gmBasic>

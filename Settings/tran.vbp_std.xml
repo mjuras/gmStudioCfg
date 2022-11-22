@@ -1,0 +1,36 @@
+<gmBasic>
+<Storage Action="Create" Identifier="%JobId%" />
+
+<!-- Directories for Upgrade Solution files -->
+
+<select VirtualRoot="%VirtualRoot%" />
+<select Target="%UserFolder%" />
+<Select Local="%IdfFromCodeFolder%" />
+<Select System="%IdfFromIdlFolder%" />
+
+<!-- Translation options -->
+
+<Select Progress="1" />
+<Select DevEnv="%DevEnv%" />
+<Select Dialect="%Dialect%" />
+<Select BuildFile="off" />
+<Select DeployLocation="%NetProjFolder%" />
+<Select Library="%RuntimeFolder%" />
+<Registry type="GUID" source="Project" target="{%TaskGuid%}"/>   
+
+<!-- Processing Commands -->
+
+%PreCompile%
+<Compile Project="%SrcPath%">
+</Compile>
+
+%PreAnalyse%
+<Analyse />
+
+<Output Status="New" Filename="%BndPath%" />
+<Author>
+</Author>
+<Output Status="Close"/>
+
+<Storage Action="Close" />
+</gmBasic>

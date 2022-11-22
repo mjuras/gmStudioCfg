@@ -1,0 +1,93 @@
+<MetaLanguage languageFile="..\usr\vb7Lang.vbi" >
+<!--
+Description: Define Project-Specific Metalang
+
+This script directs the creation of the system metalanguage file that 
+controls how gmStudio translates VB6/ASP language elements to .NET.
+
+********************** IMPORTANT ******************************************************
+ You should not modify metalang files without explicit 
+ support from Great Migrations.
+ 
+If you decide to create a custom metalanguage configuration for your project, you 
+will have to merge changes from the updated default metalanguage files into 
+your custom copies of the files and possibly also have to make other changes to your 
+upgrade solution when you install a gmStudio update.
+
+See this article for additional information:
+https://portal.greatmigrations.com/display/GMG/Custom+VB6+Language+Replacement
+**************************************************************************************
+-->
+   <Include Filename="%MetaLangFolder%\Messages.xml" />
+   <language id="Basic" >
+      <Include Filename="%MetaLangFolder%\opcodes.xml"/>
+      <Include Filename="%MetaLangFolder%\enumerations.xml"/>
+      <Include Filename="%MetaLangFolder%\toollang.xml"/>
+      <Include Filename="%MetaLangFolder%\htmllang.xml"/>
+      <Include Filename="%MetaLangFolder%\gmsLang.xml" />
+      <Include Filename="%MetaLangFolder%\vbproject.xml"/>
+      <Include Filename="%MetaLangFolder%\vbconstants.xml"/>
+      <Include Filename="%MetaLangFolder%\vbmethods.xml"/>
+      <include Filename="%MetaLangFolder%\vbcontrols.xml"/>
+      <Include Filename="%MetaLangFolder%\templates.xml"/>
+      <Include Filename="%MetaLangFolder%\vb6idl.xml"/>
+      <Include Filename="%MetaLangFolder%\vbasic.xml"/>
+
+      <Select AcceptRedefine="on" />
+      <Select AppNameSpace="AspCodeBehind" />
+      <Select AspCodeClass="on" />
+      <Select AuthorLibrary="deploy" />
+      <Select BlockComments="off" />
+      <Select BlockMethods="0" />
+      <Select CheckDeclares="ignore" />
+      <Select CheckFinalCode="On" />
+      <Select CheckMultiSet="off" />
+      <Select CodeCommentOut="on"/>
+      <Select Company="%PRM_BUILDID%" />
+      <Select CompilerWarnings="on" />
+      <Select ComputeConditional="on" />
+      <Select DesignCode="on" />
+      <Select Devenv="VS2010"/>
+      <Select Dialect="csh" />
+      <Select ExceptionHandling="Simple"/>
+      <Select Id="std" />
+      <Select Indent="3"/>
+      <Select Language="%MetaLangFolder%" />
+      <Select Library="runtime" />
+      <Select MaxOutputWidth="2048" />
+      <Select MigrateLineToLabel="off" /> 
+      <Select Name="Basic Processor" />
+      <Select RootSpace=""/>
+      <Select SupplyMissingResx="on" />
+      <Select Target="%MetaLangFolder%" />
+      <Select TypeInteger="Integer" TypeLong="Integer"/>
+      <Select UndefinedProperties="ignore"/>
+      <Select Version="%PRM_VERSION%" />
+      <Select ExtensionMethods="gmRTL.Core" />
+   </language>
+
+   <gmSL NameSpace="gmSL" Class="AuthorText"    Source="%MetaLangFolder%\AuthorText.gmsl" />
+   <gmSL NameSpace="gmSL" class="Utility"       Source="%MetaLangFolder%\Utility.gmsl" />
+   <gmSL NameSpace="gmSL" class="SharedFile"    Source="%MetaLangFolder%\SharedFile.gmsl" />
+   <gmSL NameSpace="gmSL" class="AspAuthor"     Source="%MetaLangFolder%\AspAuthor.gmsl" />
+   <gmSL NameSpace="gmSL" class="IdlAuthor"     Source="%MetaLangFolder%\IdlAuthor.gmsl" />
+
+   <Registry type="guid" source="Project" target="off" />
+   <Registry type="guid" source="ProjectType1" target="{349C5851-65DF-11DA-9384-00065B846F21}" />
+   <Registry type="guid" source="ProjectType2" target="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}" />
+   <Registry type="guid" source="Flavor"       target="{349C5851-65DF-11DA-9384-00065B846F21}" />
+   <Registry type="guid" source="Interfaces"   target="{447E0939-9DC6-40F4-A30E-26DC252607D3}" />
+
+   <Registry type="idf" source="Language.std"         target="@%MetaLangFolder%\Language.std.xml" />
+   <Registry type="idf" source="gmRegExpLib.dll"      target="@%MetaLangFolder%\gmRegExpLib.dll.xml" />
+   <Registry type="idf" source="asplang"              target="@%MetaLangFolder%\asplang.xml" />
+   <Registry type="idf" source="Vb6control.dcl"       target="@%MetaLangFolder%\Vb6Control.dcl.xml" />
+   <Registry type="idf" source="gmRTL.Core.dll"       target="@%MetaLangFolder%\gmRTL.Core.dll.xml" />
+   <Registry type="idf" source="gmRTL.GUI.dll"        target="@%MetaLangFolder%\gmRTL.GUI.dll.xml" />
+   <Registry type="idf" source="gmRTL.ASP.dll"        target="@%MetaLangFolder%\gmRTL.ASP.dll.xml" />
+   <Registry type="idf" source="stdole2.tlb"          target="@%MetaLangFolder%\stdole2.tlb.xml" />
+   <Registry type="idf" source="dao350.dll"           target="@%MetaLangFolder%\dao350.dll.xml" />
+
+   <Include Filename="%MetaLangFolder%\netControls.xml"/>
+   <Include Filename="%MetaLangFolder%\netClasses.xml"/>
+</MetaLanguage>

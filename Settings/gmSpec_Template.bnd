@@ -1,0 +1,135 @@
+crdir %gmSpecFolder%
+crdir %gmSpecFolder%\src
+crdir %gmSpecFolder%\proj
+crdir %gmSpecFolder%\package
+cat >%gmSpecFolder%\src\mod%gmSpecName%.bas <<'!)(!'
+Attribute VB_Name = "mod%gmSpecName%"
+Option Explicit
+
+Public const gLogFile as String = "%gmSpecName%.log"
+
+Public Sub Main()
+
+    If Dir(gLogFile) <> "" Then Kill gLogFile
+        
+    writeLog "starting test"
+    run
+    ' frm%gmSpecName%.Show
+    writeLog "ending test"
+    
+End Sub
+
+Public Sub writeLog(ByVal rpt As String)
+    Open gLogFile For Append As 1
+    Print #1, rpt
+    Debug.Print rpt
+    Close 1
+End Sub
+
+Public Sub run()
+    writeLog "running test"
+End Sub
+
+!)(!
+cat >%gmSpecFolder%\src\frm%gmSpecName%.frm <<'!)(!'
+VERSION 5.00
+Begin VB.Form frm%gmSpecName% 
+   Caption         =   "Form1"
+   ClientHeight    =   3195
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   4680
+   LinkTopic       =   "Form1"
+   ScaleHeight     =   3195
+   ScaleWidth      =   4680
+   StartUpPosition =   3  'Windows Default
+End
+Attribute VB_Name = "frm%gmSpecName%"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+
+!)(!
+cat >%gmSpecFolder%\src\cls%gmSpecName%.cls <<'!)(!'
+VERSION 1.0 CLASS
+BEGIN
+  MultiUse = -1  'True
+  Persistable = 0  'NotPersistable
+  DataBindingBehavior = 0  'vbNone
+  DataSourceBehavior  = 0  'vbNone
+  MTSTransactionMode  = 0  'NotAnMTSObject
+END
+Attribute VB_Name = "cls%gmSpecName%"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = False
+Option Explicit
+!)(!
+cat >%gmSpecFolder%\src\%gmSpecName%.vbp <<'!)(!'
+Type=Exe
+Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\WINDOWS\system32\stdole2.tlb#OLE Automation
+Form=frm%gmSpecName%.frm
+Module=mod%gmSpecName%; mod%gmSpecName%.bas
+Class=cls%gmSpecName%; cls%gmSpecName%.cls
+Startup="Sub Main"
+HelpFile=""
+Title="%gmSpecName%"
+ExeName32="%gmSpecName%.exe"
+Command32=""
+Name="%gmSpecName%"
+HelpContextID="0"
+CompatibleMode="0"
+MajorVer=1
+MinorVer=0
+RevisionVer=0
+AutoIncrementVer=0
+ServerSupportFiles=0
+VersionCompanyName="Great Migrations LLC"
+CompilationType=0
+OptimizationType=0
+FavorPentiumPro(tm)=0
+CodeViewDebugInfo=0
+NoAliasing=0
+BoundsCheck=0
+OverflowCheck=0
+FlPointCheck=0
+FDIVCheck=0
+UnroundedFP=0
+StartMode=0
+Unattended=0
+Retained=0
+ThreadPerObject=0
+MaxNumberOfThreads=1
+DebugStartupOption=0
+
+[MS Transaction Server]
+AutoRefresh=1
+!)(!
+cat >%gmSpecFolder%\package\package.cmd <<'!)(!'
+
+:: this script makes a copy of the VB6 source and gmStudio project files and zips them up 
+
+set mig=%gmSpecName%
+set name=%gmSpecName%
+set zip=%mig%_01.zip 
+ 
+rmdir .\%mig%    /s/q 
+ 
+robocopy  ..\src              .\%mig%\src  *.vbp *.fr* *.bas *.cls *.ct* *.ds* /s /np 
+ 
+robocopy  ..\proj\                  .\%mig%\proj\                 *.gmproj  /np /xf *.vbi *.cache /xd package deploy* report tlbexp  interop sav  
+robocopy  ..\proj\idf\FromCode      .\%mig%\proj\idf\FromCode     *.xml /np /xf *.vbi *.cache /xd package deploy* report tlbexp  interop sav  
+robocopy  ..\proj\idf\FromIDL       .\%mig%\proj\idf\FromIDL      *.xml  *.idl /np /xf *.vbi *.cache /xd package deploy* report tlbexp  interop sav  
+robocopy  ..\proj\log               .\%mig%\proj\log\             *.* /np /xf *.vbi *.cache /xd package deploy* report tlbexp  interop sav  
+robocopy  ..\proj\usr               .\%mig%\proj\usr\             *.xml *.gmsl *.txt /np /xf *.vbi *.cache /xd package deploy* report tlbexp  interop sav  
+::robocopy  ..\proj\runtime         .\%mig%\proj\runtime\         *.dll /np /xf *.vbi *.cache /xd package deploy* report tlbexp  interop sav  
+
+if exist %zip% del %zip% 
+
+"C:\Program Files\7-Zip\7z" a -bb1 %zip% %mig% 
+
+pause 
+!)(!

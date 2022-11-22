@@ -1,0 +1,12 @@
+    <COMReference Include="%TlbName%">
+      <HintPath>%HintPath%</HintPath>
+      <Guid>%TlbGuid%</Guid>
+      <VersionMajor>%TlbVersionMajor%</VersionMajor>
+      <VersionMinor>%TlbVersionMinor%</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>%TlbWrapperTool%</WrapperTool>
+      <!--
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>%EmbedInteropTypes%</EmbedInteropTypes>
+      -->
+    </COMReference>

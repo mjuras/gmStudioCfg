@@ -1,0 +1,33 @@
+<gmBasic>
+<!-- 
+These registry commands help the translator resolve 
+non-standard progIDs used by various third party components.
+
+source = the ProgId that appears in code
+target = the LibName.ClassName that appears in the IDL/IDF
+-->
+<registry type="progid" source="APToolkit.Object"           target="APToolkitLib.APToolKit" />
+<registry type="progid" source="AcroExch.AVDoc"             target="Acrobat.CAcroAVDoc" />
+<registry type="progid" source="AcroExch.App"               target="Acrobat.CAcroApp" />
+<registry type="progid" source="AcroExch.PDDoc"             target="Acrobat.CAcroPDDoc" />
+<registry type="progid" source="AddressObject.AddressCheck" target="AddressObjectLib.AddressCheck" />
+<registry type="progid" source="AddressObject.Parse"        target="AddressObjectLib.Parse" />
+<registry type="progid" source="AddressObject.ZipCodeData"  target="AddressObjectLib.ZipCodeData" />
+<registry type="progid" source="DERuntime.DERuntime"        target="DERuntimeObjects.DataEnvironment" />
+<registry type="progid" source="IXSSO.Query"                target="Cisso.CissoQuery" />
+<registry type="progid" source="MSWC.BrowserType"           target="BrowserType.BrowserCap" />
+<registry type="progid" source="MSWC.Counters"              target="Counters.Counters" />
+<registry type="progid" source="MSXML.DOMDocument"          target="MSXML2.DOMDocument" />
+<registry type="progid" source="Microsoft.XMLDOM"           target="MSXML2.DOMDocument" />
+<registry type="progid" source="Microsoft.XMLHTTP"          target="MSXML2.XMLHTTP" />
+<registry type="progid" source="Msxml2.DOMDocument.4.0"     target="MSXML2.DomDocument" />
+<registry type="progid" source="Msxml2.ServerXMLHTTP.4.0"   target="MSXML2.ServerXMLHTTP" />
+<registry type="progid" source="Persits.MailSender"         target="ASPEMAILLib.MailSender" />
+<registry type="progid" source="Persits.Upload.1"           target="ASPUPLOADLib.IUploadManager" />
+<registry type="progid" source="SAWZip.Archive.1"           target="SAWZIPLib.Archive" />
+<registry type="progid" source="SoftArtisans.ExcelWriter"   target="SAEXCELLib.SAExcelApplication" />
+<registry type="progid" source="SoftArtisans.FileUp"        target="UPLDICTIONARYLib.ISAFile" />
+<registry type="progid" source="WScript.Network"            target="IWshRuntimeLibrary.WshNetwork" />
+<registry type="progid" source="WScript.Shell"              target="IWshRuntimeLibrary.WshShell" />
+<registry type="progid" source="WinHttp.WinHttpRequest.5"   target="WinHttp.WinHttpRequest" />   
+</gmBasic>

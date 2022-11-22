@@ -1,0 +1,9 @@
+<Startup metalanguage="..\usr\VB7lang.vbi">
+<!-- 
+If this script is present in your workspace\usr folder, gmBasic will
+use the metalanguage file in your [workspace]\usr folder.
+
+You should not modify these files without explicit support from Great Migrations.
+-->
+   <Subsystem id="std" Language="C:\Program Files (x86)\GreatMigrations\gmStudio\support\\metalang"/>
+</Startup>

@@ -1,0 +1,124 @@
+<CodeStyle>
+<!--
+Description: Custom Coding Style Specification
+
+Activate by adding the following to the translation script:
+
+   <gmMU Utility="%AppExeFolder%\gmCodeStyle.exe"  Events="CompilerInfo,FinishAnalyser,EditTranslation" />
+
+Note that this migration utility makes extensive changes to the symbol tables underlying the code 
+and must therefore, always be loaded last when multiple runtime libraries are being used.
+So placing the element above right before the Compile should be adequate in this regard.
+
+See https://portal.greatmigrations.com/display/GMG/Custom+Coding+Style for more info.
+-->
+   <Indent value="4" />
+   <Messages>
+      <Entry id="Rename" name="UPGRADE_TODO: identifier [$1d] for $2d already defined for $3d" />
+   </Messages>
+   <Hungarian>
+      <LoopVariables>
+         <Entry id="i" name="loopIndex" />
+      </LoopVariables>
+      <SourcePrefixes >
+         <Entry type="Boolean" value="bln" />
+         <Entry type="String"  value="str" />
+         <Entry type="Integer" value="lng" />
+         <Entry type="User"    value="obj" />
+         <Entry type="Object"  value="dic" />
+      </SourcePrefixes>
+      <ExcludedSuffixes>
+         <Entry value="Data" />
+         <Entry value="Connection" />
+         <Entry value="ErrorMessage" />
+         <Entry value="Table" />
+         <Entry value="Field" />
+         <Entry value="IndexName" />
+      </ExcludedSuffixes>
+      <StatusPrefixes value="m_;i_;o_;io_;l_" />
+      <GlobalPrefixes value="g;m" />
+      <NamingStyle>
+         <Entry style="Original" object="Vb_name" />
+         <Entry style="lowerCamel" access="local" />
+         <Entry style="lowerCamel" access="Private" object="Variable" prefix="_" />
+      </NamingStyle>
+      <SpecialNames value="Cancel;UnloadMode" />
+      <ReservedWords value="Default;String;In" />
+      <Acronyms Value="Xml;Sql" />
+   </Hungarian>
+   <ChangeIntroduced>
+      <Entry id="index" name="indexPram" />
+   </ChangeIntroduced>
+   <DoNotInitialize>
+      <Variables />
+      <Fields />
+      <OutParameters />
+   </DoNotInitialize>
+   <SimpleProperty>
+      <PublicFields><![CDATA[
+      public static $1d $2d { get; set; }
+      ]]></PublicFields>
+      <Getter>
+         <Entry value="NEW,NEW,ERR.Try,LEV,LDA,ARG,LDA,STR.AssignValue,NEW,LDA,EXI,ERR.Catch1,...,ERR.Catch3" />
+         <Entry value="NEW,Argument,EXI.Function" />
+       </Getter>
+      <Setter>
+         <Entry value="NEW,NEW,ERR.Try,LEV,SPV.Value,ARG,LDA,STR.AssignValue,NEW,EXI,ERR.Catch1,...,ERR.Catch3" />
+         <Entry value="Argument,LDA,STR.AssignValue" /> 
+      </Setter>
+      <AuthorSame><![CDATA[
+      private $1d $3d;
+      $5d $4d $2d
+      {
+         get { return $3d; }
+         set { $3d = value; }
+      }
+      ]]></AuthorSame>
+      <AuthorDifferent><![CDATA[
+      private $1d $3d;
+      $5d $4d $2d
+      {
+         get { return ($4d)$3d; }
+         set { $3d = ($1d)value; }
+      }
+      ]]></AuthorDifferent>
+      <GetEnumerator entry="%1d.GetEnumerator()" />
+   </SimpleProperty>
+   <OperationCode>
+      <OptimizeFunctions />
+      <PostIncrement />
+      <RemoveReturns />
+      <SimpleCasts />
+      <StandardFunctions>
+         <Entry id="Trim"   name="%1d.Trim()" />
+         <Entry id="Left"   name="%1d.Substring(0,%2d)" />
+         <Entry id="InStr"  name="%2d.IndexOf(%3d,%1o)" />
+         <Entry id="Right"  name="%1d.Substring(%1d.Length - %2h)" />
+         <Entry id="Len"    name="%1d.Length" />
+      </StandardFunctions>
+   </OperationCode>
+   <OptionalArguments />
+   <TargetCode>
+      <AddSpaces vertical="On" />
+      <ReduceBraces Statement="off" />
+      <RemoveUsing>
+         <Entry id="System.Drawing;" />
+         <Entry id="System.Collections;" name=" IEnumerator "/>
+         <Entry id="System.ComponentModel;" />
+         <Entry id="System.Runtime.InteropServices;" name="[Dllimport" />
+         <Entry id="System.Data;" />
+         <Entry id="Microsoft.VisualBasic.CompilerServices;" />
+         <Entry id="System.Linq;" name=".ToArray(;Keys.ElementAt(" />
+         <Entry id="System.Collections.Generic;" name="List<;Dictionary<;HashSet<" />
+         <Entry id="VBNET = Microsoft.VisualBasic;" name="VBNET." />
+      </RemoveUsing>
+      <Replacements>
+         <Entry id="String.Empty" name="string.Empty" />
+         <Entry id="System.Int32" name="int" />
+         <Entry id="System.Windows.Forms." />
+         <Entry id="this." />
+         <Entry id="VBNET.Constants.vbNullString" name="null" />
+      </Replacements>
+      <AllowBlankLines Limit="1" />
+   </TargetCode>
+</CodeStyle>

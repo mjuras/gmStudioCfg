@@ -1,0 +1,186 @@
+'' Search Terms Instructions
+''-------------------------------------------
+'' This file contains the list of  
+'' patterns to search for; it is used 
+'' by the search panel and for 
+'' the code scan reports.
+''
+'' The Search looks for content one 
+'' record at a time using 
+'' .NET regular expressions.  Each 
+'' expression to search for is placed 
+'' on a record in this file. The 
+'' first character of the expression may
+'' indicate special meaning as follows:
+''
+'' blank line -- stop processing pattern list
+'' ''comment  -- comment (ignored)
+'' @pattern   -- case-sensitive
+'' ~pattern   -- report files that 
+''               do not contain pattern
+'' #pattern   -- report count of  
+''               matches in each file
+'' &pattern   -- search entire file, not one 
+''               record at a time
+'' /file      -- search for terms listed 
+''               in file
+''
+'' The ~ and # features are not available
+'' for the IDF and Reference search.
+'' 
+'' To search for a special character at the
+'' start of a pattern, enclose it in square
+'' brackets. 
+''-------------------------------------------
+'' Some samples are in the PRESET below.
+'' You may add your own Presets.
+''-------------------------------------------
+PRESET Potential VB6 Issues
+'' Potential VB6 Language Issues
+'' The following are patterns for 
+'' VB6 features that might warrant 
+'' attention during an upgrade.
+(Public|Friend) \bEvent\b
+(\.ctx":|\.frx":)
+@[^"]\bNull\b
+As Any\b
+As Collection\b
+As Control\b
+As Currency\b
+As Error\b
+As Form\b
+As New\b 
+As Object\b
+As Printer\b
+As String \*
+As Variant\b
+AsyncRead
+Begin {.*} \w+
+Begin VB.DriveListBox
+Begin VB.DirListBox
+Begin VB.FileListBox
+Begin VB.Timer
+Begin VB.Data
+Begin VB.OLE
+Begin VB.Shape
+Begin VB.Line
+\sLine\b.*\)-\(
+\sCircle\b.*\(.+,.+\), 
+\sPSet\b.*\)-\(
+\.Line \(
+\.Circle \(
+\.PSet \(
+\.AutoRedraw\b
+\bControls.Add
+\bCVErr\b
+MTSTransactionMode  = 3  'UsesTransaction
+On Error Resume Next
+Option Base 1
+Option Compare Database
+Option Compare Text
+ReDim Preserve
+ResFile32="
+Sub .*_Validate\(Cancel
+Sub Form_\w+\(.*\)$
+Sub MDIForm_\w+\(.*\)$
+Sub.*OLE.*Drag
+Sub.*OLE.*Drop
+Type=OleExe
+UserControl_\w+Properties
+VB_GlobalNameSpace = True
+[#]Const\b
+[#]Else\b
+[#]If\b
+\.DataField\b
+\.DataSource\b
+\.Link\w+\b
+\bCallByName\b
+\bClass_Terminate\b
+\bClipboard\.
+\bCondComp\b
+\bCreateObject\b
+\bDeclare\b
+\bDefType\b
+\bGetObject\b
+\bGoSub\b
+^Implements\b
+\bIsArray\b
+\bIsMissing\b
+\bIsNull\b
+\bIsObject\b
+\bIsError\b
+\bItemData  \s+=
+\bLSet\b
+\bList  \s+=
+\bObjPtr\b
+\bPopupMenu\b
+\bPrint #
+\bPrintForm\b
+\bPrinter\.
+\bScaleMode\b
+\bStatic\b 
+\bStrPtr\b
+\bTypeName\b
+\bTypeOf\b
+\bUserControl\.
+\bVarPtr\b
+\bWithEvents\b
+^(?!.*Error).*\bGoto\b.*$
+^(?!.*Error).*\bResume\b.*$
+~Option Explicit
+
+PRESET GUI Scan
+'' Report VB6 forms and controls
+_GUI_FULL_
+
+PRESET Methods and Properties
+'' Report all source method declarations
+_MEMBERS_
+
+PRESET Longest Lines
+'' report longest line in each source file
+_LONGEST_
+
+PRESET Data Access
+'' Report data access statements heuristically
+\bfrom\b
+\b"select\b
+\b"update\b
+\bwhere\b
+\b"exec\b
+
+PRESET Potential ASP Issues
+'' Reports ASP features that might require 
+'' attention during the upgrade.
+<object\b
+\.CreateObject
+[#]include
+^\s*\bclass\b[^=]
+\bTypeLib\b
+<form 
+On Error Resume Next
+ReDim Preserve
+\bTypeName\b
+j.*script.*runat.*server
+runat.*server.*j.*script
+\bRegExp\b
+
+PRESET Translation Audit
+'' Report .NET code that requires attention
+ref argTemp
+\(object\)
+\(dynamic\)
+\bCallByName\b
+gmRTL(\.\w+)+
+&\(+dynamic\)\w+\)*\.\w+
+&CallByName\(\S*,"\S*"
+&gmRTL(\.\w+)+
+UPGRADE_TODO
+UPGRADE_INFO
+\w+_migname
+
+PRESET CSC Errors
+(.*) error (CS\d\d\d\d): (.*) \[
+
+PRESET VBC Errors
+(.*) error (VB\d\d\d\d): (.*) \[

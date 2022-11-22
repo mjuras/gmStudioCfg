@@ -1,0 +1,12 @@
+<Search storage="%JobId%" output="%JobId%.symbols.tab" OutStyle="Tabbed">>
+   <CodeBlock Identifier="ScanToolLib.clsVBPModReporter.processFile" LineNo="24"/>
+   <!-- examples
+   <Interface />
+   <Symbols />
+   <Details />
+   <References />
+   <Definitions />
+   <CodeBlock Identifier="DirScan.frmDirScan.report" Lineno="349" />
+   <Statements substring="Declare " />
+   -->
+</Search>

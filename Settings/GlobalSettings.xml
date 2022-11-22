@@ -1,0 +1,31 @@
+<GlobalImports>
+<Storage Action="Create" Identifier="%UserFolder%\GlobalSettings" />
+<!--
+A GlobalImports file is a place to register various 
+translation rules and other metadata and commands
+for use in subsequent translations.
+
+Processing this script with gmBasic will produce a VBI file
+that can be loaded by other scripts and applied using
+a command such as
+
+<Select GlobalSettings="%UserFolder%\GlobalSettings" />
+-->
+<Registry type="EditFile" Source="path to source">
+<Fix name="EditFile">
+<!-- 
+Pre-Edits
+-->
+</Fix>
+</Registry>
+
+<Registry type="RefactorFile" Source="path to source">
+<Refactor>
+<!-- 
+Refactoring commands 
+-->
+</Refactor>
+</Registry>
+
+<Storage Action="Close" />
+</GlobalImports>

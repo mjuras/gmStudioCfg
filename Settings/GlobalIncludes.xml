@@ -1,0 +1,91 @@
+<gmMU>
+<!--
+Description: GlobalIncludes Analysis Reporting.
+
+These script is used as part of the ASP GlobalIncludes process.
+This process has five steps:
+
+1. Run Page translations for all page files in your ASP site. 
+   
+   These translations may be optimized for type inference and
+   other details and these optimizations will impact the 
+   GlobalIncludes results. 
+   
+   The optimizations may be placed in a GlobalSettings script 
+   used in the page translations.
+
+2. Prepare GlobalIncludes.xml script like this one to process the 
+   page file VBIs generated in step 1.
+   
+3. Run gmGlobalIncludes.exe as a gmStudio tool to process 
+   the GlobalIncludes.xml script created in step 2.
+   This will produce a GlobalIncludesReport.xml 
+   report.
+   
+   You may run gmGlobalIncludes.exe by adding a GlobalIncludes.xml as a Task in your
+   gmProj file with the following TScript value:
+
+      GMTOOL:gmGlobalIncludes.exe
+      
+   Typically this task will be the last one in your 
+   solo page translation project you used in step 1.
+
+4. Embed or <Include> the GlobalIncludesReport.xml content 
+   in the GlobalSettings.xml script you used for page
+   translations in step 1.
+   
+5. Register gmGlobalIncludes.exe as a gmBasic Utility 
+   with the following commands in the SITE script:
+   
+   <Select GlobalSettings="%UserFolder%\GlobalSettingsWeb" />
+   <gmMU Utility="%AppExeFolder%\gmGlobalIncludes.exe" events="FinishAnalyser"/>
+
+Note that gmGlobalIncludes.exe is both a gmStudio Tool executed 
+as a stand alone process and as a gmBasic Utility executed 
+by gmBasic during the FinishAnalyser stage of the translation 
+process.  
+
+The process above should find the gmGlobalIncludes.exe 
+in the gmStudio installation folder.  gmGlobalIncludes.exe uses a 
+file called gmGlobalIncludes.vbi found in the same folder as 
+the exe.  This VBI file is generated from gmGlobalIncludes.gmsl.
+
+Contact GreatMigrations if you have questions or wish to use 
+customize the GlobalIncludes process.
+-->
+   <Storage Action="Create" Identifier="GlobalIncludes" />
+   <Select Target="%UserFolder%" />
+   <Output Status="New" Filename="%UserFolder%\GlobalIncludesReport.xml" />  
+   <GlobalIncludes>
+      <VbiFile identifier="FMSWebSolo-401k_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-AccountSummary_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-browse_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-BuyStock_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-cart_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-ChartPortfolio_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-checkout_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-default_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-FindProduct_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-Home_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-Logout_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-news_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-OfflinePortfolio_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-Portfolio_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-SellStock_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-SellStockAction_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-SellStockReceipt_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-store_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-template_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-testRS_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-TickerDetail_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-TickerList_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-ViewProduct_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-_about_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-_GetXMLPortfolio_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-_GetXMLTickerHistory_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-_NewAccount_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-_runsql_asp-std-csh.vbi" />
+      <VbiFile identifier="FMSWebSolo-_version_asp-std-csh.vbi" />
+   </GlobalIncludes>
+   <Storage Action="Close" />
+</gmMU>

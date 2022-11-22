@@ -1,0 +1,100 @@
+Search Template Reporting Instructions 
+
+Search results may be reported using parameterized reporting templates
+as specified in the template textbox.  A reporting template is static text 
+and value placeholders.  Examples of value placeholders are shown below:
+
+-------------------------------------------------------------------------------
+Column key place holder    :   %ColumnKey%  
+Column Index  place holder :   %(0)...%(16)
+Regex Group place holders  :   %[0]...%[n] in LocText field
+Regex Group place holders  :   %rec%[0]...%[n] anywhere in matching record
+-------------------------------------------------------------------------------
+
+To see column key placeholder names for a given report, check the Show Keys checkbox 
+before running the report.  They column keys will be displayed as column headers rather
+than the column descriptions.
+
+The reporting template starts at the top of this template box and ends with 
+the record containing '.' in column 1, or the end of the template textbox.
+
+If the pattern for the search had regex groups (i.e. enclosed in parentheses), 
+then the parameters may correspond to the values from the groups (%[0] ... %[n])
+
+To author a '%' in the pattern, precede it with caret '^'.
+
+Pre-defined templates may be named and stored in this file as shown below.
+These templates may be selected from the context menu of the template textbox.  
+      
+PRESET FixType
+<FixType identifier="%LocText%" type="Variant" />
+.
+
+PRESET Reauthor
+<Reauthor subprogram="%LocText%"><![CDATA[
+// UPGRADE_INFO: hand-coded replacement
+]]></Reauthor>
+.
+
+PRESET Remove
+<Remove identifier="%LocText%" migStatus="stubout|delete|conditional" />
+.
+
+PRESET Rename
+<Rename identifier="%LocText%" content="%LocText%" />
+.
+
+PRESET Generic
+<Generic identifier="%LocText%" types="string,integer" />
+.
+
+PRESET OverGeneric
+<OverGeneric identifier="%LocText%" types="constraint text" />
+.
+
+PRESET Overload
+<Overload identifier="%LocText%" types="%LocText%" />
+.
+
+PRESET Replace
+<Replace name="Replace in %MemClas%">
+<OldBlock><![CDATA[%LocText%]]></OldBlock>
+<NewBlock><![CDATA[%LocText%]]></NewBlock>
+</Replace>
+.
+
+PRESET ReplaceFile
+<Fix name="PostEdit_ReplaceFiles" host="%MemLibr%">
+<ReplaceFile name="%MemClas%"
+    lang="csh"    
+    source="%MemClas%.cs"
+    target="..\usr\handcode\%MemClas%.cs"
+/>
+</Fix>
+.
+
+PRESET EditFile
+<Registry type="EditFile" Source="%LocFile%">
+   <Fix name="EditFile">
+   <Replace status="active" name="name">
+   <OldBlock><![CDATA[%Loctext%]]></OldBlock>
+   <NewBlock><![CDATA[%Loctext%]]></NewBlock>
+   </Replace>
+   </Fix>
+</Registry>
+.
+PRESET RefactorFile
+<Registry type="RefactorFile" Source="%LocFile%">
+   <Refactor>
+   <FixType identifier="%MemClas%.%LocMemb%" type="Variant" status="ObjectOnly" />
+   </Refactor>
+</Registry>
+.
+
+PRESET Migrate
+<Migrate id="%LocName%" migName="newName" />
+.
+
+PRESET References
+%MemType%: %MemLibr%.%MemClas%.%MemName%
+.

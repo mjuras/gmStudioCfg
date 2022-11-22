@@ -1,0 +1,127 @@
+<gmBasic>
+<Storage Action="Create" Identifier="%JobId%" />
+<!-- 
+Description: Global Stub Code Framework generation script
+
+VB6/ASP/COM systems typically depend on one or more COM APIs that 
+provide platform services such as database access,
+file system access, XML handling, UI controls, etc.  When
+upgrading an application to a new platform, the way the application 
+requests and consumes platform services must change.  
+This is a very important consideration for VB6/ASP/COM to .NET upgrade 
+work since each COM API requires an effective upgrade strategy.
+
+In the early stages of an upgrade project, the upgrade strategies for 
+COM APIs may not yet be certain.  To prevent this uncertainty from blocking 
+initial upgrade work, gmStudio helps teams generate a .NET stub 
+framework to satisfy COM dependencies.  This stub framework 
+may be used for the initial builds of the .NET code.
+
+The <Select BuildFile="option" /> command controls
+how the COM framework is generated and linked to upgraded
+application projects.  
+
+* When BuildFile=local, the COM dependencies 
+  are satisfied by COM stub files. These files are
+  specific to each application project and are deployed 
+  with and referenced directly by each project.  
+
+* When BuildFile=global, the COM dependencies 
+  are satisfied by separate COM stub assemblies.  
+  A stub assembly is generated for each COM API and contains the 
+  API needed to satisfy the combined dependencies of a set of 
+  .NET application projects. Using BuildFile=global is a requirement 
+  for upgrading multiple inter-related projects that share
+  COM dependencies.  These dependencies must be satisfied
+  by a consolidated set of assemblies rather than by 
+  separate files embedded in the individual .NET projects.  
+
+* Finally, when BuildFile=off, the COM dependencies are satisfied 
+  by separate assemblies as defined by the user, possibly interop 
+  assemblies,or other pre-existing assemblies, such as third-party 
+  .NET APIs. 
+A typical upgrade project proceeds from BuildFile=local, 
+to BuildFile=global, to BuildFile=off as COM replacement 
+strategies are resolved and implemented.
+
+This script is used with BuildFile=global.  It tells gmBasic
+to, first, analyse COM dependencies across a set of upgraded projects 
+and, second,to generate the code for the COM stub assembly projects
+that will satisfy those dependencies.  The generated file 
+will also contain the .NET build commands needed to 
+compile the stub assembly projects.  
+-->
+
+<!-- General translation settings 
+
+Specify general translation settings here.
+
+This will be all the settings you are using 
+for local stub translations.
+
+The key change is to specify:
+
+<Select BuildFile="Global" />
+and 
+<Select Library="%DeployFolder%" />
+
+These changes are needed in both this script and your VBP translation scripts.
+
+-->
+<Select Progress="1" />
+<Select DevEnv="%DevEnv%" />
+<Select Dialect="%Dialect%" />
+<Select DeployLocation="%NetProjFolder%" />
+<Select Library="%DeployFolder%" />
+<select Target="%UserFolder%" />
+<Select Local="%IdfFromCodeFolder%" />
+<Select System="%IdfFromIdlFolder%" />
+
+<!-- COM RULES 
+Specify COM migration rules to assist with resolving 
+and consolidating COM type libraries if necessary.
+-->
+
+<!-- External COM  
+
+Specify a list of <reference> statements here.
+gmBasic inspects the source code to find references to the
+members of COM APIs listed below.  The referenced members
+will be authored as members of classes in the stub assemblies.
+
+The set of COM based on the references found in your selected 
+upgrade tasks is found below:
+-->
+
+<Reference id="gmRTL.Core.dll" />
+<Reference id="gmRTL.GUI.dll" />
+
+%RefList%
+
+<Output Status="New" FileName="%JobId%.bnd" />
+
+<GlobalStubs>
+<!--
+The following commands load the information files generated 
+by gmBasic when it reads and interprets your application code.  
+These files describe the source application including its COM 
+dependencies.  This dependency information is used to generate 
+stub assemblies based on actual usage of the COM APIs.
+-->  
+%VbiList%
+   
+</GlobalStubs>   
+<Output Status="Close" />
+
+<!-- Add fixes here if desired
+
+<Fix FileFilter="%JobId%.bnd">
+<Replace status="active" name="PostEdit">
+<OldBlock><![CDATA[old]]></OldBlock>
+<NewBlock><![CDATA[new]]></NewBlock>
+</Replace>
+</Fix>
+-->
+
+<Storage Action="Close" />
+</gmBasic>

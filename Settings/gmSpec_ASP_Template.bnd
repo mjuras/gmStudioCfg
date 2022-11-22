@@ -1,0 +1,36 @@
+crdir %gmSpecFolder%
+crdir %gmSpecFolder%\src
+crdir %gmSpecFolder%\proj
+crdir %gmSpecFolder%\package
+cat >%gmSpecFolder%\src\%gmSpecName%.asp <<'!)(!'
+<Html>
+<% 
+Response.Write "This is %gmSpecName%</br>"
+%>
+</Html>
+!)(!
+cat >%gmSpecFolder%\package\package.cmd <<'!)(!'
+
+:: this script makes a copy of the ASP source and gmStudio project files and zips them up 
+
+set mig=%gmSpecName%
+set name=%gmSpecName%
+set zip=%mig%_01.zip 
+ 
+rmdir .\%mig%    /s/q 
+ 
+robocopy  ..\src              .\%mig%\src  *.asp *.inc *.asa *.htm *.vbs /s /np 
+ 
+robocopy  ..\proj\                  .\%mig%\proj\                 *.gmproj  /np /xf *.vbi *.cache /xd package deploy* report tlbexp  interop sav  
+robocopy  ..\proj\idf\FromCode      .\%mig%\proj\idf\FromCode     *.xml /np /xf *.vbi *.cache /xd package deploy* report tlbexp  interop sav  
+robocopy  ..\proj\idf\FromIDL       .\%mig%\proj\idf\FromIDL      *.xml  *.idl /np /xf *.vbi *.cache /xd package deploy* report tlbexp  interop sav  
+robocopy  ..\proj\log               .\%mig%\proj\log\             *.* /np /xf *.vbi *.cache /xd package deploy* report tlbexp  interop sav  
+robocopy  ..\proj\usr               .\%mig%\proj\usr\             *.xml *.gmsl *.txt /np /xf *.vbi *.cache /xd package deploy* report tlbexp  interop sav  
+::robocopy  ..\proj\runtime         .\%mig%\proj\runtime\         *.dll /np /xf *.vbi *.cache /xd package deploy* report tlbexp  interop sav  
+
+if exist %zip% del %zip% 
+
+"C:\Program Files\7-Zip\7z" a -bb1 %zip% %mig% 
+
+pause 
+!)(!

@@ -1,0 +1,19 @@
+<gmGlobal>
+<!--
+Description: gmGlobal Script for Unused Symbols Analysis
+Learn more here: https://portal.greatmigrations.com/display/GMG/Support+Statement%3A+Unused+Symbol+Analysis+and+Reporting
+-->
+<Select Progress="1" />
+<InformationFiles>
+%VbiList%
+</InformationFiles>
+
+<Output Status="New" FileName="..\report\RemoveUnused.xml" />
+<RemoveUnused Include="method,property,declare" />
+<Output Status="Close" />
+
+<Output Status="New" FileName="%ReportPath%" syntax="Tabbed" />
+<ReportRemovals />
+<Output Status="Close" />
+
+</gmGlobal>
