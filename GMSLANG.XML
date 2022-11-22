@@ -1,0 +1,1426 @@
+<MetaLanguage>
+<Library id="gmSLang.dll" name="gmSL" location="DoNotDeclare" type="internal">
+<Class id="Select" >
+   <Attribute id="Name"                type="string[64]" EditString="on" />
+   <Attribute id="ToolName"            type="string[64]" location="Name" />
+   <Attribute id="Version"             type="string[32]" EditString="on" />
+   <Attribute id="Company"             type="string[64]" EditString="on" />
+   <Attribute id="Id"                  type="string[32]" />
+   <Attribute id="Codesize"            type="Integer" />
+   <Attribute id="Progress"            type="Integer" />
+   <Attribute id="Echo"                type="EchoType" />
+   <Attribute id="Dialect"             type="Dialects" />
+   <Attribute id="SubSystem"           type="Dialects" />
+   <Attribute id="SubSystem2"          type="Dialects" />
+   <Attribute id="SubSystem3"          type="Dialects" />
+   <Attribute id="SubSystem4"          type="Dialects" />
+   <Attribute id="SubSystem5"          type="Dialects" />
+   <Attribute id="charset"             type="CharacterSets" />
+   <Attribute id="TypeInteger"         type="FixedType" />
+   <Attribute id="TypeLong"            type="FixedType" />
+   <Attribute id="Indent"              type="Integer" />
+   <Attribute id="BlockComments"       type="Boolean" />
+   <Attribute id="BlockMethods"        type="Integer" />
+   <Attribute id="Exceptionhandling"   type="ExceptionType" />
+   <Attribute id="CheckDeclares"       type="CheckDeclarationType" />
+   <Attribute id="CheckUUIDs"          type="boolean" />
+   <Attribute id="Undefinedproperties" type="ProcessingStatus" />
+   <Attribute id="ShowReferences"      type="boolean" />
+   <Attribute id="noLongerUsed1"       type="boolean" />
+   <Attribute id="LibrariesOnly"       type="boolean" />
+   <Attribute id="MissingRef"          type="MissingType" />
+   <Attribute id="DeleteUnused"        type="boolean[1]" />
+   <Attribute id="UseOverload"         type="boolean[2]" />
+   <Attribute id="StructExtern"        type="boolean[3]" />
+   <Attribute id="SyntaxFatal"         type="boolean[4]" />
+   <Attribute id="UseZeroBased"        type="boolean[5]" />
+   <Attribute id="SingleQuotes"        type="boolean[6]" />
+   <Attribute id="NullOrEmpty"         type="boolean[7]" />
+   <Attribute id="IssueWarnings"       type="boolean[8]" />
+   <Attribute id="IgnoreWin32"         type="boolean[9]" />
+   <Attribute id="OptionalArguments"   type="boolean[10]" />
+   <Attribute id="AcceptByRef"         type="boolean[11]" />
+   <Attribute id="UseHexConstants"     type="boolean[12]" />
+   <Attribute id="UseInterfaces"       type="boolean[13]" />
+   <Attribute id="AcceptRedefine"      type="boolean[14]" />
+   <Attribute id="DesignCode"          type="boolean[15]" />
+   <Attribute id="ShowChanges"         type="boolean[16]" />
+   <Attribute id="WebApplication"      type="boolean[17]" />
+   <Attribute id="CheckMultiSet"       type="boolean[18]" />
+   <Attribute id="RemoveByRef"         type="boolean[19]" />
+   <Attribute id="CodeCommentOut"      type="boolean[20]" />
+   <Attribute id="OmitResxData"        type="boolean[21]" />
+   <Attribute id="ExcludeComments"     type="boolean[22]" />
+   <Attribute id="CompilerWarnings"    type="boolean[23]" />
+   <Attribute id="SupplyMissingResx"   type="boolean[24]" />
+   <Attribute id="OmitOcxState"        type="boolean[25]" />
+   <Attribute id="TypeInference"       type="boolean[26]" />
+   <Attribute id="RuntimeConditional"  type="boolean[27]" />
+   <Attribute id="AspCodeClass"        type="boolean[28]" />
+   <Attribute id="MarkupCodeClass"     type="boolean[29]" />
+   <Attribute id="UseLocalMemory"      type="boolean[30]" />
+   <Attribute id="AuthorLibrary"       type="AuthorLibType" />
+   <Attribute id="LateBindings"        type="ProcessingStatus" />
+   <Attribute id="Undefinedvariables"  type="ProcessingStatus" />
+   <Attribute id="BuildFile"           type="BuildFileStatus" />
+   <Attribute id="SourceWidth"         type="Integer" />
+   <Attribute id="MaxOutputWidth"      type="Integer" />
+   <Attribute id="MigrateLineToLabel"  type="boolean[1]" />
+   <Attribute id="Migrate2"            type="boolean[2]" />
+   <Attribute id="UsesInterfaces"      type="boolean[3]" />
+   <Attribute id="SharedFile"          type="boolean[4]" />
+   <Attribute id="AddDefaultProperties" type="boolean[5]" />
+   <Attribute id="OmitAppObjects"      type="boolean[6]" />
+   <Attribute id="UseUserControls"     type="boolean[7]" />
+   <Attribute id="ShowVerticalLists"   type="boolean[8]" />
+   <Attribute id="ProjectReference"    type="boolean[9]" />
+   <Attribute id="Reserved10"          type="boolean[10]" />
+   <Attribute id="SuppressNumericEncoding" type="boolean[11]" />
+   <Attribute id="CheckFinalCode"      type="boolean[12]" />
+   <Attribute id="TraceCalls"          type="boolean[13]" />
+   <Attribute id="EchoInput"           type="boolean[14]" />
+   <Attribute id="LitmusTests"         type="boolean[15]" />
+   <Attribute id="TraceChanges"        type="boolean[16]" />
+   <Attribute id="EchoTranslation"     type="boolean[17]" />
+   <Attribute id="EchoRaw"             type="boolean[18]" />
+   <Attribute id="EchoStubs"           type="boolean[19]" />
+   <Attribute id="EchoFixes"           type="boolean[20]" />
+   <Attribute id="ASPNETCompiler"      type="Boolean[21]" />
+   <Attribute id="LinearizeFiles"      type="Boolean[22]" />
+   <Attribute id="UsesOldVS"           type="Boolean[23]" />
+   <Attribute id="UseDoublePrecision"  type="Boolean[24]" />
+   <Attribute id="CheckMultipleTypes"  type="Boolean[25]" />
+   <Attribute id="InternalTestFlag"    type="Boolean[26]" />
+   <Attribute id="UsesImplements"      type="Boolean[27]" />
+   <Attribute id="GenericCollections"  type="Boolean[28]" />
+   <Attribute id="Target"              type="string[256]" />
+   <Attribute id="UserFolder"          type="string[256]" location="Target" />
+   <Attribute id="System"              type="string[256]" />
+   <Attribute id="IdfFromIdlFolder"    type="string[256]" location="System" />
+   <Attribute id="Language"            type="string[256]" />
+   <Attribute id="Local"               type="string[256]" />
+   <Attribute id="IdfFromCodeFolder"   type="string[256]" location="Local" />
+   <Attribute id="VirtualRoot"         type="string[256]" stringOff="on" />
+   <Attribute id="Library"             type="string[256]" stringOff="on" />
+   <Attribute id="GenExternFolder"     type="string[256]" stringOff="on" location="Library" />
+   <Attribute id="DevEnv"              type="string[64]" />
+   <Attribute id="Idl"                 type="string[256]" />
+   <Attribute id="RootSpace"           type="string[64]" stringOff="On" />
+   <Attribute id="AppNameSpace"        type="string[64]"  stringOff="On" />
+   <Attribute id="DeployLocation"      type="string[256]" stringOff="on" />
+   <Attribute id="NetProjFolder"       type="string[256]" stringOff="on" location="DeployLocation" />
+   <Attribute id="ComputeConditional"  type="string[256]" stringOn="on" stringOff="on" />
+   <Attribute id="RuntimeDlls"         type="string[256]" stringOff="on" />
+   <Attribute id="environmentFile"     type="string[256]" />
+   <Attribute id="JobId"               type="string[128]" />
+   <Attribute id="ExtensionMethods"    type="string[256]" />
+   <Attribute id="SrcName"             type="string[64]"  />
+   <Attribute id="BndPath"             type="string[256]" />
+   <Attribute id="GlobalSettings"      type="string[256]" />
+</Class>
+<Class id="Project" Parent="Select" >
+   <Attribute id="root"            type="Integer" />
+   <Attribute id="childRoot"       type="Integer" />
+   <Attribute id="ToolTip"         type="boolean[(%= ProjectFlags.ToolTip %)]" />
+   <Attribute id="DataSource"      type="boolean[(%= ProjectFlags.DataSource %)]" />
+   <Attribute id="Library"         type="boolean[(%= ProjectFlags.Library %)]" />
+   <Attribute id="Control"         type="boolean[(%= ProjectFlags.Control %)]" />
+   <Attribute id="HasExtensions"   type="boolean[(%= ProjectFlags.HasExtensions %)]" />
+   <Attribute id="SystemIO"        type="boolean[(%= ProjectFlags.SystemIO %)]" />
+   <Attribute id="DefInstance"     type="boolean[(%= ProjectFlags.DefInstance %)]" />
+   <Attribute id="IsInterfaceUser" type="boolean[(%= ProjectFlags.IsInterfaceUser %)]" />
+   <Attribute id="VB6Compatible"   type="boolean[(%= ProjectFlags.VB6Compatible %)]" />
+   <Attribute id="MainArgs"        type="boolean[(%= ProjectFlags.MainArgs %)]" />
+   <Attribute id="HasPrinter"      type="boolean[(%= ProjectFlags.HasPrinter %)]" />
+   <Attribute id="AppObject"       type="boolean[(%= ProjectFlags.AppObject %)]" />
+   <Attribute id="References"      type="boolean[(%= ProjectFlags.References %)]" />
+   <Attribute id="StartupMain"     type="boolean[(%= ProjectFlags.StartupMain %)]" />
+   <Attribute id="Resources"       type="boolean[(%= ProjectFlags.Resources %)]" />
+   <Attribute id="prjVbname"       type="Integer" />
+   <Attribute id="CurrentClass"    type="Integer" />
+   <Attribute id="fileName"        type="String[512]" />
+   <Attribute id="NameSpace"       type="String[256]" />
+   <Attribute id="BuildType"       type="String[16]" />
+   <Attribute id="Startup"         type="String[128]" />
+   <Attribute id="DeployLocation"  type="String[256]" />
+   <Attribute id="ExeName"         type="String[64]" />
+   <Attribute id="lProjects"       type="Integer" />
+   <Attribute id="nProjects"       type="Integer" />
+   <Attribute id="lExternals"      type="Integer" />
+   <Attribute id="nExternals"      type="Integer" />
+   <Attribute id="externals"       type="Integer[500]" />
+   <Attribute id="projects"        type="Integer[500]" />
+   <Attribute id="migNumber"       type="Integer" />
+   <Attribute id="parameter1"      type="Integer" />
+   <Attribute id="parameter2"      type="Integer" />
+   <Attribute id="Title"           type="String[64]" />
+   <Attribute id="Description"     type="String[64]" />
+   <Attribute id="CompanyName"     type="String[64]" />
+   <Attribute id="ProductName"     type="String[64]" />
+   <Attribute id="Copyright"       type="String[64]" />
+   <Attribute id="Trademarks"      type="String[64]" />
+</Class>
+<Class id="tMigInfo" external = "on" >
+   <Attribute id="migPattern"        type="Integer" />
+   <Attribute id="migFlags"          type="Integer" />
+   <Attribute id="migStatus"         type="Integer" />
+   <Attribute id="migStatus2"        type="Integer" />
+   <Attribute id="migStatus3"        type="Integer" />
+   <Attribute id="migComment"        type="String" stringOff="on" />
+   <Attribute id="CommentValue"      type="Integer" location="migComment" />
+   <Attribute id="migTransform"      type="Integer" />
+   <Attribute id="migRuntime"        type="Integer" />
+   <Attribute id="context"           type="Integer" />
+   <Attribute id="NotImplemented"    type="boolean[(%= MigStatusFlags.NotImplemented %)]" location="migStatus" />
+   <Attribute id="Delete"            type="boolean[(%= MigStatusFlags.Delete %)]" location="migStatus" />
+   <Attribute id="CanBeNUll"         type="boolean[(%= MigStatusFlags.CanBeNUll %)]" location="migStatus" />
+   <Attribute id="UserCode"          type="boolean[(%= MigStatusFlags.UserCode %)]" location="migStatus" />
+   <Attribute id="External"          type="boolean[(%= MigStatusFlags.External %)]" location="migStatus" />
+   <Attribute id="NeedsInit"         type="boolean[(%= MigStatusFlags.NeedsInit %)]" location="migStatus" />
+   <Attribute id="HasMigclass"       type="boolean[(%= MigStatusFlags.HasMigclass %)]" location="migStatus" />
+   <Attribute id="LocalLibrary"      type="boolean[(%= MigStatusFlags.LocalLibrary %)]" location="migStatus" />
+   <Attribute id="Remove"            type="boolean[(%= MigStatusFlags.Remove %)]" location="migStatus" />
+   <Attribute id="Nullable"          type="boolean[(%= MigStatusFlags.Nullable %)]" location="migStatus" />
+   <Attribute id="AddArgument"       type="boolean[(%= MigStatusFlags.AddArgument %)]" location="migStatus" />
+   <Attribute id="CallPattern"       type="boolean[(%= MigStatusFlags.CallPattern %)]" location="migStatus" />
+   <Attribute id="Overrideuser"      type="boolean[(%= MigStatusFlags.OverrideUser %)]" location="migStatus" />
+   <Attribute id="SkipDecl"          type="boolean[(%= MigStatusFlags.SkipDecl %)]" location="migStatus" />
+   <Attribute id="MigStatic"         type="boolean[(%= MigStatusFlags.Static %)]" location="migStatus" />
+   <Attribute id="IsDbNull"          type="boolean[(%= MigStatusFlags.IsDbNull %)]" location="migStatus" />
+   <Attribute id="MustCorrect"       type="boolean[(%= MigStatusFlags.MustCorrect %)]" location="migStatus" />
+   <Attribute id="Noncreatable"      type="boolean[(%= MigStatusFlags.Noncreatable %)]" location="migStatus" />
+   <Attribute id="SingletonRef"      type="boolean[(%= MigStatusFlags.SingletonRef %)]" location="migStatus" />
+   <Attribute id="StubOut"           type="boolean[(%= MigStatusFlags.StubOut %)]" location="migStatus" />
+   <Attribute id="Override"          type="boolean[(%= MigStatusFlags.Override %)]" location="migStatus" />
+   <Attribute id="CastType"          type="boolean[(%= MigStatusFlags.CastType %)]" location="migStatus" />
+   <Attribute id="Referenced"        type="boolean[(%= MigStatusFlags.Referenced %)]" location="migStatus" />
+   <Attribute id="SingletonUsed"     type="boolean[(%= MigStatusFlags.SingletonUsed %)]" location="migStatus" />
+   <Attribute id="AppObject"         type="boolean[(%= MigStatusFlags.AppObject %)]" location="migStatus" />
+   <Attribute id="ArrayArray"        type="boolean[(%= MigStatusFlags.ArrayArray %)]" location="migStatus" />
+   <Attribute id="Module"            type="boolean[(%= MigStatusFlags.Module %)]" location="migStatus" />
+   <Attribute id="Implemented"       type="boolean[(%= MigStatusFlags.Implemented %)]" location="migStatus" />
+   <Attribute id="ActiveX"           type="boolean[(%= MigStatusFlags.ActiveX %)]" location="migStatus" />
+   <Attribute id="UsesCOM"           type="boolean[(%= MigStatusFlags.UsesCOM %)]" location="migStatus" />
+   <Attribute id="BoxTypes"          type="boolean[(%= MigStatusFlags.BoxTypes %)]" location="migStatus" />
+   <Attribute id="DesignerFile"      type="boolean[(%= MigStatus2Flags.DesignerFile %)]" location="migStatus2" />
+   <Attribute id="HasMdiParent"      type="boolean[(%= MigStatus2Flags.HasMdiParent %)]" location="migStatus2" />
+   <Attribute id="HasFixedArray"     type="boolean[(%= MigStatus2Flags.HasFixedArray %)]" location="migStatus2" />
+   <Attribute id="ControlArrayIndex" type="boolean[(%= MigStatus2Flags.ControlArrayIndex %)]" location="migStatus2" />
+   <Attribute id="NeedsSetterWrap"   type="boolean[(%= MigStatus2Flags.NeedsSetterWrap %)]" location="migStatus2" />
+   <Attribute id="InternalOnly"      type="boolean[(%= MigStatus2Flags.InternalOnly %)]" location="migStatus2" />
+   <Attribute id="FunctionVariable"  type="boolean[(%= MigStatus2Flags.FunctionVariable %)]" location="migStatus2" />
+   <Attribute id="DoNotInitialize"   type="boolean[(%= MigStatus2Flags.DoNotInitialize %)]" location="migStatus2" />
+   <Attribute id="NotOptional"       type="boolean[(%= MigStatus2Flags.NotOptional %)]" location="migStatus2" />
+   <Attribute id="HasSpecialArgs"    type="boolean[(%= MigStatus2Flags.HasSpecialArgs %)]" location="migStatus2" />
+   <Attribute id="HasExtensions"     type="boolean[(%= MigStatus2Flags.HasExtensions %)]" location="migStatus2" />
+   <Attribute id="InterfaceOnly"     type="boolean[(%= MigStatus2Flags.InterfaceOnly %)]" location="migStatus2" />
+   <Attribute id="GenericCollection" type="boolean[(%= MigStatus2Flags.GenericCollection %)]" location="migStatus2" />
+   <Attribute id="PassValueOnCall"   type="boolean[(%= MigStatus2Flags.PassValueOnCall %)]" location="migStatus2" />
+   <Attribute id="Inferred"          type="boolean[(%= MigStatus2Flags.Inferred %)]" location="migStatus2" />
+   <Attribute id="HasAddedMembers"   type="boolean[(%= MigStatus2Flags.HasAddedMembers %)]" location="migStatus2" />
+   <Attribute id="RemoveGoSub"       type="boolean[(%= MigStatus2Flags.RemoveGoSub %)]" location="migStatus2" />
+   <Attribute id="UseEventClass"     type="boolean[(%= MigStatus2Flags.UseEventClass %)]" location="migStatus2" />
+   <Attribute id="ControlCollection" type="boolean[(%= MigStatus2Flags.ControlCollection %)]" location="migStatus2" />
+   <Attribute id="HasClassName"      type="boolean[(%= MigStatus2Flags.HasClassName %)]" location="migStatus2" />
+   <Attribute id="CouldBeByRef"      type="boolean[(%= MigStatus2Flags.CouldBeByRef %)]" location="migStatus2" />
+   <Attribute id="IsArray"           type="boolean[(%= MigStatus2Flags.IsArray %)]" location="migStatus2" />
+   <Attribute id="IsIndexed"         type="boolean[(%= MigStatus2Flags.IsIndexed %)]" location="migStatus2" />
+   <Attribute id="LateBound"         type="boolean[(%= MigStatus2Flags.LateBound %)]" location="migStatus2" />
+   <Attribute id="VBScript"          type="boolean[(%= MigStatus2Flags.VBScript %)]" location="migStatus2" />
+   <Attribute id="Dynamic"           type="boolean[(%= MigStatus2Flags.Dynamic %)]" location="migStatus2" />
+   <Attribute id="NoAssignDefault"   type="boolean[(%= MigStatus2Flags.NoAssignDefault %)]" location="migStatus2" />
+   <Attribute id="HasValueName"      type="boolean[(%= MigStatus2Flags.HasValueName %)]" location="migStatus2" />
+   <Attribute id="UsedAsCollection"  type="boolean[(%= MigStatus2Flags.UsedAsCollection %)]" location="migStatus2" />
+   <Attribute id="ScaleModePixels"   type="boolean[(%= MigStatus2Flags.ScaleModePixels %)]" location="migStatus2" />
+   <Attribute id="AuthorDeclare"     type="boolean[(%= MigStatus2Flags.AuthorDeclare %)]" location="migStatus2" />
+   <Attribute id="StartupReference"  type="boolean[(%= MigStatus3Flags.StartupReference %)]" location="migStatus3" />
+   <Attribute id="RemovedComponent"  type="boolean[(%= MigStatus3Flags.RemovedComponent %)]" location="migStatus3" />
+   <Attribute id="InDescriptionFile" type="boolean[(%= MigStatus3Flags.InDescriptionFile %)]" location="migStatus3" />
+   <Attribute id="INCLUDE"           type="boolean[(%= AspContextFlags.INCLUDE %)]" location="context" />
+   <Attribute id="EXPLICIT"          type="boolean[(%= AspContextFlags.EXPLICIT %)]" location="context" />
+   <Attribute id="VBNETLIB"          type="boolean[(%= AspContextFlags.VBNETLIB %)]" location="context" />
+   <Attribute id="CODEBEHIND"        type="boolean[(%= AspContextFlags.CODEBEHIND %)]" location="context" />
+   <Attribute id="NOMARKUP"          type="boolean[(%= AspContextFlags.NOMARKUP %)]" location="context" />
+   <Attribute id="CROSSREF"          type="boolean[(%= AspContextFlags.CROSSREF %)]" location="context" />
+   <Attribute id="BACKREF"           type="boolean[(%= AspContextFlags.BACKREF %)]" location="context" />
+   <Attribute id="GLOBAL"            type="boolean[(%= AspContextFlags.GLOBAL %)]" location="context" />
+   <Attribute id="PAGELOAD"          type="boolean[(%= AspContextFlags.PAGELOAD %)]" location="context" />
+   <Attribute id="HASSTATE"          type="boolean[(%= AspContextFlags.HASSTATE %)]" location="context" />
+   <Attribute id="NESTEDINC"         type="boolean[(%= AspContextFlags.NESTEDINC %)]" location="context" />
+   <Attribute id="HASMARKUP"         type="boolean[(%= AspContextFlags.HASMARKUP %)]" location="context" />
+   <Attribute id="USERCONTROL"       type="boolean[(%= AspContextFlags.USERCONTROL %)]" location="context" />
+   <Attribute id="AUTHORMARKUP"      type="boolean[(%= AspContextFlags.AUTHORMARKUP %)]" location="context" />
+   <Attribute id="GLOBALINCLUDE"     type="boolean[(%= AspContextFlags.GLOBALINCLUDE %)]" location="context" />
+   <Attribute id="EXTENSIONS"        type="boolean[(%= AspContextFlags.EXTENSIONS %)]" location="context" />
+   <Attribute id="Private"           type="boolean[(%= ContextFlags.Private %)]" location="context" />
+   <Attribute id="Public"            type="boolean[(%= ContextFlags.Public %)]" location="context" />
+   <Attribute id="Static"            type="boolean[(%= ContextFlags.Static %)]" location="context" />
+   <Attribute id="WithEvents"        type="boolean[(%= ContextFlags.WithEvents %)]" location="context" />
+   <Attribute id="Argument"          type="boolean[(%= ContextFlags.Argument %)]" location="context" />
+   <Attribute id="ByVal"             type="boolean[(%= ContextFlags.ByVal %)]" location="context" />
+   <Attribute id="ByRef"             type="boolean[(%= ContextFlags.ByRef %)]" location="context" />
+   <Attribute id="Foreign"           type="boolean[(%= ContextFlags.Foreign %)]" location="context" />
+   <Attribute id="DeadCode"          type="boolean[(%= ContextFlags.DeadCode %)]" location="context" />
+   <Attribute id="UseGet"            type="boolean[(%= ContextFlags.UseGet %)]" location="context" />
+   <Attribute id="ByOut"             type="boolean[(%= ContextFlags.ByOut %)]" location="context" />
+   <Attribute id="Optional"          type="boolean[(%= ContextFlags.Optional %)]" location="context" />
+   <Attribute id="NotDeclared"       type="boolean[(%= ContextFlags.NotDeclared %)]" location="context" />
+   <Attribute id="FixedType"         type="boolean[(%= ContextFlags.FixedType %)]" location="context" />
+   <Attribute id="Friend"            type="boolean[(%= ContextFlags.Friend %)]" location="context" />
+   <Attribute id="Overload"          type="boolean[(%= ContextFlags.Overload %)]" location="context" />
+   <Attribute id="Dimensioned"       type="boolean[(%= ContextFlags.Dimensioned %)]" location="context" />
+   <Attribute id="Changed"           type="boolean[(%= ContextFlags.Changed %)]" location="context" />
+   <Attribute id="New"               type="boolean[(%= ContextFlags.New %)]" location="context" />
+   <Attribute id="ParamArray"        type="boolean[(%= ContextFlags.ParamArray %)]" location="context" />
+   <Attribute id="InLibrary"         type="boolean[(%= ContextFlags.InLibrary %)]" location="context" />
+   <Attribute id="IsDefault"         type="boolean[(%= ContextFlags.IsDefault %)]" location="context" />
+   <Attribute id="Collection"        type="boolean[(%= ContextFlags.Collection %)]" location="context" />
+   <Attribute id="Array"             type="boolean[(%= ContextFlags.Array %)]" location="context" />
+   <Attribute id="D2Array"           type="boolean[(%= ContextFlags.D2Array %)]" location="context" />
+   <Attribute id="Internal"          type="boolean[(%= ContextFlags.Internal %)]" location="context" />
+   <Attribute id="Protected"         type="boolean[(%= ContextFlags.Protected %)]" location="context" />
+   <Attribute id="InModule"          type="boolean[(%= ContextFlags.InModule %)]" location="context" />
+   <Attribute id="Initial"           type="boolean[(%= ContextFlags.Initial %)]" location="context" />
+   <Attribute id="Resources"         type="boolean[(%= ContextFlags.Resources %)]" location="context" />
+   <Attribute id="UseLet"            type="boolean[(%= ContextFlags.UseLet %)]" location="context" />
+   <Attribute id="Passed"            type="boolean[(%= ContextFlags.Passed %)]" location="context" />
+   <Attribute id="PrjToolTip"        type="boolean[(%= ProjectFlags.ToolTip %)]" location="context" />
+   <Attribute id="PrjLibrary"        type="boolean[(%= ProjectFlags.Library %)]" location="context" />
+   <Attribute id="PrjControl"        type="boolean[(%= ProjectFlags.Control %)]" location="context" />
+   <Attribute id="PrjSystemIO"       type="boolean[(%= ProjectFlags.SystemIO %)]" location="context" />
+   <Attribute id="PrjDefInstance"    type="boolean[(%= ProjectFlags.DefInstance %)]" location="context" />
+   <Attribute id="PrjMainArgs"       type="boolean[(%= ProjectFlags.MainArgs %)]" location="context" />
+   <Attribute id="PrjHasPrinter"     type="boolean[(%= ProjectFlags.HasPrinter %)]" location="context" />
+   <Attribute id="PrjAppObject"      type="boolean[(%= ProjectFlags.AppObject %)]" location="context" />
+   <Attribute id="PrjReferences"     type="boolean[(%= ProjectFlags.References %)]" location="context" />
+   <Attribute id="PrjResources"      type="boolean[(%= ProjectFlags.Resources %)]" location="context" />
+   <Attribute id="CallBack"          type="boolean[(%= MigProcessFlags.CallBack %)]" location="migFlags" />
+   <Attribute id="ZeroBased"         type="boolean[(%= MigProcessFlags.ZeroBased %)]" location="migFlags" />
+   <Attribute id="WasActiveX"        type="boolean[(%= MigProcessFlags.WasActiveX %)]" location="migFlags" />
+   <Attribute id="HasForEach"        type="boolean[(%= MigProcessFlags.HasForEach %)]" location="migFlags" />
+   <Attribute id="Constructor"       type="boolean[(%= MigProcessFlags.Constructor %)]" location="migFlags" />
+   <Attribute id="ColObject"         type="boolean[(%= MigProcessFlags.ColObject %)]" location="migFlags" />
+   <Attribute id="HaveEventArgs"     type="boolean[(%= MigProcessFlags.HaveEventArgs %)]" location="migFlags" />
+   <Attribute id="NeedsLet"          type="boolean[(%= MigProcessFlags.NeedsLet %)]" location="migFlags" />
+   <Attribute id="Implements"        type="boolean[(%= MigProcessFlags.Implements %)]" location="migFlags" />
+   <Attribute id="Shadows"           type="boolean[(%= MigProcessFlags.Shadows %)]" location="migFlags" />
+   <Attribute id="PropertyBag"       type="boolean[(%= MigProcessFlags.PropertyBag %)]" location="migFlags" />
+   <Attribute id="RemoveResumeNext"  type="boolean[(%= MigProcessFlags.RemoveResumeNext %)]" location="migFlags" />
+   <Attribute id="RemoveOnErrorGoTo" type="boolean[(%= MigProcessFlags.RemoveOnErrorGoTo %)]" location="migFlags" />
+   <Attribute id="Overloads"         type="boolean[(%= MigProcessFlags.Overloads %)]" location="migFlags" />
+   <Attribute id="CodeAnalysed"      type="boolean[(%= MigProcessFlags.CodeAnalysed %)]" location="migFlags" />
+   <Attribute id="TypeInferred"      type="boolean[(%= MigProcessFlags.TypeInferred %)]" location="migFlags" />
+   <Attribute id="InInterface"       type="boolean[(%= MigProcessFlags.InInterface %)]" location="migFlags" />
+   <Attribute id="OptionBase1"       type="boolean[(%= MigProcessFlags.OptionBase1 %)]" location="migFlags" />
+   <Attribute id="FixedSource"       type="boolean[(%= MigProcessFlags.FixedSource %)]" location="migFlags" />
+   <Attribute id="ObjectOnly"        type="boolean[(%= MigProcessFlags.ObjectOnly %)]" location="migFlags" />
+   <Attribute id="BlockTemps"        type="boolean[(%= MigProcessFlags.BlockTemps %)]" location="migFlags" />
+   <Attribute id="ArrayInfer"        type="boolean[(%= MigProcessFlags.ArrayInfer %)]" location="migFlags" />
+   <Attribute id="Exposed"           type="boolean[(%= MigProcessFlags.Exposed %)]" location="migFlags" />
+   <Attribute id="SharedFile"        type="boolean[(%= MigProcessFlags.SharedFile %)]" location="migFlags" />
+   <Attribute id="NotByRef"          type="boolean[(%= MigProcessFlags.NotByRef %)]" location="migFlags" />
+   <Attribute id="HasCodeHandler"    type="boolean[(%= MigProcessFlags.HasCodeHandler %)]" location="migFlags" />
+   <Attribute id="EnforceType"       type="boolean[(%= MigProcessFlags.EnforceType %)]" location="migFlags" />
+   <Attribute id="HasWeakSetter"     type="boolean[(%= MigProcessFlags.HasWeakSetter %)]" location="migFlags" />
+   <Attribute id="HasPatterns"       type="boolean[(%= MigProcessFlags.HasPatterns %)]" location="migFlags" />
+   <Attribute id="ConditionalRemove" type="boolean[(%= MigProcessFlags.ConditionalRemove %)]" location="migFlags" />
+</Class>
+<Class id="tVbName" parent="tMigInfo" external="on" >
+   <Attribute id="name"           type="Integer" />
+   <Attribute id="interName"      type="Integer" />
+</Class>
+<Class id="tVbComp" parent="tMigInfo" external="on" >
+   <Attribute id="vbName"       type="Integer" />
+</Class>
+<Class id="tQuantity" parent="tVbComp" external="on" >
+   <Attribute id="type"           type="Integer" />
+   <Attribute id="reference"      type="Integer" />
+   <Attribute id="nDimension"     type="Integer" />
+   <Attribute id="dimensions"     type="Integer" />
+</Class>
+<Class id="tInfoFile" parent="tVbComp" external="on" >
+   <Attribute id="infoType"        type="Integer" />
+   <Attribute id="libName"         type="Integer" />
+   <Attribute id="baseclass"       type="Integer" />
+   <Attribute id="interfaces"      type="Integer" />
+   <Attribute id="references"      type="Integer" />
+   <Attribute id="rawText"         type="Integer" />
+   <Attribute id="textBase"        type="Integer" />
+   <Attribute id="tranBase"        type="Integer" />
+   <Attribute id="cmpCodeStart"    type="Integer" />
+   <Attribute id="anaCodeStart"    type="Integer" />
+   <Attribute id="supportLibrarys" type="Integer" />
+</Class>
+<Class id="tLibrary" parent="tMigInfo" external="on" >
+   <Attribute id="patType"        type="Integer" />
+   <Attribute id="uuid"           type="Integer" />
+   <Attribute id="major"          type="Integer" />
+   <Attribute id="minor"          type="Integer" />
+   <Attribute id="hintpath"       type="Integer" />
+   <Attribute id="imports"        type="Integer" />
+   <Attribute id="axLocation"     type="Integer" />
+   <Attribute id="assembly"       type="Integer" />
+   <Attribute id="instanceName"   type="Integer" />
+   <Attribute id="tranBase"       type="Integer" />
+   <Attribute id="idfStatus"      type="Integer" />
+</Class>
+<Class id="tInterface" parent="tMigInfo" external="on" >
+   <Attribute id="parent"         type="Integer" />
+   <Attribute id="defProperty"    type="Integer" />
+   <Attribute id="coclass"        type="Integer" />
+   <Attribute id="opcode"         type="Integer" />
+   <Attribute id="refactor"       type="Integer" />
+   <Attribute id="vectorSize"     type="Integer" />
+   <Attribute id="interfaces"     type="Integer" />
+</Class>
+<Class id="tCoclass" parent="tMigInfo" external="on" >
+   <Attribute id="members"        type="Integer" />
+   <Attribute id="parent"         type="Integer" />
+   <Attribute id="uuid"           type="Integer" />
+   <Attribute id="crossLink"      type="Integer" />
+   <Attribute id="stubBaseClass"  type="Integer" />
+</Class>
+<Class id="tLibComp" parent="tMigInfo" external="on" >
+   <Attribute id="type"           type="Integer" />
+   <Attribute id="nArg"           type="Integer" />
+   <Attribute id="nReq"           type="Integer" />
+   <Attribute id="refType"        type="Integer" />
+   <Attribute id="opcode"         type="Integer" />
+   <Attribute id="subcode"        type="Integer" />
+   <Attribute id="specInfo"       type="Integer" />
+</Class>
+<Class id="tEnumEntry" parent="tVbComp" external="on" >
+   <Attribute id="value"          type="Integer" />
+   <Attribute id="base"           type="Integer" />
+</Class>
+<Class id="tVariable" parent="tQuantity" external="on" >
+   <Attribute id="nReference"     type="Integer" />
+   <Attribute id="defValue"       type="Integer" />
+   <Attribute id="specInfo"       type="Integer" />
+</Class>
+<Class id="tVbConst" parent="tQuantity" external="on" >
+   <Attribute id="seq"            type="Integer" />
+   <Attribute id="values"         type="Integer" />
+</Class>
+<Class id="tVbSub" parent="tQuantity" external="on" >
+   <Attribute id="eventControl"   type="Integer" />
+   <Attribute id="eventType"      type="Integer" />
+   <Attribute id="nArg"           type="Integer" />
+   <Attribute id="nReq"           type="Integer" />
+   <Attribute id="cmpCodeStart"   type="Integer" />
+   <Attribute id="anaCodeStart"   type="Integer" />
+</Class>
+<Class id="tVbDeclare" parent="tQuantity" external="on" >
+   <Attribute id="libRoot"        type="Integer" />
+   <Attribute id="library"        type="Integer" />
+   <Attribute id="alias"          type="Integer" />
+   <Attribute id="nArg"           type="Integer" />
+</Class>
+<Class id="tVbEvent" parent="tVbComp" external="on" >
+   <Attribute id="nArg"           type="Integer" />
+   <Attribute id="nReq"           type="Integer" />
+</Class>
+<Class id="tVbControl" parent="tMigInfo" external="on" >
+   <Attribute id="formFile"       type="Integer" />
+   <Attribute id="reference"      type="Integer" />
+   <Attribute id="ctlType"        type="Integer" />
+   <Attribute id="iVector"        type="Integer" />
+   <Attribute id="nVector"        type="Integer" />
+   <Attribute id="nxtVector"      type="Integer" />
+   <Attribute id="cmpCodeStart"   type="Integer" />
+   <Attribute id="anaCodeStart"   type="Integer" />
+</Class>
+<Class id="tVbTypedef"  parent="tMigInfo" external="on" >
+   <Attribute id="type"           type="Integer" />
+</Class>
+<Class id="tStateLabel"  parent="tMigInfo" external="on" >
+   <Attribute id="location"       type="Integer" />
+</Class>
+<Class id="tForwardRef" external="on" >
+   <Attribute id="link"           type="Integer" />
+</Class>
+<Class id="tIdlComp" external="on" >
+   <Attribute id="id"             type="Integer" />
+   <Attribute id="flags"          type="Integer" />
+   <Attribute id="NONCREATABLE"   type="boolean[(%= IdlFlags.NONCREATABLE %)]" location="flags" />
+   <Attribute id="SOURCE"         type="boolean[(%= IdlFlags.SOURCE %)]" location="flags" />
+   <Attribute id="ODL"            type="boolean[(%= IdlFlags.ODL %)]" location="flags" />
+   <Attribute id="HIDDEN"         type="boolean[(%= IdlFlags.HIDDEN %)]" location="flags" />
+   <Attribute id="NONEXTENSIBLE"  type="boolean[(%= IdlFlags.NONEXTENSIBLE %)]" location="flags" />
+   <Attribute id="PROPPUT"        type="boolean[(%= IdlFlags.PROPPUT %)]" location="flags" />
+   <Attribute id="PROPGET"        type="boolean[(%= IdlFlags.PROPGET %)]" location="flags" />
+   <Attribute id="OUT"            type="boolean[(%= IdlFlags.OUT %)]" location="flags" />
+   <Attribute id="IN"             type="boolean[(%= IdlFlags.IN %)]" location="flags" />
+   <Attribute id="PROPPUTREF"     type="boolean[(%= IdlFlags.PROPPUTREF %)]" location="flags" />
+   <Attribute id="DUAL"           type="boolean[(%= IdlFlags.DUAL %)]" location="flags" />
+   <Attribute id="OLEAUTOMATION"  type="boolean[(%= IdlFlags.OLEAUTOMATION %)]" location="flags" />
+   <Attribute id="OPTIONAL"       type="boolean[(%= IdlFlags.OPTIONAL %)]" location="flags" />
+   <Attribute id="RESTRICTED"     type="boolean[(%= IdlFlags.RESTRICTED %)]" location="flags" />
+   <Attribute id="APPOBJECT"      type="boolean[(%= IdlFlags.APPOBJECT %)]" location="flags" />
+   <Attribute id="BINDABLE"       type="boolean[(%= IdlFlags.BINDABLE %)]" location="flags" />
+   <Attribute id="TYPEDEF"        type="boolean[(%= IdlFlags.TYPEDEF %)]" location="flags" />
+   <Attribute id="SAFEARRAY"      type="boolean[(%= IdlFlags.SAFEARRAY %)]" location="flags" />
+   <Attribute id="CONTROL"        type="boolean[(%= IdlFlags.CONTROL %)]" location="flags" />
+   <Attribute id="PUBLIC"         type="boolean[(%= IdlFlags.PUBLIC %)]" location="flags" />
+   <Attribute id="REQUESTEDIT"    type="boolean[(%= IdlFlags.REQUESTEDIT %)]" location="flags" />
+   <Attribute id="DISPLAYBIND"    type="boolean[(%= IdlFlags.DISPLAYBIND %)]" location="flags" />
+   <Attribute id="VARARG"         type="boolean[(%= IdlFlags.VARARG %)]" location="flags" />
+   <Attribute id="DEFAULTBIND"    type="boolean[(%= IdlFlags.DEFAULTBIND %)]" location="flags" />
+   <Attribute id="LCID"           type="boolean[(%= IdlFlags.LCID %)]" location="flags" />
+   <Attribute id="DEFAULT"        type="boolean[(%= IdlFlags.DEFAULT %)]" location="flags" />
+   <Attribute id="helpstring"     type="Integer" />
+   <Attribute id="helpcontext"    type="Integer" />
+   <Attribute id="entry"          type="Integer" />
+   <Attribute id="object"         type="Integer" />
+   <Attribute id="type"           type="Integer" />
+   <Attribute id="subcode"        type="Integer" />
+   <Attribute id="nArg"           type="Integer" />
+</Class>
+<Class id="tIdlArg" external="on" >
+   <Attribute id="flags"         type="Integer" />
+   <Attribute id="NONCREATABLE"   type="boolean[(%= IdlFlags.NONCREATABLE %)]" location="flags" />
+   <Attribute id="SOURCE"         type="boolean[(%= IdlFlags.SOURCE %)]" location="flags" />
+   <Attribute id="ODL"            type="boolean[(%= IdlFlags.ODL %)]" location="flags" />
+   <Attribute id="HIDDEN"         type="boolean[(%= IdlFlags.HIDDEN %)]" location="flags" />
+   <Attribute id="NONEXTENSIBLE"  type="boolean[(%= IdlFlags.NONEXTENSIBLE %)]" location="flags" />
+   <Attribute id="PROPPUT"        type="boolean[(%= IdlFlags.PROPPUT %)]" location="flags" />
+   <Attribute id="PROPGET"        type="boolean[(%= IdlFlags.PROPGET %)]" location="flags" />
+   <Attribute id="OUT"            type="boolean[(%= IdlFlags.OUT %)]" location="flags" />
+   <Attribute id="IN"             type="boolean[(%= IdlFlags.IN %)]" location="flags" />
+   <Attribute id="PROPPUTREF"     type="boolean[(%= IdlFlags.PROPPUTREF %)]" location="flags" />
+   <Attribute id="DUAL"           type="boolean[(%= IdlFlags.DUAL %)]" location="flags" />
+   <Attribute id="OLEAUTOMATION"  type="boolean[(%= IdlFlags.OLEAUTOMATION %)]" location="flags" />
+   <Attribute id="OPTIONAL"       type="boolean[(%= IdlFlags.OPTIONAL %)]" location="flags" />
+   <Attribute id="RESTRICTED"     type="boolean[(%= IdlFlags.RESTRICTED %)]" location="flags" />
+   <Attribute id="APPOBJECT"      type="boolean[(%= IdlFlags.APPOBJECT %)]" location="flags" />
+   <Attribute id="BINDABLE"       type="boolean[(%= IdlFlags.BINDABLE %)]" location="flags" />
+   <Attribute id="TYPEDEF"        type="boolean[(%= IdlFlags.TYPEDEF %)]" location="flags" />
+   <Attribute id="SAFEARRAY"      type="boolean[(%= IdlFlags.SAFEARRAY %)]" location="flags" />
+   <Attribute id="CONTROL"        type="boolean[(%= IdlFlags.CONTROL %)]" location="flags" />
+   <Attribute id="PUBLIC"         type="boolean[(%= IdlFlags.PUBLIC %)]" location="flags" />
+   <Attribute id="REQUESTEDIT"    type="boolean[(%= IdlFlags.REQUESTEDIT %)]" location="flags" />
+   <Attribute id="DISPLAYBIND"    type="boolean[(%= IdlFlags.DISPLAYBIND %)]" location="flags" />
+   <Attribute id="VARARG"         type="boolean[(%= IdlFlags.VARARG %)]" location="flags" />
+   <Attribute id="DEFAULTBIND"    type="boolean[(%= IdlFlags.DEFAULTBIND %)]" location="flags" />
+   <Attribute id="LCID"           type="boolean[(%= IdlFlags.LCID %)]" location="flags" />
+   <Attribute id="DEFAULT"        type="boolean[(%= IdlFlags.DEFAULT %)]" location="flags" />
+   <Attribute id="type"          type="Integer" />
+   <Attribute id="defaultValue"  type="Integer" />
+</Class>
+<Class id="tIdlCoclass" external="on"  >
+   <Attribute id="bracket"       type="Integer" />
+   <Attribute id="members"       type="Integer" />
+   <Attribute id="opcode"        type="Integer" />
+</Class>
+<Class id="tIdlEnum" external="on" >
+   <Attribute id="context"        type="Integer" />
+   <Attribute id="bracket"        type="Integer" />
+   <Attribute id="members"        type="Integer" />
+</Class>
+<Class id="tIdlStruct" external="on" >
+   <Attribute id="context"        type="Integer" />
+   <Attribute id="bracket"        type="Integer" />
+   <Attribute id="members"        type="Integer" />
+   <Attribute id="memberList"     type="Integer" />
+</Class>
+<Class id="tTypedef" external="on" >
+   <Attribute id="bracket"        type="Integer" />
+   <Attribute id="type"           type="Integer" />
+</Class>
+<Class id="tIdlLibrary" external="on" >
+   <Attribute id="bracket"        type="Integer" />
+   <Attribute id="name"           type="Integer" />
+   <Attribute id="output"         type="Integer" />
+   <Attribute id="source"         type="Integer" />
+   <Attribute id="dialect"        type="Integer" />
+   <Attribute id="libType"        type="Integer" />
+   <Attribute id="location"       type="Integer" />
+   <Attribute id="importlibs"     type="Integer" />
+</Class>
+<Class id="tIdlClass" external="on" >
+   <Attribute id="bracket"        type="Integer" />
+   <Attribute id="context"        type="Integer" />
+   <Attribute id="InInterface"    type="boolean[(%= IdlContextFlags.InInterface %)]" location="context" />
+   <Attribute id="InDispinter"    type="boolean[(%= IdlContextFlags.InDispinter %)]" location="context" />
+   <Attribute id="InIdispatch"    type="boolean[(%= IdlContextFlags.InIdispatch %)]" location="context" />
+   <Attribute id="InIunknown"     type="boolean[(%= IdlContextFlags.InIunknown %)]" location="context" />
+   <Attribute id="InModule"       type="boolean[(%= IdlContextFlags.InModule %)]" location="context" />
+   <Attribute id="CoclassSource"  type="boolean[(%= IdlContextFlags.CoclassSource %)]" location="context" />
+   <Attribute id="defProperty"    type="Integer" />
+   <Attribute id="parent"         type="Integer" />
+   <Attribute id="coclass"        type="Integer" />
+</Class>
+<Class id="tBracket" external="on" >
+   <Attribute id="uuid"           type="Integer" />
+   <Attribute id="version"        type="Integer" />
+   <Attribute id="helpstring"     type="Integer" />
+   <Attribute id="helpfile"       type="Integer" />
+   <Attribute id="helpcontext"    type="Integer" />
+   <Attribute id="custom"         type="Integer" />
+   <Attribute id="dllname"        type="Integer" />
+   <Attribute id="flags"          type="Integer" />
+   <Attribute id="NONCREATABLE"   type="boolean[(%= IdlFlags.NONCREATABLE %)]" location="flags" />
+   <Attribute id="SOURCE"         type="boolean[(%= IdlFlags.SOURCE %)]" location="flags" />
+   <Attribute id="ODL"            type="boolean[(%= IdlFlags.ODL %)]" location="flags" />
+   <Attribute id="HIDDEN"         type="boolean[(%= IdlFlags.HIDDEN %)]" location="flags" />
+   <Attribute id="NONEXTENSIBLE"  type="boolean[(%= IdlFlags.NONEXTENSIBLE %)]" location="flags" />
+   <Attribute id="PROPPUT"        type="boolean[(%= IdlFlags.PROPPUT %)]" location="flags" />
+   <Attribute id="PROPGET"        type="boolean[(%= IdlFlags.PROPGET %)]" location="flags" />
+   <Attribute id="OUT"            type="boolean[(%= IdlFlags.OUT %)]" location="flags" />
+   <Attribute id="IN"             type="boolean[(%= IdlFlags.IN %)]" location="flags" />
+   <Attribute id="PROPPUTREF"     type="boolean[(%= IdlFlags.PROPPUTREF %)]" location="flags" />
+   <Attribute id="DUAL"           type="boolean[(%= IdlFlags.DUAL %)]" location="flags" />
+   <Attribute id="OLEAUTOMATION"  type="boolean[(%= IdlFlags.OLEAUTOMATION %)]" location="flags" />
+   <Attribute id="OPTIONAL"       type="boolean[(%= IdlFlags.OPTIONAL %)]" location="flags" />
+   <Attribute id="RESTRICTED"     type="boolean[(%= IdlFlags.RESTRICTED %)]" location="flags" />
+   <Attribute id="APPOBJECT"      type="boolean[(%= IdlFlags.APPOBJECT %)]" location="flags" />
+   <Attribute id="BINDABLE"       type="boolean[(%= IdlFlags.BINDABLE %)]" location="flags" />
+   <Attribute id="TYPEDEF"        type="boolean[(%= IdlFlags.TYPEDEF %)]" location="flags" />
+   <Attribute id="SAFEARRAY"      type="boolean[(%= IdlFlags.SAFEARRAY %)]" location="flags" />
+   <Attribute id="CONTROL"        type="boolean[(%= IdlFlags.CONTROL %)]" location="flags" />
+   <Attribute id="PUBLIC"         type="boolean[(%= IdlFlags.PUBLIC %)]" location="flags" />
+   <Attribute id="REQUESTEDIT"    type="boolean[(%= IdlFlags.REQUESTEDIT %)]" location="flags" />
+   <Attribute id="DISPLAYBIND"    type="boolean[(%= IdlFlags.DISPLAYBIND %)]" location="flags" />
+   <Attribute id="VARARG"         type="boolean[(%= IdlFlags.VARARG %)]" location="flags" />
+   <Attribute id="DEFAULTBIND"    type="boolean[(%= IdlFlags.DEFAULTBIND %)]" location="flags" />
+   <Attribute id="LCID"           type="boolean[(%= IdlFlags.LCID %)]" location="flags" />
+   <Attribute id="DEFAULT"        type="boolean[(%= IdlFlags.DEFAULT %)]" location="flags" />
+</Class>
+<Class id="tReference" external="on" >
+   <Attribute id="MakesRef"    type="Integer" />
+   <Attribute id="BeingRefd"   type="Integer" />
+   <Attribute id="RecNumber"   type="Integer" />
+   <Attribute id="CodeOffset"  type="Integer" />
+   <Attribute id="HostFile"    type="Integer" />
+   <Attribute id="Terminal"    type="Integer" />
+</Class>
+<Class id="tOpcInfo" external="on" creatable="off" >
+   <Attribute id="length"         type="integer[1]" packed="on" />
+   <Attribute id="ident"          type="string[4]"  packed="on" />
+   <Attribute id="value"          type="integer[1]" packed="on" />
+   <Attribute id="type"           type="integer[1]" packed="on" />
+   <Attribute id="role"           type="integer[1]" packed="on" />
+   <Attribute id="subcodes"       type="integer[1]" packed="on" />
+   <Attribute id="sublist"        type="integer[4]" packed="on" />
+   <Attribute id="interface"      type="integer[4]" packed="on" />
+</Class>
+<Class id="Handle" external="on" >
+</Class>
+<Class id="UIntPtr" external="on" >
+</Class>
+<Class id="tCodeBlock" external="on" >
+</Class>
+<Class id="Character" creatable="off" >
+    <Method id="Compare" type="Integer" opcode="SCM.Character_Compare">
+      <Argument id="string1" type="String" status="ByVal" />
+      <Argument id="string2" type="String" status="ByVal" />
+      <Argument id="nCompare" type="Integer" status="ByVal" optional="0" />
+   </Method>
+   <Method id="EditString" type="String" opcode="SCM.Character_EditString" >
+      <Argument id="pattern" type="String" status="ByVal" />
+      <Argument id="arguments" type="String" status="ByVal" />
+      <Argument id="separator" type="String" status="ByVal" optional="%" />
+   </Method>
+   <Method id="Equals" type="Integer" opcode="SCM.Character_Equals">
+      <Argument id="string1" type="String" status="ByVal" />
+      <Argument id="string2" type="String" status="ByVal" />
+      <Argument id="nCompare" type="Integer" status="ByVal" optional="0" />
+   </Method>
+   <Method id="FindFirst" type="Integer" opcode="SCM.Character_FindFirst" >
+      <Argument id="source" type="String" status="ByVal" />
+      <Argument id="iStart" type="integer" status="ByVal"/>
+      <Argument id="substr" type="String" status="ByVal" />
+   </Method>
+   <Method id="HexiDecimal" type="string" opcode="SCM.Character_HexiDecimal" >
+      <Argument id="iValue" type="Integer" status="ByVal" />
+      <Argument id="base" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Insert" type="string" opcode="SCM.Character_Insert" >
+      <Argument id="source" type="String" status="ByVal" />
+      <Argument id="iStart" type="integer" status="ByVal"/>
+      <Argument id="subStr" type="String" status="ByVal" />
+   </Method>
+   <Method id="Remove"  type="string" opcode="SCM.Character_Remove" >
+      <Argument id="strValue" type="string"  status="ByVal"/>
+      <Argument id="iStart"   type="integer" status="ByVal"/>
+      <Argument id="length"   type="integer" status="ByVal"/>
+   </Method>
+   <Method id="Replace" type="string" opcode="SCM.Character_Replace" >
+      <Argument id="source" type="string"  status="ByVal"/>
+      <Argument id="oldStr" type="integer" status="ByVal"/>
+      <Argument id="newStr" type="integer" status="ByVal"/>
+   </Method>
+   <Method id="Substr" type="string" opcode="SCM.Character_Substr" >
+      <Argument id="strValue" type="string"  status="ByVal"/>
+      <Argument id="iStart"   type="integer" status="ByVal"/>
+      <Argument id="length"   type="integer" status="ByVal"/>
+   </Method>
+   <Method id="ToLower" type="string" opcode="SCM.Character_Tolower" >
+      <Argument id="strValue" type="string"  status="ByVal"/>
+      <Argument id="iStart"   type="integer" status="ByVal"/>
+      <Argument id="length"   type="integer" status="ByVal"/>
+   </Method>
+   <Method id="ToUpper" type="string" opcode="SCM.Character_Toupper" >
+      <Argument id="strValue" type="string"  status="ByVal"/>
+      <Argument id="iStart"   type="integer" status="ByVal"/>
+      <Argument id="length"   type="integer" status="ByVal"/>
+   </Method>
+   <Method id="Unpack" type="string" opcode="SCM.Character_Unpack" >
+      <Argument id="strValue" type="string"  status="ByVal"/>
+      <Argument id="iStart"   type="integer" status="ByVal"/>
+   </Method>
+   <Method id="Length" type="Integer" opcode="SCM.Character_Length" >
+      <Argument id="strValue" type="string"  status="ByVal"/>
+   </Method>
+   <Method id="IsLowerCase" type="Boolean" opcode="SCM.Character_IsLowerCase" >
+      <Argument id="strValue" type="string"  status="ByVal"/>
+      <Argument id="iStart"   type="integer" status="ByVal" optional="0" />
+   </Method>
+   <Method id="IsUpperCase" type="Boolean" opcode="SCM.Character_IsUpperCase" >
+      <Argument id="strValue" type="string"  status="ByVal"/>
+      <Argument id="iStart"   type="integer" status="ByVal"  optional="0" />
+   </Method>
+</Class>
+<Class id="CodePattern" creatable="off">
+   <Method id="FindSubcode" type="Integer" opcode="SCM.CodePattern_FindSubcode" >
+      <Argument id="opcode" type="integer"  status="ByVal"/>
+      <Argument id="label"  type="string" status="ByVal" />
+   </Method>
+   <Method id="Match" type="Integer" opcode="SCM.CodePattern_Match" >
+      <Argument id="icode"     type="Integer" status="ByVal" />
+      <Argument id="codeBlock" type="tCodeBlock" status="ByVal" />
+   </Method>
+   <Method id="Read" type="tCodeBlock" opcode="SCM.CodePattern_Read" >
+      <Argument id="source" type="String" status="ByVal" />
+      <Argument id="nCode" type="Integer" status="ByRef" />
+   </Method>
+</Class>
+<Class id="DataTable" creatable="off">
+   <Method id="ClearBottom" type="void" opcode="SCM.DataTable_ClearBottom" />
+   <Method id="DefineColumn" type="void" opcode="SCM.DataTable_DefineColumn" >
+      <Argument id="heading" type="String" status="ByVal" />
+      <Argument id="width" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="SetBottom" type="void" opcode="SCM.DataTable_SetBottom"  />
+   <Method id="WriteCell" type="void" opcode="SCM.DataTable_WriteCell" />
+   <Method id="WriteClose" type="void" opcode="SCM.DataTable_WriteClose" />
+   <Method id="WriteEnd" type="void" opcode="SCM.DataTable_WriteEnd" />
+   <Method id="WriteHeadings" type="void" opcode="SCM.DataTable_WriteHeadings" />
+   <Method id="WriteOpen" type="void" opcode="SCM.DataTable_WriteOpen" />
+   <Method id="WriteRow" type="void" opcode="SCM.DataTable_WriteRow" />
+   <Method id="WriteTitle" type="void" opcode="SCM.DataTable_WriteTitle" />
+</Class>
+<Class id="Execute" creatable="off" >
+   <Method id="Analyse" type="void" opcode="SCM.Execute_Analyse" >
+      <Argument id="project" type="String" status="ByVal" optional="NULL" />
+      <Argument id="dialect" type="String" status="ByVal" optional="NULL" />
+      <Argument id="commands" type="Integer" status="ByVal" optional="0" />
+   </Method>
+   <Method id="Author" type="void" opcode="SCM.Execute_Author" >
+      <Argument id="project" type="String" status="ByVal" optional="NULL" />
+      <Argument id="name" type="String" status="ByVal" optional="NULL" />
+      <Argument id="commands" type="Integer" status="ByVal" optional="0" />
+   </Method>
+   <Method id="Compile" type="void" opcode="SCM.Execute_Compile" >
+      <Argument id="project" type="String" status="ByVal" optional="NULL" />
+      <Argument id="echo" type="String" status="ByVal" optional="NULL" />
+      <Argument id="resx" type="String" status="ByVal" optional="NULL" />
+      <Argument id="level" type="String" status="ByVal" optional="NULL" />
+      <Argument id="pageslice" type="String" status="ByVal" optional="NULL" />
+      <Argument id="commands" type="Integer" status="ByVal" optional="0" />
+   </Method>
+   <Method id="Load" type="void" opcode="SCM.Execute_Load" >
+      <Argument id="sourcecode" type="String" status="ByVal" optional="NULL" />
+      <Argument id="project" type="String" status="ByVal" optional="NULL" />
+      <Argument id="page" type="String" status="ByVal" optional="NULL" />
+      <Argument id="commands" type="Integer" status="ByVal" optional="0" />
+   </Method>
+   <Method id="Output" type="void" opcode="SCM.Execute_Output" >
+      <Argument id="filename" type="String" status="ByVal" optional="NULL" />
+      <Argument id="status" type="String" status="ByVal" optional="NULL" />
+      <Argument id="syntax" type="String" status="ByVal" optional="NULL" />
+      <Argument id="stripTrail" type="String" status="ByVal" optional="NULL" />
+   </Method>
+   <Method id="Registry" type="void" opcode="SCM.Execute_Registry" >
+      <Argument id="source" type="String" status="ByVal" optional="NULL" />
+      <Argument id="target" type="String" status="ByVal" optional="NULL" />
+      <Argument id="type" type="String" status="ByVal" optional="NULL" />
+      <Argument id="commands" type="Integer" status="ByVal" optional="0" />
+   </Method>
+   <Method id="Storage" type="void" opcode="SCM.Execute_Storage" >
+      <Argument id="action" type="String" status="ByVal" optional="NULL" />
+      <Argument id="identifier" type="String" status="ByVal" optional="NULL" />
+      <Argument id="startup" type="String" status="ByVal" optional="NULL" />
+   </Method>
+   <Method id="Reference" type="void" opcode="SCM.Execute_Reference" >
+      <Argument id="id" type="String" status="ByVal" optional="NULL" />
+      <Argument id="location" type="String" status="ByVal" optional="NULL" />
+      <Argument id="registry" type="String" status="ByVal" optional="NULL" />
+   </Method>
+</Class>
+<Class id="Opcode" creatable="off" >
+   <Method id="AddVariable"  type="Integer" opcode="SCM.Opcode_AddVariable" >
+      <Argument id="name"    type="String"  status="ByVal" />
+      <Argument id="subRoot" type="Integer" status="ByVal" />
+      <Argument id="varType" type="Integer" status="ByVal" />
+      <Argument id="after"   type="Boolean" status="ByVal" Optional="false" />
+   </Method>
+   <Method id="CommentOut"   type="Integer" opcode="SCM.Opcode_CommentOut" >
+      <Argument id="iStart"  type="Integer" status="ByVal" />
+      <Argument id="cmtType" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Delete" type="Void" opcode="SCM.Opcode_Delete" >
+      <Argument id="iStart"  type="Integer" status="ByVal" />
+      <Argument id="nDelete" type="Integer" status="ByVal" optional="1" />
+   </Method>
+   <Method id="DeleteCode"   type="Integer" opcode="SCM.Opcode_DeleteCode" >
+      <Argument id="iStart"  type="Integer" status="ByVal" />
+      <Argument id="nCode"   type="Integer" status="ByVal" />
+      <Argument id="nDelete" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="DumpCode" type="void" opcode="SCM.Opcode_DumpCode" >
+      <Argument id="iStart" type="Integer" status="ByVal" />
+      <Argument id="iEnd" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="ExpandCode"   type="Integer" opcode="SCM.Opcode_ExpandCode" >
+      <Argument id="iStart"  type="Integer" status="ByVal" />
+      <Argument id="nCode"   type="Integer" status="ByVal" />
+      <Argument id="nExpand" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="FindArgumentEnd" type="Integer" opcode="SCM.Opcode_FindArgumentEnd" >
+      <Argument id="userCode"  type="tCodeBlock" status="ByVal" />
+      <Argument id="iStart"  type="Integer" status="ByVal" />
+      <Argument id="iEnd"  type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetArgumentType" type="Integer" opcode="SCM.Opcode_GetArgumentType" >
+      <Argument id="subRoot"  type="Integer" status="ByVal" />
+      <Argument id="icode"   type="Integer" status="ByVal" />
+      <Argument id="lcode" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetCallArgs" type="Integer" opcode="SCM.Opcode_GetCallArgs" >
+      <Argument id="subRoot" type="Integer" status="ByVal" />
+      <Argument id="lastNew" type="Integer" status="ByVal" />
+      <Argument id="funcCode" type="Integer" status="ByVal" />
+      <Argument id="qeAddr" type="Integer[]" status="ByVal" />
+      <Argument id="qeType" type="Integer[]" status="ByVal" />
+      <Argument id="nArg" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetCode" type="tCodeBlock" opcode="SCM.Opcode_GetCode" >
+      <Argument id="iStart" type="Integer" status="ByVal" optional="0" />
+   </Method>
+   <Method id="GetInfo" type="tOpcInfo" opcode="SCM.Opcode_GetInfo" >
+      <Argument id="opcValue" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetLength" type="Integer" opcode="SCM.Opcode_GetLength" />
+   <Method id="GetMember" type="Integer" opcode="SCM.Opcode_GetMember" >
+      <Argument id="opcValue"  type="Integer" status="ByVal" />
+      <Argument id="subValue"  type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetNext" type="Integer" opcode="SCM.Opcode_GetNext" >
+      <Argument id="codptr" type="tCodeBlock" status="ByVal" />
+      <Argument id="icode"  type="Integer" status="ByVal" />
+      <Argument id="nCode"  type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetOperation" type="Integer" opcode="SCM.Opcode_GetOperation" >
+      <Argument id="codptr"  type="tCodeBlock" status="ByVal" />
+      <Argument id="icode"   type="Integer" status="ByVal" />
+      <Argument id="subcode" type="Integer" status="ByRef" />
+   </Method>
+   <Method id="GetPrevious" type="Integer" opcode="SCM.Opcode_GetPrevious" >
+      <Argument id="codptr" type="tCodeBlock" status="ByVal" />
+      <Argument id="opAdr"  type="Integer" status="ByVal" />
+      <Argument id="codeEnd"  type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetStackLevel" type="Integer" opcode="SCM.Opcode_GetStackLevel" >
+      <Argument id="codptr"  type="tCodeBlock" status="ByVal" />
+      <Argument id="icode"   type="Integer" status="ByVal" />
+      <Argument id="qeStack" type="Integer[]" status="ByVal" />
+   </Method>
+   <Method id="GetString"  type="String" opcode="SCM.Opcode_GetString" >
+      <Argument id="icode" type="Integer" status="ByVal" />
+      <Argument id="lcode" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetSubcodeLabel" type="String" opcode="SCM.Opcode_GetSubcodeLabel" >
+      <Argument id="opcValue" type="Integer" status="ByVal" />
+      <Argument id="sbcValue" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="IntegerValue" type="Integer" opcode="SCM.Opcode_IntegerValue" >
+      <Argument id="iStart"  type="Integer" status="ByVal" />
+      <Argument id="iEnd"    type="Integer" status="ByVal" />
+      <Argument id="iValue"  type="Integer" status="ByRef" />
+   </Method>
+   <Method id="MoveCode"   type="Integer" opcode="SCM.Opcode_MoveCode" >
+      <Argument id="iDest"   type="Integer" status="ByVal" />
+      <Argument id="iStart"  type="Integer" status="ByVal" />
+      <Argument id="nCode"   type="Integer" status="ByVal" />
+      <Argument id="nMove"   type="Integer" status="ByVal" />
+   </Method>
+   <Method id="QuantityInfo" type="Integer" opcode="SCM.Opcode_QuantityInfo" >
+      <Argument id="icode"   type="Integer" status="ByVal" />
+      <Argument id="qeType" type="Integer[]" status="ByVal" />
+      <Argument id="qeAddr" type="Integer[]" status="ByVal" />
+      <Argument id="subRoot" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Replace" type="void" opcode="SCM.Opcode_Replace" >
+      <Argument id="icode"    type="Integer" status="ByVal" />
+      <Argument id="opcode"   type="Integer" status="ByVal" />
+      <Argument id="subcode"  type="Integer" status="ByVal" />
+      <Argument id="nReplace" type="Integer" status="ByVal" optional="1" />
+   </Method>
+   <Method id="SetCode" type="void" opcode="SCM.Opcode_SetCode" >
+      <Argument id="codptr"  type="tCodeBlock"  status="ByVal" />
+   </Method>
+   <Method id="SetLength" type="void" opcode="SCM.Opcode_SetLength" >
+      <Argument id="nCode" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="SetOperation" type="void" opcode="SCM.Opcode_SetOperation" >
+      <Argument id="codptr"  type="tCodeBlock"  status="ByVal" />
+      <Argument id="icode"   type="Integer" status="ByVal" />
+      <Argument id="opcode"  type="Integer" status="ByVal" />
+      <Argument id="subcode" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Sizeof" type="Integer" opcode="SCM.Intrinsic_Sizeof" >
+      <Argument id="opValue" type="Integer" status="ByVal" />
+   </Method>
+</Class>
+<Class id="Registry" creatable="off" >
+   <Method id="Declare" type="Void" opcode="SCM.Registry_Declare" >
+      <Argument id="type"   type="String" status="ByVal" />
+      <Argument id="source" type="String" status="ByVal" />
+      <Argument id="target" type="String" status="ByVal" />
+   </Method>
+   <Method id="GetNameValue" type="String" opcode="SCM.Registry_GetNameValue" >
+      <Argument id="location" type="String" status="ByVal" />
+      <Argument id="name" type="String" status="ByVal" />
+   </Method>
+   <Method id="GetNameRoot" type="Integer" opcode="SCM.Registry_GetNameRoot" >
+      <Argument id="location" type="String" status="ByVal" />
+      <Argument id="name" type="String" status="ByVal" />
+   </Method>
+   <Method id="GetPosting" type="integer" opcode="SCM.Registry_GetPosting" >
+      <Argument id="NameRoot" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="SetPosting" type="void" opcode="SCM.Registry_SetPosting" >
+       <Argument id="NameRoot" type="Integer" status="ByVal" />
+       <Argument id="Posting" type="integer" status = "ByVal" />
+   </Method>
+</Class>
+<Class id="Runtime" creatable="off">
+   <Method id="AuthorCode" type="void" opcode="SCM.Runtime_AuthorCode" >
+      <Argument id="codeStart" type="integer" status="ByVal"/>
+      <Argument id="codeEnd" type="integer"  status="ByVal"/>
+   </Method>
+   <Method id="AuthorLibrary" type="void" opcode="SCM.Runtime_AuthorLibrary" >
+      <Argument id="projectRoot" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="ConstDeclare" type="void" opcode="SCM.Runtime_ConstDeclare"/>
+   <Method id="DefineConstants" type="string" opcode="SCM.Runtime_DefineConstants"/>
+   <Method id="InitializeCode" type="void" nPram="0" opcode="SCM.Runtime_InitializeCode"/>
+   <Method id="Interface" type="void" opcode="SCM.Runtime_Interface"/>
+   <Method id="InterfaceClasses" type="void" opcode="SCM.Runtime_InterfaceClasses" >
+      <Argument id="pathname" type="string" status="ByVal"/>
+   </Method>
+   <Method id="InterfaceEntry" type="void" opcode="SCM.Runtime_InterfaceEntry" >
+      <Argument id="iRoot" type="Integer" status="ByVal" />
+  </Method>
+   <Method id="ProjectInfo" type="void" opcode="SCM.Runtime_ProjectInfo" >
+      <Argument id="projectRoot" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="PropertyValue" type="String" opcode="SCM.Runtime_PropertyValue" >
+      <Argument id="objRoot"  type="Integer" status="ByVal" />
+      <Argument id="propAddr" type="Integer" status="ByVal" Optional="1" />
+   </Method>
+   <Method id="ProjectAssembly" type="void" opcode="SCM.Runtime_ProjectAssembly" >
+      <Argument id="projectRoot" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="TargetCode" type="void" opcode="SCM.Runtime_TargetCode" >
+      <Argument id="iRoot" type="Integer" status="ByVal" />
+      <Argument id="projectRoot" type="Integer" status="ByVal" />
+      <Argument id="authored" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="FinishTranslation" type="void" opcode="SCM.Runtime_FinishTranslation" >
+      <Argument id="project" type="String" status="ByVal" />
+      <Argument id="commands" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="References" type="void" opcode="SCM.Runtime_References" >
+      <Argument id="pass" type="Integer" status="ByVal" optional="1" />
+   </Method>
+</Class>
+<Class id="Script" creatable="off" >
+   <Method id="Close" type="void" opcode="SCM.Script_Close" />
+   <Method id="Open" type="string" opcode="SCM.Script_Open" >
+      <Argument id="fileName" type="string" status="ByVal" />
+   </Method>
+   <Method id="GetAttribute" type="string" opcode="SCM.Script_GetAttribute" >
+      <Argument id="attribute" type="string" status="ByVal" />
+      <Argument id="record" type="string" status="ByVal" />
+   </Method>
+   <Method id="GetTag" type="string" opcode="SCM.Script_GetTag" >
+      <Argument id="record" type="string" status="ByVal" />
+      <Argument id="ending" type="Boolean" status="ByRef" />
+   </Method>
+   <Method id="ReadRecord" type="string" opcode="SCM.Script_ReadRecord" />
+   <Method id="UseStream" type="string" opcode="SCM.Script_UseStream" >
+      <Argument id="textRoot" type="integer" status="ByVal" />
+      <Argument id="textName" type="string" status="ByVal" />
+   </Method>
+   <Method id="SaveInfo" type="object" opcode="SCM.Script_SaveInfo" />
+   <Method id="RestoreInfo" type="void" opcode="SCM.Script_RestoreInfo" >
+      <Argument id="saveInfo" type="object" status="ByVal" />
+   </Method>
+</Class>
+<Class id="Sequence" creatable="off" CanBeNull="on" >
+   <Method id="Access" type="Integer" opcode="SCM.Sequence_Access" >
+      <Argument id="Sequence" type="Object" status="ByVal" />
+      <Argument id="iEntry" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Close" type="Void" opcode="SCM.Sequence_Close" >
+      <Argument id="Sequence" type="Object" status="ByVal" />
+   </Method>
+   <Method id="GetLength" type="Integer" opcode="SCM.Sequence_GetLength" >
+      <Argument id="Sequence" type="Object" status="ByVal" />
+   </Method>
+   <Method id="Open" type="Object" opcode="SCM.Sequence_Open" >
+      <Argument id="root" type="Integer" status="ByVal" />
+   </Method>
+</Class>
+<Class id="Store" creatable="off" >
+  <Method id="AddGlobal" type="Integer" opcode="SCM.Store_AddGlobal" >
+      <Argument id="root" type="Integer" status="ByVal" />
+      <Argument id="global" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Close" type="Void" opcode="SCM.Store_Close" />
+   <Method id="Create" type="Integer" opcode="SCM.Store_Create" >
+      <Argument id="fileName" type="String" status="ByVal" />
+      <Argument id="iUnit" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="DeltaVector" type="Object" opcode="SCM.Store_DeltaVector" >
+      <Argument id="root" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="FindFirstChild" type="Integer" opcode="SCM.Store_FindFirstChild" >
+      <Argument id="levels" type="Integer[]" status="ByVal" />
+      <Argument id="iRoot" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="FindNextChild" type="Integer" opcode="SCM.Store_FindNextChild" >
+      <Argument id="levels" type="Integer[]" status="ByVal" />
+   </Method>
+   <Method id="FindRoot" type="Integer" opcode="SCM.Store_FindRoot" >
+      <Argument id="Identifier" type="String" status="ByVal" />
+   </Method>
+   <Method id="FindVector" type="Integer" opcode="SCM.Store_FindVector" >
+      <Argument id="Identifier" type="String" status="ByVal" />
+      <Argument id="Parent" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="FirstReference" type="Object" opcode="SCM.Store_FirstReference" >
+      <Argument id="symbolRoot" type="Integer" status="ByVal" />
+      <Argument id="PostSet" type="Integer[]" status="ByVal" />
+   </Method>
+   <Method id="GetDataName" type="String" opcode="SCM.Store_GetDataName" />
+   <Method id="GetFirst" type="Integer" opcode="SCM.Store_GetFirst" >
+      <Argument id="parent" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetGlobals" type="Integer" opcode="SCM.Store_GetGlobals" >
+      <Argument id="symbolRoot" type="Integer" status="ByVal" />
+      <Argument id="globals" type="Integer[]" status="ByVal" />
+      <Argument id="nGlobal" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetHandle" type="Object" opcode="SCM.Store_GetHandle" />
+   <Method id="GetIdent" type="String" opcode="SCM.Store_GetIdent" >
+      <Argument id="root" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetInfo" type="Integer" opcode="SCM.Store_GetInfo" >
+      <Argument id="offset" type="Integer" status="ByVal" />
+      <Argument id="info" type="Integer[]" status="ByVal" />
+   </Method>
+   <Method id="GetLength" type="Integer" opcode="SCM.Store_GetLength" >
+      <Argument id="offset" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetName" type="String" opcode="SCM.Store_GetName" >
+      <Argument id="root" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetNext" type="Integer" opcode="SCM.Store_GetNext" >
+      <Argument id="child" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetParent" type="Integer" opcode="SCM.Store_GetParent" >
+      <Argument id="child" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetObjectType" type="Integer" opcode="SCM.Store_GetObjectType" >
+      <Argument id="root" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetString" type="String" opcode="SCM.Store_GetString" >
+      <Argument id="offset" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetSymbols" type="Integer" opcode="SCM.Store_GetSymbols" >
+      <Argument id="Identifier" type="String" status="ByVal" />
+   </Method>
+   <Method id="GetVector" type="Object" opcode="SCM.Store_GetVector" >
+      <Argument id="root" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="HasName" type="Boolean" opcode="SCM.Store_HasName" >
+      <Argument id="root" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="IsNull" type="Boolean" opcode="SCM.Intrinsic_IsNull" >
+      <Argument id="handle" type="Object" status="ByVal" />
+   </Method>
+   <Method id="NextReference" type="Object" opcode="SCM.Store_NextReference" >
+      <Argument id="PostSet" type="Integer[]" status="ByVal" />
+   </Method>
+   <Method id="ObjectVector" type="Integer" opcode="SCM.Store_ObjectVector" >
+      <Argument id="Identifier" type="string" status="ByVal" />
+      <Argument id="Parent" type="Integer" status="ByVal" />
+      <Argument id="objType" type="gmsl.ObjectType" status="ByVal" />
+   </Method>
+   <Method id="Open" type="Integer" opcode="SCM.Store_Open" >
+      <Argument id="fileName" type="String" status="ByVal" />
+      <Argument id="iUnit" type="Integer" status="ByVal" />
+      <Argument id="append" type="Boolean" status="ByVal" />
+   </Method>
+   <Method id="ReadInfo" type="Integer" opcode="SCM.Store_ReadInfo" >
+      <Argument id="info" type="Object" status="ByVal" />
+      <Argument id="offset" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Reference" type="Void" opcode="SCM.Store_Reference" >
+      <Argument id="reference" type="Object" status="ByVal" />
+   </Method>
+   <Method id="RewriteInfo" type="Void" opcode="SCM.Store_RewriteInfo" >
+      <Argument id="info" type="Object" status="ByVal" />
+      <Argument id="nByte" type="Integer" status="ByVal" />
+      <Argument id="offset" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Select" type="Void" opcode="SCM.Store_Select" >
+      <Argument id="iUnit" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="SetCaseSensitive" type="Void" opcode="SCM.Store_SetCaseSensitive" >
+      <Argument id="on" type="Boolean" status="ByVal" />
+   </Method>
+   <Method id="SetName" type="Void" opcode="SCM.Store_SetName" >
+      <Argument id="root" type="Integer" status="ByVal" />
+      <Argument id="Name" type="String" status="ByVal" />
+   </Method>
+   <Method id="SetObjectType" type="Void" opcode="SCM.Store_SetObjectType" >
+      <Argument id="root" type="Integer" status="ByVal" />
+      <Argument id="objType" type="gmsl.ObjectType" status="ByVal" />
+   </Method>
+   <Method id="SetString" type="Void" opcode="SCM.Store_SetString" >
+      <Argument id="addr" type="Integer" status="ByVal" />
+      <Argument id="strValue" type="String" status="ByVal" />
+   </Method>
+   <Method id="String" type="Integer" opcode="SCM.Store_String" >
+      <Argument id="strValue" type="String" status="ByVal" />
+   </Method>
+   <Method id="Unit" type="Integer" opcode="SCM.Store_Unit" />
+   <Method id="Vector" type="Integer" opcode="SCM.Store_Vector" >
+      <Argument id="Identifier" type="String" status="ByVal" />
+      <Argument id="Parent" type="Integer" status="ByVal" />
+      <Argument id="Length" type="Integer" status="ByVal" />
+      <Argument id="type" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="WriteInfo" type="Integer" opcode="SCM.Store_WriteInfo" >
+      <Argument id="info" type="Object" status="ByVal" />
+      <Argument id="nByte" type="Integer" status="ByVal" />
+   </Method>
+</Class>
+<Class id="Symbol" creatable="off" >
+   <Method id="AuthorType" type="String" opcode="SCM.Symbol_AuthorType" >
+      <Argument id="iRoot" type="Integer" status="ByVal" />
+      <Argument id="targetLang" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="ClassName" type="string" opcode="SCM.Symbol_ClassName" >
+      <Argument id="iRoot" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="DisplayInfo" type="void" opcode="SCM.Symbol_DisplayInfo" >
+      <Argument id="infValue" type="Integer" status="ByVal" />
+      <Argument id="dispType" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="EnumIntegerValue" type="Integer" opcode="SCM.Symbol_EnumIntegerValue" >
+      <Argument id="ident"   type="String" status="ByVal" />
+   </Method>
+   <Method id="EnumStringValue" type="String" opcode="SCM.Symbol_EnumStringValue" >
+      <Argument id="enumeration"   type="String" status="ByVal" />
+      <Argument id="entry" type="String" status="ByVal" />
+   </Method>
+   <Method id="FindIdentifier" type="Integer" opcode="SCM.Symbol_FindIdentifier" >
+      <Argument id="identifier" type="String" status="ByVal" />
+      <Argument id="parent" type="Integer" status="ByVal" optional="0" />
+   </Method>
+   <Method id="FindInLibraries" type="Integer" opcode="SCM.Symbol_FindInLibraries" >
+      <Argument id="identifier" type="String" status="ByVal" />
+   </Method>
+   <Method id="FindLibVector" type="Integer" opcode="SCM.Symbol_FindLibVector" >
+      <Argument id="Identifier" type="String" status="ByVal" />
+      <Argument id="Parent" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="FullName" type="string" opcode="SCM.Symbol_FullName" >
+      <Argument id="iRoot" type="Integer" status="ByVal" />
+      <Argument id="context" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="FullType" type="Integer" opcode="SCM.Symbol_FullType" >
+      <Argument id="typeName" type="String" status="ByVal" />
+      <Argument id="context" type="Integer" status="ByRef" />
+      <Argument id="migStatus" type="Integer" status="ByRef" />
+      <Argument id="idfStatus" type="Integer" status="ByVal" optional="0" />
+   </Method>
+   <Method id="GetDefault" type="Integer" opcode="SCM.Symbol_GetDefault" >
+      <Argument id="clsRoot" type="Integer" status="ByVal" />
+   </Method>
+  <Method id="GetTemplate" type="string" opcode="SCM.Symbol_GetTemplate" >
+      <Argument id="TemplateName" type="string"  status="ByVal"/>
+  </Method>
+  <Method id="InitialValue" type="string" opcode="SCM.Symbol_InitialValue" >
+      <Argument id="varType" type="Integer" status="ByVal" />
+      <Argument id="varRefer" type="Integer" status="ByVal" />
+  </Method>
+  <Method id="NamedEntryLabel" type="string" opcode="SCM.Symbol_NamedEntryLabel" >
+      <Argument id="enumName" type="String" status="ByVal" />
+      <Argument id="iValue" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="ReferenceName" type="String" opcode="SCM.Symbol_ReferenceName" >
+      <Argument id="refName" type="string" status="ByVal" />
+   </Method>
+   <Method id="Rename" type="void" opcode="SCM.Symbol_Rename" >
+      <Argument id="newName" type="string" status="ByVal" />
+      <Argument id="iRoot" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="StorePattern" type="Integer" opcode="SCM.Symbol_StorePattern" >
+      <Argument id="allPattern" type="string" status="ByVal" />
+      <Argument id="parameters" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Unused" type="Integer" opcode="SCM.Symbol_Unused" >
+      <Argument id="iRoot" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="UseTemplate" type="String" opcode="SCM.Symbol_UseTemplate" >
+      <Argument id="template"   type="String" status="ByVal" />
+      <Argument id="identifier" type="String" status="ByVal" />
+   </Method>
+   <Method id="NamedFlags" type="void" opcode="SCM.Symbol_NamedFlags" >
+      <Argument id="enumName"   type="String"  status="ByVal" />
+      <Argument id="flags"      type="Integer" status="ByVal" />
+      <Argument id="separate"   type="String"  status="ByVal" />
+   </Method>
+</Class>
+
+<Class id="FileSystem" creatable="off" >
+   <Method id="Directory" type="string" opcode="SCM.FileSystem_Directory" >
+      <Argument id="filename" type="string"  status="ByVal"/>
+      <Argument id="Remove"   type="integer" status="ByVal" optional="0"/>
+   </Method>
+   <Method id="FileExists" type="Integer" opcode="SCM.FileSystem_FileExists" >
+      <Argument id="FileName" type="string" status="ByVal" />
+   </Method>
+   <Method id="FileName" type="string" opcode="SCM.FileSystem_FileName">
+      <Argument id="pathname" type="string" status="ByVal"/>
+   </Method>
+   <Method id="FindFiles" type="object" opcode="SCM.FileSystem_FindFiles" >
+      <Argument id="textStream" type="object" status="ByVal" />
+      <Argument id="directory" type="string" status="ByVal" />
+      <Argument id="extensions" type="string" status="ByVal" />
+   </Method>
+   <Method id="Guid" type="string" opcode="SCM.FileSystem_Guid" >
+      <Argument id="GuidName" type="string"  status="ByVal"/>
+   </Method>
+   <Method id="LoadFile" type="Integer" opcode="SCM.FileSystem_LoadFile" >
+      <Argument id="filename" type="String" status="ByVal" />
+      <Argument id="strip" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="LocalFileName" type="string" opcode="SCM.FileSystem_LocalFileName" >
+      <Argument id="pathname" type="string" status="ByVal"/>
+   </Method>
+   <Method id="LogSetName" type="void" opcode="SCM.FileSystem_LogSetName" >
+      <Argument id="fileName" type="String" status="ByVal" />
+      <Argument id="status" type="Integer"  status="ByVal" optional="0"/>
+   </Method>
+   <Method id="LogMessage" type="void" opcode="SCM.FileSystem_LogMessage" >
+      <Argument id="message" type="String" status="ByVal" />
+   </Method>
+   <Method id="MakePathName" type="String" opcode="SCM.FileSystem_MakePathName" >
+      <Argument id="path" type="string" status="ByVal" />
+      <Argument id="name" type="string" status="ByVal" />
+      <Argument id="extn" type="string" status="ByVal" />
+   </Method>
+   <Method id="MakeRelativeName" type="String" opcode="SCM.FileSystem_MakeRelativeName" >
+      <Argument id="parentFile" type="string" status="ByVal" />
+      <Argument id="childFile" type="string" status="ByVal" />
+   </Method>
+   <Method id="ParseFileName" type="Integer" opcode="SCM.FileSystem_ParseFileName" >
+      <Argument id="FileName" type="string" status="ByVal" />
+      <Argument id="LocalStart" type="Integer" status="ByRef" />
+      <Argument id="XtnStart" type="Integer" status="ByRef" />
+   </Method>
+</Class>
+<Class id="System" creatable="off" parent="FileSystem" >
+</Class>
+
+<Class id="Text" creatable="on" CanBeNull="on" >
+   <Method id="Access" type="String" opcode="SCM.Text_Access" >
+      <Argument id="textStream" type="Object" status="ByVal" />
+      <Argument id="nRecord" type="Integer" status="ByRef" />
+      <Argument id="rai" type="Integer" status="ByRef" />
+      <Argument id="delta" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="ChangeInformation" type="Integer" opcode="SCM.Text_ChangeInformation" >
+      <Argument id="textStream" type="Object" status="ByVal" />
+      <Argument id="rai" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Current" type="Integer" opcode="SCM.Text_Current" >
+      <Argument id="textStream" type="Object" status="ByVal" />
+   </Method>
+   <Method id="Close" type="int" opcode="SCM.Text_Close" >
+      <Argument id="textStream" type="Object" status="ByVal" />
+   </Method>
+   <Method id="Delete" type="void" opcode="SCM.Text_Delete" >
+      <Argument id="textStream" type="Object" status="ByVal" />
+   </Method>
+   <Method id="Increment" type="boolean" opcode="SCM.Text_Increment" >
+      <Argument id="textStream" type="Object" status="ByVal" />
+      <Argument id="delta" type="integer" status="ByVal"  Optional="1" />
+   </Method>
+   <Method id="Insert" type="void" opcode="SCM.Text_Insert" >
+      <Argument id="textStream" type="Object" status="ByVal" />
+      <Argument id="record" type="string" status="ByVal" />
+      <Argument id="rai" type="integer" status="ByVal" Optional="0" />
+   </Method>
+   <Method id="Maximum" type="Integer" opcode="SCM.Text_Maximum" >
+      <Argument id="textStream" type="Object" status="ByVal" />
+   </Method>
+   <Method id="Position" type="Integer" opcode="SCM.Text_Position" >
+      <Argument id="textStream" type="Object" status="ByVal" />
+      <Argument id="curRecord" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Open" type="object" opcode="SCM.Text_Open" >
+      <Argument id="storage" type="Object" status="ByVal" />
+      <Argument id="iRoot" type="Integer" status="ByVal" Optional="0" />
+   </Method>
+   <Method id="Write" type="void" opcode="SCM.Write_TextStream" >
+      <Argument id="textStream" type="Object" status="ByVal" />
+      <Argument id="fileRoot" type="Integer" status="ByVal" />
+      <Argument id="margin" type="Integer" status="ByVal" />
+   </Method>
+</Class>
+
+<Class id="Write" creatable="off">
+   <Method id="ChangeMargin" type="void" opcode="SCM.Write_ChangeMargin" >
+      <Argument id="delta" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Character" type="void" opcode="SCM.Write_Character" >
+      <Argument id="charValue" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Clear" type="string" opcode="SCM.Write_Clear" />
+   <Method id="CloseFile" type="void" opcode="SCM.Write_CloseFile" />
+   <Method id="CloseStream" type="Integer" opcode="SCM.Write_CloseStream" />
+   <Method id="ControlString" type="void" opcode="SCM.Write_ControlString" >
+      <Argument id="strValue" type="string" status="ByVal" />
+      <Argument id="nString" type="Integer" status="ByVal" Optional="0" />
+   </Method>
+   <Method id="Field" type="void" opcode="SCM.Write_Field" >
+      <Argument id="strValue" type="string" status="ByVal" />
+      <Argument id="nString" type="Integer" status="ByVal" />
+      <Argument id="iField" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetFileName" type="string" opcode="SCM.Write_GetFileName" />
+   <Method id="Integer" type="void" opcode="SCM.Write_Integer" >
+      <Argument id="iValue" type="Integer" status="ByVal" />
+      <Argument id="iField" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Line" type="void" opcode="SCM.Write_Line" >
+      <Argument id="strValue" type="string" status="ByVal" />
+   </Method>
+   <Method id="NText" type="void" opcode="SCM.Write_NText" >
+      <Argument id="strValue" type="string" status="ByVal" />
+      <Argument id="nString" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="OpenFile" type="void" opcode="SCM.Write_OpenFile" >
+      <Argument id="unit" type="Integer" status="ByVal" />
+      <Argument id="fileName" type="String" status="ByVal" />
+      <Argument id="statusNew" type="Boolean" status="ByVal" />
+      <Argument id="syntax" type="gmsl.OutStyle" status="ByVal" />
+   </Method>
+   <Method id="OpenStream" type="void" opcode="SCM.Write_OpenStream" />
+   <Method id="Pattern" type="void" opcode="SCM.Write_Pattern" >
+      <Argument id="PatString" type="string" status="ByVal" />
+      <Argument id="nPattern" type="Integer" status="ByVal" />
+      <Argument id="Parameters" type="string" status="ByVal" />
+   </Method>
+   <Method id="Record" type="void" opcode="SCM.Write_Record" />
+   <Method id="Select" type="Integer" opcode="SCM.Write_Select" >
+      <Argument id="unit" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="SetIndentation" type="void" opcode="SCM.Write_SetIndentation" >
+      <Argument id="indent" type="Integer" status="ByVal" />
+      <Argument id="offset" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="SetOutputStyle" type="void" opcode="SCM.Write_SetOutputStyle" >
+      <Argument id="style" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Text" type="void" opcode="SCM.Write_Text" >
+      <Argument id="strValue" type="string" status="ByVal" />
+   </Method>
+   <Method id="TextStream" type="void" opcode="SCM.Write_TextStream" >
+      <Argument id="textStream" type="Object" status="ByVal" />
+      <Argument id="fileRoot" type="Integer" status="ByVal" />
+      <Argument id="margin" type="Integer" status="ByVal" />
+   </Method>
+</Class>
+<Class id="ControlData" creatable="off">
+   <Method id="FindProperty" type="Integer" opcode="SCM.ControlData_FindProperty" >
+      <Argument id="ctlType" type="Integer" status="ByVal" />
+      <Argument id="propName" type="String" status="ByVal" />
+      <Argument id="iCode" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="GetFontSize" type="String" opcode="SCM.ControlData_GetFontSize" >
+      <Argument id="iCode" type="Integer" status="ByVal" />
+      <Argument id="inXml" type="Integer" status="ByVal" Optional="1" />
+   </Method>
+   <Method id="GetProperty" type="String" opcode="SCM.ControlData_GetProperty" >
+      <Argument id="iCode" type="Integer" status="ByVal" />
+      <Argument id="inXml" type="Integer" status="ByVal" Optional="1" />
+   </Method>
+   <Method id="GetValue" type="Integer" opcode="SCM.ControlData_GetValue" >
+      <Argument id="iCode" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="LoadCode" type="Integer" opcode="SCM.ControlData_LoadCode" >
+      <Argument id="ctlRoot" type="Integer" status="ByVal" />
+      <Argument id="cmpOnly" type="Integer" status="ByVal" optional="0" />
+   </Method>
+   <Method id="ReplaceValue" type="integer" opcode="SCM.ControlData_ReplaceValue" >
+      <Argument id="icode"   type="Integer" status="ByVal" />
+      <Argument id="opcode"  type="Integer" status="ByVal" />
+      <Argument id="subcode" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="SaveCode" type="Void" opcode="SCM.ControlData_SaveCode" >
+      <Argument id="ctlRoot" type="Integer" status="ByVal" />
+      <Argument id="iStart" type="Integer" status="ByVal" />
+   </Method>
+</Class>
+<Class id="Parser" creatable="off">
+   <Method id="GetToken" type="String" opcode="SCM.Parser_GetToken" >
+      <Argument id="tokenType" type="Integer" status="ByRef" />
+   </Method>
+   <Method id="ResetInput" type="Integer" opcode="SCM.Parser_ResetInput" />
+   <Method id="SetInput" type="Void" opcode="SCM.Parser_SetInput" >
+      <Argument id="icol" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="SetStatement" type="Void" opcode="SCM.Parser_SetStatement" >
+      <Argument id="record" type="String" status="ByVal" />
+   </Method>
+   <Method id="SetReserved" type="Void" opcode="SCM.Parser_SetReserved" >
+      <Argument id="dialect" type="Integer" status="ByVal" />
+   </Method>
+</Class>
+<Class id="PostingPair" creatable="off" >
+   <Method id="Create" type="Integer" opcode="SCM.PostingPair_Create" >
+      <Argument id="Store" type="Object" status="ByVal" />
+   </Method>
+   <Method id="Find" type="Integer" opcode="SCM.PostingPair_Find" >
+      <Argument id="Store" type="Object" status="ByVal" />
+      <Argument id="Base" type="Integer" status="ByVal" />
+      <Argument id="Index" type="Integer" status="ByVal" />
+   </Method>
+   <Method id="Write" type="Integer" opcode="SCM.PostingPair_Write" >
+      <Argument id="Store" type="Object" status="ByVal" />
+      <Argument id="Base" type="Integer" status="ByVal" />
+      <Argument id="Index" type="Integer" status="ByVal" />
+      <Argument id="Posting" type="Integer" status="ByVal"/>
+   </Method>
+</Class>
+</Library>
+</MetaLanguage>

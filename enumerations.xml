@@ -1,0 +1,953 @@
+<MetaLanguage>
+<Enumeration id="Dialects" >
+   <Entry id="xml"    value="0" />
+   <Entry id="vb7"    value="1" />
+   <Entry id="gms"    value="2" />
+   <Entry id="jvs"    value="3" />
+   <Entry id="vbp"    value="4" />
+   <Entry id="vbn"    value="5" />
+   <Entry id="csh"    value="6" />
+   <Entry id="wpf"    value="7" />
+   <Entry id="wpb"    value="8" />
+   <Entry id="mig"    value="9" />
+ </Enumeration>
+<Enumeration id="LangExt" >
+   <Entry id="xml"                 value="(%= Dialects.xml %)" />
+   <Entry id="vbp"                 value="(%= Dialects.vbp %)" />
+   <Entry id="bas"                 value="(%= Dialects.vb7 %)" />
+   <Entry id="vb"                  value="(%= Dialects.vbn %)" />
+   <Entry id="cs"                  value="(%= Dialects.csh %)" />
+   <Entry id="wpf"                 value="(%= Dialects.wpf %)" />
+   <Entry id="gmsl"                value="(%= Dialects.gms %)" />
+   <Entry id="jav"                 value="(%= Dialects.jvs %)" />
+</Enumeration>
+<Enumeration id="LangName" >
+   <Entry id="All"                 value="(%= Dialects.xml %)" />
+   <Entry id="Project"             value="(%= Dialects.vbp %)" />
+   <Entry id="Basic"               value="(%= Dialects.vb7 %)" />
+   <Entry id="Vbnet"               value="(%= Dialects.vbn %)" />
+   <Entry id="Csharp"              value="(%= Dialects.csh %)" />
+   <Entry id="WPF"                 value="(%= Dialects.wpf %)" />
+   <Entry id="gmSL"                value="(%= Dialects.gms %)" />
+   <Entry id="Java"                value="(%= Dialects.jvs %)" />
+</Enumeration>
+<Enumeration id="OnOff" >
+   <Entry id="Off"                 value="0" />
+   <Entry id="On"                  value="1" />
+</Enumeration>
+<Enumeration id="Defines" >
+   <Entry id="MAX_FULLIDENT"       value="256" />
+   <Entry id="MAX_FILENAME"        value="512" />
+   <Entry id="MAX_FIXNAME"         value="80" />
+   <Entry id="MAX_FIXACTION"       value="16" />
+   <Entry id="MAX_SYMBOLNAME"      value="128" />
+   <Entry id="MAX_PROPVALUE"       value="128" />
+   <Entry id="MAX_PATTERN"         value="256" />
+   <Entry id="MAX_LANGNAME"        value="16" />
+   <Entry id="OPC_MAXIMUM"         value="206" />
+   <Entry id="NOBJECT_NAME"        value="37" />
+   <Entry id="TYP_VARARRAY"        value="22" />
+   <Entry id="TYP_SAFEARRAY"       value="31" />
+   <Entry id="NO_VALUE_FOUND"      value="-32059" />
+</Enumeration>
+<Enumeration id="ContextFlags" >
+   <Entry id="Private"     value="1"/>
+   <Entry id="Public"      value="2"/>
+   <Entry id="Static"      value="3"/>
+   <Entry id="WithEvents"  value="4"/>
+   <Entry id="Argument"    value="5"/>
+   <Entry id="ByVal"       value="6"/>
+   <Entry id="ByRef"       value="7"/>
+   <Entry id="Foreign"     value="8"/>
+   <Entry id="DeadCode"    value="9"/>
+   <Entry id="UseGet"      value="10"/>
+   <Entry id="ByOut"       value="11"/>
+   <Entry id="Optional"    value="12"/>
+   <Entry id="NotDeclared" value="13"/>
+   <Entry id="FixedType"   value="14"/>
+   <Entry id="Friend"      value="15"/>
+   <Entry id="Overload"    value="16"/>
+   <Entry id="Dimensioned" value="17"/>
+   <Entry id="Changed"     value="18"/>
+   <Entry id="New"         value="19"/>
+   <Entry id="ParamArray"  value="20"/>
+   <Entry id="InLibrary"   value="21"/>
+   <Entry id="IsDefault"   value="22"/>
+   <Entry id="Collection"  value="23"/>
+   <Entry id="Array"       value="24"/>
+   <Entry id="2dArray"     value="25"/>
+   <Entry id="D2Array"     value="25"/>
+   <Entry id="Internal"    value="26"/>
+   <Entry id="Protected"   value="27"/>
+   <Entry id="InModule"    value="28"/>
+   <Entry id="Initial"     value="29"/>
+   <Entry id="Resources"   value="30"/>
+   <Entry id="UseLet"      value="30"/>
+   <Entry id="Passed"      value="31"/>
+</Enumeration>
+<Enumeration id="ProjectFlags" >
+   <Entry id="ToolTip"         value="3"/>
+   <Entry id="DataSource"      value="4"/>
+   <Entry id="Library"         value="6"/>
+   <Entry id="Control"         value="7"/>
+   <Entry id="HasExtensions"   value="11"/>
+   <Entry id="SystemIO"        value="12"/>
+   <Entry id="DefInstance"     value="13"/>
+   <Entry id="IsInterfaceUser" value="14"/>
+   <Entry id="VB6Compatible"   value="17"/>
+   <Entry id="MainArgs"        value="19"/>
+   <Entry id="HasPrinter"      value="22"/>
+   <Entry id="AppObject"       value="23"/>
+   <Entry id="References"      value="24"/>
+   <Entry id="StartupMain"     value="29"/>
+   <Entry id="Resources"       value="30"/>
+</Enumeration>
+<Enumeration id="AspContextFlags" >
+   <Entry id="INCLUDE"         value="1"/>
+   <Entry id="EXPLICIT"        value="2"/>
+   <Entry id="VBNETLIB"        value="3"/>
+   <Entry id="CODEBEHIND"      value="4"/>
+   <Entry id="NOMARKUP"        value="5"/>
+   <Entry id="CROSSREF"        value="6"/>
+   <Entry id="BACKREF"         value="7"/>
+   <Entry id="GLOBAL"          value="8"/>
+   <Entry id="PAGELOAD"        value="9"/>
+   <Entry id="HASSTATE"        value="10" />
+   <Entry id="NESTEDINC"       value="11" />
+   <Entry id="HASMARKUP"       value="12"/>
+   <Entry id="USERCONTROL"     value="13"/>
+   <Entry id="AUTHORMARKUP"    value="14"/>
+   <Entry id="GLOBALINCLUDE"   value="15"/>
+   <Entry id="EXTENSIONS"      value="16" />
+</Enumeration>
+<Enumeration id="IdlContextFlags" >
+   <Entry id="InInterface"     value="1"/>
+   <Entry id="InDispinter"     value="2"/>
+   <Entry id="InIdispatch"     value="3"/>
+   <Entry id="InIunknown"      value="4"/>
+   <Entry id="InModule"        value="5"/>
+   <Entry id="CoclassSource"   value="6"/>
+</Enumeration>
+<Enumeration id="MigStatusFlags" >
+   <Entry id="NotImplemented"  value="1"/>
+   <Entry id="Delete"          value="2"/>
+   <Entry id="CanBeNUll"       value="3"/>
+   <Entry id="UserCode"        value="4"/>
+   <Entry id="External"        value="5"/>
+   <Entry id="NeedsInit"       value="6"/>
+   <Entry id="HasMigclass"     value="7"/>
+   <Entry id="LocalLibrary"    value="8"/>
+   <Entry id="Remove"          value="9"/>
+   <Entry id="Nullable"        value="10"/>
+   <Entry id="AddArgument"     value="11"/>
+   <Entry id="CallPattern"     value="12"/>
+   <Entry id="OverrideUser"    value="13"/>
+   <Entry id="SkipDecl"        value="14"/>
+   <Entry id="Static"          value="15"/>
+   <Entry id="IsDbNull"        value="16"/>
+   <Entry id="MustCorrect"     value="17"/>
+   <Entry id="Noncreatable"    value="18"/>
+   <Entry id="SingletonRef"    value="19"/>
+   <Entry id="StubOut"         value="20"/>
+   <Entry id="Override"        value="21"/>
+   <Entry id="CastType"        value="22"/>
+   <Entry id="Referenced"      value="23"/>
+   <Entry id="SingletonUsed"   value="24"/>
+   <Entry id="AppObject"       value="25"/>
+   <Entry id="ArrayArray"      value="26"/>
+   <Entry id="Module"          value="27"/>
+   <Entry id="Implemented"     value="28"/>
+   <Entry id="ActiveX"         value="29"/>
+   <Entry id="UsesCOM"         value="30"/>
+   <Entry id="BoxTypes"        value="31"/>
+</Enumeration>
+<Enumeration id="MigStatus2Flags" >
+   <Entry id="DesignerFile"      value="1"  />
+   <Entry id="HasMdiParent"      value="2"  />
+   <Entry id="HasFixedArray"     value="3"  />
+   <Entry id="ControlArrayIndex" value="4"  />
+   <Entry id="NeedsSetterWrap"   value="5"  />
+   <Entry id="InternalOnly"      Value="6"  />
+   <Entry id="FunctionVariable"  Value="7"  />
+   <Entry id="DoNotInitialize"   Value="8"  />
+   <Entry id="NotOptional"       Value="9"  />
+   <Entry id="HasSpecialArgs"    Value="10" />
+   <Entry id="HasExtensions"     Value="11" />
+   <Entry id="InterfaceOnly"     Value="12" />
+   <Entry id="GenericCollection" Value="13" />
+   <Entry id="PassValueOnCall"   Value="14" />
+   <Entry id="Inferred"          Value="15" />
+   <Entry id="HasAddedMembers"   Value="16" />
+   <Entry id="RemoveGoSub"       Value="17" />
+   <Entry id="UseEventClass"     Value="18" />
+   <Entry id="ControlCollection" Value="19" />
+   <Entry id="HasClassName"      Value="20" />
+   <Entry id="CouldBeByRef"      Value="21" />
+   <Entry id="IsArray"           Value="22" />
+   <Entry id="IsIndexed"         Value="23" />
+   <Entry id="LateBound"         Value="24" />
+   <Entry id="VBScript"          Value="25" />
+   <Entry id="Dynamic"           Value="26" />
+   <Entry id="NoAssignDefault"   Value="27" />
+   <Entry id="HasValueName"      Value="28" />
+   <Entry id="UsedAsCollection"  Value="29" />
+   <Entry id="ScaleModePixels"   Value="30" />
+   <entry id="AuthorDeclare"     Value="31" />
+</Enumeration>
+<Enumeration id="MigStatus3Flags" >
+   <Entry id="StartupReference"  value="1"  />
+   <Entry id="RemovedComponent"  value="2"  />
+   <Entry id="InDescriptionFile" value="3"  />
+</Enumeration>
+<Enumeration id="MigProcessFlags" >
+   <Entry id="CallBack"          value="1"  />
+   <Entry id="ZeroBased"         value="2"  />
+   <Entry id="WasActiveX"        value="3"  />
+   <Entry id="HasForEach"        value="4"  />
+   <Entry id="Constructor"       value="5"  />
+   <Entry id="ColObject"         value="6"  />
+   <Entry id="HaveEventArgs"     value="7"  />
+   <Entry id="NeedsLet"          value="8"  />
+   <Entry id="Implements"        value="9"  />
+   <Entry id="Shadows"           value="10" />
+   <Entry id="PropertyBag"       value="11" />
+   <Entry id="RemoveResumeNext"  value="12" />
+   <Entry id="RemoveOnErrorGoTo" value="13" />
+   <Entry id="Overloads"         value="14" />
+   <Entry id="CodeAnalysed"      value="15" />
+   <Entry id="TypeInferred"      value="16" />
+   <Entry id="InInterface"       value="17" />
+   <Entry id="OptionBase1"       value="18" />
+   <Entry id="FixedSource"       value="19" />
+   <Entry id="ObjectOnly"        value="20" />
+   <Entry id="BlockTemps"        value="21" />
+   <Entry id="ArrayInfer"        value="22" />
+   <Entry id="Exposed"           value="23" />
+   <Entry id="SharedFile"        value="24" />
+   <Entry id="NotByRef"          value="25" />
+   <Entry id="HasCodeHandler"    value="26" />
+   <Entry id="EnforceType"       value="27" />
+   <Entry id="HasWeakSetter"     value="28" />
+   <Entry id="HasPatterns"       value="29" />
+   <Entry id="ConditionalRemove" value="30" />
+   <Entry id="ImplicitByRef"     value="31" />
+</Enumeration>
+<Enumeration id="IdlFlags" >
+   <Entry id="NONCREATABLE"      value="1" />
+   <Entry id="SOURCE"            value="2" />
+   <Entry id="ODL"               value="3" />
+   <Entry id="HIDDEN"            value="4" />
+   <Entry id="NONEXTENSIBLE"     value="5" />
+   <Entry id="PROPPUT"           value="6" />
+   <Entry id="PROPGET"           value="7" />
+   <Entry id="OUT"               value="8" />
+   <Entry id="IN"                value="9" />
+   <Entry id="PROPPUTREF"        value="10" />
+   <Entry id="DUAL"              value="11" />
+   <Entry id="OLEAUTOMATION"     value="12" />
+   <Entry id="OPTIONAL"          value="13" />
+   <Entry id="RESTRICTED"        value="14" />
+   <Entry id="APPOBJECT"         value="15" />
+   <Entry id="BINDABLE"          value="16" />
+   <Entry id="TYPEDEF"           value="17" />
+   <Entry id="SAFEARRAY"         value="18" />
+   <Entry id="CONTROL"           value="19" />
+   <Entry id="PUBLIC"            value="20" />
+   <Entry id="REQUESTEDIT"       value="21" />
+   <Entry id="DISPLAYBIND"       value="22" />
+   <Entry id="VARARG"            value="23" />
+   <Entry id="DEFAULTBIND"       value="24" />
+   <Entry id="LCID"              value="25" />
+   <Entry id="DEFAULT"           value="26" />
+</Enumeration>
+<Enumeration id="IdlObject" >
+   <Entry id="Constant"          value="0" />
+   <Entry id="Property"          value="1" />
+   <Entry id="Method"            value="2" />
+   <Entry id="Event"             value="3" />
+</Enumeration>
+<Enumeration id="roleKeys" >
+   <Entry id="Unknown"         value="0" />
+   <Entry id="Property"        value="1" />
+   <Entry id="Method"          value="2" />
+   <Entry id="Define"          value="3" />
+   <Entry id="Utility"         value="4" />
+   <Entry id="Command"         value="5" />
+   <Entry id="Constant"        value="6" />
+   <Entry id="Function"        value="7" />
+   <Entry id="Event"           value="8" />
+   <Entry id="Control"         value="9" />
+   <Entry id="Collection"      value="10" />
+   <Entry id="Resource"        value="11" />
+   <Entry id="Index"           value="12" />
+   <Entry id="Migclass"        value="13" />
+</Enumeration>
+<Enumeration id="statusKeys" >
+   <Entry id="Ok"              value="0" />
+   <Entry id="Delete"          value="1" />
+   <Entry id="Deprecated"      value="2" />
+   <Entry id="NotImplemented"  value="3" />
+   <Entry id="MustCorrect"     value="4" />
+   <Entry id="NotIdent"        value="5" />
+   <Entry id="Postfix"         value="6" />
+   <Entry id="NeedsPren"       value="7" />
+   <Entry id="Extension"       value="127" />
+</Enumeration>
+<Enumeration id="PropertyStatus" >
+   <Entry id="SetByRef"      value="(%= Mask(ContextFlags.ByRef) + Mask(ContextFlags.UseGet) %)" />
+   <Entry id="GetSetLet"     value="(%= Mask(ContextFlags.UseGet) %)" />
+   <Entry id="GetSet"        value="(%= Mask(ContextFlags.UseGet) %)" />
+   <Entry id="UseGet"        value="(%= Mask(ContextFlags.ByVal) + Mask(ContextFlags.UseGet) %)" />
+   <Entry id="Dimen"         value="(%= Mask(ContextFlags.ByVal) + Mask(ContextFlags.Dimensioned) %)" />
+   <Entry id="ByVal"         value="(%= Mask(ContextFlags.ByVal) %)" />
+   <Entry id="Static"        value="(%= Mask(ContextFlags.Static) %)" />
+   <Entry id="ByRef"         value="(%= Mask(ContextFlags.ByRef) %)" />
+   <Entry id="In"            value="(%= Mask(ContextFlags.ByVal) %)" />
+   <Entry id="Out"           value="(%= Mask(ContextFlags.ByOut) %)" />
+   <Entry id="InOut"         value="(%= Mask(ContextFlags.ByRef) %)" />
+   <Entry id="Indexer"       value="(%= Mask(ContextFlags.Collection) %)" />
+   <Entry id="Protected"     value="(%= Mask(ContextFlags.Protected) %)" />
+   <Entry id="ColItem"       value="(%= Mask(ContextFlags.Collection) %)" />
+   <Entry id="Vector"        value="(%= Mask(ContextFlags.Array) %)" />
+   <Entry id="ParamArray"    value="(%= Mask(ContextFlags.ParamArray) %)" />
+   <Entry id="RefParamArray" value="(%= Mask(ContextFlags.ByRef) + Mask(ContextFlags.ParamArray) %)" />
+   <Entry id="AsNew"         value="(%= Mask(ContextFlags.ByRef) + Mask(ContextFlags.New) %)" />
+   <Entry id="DeadCode"      value="(%= Mask(ContextFlags.DeadCode) %)" />
+   <Entry id="UseLet"        value="(%= Mask(ContextFlags.UseLet) %)" />
+   <Entry id="StaticGet"     value="(%= Mask(ContextFlags.ByOut) + Mask(ContextFlags.Static) %)" />
+   <Entry id="WasByRef"      value="(%= Mask(ContextFlags.ByVal) + Mask(ContextFlags.ByRef) %)" />
+</Enumeration>
+<Enumeration id="LibraryType" >
+   <Entry id="Internal"        value="0" />
+   <Entry id="Native"          value="1" />
+   <Entry id="ActiveX"         value="2" />
+   <Entry id="LocalImport"     value="3" />
+</Enumeration>
+<Enumeration id="ComponentType" >
+   <Entry id="Method"      Value="0" />
+   <Entry id="Accessor"    Value="1" />
+   <Entry id="Event"       Value="2" />
+   <Entry id="Property"    Value="3" />
+   <Entry id="Enumeration" Value="4" />
+   <Entry id="EnumEntry"   Value="5" />
+   <Entry id="Structure"   Value="6" />
+   <Entry id="Argument"    Value="7" />
+   <Entry id="Constant"    Value="8" />
+   <Entry id="TextBlock"   Value="9" />
+   <Entry id="Statements"  Value="10" />
+   <Entry id="Statement"   Value="11" />
+   <Entry id="Attribute"   Value="12" />
+   <Entry id="BeginProp"   Value="13" />
+   <Entry id="NameValue"   Value="14" />
+</Enumeration>
+<Enumeration id="ObjectType" >
+   <Entry id="ForwardReference" value="0" />
+   <Entry id="MetaLanguage"     value="1" />
+   <Entry id="ProjectFile"      value="2" />
+   <Entry id="FormFile"         value="3" />
+   <Entry id="ModuleFile"       value="4" />
+   <Entry id="ClassFile"        value="5" />
+   <Entry id="AspFile"          value="6" />
+   <Entry id="Subprogram"       value="7" />
+   <Entry id="Variable"         value="8" />
+   <Entry id="Constant"         value="9" />
+   <Entry id="Property"         value="10" />
+   <Entry id="Declaration"      value="11" />
+   <Entry id="Structure"        value="12" />
+   <Entry id="Enumeration"      value="13" />
+   <Entry id="EnumeratedEntry"  value="14" />
+   <Entry id="StatementLabel"   value="15" />
+   <Entry id="Event"            value="16" />
+   <Entry id="Vb_Name"          value="17" />
+   <Entry id="Library"          value="18" />
+   <Entry id="Interface"        value="19" />
+   <Entry id="Coclass"          value="20" />
+   <Entry id="Typedef"          value="21" />
+   <Entry id="Component"        value="22" />
+   <Entry id="ResXinfo"         value="23" />
+   <Entry id="Registry"         value="24" />
+   <Entry id="DataStore"        value="25" />
+   <Entry id="VBScriptFile"     value="26" />
+   <Entry id="MigClass"         value="27" />
+   <Entry id="IdlLibrary"       value="28" />
+   <Entry id="IdlInterface"     value="29" />
+   <Entry id="IdlCoclass"       value="30" />
+   <Entry id="IdlEnum"          value="31" />
+   <Entry id="IdlComponent"     value="32" />
+   <Entry id="IdlArgument"      value="33" />
+   <Entry id="IdlTypedef"       value="34" />
+   <Entry id="IdlStruct"        value="35" />
+   <Entry id="IdlUnion"         value="36" />
+</Enumeration>
+<Enumeration id="BinaryType" >
+   <Entry id="Void"      value="0" />
+   <Entry id="Byte"      value="1" />
+   <Entry id="Short"     value="2" />
+   <Entry id="Integer"   value="3" />
+   <Entry id="Long"      value="4" />
+   <Entry id="Currency"  value="5" />
+   <Entry id="Single"    value="6" />
+   <Entry id="Double"    value="7" />
+   <Entry id="String"    value="8" />
+   <Entry id="Boolean"   value="9" />
+   <Entry id="Date"      value="10" />
+   <Entry id="Variant"   value="11" />
+   <Entry id="Object"    value="12" />
+   <Entry id="User"      value="13" />
+</Enumeration>
+<Enumeration id="DisplayType" >
+   <Entry id="INTEGER_VALUE"  value="1" />
+   <Entry id="PARENT_OFFSET"  value="2" />
+   <Entry id="OBJECT_TYPE"    value="3" />
+   <Entry id="FULL_IDENT"     value="4" />
+   <Entry id="MIGRATE_STATUS" value="5" />
+   <Entry id="STRING_VALUE"   value="6" />
+   <Entry id="PATTERN"        value="7" />
+   <Entry id="CONTEXT_FLAGS"  value="8" />
+   <Entry id="ASP_CONTEXT"    value="9" />
+   <Entry id="IDENT_OFFSET"   value="10" />
+   <Entry id="OBJECT_NAME"    value="11" />
+   <Entry id="INTERFACES"     value="12" />
+   <Entry id="REFERENCES"     value="13" />
+   <Entry id="INFO_STATUS"    value="14" />
+   <Entry id="CURRENT_CODE"   value="15" />
+   <Entry id="CHILDCONTROLS"  value="16" />
+   <Entry id="LIBRARY_TYPE"   value="17" />
+   <Entry id="MIGRATE_FLAGS"  value="18" />
+   <Entry id="BINARY_TYPE"    value="19" />
+   <Entry id="AUDIT_TEXT"     value="20" />
+   <Entry id="MIGRATE2_FLAGS" value="21" />
+   <Entry id="SOURCE_NAME"    value="22" />
+   <Entry id="TARGET_NAME"    value="23" />
+   <Entry id="FULL_NAME"      value="24" />
+   <Entry id="TARGET_TYPE"    value="25" />
+</Enumeration>
+<Enumeration id="ProcessingStatus" >
+   <Entry id="Ignore"  value="0" />
+   <Entry id="Warn"    value="1" />
+   <Entry id="Warning" value="1" />
+   <Entry id="Error"   value="2" />
+</Enumeration>
+<Enumeration id="EchoType" >
+   <Entry id="off"                value="0" />
+   <Entry id="pass1"              value="1" />
+   <Entry id="pass2"              value="2" />
+   <Entry id="all"                value="3" />
+</Enumeration>
+<Enumeration id="OutStyle" >
+   <Entry id="Text"   value="0" />
+   <Entry id="Html"   value="1" />
+   <Entry id="Tabbed" value="2" />
+</Enumeration>
+<Enumeration id="FixedType" >
+   <Entry id="short"              value="2" />
+   <Entry id="integer"            value="3" />
+   <Entry id="long"               value="4" />
+</Enumeration>
+<Enumeration id="ExceptionType" >
+   <Entry id="simple"               value="0" />
+   <Entry id="seterrorobject"       value="1" />
+   <Entry id="useTryCatch"          value="2" />
+</Enumeration>
+<Enumeration id="CheckDeclarationType" >
+   <Entry id="off"                value="0" />
+   <Entry id="on"                 value="1" />
+   <Entry id="ignore"             value="2" />
+   <Entry id="audit"              value="3" />
+</Enumeration>
+<Enumeration id="MissingType" >
+   <Entry id="off"                value="0" />
+   <Entry id="JustDoIt"           value="1" />
+   <Entry id="Fatal"              value="2" />
+</Enumeration>
+<Enumeration id="AuthorLibType" >
+   <Entry id="off"    value="0" />
+   <Entry id="on"     value="1" />
+   <Entry id="deploy" value="2" />
+</Enumeration>
+<Enumeration id="BuildFileStatus" >
+   <Entry id="off"    value="0" />
+   <Entry id="on"     value="1" />
+   <Entry id="Local"  value="2" />
+   <Entry id="Global" value="3" />
+</Enumeration>
+<Enumeration id="FixLanguage" >
+   <Entry id="vbp"            value="1" />
+   <Entry id="csproj"         value="2" />
+   <Entry id="vbproj"         value="3" />
+   <Entry id="vb7"            value="4" />
+   <Entry id="vbn"            value="5" />
+   <Entry id="csh"            value="6" />
+   <Entry id="all"            value="7" />
+</Enumeration>
+<Enumeration id="FixType" >
+   <Entry id="ReplaceGlobal"  value="0" />
+   <Entry id="ReplaceSingle"  value="1" />
+</Enumeration>
+<Enumeration id="StorageUnit" >
+   <Entry id="USER"    value="1" />
+   <Entry id="LANG"    value="2" />
+   <Entry id="TEMP"    value="3" />
+   <Entry id="INFO"    value="4" />
+   <Entry id="CLIENT"  value="5" />
+   <Entry id="SCRATCH" value="6" />
+   <Entry id="METHODS" value="7" />
+   <Entry id="DATA"    value="8" />
+</Enumeration>
+<Enumeration id="JScriptToVB" type="String" >
+   <entry id="!="        value="<>" />
+   <entry id="=="        value="=" />
+   <entry id="!"         value="not " />
+</Enumeration>
+<Enumeration id="IdlEventNames" type="string" >
+   <entry id="BackColorChanged"               value="BackColorChangedEvent" />
+   <entry id="BackgroundImageChanged"         value="BackgroundImageChangedEvent" />
+   <entry id="BackgroundImageLayoutChanged"   value="BackgroundImageLayoutChangedEvent" />
+   <entry id="BindingContextChanged"          value="BindingContextChangedEvent" />
+   <entry id="ChangeUICues"                   value="ChangeUICuesEvent" />
+   <entry id="Click"                          value="ClickEvent" />
+   <entry id="Close"                          value="CloseEvent" />
+   <entry id="ContextMenuChanged"             value="ContextMenuChangedEvent" />
+   <entry id="CursorChanged"                  value="CursorChangedEvent" />
+   <entry id="DoubleClick"                    value="DoubleClickEvent" />
+   <entry id="DragDrop"                       value="DragDropEvent" />
+   <entry id="DragEnter"                      value="DragEnterEvent" />
+   <entry id="DragLeave"                      value="DragLeaveEvent" />
+   <entry id="DragOver"                       value="DragOverEvent" />
+   <entry id="EnabledChanged"                 value="EnabledChangedEvent" />
+   <entry id="FontChanged"                    value="FontChangedEvent" />
+   <entry id="ForeColorChanged"               value="ForeColorChangedEvent" />
+   <entry id="GiveFeedback"                   value="GiveFeedbackEvent" />
+   <entry id="HelpRequested"                  value="HelpRequestedEvent" />
+   <entry id="ImeModeChanged"                 value="ImeModeChangedEvent" />
+   <entry id="KeyDown"                        value="KeyDownEvent" />
+   <entry id="KeyPress"                       value="KeyPressEvent" />
+   <entry id="KeyUp"                          value="KeyUpEvent" />
+   <entry id="Layout"                         value="LayoutEvent" />
+   <entry id="MouseClick"                     value="MouseClickEvent" />
+   <entry id="MouseDoubleClick"               value="MouseDoubleClickEvent" />
+   <entry id="MouseDown"                      value="MouseDownEvent" />
+   <entry id="MouseEnter"                     value="MouseEnterEvent" />
+   <entry id="MouseHover"                     value="MouseHoverEvent" />
+   <entry id="MouseLeave"                     value="MouseLeaveEvent" />
+   <entry id="MouseMove"                      value="MouseMoveEvent" />
+   <entry id="MouseUp"                        value="MouseUpEvent" />
+   <entry id="MouseWheel"                     value="MouseWheelEvent" />
+   <entry id="Paint"                          value="PaintEvent" />
+   <entry id="QueryAccessibilityHelp"         value="QueryAccessibilityHelpEvent" />
+   <entry id="QueryContinueDrag"              value="QueryContinueDragEvent" />
+   <entry id="Quit"                           value="QuitEvent" />
+   <entry id="RightToLeftChanged"             value="RightToLeftChangedEvent" />
+   <entry id="StyleChanged"                   value="StyleChangedEvent" />
+   <entry id="TextChanged"                    value="TextChangedEvent" />
+</Enumeration>
+<Enumeration id="IdlEventMembers" type="String" >
+   <entry id="State"            value="CtlState" />
+   <entry id="System"           value="CtlSystem" />
+</Enumeration>
+<Enumeration id="IdlEventArgs" type="string">
+   <entry id="KeyCode"         value="keyCode" />
+   <entry id="State"           value="state" />
+   <entry id="DateClicked"     value="dateClicked" />
+   <entry id="ColumnHeader"    value="columnHeader" />
+   <entry id="Item"            value="item" />
+   <entry id="KeyAscii"        value="keyAscii" />
+</Enumeration>
+<Enumeration id="IdlTypeNames" type="String" >
+   <entry id="void"                     value="void" />
+   <entry id="VARIANT"                  value="variant" />
+   <entry id="HRESULT"                  value="variant" />
+   <entry id="IUnknown*"                value="object"/>
+   <entry id="IUnknown"                 value="variant" />
+   <entry id="BSTR"                     value="string" />
+   <entry id="char"                     value="string" />
+   <entry id="unsignedchar"             value="byte" />
+   <entry id="wchar_t"                  value="string" />
+   <entry id="LPSTR"                    value="string" />
+   <entry id="LPWSTR"                   value="string" />
+   <entry id="long"                     value="integer" />
+   <entry id="unsignedlong"             value="integer" />
+   <entry id="uint64"                   value="long" />
+   <entry id="int64"                    value="long" />
+   <entry id="date"                     value="date" />
+   <entry id="int"                      value="integer" />
+   <entry id="unsignedint"              value="integer" />
+   <entry id="short"                    value="short" />
+   <entry id="unsignedshort"            value="short" />
+   <entry id="scode"                    value="integer" />
+   <entry id="Currency"                 value="currency" />
+   <entry id="Single"                   value="single" />
+   <entry id="Float"                    value="single" />
+   <entry id="double"                   value="double" />
+   <entry id="OLE_COLOR"                value="ole_color" />
+   <entry id="OLE_HANDLE"               value="ole_handle" />
+   <entry id="VARIANT_BOOL"             value="boolean" />
+   <entry id="mscorlib.IList"           value="VarArray" />
+   <entry id="stdole.IFontDisp"         value="font"/>
+   <entry id="stdole.IFont"             value="font" />
+   <entry id="stdole.IUnknown*"         value="object" />
+   <entry id="stdole.IUnknown"          value="variant" />
+   <entry id="stdole.OLE_COLOR"         value="ole_color" />
+   <entry id="stdole.IEnumVARIANT"      value="variant" />
+   <entry id="stdole.OLE_HANDLE"        value="ole_handle" />
+   <entry id="stdole.Font"              value="font" />
+   <entry id="Stdole.IPictureDisp"      value="frxpicture"/>
+   <entry id="stdole.Picture"           value="frxpicture" />
+   <entry id="stdole.OLE_XPOS_PIXELS"   value="integer" />
+   <entry id="stdole.OLE_YPOS_PIXELS"   value="integer" />
+   <entry id="StdType.OLE_HANDLE"       value="ole_handle"/>
+   <entry id="StdType.IFontDisp"        value="font"/>
+   <entry id="StdType.Font"             value="font"/>
+   <entry id="StdType.OLE_XPOS_PIXELS"  value="integer"/>
+   <entry id="StdType.OLE_YPOS_PIXELS"  value="integer"/>
+   <entry id="StdType.IPictureDisp"     value="frxpicture"/>
+   <entry id="StdType.Picture"          value="frxpicture"/>
+   <entry id="StdType.OLE_COLOR"        value="ole_color"/>
+   <entry id="CallHwnd4"                value="object" />
+</Enumeration>
+<Enumeration id="IdfSpecialTypes" >
+   <entry id="IUnknown"          value="0" />
+   <entry id="LongLong"          value="4" />
+   <entry id="Long"              value="3" />
+   <entry id="stdole.IUnknown"   value="0" />
+   <entry id="Collection"        value="176" />
+   <entry id="Font"              value="175" />
+   <entry id="stdole.Font"       value="175" />
+   <entry id="OLE_COLOR"         value="112" />
+   <entry id="stdole.IDispatch"  value="11" />
+   <entry id="object"            value="12" />
+   <entry id="MousePointerConstants" value="94" />
+   <entry id="stdole.OLE_COLOR"  value="112" />
+   <entry id="None"              value="0" />
+   <entry id="BSTR"              value="8" />
+   <entry id="VARIANT_BOOL"      value="9" />
+   <entry id="OLE_HANDLE"        value="23" />
+   <entry id="System.UInt32"     value="3" />
+   <entry id="System.Double"     value="7" />
+   <entry id="System.IntPtr"     value="23" />
+   <entry id="System.Byte"       value="1" />
+   <entry id="System.Decimal"    value="5" />
+   <entry id="VBA.ErrObject"     value="180" />
+   <entry id="VBA.VbMsgBoxStyle" value="104" />
+   <entry id="VBRUN.FillStyleConstants" value="136" />
+   <entry id="VBA.Collection"    value="176" />
+</Enumeration>
+<Enumeration id="vbn_Reserved" Type="String" >
+   <entry id="args"              value="args_migname"/>
+   <entry id="addhandler"        value="addhandler_migname" />
+   <entry id="alias"             value="alias_migname" />
+   <entry id="andalso"           value="andalso_migname" />
+   <entry id="ansi"              value="ansi_migname" />
+   <entry id="auto"              value="auto_migname" />
+   <entry id="assembly"          value="assembly_migname" />
+   <entry id="Boolean"           value="boolean_migname" />
+   <entry id="byref"             value="byref_migname" />
+   <entry id="Byte"              value="Byte_migname" />
+   <entry id="case"              value="case_migname" />
+   <entry id="catch"             value="catch_migname" />
+   <entry id="cbool"             value="cbool_migname" />
+   <entry id="cdec"              value="cdec_migname" />
+   <entry id="char"              value="char_migname" />
+   <entry id="cint"              value="cint_migname" />
+   <entry id="class"             value="class_migname" />
+   <entry id="cobj"              value="cobj_migname" />
+   <entry id="continue"          value="continue_migname" />
+   <entry id="Convert"           value="convert_migname" />
+   <entry id="csbyte"            value="csbyte_migname" />
+   <entry id="csng"              value="csng_migname" />
+   <entry id="cstr"              value="cstr_migname" />
+   <entry id="ctype"             value="ctype_migname" />
+   <entry id="Date"              value="date_migname" />
+   <entry id="Decimal"           value="decimal_migname" />
+   <entry id="Default"           value="[Default]" />
+   <entry id="delegate"          value="delegate_migname" />
+   <entry id="directcast"        value="directcast_migname" />
+   <entry id="Double"            value="double_migname" />
+   <entry id="end"               value="[end]" />
+   <entry id="Error"             value="error_migname" />
+   <entry id="erase"             value="erase_migname" />
+   <entry id="event"             value="event_migname" />
+   <entry id="exit"              value="exit_migname" />
+   <entry id="False"             value="false_migname" />
+   <entry id="finally"           value="finally_migname" />
+   <entry id="friend"            value="friend_migname" />
+   <entry id="function"          value="function_migname" />
+   <entry id="gettype"           value="gettype_migname" />
+   <entry id="global"            value="global_migname" />
+   <entry id="handles"           value="handles_migname" />
+   <entry id="implements"        value="implements_migname" />
+   <entry id="imports"           value="imports_migname" />
+   <entry id="in"                value="in_migname" />
+   <entry id="inherits"          value="inherits_migname" />
+   <entry id="interface"         value="interface_migname" />
+   <entry id="Integer"           value="integer_migname" />
+   <entry id="keyword"           value="keyword_migname" />
+   <entry id="lib"               value="lib_migname" />
+   <entry id="like"              value="like_migname" />
+   <entry id="Long"              value="long_migname" />
+   <entry id="mdiParent"         value="mdiParent_migname" />
+   <entry id="module"            value="module_migname" />
+   <entry id="mustinherit"       value="mustinherit_migname" />
+   <entry id="mustoverride"      value="mustoverride_migname" />
+   <entry id="mybase"            value="mybase_migname" />
+   <entry id="myclass"           value="myclass_migname" />
+   <entry id="namespace"         value="namespace_migname" />
+   <entry id="New"               value="new_migname" />
+   <entry id="next"              value="next_migname" />
+   <entry id="notinheritable"    value="notinheritable_migname" />
+   <entry id="notoverridable"    value="notoverridable_migname" />
+   <entry id="Object"            value="object_migname" />
+   <entry id="operator"          value="operator_migname" />
+   <entry id="option"            value="option_migname" />
+   <entry id="orelse"            value="orelse_migname" />
+   <entry id="overloads"         value="overloads_migname" />
+   <entry id="overridable"       value="overridable_migname" />
+   <entry id="overrides"         value="overrides_migname" />
+   <entry id="property"          value="property_migname" />
+   <entry id="ReadOnly"          value="readonly_migname" />
+   <entry id="raiseevent"        value="raiseevent_migname" />
+   <entry id="removehandler"     value="removehandler_migname" />
+   <entry id="resume"            value="resume_migname" />
+   <entry id="sbyte"             value="sbyte_migname" />
+   <entry id="set"               value="set_migname" />
+   <entry id="select"            value="select_migname" />
+   <entry id="shadows"           value="shadows_migname" />
+   <entry id="Shared"            value="shared_migname" />
+   <entry id="Short"             value="short_migname" />
+   <entry id="Single"            value="single_migname" />
+   <entry id="step"              value="step_migname" />
+   <entry id="stop"              value="stop_migname" />
+   <entry id="structure"         value="structure_migname" />
+   <entry id="String"            value="string_migname" />
+   <entry id="strings"           value="strings_migname" />
+   <entry id="synclock"          value="synclock_migname" />
+   <entry id="System"            value="system_migname" />
+   <entry id="throw"             value="throw_migname" />
+   <entry id="to"                value="to_migname" />
+   <entry id="ToString"          value="ToString_migname"/>
+   <entry id="True"              value="true_migname" />
+   <entry id="try"               value="try_migname" />
+   <entry id="typeof"            value="typeof_migname" />
+   <entry id="Unicode"           value="unicode_migname" />
+   <entry id="Variant"           value="variant_" />
+   <entry id="when"              value="when_migname" />
+   <entry id="writeonly"         value="writeonly_migname" />
+   <entry id="xor"               value="xor_migname" />
+</Enumeration>
+<Enumeration id="csh_Reserved" type="String" >
+   <entry id="ToString"        value="ToString_migname"/>
+   <entry id="args"            value="args_migname"/>
+   <entry id="abstract"        value="abstract_migname" />
+   <entry id="AppObject"       value="AppObject_migname" />
+   <entry id="assembly"        value="assembly_migname" />
+   <entry id="base"            value="base_migname" />
+   <entry id="bool"            value="bool_migname" />
+   <entry id="break"           value="break_migname" />
+   <entry id="catch"           value="catch_migname" />
+   <entry id="char"            value="char_migname" />
+   <entry id="checked"         value="checked_migname" />
+   <entry id="class"           value="class_migname" />
+   <entry id="const"           value="const_migname" />
+   <entry id="continue"        value="continue_migname" />
+   <entry id="Convert"         value="convert_migname" />
+   <entry id="decimal"         value="decimal_migname" />
+   <entry id="default"         value="Default" />
+   <entry id="delegate"        value="delegate_migname" />
+   <entry id="event"           value="event_migname" />
+   <entry id="extern"          value="extern_migname" />
+   <entry id="finally"         value="finally_migname" />
+   <entry id="fixed"           value="fixed_migname" />
+   <entry id="foreach"         value="foreach_migname" />
+   <entry id="implicit"        value="implicit_migname" />
+   <entry id="in"              value="in_migname" />
+   <entry id="int"             value="int_migname" />
+   <entry id="interface"       value="interface_migname" />
+   <entry id="internal"        value="internal_migname" />
+   <entry id="lock"            value="lock_migname" />
+   <entry id="namespace"       value="namespace_migname" />
+   <entry id="New"             value="new_migname" />
+   <entry id="null"            value="null_migname" />
+   <entry id="object"          value="object_migname" />
+   <entry id="operator"        value="operator_migname" />
+   <entry id="out"             value="out_migname" />
+   <entry id="override"        value="override_migname" />
+   <entry id="params"          value="params_migname" />
+   <entry id="ref"             value="ref_migname" />
+   <entry id="return"          value="return_migname" />
+   <entry id="sbyte"           value="sbyte_migname" />
+   <entry id="sealed"          value="sealed_migname" />
+   <entry id="short"           value="short_migname" />
+   <entry id="sizeof"          value="sizeof_migname" />
+   <entry id="stackalloc"      value="stackalloc_migname" />
+   <entry id="struct"          value="struct_migname" />
+   <entry id="string"          value="string_migname" />
+   <entry id="switch"          value="switch_migname" />
+   <entry id="System"          value="system_migname" />
+   <entry id="this"            value="this_migname" />
+   <entry id="throw"           value="throw_migname" />
+   <entry id="try"             value="try_migname" />
+   <entry id="typeof"          value="typeof_migname" />
+   <entry id="uint"            value="uint_migname" />
+   <entry id="ulong"           value="ulong_migname" />
+   <entry id="unchecked"       value="unchecked_migname" />
+   <entry id="unsafe"          value="unsafe_migname" />
+   <entry id="ushort"          value="ushort_migname" />
+   <entry id="using"           value="using_migname" />
+   <entry id="virtual"         value="virtual_migname" />
+   <entry id="void"            value="void_migname" />
+   <entry id="volatile"        value="volatile_migname" />
+</Enumeration>
+<Enumeration id="EventType" >
+   <Entry id="CodeReference"       value="0" />
+   <Entry id="AdjustProperties"    value="1" />
+   <Entry id="AuthorProperties"    value="2" />
+   <Entry id="AuthorDeclarations"  value="3" />
+   <Entry id="AuthorAllocations"   value="4" />
+   <Entry id="ControlMigration"    value="5" />
+   <Entry id="UndefinedProperty"   value="6" />
+   <Entry id="AuthorSubsystem"     value="7" />
+   <Entry id="RefactorHost"        value="8" />
+   <Entry id="InitializeComponent" value="9" />
+   <Entry id="CompilerInfo"        value="10" />
+   <Entry id="StartAnalyser"       value="11" />
+   <Entry id="FinishAnalyser"      value="12" />
+   <Entry id="EditTranslation"     value="13" />
+   <Entry id="AuthorClass"         value="14" />
+   <Entry id="AuthorClassFile"     value="15" />
+   <Entry id="AuthorReference"     value="16" />
+   <Entry id="BeginProperty"       value="17" />
+   <Entry id="EditSource"          value="18" />
+   <Entry id="StartPass2"          value="19" />
+   <Entry id="ControlValue"        value="20" />
+   <Entry id="AuthorLibraryStub"   value="21" />
+   <Entry id="AuthorProjectFile"   value="22" />
+   <Entry id="LoadIdf"             value="23" />
+   <Entry id="ExecuteCommand"      value="24" />
+   <Entry id="gmPLscript"          value="25" />
+</Enumeration>
+<Enumeration id="ControlMigration" >
+   <Entry id="BlockAddRange"        value="1" />
+   <Entry id="BlockControlAnalysis" value="2" />
+</Enumeration>
+<Enumeration id="LexemeType" migStatus="External" >
+   <Entry id="EndOfRecord"          value="0" />
+   <Entry id="Special"              value="1" />
+   <Entry id="Identifier"           value="2" />
+   <Entry id="Integer"              value="3" />
+   <Entry id="Float"                value="4" />
+   <Entry id="Quoted"               value="5" />
+   <Entry id="HexCons"              value="6" />
+   <Entry id="Minus"                value="10" />
+   <Entry id="Not"                  value="11" />
+   <Entry id="ToPower"              value="12" />
+   <Entry id="Multiply"             value="13" />
+   <Entry id="Divide"               value="14" />
+   <Entry id="IntegerDivide"        value="15" />
+   <Entry id="Modulo"               value="16" />
+   <Entry id="Add"                  value="17" />
+   <Entry id="Subtract"             value="18" />
+   <Entry id="Concatenate"          value="19" />
+   <Entry id="NotEqual"             value="20" />
+   <Entry id="GreaterOrEqual"       value="21" />
+   <Entry id="LessOrEqual"          value="22" />
+   <Entry id="Equal"                value="23" />
+   <Entry id="GreaterThan"          value="24" />
+   <Entry id="LessThan"             value="25" />
+   <Entry id="InclusiveOr"          value="26" />
+   <Entry id="And"                  value="27" />
+   <Entry id="Like"                 value="28" />
+   <Entry id="Is"                   value="29" />
+   <Entry id="ExclusiveOr"          value="30" />
+   <Entry id="Equivalent"           value="31" />
+   <Entry id="Implies"              value="32" />
+   <Entry id="BitwiseAnd"           value="33" />
+   <Entry id="BitwiseOr"            value="34" />
+   <Entry id="As"                   value="70" />
+   <Entry id="Byref"                value="71" />
+   <Entry id="Byval"                value="72" />
+   <Entry id="Doevents"             value="73" />
+   <Entry id="Else"                 value="74" />
+   <Entry id="False"                value="75" />
+   <Entry id="For"                  value="76" />
+   <Entry id="Me"                   value="77" />
+   <Entry id="Mid"                  value="78" />
+   <Entry id="New"                  value="79" />
+   <Entry id="Nothing"              value="80" />
+   <Entry id="Optional"             value="81" />
+   <Entry id="Paramarray"           value="82" />
+   <Entry id="Property"             value="83" />
+   <Entry id="Then"                 value="84" />
+   <Entry id="To"                   value="85" />
+   <Entry id="True"                 value="86" />
+   <Entry id="In"                   value="91" />
+   <Entry id="Instance"             value="92" />
+   <Entry id="Of"                   value="93" />
+   <Entry id="Typeof"               value="94" />
+   <Entry id="Function"             value="95" />
+   <Entry id="EndScript"            value="96" />
+   <Entry id="EndStatement"         value="97" />
+   <Entry id="OpenBlock"            value="98" />
+   <Entry id="CloseBlock"           value="99" />
+   <Entry id="Void"                 value="101" />
+   <Entry id="Break"                value="102" />
+   <Entry id="Case"                 value="103" />
+   <Entry id="Catch"                value="104" />
+   <Entry id="Continue"             value="105" />
+   <Entry id="Debugger"             value="106" />
+   <Entry id="Default"              value="107" />
+   <Entry id="Delete"               value="108" />
+   <Entry id="Do"                   value="109" />
+   <Entry id="ElseStatement"        value="110" />
+   <Entry id="Finally"              value="111" />
+   <Entry id="ForStatement"         value="112" />
+   <Entry id="If"                   value="113" />
+   <Entry id="Return"               value="114" />
+   <Entry id="Switch"               value="115" />
+   <Entry id="Throw"                value="116" />
+   <Entry id="Try"                  value="117" />
+   <Entry id="Var"                  value="118" />
+   <Entry id="While"                value="119" />
+   <Entry id="With"                 value="120" />
+   <Entry id="Error"                value="121" />
+   <Entry id="Bool"                 value="122" />
+   <Entry id="String"               value="123" />
+   <Entry id="Int"                  value="124" />
+</Enumeration>
+<Enumeration id="VBAclass" >
+   <Entry id="Information"          value="1" />
+   <Entry id="Strings"              value="2" />
+   <Entry id="Math"                 value="3" />
+   <Entry id="Conversion"           value="4" />
+   <Entry id="DateTime"             value="5" />
+   <Entry id="FileSystem"           value="6" />
+   <Entry id="Interaction"          value="7" />
+   <Entry id="VbDayOfWeek"          value="8" />
+</Enumeration>
+<Enumeration id="CharacterSets" >
+   <Entry id="ASCII"         value="0" />
+   <Entry id="UTF8"          value="1" />
+   <Entry id="Shift_JIS"     value="2" />
+</Enumeration>
+<Enumeration id="SupportLibraries" >
+   <Entry id="gmRTL"                          value="0" />
+   <Entry id="gmRTL.Core."                    value="1" />
+   <Entry id="gmRTL.GUI."                     value="2" />
+   <Entry id="gmRTL.ASP."                     value="3" />
+</Enumeration>
+<Enumeration id="UseTypes" >
+   <Entry id="NONE"       value="1" />
+   <Entry id="NUMERIC"    value="2" />
+   <Entry id="STRING"     value="3" />
+   <Entry id="BOOLEAN"    value="4" />
+   <Entry id="DATETIME"   value="5" />
+   <Entry id="VARIANT"    value="6" />
+   <Entry id="OBJECT"     value="7" />
+   <Entry id="CONTROL"    value="8" />
+   <Entry id="IMAGE"      value="9" />
+   <Entry id="POINTER"    value="10" />
+   <Entry id="COLLECTION" value="11" />
+   <Entry id="ISOBJECT"   value="12" />
+   <Entry id="REF1DARRAY" value="13" />
+   <Entry id="REF2DARRAY" value="14" />
+</Enumeration>
+</MetaLanguage>

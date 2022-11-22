@@ -1,0 +1,1065 @@
+<DescriptionFile>
+<library id="DAO350.DLL"
+         name="DAO"
+         uuid="00025E01-0000-0000-C000-000000000046"
+         netVersion="4.0"
+         source="DAO350.DLL"
+         location="%library%\Interop.DAO.dll"
+         migName="DAO"
+         type="LocalImport"
+   >
+   <importlib id="stdole2.tlb"/>
+   <class id="_Collection"/>
+   <class id="_DynaCollection"/>
+   <class id="_DAO"/>
+   <class id="_DBEngine"/>
+   <class id="Error"/>
+   <class id="Errors"/>
+   <class id="Workspace"/>
+   <class id="Workspaces"/>
+   <class id="_TableDef"/>
+   <class id="TableDefs"/>
+   <class id="Database"/>
+   <class id="Databases"/>
+   <class id="_QueryDef"/>
+   <class id="QueryDefs"/>
+   <class id="Recordset"/>
+   <class id="Recordsets"/>
+   <class id="_Field"/>
+   <class id="Fields"/>
+   <class id="_Index"/>
+   <class id="Indexes"/>
+   <class id="IndexFields"/>
+   <class id="Parameter"/>
+   <class id="Parameters"/>
+   <class id="_User"/>
+   <class id="Users"/>
+   <class id="_Group"/>
+   <class id="Groups"/>
+   <class id="_Relation"/>
+   <class id="Relations"/>
+   <class id="Property"/>
+   <class id="Properties"/>
+   <class id="Container"/>
+   <class id="Containers"/>
+   <class id="Document"/>
+   <class id="Documents"/>
+   <class id="Connection"/>
+   <class id="Connections"/>
+   <coclass id="DBEngine"/>
+   <coclass id="PrivDBEngine"/>
+   <coclass id="TableDef"/>
+   <coclass id="QueryDef"/>
+   <coclass id="Field"/>
+   <coclass id="Index"/>
+   <coclass id="User"/>
+   <coclass id="Group"/>
+   <coclass id="Relation"/>
+   <class id="LanguageConstants"/>
+   <enumeration id="RecordsetTypeEnum">
+      <entry id="dbOpenTable" value="1"/>
+      <entry id="dbOpenDynaset" value="2"/>
+      <entry id="dbOpenSnapshot" value="4"/>
+      <entry id="dbOpenForwardOnly" value="8"/>
+      <entry id="dbOpenDynamic" value="16"/>
+   </enumeration>
+   <enumeration id="EditModeEnum">
+      <entry id="dbEditNone" value="0"/>
+      <entry id="dbEditInProgress" value="1"/>
+      <entry id="dbEditAdd" value="2"/>
+      <entry id="dbEditChanged" value="4"/>
+      <entry id="dbEditDeleted" value="8"/>
+      <entry id="dbEditNew" value="16"/>
+   </enumeration>
+   <enumeration id="RecordsetOptionEnum">
+      <entry id="dbDenyWrite" value="1"/>
+      <entry id="dbDenyRead" value="2"/>
+      <entry id="dbReadOnly" value="4"/>
+      <entry id="dbAppendOnly" value="8"/>
+      <entry id="dbInconsistent" value="16"/>
+      <entry id="dbConsistent" value="32"/>
+      <entry id="dbSQLPassThrough" value="64"/>
+      <entry id="dbFailOnError" value="128"/>
+      <entry id="dbForwardOnly" value="256"/>
+      <entry id="dbSeeChanges" value="512"/>
+      <entry id="dbRunAsync" value="1024"/>
+      <entry id="dbExecDirect" value="2048"/>
+   </enumeration>
+   <enumeration id="LockTypeEnum">
+      <entry id="dbPessimistic" value="2"/>
+      <entry id="dbOptimistic" value="3"/>
+      <entry id="dbOptimisticValue" value="1"/>
+      <entry id="dbOptimisticBatch" value="5"/>
+   </enumeration>
+   <enumeration id="UpdateCriteriaEnum">
+      <entry id="dbCriteriaKey" value="1"/>
+      <entry id="dbCriteriaModValues" value="2"/>
+      <entry id="dbCriteriaAllCols" value="4"/>
+      <entry id="dbCriteriaTimestamp" value="8"/>
+      <entry id="dbCriteriaDeleteInsert" value="16"/>
+      <entry id="dbCriteriaUpdate" value="32"/>
+   </enumeration>
+   <enumeration id="FieldAttributeEnum">
+      <entry id="dbFixedField" value="1"/>
+      <entry id="dbVariableField" value="2"/>
+      <entry id="dbAutoIncrField" value="16"/>
+      <entry id="dbUpdatableField" value="32"/>
+      <entry id="dbSystemField" value="8192"/>
+      <entry id="dbHyperlinkField" value="32768"/>
+      <entry id="dbDescending" value="1"/>
+   </enumeration>
+   <enumeration id="DataTypeEnum">
+      <entry id="dbBoolean" value="1"/>
+      <entry id="dbByte" value="2"/>
+      <entry id="dbInteger" value="3"/>
+      <entry id="dbLong" value="4"/>
+      <entry id="dbCurrency" value="5"/>
+      <entry id="dbSingle" value="6"/>
+      <entry id="dbDouble" value="7"/>
+      <entry id="dbDate" value="8"/>
+      <entry id="dbBinary" value="9"/>
+      <entry id="dbText" value="10"/>
+      <entry id="dbLongBinary" value="11"/>
+      <entry id="dbMemo" value="12"/>
+      <entry id="dbGUID" value="15"/>
+      <entry id="dbBigInt" value="16"/>
+      <entry id="dbVarBinary" value="17"/>
+      <entry id="dbChar" value="18"/>
+      <entry id="dbNumeric" value="19"/>
+      <entry id="dbDecimal" value="20"/>
+      <entry id="dbFloat" value="21"/>
+      <entry id="dbTime" value="22"/>
+      <entry id="dbTimeStamp" value="23"/>
+   </enumeration>
+   <enumeration id="RelationAttributeEnum">
+      <entry id="dbRelationUnique" value="1"/>
+      <entry id="dbRelationDontEnforce" value="2"/>
+      <entry id="dbRelationInherited" value="4"/>
+      <entry id="dbRelationUpdateCascade" value="256"/>
+      <entry id="dbRelationDeleteCascade" value="4096"/>
+      <entry id="dbRelationLeft" value="0x1000000"/>
+      <entry id="dbRelationRight" value="0x2000000"/>
+   </enumeration>
+   <enumeration id="TableDefAttributeEnum">
+      <entry id="dbAttachExclusive" value="0x10000"/>
+      <entry id="dbAttachSavePWD" value="0x20000"/>
+      <entry id="dbSystemObject" value="0x80000002"/>
+      <entry id="dbAttachedTable" value="0x40000000"/>
+      <entry id="dbAttachedODBC" value="0x20000000"/>
+      <entry id="dbHiddenObject" value="1"/>
+   </enumeration>
+   <enumeration id="QueryDefTypeEnum">
+      <entry id="dbQSelect" value="0"/>
+      <entry id="dbQProcedure" value="224"/>
+      <entry id="dbQAction" value="240"/>
+      <entry id="dbQCrosstab" value="16"/>
+      <entry id="dbQDelete" value="32"/>
+      <entry id="dbQUpdate" value="48"/>
+      <entry id="dbQAppend" value="64"/>
+      <entry id="dbQMakeTable" value="80"/>
+      <entry id="dbQDDL" value="96"/>
+      <entry id="dbQSQLPassThrough" value="112"/>
+      <entry id="dbQSetOperation" value="128"/>
+      <entry id="dbQSPTBulk" value="144"/>
+      <entry id="dbQCompound" value="160"/>
+   </enumeration>
+   <enumeration id="QueryDefStateEnum">
+      <entry id="dbQPrepare" value="1"/>
+      <entry id="dbQUnprepare" value="2"/>
+   </enumeration>
+   <enumeration id="DatabaseTypeEnum">
+      <entry id="dbVersion10" value="1"/>
+      <entry id="dbEncrypt" value="2"/>
+      <entry id="dbDecrypt" value="4"/>
+      <entry id="dbVersion11" value="8"/>
+      <entry id="dbVersion20" value="16"/>
+      <entry id="dbVersion30" value="32"/>
+   </enumeration>
+   <enumeration id="CollatingOrderEnum">
+      <entry id="dbSortNeutral" value="1024"/>
+      <entry id="dbSortArabic" value="1025"/>
+      <entry id="dbSortCyrillic" value="1049"/>
+      <entry id="dbSortCzech" value="1029"/>
+      <entry id="dbSortDutch" value="1043"/>
+      <entry id="dbSortGeneral" value="1033"/>
+      <entry id="dbSortGreek" value="1032"/>
+      <entry id="dbSortHebrew" value="1037"/>
+      <entry id="dbSortHungarian" value="1038"/>
+      <entry id="dbSortIcelandic" value="1039"/>
+      <entry id="dbSortNorwdan" value="1030"/>
+      <entry id="dbSortPDXIntl" value="1033"/>
+      <entry id="dbSortPDXNor" value="1030"/>
+      <entry id="dbSortPDXSwe" value="1053"/>
+      <entry id="dbSortPolish" value="1045"/>
+      <entry id="dbSortSpanish" value="1034"/>
+      <entry id="dbSortSwedFin" value="1053"/>
+      <entry id="dbSortTurkish" value="1055"/>
+      <entry id="dbSortJapanese" value="1041"/>
+      <entry id="dbSortChineseSimplified" value="2052"/>
+      <entry id="dbSortChineseTraditional" value="1028"/>
+      <entry id="dbSortKorean" value="1042"/>
+      <entry id="dbSortThai" value="1054"/>
+      <entry id="dbSortSlovenian" value="1060"/>
+      <entry id="dbSortUndefined" value="0xffffffff"/>
+   </enumeration>
+   <enumeration id="IdleEnum">
+      <entry id="dbFreeLocks" value="1"/>
+      <entry id="dbRefreshCache" value="8"/>
+   </enumeration>
+   <enumeration id="PermissionEnum">
+      <entry id="dbSecNoAccess" value="0"/>
+      <entry id="dbSecFullAccess" value="0xfffff"/>
+      <entry id="dbSecDelete" value="0x10000"/>
+      <entry id="dbSecReadSec" value="0x20000"/>
+      <entry id="dbSecWriteSec" value="0x40000"/>
+      <entry id="dbSecWriteOwner" value="0x80000"/>
+      <entry id="dbSecDBCreate" value="1"/>
+      <entry id="dbSecDBOpen" value="2"/>
+      <entry id="dbSecDBExclusive" value="4"/>
+      <entry id="dbSecDBAdmin" value="8"/>
+      <entry id="dbSecCreate" value="1"/>
+      <entry id="dbSecReadDef" value="4"/>
+      <entry id="dbSecWriteDef" value="0x1000c"/>
+      <entry id="dbSecRetrieveData" value="20"/>
+      <entry id="dbSecInsertData" value="32"/>
+      <entry id="dbSecReplaceData" value="64"/>
+      <entry id="dbSecDeleteData" value="128"/>
+   </enumeration>
+   <enumeration id="SynchronizeTypeEnum">
+      <entry id="dbRepExportChanges" value="1"/>
+      <entry id="dbRepImportChanges" value="2"/>
+      <entry id="dbRepImpExpChanges" value="4"/>
+      <entry id="dbRepSyncInternet" value="16"/>
+   </enumeration>
+   <enumeration id="ReplicaTypeEnum">
+      <entry id="dbRepMakeReadOnly" value="2"/>
+      <entry id="dbRepMakePartial" value="1"/>
+   </enumeration>
+   <enumeration id="WorkspaceTypeEnum">
+      <entry id="dbUseODBC" value="1"/>
+      <entry id="dbUseJet" value="2"/>
+   </enumeration>
+   <enumeration id="CursorDriverEnum">
+      <entry id="dbUseDefaultCursor" value="0xffffffff"/>
+      <entry id="dbUseODBCCursor" value="1"/>
+      <entry id="dbUseServerCursor" value="2"/>
+      <entry id="dbUseClientBatchCursor" value="3"/>
+      <entry id="dbUseNoCursor" value="4"/>
+   </enumeration>
+   <enumeration id="DriverPromptEnum">
+      <entry id="dbDriverPrompt" value="2"/>
+      <entry id="dbDriverNoPrompt" value="1"/>
+      <entry id="dbDriverComplete" value="0"/>
+      <entry id="dbDriverCompleteRequired" value="3"/>
+   </enumeration>
+   <enumeration id="SetOptionEnum">
+      <entry id="dbPageTimeout" value="6"/>
+      <entry id="dbLockRetry" value="57"/>
+      <entry id="dbMaxBufferSize" value="8"/>
+      <entry id="dbUserCommitSync" value="58"/>
+      <entry id="dbImplicitCommitSync" value="59"/>
+      <entry id="dbExclusiveAsyncDelay" value="60"/>
+      <entry id="dbSharedAsyncDelay" value="61"/>
+      <entry id="dbMaxLocksPerFile" value="62"/>
+      <entry id="dbLockDelay" value="63"/>
+      <entry id="dbRecycleLVs" value="65"/>
+      <entry id="dbFlushTransactionTimeout" value="66"/>
+   </enumeration>
+   <enumeration id="ParameterDirectionEnum">
+      <entry id="dbParamInput" value="1"/>
+      <entry id="dbParamOutput" value="2"/>
+      <entry id="dbParamInputOutput" value="3"/>
+      <entry id="dbParamReturnValue" value="4"/>
+   </enumeration>
+   <enumeration id="UpdateTypeEnum">
+      <entry id="dbUpdateBatch" value="4"/>
+      <entry id="dbUpdateRegular" value="1"/>
+      <entry id="dbUpdateCurrentRecord" value="2"/>
+   </enumeration>
+   <enumeration id="RecordStatusEnum">
+      <entry id="dbRecordUnmodified" value="0"/>
+      <entry id="dbRecordModified" value="1"/>
+      <entry id="dbRecordNew" value="2"/>
+      <entry id="dbRecordDeleted" value="3"/>
+      <entry id="dbRecordDBDeleted" value="4"/>
+   </enumeration>
+   <enumeration id="CommitTransOptionsEnum">
+      <entry id="dbForceOSFlush" value="1"/>
+   </enumeration>
+   <enumeration id="_DAOSuppHelp">
+      <entry id="LogMessages" value="0"/>
+      <entry id="KeepLocal" value="0"/>
+      <entry id="Replicable" value="0"/>
+      <entry id="ReplicableBool" value="0"/>
+      <entry id="V1xNullBehavior" value="0"/>
+   </enumeration>
+   <class id="_Collection" parent="IDispatch" creatable="off">
+      <property id="Count" type="Short" status="Out"/>
+      <method id="_NewEnum" type="Object"/>
+      <method id="Refresh" type="Void"/>
+   </class>
+   <class id="_DynaCollection" parent="_Collection" creatable="off">
+      <method id="Append" type="Void">
+         <argument id="Object" type="Object" status="ByVal"/>
+      </method>
+      <method id="Delete" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_DAO" parent="IDispatch" creatable="off">
+      <property id="Properties" type="Properties" status="Out"/>
+   </class>
+   <class id="_DBEngine" parent="_DAO" default="Workspaces" creatable="off">
+      <property id="Version" type="String" status="Out"/>
+      <property id="IniPath" type="String" status="InOut"/>
+      <property id="DefaultUser" type="String" status="In"/>
+      <property id="DefaultPassword" type="String" status="In"/>
+      <property id="LoginTimeout" type="Short" status="InOut"/>
+      <property id="Workspaces" type="Workspaces" status="Out"/>
+      <property id="Errors" type="Errors" status="Out"/>
+      <property id="SystemDB" type="String" status="InOut"/>
+      <property id="DefaultType" type="Integer" status="InOut"/>
+      <method id="Idle" type="Void">
+         <argument id="Action" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CompactDatabase" type="Void">
+         <argument id="SrcName" type="String" status="ByVal"/>
+         <argument id="DstName" type="String" status="ByVal"/>
+         <argument id="DstLocale" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="SrcLocale" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="RepairDatabase" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+      </method>
+      <method id="RegisterDatabase" type="Void">
+         <argument id="Dsn" type="String" status="ByVal"/>
+         <argument id="Driver" type="String" status="ByVal"/>
+         <argument id="Silent" type="Boolean" status="ByVal"/>
+         <argument id="Attributes" type="String" status="ByVal"/>
+      </method>
+      <method id="_30_CreateWorkspace" type="Workspace">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="UserName" type="String" status="ByVal"/>
+         <argument id="Password" type="String" status="ByVal"/>
+      </method>
+      <method id="OpenDatabase" type="Database">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="ReadOnly" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Connect" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateDatabase" type="Database">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Locale" type="String" status="ByVal"/>
+         <argument id="Option" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="FreeLocks" type="Void"/>
+      <method id="BeginTrans" type="Void"/>
+      <method id="CommitTrans" type="Void">
+         <argument id="Option" type="Integer" status="ByVal" optional="0"/>
+      </method>
+      <method id="Rollback" type="Void"/>
+      <method id="SetDefaultWorkspace" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Password" type="String" status="ByVal"/>
+      </method>
+      <method id="SetDataAccessOption" type="Void">
+         <argument id="Option" type="Short" status="ByVal"/>
+         <argument id="Value" type="Variant" status="ByVal"/>
+      </method>
+      <method id="ISAMStats" type="Integer">
+         <argument id="StatNum" type="Integer" status="ByVal"/>
+         <argument id="Reset" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateWorkspace" type="Workspace">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="UserName" type="String" status="ByVal"/>
+         <argument id="Password" type="String" status="ByVal"/>
+         <argument id="UseType" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="OpenConnection" type="Connection">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="ReadOnly" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Connect" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="SetOption" type="Void">
+         <argument id="Option" type="Integer" status="ByVal"/>
+         <argument id="Value" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Error" parent="IDispatch" default="Description" creatable="off">
+      <property id="Number" type="Integer" status="Out"/>
+      <property id="Source" type="String" status="Out"/>
+      <property id="Description" type="String" status="Out"/>
+      <property id="HelpFile" type="String" status="Out"/>
+      <property id="HelpContext" type="Integer" status="Out"/>
+   </class>
+   <class id="Errors" parent="_Collection" default="Item" creatable="off">
+      <method id="Item" type="Error" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Workspace" parent="_DAO" default="Databases" creatable="off">
+      <property id="Name" type="String" status="InOut"/>
+      <property id="UserName" type="String" status="Out"/>
+      <property id="_30_UserName" type="String" status="In"/>
+      <property id="_30_Password" type="String" status="In"/>
+      <property id="IsolateODBCTrans" type="Short" status="InOut"/>
+      <property id="Databases" type="Databases" status="Out"/>
+      <property id="Users" type="Users" status="Out"/>
+      <property id="Groups" type="Groups" status="Out"/>
+      <property id="LoginTimeout" type="Integer" status="InOut"/>
+      <property id="DefaultCursorDriver" type="Integer" status="InOut"/>
+      <property id="hEnv" type="Integer" status="Out"/>
+      <property id="Type" type="Integer" status="Out"/>
+      <property id="Connections" type="Connections" status="Out"/>
+      <method id="BeginTrans" type="Void"/>
+      <method id="CommitTrans" type="Void">
+         <argument id="Options" type="Integer" status="ByVal" optional="0"/>
+      </method>
+      <method id="Close" type="Void"/>
+      <method id="Rollback" type="Void"/>
+      <method id="OpenDatabase" type="Database">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="ReadOnly" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Connect" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateDatabase" type="Database">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Connect" type="String" status="ByVal"/>
+         <argument id="Option" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateUser" type="User">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="PID" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Password" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateGroup" type="Group">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="PID" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="OpenConnection" type="Connection">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="ReadOnly" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Connect" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="Workspaces" parent="_DynaCollection" default="Item" creatable="off">
+      <method id="Item" type="Workspace" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_TableDef" parent="_DAO" default="Fields" creatable="off">
+      <property id="Attributes" type="Integer" status="InOut"/>
+      <property id="Connect" type="String" status="InOut"/>
+      <property id="DateCreated" type="Variant" status="Out"/>
+      <property id="LastUpdated" type="Variant" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="SourceTableName" type="String" status="InOut"/>
+      <property id="Updatable" type="Boolean" status="Out"/>
+      <property id="ValidationText" type="String" status="InOut"/>
+      <property id="ValidationRule" type="String" status="InOut"/>
+      <property id="RecordCount" type="Integer" status="Out"/>
+      <property id="Fields" type="Fields" status="Out"/>
+      <property id="Indexes" type="Indexes" status="Out"/>
+      <property id="ConflictTable" type="String" status="Out"/>
+      <property id="ReplicaFilter" type="Variant" status="InOut"/>
+      <method id="OpenRecordset" type="Recordset">
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="RefreshLink" type="Void"/>
+      <method id="CreateField" type="Field">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Size" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateIndex" type="Index">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateProperty" type="Property">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Value" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="DDL" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="TableDefs" parent="_DynaCollection" default="Item" creatable="off">
+      <method id="Item" type="TableDef" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Database" parent="_DAO" default="TableDefs" creatable="off">
+      <property id="CollatingOrder" type="Integer" status="Out"/>
+      <property id="Connect" type="String" status="InOut"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="QueryTimeout" type="Short" status="InOut"/>
+      <property id="Transactions" type="Boolean" status="Out"/>
+      <property id="Updatable" type="Boolean" status="Out"/>
+      <property id="Version" type="String" status="Out"/>
+      <property id="RecordsAffected" type="Integer" status="Out"/>
+      <property id="TableDefs" type="TableDefs" status="Out"/>
+      <property id="QueryDefs" type="QueryDefs" status="Out"/>
+      <property id="Relations" type="Relations" status="Out"/>
+      <property id="Containers" type="Containers" status="Out"/>
+      <property id="Recordsets" type="Recordsets" status="Out"/>
+      <property id="ReplicaID" type="String" status="Out"/>
+      <property id="DesignMasterID" type="String" status="InOut"/>
+      <property id="Connection" type="Connection" status="Out"/>
+      <method id="Close" type="Void"/>
+      <method id="Execute" type="Void">
+         <argument id="Query" type="String" status="ByVal"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_30_OpenRecordset" type="Recordset">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateProperty" type="Property">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Value" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="DDL" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateRelation" type="Relation">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Table" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="ForeignTable" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Attributes" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateTableDef" type="TableDef">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Attributes" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="SourceTableName" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Connect" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="BeginTrans" type="Void"/>
+      <method id="CommitTrans" type="Void">
+         <argument id="Options" type="Integer" status="ByVal" optional="0"/>
+      </method>
+      <method id="Rollback" type="Void"/>
+      <method id="CreateDynaset" type="Recordset">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Inconsistent" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateQueryDef" type="QueryDef">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="SQLText" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateSnapshot" type="Recordset">
+         <argument id="Source" type="String" status="ByVal"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="DeleteQueryDef" type="Void">
+         <argument id="Name" type="String" status="ByVal"/>
+      </method>
+      <method id="ExecuteSQL" type="Integer">
+         <argument id="SQL" type="String" status="ByVal"/>
+      </method>
+      <method id="ListFields" type="Recordset">
+         <argument id="Name" type="String" status="ByVal"/>
+      </method>
+      <method id="ListTables" type="Recordset"/>
+      <method id="OpenQueryDef" type="QueryDef">
+         <argument id="Name" type="String" status="ByVal"/>
+      </method>
+      <method id="OpenTable" type="Recordset">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Synchronize" type="Void">
+         <argument id="DbPathName" type="String" status="ByVal"/>
+         <argument id="ExchangeType" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="MakeReplica" type="Void">
+         <argument id="PathName" type="String" status="ByVal"/>
+         <argument id="Description" type="String" status="ByVal"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="NewPassword" type="Void">
+         <argument id="bstrOld" type="String" status="ByVal"/>
+         <argument id="bstrNew" type="String" status="ByVal"/>
+      </method>
+      <method id="OpenRecordset" type="Recordset">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="LockEdit" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="PopulatePartial" type="Void">
+         <argument id="DbPathName" type="String" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Databases" parent="_Collection" default="Item" creatable="off">
+      <method id="Item" type="Database" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_QueryDef" parent="_DAO" default="Parameters" creatable="off">
+      <property id="DateCreated" type="Variant" status="Out"/>
+      <property id="LastUpdated" type="Variant" status="Out"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="ODBCTimeout" type="Short" status="InOut"/>
+      <property id="Type" type="Short" status="Out"/>
+      <property id="SQL" type="String" status="InOut"/>
+      <property id="Updatable" type="Boolean" status="Out"/>
+      <property id="Connect" type="String" status="InOut"/>
+      <property id="ReturnsRecords" type="Boolean" status="InOut"/>
+      <property id="RecordsAffected" type="Integer" status="Out"/>
+      <property id="Fields" type="Fields" status="Out"/>
+      <property id="Parameters" type="Parameters" status="Out"/>
+      <property id="hStmt" type="Integer" status="Out"/>
+      <property id="MaxRecords" type="Integer" status="InOut"/>
+      <property id="StillExecuting" type="Boolean" status="Out"/>
+      <property id="CacheSize" type="Integer" status="InOut"/>
+      <property id="Prepare" type="Variant" status="InOut"/>
+      <method id="Close" type="Void"/>
+      <method id="_30_OpenRecordset" type="Recordset">
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_30__OpenRecordset" type="Recordset">
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_Copy" type="QueryDef"/>
+      <method id="Execute" type="Void">
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Compare" type="Void">
+         <argument id="pQdef" type="QueryDef" status="ByVal"/>
+         <argument id="lps" type="Short" status="ByRef"/>
+      </method>
+      <method id="CreateDynaset" type="Recordset">
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Inconsistent" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateSnapshot" type="Recordset">
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="ListParameters" type="Recordset"/>
+      <method id="CreateProperty" type="Property">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Value" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="DDL" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="OpenRecordset" type="Recordset">
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="LockEdit" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_OpenRecordset" type="Recordset">
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="LockEdit" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Cancel" type="Void"/>
+   </class>
+   <class id="QueryDefs" parent="_DynaCollection" default="Item" creatable="off">
+      <method id="Item" type="QueryDef" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Recordset" parent="_DAO" default="Fields" creatable="off">
+      <property id="BOF" type="Boolean" status="Out"/>
+      <property id="Bookmark" type="Byte[]" status="InOut"/>
+      <property id="Bookmarkable" type="Boolean" status="Out"/>
+      <property id="DateCreated" type="Variant" status="Out"/>
+      <property id="EOF" type="Boolean" status="Out"/>
+      <property id="Filter" type="String" status="InOut"/>
+      <property id="Index" type="String" status="InOut"/>
+      <property id="LastModified" type="Byte[]" status="Out"/>
+      <property id="LastUpdated" type="Variant" status="Out"/>
+      <property id="LockEdits" type="Boolean" status="InOut"/>
+      <property id="Name" type="String" status="Out"/>
+      <property id="NoMatch" type="Boolean" status="Out"/>
+      <property id="Sort" type="String" status="InOut"/>
+      <property id="Transactions" type="Boolean" status="Out"/>
+      <property id="Type" type="Short" status="Out"/>
+      <property id="RecordCount" type="Integer" status="Out"/>
+      <property id="Updatable" type="Boolean" status="Out"/>
+      <property id="Restartable" type="Boolean" status="Out"/>
+      <property id="ValidationText" type="String" status="Out"/>
+      <property id="ValidationRule" type="String" status="Out"/>
+      <property id="CacheStart" type="Byte[]" status="InOut"/>
+      <property id="CacheSize" type="Integer" status="InOut"/>
+      <property id="PercentPosition" type="Single" status="InOut"/>
+      <property id="AbsolutePosition" type="Integer" status="InOut"/>
+      <property id="EditMode" type="Short" status="Out"/>
+      <property id="ODBCFetchCount" type="Integer" status="Out"/>
+      <property id="ODBCFetchDelay" type="Integer" status="Out"/>
+      <property id="Parent" type="Database" status="Out"/>
+      <property id="Fields" type="Fields" status="Out"/>
+      <property id="Indexes" type="Indexes" status="Out"/>
+      <property id="hStmt" type="Integer" status="Out"/>
+      <property id="StillExecuting" type="Boolean" status="Out"/>
+      <property id="BatchSize" type="Integer" status="InOut"/>
+      <property id="BatchCollisionCount" type="Integer" status="Out"/>
+      <property id="BatchCollisions" type="Variant" status="Out"/>
+      <property id="Connection" type="Connection" status="InOut"/>
+      <property id="RecordStatus" type="Short" status="Out"/>
+      <property id="UpdateOptions" type="Integer" status="InOut"/>
+      <method id="_30_CancelUpdate" type="Void"/>
+      <method id="AddNew" type="Void"/>
+      <method id="Close" type="Void"/>
+      <method id="OpenRecordset" type="Recordset">
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Delete" type="Void"/>
+      <method id="Edit" type="Void"/>
+      <method id="FindFirst" type="Void">
+         <argument id="Criteria" type="String" status="ByVal"/>
+      </method>
+      <method id="FindLast" type="Void">
+         <argument id="Criteria" type="String" status="ByVal"/>
+      </method>
+      <method id="FindNext" type="Void">
+         <argument id="Criteria" type="String" status="ByVal"/>
+      </method>
+      <method id="FindPrevious" type="Void">
+         <argument id="Criteria" type="String" status="ByVal"/>
+      </method>
+      <method id="MoveFirst" type="Void"/>
+      <method id="_30_MoveLast" type="Void"/>
+      <method id="MoveNext" type="Void"/>
+      <method id="MovePrevious" type="Void"/>
+      <method id="Seek" type="Void">
+         <argument id="Comparison" type="String" status="ByVal"/>
+         <argument id="Key1" type="Variant" status="ByVal"/>
+         <argument id="Key2" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key3" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key4" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key5" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key6" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key7" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key8" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key9" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key10" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key11" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key12" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Key13" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="_30_Update" type="Void"/>
+      <method id="Clone" type="Recordset"/>
+      <method id="Requery" type="Void">
+         <argument id="NewQueryDef" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Move" type="Void">
+         <argument id="Rows" type="Integer" status="ByVal"/>
+         <argument id="StartBookmark" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="FillCache" type="Void">
+         <argument id="Rows" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="StartBookmark" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateDynaset" type="Recordset">
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Inconsistent" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateSnapshot" type="Recordset">
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CopyQueryDef" type="QueryDef"/>
+      <method id="ListFields" type="Recordset"/>
+      <method id="ListIndexes" type="Recordset"/>
+      <method id="GetRows" type="Variant">
+         <argument id="NumRows" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <accessor id="Collect" type="Variant">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </accessor>
+      <method id="Cancel" type="Void"/>
+      <method id="NextRecordset" type="Boolean"/>
+      <method id="CancelUpdate" type="Void">
+         <argument id="UpdateType" type="Integer" status="ByVal" optional="1"/>
+      </method>
+      <method id="Update" type="Void">
+         <argument id="UpdateType" type="Integer" status="ByVal" optional="1"/>
+         <argument id="Force" type="Boolean" status="ByVal" optional="false"/>
+      </method>
+      <method id="MoveLast" type="Void">
+         <argument id="Options" type="Integer" status="ByVal" optional="0"/>
+      </method>
+   </class>
+   <class id="Recordsets" parent="_Collection" default="Item" creatable="off">
+      <method id="Item" type="Recordset" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_Field" parent="_DAO" default="Value" creatable="off">
+      <property id="CollatingOrder" type="Integer" status="Out"/>
+      <property id="Type" type="Short" status="InOut"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Size" type="Integer" status="InOut"/>
+      <property id="SourceField" type="String" status="Out"/>
+      <property id="SourceTable" type="String" status="Out"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Attributes" type="Integer" status="InOut"/>
+      <property id="OrdinalPosition" type="Short" status="InOut"/>
+      <property id="ValidationText" type="String" status="InOut"/>
+      <property id="ValidateOnSet" type="Boolean" status="InOut"/>
+      <property id="ValidationRule" type="String" status="InOut"/>
+      <property id="DefaultValue" type="Variant" status="InOut"/>
+      <property id="Required" type="Boolean" status="InOut"/>
+      <property id="AllowZeroLength" type="Boolean" status="InOut"/>
+      <property id="DataUpdatable" type="Boolean" status="Out"/>
+      <property id="ForeignName" type="String" status="InOut"/>
+      <property id="CollectionIndex" type="Short" status="Out"/>
+      <property id="OriginalValue" type="Variant" status="Out"/>
+      <property id="VisibleValue" type="Variant" status="Out"/>
+      <property id="FieldSize" type="Integer" status="Out"/>
+      <method id="AppendChunk" type="Void">
+         <argument id="Val" type="Variant" status="ByVal"/>
+      </method>
+      <method id="GetChunk" type="Variant">
+         <argument id="Offset" type="Integer" status="ByVal"/>
+         <argument id="Bytes" type="Integer" status="ByVal"/>
+      </method>
+      <method id="_30_FieldSize" type="Integer"/>
+      <method id="CreateProperty" type="Property">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Value" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="DDL" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="Fields" parent="_DynaCollection" default="Item" creatable="off">
+      <method id="Item" type="Field" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_Index" parent="_DAO" creatable="off">
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Foreign" type="Boolean" status="Out"/>
+      <property id="Unique" type="Boolean" status="InOut"/>
+      <property id="Clustered" type="Boolean" status="InOut"/>
+      <property id="Required" type="Boolean" status="InOut"/>
+      <property id="IgnoreNulls" type="Boolean" status="InOut"/>
+      <property id="Primary" type="Boolean" status="InOut"/>
+      <property id="DistinctCount" type="Integer" status="Out"/>
+      <property id="Fields" type="Variant" status="InOut"/>
+      <method id="CreateField" type="Field">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Size" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="CreateProperty" type="Property">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Value" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="DDL" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="Indexes" parent="_DynaCollection" default="Item" creatable="off">
+      <method id="Item" type="Index" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="IndexFields" parent="_DynaCollection" default="Item">
+      <method id="Item" type="Variant" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="Parameter" parent="_DAO" default="Value" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Type" type="Short" status="InOut"/>
+      <property id="Direction" type="Short" status="InOut"/>
+   </class>
+   <class id="Parameters" parent="_Collection" default="Item" creatable="off">
+      <method id="Item" type="Parameter" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_User" parent="_DAO" default="Groups" creatable="off">
+      <property id="Name" type="String" status="InOut"/>
+      <property id="PID" type="String" status="In"/>
+      <property id="Password" type="String" status="In"/>
+      <property id="Groups" type="Groups" status="Out"/>
+      <method id="NewPassword" type="Void">
+         <argument id="bstrOld" type="String" status="ByVal"/>
+         <argument id="bstrNew" type="String" status="ByVal"/>
+      </method>
+      <method id="CreateGroup" type="Group">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="PID" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="Users" parent="_DynaCollection" default="Item" creatable="off">
+      <method id="Item" type="User" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_Group" parent="_DAO" default="Users" creatable="off">
+      <property id="Name" type="String" status="InOut"/>
+      <property id="PID" type="String" status="In"/>
+      <property id="Users" type="Users" status="Out"/>
+      <method id="CreateUser" type="User">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="PID" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Password" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="Groups" parent="_DynaCollection" default="Item" creatable="off">
+      <method id="Item" type="Group" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="_Relation" parent="_DAO" default="Fields" creatable="off">
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Table" type="String" status="InOut"/>
+      <property id="ForeignTable" type="String" status="InOut"/>
+      <property id="Attributes" type="Integer" status="InOut"/>
+      <property id="Fields" type="Fields" status="Out"/>
+      <property id="PartialReplica" type="Boolean" status="InOut"/>
+      <method id="CreateField" type="Field">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Size" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="Relations" parent="_DynaCollection" default="Item" creatable="off">
+      <method id="Item" type="Relation" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Property" parent="_DAO" default="Value" creatable="off">
+      <property id="Value" type="Variant" status="InOut"/>
+      <property id="Name" type="String" status="InOut"/>
+      <property id="Type" type="Short" status="InOut"/>
+      <property id="Inherited" type="Boolean" status="Out"/>
+   </class>
+   <class id="Properties" parent="_DynaCollection" default="Item" creatable="off">
+      <method id="Item" type="Property" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Container" parent="_DAO" default="Documents" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <property id="Owner" type="String" status="InOut"/>
+      <property id="UserName" type="String" status="InOut"/>
+      <property id="Permissions" type="Integer" status="InOut"/>
+      <property id="Inherit" type="Boolean" status="InOut"/>
+      <property id="Documents" type="Documents" status="Out"/>
+      <property id="AllPermissions" type="Integer" status="Out"/>
+   </class>
+   <class id="Containers" parent="_Collection" default="Item" creatable="off">
+      <method id="Item" type="Container" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Document" parent="_DAO" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <property id="Owner" type="String" status="InOut"/>
+      <property id="Container" type="String" status="Out"/>
+      <property id="UserName" type="String" status="InOut"/>
+      <property id="Permissions" type="Integer" status="InOut"/>
+      <property id="DateCreated" type="Variant" status="Out"/>
+      <property id="LastUpdated" type="Variant" status="Out"/>
+      <property id="AllPermissions" type="Integer" status="Out"/>
+      <method id="CreateProperty" type="Property">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Value" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="DDL" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="Documents" parent="_Collection" default="Item" creatable="off">
+      <method id="Item" type="Document" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="Connection" parent="IDispatch" default="QueryDefs" creatable="off">
+      <property id="Name" type="String" status="Out"/>
+      <property id="Connect" type="String" status="Out"/>
+      <property id="Database" type="Database" status="Out"/>
+      <property id="hDbc" type="Integer" status="Out"/>
+      <property id="QueryTimeout" type="Short" status="InOut"/>
+      <property id="Transactions" type="Boolean" status="Out"/>
+      <property id="RecordsAffected" type="Integer" status="Out"/>
+      <property id="StillExecuting" type="Boolean" status="Out"/>
+      <property id="Updatable" type="Boolean" status="Out"/>
+      <property id="QueryDefs" type="QueryDefs" status="Out"/>
+      <property id="Recordsets" type="Recordsets" status="Out"/>
+      <method id="Cancel" type="Void"/>
+      <method id="Close" type="Void"/>
+      <method id="CreateQueryDef" type="QueryDef">
+         <argument id="Name" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="SQLText" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="Execute" type="Void">
+         <argument id="Query" type="String" status="ByVal"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+      <method id="OpenRecordset" type="Recordset">
+         <argument id="Name" type="String" status="ByVal"/>
+         <argument id="Type" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="Options" type="Variant" status="ByVal" optional="Default"/>
+         <argument id="LockEdit" type="Variant" status="ByVal" optional="Default"/>
+      </method>
+   </class>
+   <class id="Connections" parent="_Collection" default="Item" creatable="off">
+      <method id="Item" type="Connection" status="indexer">
+         <argument id="Index" type="Variant" status="ByVal"/>
+      </method>
+   </class>
+   <class id="LanguageConstants" parent="None" module="on" creatable="off">
+      <constant id="dbLangArabic" type="String" value=";LANGID=0x0401;CP=1256;COUNTRY=0"/>
+      <constant id="dbLangCzech" type="String" value=";LANGID=0x0405;CP=1250;COUNTRY=0"/>
+      <constant id="dbLangDutch" type="String" value=";LANGID=0x0413;CP=1252;COUNTRY=0"/>
+      <constant id="dbLangGeneral" type="String" value=";LANGID=0x0409;CP=1252;COUNTRY=0"/>
+      <constant id="dbLangGreek" type="String" value=";LANGID=0x0408;CP=1253;COUNTRY=0"/>
+      <constant id="dbLangHebrew" type="String" value=";LANGID=0x040D;CP=1255;COUNTRY=0"/>
+      <constant id="dbLangHungarian" type="String" value=";LANGID=0x040E;CP=1250;COUNTRY=0"/>
+      <constant id="dbLangIcelandic" type="String" value=";LANGID=0x040F;CP=1252;COUNTRY=0"/>
+      <constant id="dbLangNordic" type="String" value=";LANGID=0x041D;CP=1252;COUNTRY=0"/>
+      <constant id="dbLangNorwDan" type="String" value=";LANGID=0x0414;CP=1252;COUNTRY=0"/>
+      <constant id="dbLangPolish" type="String" value=";LANGID=0x0415;CP=1250;COUNTRY=0"/>
+      <constant id="dbLangCyrillic" type="String" value=";LANGID=0x0419;CP=1251;COUNTRY=0"/>
+      <constant id="dbLangSpanish" type="String" value=";LANGID=0x040A;CP=1252;COUNTRY=0"/>
+      <constant id="dbLangSwedFin" type="String" value=";LANGID=0x040B;CP=1252;COUNTRY=0"/>
+      <constant id="dbLangTurkish" type="String" value=";LANGID=0x041F;CP=1254;COUNTRY=0"/>
+      <constant id="dbLangJapanese" type="String" value=";LANGID=0x0411;CP=932;COUNTRY=0"/>
+      <constant id="dbLangChineseSimplified" type="String" value=";LANGID=0x0804;CP=936;COUNTRY=0"/>
+      <constant id="dbLangChineseTraditional" type="String" value=";LANGID=0x0404;CP=950;COUNTRY=0"/>
+      <constant id="dbLangKorean" type="String" value=";LANGID=0x0412;CP=949;COUNTRY=0"/>
+      <constant id="dbLangThai" type="String" value=";LANGID=0x041E;CP=874;COUNTRY=0"/>
+      <constant id="dbLangSlovenian" type="String" value=";LANGID=0x0424;CP=1250;COUNTRY=0"/>
+   </class>
+   <coclass id="DBEngine" appobject="DAO.DBEngineClass">
+      <subclass id="_DBEngine"/>
+   </coclass>
+   <coclass id="PrivDBEngine">
+      <subclass id="_DBEngine"/>
+   </coclass>
+   <coclass id="TableDef">
+      <subclass id="_TableDef"/>
+   </coclass>
+   <coclass id="QueryDef">
+      <subclass id="_QueryDef"/>
+   </coclass>
+   <coclass id="Field">
+      <subclass id="_Field"/>
+   </coclass>
+   <coclass id="Index">
+      <subclass id="_Index"/>
+   </coclass>
+   <coclass id="User">
+      <subclass id="_User"/>
+   </coclass>
+   <coclass id="Group">
+      <subclass id="_Group"/>
+   </coclass>
+   <coclass id="Relation">
+      <subclass id="_Relation"/>
+   </coclass>
+</library>
+</DescriptionFile>

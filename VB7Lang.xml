@@ -1,0 +1,74 @@
+<MetaLanguage languageFile=".\vb7Lang.vbi" >
+   <Include Filename="Messages.xml" />
+   <language id="Basic" >
+      <Include Filename="opcodes.xml"/>
+      <Include Filename="enumerations.xml"/>
+      <Include Filename="toollang.xml"/>
+      <Include Filename="htmllang.xml"/>
+      <Include fileName="gmsLang.xml" />
+      <Include Filename="vbproject.xml" />
+      <Include Filename="vbconstants.xml" />
+      <Include Filename="vbmethods.xml" />
+      <include Filename="vbcontrols.xml" />
+      <Include Filename="templates.xml" />
+      <Include Filename="vb6idl.xml" />
+      <Include Filename="vbasic.xml" />
+
+      <Select AcceptRedefine="on" />
+      <Select AppNameSpace="AspCodeBehind" />
+      <Select AspCodeClass="on" />
+      <Select AuthorLibrary="deploy" />
+      <Select BlockComments="off" />
+      <Select BlockMethods="0" />
+      <Select CheckDeclares="ignore" />
+      <Select CheckFinalCode="On" />
+      <Select CheckMultiSet="off" />
+      <Select CodeCommentOut="on"/>
+      <Select Company="%PRM_BUILDID%" />
+      <Select CompilerWarnings="on" />
+      <Select ComputeConditional="on" />
+      <Select DesignCode="on" />
+      <Select Devenv="VS2010"/>
+      <Select Dialect="csh" />
+      <Select ExceptionHandling="Simple"/>
+      <Select Id="std" />
+      <Select Indent="3"/>
+      <Select Language="\gmProducts\gmStudio_dev\support\metalang" />
+      <Select Library="runtime" />
+      <Select MaxOutputWidth="2048" />
+      <Select MigrateLineToLabel="off" />
+      <Select Name="Basic Processor" />
+      <Select RootSpace=""/>
+      <Select SupplyMissingResx="on" />
+      <Select Target="C:\gmStudio\target" />
+      <Select TypeInteger="Integer" TypeLong="Integer" />
+      <Select UndefinedProperties="ignore" />
+      <Select Version="%PRM_VERSION%" />
+      <Select ExtensionMethods="gmRTL.Core" />
+   </language>
+
+   <gmSL NameSpace="gmSL" Class="AuthorText"    Source="AuthorText.gmsl" />
+   <gmSL NameSpace="gmSL" class="Utility"       Source="Utility.gmsl" />
+   <gmSL NameSpace="gmSL" class="SharedFile"    Source="SharedFile.gmsl" />
+   <gmSL NameSpace="gmSL" class="AspAuthor"     Source="AspAuthor.gmsl" />
+   <gmSL NameSpace="gmSL" class="IdlAuthor"     Source="IdlAuthor.gmsl" />
+
+   <Registry type="guid" source="Project"      target="off" />
+   <Registry type="guid" source="ProjectType1" target="{349C5851-65DF-11DA-9384-00065B846F21}" />
+   <Registry type="guid" source="ProjectType2" target="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}" />
+   <Registry type="guid" source="Flavor"       target="{349C5851-65DF-11DA-9384-00065B846F21}" />
+   <Registry type="guid" source="Interfaces"   target="{447E0939-9DC6-40F4-A30E-26DC252607D3}" />
+
+   <Registry type="idf" source="Language.std"              target="@Language.std.xml" />
+   <Registry type="idf" source="gmRegExpLib.dll"           target="@gmRegExpLib.dll.xml" />
+   <Registry type="idf" source="asplang"                   target="@asplang.xml" />
+   <Registry type="idf" source="Vb6control.dcl"            target="@Vb6Control.dcl.xml" />
+   <Registry type="idf" source="gmRTL.Core.dll"            target="@gmRTL.Core.dll.xml" />
+   <Registry type="idf" source="gmRTL.GUI.dll"             target="@gmRTL.GUI.dll.xml" />
+   <Registry type="idf" source="gmRTL.ASP.dll"             target="@gmRTL.ASP.dll.xml" />
+   <Registry type="idf" source="stdole2.tlb"               target="@stdole2.tlb.xml" />
+   <Registry type="idf" source="dao350.dll"                target="@dao350.dll.xml" />
+
+   <Include Filename="netControls.xml"/>
+   <Include Filename="netClasses.xml"/>
+</MetaLanguage>

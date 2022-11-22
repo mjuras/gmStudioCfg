@@ -1,0 +1,504 @@
+<DescriptionFile>
+
+<library id="asplang"
+         name="asp"
+         location="DoNotDeclare"
+         migName="System.Web"
+         type="Native"
+>
+
+<class id="IRequestEntry" parent="None" default="Item">
+   <property id="Count" type="Integer" status="Out"/>
+   <method id="Item" type="String" status="indexer">
+      <argument id="Var" type="Variant" status="ByVal" optional="DEF.MissingZero"/>
+   </method>
+   <accessor id="Key" type="Variant">
+      <argument id="VarKey" type="Variant" status="ByVal"/>
+   </accessor>
+</class>
+
+<class id="IRequestDictionary" parent="None" default="Item">
+   <property id="Count" type="Integer" status="Out"/>
+   <method id="Item" type="IRequestEntry" status="indexer">
+      <argument id="Var" type="Variant" status="ByVal" optional="Default"/>
+   </method>
+   <accessor id="Key" type="Variant">
+      <argument id="VarKey" type="Variant" status="ByVal"/>
+   </accessor>
+</class>
+
+<class id="IWriteCookie" parent="None" default="Value" migName="HttpCookie">
+   <property id="Expires" type="Date" status="In"/>
+   <property id="Domain" type="String" status="In"/>
+   <property id="Path" type="String" status="In"/>
+   <property id="Secure" type="Boolean" status="In"/>
+   <property id="HasKeys" type="Boolean" status="Out"/>
+   <property id="Value"   type="String" status="In"/>
+</class>
+
+<class id="IWriteCookies" parent="None" default="Item">
+   <property id="Count" type="Integer" status="Out"/>
+   <method id="Item" type="IWriteCookie" vbnPattern="%1d(%2d)" cshPattern="%1d[%2d]">
+      <argument id="Var" type="ValueType" status="ByVal" optional="Default"/>
+   </method>
+   <accessor id="Key" type="Variant">
+      <argument id="VarKey" type="Variant" status="ByVal"/>
+   </accessor>
+</class>
+
+<class id="IResponse" parent="None" creatable="off">
+   <property id="Buffer" type="Boolean" status="InOut"/>
+   <property id="ContentType" type="String" status="InOut"/>
+   <property id="Expires" type="Integer" status="InOut"/>
+   <property id="ExpiresAbsolute" type="Date" status="InOut"/>
+   <property id="Cookies" type="IWriteCookies" status="Out"/>
+   <property id="Status" type="String" status="InOut"/>
+   <property id="CharSet" type="String" status="InOut" migName="Charset"/>
+   <property id="CacheControl" type="String" status="InOut"/>
+   <property id="CodePage" type="Integer" status="InOut"/>
+   <method id="Add" type="Void">
+      <argument id="bstrHeaderValue" type="String" status="ByVal"/>
+      <argument id="bstrHeaderName" type="String" status="ByVal"/>
+   </method>
+   <method id="AddHeader" type="Void">
+      <argument id="bstrHeaderName" type="String" status="ByVal"/>
+      <argument id="bstrHeaderValue" type="String" status="ByVal"/>
+   </method>
+   <method id="AppendToLog" type="Void">
+      <argument id="bstrLogEntry" type="String" status="ByVal"/>
+   </method>
+   <method id="BinaryWrite" type="Void">
+      <argument id="varInput" type="byte[]" status="ByVal"/>
+   </method>
+   <method id="Clear" type="Void"/>
+   <method id="End" type="Void" migName="End" />
+   <method id="Flush" type="Void"/>
+   <method id="Redirect" type="Void">
+      <argument id="bstrURL" type="String" status="ByVal"/>
+   </method>
+   <method id="Write" type="Void">
+      <argument id="varText" type="Variant" status="ByVal" optional="DEF.TypeMissing"/>
+   </method>
+   <method id="WriteBlock" type="Void">
+      <argument id="iBlockNumber" type="Short" status="ByVal"/>
+   </method>
+   <property id="IsClientConnected" type="Boolean"/>
+   <method id="Pics" type="Void">
+      <argument id="bstrHeaderValue" type="String" status="ByVal"/>
+   </method>
+</class>
+
+<class id="IReadCookie" parent="None" default="Value" CanBeNull="on" migName="HttpCookie" external="on">
+   <property id="HasKeys"  type="Boolean" status="Out"/>
+   <property id="_NewEnum" type="stdole.IUnknown" status="Out"/>
+   <property id="Count"    type="Integer" status="Out"/>
+   <property id="Value"    type="String"  status="Out" canbenull="on" />
+   <Property id="Values"   type="Collection" />
+   <method   id="Item"     type="String[]" status="Out" vbnPattern="%1d.Item(%2d)" cshPattern="%1d[%2d]">
+      <argument id="Var" type="Variant" status="ByVal" optional="Default"/>
+   </method>
+</class>
+
+<class id="IReadCookies" parent="None" default="Item" >
+   <property id="Count" type="Integer" status="Out"/>
+   <method id="Item" type="IReadCookie" vbnPattern="%1d(%2d)" cshPattern="%1d[%2d]" >
+      <argument id="Var" type="ValueType" status="ByVal" optional="Default" />
+   </method>
+   <accessor id="Key" type="Variant" vbnPattern="%1d.Keys(%2d)" cshPattern="%1d.Keys[%2d]">
+      <argument id="VarKey" type="Variant" status="ByVal"/>
+   </accessor>
+</class>
+
+<class id="IFormInput" parent="None" default="Item" migName="System.Collections.Specialized.NameValueCollection" external="on">
+   <property id="HasKeys" type="Boolean" status="Out"/>
+   <property id="_NewEnum" type="stdole.IUnknown" status="Out"/>
+   <property id="Count" type="Integer" status="Out"/>
+   <method id="Item" type="String" vbnPattern="%1d(%2d)" cshPattern="%1d[%2d]">
+      <argument id="Var" type="String" status="ByVal" optional="Default"/>
+   </method>
+   <method id="ItemCount" type="Integer" vbnPattern="%1d.GetValues(%2d).Length" cshPattern="%1d.GetValues(%2d).Length">
+      <argument id="Var" type="String" status="ByVal" optional="Default"/>
+   </method>
+   <method id="IndexedItem" type="String" vbnPattern="%1d.GetValues(%2d)(%3D)" cshPattern="%1d.GetValues(%2d)[%3D]">
+      <argument id="Var"   type="String"  status="ByVal" optional="Default"/>
+      <argument id="Index" type="Integer" status="ByVal" optional="Default"/>
+   </method>
+   <method id="RequestItemCount" type="Integer" vbnPattern="%1d.Form.GetValues(%2d).Length" cshPattern="%1d.Form.GetValues(%2d).Length">
+      <argument id="Var" type="String" status="ByVal" optional="Default"/>
+   </method>
+   <method id="RequestItemValues" type="Collection" vbnPattern="%1d.GetValues(%2d)" cshPattern="%1d.GetValues(%2d)">
+      <argument id="Var" type="String" status="ByVal" optional="Default"/>
+   </method>
+   <method id="RequestIndexedItem" type="String" vbnPattern="%1d.Form.GetValues(%2d)(%3D)" cshPattern="%1d.Form.GetValues(%2d)[%3D]">
+      <argument id="Var"   type="String"  status="ByVal" optional="Default"/>
+      <argument id="Index" type="Integer" status="ByVal" optional="Default"/>
+   </method>
+   <method id="Key" type="Variant" vbnPattern="%1d(%2d)" cshPattern="%1d[%2d]">
+      <argument id="VarKey" type="Variant" status="ByVal"/>
+   </method>
+</class>
+
+<class id="IQueryString" parent="None" default="Item" migName="System.Collections.Specialized.NameValueCollection" external="on">
+   <property id="HasKeys" type="Boolean" status="Out"/>
+   <property id="_NewEnum" type="stdole.IUnknown" status="Out"/>
+   <property id="Count" type="Integer" status="Out"/>
+   <method id="Item" type="String" vbnPattern="%1d(%2d)" cshPattern="%1d[%2d]">
+      <argument id="Var" type="String" status="ByVal" optional="Default"/>
+   </method>
+   <method id="ItemCount" type="Integer" vbnPattern="%1d.GetValues(%2d).Length" cshPattern="%1d.GetValues(%2d).Length">
+      <argument id="Var" type="String" status="ByVal" optional="Default"/>
+   </method>
+   <method id="IndexedItem" type="String" vbnPattern="%1d.GetValues(%2d)(%3D)" cshPattern="%1d.GetValues(%2d)[%3D]">
+      <argument id="Var"   type="String"  status="ByVal" optional="Default"/>
+      <argument id="Index" type="Integer" status="ByVal" optional="Default"/>
+   </method>
+   <accessor id="Key" type="Variant" vbnPattern="%1d(%2d)" cshPattern="%1d[%2d]">
+      <argument id="VarKey" type="Variant" status="ByVal"/>
+   </accessor>
+</class>
+
+<class id="IRequest" parent="None" default="Item" creatable="off" migName="HttpRequest" >
+   <property id="QueryString" type="IQueryString" status="Out"/>
+   <property id="Form" type="IFormInput" status="Out"/>
+   <property id="Body" type="IRequestDictionary" status="Out" migName="Form"/>
+   <property id="ServerVariables" type="IRequestEntry" status="Out"/>
+   <property id="ClientCertificate" type="IRequestDictionary" status="Out"/>
+   <property id="Cookies" type="IReadCookies" status="Out"/>
+   <property id="TotalBytes" type="Integer" status="Out"/>
+   <method id="Item" type="String" vbnPattern="%1d(%2d)"
+               cshPattern="%1d[%2d]" CanBeNull="on">
+      <argument id="bstrVar" type="String" status="ByVal"/>
+   </method>
+   <method id="BinaryRead" type="Variant">
+      <argument id="pvarCountToRead" type="Variant" status="ByVal"/>
+   </method>
+   <method id="RequestItemValues" type="Collection" vbnPattern="%1d.Form.GetValues(%2d)" cshPattern="%1d.Form.GetValues(%2d)">
+      <argument id="Var" type="String" status="ByVal" optional="Default"/>
+   </method>
+</class>
+
+<class id="AspError" parent="None" migName="gmRTL.Core.GlobalExceptionInstance" external="on" >
+   <property id="ASPCode"        type="Variant" status="Out" />
+   <property id="ASPDescription" type="Variant" status="Out" />
+   <property id="Category"       type="Variant" status="Out" />
+   <method   id="Column"         type="String"  status="Out" />
+   <property id="Description"    type="String"  status="Out" />
+   <property id="File"           type="Variant" status="Out" />
+   <property id="Line"           type="Variant" status="Out" />
+   <property id="Number"         type="Variant" status="Out" />
+   <property id="Source"         type="String"  status="Out"/>
+</class>
+
+<class id="IServer" parent="None">
+   <property id="ScriptTimeout" type="Integer" status="InOut"/>
+   <method id="CreateObject" type="objReference" vbnPattern="New %2u()" cshPattern="new %2u()">
+      <argument id="bstrProgID" type="String" status="ByVal"/>
+   </method>
+   <method id="Execute" type="void">
+      <argument id="bstrPagePath" type="String" status="ByVal"/>
+   </method>
+   <method id="Transfer" type="void">
+      <argument id="bstrIn" type="String" status="ByVal"/>
+   </method>
+   <method id="HTMLEncode" type="String" migName="HtmlEncode">
+      <argument id="bstrIn" type="String" status="ByVal"/>
+   </method>
+   <method id="MapPath" type="String">
+      <argument id="bstrLogicalPath" type="String" status="ByVal"/>
+   </method>
+   <method id="URLEncode" type="String" migName="UrlEncode">
+      <argument id="bstrIn" type="String" status="ByVal"/>
+   </method>
+   <method id="URLPathEncode" type="String" migName="UrlEncode" >
+      <argument id="bstrIn" type="String" status="ByVal"/>
+   </method>
+   <method id="GetLastError" type="ErrObject" nPram="1" cshPattern="gmRTL.ASP.IServer.GetErrorObject(%1d)" vbnPattern="gmRTL.ASP.IServer.GetErrorObject(%1d)"/>
+</class>
+
+<class id="IVariantDictionary" parent="None" default="Item">
+   <property id="Count" type="Integer" status="Out"/>
+   <property id="_NewEnum" type="stdole.IUnknown" status="Out"/>
+   <method id="Item" type="Variant" status="indexer">
+      <argument id="VarKey" type="String" status="ByVal"/>
+   </method>
+   <accessor id="Key" type="Variant">
+      <argument id="VarKey" type="Variant" status="ByVal"/>
+   </accessor>
+   <method id="Remove" type="Integer">
+      <argument id="VarKey" type="Variant" status="ByVal"/>
+   </method>
+   <method id="RemoveAll" type="void" migName="Clear" />
+</class>
+
+<class id="ISessionObject" parent="None" default="Value">
+   <property id="SessionID" type="String" status="Out"/>
+   <property id="Timeout" type="Integer" status="InOut"/>
+   <property id="CodePage" type="Integer" status="InOut"/>
+   <property id="LCID" type="Integer" status="InOut"/>
+   <property id="StaticObjects" type="IVariantDictionary" status="Out"/>
+   <property id="Contents" type="IVariantDictionary" status="Out"/>
+   <method id="Value" type="Variant" status="indexer">
+      <argument id="bstrValue" type="String" status="ByVal"/>
+   </method>
+   <method id="Abandon" type="Void"/>
+</class>
+
+<class id="IApplication" parent="None" default="Value">
+   <property id="StaticObjects" type="IVariantDictionary" status="Out"/>
+   <property id="Contents" type="IVariantDictionary" status="Out"/>
+   <method id="Value" type="Variant" status="indexer">
+      <argument id="bstrValue" type="String" status="ByVal"/>
+   </method>
+   <method id="Lock" type="Void"/>
+   <method id="UnLock" type="Void"/>
+</class>
+
+<class id="Asp_Session" Parent="none" AppObject="ASP" creatable="off" static="on">
+   <property id="Response"    type="IResponse" migName="HttpContext.Current.Response"/>
+   <property id="Request"     type="IRequest" migName="HttpContext.Current.Request"/>
+   <property id="Server"      type="IServer" migName="HttpContext.Current.Server"/>
+   <property id="Session"     type="ISessionObject" migName="HttpContext.Current.Session"/>
+   <Property id="Application" type="IApplication" migName="HttpContext.Current.Application"/>
+   <method id="Escape" type="String" nPram="1" migPattern="gmRTL.ASP.Asp_Session.Escape(%1d)">
+      <argument id="string" type="String" status="ByVal"/>
+   </method>
+   <method id="Eval" type="Variant" nPram="1" migPattern="gmRTL.ASP.Asp_Session.Eval(%1d)">
+      <argument id="expr" type="String" status="ByVal"/>
+   </method>
+   <method id="Execute" type="Variant" nPram="1" migPattern="gmRTL.ASP.Asp_Session.Execute(%1d)">
+      <argument id="codeblock" type="String" status="ByVal"/>
+   </method>
+   <method id="ExecuteGlobal" type="Variant" nPram="1" migPattern="gmRTL.ASP.Asp_Session.ExecuteGlobal(%1d)">
+      <argument id="codeblock" type="String" status="ByVal"/>
+   </method>
+   <method id="GetLocale" type="Integer" migPattern="gmRTL.ASP.Asp_Session.GetLocale()" />
+   <method id="GetRef" type="Variant" nPram="1" migPattern="gmRTL.ASP.Asp_Session.GetRef(%1d)">
+      <argument id="funcname" type="String" status="ByVal"/>
+   </method>
+   <method id="ScriptEngine" type="String" migPattern="gmRTL.ASP.Asp_Session.ScriptEngine()" />
+   <method id="ScriptEngineMajorVersion" type="Integer" migPattern="gmRTL.ASP.Asp_Session.ScriptEngineMajorVersion()" />
+   <method id="ScriptEngineMinorVersion" type="Integer" migPattern="gmRTL.ASP.Asp_Session.ScriptEngineMinorVersion()" />
+   <method id="ScriptEngineBuildVersion" type="Integer" migPattern="gmRTL.ASP.Asp_Session.ScriptEngineMajorVersion()" />
+   <method id="SetLocale" type="Void" nPram="2" migPattern="gmRTL.ASP.Asp_Session.SetLocale(%2d)" >
+      <argument id="lcid" type="Variant" status="ByVal"/>
+   </method>
+   <method id="UnEscape" type="String" nPram="1" migPattern="gmRTL.ASP.Asp_Session.UnEscape(%1d)">
+      <argument id="string" type="String" status="ByVal"/>
+   </method>
+</class>
+</library>
+
+<Refactor id="asplang" event="aspEvents" >
+<gmSL NameSpace="aspEvents" Class="Transform" >
+int IFormInput_Item(int subRoot,int icode,int iRefer)
+{
+   int        iEnd;
+   int        formRoot;
+   int        addr;
+   int        itype;
+   int        nqe;
+   tCodeBlock codptr;
+   int        oper;
+   int        subOper;
+   int        pcnt;
+   string     lateName;
+
+   codptr = Opcode.GetCode();
+   pcnt = Opcode.GetLength();
+   oper = Opcode.GetOperation(codptr,iRefer+5,subOper);
+   if(oper == OPC.CBN)
+   {
+      oper = Opcode.GetOperation(codptr,iRefer+6,addr);
+      if(oper == OPC.LSP)
+      {
+         oper = Opcode.GetOperation(codptr,iRefer+11,subOper);
+         if(oper == OPC.CLF)
+         {
+            lateName = Store.GetString(addr);
+            if(lateName == "Count")
+            {
+               pcnt = Opcode.DeleteCode(iRefer+5,pcnt,8);
+               Opcode.SetOperation(codptr,iRefer,OPC.PAT,Symbol.FindIdentifier("asp.IFormInput.ItemCount",0));
+               Opcode.SetLength(pcnt);
+               return iRefer;
+            }
+         }
+      }
+      else if(oper == OPC.LEV)
+      {
+         iEnd = Opcode.FindArgumentEnd(codptr,iRefer+6,pcnt);
+         oper = Opcode.GetOperation(codptr,iEnd,subOper);
+         if(oper == OPC.CLF)
+         {
+            pcnt = Opcode.DeleteCode(iRefer,pcnt,6);
+            iRefer = iEnd - 6;
+            pcnt = Opcode.ExpandCode(iRefer,pcnt,3);
+            Opcode.SetLength(pcnt);
+            Opcode.SetOperation(codptr,iRefer,OPC.PAT,Symbol.FindIdentifier("asp.IFormInput.IndexedItem",0));
+            return iRefer;
+         }
+      }
+      return 0;
+   }
+   else if(oper == OPC.LIC)
+   {
+      oper = Opcode.GetOperation(codptr,iRefer+8,subOper);
+      if(oper == OPC.TYP)
+      {
+         oper = Opcode.GetOperation(codptr,iRefer+10,subOper);
+         if(oper == OPC.IFS && subOper == OPC.IFS.ForEachTemp)
+         {
+            Opcode.SetOperation(codptr,iRefer,OPC.PAT,Symbol.FindIdentifier("asp.IFormInput.RequestItemValues",0));
+            return iRefer;
+         }
+      }
+   }
+   oper = Opcode.GetOperation(codptr,icode,subOper);
+   if(oper  == OPC.ASP) icode = icode + 2;
+   else if(oper == OPC.LLP) icode = icode + 5;
+   else return 0;
+   if(Opcode.GetOperation(codptr,icode  ,subOper) != OPC.LLP ||
+      Opcode.GetOperation(codptr,icode+5,subOper) != OPC.MEM ||
+      Opcode.GetOperation(codptr,icode+7,subOper) != OPC.LEV) return 0;
+   iEnd = Opcode.FindArgumentEnd(codptr,icode+7,pcnt);
+   if(iEnd != iRefer) return 0;
+   Opcode.GetOperation(codptr,icode,formRoot);
+   if(formRoot != Symbol.FindIdentifier("asp.IRequest.Form",0)) return 0;
+   itype = Opcode.GetArgumentType(subRoot,icode+7,0);
+   if(itype == BinaryType.Integer || itype == BinaryType.String) return 0;
+   pcnt = Opcode.ExpandCode(iRefer,pcnt,2);
+   Opcode.SetOperation(codptr,iRefer,OPC.CNV,OPC.CNV.ToString);
+   Opcode.SetLength(pcnt);
+   return iRefer;
+}
+
+int IRequest_Item(int subRoot,int icode,int iRefer)
+{
+   tCodeBlock codptr;
+   int        oper;
+   int        subOper;
+   int        pcnt;
+   int        addr;
+   string     lateName;
+   int        iEnd;
+
+   codptr = Opcode.GetCode();
+   pcnt = Opcode.GetLength();
+   oper = Opcode.GetOperation(codptr,iRefer+5,subOper);
+   if(oper == OPC.TYP)
+   {
+      oper = Opcode.GetOperation(codptr,iRefer+7,subOper);
+      if(oper == OPC.IFS && subOper == OPC.IFS.ForEach)
+      {
+         Opcode.SetOperation(codptr,iRefer,OPC.PAT,Symbol.FindIdentifier("asp.IRequest.RequestItemValues",0));
+         return iRefer;
+      }
+      return 0;
+   }
+   else if(oper == OPC.LIC)
+   {
+      oper = Opcode.GetOperation(codptr,iRefer+10,subOper);
+      if(oper == OPC.IFS && subOper == OPC.IFS.ForEachTemp)
+      {
+         Opcode.SetOperation(codptr,iRefer,OPC.PAT,Symbol.FindIdentifier("asp.IRequest.RequestItemValues",0));
+         return iRefer;
+      }
+      return 0;
+   }
+   oper = Opcode.GetOperation(codptr,iRefer+6,addr);
+   if(oper == OPC.LSP)
+   {
+      oper = Opcode.GetOperation(codptr,iRefer+11,subOper);
+      if(oper == OPC.CLF)
+      {
+         lateName = Store.GetString(addr);
+         if(lateName == "Count")
+         {
+            pcnt = Opcode.DeleteCode(iRefer+5,pcnt,8);
+            addr = Symbol.FindIdentifier("asp.IFormInput.RequestItemCount",0);
+            Opcode.SetOperation(codptr, iRefer, OPC.PAT, addr);
+            Opcode.SetLength(pcnt);
+            return iRefer;
+         }
+         else if(lateName == "Item")
+         {
+            pcnt = Opcode.DeleteCode(iRefer+5,pcnt,8);
+            Opcode.SetLength(pcnt);
+            return iRefer;
+         }
+      }
+   }
+   else if(oper == OPC.LEV)
+   {
+      iEnd = Opcode.FindArgumentEnd(codptr,iRefer+6,pcnt);
+      oper = Opcode.GetOperation(codptr,iEnd,subOper);
+      if(oper == OPC.CLF)
+      {
+         pcnt = Opcode.DeleteCode(iRefer,pcnt,6);
+         iRefer = iEnd - 6;
+         pcnt = Opcode.ExpandCode(iRefer,pcnt,3);
+         addr = Symbol.FindIdentifier("asp.IFormInput.RequestIndexedItem",0);
+         Opcode.SetOperation(codptr, iRefer, OPC.PAT, addr);
+         Opcode.SetLength(pcnt);
+         return iRefer;
+       }
+   }
+   return 0;
+}
+
+int IQueryString_Item(int subRoot,int icode,int iRefer)
+{
+   tCodeBlock codptr;
+   int        oper;
+   int        subOper;
+   int        pcnt;
+   int        addr;
+   string     lateName;
+   int        iEnd;
+   int        nextOpr;
+
+   codptr = Opcode.GetCode();
+   pcnt = Opcode.GetLength();
+   oper = Opcode.GetOperation(codptr,iRefer,addr);
+   if(oper != OPC.PAT) return 0;
+   nextOpr = Opcode.GetNext(codptr,iRefer,pcnt)
+   oper = Opcode.GetOperation(codptr,nextOpr,addr);
+   if(oper != OPC.CBN) return 0;
+   oper = Opcode.GetOperation(codptr,iRefer+6,addr);
+   if(oper == OPC.LSP)
+   {
+      oper = Opcode.GetOperation(codptr,iRefer+11,subOper);
+      if(oper == OPC.CLF)
+      {
+         lateName = Store.GetString(addr);
+         if(lateName == "Count")
+         {
+            pcnt = Opcode.DeleteCode(iRefer+5,pcnt,8);
+            addr = Symbol.FindIdentifier("asp.IQueryString.ItemCount",0);
+            Opcode.SetOperation(codptr, iRefer, OPC.PAT, addr);
+            Opcode.SetLength(pcnt);
+            return iRefer;
+         }
+      }
+   }
+   else if(oper == OPC.LEV)
+   {
+      iEnd = Opcode.FindArgumentEnd(codptr,iRefer+6,pcnt);
+      oper = Opcode.GetOperation(codptr,iEnd,subOper);
+      if(oper == OPC.CLF)
+      {
+         pcnt = Opcode.DeleteCode(iRefer,pcnt,6);
+         iRefer = iEnd - 6;
+         pcnt = Opcode.ExpandCode(iRefer,pcnt,3);
+         addr = Symbol.FindIdentifier("asp.IQueryString.IndexedItem",0);
+         Opcode.SetOperation(codptr, iRefer, OPC.PAT, addr);
+         Opcode.SetLength(pcnt);
+         return iRefer;
+       }
+   }
+   return 0;
+}
+</gmsl>
+</Refactor>
+
+</DescriptionFile>
